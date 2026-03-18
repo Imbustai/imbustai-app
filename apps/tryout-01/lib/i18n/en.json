@@ -1,0 +1,56 @@
+{
+  "app": {
+    "title": "Imbustai",
+    "subtitle": "A letter-based storytelling experience"
+  },
+  "login": {
+    "title": "Welcome Back",
+    "subtitle": "Sign in to continue your letter journey",
+    "registerTitle": "Create Account",
+    "registerSubtitle": "Sign up to start your letter journey",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "At least 6 characters",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "checkEmail": "Check your email",
+    "checkEmailDescription": "We sent you a confirmation link. Please check your inbox to verify your account.",
+    "footer": "A research project on AI-driven interactive storytelling"
+  },
+  "game": {
+    "title": "Your Letters",
+    "start": "Start the Story",
+    "startDescription": "Begin your letter exchange. You'll receive a letter from an old friend...",
+    "letterFrom": "Letter from",
+    "yourReply": "Your Reply",
+    "replyPlaceholder": "Write your reply letter here...",
+    "send": "Send Letter",
+    "sending": "Sending...",
+    "waitingForReply": "Waiting for reply...",
+    "waitingDescription": "Your letter is on its way. A reply will arrive shortly...",
+    "letterNumber": "Letter",
+    "of": "of",
+    "friendName": "Apaya",
+    "you": "You",
+    "gameComplete": "The story has ended",
+    "gameCompleteDescription": "Thank you for completing this letter exchange.",
+    "endStoryStartReview": "End story - start the review process"
+  },
+  "rating": {
+    "title": "Rate Your Experience",
+    "description": "How would you rate the overall letter exchange experience?",
+    "submit": "Submit Rating",
+    "thankYou": "Thank you!",
+    "thankYouDescription": "Your feedback is valuable for our research.",
+    "stars": "stars"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try Again",
+    "logout": "Sign Out"
+  }
+}

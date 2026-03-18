@@ -1,0 +1,56 @@
+{
+  "app": {
+    "title": "Imbustai",
+    "subtitle": "Un'esperienza narrativa basata sulle lettere"
+  },
+  "login": {
+    "title": "Bentornato",
+    "subtitle": "Accedi per continuare il tuo viaggio epistolare",
+    "registerTitle": "Crea Account",
+    "registerSubtitle": "Registrati per iniziare il tuo viaggio epistolare",
+    "email": "Email",
+    "emailPlaceholder": "tu@esempio.com",
+    "password": "Password",
+    "passwordPlaceholder": "Almeno 6 caratteri",
+    "signIn": "Accedi",
+    "signUp": "Registrati",
+    "noAccount": "Non hai un account?",
+    "hasAccount": "Hai già un account?",
+    "checkEmail": "Controlla la tua email",
+    "checkEmailDescription": "Ti abbiamo inviato un link di conferma. Controlla la tua casella di posta per verificare il tuo account.",
+    "footer": "Un progetto di ricerca sulla narrazione interattiva con l'IA"
+  },
+  "game": {
+    "title": "Le Tue Lettere",
+    "start": "Inizia la Storia",
+    "startDescription": "Inizia il tuo scambio epistolare. Riceverai una lettera da un vecchio amico...",
+    "letterFrom": "Lettera da",
+    "yourReply": "La Tua Risposta",
+    "replyPlaceholder": "Scrivi qui la tua lettera di risposta...",
+    "send": "Invia Lettera",
+    "sending": "Invio in corso...",
+    "waitingForReply": "In attesa di risposta...",
+    "waitingDescription": "La tua lettera è in viaggio. Una risposta arriverà a breve...",
+    "letterNumber": "Lettera",
+    "of": "di",
+    "friendName": "Apaya",
+    "you": "Tu",
+    "gameComplete": "La storia è terminata",
+    "gameCompleteDescription": "Grazie per aver completato questo scambio epistolare.",
+    "endStoryStartReview": "Termina la storia - avvia la valutazione"
+  },
+  "rating": {
+    "title": "Valuta la Tua Esperienza",
+    "description": "Come valuteresti l'esperienza complessiva dello scambio di lettere?",
+    "submit": "Invia Valutazione",
+    "thankYou": "Grazie!",
+    "thankYouDescription": "Il tuo feedback è prezioso per la nostra ricerca.",
+    "stars": "stelle"
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Qualcosa è andato storto",
+    "retry": "Riprova",
+    "logout": "Esci"
+  }
+}

@@ -46,3 +46,7 @@ Thumbs.db
 # Next.js
 .next
 out
+
+# Environment files
+.env.local
+.env*.local
