@@ -5,23 +5,23 @@
   "scripts": {},
   "private": true,
   "devDependencies": {
-    "@nx/js": "22.6.0",
-    "@nx/next": "^22.6.0",
-    "@nx/workspace": "22.6.0",
-    "@swc-node/register": "~1.11.1",
-    "@swc/cli": "~0.8.0",
-    "@swc/core": "~1.15.5",
-    "@swc/helpers": "~0.5.18",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "nx": "22.6.0",
-    "prettier": "~3.6.2",
-    "tslib": "^2.3.0",
-    "typescript": "~5.9.2"
+    "@nx/js": "catalog:",
+    "@nx/next": "catalog:",
+    "@nx/workspace": "catalog:",
+    "@swc-node/register": "catalog:",
+    "@swc/cli": "catalog:",
+    "@swc/core": "catalog:",
+    "@swc/helpers": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "nx": "catalog:",
+    "prettier": "catalog:",
+    "tslib": "catalog:",
+    "typescript": "catalog:"
   },
   "dependencies": {
-    "next": "~16.1.6",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "next": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   }
 }

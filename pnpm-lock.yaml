@@ -4,58 +4,109 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@nx/js':
+      specifier: 22.6.0
+      version: 22.6.0
+    '@nx/next':
+      specifier: ^22.6.0
+      version: 22.6.0
+    '@nx/workspace':
+      specifier: 22.6.0
+      version: 22.6.0
+    '@swc-node/register':
+      specifier: ~1.11.1
+      version: 1.11.1
+    '@swc/cli':
+      specifier: ~0.8.0
+      version: 0.8.0
+    '@swc/core':
+      specifier: ~1.15.5
+      version: 1.15.18
+    '@swc/helpers':
+      specifier: ~0.5.18
+      version: 0.5.19
+    '@types/react':
+      specifier: ^19.0.0
+      version: 19.2.14
+    '@types/react-dom':
+      specifier: ^19.0.0
+      version: 19.2.3
+    next:
+      specifier: ~16.1.6
+      version: 16.1.7
+    nx:
+      specifier: 22.6.0
+      version: 22.6.0
+    prettier:
+      specifier: ~3.6.2
+      version: 3.6.2
+    react:
+      specifier: ^19.0.0
+      version: 19.2.4
+    react-dom:
+      specifier: ^19.0.0
+      version: 19.2.4
+    tslib:
+      specifier: ^2.3.0
+      version: 2.8.1
+    typescript:
+      specifier: ~5.9.2
+      version: 5.9.3
+
 importers:
 
   .:
     dependencies:
       next:
-        specifier: ~16.1.6
+        specifier: 'catalog:'
         version: 16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0)
       react:
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.4
       react-dom:
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.4(react@19.2.4)
     devDependencies:
       '@nx/js':
-        specifier: 22.6.0
+        specifier: 'catalog:'
         version: 22.6.0(@babel/traverse@7.29.0)(@swc-node/register@1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.18(@swc/helpers@0.5.19))(nx@22.6.0(@swc-node/register@1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.18(@swc/helpers@0.5.19)))
       '@nx/next':
-        specifier: ^22.6.0
+        specifier: 'catalog:'
         version: 22.6.0(@babel/core@7.29.0)(@babel/traverse@7.29.0)(@rspack/core@1.6.8(@swc/helpers@0.5.19))(@swc-node/register@1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/helpers@0.5.19)(@zkochan/js-yaml@0.0.7)(eslint@10.0.3(jiti@2.4.2))(next@16.1.7(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(sass@1.98.0))(node-fetch@2.7.0(encoding@0.1.13))(nx@22.6.0(@swc-node/register@1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.18(@swc/helpers@0.5.19)))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(jiti@2.4.2)(less@4.5.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(yaml@2.8.2))(vitest@4.1.0(@types/node@25.5.0)(vite@7.3.1(@types/node@25.5.0)(jiti@2.4.2)(less@4.5.1)(sass-embedded@1.98.0)(sass@1.98.0)(terser@5.46.1)(yaml@2.8.2)))(webpack@5.105.4(@swc/core@1.15.18(@swc/helpers@0.5.19)))
       '@nx/workspace':
-        specifier: 22.6.0
+        specifier: 'catalog:'
         version: 22.6.0(@swc-node/register@1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.18(@swc/helpers@0.5.19))
       '@swc-node/register':
-        specifier: ~1.11.1
+        specifier: 'catalog:'
         version: 1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3)
       '@swc/cli':
-        specifier: ~0.8.0
+        specifier: 'catalog:'
         version: 0.8.0(@swc/core@1.15.18(@swc/helpers@0.5.19))
       '@swc/core':
-        specifier: ~1.15.5
+        specifier: 'catalog:'
         version: 1.15.18(@swc/helpers@0.5.19)
       '@swc/helpers':
-        specifier: ~0.5.18
+        specifier: 'catalog:'
         version: 0.5.19
       '@types/react':
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.14
       '@types/react-dom':
-        specifier: ^19.0.0
+        specifier: 'catalog:'
         version: 19.2.3(@types/react@19.2.14)
       nx:
-        specifier: 22.6.0
+        specifier: 'catalog:'
         version: 22.6.0(@swc-node/register@1.11.1(@swc/core@1.15.18(@swc/helpers@0.5.19))(@swc/types@0.1.25)(typescript@5.9.3))(@swc/core@1.15.18(@swc/helpers@0.5.19))
       prettier:
-        specifier: ~3.6.2
+        specifier: 'catalog:'
         version: 3.6.2
       tslib:
-        specifier: ^2.3.0
+        specifier: 'catalog:'
         version: 2.8.1
       typescript:
-        specifier: ~5.9.2
+        specifier: 'catalog:'
         version: 5.9.3
 
 packages:
@@ -9224,7 +9275,7 @@ snapshots:
 
   compressible@2.0.18:
     dependencies:
-      mime-db: 1.52.0
+      mime-db: 1.54.0
 
   compression@1.8.1:
     dependencies:
