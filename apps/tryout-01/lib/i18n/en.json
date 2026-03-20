@@ -21,9 +21,22 @@
     "footer": "A research project on AI-driven interactive storytelling"
   },
   "game": {
-    "title": "Your Letters",
-    "start": "Start the Story",
-    "startDescription": "Begin your letter exchange. You'll receive a letter from an old friend...",
+    "title": "Begin your narrative experience",
+    "start": "Accept and start the story",
+    "intro": {
+      "studyTitle": "About this study",
+      "studyDesc1": "This study explores how people write and manage narrative conversations in digital format. To this end, an experimental letter exchange platform called Imbustai will be used, designed to simulate a written conversation between the participant and a narrative interlocutor.",
+      "studyDesc2": "During the study you will play a 30-year-old person who receives letters from an old school friend who claims to have found your contact and wishes to reconnect. You will be asked to reply to the letters as you would normally in a letter exchange, freely choosing the tone and level of involvement.",
+      "studyDesc3": "There are no right or wrong answers: the goal is to observe how people write and interpret a narrative situation through language.",
+      "dataTitle": "Data usage",
+      "dataDesc": "Participants' responses will be collected and used exclusively for research purposes within a degree thesis. Texts may be analyzed using qualitative and semantic analysis tools, in order to study how people interpret and describe narrative situations.",
+      "anonymityTitle": "Anonymity",
+      "anonymityDesc": "All collected data will be treated anonymously. No real names or information that could identify participants will be used in research materials.",
+      "voluntaryTitle": "Voluntary participation",
+      "voluntaryDesc": "Participation in the study is completely voluntary. You may stop participating at any time, without any consequences.",
+      "consentTitle": "Consent to participate",
+      "consentDesc": "By participating in the study, you declare that you have read and understood the information above and consent to the use of your responses, in anonymous form, for research purposes."
+    },
     "letterFrom": "Letter from",
     "yourReply": "Your Reply",
     "replyPlaceholder": "Write your reply letter here...",
@@ -37,15 +50,11 @@
     "you": "You",
     "gameComplete": "The story has ended",
     "gameCompleteDescription": "Thank you for completing this letter exchange.",
-    "endStoryStartReview": "End story - start the review process"
-  },
-  "rating": {
-    "title": "Rate Your Experience",
-    "description": "How would you rate the overall letter exchange experience?",
-    "submit": "Submit Rating",
-    "thankYou": "Thank you!",
-    "thankYouDescription": "Your feedback is valuable for our research.",
-    "stars": "stars"
+    "feedbackTitle": "How did it go? Write anything you'd like to say but didn't get the chance to, or any other thoughts that came to mind.",
+    "feedbackPlaceholder": "Write your thoughts here...",
+    "feedbackSubmit": "Submit",
+    "feedbackThankYou": "Thank you for participating!",
+    "feedbackThankYouDescription": "Your contribution is valuable for our research."
   },
   "common": {
     "loading": "Loading...",

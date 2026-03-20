@@ -14,31 +14,31 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { gameId, rating } = await request.json();
+    const { gameId, feedback } = await request.json();
 
-    if (!gameId || !rating || rating < 1 || rating > 5) {
+    if (!gameId || typeof feedback !== 'string' || feedback.trim().length === 0) {
       return NextResponse.json(
-        { error: 'Missing gameId or invalid rating (1-5)' },
+        { error: 'Missing gameId or empty feedback' },
         { status: 400 }
       );
     }
 
     const { error: updateError } = await supabase
       .from('games')
-      .update({ rating })
+      .update({ feedback: feedback.trim() })
       .eq('id', gameId)
       .eq('user_id', user.id);
 
     if (updateError) {
       return NextResponse.json(
-        { error: 'Failed to save rating' },
+        { error: 'Failed to save feedback' },
         { status: 500 }
       );
     }
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Rate error:', error);
+    console.error('Feedback error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
-import { generateLetter } from '@/lib/claude';
-import { STORYLINE_CONTENT } from '@/lib/storyline';
+import { FIRST_LETTER } from '@/lib/first-letter';
 
 export async function POST() {
   try {
@@ -42,14 +41,12 @@ export async function POST() {
       );
     }
 
-    const aiLetter = await generateLetter(STORYLINE_CONTENT, [], 1);
-
     const { error: interactionError } = await supabase
       .from('interactions')
       .insert({
         game_id: game.id,
         role: 'ai',
-        content: aiLetter,
+        content: FIRST_LETTER,
         letter_number: 1,
       });
 
@@ -62,7 +59,7 @@ export async function POST() {
 
     return NextResponse.json({
       gameId: game.id,
-      letter: aiLetter,
+      letter: FIRST_LETTER,
       letterNumber: 1,
     });
   } catch (error) {
