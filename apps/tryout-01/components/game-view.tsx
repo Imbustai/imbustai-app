@@ -339,6 +339,9 @@ export function GameView() {
                     <Textarea
                       value={feedbackText}
                       onChange={(e) => setFeedbackText(e.target.value)}
+                      onPaste={(e) => e.preventDefault()}
+                      onCopy={(e) => e.preventDefault()}
+                      onCut={(e) => e.preventDefault()}
                       placeholder={t('game.feedbackPlaceholder')}
                       className="min-h-[120px] resize-y"
                     />

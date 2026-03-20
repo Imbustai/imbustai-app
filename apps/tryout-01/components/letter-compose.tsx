@@ -52,6 +52,9 @@ export function LetterCompose({ onSend, disabled }: LetterComposeProps) {
         <Textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          onPaste={(e) => e.preventDefault()}
+          onCopy={(e) => e.preventDefault()}
+          onCut={(e) => e.preventDefault()}
           placeholder={t('game.replyPlaceholder')}
           disabled={disabled || sending}
           className="min-h-[480px] resize-y"

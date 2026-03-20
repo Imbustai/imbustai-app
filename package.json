@@ -2,7 +2,14 @@
   "name": "@imbustai/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx dev tryout-01",
+    "dev:tryout-01": "nx dev tryout-01",
+    "build": "nx build tryout-01",
+    "build:tryout-01": "nx build tryout-01",
+    "start": "nx start tryout-01",
+    "start:tryout-01": "nx start tryout-01"
+  },
   "private": true,
   "devDependencies": {
     "@nx/js": "catalog:",

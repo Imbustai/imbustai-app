@@ -52,7 +52,10 @@ export function LetterCard({ role, content, letterNumber, timestamp }: LetterCar
         </div>
       </CardHeader>
       <CardContent>
-        <div className="whitespace-pre-wrap text-sm leading-relaxed">
+        <div
+          className="whitespace-pre-wrap text-sm leading-relaxed select-none"
+          onCopy={(e) => e.preventDefault()}
+        >
           {content}
         </div>
       </CardContent>
