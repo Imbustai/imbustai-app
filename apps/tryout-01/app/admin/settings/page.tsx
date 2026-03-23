@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Save, Check } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n/context';
 
 interface AppSettings {
   delayed_responses_enabled: boolean;
@@ -14,6 +15,7 @@ interface AppSettings {
 }
 
 export default function AdminSettingsPage() {
+  const { t } = useTranslation();
   const [settings, setSettings] = useState<AppSettings>({
     delayed_responses_enabled: false,
     min_response_time: 30,
@@ -36,9 +38,9 @@ export default function AdminSettingsPage() {
           });
         }
       })
-      .catch(() => setError('Failed to load settings'))
+      .catch(() => setError(t('admin.settings.loadError')))
       .finally(() => setLoading(false));
-  }, []);
+  }, [t]);
 
   async function handleSave() {
     setSaving(true);
@@ -60,7 +62,7 @@ export default function AdminSettingsPage() {
       setSaved(true);
       setTimeout(() => setSaved(false), 2500);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to save settings');
+      setError(err instanceof Error ? err.message : t('admin.settings.saveError'));
     } finally {
       setSaving(false);
     }
@@ -76,25 +78,23 @@ export default function AdminSettingsPage() {
 
   const validationError =
     settings.min_response_time < 1
-      ? 'Minimum response time must be at least 1 minute'
+      ? t('admin.settings.validation.minAtLeastOne')
       : settings.max_response_time < settings.min_response_time
-        ? 'Maximum must be greater than or equal to minimum'
+        ? t('admin.settings.validation.maxGreaterThanMin')
         : null;
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+      <h1 className="text-2xl font-semibold tracking-tight">{t('admin.settings.title')}</h1>
       <p className="mt-1 mb-6 text-sm text-muted-foreground">
-        Configure application behavior
+        {t('admin.settings.subtitle')}
       </p>
 
       <Card className="max-w-xl">
         <CardHeader>
-          <CardTitle className="text-lg">Delayed Responses</CardTitle>
+          <CardTitle className="text-lg">{t('admin.settings.delayedResponses.title')}</CardTitle>
           <p className="text-sm text-muted-foreground">
-            When enabled, AI responses will be delayed by a random amount of
-            time within the configured range. Users will see a &ldquo;letter
-            sent&rdquo; message until the response becomes visible.
+            {t('admin.settings.delayedResponses.description')}
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -124,14 +124,14 @@ export default function AdminSettingsPage() {
               />
             </button>
             <Label>
-              {settings.delayed_responses_enabled ? 'Enabled' : 'Disabled'}
+              {settings.delayed_responses_enabled ? t('admin.settings.enabled') : t('admin.settings.disabled')}
             </Label>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="min_response_time">
-                Minimum response time (minutes)
+                {t('admin.settings.minResponseTime')}
               </Label>
               <Input
                 id="min_response_time"
@@ -149,7 +149,7 @@ export default function AdminSettingsPage() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="max_response_time">
-                Maximum response time (minutes)
+                {t('admin.settings.maxResponseTime')}
               </Label>
               <Input
                 id="max_response_time"
@@ -169,11 +169,9 @@ export default function AdminSettingsPage() {
 
           {settings.delayed_responses_enabled && (
             <p className="text-xs text-muted-foreground">
-              Responses will be delayed between{' '}
-              <strong>{settings.min_response_time}</strong> and{' '}
-              <strong>{settings.max_response_time}</strong> minutes. If the
-              computed time falls after 11 PM, the response will be scheduled
-              for 8 AM the next day.
+              {t('admin.settings.delayInfo')
+                .replace('{min}', String(settings.min_response_time))
+                .replace('{max}', String(settings.max_response_time))}
             </p>
           )}
 
@@ -191,17 +189,17 @@ export default function AdminSettingsPage() {
             {saving ? (
               <>
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Saving...
+                {t('admin.settings.saving')}
               </>
             ) : saved ? (
               <>
                 <Check className="h-4 w-4" />
-                Saved
+                {t('admin.settings.saved')}
               </>
             ) : (
               <>
                 <Save className="h-4 w-4" />
-                Save Settings
+                {t('admin.settings.saveSettings')}
               </>
             )}
           </Button>

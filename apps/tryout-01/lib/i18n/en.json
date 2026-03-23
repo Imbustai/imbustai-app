@@ -89,7 +89,9 @@
       "dashboard": "Dashboard",
       "games": "Games",
       "settings": "Settings",
-      "demoDashboard": "Demo Dashboard"
+      "demoDashboard": "Demo Dashboard",
+      "lightMode": "Light Mode",
+      "darkMode": "Dark Mode"
     },
     "dashboard": {
       "title": "Research Dashboard",
@@ -229,8 +231,30 @@
         "duration": "Duration",
         "profile": "Profile",
         "cluster": "Cluster",
-        "sortBy": "Sort by"
-      }
+      "sortBy": "Sort by"
+    }
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Configure application behavior",
+      "delayedResponses": {
+        "title": "Delayed Responses",
+        "description": "When enabled, AI responses will be delayed by a random amount of time within the configured range. Users will see a \u201cletter sent\u201d message until the response becomes visible."
+      },
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "minResponseTime": "Minimum response time (minutes)",
+      "maxResponseTime": "Maximum response time (minutes)",
+      "delayInfo": "Responses will be delayed between {min} and {max} minutes. If the computed time falls after 11 PM, the response will be scheduled for 8 AM the next day.",
+      "validation": {
+        "minAtLeastOne": "Minimum response time must be at least 1 minute",
+        "maxGreaterThanMin": "Maximum must be greater than or equal to minimum"
+      },
+      "saving": "Saving...",
+      "saved": "Saved",
+      "saveSettings": "Save Settings",
+      "loadError": "Failed to load settings",
+      "saveError": "Failed to save settings"
     }
   }
 }

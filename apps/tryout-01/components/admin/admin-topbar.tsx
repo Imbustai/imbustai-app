@@ -6,8 +6,10 @@ import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { LogOut, ArrowLeft } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/language-switcher';
+import { useTranslation } from '@/lib/i18n/context';
 
 export function AdminTopbar() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ export function AdminTopbar() {
         className="flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <ArrowLeft className="size-4" />
-        Back to Game
+        {t('admin.backToGame')}
       </Link>
       <div className="flex items-center gap-3">
         {email && (
@@ -39,7 +41,7 @@ export function AdminTopbar() {
         <LanguageSwitcher />
         <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-1.5 text-muted-foreground">
           <LogOut className="size-4" />
-          Sign Out
+          {t('admin.signOut')}
         </Button>
       </div>
     </header>

@@ -89,7 +89,9 @@
       "dashboard": "Dashboard",
       "games": "Partite",
       "settings": "Impostazioni",
-      "demoDashboard": "Dashboard Demo"
+      "demoDashboard": "Dashboard Demo",
+      "lightMode": "Tema Chiaro",
+      "darkMode": "Tema Scuro"
     },
     "dashboard": {
       "title": "Dashboard di Ricerca",
@@ -229,8 +231,30 @@
         "duration": "Durata",
         "profile": "Profilo",
         "cluster": "Cluster",
-        "sortBy": "Ordina per"
-      }
+      "sortBy": "Ordina per"
+    }
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "subtitle": "Configura il comportamento dell'applicazione",
+      "delayedResponses": {
+        "title": "Risposte Ritardate",
+        "description": "Quando abilitato, le risposte dell'IA saranno ritardate di un tempo casuale entro l'intervallo configurato. Gli utenti vedranno un messaggio di \u201clettera inviata\u201d fino a quando la risposta non diventerà visibile."
+      },
+      "enabled": "Abilitato",
+      "disabled": "Disabilitato",
+      "minResponseTime": "Tempo minimo di risposta (minuti)",
+      "maxResponseTime": "Tempo massimo di risposta (minuti)",
+      "delayInfo": "Le risposte saranno ritardate tra {min} e {max} minuti. Se il tempo calcolato supera le 23:00, la risposta sarà programmata per le 8:00 del giorno successivo.",
+      "validation": {
+        "minAtLeastOne": "Il tempo minimo di risposta deve essere almeno 1 minuto",
+        "maxGreaterThanMin": "Il massimo deve essere maggiore o uguale al minimo"
+      },
+      "saving": "Salvataggio...",
+      "saved": "Salvato",
+      "saveSettings": "Salva Impostazioni",
+      "loadError": "Impossibile caricare le impostazioni",
+      "saveError": "Impossibile salvare le impostazioni"
     }
   }
 }
