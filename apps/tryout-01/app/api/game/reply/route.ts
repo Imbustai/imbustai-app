@@ -1,7 +1,30 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { generateLetter, type Message } from '@/lib/claude';
 import { STORYLINE_CONTENT } from '@/lib/storyline';
+
+function computeVisibleFrom(minMinutes: number, maxMinutes: number): string {
+  const delayMinutes =
+    Math.floor(Math.random() * (maxMinutes - minMinutes + 1)) + minMinutes;
+
+  const result = new Date(Date.now() + delayMinutes * 60_000);
+
+  let remaining = 0;
+  if (result.getHours() >= 23) {
+    remaining =
+      (result.getHours() - 23) * 60 + result.getMinutes();
+    result.setDate(result.getDate() + 1);
+    result.setHours(8, 0, 0, 0);
+    result.setMinutes(result.getMinutes() + remaining);
+
+    if (result.getHours() >= 23) {
+      return computeVisibleFrom(0, remaining);
+    }
+  }
+
+  return result.toISOString();
+}
 
 export async function POST(request: Request) {
   try {
@@ -102,6 +125,20 @@ export async function POST(request: Request) {
       aiLetterNumber
     );
 
+    const adminSupabase = createAdminClient();
+    const { data: appSettings } = await adminSupabase
+      .from('app_settings')
+      .select('delayed_responses_enabled, min_response_time, max_response_time')
+      .single();
+
+    let visibleFrom: string | null = null;
+    if (appSettings?.delayed_responses_enabled) {
+      visibleFrom = computeVisibleFrom(
+        appSettings.min_response_time,
+        appSettings.max_response_time
+      );
+    }
+
     const { error: aiInteractionError } = await supabase
       .from('interactions')
       .insert({
@@ -109,6 +146,7 @@ export async function POST(request: Request) {
         role: 'ai',
         content: aiLetter,
         letter_number: aiLetterNumber,
+        visible_from: visibleFrom,
       });
 
     if (aiInteractionError) {
@@ -131,6 +169,7 @@ export async function POST(request: Request) {
       letter: aiLetter,
       letterNumber: aiLetterNumber,
       isComplete: isGameComplete,
+      visibleFrom,
     });
   } catch (error) {
     console.error('Game reply error:', error);

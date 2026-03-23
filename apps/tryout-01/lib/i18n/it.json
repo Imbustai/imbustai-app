@@ -35,7 +35,9 @@
       "voluntaryTitle": "Partecipazione volontaria",
       "voluntaryDesc": "La partecipazione allo studio è completamente volontaria. È possibile interrompere la partecipazione in qualsiasi momento, senza alcuna conseguenza.",
       "consentTitle": "Consenso alla partecipazione",
-      "consentDesc": "Partecipando allo studio dichiari di aver letto e compreso le informazioni sopra riportate e di acconsentire all'utilizzo delle tue risposte, in forma anonima, per finalità di ricerca."
+      "consentDesc": "Partecipando allo studio dichiari di aver letto e compreso le informazioni sopra riportate e di acconsentire all'utilizzo delle tue risposte, in forma anonima, per finalità di ricerca.",
+      "timingTitle": "Tempistiche di risposta",
+      "timingDesc": "Affinché il processo funzioni al meglio, ti chiediamo di rispondere entro {time} dalla ricezione di ogni lettera. Se è tardi (dopo le 23:00), puoi rispondere la mattina seguente."
     },
     "letterFrom": "Lettera da",
     "yourReply": "La Tua Risposta",
@@ -44,6 +46,8 @@
     "sending": "Invio in corso...",
     "waitingForReply": "In attesa di risposta...",
     "waitingDescription": "La tua lettera è in viaggio. Una risposta arriverà a breve...",
+    "letterSent": "La tua lettera è stata spedita.",
+    "letterSentCountdown": "Il tuo interlocutore ti risponderà entro {time}.",
     "letterNumber": "Lettera",
     "of": "di",
     "friendName": "Apaya",
@@ -76,5 +80,157 @@
     "error": "Qualcosa è andato storto",
     "retry": "Riprova",
     "logout": "Esci"
+  },
+  "admin": {
+    "backToGame": "Torna al Gioco",
+    "signOut": "Esci",
+    "sidebar": {
+      "title": "Imbustai Admin",
+      "dashboard": "Dashboard",
+      "games": "Partite",
+      "settings": "Impostazioni",
+      "demoDashboard": "Dashboard Demo"
+    },
+    "dashboard": {
+      "title": "Dashboard di Ricerca",
+      "subtitle": "Analisi completa di tutte le sessioni dei partecipanti",
+      "noData": "Nessuna sessione completata con dati del questionario.",
+      "filters": {
+        "title": "Filtri",
+        "dateRange": "Intervallo date",
+        "from": "Da",
+        "to": "A",
+        "status": "Stato",
+        "all": "Tutti",
+        "completed": "Completati",
+        "inProgress": "In corso",
+        "profile": "Profilo",
+        "cluster": "Cluster",
+        "search": "Cerca per ID o email",
+        "reset": "Reimposta filtri",
+        "showing": "Visualizzati",
+        "of": "di",
+        "participants": "partecipanti"
+      },
+      "globalOverview": {
+        "title": "Panoramica Globale",
+        "totalParticipants": "Partecipanti Totali",
+        "completedSessions": "Sessioni Completate",
+        "completionRate": "Tasso di Completamento",
+        "avgDuration": "Durata Media",
+        "minutes": "min",
+        "completionsOverTime": "Completamenti nel Tempo",
+        "na": "N/D"
+      },
+      "scoreAnalysis": {
+        "title": "Analisi Aggregata dei Punteggi",
+        "subtitle": "Statistiche descrittive per tutti gli item del questionario e gli indici derivati",
+        "rawScores": "Punteggi Grezzi (q1–q11)",
+        "derivedIndices": "Indici Derivati",
+        "mean": "Media",
+        "median": "Mediana",
+        "stdDev": "Dev Std",
+        "min": "Min",
+        "max": "Max",
+        "distribution": "Distribuzione"
+      },
+      "comparativeDimensions": {
+        "title": "Dimensioni Comparative",
+        "subtitle": "Confronti a coppie delle dimensioni con distribuzioni della popolazione",
+        "responsibility": "Responsabilità",
+        "individual": "Individuale",
+        "social": "Sociale",
+        "agency": "Agentività / Vincolo",
+        "perceivedAgency": "Agentività",
+        "perceivedConstraint": "Vincolo",
+        "emotional": "Posizionamento Emotivo",
+        "involvement": "Coinvolgimento",
+        "distance": "Distanza",
+        "boundary": "Confine Morale",
+        "rigidity": "Rigidità",
+        "mediation": "Mediazione",
+        "avgScore": "Punteggio Medio"
+      },
+      "clusterAnalysis": {
+        "title": "Clustering dei Partecipanti",
+        "subtitle": "Clustering K-means sui 10 indici principali con proiezione PCA 2D",
+        "clusters": "Cluster (k)",
+        "silhouette": "Punteggio silhouette",
+        "pcaProjection": "Proiezione PCA",
+        "clusterSummary": "Riepilogo Cluster",
+        "members": "membri",
+        "centroid": "Valori centroide (normalizzati)"
+      },
+      "profileDistribution": {
+        "title": "Distribuzione dei Profili",
+        "subtitle": "Etichette di profilo basate su regole con criteri di punteggio trasparenti",
+        "label": "Profilo",
+        "count": "Conteggio",
+        "percentage": "Percentuale",
+        "profiles": {
+          "rigid-normative": "Normativo Rigido",
+          "contextual-mediating": "Contestuale Mediatore",
+          "ambivalent": "Ambivalente",
+          "empathic-interventionist": "Empatico Interventista",
+          "detached": "Distaccato",
+          "unclassified": "Non classificato"
+        },
+        "descriptions": {
+          "rigid-normative": "Alta rigidità morale, responsabilità individuale e orientamento al confine positivo",
+          "contextual-mediating": "Alta mediazione, responsabilità sociale e orientamento al confine negativo",
+          "ambivalent": "Difficoltà nel prendere posizione, responsabilità e agentività bilanciate",
+          "empathic-interventionist": "Alto coinvolgimento emotivo e argomentazione, bassa distanza",
+          "detached": "Alta distanza emotiva, basso coinvolgimento",
+          "unclassified": "Non corrisponde a nessun pattern di profilo dominante"
+        }
+      },
+      "usageSegmentation": {
+        "title": "Segmentazione d'Uso",
+        "subtitle": "Pattern comportamentali derivati dai metadati della sessione",
+        "duration": "Durata Sessione (min)",
+        "timeBetweenLetters": "Tempo Medio tra Lettere (min)",
+        "letterLength": "Lunghezza Media Lettere (caratteri)",
+        "labels": {
+          "fast-completer": "Completamento Rapido",
+          "slow-reflective": "Lento e Riflessivo",
+          "high-engagement": "Alto Coinvolgimento",
+          "low-engagement": "Basso Coinvolgimento",
+          "typical": "Tipico"
+        }
+      },
+      "correlationMatrix": {
+        "title": "Matrice di Correlazione",
+        "subtitle": "Correlazioni di Pearson tra item del questionario e indici",
+        "strong": "Forte",
+        "moderate": "Moderata",
+        "weak": "Debole",
+        "positive": "positiva",
+        "negative": "negativa",
+        "highlightedPairs": "Correlazioni Notevoli"
+      },
+      "outlierDetection": {
+        "title": "Rilevamento Outlier",
+        "subtitle": "Partecipanti con valori estremi (> 2 deviazioni standard dalla media)",
+        "interestingCases": "Casi Interessanti",
+        "noOutliers": "Nessun outlier significativo rilevato.",
+        "extremeHigh": "Estremo alto",
+        "extremeLow": "Estremo basso",
+        "deviation": "deviazione"
+      },
+      "dataTable": {
+        "title": "Tabella Dati Partecipanti",
+        "subtitle": "Dati completi con colonne ordinabili e funzionalità di esportazione",
+        "exportCsv": "Esporta CSV",
+        "exportAggregated": "Esporta Aggregato",
+        "participant": "Partecipante",
+        "email": "Email",
+        "status": "Stato",
+        "date": "Data",
+        "duration": "Durata",
+        "profile": "Profilo",
+        "cluster": "Cluster",
+        "sortBy": "Ordina per"
+      }
+    }
   }
 }

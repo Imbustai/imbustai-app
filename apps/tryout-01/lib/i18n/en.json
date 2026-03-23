@@ -35,7 +35,9 @@
       "voluntaryTitle": "Voluntary participation",
       "voluntaryDesc": "Participation in the study is completely voluntary. You may stop participating at any time, without any consequences.",
       "consentTitle": "Consent to participate",
-      "consentDesc": "By participating in the study, you declare that you have read and understood the information above and consent to the use of your responses, in anonymous form, for research purposes."
+      "consentDesc": "By participating in the study, you declare that you have read and understood the information above and consent to the use of your responses, in anonymous form, for research purposes.",
+      "timingTitle": "Response timing",
+      "timingDesc": "For the process to work perfectly, we ask you to reply within {time} of receiving each letter. If it's late (after 11 PM), you can answer the following morning."
     },
     "letterFrom": "Letter from",
     "yourReply": "Your Reply",
@@ -44,6 +46,8 @@
     "sending": "Sending...",
     "waitingForReply": "Waiting for reply...",
     "waitingDescription": "Your letter is on its way. A reply will arrive shortly...",
+    "letterSent": "Your letter has been sent.",
+    "letterSentCountdown": "Your correspondent will reply within {time}.",
     "letterNumber": "Letter",
     "of": "of",
     "friendName": "Apaya",
@@ -76,5 +80,157 @@
     "error": "Something went wrong",
     "retry": "Try Again",
     "logout": "Sign Out"
+  },
+  "admin": {
+    "backToGame": "Back to Game",
+    "signOut": "Sign Out",
+    "sidebar": {
+      "title": "Imbustai Admin",
+      "dashboard": "Dashboard",
+      "games": "Games",
+      "settings": "Settings",
+      "demoDashboard": "Demo Dashboard"
+    },
+    "dashboard": {
+      "title": "Research Dashboard",
+      "subtitle": "Comprehensive analytics across all participant sessions",
+      "noData": "No completed sessions with questionnaire data yet.",
+      "filters": {
+        "title": "Filters",
+        "dateRange": "Date range",
+        "from": "From",
+        "to": "To",
+        "status": "Status",
+        "all": "All",
+        "completed": "Completed",
+        "inProgress": "In Progress",
+        "profile": "Profile",
+        "cluster": "Cluster",
+        "search": "Search by ID or email",
+        "reset": "Reset filters",
+        "showing": "Showing",
+        "of": "of",
+        "participants": "participants"
+      },
+      "globalOverview": {
+        "title": "Global Overview",
+        "totalParticipants": "Total Participants",
+        "completedSessions": "Completed Sessions",
+        "completionRate": "Completion Rate",
+        "avgDuration": "Avg Duration",
+        "minutes": "min",
+        "completionsOverTime": "Completions Over Time",
+        "na": "N/A"
+      },
+      "scoreAnalysis": {
+        "title": "Aggregate Score Analysis",
+        "subtitle": "Descriptive statistics for all questionnaire items and derived indices",
+        "rawScores": "Raw Scores (q1–q11)",
+        "derivedIndices": "Derived Indices",
+        "mean": "Mean",
+        "median": "Median",
+        "stdDev": "Std Dev",
+        "min": "Min",
+        "max": "Max",
+        "distribution": "Distribution"
+      },
+      "comparativeDimensions": {
+        "title": "Comparative Dimensions",
+        "subtitle": "Paired dimension comparisons showing population distributions",
+        "responsibility": "Responsibility",
+        "individual": "Individual",
+        "social": "Social",
+        "agency": "Agency / Constraint",
+        "perceivedAgency": "Agency",
+        "perceivedConstraint": "Constraint",
+        "emotional": "Emotional Positioning",
+        "involvement": "Involvement",
+        "distance": "Distance",
+        "boundary": "Moral Boundary",
+        "rigidity": "Rigidity",
+        "mediation": "Mediation",
+        "avgScore": "Avg Score"
+      },
+      "clusterAnalysis": {
+        "title": "Participant Clustering",
+        "subtitle": "K-means clustering on the 10 main indices with 2D PCA projection",
+        "clusters": "Clusters (k)",
+        "silhouette": "Silhouette score",
+        "pcaProjection": "PCA Projection",
+        "clusterSummary": "Cluster Summary",
+        "members": "members",
+        "centroid": "Centroid values (normalized)"
+      },
+      "profileDistribution": {
+        "title": "Profile Distribution",
+        "subtitle": "Rule-based participant profile labels with transparent scoring criteria",
+        "label": "Profile",
+        "count": "Count",
+        "percentage": "Percentage",
+        "profiles": {
+          "rigid-normative": "Rigid Normative",
+          "contextual-mediating": "Contextual Mediating",
+          "ambivalent": "Ambivalent",
+          "empathic-interventionist": "Empathic Interventionist",
+          "detached": "Detached",
+          "unclassified": "Unclassified"
+        },
+        "descriptions": {
+          "rigid-normative": "High moral rigidity, individual responsibility, and positive boundary orientation",
+          "contextual-mediating": "High mediation, social responsibility, and negative boundary orientation",
+          "ambivalent": "Difficulty taking positions, balanced responsibility and agency",
+          "empathic-interventionist": "High emotional involvement and argumentation, low distance",
+          "detached": "High emotional distance, low involvement",
+          "unclassified": "Does not match any dominant profile pattern"
+        }
+      },
+      "usageSegmentation": {
+        "title": "Usage Segmentation",
+        "subtitle": "Behavioral patterns derived from session metadata",
+        "duration": "Session Duration (min)",
+        "timeBetweenLetters": "Avg Time Between Letters (min)",
+        "letterLength": "Avg Letter Length (chars)",
+        "labels": {
+          "fast-completer": "Fast Completer",
+          "slow-reflective": "Slow & Reflective",
+          "high-engagement": "High Engagement",
+          "low-engagement": "Low Engagement",
+          "typical": "Typical"
+        }
+      },
+      "correlationMatrix": {
+        "title": "Correlation Matrix",
+        "subtitle": "Pearson correlations across questionnaire items and indices",
+        "strong": "Strong",
+        "moderate": "Moderate",
+        "weak": "Weak",
+        "positive": "positive",
+        "negative": "negative",
+        "highlightedPairs": "Notable Correlations"
+      },
+      "outlierDetection": {
+        "title": "Outlier Detection",
+        "subtitle": "Participants with extreme values (> 2 standard deviations from mean)",
+        "interestingCases": "Interesting Cases",
+        "noOutliers": "No significant outliers detected.",
+        "extremeHigh": "Extreme high",
+        "extremeLow": "Extreme low",
+        "deviation": "deviation"
+      },
+      "dataTable": {
+        "title": "Participant Data Table",
+        "subtitle": "Complete data with sortable columns and export functionality",
+        "exportCsv": "Export CSV",
+        "exportAggregated": "Export Aggregated",
+        "participant": "Participant",
+        "email": "Email",
+        "status": "Status",
+        "date": "Date",
+        "duration": "Duration",
+        "profile": "Profile",
+        "cluster": "Cluster",
+        "sortBy": "Sort by"
+      }
+    }
   }
 }

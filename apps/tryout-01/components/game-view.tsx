@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { LanguageSwitcher } from '@/components/language-switcher';
-import { Loader2, LogOut, Mail } from 'lucide-react';
+import { Clock, Loader2, LogOut, Mail, Shield } from 'lucide-react';
 import { StarRating } from '@/components/star-rating';
 import { QUESTION_KEYS } from '@/lib/questionnaire';
 
@@ -20,6 +20,7 @@ interface Interaction {
   content: string;
   letter_number: number;
   created_at: string;
+  visible_from: string | null;
 }
 
 interface GameState {
@@ -27,6 +28,30 @@ interface GameState {
   status: 'in_progress' | 'completed';
   feedback: string | null;
   questionnaire: Record<string, number> | null;
+}
+
+interface DelayedSettings {
+  enabled: boolean;
+  maxResponseTime: number;
+}
+
+function formatDuration(totalMinutes: number): string {
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  if (hours > 0 && minutes > 0) return `${hours}h ${minutes}min`;
+  if (hours > 0) return `${hours}h`;
+  return `${minutes}min`;
+}
+
+function formatCountdown(ms: number): string {
+  if (ms <= 0) return '0min';
+  const totalSeconds = Math.ceil(ms / 1000);
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  if (hours > 0) return `${hours}h ${String(minutes).padStart(2, '0')}min`;
+  if (minutes > 0) return `${minutes}min ${String(seconds).padStart(2, '0')}s`;
+  return `${seconds}s`;
 }
 
 function shuffleArray<T>(arr: T[]): T[] {
@@ -48,9 +73,12 @@ export function GameView() {
   const [feedbackText, setFeedbackText] = useState('');
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [delayedSettings, setDelayedSettings] = useState<DelayedSettings>({ enabled: false, maxResponseTime: 120 });
   const [questionnaireAnswers, setQuestionnaireAnswers] = useState<Record<string, number | null>>(
     () => Object.fromEntries(QUESTION_KEYS.map((k) => [k, null]))
   );
+  const [now, setNow] = useState(() => Date.now());
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const shuffledQuestions = useMemo(() => shuffleArray([...QUESTION_KEYS]), []);
@@ -69,6 +97,16 @@ export function GameView() {
     scrollToBottom();
   }, [interactions, scrollToBottom]);
 
+  useEffect(() => {
+    const pendingInteraction = interactions.find(
+      (i) => i.role === 'ai' && i.visible_from && new Date(i.visible_from).getTime() > now
+    );
+    if (!pendingInteraction?.visible_from) return;
+
+    const tick = setInterval(() => setNow(Date.now()), 1_000);
+    return () => clearInterval(tick);
+  }, [interactions, now]);
+
   async function loadGame() {
     setLoading(true);
     setError(null);
@@ -76,6 +114,19 @@ export function GameView() {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
+      setIsAdmin(user.app_metadata?.role === 'admin');
+
+      const { data: settings } = await supabase
+        .from('app_settings')
+        .select('delayed_responses_enabled, max_response_time')
+        .single();
+
+      if (settings) {
+        setDelayedSettings({
+          enabled: settings.delayed_responses_enabled,
+          maxResponseTime: settings.max_response_time,
+        });
+      }
 
       const { data: gameData } = await supabase
         .from('games')
@@ -129,6 +180,7 @@ export function GameView() {
           content: data.letter,
           letter_number: data.letterNumber,
           created_at: new Date().toISOString(),
+          visible_from: null,
         },
       ]);
     } catch {
@@ -152,6 +204,7 @@ export function GameView() {
       content,
       letter_number: userLetterNumber,
       created_at: new Date().toISOString(),
+      visible_from: null,
     };
 
     setInteractions((prev) => [...prev, userInteraction]);
@@ -175,6 +228,7 @@ export function GameView() {
         content: data.letter,
         letter_number: data.letterNumber,
         created_at: new Date().toISOString(),
+        visible_from: data.visibleFrom ?? null,
       };
 
       setInteractions((prev) => [...prev, aiInteraction]);
@@ -230,7 +284,14 @@ export function GameView() {
   }
 
   const userReplyCount = interactions.filter((i) => i.role === 'user').length;
-  const canReply = game?.status === 'in_progress' && userReplyCount < 4 && !waitingForAI;
+  const hasPendingLetter = interactions.some(
+    (i) => i.role === 'ai' && i.visible_from && new Date(i.visible_from).getTime() > now
+  );
+  const canReply =
+    game?.status === 'in_progress' &&
+    userReplyCount < 4 &&
+    !waitingForAI &&
+    !hasPendingLetter;
 
   return (
     <div className="mx-auto min-h-screen max-w-2xl px-4 pb-8">
@@ -240,6 +301,14 @@ export function GameView() {
           <h1 className="text-lg font-semibold">{t('app.title')}</h1>
         </div>
         <div className="flex items-center gap-1">
+          {isAdmin && (
+            <a href="/admin">
+              <Button variant="ghost" size="sm" className="gap-1.5 text-muted-foreground">
+                <Shield className="h-4 w-4" />
+                Admin
+              </Button>
+            </a>
+          )}
           <LanguageSwitcher />
           <Button variant="ghost" size="sm" onClick={handleLogout} className="gap-1.5 text-muted-foreground">
             <LogOut className="h-4 w-4" />
@@ -299,6 +368,15 @@ export function GameView() {
                 <p>{t('game.intro.consentDesc')}</p>
               </section>
 
+              {delayedSettings.enabled && (
+                <section className="rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
+                  <h3 className="mb-2 text-base font-semibold text-foreground">{t('game.intro.timingTitle')}</h3>
+                  <p>
+                    {t('game.intro.timingDesc').replace('{time}', formatDuration(delayedSettings.maxResponseTime))}
+                  </p>
+                </section>
+              )}
+
               <Button
                 onClick={handleStart}
                 disabled={starting}
@@ -319,15 +397,24 @@ export function GameView() {
         </div>
       ) : (
         <div className="space-y-4 pb-4">
-          {interactions.map((interaction) => (
-            <LetterCard
-              key={interaction.id}
-              role={interaction.role}
-              content={interaction.content}
-              letterNumber={interaction.letter_number}
-              timestamp={interaction.created_at}
-            />
-          ))}
+          {interactions.map((interaction) => {
+            const isPending =
+              interaction.role === 'ai' &&
+              interaction.visible_from &&
+              new Date(interaction.visible_from).getTime() > now;
+
+            if (isPending) return null;
+
+            return (
+              <LetterCard
+                key={interaction.id}
+                role={interaction.role}
+                content={interaction.content}
+                letterNumber={interaction.letter_number}
+                timestamp={interaction.visible_from ?? interaction.created_at}
+              />
+            );
+          })}
 
           {waitingForAI && (
             <Card className="border-dashed">
@@ -340,6 +427,31 @@ export function GameView() {
               </CardContent>
             </Card>
           )}
+
+          {hasPendingLetter && !waitingForAI && (() => {
+            const pending = interactions.find(
+              (i) => i.role === 'ai' && i.visible_from && new Date(i.visible_from).getTime() > now
+            );
+            const remainingMs = pending?.visible_from
+              ? new Date(pending.visible_from).getTime() - now
+              : 0;
+
+            return (
+              <Card className="border-primary/20 bg-primary/5">
+                <CardContent className="flex items-center gap-4 py-8">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                    <Clock className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">{t('game.letterSent')}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {t('game.letterSentCountdown').replace('{time}', formatCountdown(remainingMs))}
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })()}
 
           {canReply && (
             <LetterCompose
