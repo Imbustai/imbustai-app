@@ -1,13 +1,13 @@
 'use client';
 
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslation } from '@/lib/i18n/context';
-import { computeIndices, computeBalances } from '@/lib/questionnaire';
-import { assignProfileLabel, assignUsageLabels } from '@/lib/analytics/profiles';
-import { kMeans } from '@/lib/analytics/clustering';
-import { INDEX_LABELS } from '@/lib/questionnaire';
+import { computeIndices, computeBalances, INDEX_LABELS } from '@/lib/questionnaire';
 import type { SessionIndices } from '@/lib/questionnaire';
-import type { ParticipantRecord, EnrichedParticipant, ProfileLabel } from '@/lib/analytics/types';
+import { assignProfileLabel, assignUsageLabels } from '@/lib/analytics/profiles';
+import { kMeans, silhouetteScore } from '@/lib/analytics/clustering';
+import { projectTo2D } from '@/lib/analytics/pca';
+import type { ParticipantRecord, EnrichedParticipant, ProfileLabel, ClusterResult } from '@/lib/analytics/types';
 import { DashboardFilters, type DashboardFilterState } from './dashboard-filters';
 import { GlobalOverview } from './global-overview';
 import { ScoreAnalysis } from './score-analysis';
@@ -35,7 +35,9 @@ const INITIAL_FILTERS: DashboardFilterState = {
 export function ResearchDashboard({ participants }: ResearchDashboardProps) {
   const { t } = useTranslation();
   const [filters, setFilters] = useState<DashboardFilterState>(INITIAL_FILTERS);
-  const [clusterAssignments, setClusterAssignments] = useState<number[]>([]);
+  const [k, setK] = useState(3);
+
+  const indexKeys = Object.keys(INDEX_LABELS) as (keyof SessionIndices)[];
 
   const enriched = useMemo((): EnrichedParticipant[] => {
     const usageLabels = assignUsageLabels(participants);
@@ -64,15 +66,33 @@ export function ResearchDashboard({ participants }: ResearchDashboardProps) {
     });
   }, [participants]);
 
-  const withClusterIds = useMemo((): EnrichedParticipant[] => {
-    if (clusterAssignments.length === 0) return enriched;
+  const clusterData = useMemo(() => {
     const withData = enriched.filter((p) => p.questionnaire);
-    let clusterIdx = 0;
-    return enriched.map((p) => {
-      if (!p.questionnaire) return p;
-      return { ...p, clusterId: clusterAssignments[clusterIdx++] ?? null };
+    if (withData.length < 2) {
+      return { result: null, projection: [] as [number, number][], silScore: 0, withDataIds: [] as string[] };
+    }
+    const matrix = withData.map((p) => {
+      const idx = computeIndices(p.questionnaire!);
+      return indexKeys.map((key) => idx[key]);
     });
-  }, [enriched, clusterAssignments]);
+    const result = kMeans(matrix, k);
+    const projection = projectTo2D(matrix);
+    const silScore = silhouetteScore(matrix, result.assignments);
+    const withDataIds = withData.map((p) => p.gameId);
+    return { result, projection, silScore, withDataIds };
+  }, [enriched, k, indexKeys]);
+
+  const withClusterIds = useMemo((): EnrichedParticipant[] => {
+    if (!clusterData.result) return enriched;
+    const assignmentMap = new Map<string, number>();
+    clusterData.withDataIds.forEach((id, i) => {
+      assignmentMap.set(id, clusterData.result!.assignments[i]);
+    });
+    return enriched.map((p) => {
+      const clusterId = assignmentMap.get(p.gameId) ?? null;
+      return clusterId !== null ? { ...p, clusterId } : p;
+    });
+  }, [enriched, clusterData]);
 
   const allProfileLabels = useMemo(() => {
     const labels = new Set<ProfileLabel>();
@@ -114,10 +134,6 @@ export function ResearchDashboard({ participants }: ResearchDashboardProps) {
     });
   }, [withClusterIds, filters]);
 
-  const handleClusterChange = useCallback((assignments: number[]) => {
-    setClusterAssignments(assignments);
-  }, []);
-
   const completedWithData = filtered.filter((p) => p.questionnaire);
 
   if (participants.length === 0) {
@@ -150,7 +166,14 @@ export function ResearchDashboard({ participants }: ResearchDashboardProps) {
         <>
           <ScoreAnalysis participants={filtered} />
           <ComparativeDimensions participants={filtered} />
-          <ClusterAnalysis participants={filtered} onClusterChange={handleClusterChange} />
+          <ClusterAnalysis
+            participants={filtered}
+            k={k}
+            onKChange={setK}
+            clusterResult={clusterData.result}
+            projection={clusterData.projection}
+            silhouetteScore={clusterData.silScore}
+          />
           <ProfileDistribution participants={filtered} />
           <UsageSegmentation participants={filtered} />
           <CorrelationMatrix participants={filtered} />

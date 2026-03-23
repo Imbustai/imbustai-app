@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTranslation } from '@/lib/i18n/context';
 import {
@@ -13,15 +13,17 @@ import {
   ResponsiveContainer,
   ZAxis,
 } from 'recharts';
-import { kMeans, silhouetteScore } from '@/lib/analytics/clustering';
-import { projectTo2D } from '@/lib/analytics/pca';
-import { computeIndices, INDEX_LABELS } from '@/lib/questionnaire';
+import { INDEX_LABELS } from '@/lib/questionnaire';
 import type { SessionIndices } from '@/lib/questionnaire';
 import type { EnrichedParticipant, ClusterResult } from '@/lib/analytics/types';
 
 interface ClusterAnalysisProps {
   participants: EnrichedParticipant[];
-  onClusterChange?: (assignments: number[]) => void;
+  k: number;
+  onKChange: (k: number) => void;
+  clusterResult: ClusterResult | null;
+  projection: [number, number][];
+  silhouetteScore: number;
 }
 
 const CLUSTER_COLORS = [
@@ -33,56 +35,55 @@ const CLUSTER_COLORS = [
   'hsl(340, 65%, 50%)',
 ];
 
-export function ClusterAnalysis({ participants, onClusterChange }: ClusterAnalysisProps) {
+export function ClusterAnalysis({
+  participants,
+  k,
+  onKChange,
+  clusterResult,
+  projection,
+  silhouetteScore: silScore,
+}: ClusterAnalysisProps) {
   const { t } = useTranslation();
   const cl = (key: string) => t(`admin.dashboard.clusterAnalysis.${key}`);
 
-  const [k, setK] = useState(3);
-
-  const withData = participants.filter((p) => p.questionnaire);
+  const withData = useMemo(
+    () => participants.filter((p) => p.questionnaire),
+    [participants]
+  );
   const indexKeys = Object.keys(INDEX_LABELS) as (keyof SessionIndices)[];
 
-  const { matrix, result, projection, silhouette } = useMemo(() => {
-    if (withData.length < 2) {
-      return { matrix: [], result: null, projection: [], silhouette: 0 };
+  const { scatterData, clusterGroups, clusterSummaries } = useMemo(() => {
+    if (!clusterResult || withData.length < 2) {
+      return {
+        scatterData: [],
+        clusterGroups: new Map<number, { x: number; y: number; cluster: number; email: string }[]>(),
+        clusterSummaries: [],
+      };
     }
 
-    const matrix = withData.map((p) => {
-      const idx = computeIndices(p.questionnaire!);
-      return indexKeys.map((key) => idx[key]);
+    const scatterData = withData.map((p, i) => ({
+      x: projection[i]?.[0] ?? 0,
+      y: projection[i]?.[1] ?? 0,
+      cluster: clusterResult.assignments[i] ?? 0,
+      email: p.userEmail,
+      gameId: p.gameId,
+    }));
+
+    const clusterGroups = new Map<number, typeof scatterData>();
+    for (const point of scatterData) {
+      if (!clusterGroups.has(point.cluster)) clusterGroups.set(point.cluster, []);
+      clusterGroups.get(point.cluster)!.push(point);
+    }
+
+    const clusterSummaries = Array.from({ length: clusterResult.k }, (_, i) => {
+      const members = scatterData.filter((p) => p.cluster === i);
+      return { id: i, count: members.length, centroid: clusterResult.centroids[i] };
     });
 
-    const result = kMeans(matrix, k);
-    const projection = projectTo2D(matrix);
-    const silhouette = silhouetteScore(matrix, result.assignments);
-
-    onClusterChange?.(result.assignments);
-
-    return { matrix, result, projection, silhouette };
-  }, [withData, k]);
+    return { scatterData, clusterGroups, clusterSummaries };
+  }, [clusterResult, withData, projection]);
 
   if (withData.length < 2) return null;
-
-  const scatterData = withData.map((p, i) => ({
-    x: projection[i]?.[0] ?? 0,
-    y: projection[i]?.[1] ?? 0,
-    cluster: result?.assignments[i] ?? 0,
-    email: p.userEmail,
-    gameId: p.gameId,
-  }));
-
-  const clusterGroups = new Map<number, typeof scatterData>();
-  for (const point of scatterData) {
-    if (!clusterGroups.has(point.cluster)) clusterGroups.set(point.cluster, []);
-    clusterGroups.get(point.cluster)!.push(point);
-  }
-
-  const clusterSummaries = result
-    ? Array.from({ length: result.k }, (_, i) => {
-        const members = scatterData.filter((p) => p.cluster === i);
-        return { id: i, count: members.length, centroid: result.centroids[i] };
-      })
-    : [];
 
   return (
     <section>
@@ -96,12 +97,12 @@ export function ClusterAnalysis({ participants, onClusterChange }: ClusterAnalys
           min={2}
           max={Math.min(6, withData.length)}
           value={k}
-          onChange={(e) => setK(Number(e.target.value))}
+          onChange={(e) => onKChange(Number(e.target.value))}
           className="w-32"
         />
         <span className="text-sm font-semibold">{k}</span>
         <span className="text-xs text-muted-foreground">
-          {cl('silhouette')}: {silhouette.toFixed(3)}
+          {cl('silhouette')}: {silScore.toFixed(3)}
         </span>
       </div>
 
