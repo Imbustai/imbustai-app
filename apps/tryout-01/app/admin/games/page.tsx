@@ -9,6 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { GameRowActions } from '@/components/admin/game-row-actions';
 
 interface GameRow {
   id: string;
@@ -18,6 +19,8 @@ interface GameRow {
   completed_at: string | null;
   interaction_count: number;
   user_email: string;
+  questionnaire: Record<string, number> | null;
+  feedback: string | null;
 }
 
 async function getGames(): Promise<GameRow[]> {
@@ -64,6 +67,8 @@ async function getGames(): Promise<GameRow[]> {
     completed_at: g.completed_at,
     interaction_count: countMap.get(g.id) ?? 0,
     user_email: emailMap.get(g.user_id) ?? 'unknown',
+    questionnaire: g.questionnaire ?? null,
+    feedback: g.feedback ?? null,
   }));
 }
 
@@ -109,7 +114,14 @@ export default async function AdminGamesPage() {
             ) : (
               games.map((game) => (
                 <TableRow key={game.id}>
-                  <TableCell className="font-medium">{game.user_email}</TableCell>
+                  <TableCell className="font-medium">
+                    <Link
+                      href={`/admin/game/${game.id}`}
+                      className="text-primary underline-offset-4 hover:underline"
+                    >
+                      {game.user_email}
+                    </Link>
+                  </TableCell>
                   <TableCell>
                     {game.status === 'completed' ? (
                       <Badge variant="default">Completed</Badge>
@@ -126,12 +138,11 @@ export default async function AdminGamesPage() {
                     {formatDate(game.completed_at)}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Link
-                      href={`/admin/game/${game.id}`}
-                      className="text-sm font-medium text-primary underline-offset-4 hover:underline"
-                    >
-                      View
-                    </Link>
+                    <GameRowActions
+                      gameId={game.id}
+                      questionnaire={game.questionnaire}
+                      feedback={game.feedback}
+                    />
                   </TableCell>
                 </TableRow>
               ))
