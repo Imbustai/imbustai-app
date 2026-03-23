@@ -1,5 +1,14 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { QUESTION_KEYS } from '@/lib/questionnaire';
+
+function isValidQuestionnaire(obj: unknown): obj is Record<string, number> {
+  if (!obj || typeof obj !== 'object') return false;
+  const record = obj as Record<string, unknown>;
+  return QUESTION_KEYS.every(
+    (key) => key in record && typeof record[key] === 'number' && record[key] >= 0 && record[key] <= 5
+  );
+}
 
 export async function POST(request: Request) {
   try {
@@ -14,18 +23,23 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { gameId, feedback } = await request.json();
+    const { gameId, feedback, questionnaire } = await request.json();
 
-    if (!gameId || typeof feedback !== 'string' || feedback.trim().length === 0) {
+    if (!gameId || !isValidQuestionnaire(questionnaire)) {
       return NextResponse.json(
-        { error: 'Missing gameId or empty feedback' },
+        { error: 'Missing gameId or invalid questionnaire' },
         { status: 400 }
       );
     }
 
+    const updateData: Record<string, unknown> = { questionnaire };
+    if (typeof feedback === 'string' && feedback.trim().length > 0) {
+      updateData.feedback = feedback.trim();
+    }
+
     const { error: updateError } = await supabase
       .from('games')
-      .update({ feedback: feedback.trim() })
+      .update(updateData)
       .eq('id', gameId)
       .eq('user_id', user.id);
 

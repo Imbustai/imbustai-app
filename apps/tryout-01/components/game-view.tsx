@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { useTranslation } from '@/lib/i18n/context';
 import { LetterCard } from '@/components/letter-card';
@@ -10,6 +10,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { Loader2, LogOut, Mail } from 'lucide-react';
+import { StarRating } from '@/components/star-rating';
+import { QUESTION_KEYS } from '@/lib/questionnaire';
 
 interface Interaction {
   id: string;
@@ -24,6 +26,16 @@ interface GameState {
   id: string;
   status: 'in_progress' | 'completed';
   feedback: string | null;
+  questionnaire: Record<string, number> | null;
+}
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
 }
 
 export function GameView() {
@@ -36,7 +48,12 @@ export function GameView() {
   const [feedbackText, setFeedbackText] = useState('');
   const [submittingFeedback, setSubmittingFeedback] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [questionnaireAnswers, setQuestionnaireAnswers] = useState<Record<string, number | null>>(
+    () => Object.fromEntries(QUESTION_KEYS.map((k) => [k, null]))
+  );
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const shuffledQuestions = useMemo(() => shuffleArray([...QUESTION_KEYS]), []);
 
   const scrollToBottom = useCallback(() => {
     setTimeout(() => {
@@ -71,6 +88,7 @@ export function GameView() {
           id: gameData.id,
           status: gameData.status,
           feedback: gameData.feedback,
+          questionnaire: gameData.questionnaire,
         });
 
         const { data: interactionsData } = await supabase
@@ -102,7 +120,7 @@ export function GameView() {
         throw new Error(data.error);
       }
 
-      setGame({ id: data.gameId, status: 'in_progress', feedback: null });
+      setGame({ id: data.gameId, status: 'in_progress', feedback: null, questionnaire: null });
       setInteractions([
         {
           id: crypto.randomUUID(),
@@ -172,18 +190,24 @@ export function GameView() {
     }
   }
 
+  const allQuestionsAnswered = QUESTION_KEYS.every((k) => questionnaireAnswers[k] !== null);
+
   async function handleFeedback() {
-    if (!game || feedbackText.trim().length === 0) return;
+    if (!game || !allQuestionsAnswered) return;
     setSubmittingFeedback(true);
     setError(null);
     try {
       const response = await fetch('/api/game/feedback', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ gameId: game.id, feedback: feedbackText }),
+        body: JSON.stringify({
+          gameId: game.id,
+          feedback: feedbackText.trim() || null,
+          questionnaire: questionnaireAnswers,
+        }),
       });
       if (!response.ok) throw new Error();
-      setGame((prev) => (prev ? { ...prev, feedback: feedbackText.trim() } : prev));
+      setGame((prev) => (prev ? { ...prev, feedback: 'submitted', questionnaire: questionnaireAnswers as Record<string, number> } : prev));
     } catch {
       setError(t('common.error'));
     } finally {
@@ -328,26 +352,47 @@ export function GameView() {
               <CardContent className="py-6">
                 <p className="text-center font-medium">{t('game.gameComplete')}</p>
                 <p className="mt-1 text-center text-sm text-muted-foreground">{t('game.gameCompleteDescription')}</p>
-                {game.feedback ? (
+                {game.questionnaire ? (
                   <div className="mt-4 text-center">
                     <p className="font-medium">{t('game.feedbackThankYou')}</p>
                     <p className="text-sm text-muted-foreground">{t('game.feedbackThankYouDescription')}</p>
                   </div>
                 ) : (
-                  <div className="mt-4 space-y-3">
-                    <p className="text-sm text-muted-foreground">{t('game.feedbackTitle')}</p>
-                    <Textarea
-                      value={feedbackText}
-                      onChange={(e) => setFeedbackText(e.target.value)}
-                      onPaste={(e) => e.preventDefault()}
-                      onCopy={(e) => e.preventDefault()}
-                      onCut={(e) => e.preventDefault()}
-                      placeholder={t('game.feedbackPlaceholder')}
-                      className="min-h-[120px] resize-y"
-                    />
+                  <div className="mt-4 space-y-6">
+                    <div className="space-y-4">
+                      <p className="text-sm font-medium">{t('game.questionnaire.title')}</p>
+                      {shuffledQuestions.map((qKey) => (
+                        <div key={qKey} className="flex flex-col gap-1.5 rounded-lg border bg-background/60 p-3">
+                          <p className="text-sm leading-snug">{t(`game.questionnaire.${qKey}`)}</p>
+                          <StarRating
+                            value={questionnaireAnswers[qKey]}
+                            onChange={(val) =>
+                              setQuestionnaireAnswers((prev) => ({ ...prev, [qKey]: val }))
+                            }
+                          />
+                        </div>
+                      ))}
+                      {!allQuestionsAnswered && (
+                        <p className="text-xs text-muted-foreground">{t('game.questionnaire.unanswered')}</p>
+                      )}
+                    </div>
+
+                    <div className="space-y-3">
+                      <p className="text-sm text-muted-foreground">{t('game.feedbackTitle')}</p>
+                      <Textarea
+                        value={feedbackText}
+                        onChange={(e) => setFeedbackText(e.target.value)}
+                        onPaste={(e) => e.preventDefault()}
+                        onCopy={(e) => e.preventDefault()}
+                        onCut={(e) => e.preventDefault()}
+                        placeholder={t('game.feedbackPlaceholder')}
+                        className="min-h-[120px] resize-y"
+                      />
+                    </div>
+
                     <Button
                       onClick={handleFeedback}
-                      disabled={feedbackText.trim().length === 0 || submittingFeedback}
+                      disabled={!allQuestionsAnswered || submittingFeedback}
                       className="w-full gap-2"
                       size="lg"
                     >

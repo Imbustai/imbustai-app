@@ -54,7 +54,22 @@
     "feedbackPlaceholder": "Write your thoughts here...",
     "feedbackSubmit": "Submit",
     "feedbackThankYou": "Thank you for participating!",
-    "feedbackThankYouDescription": "Your contribution is valuable for our research."
+    "feedbackThankYouDescription": "Your contribution is valuable for our research.",
+    "questionnaire": {
+      "title": "Before finishing, please answer these questions:",
+      "unanswered": "Answer all questions to continue",
+      "q1": "I tried to understand the situation before making a judgment",
+      "q2": "I found it difficult to take a clear position",
+      "q3": "I perceived that actions depended mainly on individual choices",
+      "q4": "I perceived that actions were influenced by context and social expectations",
+      "q5": "I perceived the interlocutor as free to choose what to do",
+      "q6": "I perceived the interlocutor as somehow constrained by the situation",
+      "q7": "I felt involved in the interlocutor's situation",
+      "q8": "I maintained a certain emotional distance",
+      "q9": "I perceived a clear boundary between what I consider acceptable and unacceptable",
+      "q10": "I tried to mediate between my point of view and that of the interlocutor",
+      "q11": "I tried to argue and explain my point of view in my responses"
+    }
   },
   "common": {
     "loading": "Loading...",

@@ -54,7 +54,22 @@
     "feedbackPlaceholder": "Scrivi qui le tue riflessioni...",
     "feedbackSubmit": "Invia",
     "feedbackThankYou": "Grazie per aver partecipato!",
-    "feedbackThankYouDescription": "Il tuo contributo è prezioso per la nostra ricerca."
+    "feedbackThankYouDescription": "Il tuo contributo è prezioso per la nostra ricerca.",
+    "questionnaire": {
+      "title": "Prima di concludere, rispondi a queste domande:",
+      "unanswered": "Rispondi a tutte le domande per proseguire",
+      "q1": "Ho cercato di capire la situazione prima di esprimere un giudizio",
+      "q2": "Ho avuto difficoltà a prendere una posizione chiara",
+      "q3": "Ho percepito che le azioni dipendessero soprattutto dalle scelte individuali",
+      "q4": "Ho percepito che le azioni fossero influenzate dal contesto e dalle aspettative sociali",
+      "q5": "Ho percepito l'interlocutore come libero di scegliere cosa fare",
+      "q6": "Ho percepito l'interlocutore come in qualche modo vincolato dalla situazione",
+      "q7": "Mi sono sentito/a coinvolto/a nella situazione dell'interlocutore",
+      "q8": "Ho mantenuto una certa distanza emotiva",
+      "q9": "Ho percepito un limite chiaro tra ciò che considero accettabile e non accettabile",
+      "q10": "Ho cercato di mediare tra il mio punto di vista e quello dell'interlocutore",
+      "q11": "Ho cercato di argomentare e spiegare il mio punto di vista nelle risposte"
+    }
   },
   "common": {
     "loading": "Caricamento...",
