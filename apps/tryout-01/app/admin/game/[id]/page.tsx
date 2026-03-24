@@ -9,6 +9,9 @@ import { SessionAnalytics } from '@/components/admin/session-analytics';
 import { ExportButton } from '@/components/admin/export-button';
 import { ArrowLeft } from 'lucide-react';
 
+export const dynamic = 'force-dynamic'
+
+
 async function getGame(id: string) {
   const supabase = createAdminClient();
 

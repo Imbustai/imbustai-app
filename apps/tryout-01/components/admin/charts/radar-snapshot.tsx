@@ -88,6 +88,8 @@ export function RadarSnapshot({ indices }: RadarSnapshotProps) {
           fill="hsl(221, 83%, 53%)"
           fillOpacity={0.2}
           strokeWidth={2}
+          isAnimationActive={false}
+          dot={{ r: 3, fill: 'hsl(221, 83%, 53%)', strokeWidth: 0 }}
         />
       </RadarChart>
     </ResponsiveContainer>
