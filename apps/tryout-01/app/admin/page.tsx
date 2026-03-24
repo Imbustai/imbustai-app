@@ -2,6 +2,8 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { ResearchDashboard } from '@/components/admin/dashboard/research-dashboard';
 import type { ParticipantRecord } from '@/lib/analytics/types';
 
+export const dynamic = 'force-dynamic'
+
 interface InteractionRow {
   id: string;
   game_id: string;

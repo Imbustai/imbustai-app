@@ -11,6 +11,8 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { GameRowActions } from '@/components/admin/game-row-actions';
 
+export const dynamic = 'force-dynamic'
+
 interface GameRow {
   id: string;
   user_id: string;
