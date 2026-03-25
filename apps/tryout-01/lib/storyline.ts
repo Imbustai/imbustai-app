@@ -147,5 +147,4 @@ Vincoli:
 - Lunghezza simile alle altre lettere.
 - Evita estremizzazioni incoerenti con il tono precedente.
 
-
-
+`
