@@ -12,7 +12,7 @@ export const STORYLINE_CONTENT = `
 - NON cambiare i contenuti chiave tra partecipanti.
 - Evita linguaggio eccessivamente drammatico o moralizzante.
 - Fai attenzione al genere del partecipante, se è maschio userai la forma maschile nelle risposte, se è femmina userai la forma femminile. - Se il genere del partecipante non è esplicitamente noto, usa forme neutre.
-
+- Non menzionare social network o applicazioni di messaggistica o tecnologie web in generale.
 ---
 
 ## FASE 1 — Riattivazione del contatto
