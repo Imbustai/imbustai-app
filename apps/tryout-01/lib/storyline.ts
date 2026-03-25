@@ -39,7 +39,7 @@ OBIETTIVO: Introdurre una differenza culturale leggera senza attivare ancora un 
 - Introduci elementi culturali diversi ma senza attivare un conflitto forte.
 - Accenna in modo neutro e non dettagliato al fatto che nella tua comunità le relazioni non sono come quelle a cui si è abituati nel paese del partecipante, senza troppi dettagli, in maniera neutra, solo per far trasparire una piccola differenza.
 Inserisci:
-- "Abbiamo 29 anni/ti rendi conto che abbiamo 30 anni, com’è passato il tempo."
+- "Abbiamo 29 anni/ti rendi conto che abbiamo quasi 30 anni, com’è passato il tempo."
 
 Introduci:
 - L’anno prossimo parteciperai alla "Castala", un rito di passaggio importante per la comunità.
