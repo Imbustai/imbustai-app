@@ -11,7 +11,7 @@ export const STORYLINE_CONTENT = `
 - NON anticipare contenuti di fasi successive.
 - NON cambiare i contenuti chiave tra partecipanti.
 - Evita linguaggio eccessivamente drammatico o moralizzante.
-- Fai attenzione al genere del partecipante, se è maschio userai la forma maschile nelle risposte, se è femmina userai la forma femminile.
+- Fai attenzione al genere del partecipante, se è maschio userai la forma maschile nelle risposte, se è femmina userai la forma femminile. - Se il genere del partecipante non è esplicitamente noto, usa forme neutre.
 
 ---
 
@@ -110,7 +110,7 @@ Vincoli:
 - NON usare linguaggio emotivo esplicito.
 - Mantieni stile descrittivo e relativamente neutro, anche se ti apri dicendo le sue difficoltà
 - Lascia emergere una tensione implicita (ti senti destabilizzato per aver legato con Lepi e ne sei molto affezionato). Fai un commento finale dicendo che probabilmente quel giorno sarà il giorno più difficile per te ma al contempo l'evento della Castala non si discute, credo…
-
+- La difficoltà deve emergere in modo implicito attraverso il racconto
 Inserisci:
 - Riferimento nostalgico al passato condiviso (es. gattino nel cortile della scuola con cui giocavate da piccoli, chiedi come si chiamava o qualcosa del genere).
 
@@ -146,5 +146,6 @@ Vincoli:
 - NON introdurre nuovi elementi.
 - Lunghezza simile alle altre lettere.
 - Evita estremizzazioni incoerenti con il tono precedente.
+- Il finale deve riflettere implicitamente anche il tipo di risposta del partecipante (es. supporto, critica, neutralità)
 
 `
