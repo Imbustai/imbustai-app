@@ -289,7 +289,7 @@ export function GameView() {
   );
   const canReply =
     game?.status === 'in_progress' &&
-    userReplyCount < 5 &&
+    userReplyCount < 4 &&
     !waitingForAI &&
     !hasPendingLetter;
 

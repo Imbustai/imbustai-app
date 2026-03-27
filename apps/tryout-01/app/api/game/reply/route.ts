@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     const userLetterCount = interactions.filter((i) => i.role === 'user').length;
     const userLetterNumber = userLetterCount + 1;
 
-    if (userLetterNumber > 5) {
+    if (userLetterNumber > 4) {
       return NextResponse.json(
         { error: 'Maximum user replies reached' },
         { status: 400 }
