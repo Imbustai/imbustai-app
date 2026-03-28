@@ -21,7 +21,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [confirmationSent, setConfirmationSent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -33,18 +32,25 @@ export default function LoginPage() {
     const supabase = createClient();
 
     if (mode === 'register') {
-      const { error: signUpError } = await supabase.auth.signUp({
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email: email.trim(),
         password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
-        },
       });
 
       if (signUpError) {
         setError(signUpError.message);
+      } else if (data.session) {
+        router.push('/game');
       } else {
-        setConfirmationSent(true);
+        const { error: signInError } = await supabase.auth.signInWithPassword({
+          email: email.trim(),
+          password,
+        });
+        if (signInError) {
+          setError(signInError.message);
+        } else {
+          router.push('/game');
+        }
       }
     } else {
       const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -60,25 +66,6 @@ export default function LoginPage() {
     }
 
     setLoading(false);
-  }
-
-  if (confirmationSent) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center p-4">
-        <div className="absolute top-4 right-4">
-          <LanguageSwitcher />
-        </div>
-        <Card className="w-full max-w-sm text-center">
-          <CardHeader>
-            <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-              <Mail className="h-6 w-6 text-primary" />
-            </div>
-            <CardTitle>{t('login.checkEmail')}</CardTitle>
-            <CardDescription>{t('login.checkEmailDescription')}</CardDescription>
-          </CardHeader>
-        </Card>
-      </div>
-    );
   }
 
   return (
