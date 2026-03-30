@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LayoutDashboard, Gamepad2, Settings, FlaskConical, Sun, Moon, type LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { useTheme } from '@/lib/theme-context';
 
 interface NavItem {

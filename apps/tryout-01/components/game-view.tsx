@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { LetterCard } from '@/components/letter-card';
 import { LetterCompose } from '@/components/letter-compose';
 import { Button } from '@/components/ui/button';
@@ -106,6 +106,17 @@ export function GameView() {
     const tick = setInterval(() => setNow(Date.now()), 1_000);
     return () => clearInterval(tick);
   }, [interactions, now]);
+
+  useEffect(() => {
+    if (!game || game.status !== 'in_progress') return;
+    const hasPending = interactions.some(
+      (i) => i.role === 'ai' && i.visible_from && new Date(i.visible_from).getTime() > Date.now()
+    );
+    if (hasPending) return;
+
+    const tick = setInterval(() => setNow(Date.now()), 15_000);
+    return () => clearInterval(tick);
+  }, [game?.id, game?.status, interactions]);
 
   async function loadGame() {
     setLoading(true);
@@ -275,6 +286,38 @@ export function GameView() {
     window.location.href = '/login';
   }
 
+  const userReplyCount = interactions.filter((i) => i.role === 'user').length;
+  const hasPendingLetter = interactions.some(
+    (i) => i.role === 'ai' && i.visible_from && new Date(i.visible_from).getTime() > now
+  );
+
+  const visibleInteractions = useMemo(() => {
+    return interactions.filter((i) => {
+      if (i.role === 'user') return true;
+      if (!i.visible_from) return true;
+      return new Date(i.visible_from).getTime() <= now;
+    });
+  }, [interactions, now]);
+
+  const lastVisible = visibleInteractions[visibleInteractions.length - 1];
+  const lastLetterFromUser = lastVisible?.role === 'user';
+
+  const STUCK_AFTER_USER_LETTER_MS = 5 * 60 * 1000;
+  const showStuckNoReplyMessage =
+    game?.status === 'in_progress' &&
+    lastLetterFromUser &&
+    lastVisible &&
+    !waitingForAI &&
+    !hasPendingLetter &&
+    now - new Date(lastVisible.created_at).getTime() >= STUCK_AFTER_USER_LETTER_MS;
+
+  const canReply =
+    game?.status === 'in_progress' &&
+    userReplyCount < 4 &&
+    !waitingForAI &&
+    !hasPendingLetter &&
+    !lastLetterFromUser;
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -282,16 +325,6 @@ export function GameView() {
       </div>
     );
   }
-
-  const userReplyCount = interactions.filter((i) => i.role === 'user').length;
-  const hasPendingLetter = interactions.some(
-    (i) => i.role === 'ai' && i.visible_from && new Date(i.visible_from).getTime() > now
-  );
-  const canReply =
-    game?.status === 'in_progress' &&
-    userReplyCount < 4 &&
-    !waitingForAI &&
-    !hasPendingLetter;
 
   return (
     <div className="mx-auto min-h-screen max-w-2xl px-4 pb-8">
@@ -452,6 +485,12 @@ export function GameView() {
               </Card>
             );
           })()}
+
+          {showStuckNoReplyMessage && (
+            <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-950 dark:text-amber-100">
+              {t('game.stuckNoReplyFromApaya')}
+            </div>
+          )}
 
           {canReply && (
             <LetterCompose

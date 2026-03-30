@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { Mail, Pen } from 'lucide-react';
 
 interface LetterCardProps {

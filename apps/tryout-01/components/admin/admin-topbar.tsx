@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { LogOut, ArrowLeft } from 'lucide-react';
 import { LanguageSwitcher } from '@/components/language-switcher';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 
 export function AdminTopbar() {
   const { t } = useTranslation();

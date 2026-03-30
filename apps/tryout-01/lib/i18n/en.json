@@ -48,6 +48,7 @@
     "waitingDescription": "Your letter is on its way. A reply will arrive shortly...",
     "letterSent": "Your letter has been sent.",
     "letterSentCountdown": "Your correspondent will reply within {time}.",
+    "stuckNoReplyFromApaya": "It feels like Apaya didn't receive your last letter! Please reach out to your contact for the tryout and tell them you are stuck.",
     "letterNumber": "Letter",
     "of": "of",
     "friendName": "Apaya",

@@ -8,7 +8,10 @@
     "build": "nx build tryout-01",
     "build:tryout-01": "nx build tryout-01",
     "start": "nx start tryout-01",
-    "start:tryout-01": "nx start tryout-01"
+    "start:tryout-01": "nx start tryout-01",
+    "dev:website": "nx dev website",
+    "build:website": "nx build website",
+    "start:website": "nx start website"
   },
   "private": true,
   "devDependencies": {
@@ -27,6 +30,7 @@
     "typescript": "catalog:"
   },
   "dependencies": {
+    "@imbustai/i18n": "workspace:*",
     "@anthropic-ai/sdk": "^0.80.0",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.4",

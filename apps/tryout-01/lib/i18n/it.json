@@ -49,6 +49,7 @@
     "waitingDescription": "La tua lettera è in viaggio. Una risposta arriverà a breve...",
     "letterSent": "La tua lettera è stata spedita.",
     "letterSentCountdown": "Il tuo interlocutore ti risponderà entro {time}.",
+    "stuckNoReplyFromApaya": "Sembra che Apaya non abbia ricevuto la tua ultima lettera! Contatta il referente della prova e comunicagli di essere in difficoltà.",
     "letterNumber": "Lettera",
     "of": "di",
     "friendName": "Apaya",

@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { Badge } from '@/components/ui/badge';
 import { mean, stddev } from '@/lib/analytics/statistics';
 import { computeIndices, INDEX_LABELS } from '@/lib/questionnaire';

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import type { ProfileLabel } from '@/lib/analytics/types';

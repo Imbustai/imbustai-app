@@ -62,6 +62,9 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.80.0
         version: 0.80.0
+      '@imbustai/i18n':
+        specifier: workspace:*
+        version: link:packages/i18n
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -150,6 +153,12 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
+
+  packages/i18n:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
 
 packages:
 

@@ -1,0 +1,64 @@
+{
+  "landing": {
+    "hero": {
+      "kicker": "Imbustai",
+      "headline": "Qualcuno ha iniziato a scriverti.",
+      "subLine1": "Non è un libro. Non è un gioco.",
+      "subLine2": "È una storia che arriva a casa tua, lettera dopo lettera.",
+      "ctaPrimary": "Partecipa al primo test",
+      "ctaSecondary": "Come funziona"
+    },
+    "steps": {
+      "title": "Cosa succede",
+      "subtitle": "Semplice. Quattro passi.",
+      "items": [
+        "Scegli una storia.",
+        "Ricevi una lettera reale.",
+        "Rispondi.",
+        "E scopri cosa succede dopo."
+      ]
+    },
+    "different": {
+      "title": "Perché è diverso",
+      "leadLine1": "Non leggi una storia.",
+      "leadLine2": "Ci sei dentro.",
+      "items": [
+        "Le lettere arrivano davvero",
+        "La storia cambia in base a te",
+        "Non è immediata",
+        "Devi aspettarla"
+      ]
+    },
+    "visual": {
+      "title": "La posta, davvero",
+      "body": "Carta, busta, timbro: un ritmo diverso dai feed. Lettere stampate e spedite, con cui interagisci quando sei pronta — non quando l’algoritmo lo decide.",
+      "mockLetterLabel": "Lettera",
+      "mockLetterCaption": "Testo che ti coinvolge",
+      "mockEnvelopeLabel": "Busta",
+      "mockEnvelopeCaption": "Qualcosa da aprire",
+      "mockHomeLabel": "A casa tua",
+      "mockHomeCaption": "Nello spazio della tua giornata"
+    },
+    "social": {
+      "title": "Dalle prime lettrici",
+      "subtitle": "Feedback dal test",
+      "quote": "«Non pensavo di aspettare davvero la prossima lettera.»"
+    },
+    "cta": {
+      "title": "Pronta a ricevere la prima?",
+      "subtitle": "Partecipa al primo test — posti limitati.",
+      "button": "Partecipa al primo test"
+    },
+    "compare": {
+      "title": "Cosa cambia davvero",
+      "tagline": "Una riga può fermare lo scroll",
+      "weakLabel": "Meno efficace",
+      "weakLine": "Una storia che ti scrive",
+      "strongLabel": "Più tensione, più curiosità",
+      "strongLine": "Qualcuno ha iniziato a scriverti."
+    },
+    "footer": {
+      "tagline": "Storie epistolari, lentezza e carta."
+    }
+  }
+}

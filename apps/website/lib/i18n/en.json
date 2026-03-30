@@ -1,0 +1,64 @@
+{
+  "landing": {
+    "hero": {
+      "kicker": "Imbustai",
+      "headline": "Someone has started writing to you.",
+      "subLine1": "It’s not a book. It’s not a game.",
+      "subLine2": "It’s a story that comes home to you, letter after letter.",
+      "ctaPrimary": "Join the first test",
+      "ctaSecondary": "How it works"
+    },
+    "steps": {
+      "title": "What happens",
+      "subtitle": "Simple. Four steps.",
+      "items": [
+        "Pick a story.",
+        "Receive a real letter.",
+        "Reply.",
+        "And find out what happens next."
+      ]
+    },
+    "different": {
+      "title": "Why it’s different",
+      "leadLine1": "You’re not reading a story.",
+      "leadLine2": "You’re inside it.",
+      "items": [
+        "The letters really arrive",
+        "The story changes with you",
+        "It’s not instant",
+        "You have to wait for it"
+      ]
+    },
+    "visual": {
+      "title": "Real mail",
+      "body": "Paper, envelope, postmark: a rhythm unlike your feed. Printed letters sent to you — you engage when you’re ready, not when an algorithm says so.",
+      "mockLetterLabel": "Letter",
+      "mockLetterCaption": "Words that pull you in",
+      "mockEnvelopeLabel": "Envelope",
+      "mockEnvelopeCaption": "Something to open",
+      "mockHomeLabel": "At your door",
+      "mockHomeCaption": "In the rhythm of your day"
+    },
+    "social": {
+      "title": "From early readers",
+      "subtitle": "Test feedback",
+      "quote": "“I didn’t think I’d actually wait for the next letter.”"
+    },
+    "cta": {
+      "title": "Ready for the first one?",
+      "subtitle": "Join the first test — limited spots.",
+      "button": "Join the first test"
+    },
+    "compare": {
+      "title": "What really changes",
+      "tagline": "One line can stop the scroll",
+      "weakLabel": "Less effective",
+      "weakLine": "A story that writes to you",
+      "strongLabel": "More tension, more curiosity",
+      "strongLine": "Someone has started writing to you."
+    },
+    "footer": {
+      "tagline": "Epistolary stories, slowness, and paper."
+    }
+  }
+}

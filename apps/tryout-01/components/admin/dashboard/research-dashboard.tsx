@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { computeIndices, computeBalances, INDEX_LABELS } from '@/lib/questionnaire';
 import type { SessionIndices } from '@/lib/questionnaire';
 import { assignProfileLabel, assignUsageLabels } from '@/lib/analytics/profiles';

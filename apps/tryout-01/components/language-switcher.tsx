@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from '@/lib/i18n/context';
+import { useTranslation } from '@imbustai/i18n';
 import { Button } from '@/components/ui/button';
 import { Globe } from 'lucide-react';
 
