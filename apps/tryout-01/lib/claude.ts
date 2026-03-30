@@ -31,7 +31,7 @@ export async function generateLetter(
   letterNumber: number
 ): Promise<string> {
   const systemPrompt = STORYLINE_SYSTEM_PROMPT + storylineContent +
-    `\n\nQuesta è la lettera numero ${letterNumber} che devi scrivere (su 5 totali). Segui la fase ${letterNumber} delle istruzioni della storyline.`;
+    `\n\nQuesta è la lettera numero ${letterNumber} che devi scrivere (su 5 totali). Segui la lettera ${letterNumber} delle istruzioni della storyline.`;
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-20250514',
