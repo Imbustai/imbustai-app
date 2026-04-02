@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
       variant="outline"
       size="sm"
       onClick={() => setLocale(locale === 'it' ? 'en' : 'it')}
-      className="gap-1.5 border border-cornsilk/35 bg-[#283618]/92 text-[#fefae0] shadow-sm backdrop-blur-sm hover:bg-[#283618] hover:text-[#fefae0]"
+      className="gap-1.5"
       aria-label={locale === 'it' ? 'Switch to English' : 'Passa all’italiano'}
     >
       <Globe className="h-4 w-4" aria-hidden />

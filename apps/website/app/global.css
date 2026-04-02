@@ -61,6 +61,28 @@
   --ring: #606c38;
 }
 
+.dark {
+  --background: #1a1f16;
+  --foreground: #f2edd8;
+  --card: #232b1c;
+  --card-foreground: #f2edd8;
+  --popover: #232b1c;
+  --popover-foreground: #f2edd8;
+  --primary: #e85a6b;
+  --primary-foreground: #1a1f16;
+  --secondary: #7a8f5c;
+  --secondary-foreground: #f2edd8;
+  --muted: #2d3524;
+  --muted-foreground: #b8c4a8;
+  --accent: #c97a82;
+  --accent-foreground: #1a1f16;
+  --destructive: #e85a6b;
+  --destructive-foreground: #f2edd8;
+  --border: color-mix(in srgb, #f2edd8 14%, transparent);
+  --input: color-mix(in srgb, #f2edd8 18%, transparent);
+  --ring: #7a8f5c;
+}
+
 @layer base {
   * {
     @apply border-border;

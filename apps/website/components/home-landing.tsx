@@ -12,7 +12,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { LanguageSwitcher } from '@/components/language-switcher';
 import { signupUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 
@@ -44,10 +43,6 @@ export function HomeLanding() {
 
   return (
     <main className="relative">
-      <div className="fixed right-4 top-4 z-50">
-        <LanguageSwitcher />
-      </div>
-
       <section
         className="relative flex min-h-[85vh] flex-col justify-end gap-8 px-4 pb-16 pt-24 sm:px-6 md:px-10 lg:px-16"
         style={{ backgroundColor: '#283618' }}

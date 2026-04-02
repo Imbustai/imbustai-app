@@ -2,6 +2,8 @@ import './global.css';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import { I18nLayoutShell } from '@/components/i18n-layout-shell';
+import { SiteChrome } from '@/components/site-chrome';
+import { ThemeProvider } from '@/components/theme-provider';
 
 const clashGrotesk = localFont({
   src: './fonts/ClashGrotesk-Bold.woff2',
@@ -35,7 +37,11 @@ export default function RootLayout({
       className={`${clashGrotesk.variable} ${archivo.variable}`}
     >
       <body className="min-h-screen">
-        <I18nLayoutShell>{children}</I18nLayoutShell>
+        <I18nLayoutShell>
+          <ThemeProvider>
+            <SiteChrome>{children}</SiteChrome>
+          </ThemeProvider>
+        </I18nLayoutShell>
       </body>
     </html>
   );
