@@ -1,5 +1,5 @@
 # See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
-
+.env
 # compiled output
 dist
 tmp
@@ -47,6 +47,7 @@ Thumbs.db
 .next
 out
 
-# Environment files
+# Environment files (also **/.env for nested apps)
+**/.env
 .env.local
 .env*.local

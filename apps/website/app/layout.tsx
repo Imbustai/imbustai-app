@@ -30,9 +30,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // data-palette: "imbustai" (brand) | "default" (shadcn neutral) — see global.css
   return (
     <html
       lang="it"
+      data-palette="default"
       suppressHydrationWarning
       className={`${clashGrotesk.variable} ${archivo.variable}`}
     >

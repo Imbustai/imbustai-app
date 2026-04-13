@@ -1,0 +1,34 @@
+// SCSS smoke test: variables + nesting + theme tokens (var resolves on html)
+$section-top-spacing: 3.5rem;
+
+.root {
+  margin-inline: auto;
+  margin-top: $section-top-spacing;
+  width: 100%;
+  max-width: 72rem; /* max-w-6xl */
+
+  // nested selector + theme token from global.css (`html { --radius }`)
+  :global(.how-it-works-stage) {
+    border-radius: var(--radius);
+  }
+
+  .howItWorksGrid{
+    height: auto;
+    align-items: end;
+  }
+}
+
+.bodyCopy {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  line-height: 1.375;
+  color: var(--landing-surface-warm-fg);
+
+  @media (width >= 40rem) {
+    font-size: 1.125rem;
+  }
+
+  @media (width >= 48rem) {
+    font-size: 1.25rem;
+  }
+}

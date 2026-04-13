@@ -1,0 +1,33 @@
+---
+description: Website UI — palettes, semantic colors, typography (apps/website)
+globs: apps/website/**/*.tsx,apps/website/**/*.css
+alwaysApply: false
+---
+
+# Imbustai website UI
+
+## Theming
+
+- **Light/dark:** `next-themes` adds `class="dark"` on `<html>`.
+- **Color palette:** `data-palette="default"` (shadcn neutral) or `data-palette="imbustai"` (brand). Source of truth: [`apps/website/app/global.css`](apps/website/app/global.css).
+- **Landing hero / footer / join CTA** use `--landing-hero-*` and `--landing-footer-*`: in **light** mode these are light surfaces with dark type; in **`.dark`** they use the dark band + light type (Imbustai dark keeps the forest hero).
+
+Do **not** put hex/rgb in TSX for theme UI. Use:
+
+- Shadcn tokens: `bg-background`, `text-foreground`, `text-primary`, `border-border`, etc.
+- Marketing / landing tokens: `bg-landing-hero`, `text-landing-hero-fg`, `border-landing-card-border-subtle`, etc. (see `@theme` in `global.css`).
+
+New brand colors: add a CSS variable under **both** `html[data-palette="default"]` and `html[data-palette="imbustai"]` (and their `.dark` rules), then wire `--color-*` in `@theme inline` if you need a Tailwind utility.
+
+## Fonts
+
+- Body: Archivo (`font-sans`). Headings / display: Clash Grotesk via `font-heading`.
+- Font stacks are **not** switched per palette—only color variables are.
+
+## Headings
+
+- Use `font-heading` for Grotesk, uppercase, and **letter-spacing** (`var(--tracking-widest)` is applied in CSS). Avoid duplicating `tracking-widest` on the same element unless you need an exception.
+
+## Layout
+
+- [`apps/website/app/layout.tsx`](apps/website/app/layout.tsx) sets `data-palette` on `<html>`.

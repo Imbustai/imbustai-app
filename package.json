@@ -26,6 +26,7 @@
     "@types/react-dom": "catalog:",
     "nx": "catalog:",
     "prettier": "catalog:",
+    "sass": "^1.99.0",
     "tslib": "catalog:",
     "typescript": "catalog:"
   },
@@ -45,6 +46,7 @@
     "next-themes": "^0.4.6",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "react-icons": "^5.5.0",
     "recharts": "^3.8.0",
     "stripe": "^21.0.1",
     "tailwind-merge": "^3.5.0",
