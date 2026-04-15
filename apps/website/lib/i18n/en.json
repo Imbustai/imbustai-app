@@ -148,13 +148,25 @@
       "ctaSecondary": "How it works"
     },
     "steps": {
-      "title": "What happens",
-      "subtitle": "Simple. Four steps.",
       "items": [
         "Pick a story.",
         "Receive a real letter.",
         "Reply.",
         "And find out what happens next."
+      ]
+    },
+    "letterHistory": {
+      "title": "What stories you are going to live",
+      "subtitle": "We created an engine that perfectly mixes author-written stories with an interactive playground — scroll to see how it works.",
+      "stepsNavLabel": "Letter history steps",
+      "timelineAria": "Animated diagram of branching story timelines that converge into an authored path.",
+      "step1Before": "While you reply to your",
+      "step1Emphasis": "single or even multiple",
+      "step1After": "contacts, the system generates characters, events, and places every time — each one different from any other story.",
+      "steps": [
+        "Everybody lives a story that is different from anybody else.",
+        "",
+        "The core story still has a start and an end, written and shaped by a human author — so you get surprises, twists, and an emotional experience comparable to reading a book or watching a movie."
       ]
     },
     "different": {

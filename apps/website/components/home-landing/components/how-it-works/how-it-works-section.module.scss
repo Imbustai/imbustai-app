@@ -1,9 +1,30 @@
-// SCSS smoke test: variables + nesting + theme tokens (var resolves on html)
-$section-top-spacing: 3.5rem;
+$section-top-spacing: 0;
+
+.scrollTrack {
+  position: relative;
+  margin-top: $section-top-spacing;
+  width: 100%;
+  /* Must match step count in TS (STEP_BG_FOCUS / landing.steps.items) */
+  min-height: calc(var(--how-it-works-steps, 4) * 100svh);
+}
+
+.stickySlot {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  height: 100svh;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 1.5rem;
+
+  @media (width >= 48rem) {
+    padding-bottom: 2.5rem;
+  }
+}
 
 .root {
   margin-inline: auto;
-  margin-top: $section-top-spacing;
   width: 100%;
   max-width: 72rem; /* max-w-6xl */
 
@@ -12,7 +33,7 @@ $section-top-spacing: 3.5rem;
     border-radius: var(--radius);
   }
 
-  .howItWorksGrid{
+  .howItWorksGrid {
     height: auto;
     align-items: end;
   }

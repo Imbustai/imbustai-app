@@ -34,7 +34,7 @@ export async function generateLetter(
     `\n\nQuesta è la lettera numero ${letterNumber} che devi scrivere (su 5 totali). Segui la lettera ${letterNumber} delle istruzioni della storyline.`;
 
   const response = await client.messages.create({
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-sonnet-4-6',
     max_tokens: 2048,
     system: systemPrompt,
     messages: conversationHistory.length > 0

@@ -1,24 +1,18 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { HiEnvelope, HiMiniPlus } from 'react-icons/hi2';
 import { IconSwapper } from '@/components/ui/icon-swapper';
 import { cn } from '@/lib/utils';
 
+/** Grid cell size (px). Icons use 24×24 at scale 1, centered in the cell. */
+const CELL_PX = 48;
+
 /**
- * Tweak these values to change grid density, spacing, and icon size.
+ * Tweak these values to change hover halo and timing (grid density is derived from 48px cells).
  */
 export const SECTION_HEADING_GRID_BG_LAYOUT = {
-  /** Horizontal icon count */
-  columns: 42,
-  /** Vertical icon count */
-  rows: 24,
-  /** Gap between columns (px) — lower = denser */
-  gapXPx: 4,
-  /** Gap between rows (px) — lower = denser */
-  gapYPx: 4,
-  /** Base icon size in rem (hovered cell reaches hoverPeakScale × this) */
-  iconRem: 1,
+  cellPx: CELL_PX,
   /** Scale at the cell under the cursor */
   hoverPeakScale: 1.6,
   /**
@@ -42,19 +36,20 @@ function pickCellIndex(
   clientX: number,
   clientY: number,
   rect: DOMRectReadOnly,
-  layout: Layout
+  columns: number,
+  rows: number
 ): number {
   const x = clientX - rect.left;
   const y = clientY - rect.top;
   const col = Math.min(
-    layout.columns - 1,
-    Math.max(0, Math.floor((x / rect.width) * layout.columns))
+    columns - 1,
+    Math.max(0, Math.floor((x / rect.width) * columns))
   );
   const row = Math.min(
-    layout.rows - 1,
-    Math.max(0, Math.floor((y / rect.height) * layout.rows))
+    rows - 1,
+    Math.max(0, Math.floor((y / rect.height) * rows))
   );
-  return row * layout.columns + col;
+  return row * columns + col;
 }
 
 /** Smoothstep: 0 at t≤0, 1 at t≥1, smooth in between */
@@ -66,14 +61,14 @@ function smoothstep01(t: number): number {
 function scaleForCell(
   cellIndex: number,
   focusIndex: number | null,
+  columns: number,
   layout: Layout
 ): number {
   if (focusIndex === null) return 1;
-  const cols = layout.columns;
-  const col = cellIndex % cols;
-  const row = Math.floor(cellIndex / cols);
-  const fc = focusIndex % cols;
-  const fr = Math.floor(focusIndex / cols);
+  const col = cellIndex % columns;
+  const row = Math.floor(cellIndex / columns);
+  const fc = focusIndex % columns;
+  const fr = Math.floor(focusIndex / columns);
   const dist = Math.hypot(col - fc, row - fr);
   const t = 1 - dist / layout.influenceRadius;
   const falloff = smoothstep01(t);
@@ -82,19 +77,16 @@ function scaleForCell(
 
 function GridCell({
   active,
-  iconRem,
   scale,
   scaleTransitionMs,
 }: {
   active: boolean;
-  iconRem: number;
   scale: number;
   scaleTransitionMs: number;
 }) {
-  const sizeStyle = { width: `${iconRem}rem`, height: `${iconRem}rem` };
   return (
     <span
-      className="flex items-center justify-center will-change-transform"
+      className="flex size-12 items-center justify-center will-change-transform"
       style={{
         transform: `scale(${scale})`,
         transition: `transform ${scaleTransitionMs}ms cubic-bezier(0.33, 1, 0.68, 1)`,
@@ -102,15 +94,9 @@ function GridCell({
     >
       <IconSwapper>
         {active ? (
-          <HiEnvelope
-            className="shrink-0 text-landing-hero-fg/20"
-            style={sizeStyle}
-          />
+          <HiEnvelope className="size-6 shrink-0 text-landing-hero-fg/20" />
         ) : (
-          <HiMiniPlus
-            className="shrink-0 text-landing-hero-fg/20"
-            style={sizeStyle}
-          />
+          <HiMiniPlus className="size-6 shrink-0 text-landing-hero-fg/20" />
         )}
       </IconSwapper>
     </span>
@@ -129,23 +115,39 @@ export function SectionHeadingGridBG({
       ...layoutOverrides,
     }),
     [
-      layoutOverrides?.columns,
-      layoutOverrides?.gapXPx,
-      layoutOverrides?.gapYPx,
+      layoutOverrides?.cellPx,
       layoutOverrides?.hoverPeakScale,
-      layoutOverrides?.iconRem,
       layoutOverrides?.influenceRadius,
       layoutOverrides?.leaveDelayMs,
       layoutOverrides?.maxWidthClass,
       layoutOverrides?.paddingClass,
-      layoutOverrides?.rows,
       layoutOverrides?.scaleTransitionMs,
     ]
   );
 
+  const cellPx = layout.cellPx;
+
   const gridRef = useRef<HTMLDivElement>(null);
   const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [focusIndex, setFocusIndex] = useState<number | null>(null);
+  const [columns, setColumns] = useState(1);
+  const [rows, setRows] = useState(1);
+
+  useLayoutEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    const measure = () => {
+      const { width, height } = el.getBoundingClientRect();
+      const nextCols = Math.max(1, Math.floor(width / cellPx));
+      const nextRows = Math.max(1, Math.floor(height / cellPx));
+      setColumns((c) => (c === nextCols ? c : nextCols));
+      setRows((r) => (r === nextRows ? r : nextRows));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [cellPx]);
 
   const clearLeaveTimer = useCallback(() => {
     if (leaveTimerRef.current !== null) {
@@ -162,9 +164,11 @@ export function SectionHeadingGridBG({
       if (!el) return;
       const rect = el.getBoundingClientRect();
       if (rect.width <= 0 || rect.height <= 0) return;
-      setFocusIndex(pickCellIndex(clientX, clientY, rect, layout));
+      setFocusIndex(
+        pickCellIndex(clientX, clientY, rect, columns, rows)
+      );
     },
-    [layout]
+    [columns, rows]
   );
 
   const handlePointerOnGrid = useCallback(
@@ -183,25 +187,35 @@ export function SectionHeadingGridBG({
     }, layout.leaveDelayMs);
   }, [clearLeaveTimer, layout.leaveDelayMs]);
 
-  const cellCount = layout.columns * layout.rows;
+  useEffect(() => {
+    setFocusIndex((i) => {
+      if (i === null) return null;
+      const max = columns * rows - 1;
+      return Math.min(i, max);
+    });
+  }, [columns, rows]);
+
+  const cellCount = columns * rows;
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      className={cn(
+        'pointer-events-none sticky top-0 z-0 -mb-[100svh] h-[100svh] w-[100svw] max-w-none shrink-0 overflow-hidden',
+        'ml-[calc(50%-50svw)]'
+      )}
       aria-hidden
     >
       <div
         ref={gridRef}
         className={cn(
-          'pointer-events-auto mx-auto grid h-full min-h-[50vh] w-full cursor-default select-none',
+          'pointer-events-auto grid h-full w-full cursor-default select-none place-content-center',
           layout.maxWidthClass,
           layout.paddingClass
         )}
         style={{
-          gridTemplateColumns: `repeat(${layout.columns}, minmax(0, 1fr))`,
-          gridTemplateRows: `repeat(${layout.rows}, minmax(0, 1fr))`,
-          gap: `${layout.gapYPx}px ${layout.gapXPx}px`,
-          alignContent: 'start',
+          gridTemplateColumns: `repeat(${columns}, ${cellPx}px)`,
+          gridTemplateRows: `repeat(${rows}, ${cellPx}px)`,
+          gap: 0,
         }}
         onMouseEnter={handlePointerOnGrid}
         onMouseMove={handlePointerOnGrid}
@@ -209,10 +223,9 @@ export function SectionHeadingGridBG({
       >
         {Array.from({ length: cellCount }, (_, i) => (
           <GridCell
-            key={i}
+            key={`${columns}x${rows}-${i}`}
             active={focusIndex === i}
-            iconRem={layout.iconRem}
-            scale={scaleForCell(i, focusIndex, layout)}
+            scale={scaleForCell(i, focusIndex, columns, layout)}
             scaleTransitionMs={layout.scaleTransitionMs}
           />
         ))}

@@ -14,6 +14,7 @@ import {
 import { signupUrl } from '@/lib/site';
 import { cn } from '@/lib/utils';
 import { HowItWorksSection } from './components/how-it-works/how-it-works-section';
+import { LetterHistorySection } from './components/letter-history/letter-history-section';
 import { SectionHeadingGridBG } from './components/section-heading-grid-bg';
 
 function SectionHeading({
@@ -39,67 +40,19 @@ export function HomeLanding() {
 
   return (
     <main className="relative">
-      <section className="relative flex flex-col justify-end gap-8 bg-landing-hero px-4 pb-16 pt-24 sm:px-6 md:px-10 lg:px-16 ">
+      <section className="relative flex flex-col justify-end gap-8 bg-landing-hero px-4 pb-20 sm:px-6 md:px-10 lg:px-16 ">
         <SectionHeadingGridBG />
         <div
-          className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07] pt-24"
+          className="pointer-events-none absolute inset-0 z-[1] opacity-[0.07]"
           aria-hidden
         />
-        <div className="relative z-10 mx-auto w-full max-w-6xl bg-landing-hero">
-          <SectionHeading
-            as="h1"
-            className="text-4xl leading-[1.05] text-landing-hero-fg sm:text-2xl md:text-4xl "
-          >
-            {t('landing.hero.headline')}
-          </SectionHeading>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-landing-hero-fg-muted sm:text-xl">
-            {t('landing.hero.subLine1')}
-            <br />
-            {t('landing.hero.subLine2')}
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Button size="lg" asChild>
-              <Link href={signupUrl}>{t('landing.hero.ctaPrimary')}</Link>
-            </Button>
-            {/* <Button
-              size="lg"
-              variant="outline"
-              className="border-landing-hero-fg/50 bg-transparent text-landing-hero-fg hover:bg-landing-hero-fg/10 hover:text-landing-hero-fg"
-              asChild
-            >
-              <a href="#how-it-works">{t('landing.hero.ctaSecondary')}</a>
-            </Button> */}
-          </div>
+        <div className="relative z-10 mx-auto w-full max-w-6xl">
           <HowItWorksSection />
         </div>
       </section>
 
-      <section
-        id="how-it-works"
-        className="scroll-mt-8 bg-landing-surface-warm px-4 py-20 sm:px-6 md:px-10 lg:px-16"
-      >
-        <div className="mx-auto max-w-3xl">
-          <SectionHeading className="text-3xl text-landing-surface-warm-fg sm:text-4xl">
-            {t('landing.steps.title')}
-          </SectionHeading>
-          <p className="mt-3 text-lg text-landing-surface-warm-fg-muted">
-            {t('landing.steps.subtitle')}
-          </p>
-          <ul className="mt-12 grid gap-6 sm:grid-cols-2">
-            {steps.map((line, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 rounded-lg border border-landing-card-border-subtle bg-landing-card p-5 text-landing-surface-warm-fg shadow-sm"
-              >
-                <span
-                  className="mt-1 flex size-2 shrink-0 rounded-full bg-primary"
-                  aria-hidden
-                />
-                <span className="text-lg leading-snug">{line}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      <section id="how-it-works" className="scroll-mt-8 relative">
+        <LetterHistorySection />
       </section>
 
       <section className="bg-landing-band-olive px-4 py-20 sm:px-6 md:px-10 lg:px-16">

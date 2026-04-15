@@ -157,6 +157,20 @@
         "E scopri cosa succede dopo."
       ]
     },
+    "letterHistory": {
+      "title": "Quali storie vivrai?",
+      "subtitle": "Abbiamo costruito un motore che unisce storie scritte da un autore e un playground interattivo — scorri per capire come funziona.",
+      "stepsNavLabel": "Passi sulla storia delle lettere",
+      "timelineAria": "Diagramma animato di linee del tempo che si ramificano e poi convergono in un percorso guidato dall’autore.",
+      "step1Before": "Mentre rispondi ai tuoi contatti —",
+      "step1Emphasis": "a uno solo o anche a più destinatari",
+      "step1After": "— il sistema genera ogni volta personaggi, eventi e luoghi diversi da qualsiasi altra storia.",
+      "steps": [
+        "Ognuno vive una storia diversa da chiunque altro.",
+        "",
+        "La storia centrale ha comunque un inizio e una fine, scritti e pensati da un autore umano: così avrai sorprese, colpi di scena e un’emozione paragonabile a un libro o a un film."
+      ]
+    },
     "different": {
       "title": "Perché è diverso",
       "leadLine1": "Non leggi una storia.",
