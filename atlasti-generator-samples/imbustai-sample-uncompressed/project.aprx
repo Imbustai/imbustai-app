@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<storedHU allowDuplicateCodings="false" creator="ATLAS.ti for Mac OS X" creatorVersion="26.0.1" hasAHtml1Content="false" hasLinkedMedia="false" method="AML (ATLAS Markup Language)" saved="2026-05-14T21:41:09Z" version="26.0.102" xmlns="http://www.atlasti.com/hu/desktop/ns2015" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <users>
+    <user guid="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Diana Stanciu" />
+    <user guid="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="ATLAS.ti" />
+  </users>
+  <hermUnit guid="F57EB47A-277B-4CE2-9894-3912D4127CB2" cDate="2026-04-28T08:27:55Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" defMemoType="Memo" mDate="2026-04-28T08:27:55Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="imbustai" pass="e53f790604c5f36f9a315314cdca4ab3cc8bf6ad" saveId="7B667CDF-B8C3-466A-91DE-BFA17717252B" />
+  <coAuthors />
+  <colors>
+    <color guid="06F6FF52-B8A4-4A82-AF26-D8004F90938D" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Orange" rgb="FF7800" rgbBG="FFBE82" />
+    <color guid="19C90114-689A-4F5E-A761-7CD552BCCED4" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Brown" rgb="966450" rgbBG="D2AA8C" />
+    <color guid="2B38BF1A-6AA8-44CC-908F-DA1FE23DAAF8" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Dark Green" rgb="008250" rgbBG="82D2A0" />
+    <color guid="2FECD903-5BF1-4422-94B8-81699CB7B82C" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Pink" rgb="F00082" rgbBG="FFA0D2" />
+    <color guid="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Black" rgb="000000" rgbBG="FFFFFF" />
+    <color guid="46F05EE1-F84E-4D1D-87BB-C919C40D69A1" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Gray" rgb="6E6E6E" rgbBG="CCCCCC" />
+    <color guid="4B5F6443-9DFA-46EF-B47E-C075F5563AEB" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Turquoise" rgb="008C96" rgbBG="50C8D2" />
+    <color guid="81816031-16C9-4947-A2F9-90DE772211E2" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Red" rgb="DC0000" rgbBG="FF968C" />
+    <color guid="9AC8C392-97CD-4F57-A30D-C44FC292970A" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Purple" rgb="8C32A0" rgbBG="C88CF0" />
+    <color guid="D40F528C-931D-4BE9-9F85-CD9BC05218DF" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Dark Blue" rgb="463CC8" rgbBG="A0AAFF" />
+    <color guid="E6A74837-2AF8-485E-95EC-8DC296317B1C" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Yellow" rgb="FFBE00" rgbBG="FFE678" />
+    <color guid="F3395896-06E1-4B7E-9DEE-6FFA3AB9DDCA" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Light Green" rgb="46AA00" rgbBG="8CE664" />
+    <color guid="F4B58D9E-D0D6-4E58-90AE-7534EB823EC2" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="Light Blue" rgb="006EFF" rgbBG="50BEFF" />
+  </colors>
+  <contents>
+    <content id="cnt_03C7565B11789D87CC338686D1F26BB6_648" md5="03C7565B11789D87CC338686D1F26BB6" excluded="false" loc="cnt_03C7565B11789D87CC338686D1F26BB6_648" size="648" type="atext3" />
+    <content id="cnt_041370C0C8FCE2AFCC722271E0635BE0_600" md5="041370C0C8FCE2AFCC722271E0635BE0" excluded="false" loc="cnt_041370C0C8FCE2AFCC722271E0635BE0_600" size="600" type="atext3" />
+    <content id="cnt_05202FEC5EE8EEE4F3E9893F32C115CF_676" md5="05202FEC5EE8EEE4F3E9893F32C115CF" excluded="false" loc="cnt_05202FEC5EE8EEE4F3E9893F32C115CF_676" size="676" type="atext3" />
+    <content id="cnt_146F08CD10E5DCC44A4A457F7858DD0B_33332" md5="146F08CD10E5DCC44A4A457F7858DD0B" excluded="false" loc="cnt_146F08CD10E5DCC44A4A457F7858DD0B_33332" size="33332" type="atext3" />
+    <content id="cnt_18E2AA411B4DABFB28FAF40F25D984DF_540" md5="18E2AA411B4DABFB28FAF40F25D984DF" excluded="false" loc="cnt_18E2AA411B4DABFB28FAF40F25D984DF_540" size="540" type="atext3" />
+    <content id="cnt_19FD17DA8F9B63878011A6CF1C0716FF_672" md5="19FD17DA8F9B63878011A6CF1C0716FF" excluded="false" loc="cnt_19FD17DA8F9B63878011A6CF1C0716FF_672" size="672" type="atext3" />
+    <content id="cnt_2A9E01672FFB4013819AD2F6E50BCA13_592" md5="2A9E01672FFB4013819AD2F6E50BCA13" excluded="false" loc="cnt_2A9E01672FFB4013819AD2F6E50BCA13_592" size="592" type="atext3" />
+    <content id="cnt_2AB585EF631E7D6AB18B6502310B7E42_636" md5="2AB585EF631E7D6AB18B6502310B7E42" excluded="false" loc="cnt_2AB585EF631E7D6AB18B6502310B7E42_636" size="636" type="atext3" />
+    <content id="cnt_3659D128D3399346F212EF5A432F523D_35836" md5="3659D128D3399346F212EF5A432F523D" excluded="false" loc="cnt_3659D128D3399346F212EF5A432F523D_35836" size="35836" type="atext3" />
+    <content id="cnt_49F55AC963FEF540854A95FCDE777A8C_580" md5="49F55AC963FEF540854A95FCDE777A8C" excluded="false" loc="cnt_49F55AC963FEF540854A95FCDE777A8C_580" size="580" type="atext3" />
+    <content id="cnt_4CE21E1D797E19B11B82D0040E342762_37908" md5="4CE21E1D797E19B11B82D0040E342762" excluded="false" loc="cnt_4CE21E1D797E19B11B82D0040E342762_37908" size="37908" type="atext3" />
+    <content id="cnt_5427480B07633A9BADA16CBD4D252C79_532" md5="5427480B07633A9BADA16CBD4D252C79" excluded="false" loc="cnt_5427480B07633A9BADA16CBD4D252C79_532" size="532" type="atext3" />
+    <content id="cnt_5CB1AF0D819CD753C3F8B3E0034197E5_34604" md5="5CB1AF0D819CD753C3F8B3E0034197E5" excluded="false" loc="cnt_5CB1AF0D819CD753C3F8B3E0034197E5_34604" size="34604" type="atext3" />
+    <content id="cnt_64D79530A470F74FCCE07AAF4AB45C6A_608" md5="64D79530A470F74FCCE07AAF4AB45C6A" excluded="false" loc="cnt_64D79530A470F74FCCE07AAF4AB45C6A_608" size="608" type="atext3" />
+    <content id="cnt_6B5D059AFCF3D3D951E29D9E13EB673B_32196" md5="6B5D059AFCF3D3D951E29D9E13EB673B" excluded="false" loc="cnt_6B5D059AFCF3D3D951E29D9E13EB673B_32196" size="32196" type="atext3" />
+    <content id="cnt_717470C48FC1989127804FE7D3DC3109_600" md5="717470C48FC1989127804FE7D3DC3109" excluded="false" loc="cnt_717470C48FC1989127804FE7D3DC3109_600" size="600" type="atext3" />
+    <content id="cnt_7331146EA406A0ED647B9904B09231F0_592" md5="7331146EA406A0ED647B9904B09231F0" excluded="false" loc="cnt_7331146EA406A0ED647B9904B09231F0_592" size="592" type="atext3" />
+    <content id="cnt_838420D79CB1BC26737BD1EFCEE6B528_39852" md5="838420D79CB1BC26737BD1EFCEE6B528" excluded="false" loc="cnt_838420D79CB1BC26737BD1EFCEE6B528_39852" size="39852" type="atext3" />
+    <content id="cnt_8442C2462F747AB839A3350836DFB756_36256" md5="8442C2462F747AB839A3350836DFB756" excluded="false" loc="cnt_8442C2462F747AB839A3350836DFB756_36256" size="36256" type="atext3" />
+    <content id="cnt_8590E2E4965002AC8AC749C7BB2DC99D_30792" md5="8590E2E4965002AC8AC749C7BB2DC99D" excluded="false" loc="cnt_8590E2E4965002AC8AC749C7BB2DC99D_30792" size="30792" type="atext3" />
+    <content id="cnt_88AE31418E536147709E7029FFB4FA8C_38780" md5="88AE31418E536147709E7029FFB4FA8C" excluded="false" loc="cnt_88AE31418E536147709E7029FFB4FA8C_38780" size="38780" type="atext3" />
+    <content id="cnt_8BCE845E6ACC678A6430D66A8004E5BC_572" md5="8BCE845E6ACC678A6430D66A8004E5BC" excluded="false" loc="cnt_8BCE845E6ACC678A6430D66A8004E5BC_572" size="572" type="atext3" />
+    <content id="cnt_8D124E8774A160900228CFA672A14B74_700" md5="8D124E8774A160900228CFA672A14B74" excluded="false" loc="cnt_8D124E8774A160900228CFA672A14B74_700" size="700" type="atext3" />
+    <content id="cnt_90881CFDA218473225B9D6748DDEE805_612" md5="90881CFDA218473225B9D6748DDEE805" excluded="false" loc="cnt_90881CFDA218473225B9D6748DDEE805_612" size="612" type="atext3" />
+    <content id="cnt_9224C34BDA262A54A1159FEC1FB5ADF0_632" md5="9224C34BDA262A54A1159FEC1FB5ADF0" excluded="false" loc="cnt_9224C34BDA262A54A1159FEC1FB5ADF0_632" size="632" type="atext3" />
+    <content id="cnt_94DC6317F159C403C13B801A46D71AEB_652" md5="94DC6317F159C403C13B801A46D71AEB" excluded="false" loc="cnt_94DC6317F159C403C13B801A46D71AEB_652" size="652" type="atext3" />
+    <content id="cnt_972E843ACB292D62272B9401C88B6A41_588" md5="972E843ACB292D62272B9401C88B6A41" excluded="false" loc="cnt_972E843ACB292D62272B9401C88B6A41_588" size="588" type="atext3" />
+    <content id="cnt_99934CD4DFEEDC1A11C5676C29F1E1B0_616" md5="99934CD4DFEEDC1A11C5676C29F1E1B0" excluded="false" loc="cnt_99934CD4DFEEDC1A11C5676C29F1E1B0_616" size="616" type="atext3" />
+    <content id="cnt_9AE61EAB1005453A808E6A9C7A83E4A2_580" md5="9AE61EAB1005453A808E6A9C7A83E4A2" excluded="false" loc="cnt_9AE61EAB1005453A808E6A9C7A83E4A2_580" size="580" type="atext3" />
+    <content id="cnt_9ED385BB7F6B2A560EF41753969FC98F_572" md5="9ED385BB7F6B2A560EF41753969FC98F" excluded="false" loc="cnt_9ED385BB7F6B2A560EF41753969FC98F_572" size="572" type="atext3" />
+    <content id="cnt_A7F39E2378BA6D03CE3BC9E975F6ADEF_564" md5="A7F39E2378BA6D03CE3BC9E975F6ADEF" excluded="false" loc="cnt_A7F39E2378BA6D03CE3BC9E975F6ADEF_564" size="564" type="atext3" />
+    <content id="cnt_A7FF3CC15D59FF28F7A3865066D93D44_576" md5="A7FF3CC15D59FF28F7A3865066D93D44" excluded="false" loc="cnt_A7FF3CC15D59FF28F7A3865066D93D44_576" size="576" type="atext3" />
+    <content id="cnt_AFCAF06900FDB37AC35ADE17DEA6E74D_624" md5="AFCAF06900FDB37AC35ADE17DEA6E74D" excluded="false" loc="cnt_AFCAF06900FDB37AC35ADE17DEA6E74D_624" size="624" type="atext3" />
+    <content id="cnt_B0B0E2ECE1369D923831A25A2D243A40_40436" md5="B0B0E2ECE1369D923831A25A2D243A40" excluded="false" loc="cnt_B0B0E2ECE1369D923831A25A2D243A40_40436" size="40436" type="atext3" />
+    <content id="cnt_B2A43189899FF9FD74E1C62F15526C60_636" md5="B2A43189899FF9FD74E1C62F15526C60" excluded="false" loc="cnt_B2A43189899FF9FD74E1C62F15526C60_636" size="636" type="atext3" />
+    <content id="cnt_BB3112362AC9C5677E201437FC7D7CBB_596" md5="BB3112362AC9C5677E201437FC7D7CBB" excluded="false" loc="cnt_BB3112362AC9C5677E201437FC7D7CBB_596" size="596" type="atext3" />
+    <content id="cnt_BC03F85558A5799491C7C96D032AADF9_37000" md5="BC03F85558A5799491C7C96D032AADF9" excluded="false" loc="cnt_BC03F85558A5799491C7C96D032AADF9_37000" size="37000" type="atext3" />
+    <content id="cnt_C77C88806D8FBBC940EA157150D8C9C1_676" md5="C77C88806D8FBBC940EA157150D8C9C1" excluded="false" loc="cnt_C77C88806D8FBBC940EA157150D8C9C1_676" size="676" type="atext3" />
+    <content id="cnt_D469BD2F6F9E194451775C86CCD94989_528" md5="D469BD2F6F9E194451775C86CCD94989" excluded="false" loc="cnt_D469BD2F6F9E194451775C86CCD94989_528" size="528" type="atext3" />
+    <content id="cnt_DA580AC8A3082E09B91CB3F0CB6DE64C_42236" md5="DA580AC8A3082E09B91CB3F0CB6DE64C" excluded="false" loc="cnt_DA580AC8A3082E09B91CB3F0CB6DE64C_42236" size="42236" type="atext3" />
+    <content id="cnt_ED12212400C9D9139C41E00213924DE0_39500" md5="ED12212400C9D9139C41E00213924DE0" excluded="false" loc="cnt_ED12212400C9D9139C41E00213924DE0_39500" size="39500" type="atext3" />
+    <content id="cnt_F01D55AB35A9CD717DDA27609D0BB7AB_536" md5="F01D55AB35A9CD717DDA27609D0BB7AB" excluded="false" loc="cnt_F01D55AB35A9CD717DDA27609D0BB7AB_536" size="536" type="atext3" />
+    <content id="cnt_F07D9CD1A8DD4995297AE707092D8FB3_544" md5="F07D9CD1A8DD4995297AE707092D8FB3" excluded="false" loc="cnt_F07D9CD1A8DD4995297AE707092D8FB3_544" size="544" type="atext3" />
+    <content id="cnt_FE40C3986F93389D743B7E54E7BB32C3_600" md5="FE40C3986F93389D743B7E54E7BB32C3" excluded="false" loc="cnt_FE40C3986F93389D743B7E54E7BB32C3_600" size="600" type="atext3" />
+  </contents>
+  <media>
+    <medium guid="631ADCBF-81E3-470D-A487-FEC09C627AC8" content="cnt_146F08CD10E5DCC44A4A457F7858DD0B_33332" ext="atext3" linked="false" name="sessione 2.txt" />
+    <medium guid="10FB45C6-C497-4B7F-8C37-8FA2D8997FA4" content="cnt_3659D128D3399346F212EF5A432F523D_35836" ext="atext3" linked="false" name="sessione 5.txt" />
+    <medium guid="5C74F39D-E95D-47CE-AF74-57E29F7F0B60" content="cnt_4CE21E1D797E19B11B82D0040E342762_37908" ext="atext3" linked="false" name="sessione 11.txt" />
+    <medium guid="50013BDA-ACE7-47FE-BFD3-DA0B044A19C4" content="cnt_5CB1AF0D819CD753C3F8B3E0034197E5_34604" ext="atext3" linked="false" name="sessione 3.txt" />
+    <medium guid="0D3F57E0-3DF8-413A-B9AD-C1F2E65F514C" content="cnt_6B5D059AFCF3D3D951E29D9E13EB673B_32196" ext="atext3" linked="false" name="sessione 1.txt" />
+    <medium guid="B675E02B-67F6-43E2-8176-0EC3BF275D2E" content="cnt_838420D79CB1BC26737BD1EFCEE6B528_39852" ext="atext3" linked="false" name="sessione 7.txt" />
+    <medium guid="1926AF66-FB19-4DA6-9699-1E462A656ED8" content="cnt_8442C2462F747AB839A3350836DFB756_36256" ext="atext3" linked="false" name="sessione 4.txt" />
+    <medium guid="F5B07C8F-CA0E-4004-8A84-9C5558417B13" content="cnt_8590E2E4965002AC8AC749C7BB2DC99D_30792" ext="atext3" linked="false" name="sessione 6.txt" />
+    <medium guid="53F161A6-F668-4168-A59C-4D88156F7862" content="cnt_88AE31418E536147709E7029FFB4FA8C_38780" ext="atext3" linked="false" name="sessione 12.txt" />
+    <medium guid="D83E81E0-E9E7-4DAE-A62D-81BE7EFCC57A" content="cnt_B0B0E2ECE1369D923831A25A2D243A40_40436" ext="atext3" linked="false" name="sessione 13.txt" />
+    <medium guid="E54AC81D-FD5F-408F-AA00-545D8A386CCD" content="cnt_BC03F85558A5799491C7C96D032AADF9_37000" ext="atext3" linked="false" name="sessione 9.txt" />
+    <medium guid="7905EDF8-FBEA-4AE9-A9EF-8390AF851F03" content="cnt_DA580AC8A3082E09B91CB3F0CB6DE64C_42236" ext="atext3" linked="false" name="sessione 10.txt" />
+    <medium guid="0DB3C9A0-45D8-45C0-8837-8F7BB2FAEE4A" content="cnt_ED12212400C9D9139C41E00213924DE0_39500" ext="atext3" linked="false" name="sessione 8.txt" />
+  </media>
+  <documents>
+    <document number="1" guid="94E53183-8CC3-436C-B70F-A81514DAC980" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="0D3F57E0-3DF8-413A-B9AD-C1F2E65F514C" name="sessione 1.txt">
+      <layer guid="92E99461-F3EA-4D6E-B9AB-232236275DF4" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="2" guid="506E4660-F610-4E30-B215-4E0607E3668B" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="631ADCBF-81E3-470D-A487-FEC09C627AC8" name="sessione 2.txt">
+      <layer guid="9761F81F-8E41-433E-801A-E763375C6EFD" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="3" guid="5FCD16F6-AE17-430D-9696-285DF2EC1A0F" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="50013BDA-ACE7-47FE-BFD3-DA0B044A19C4" name="sessione 3.txt">
+      <layer guid="F3FA06EB-4E31-41FF-AC73-97D3F168CCBE" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="4" guid="F55C20E3-FD0A-46A2-8A46-4CE75D33F8C9" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="1926AF66-FB19-4DA6-9699-1E462A656ED8" name="sessione 4.txt">
+      <layer guid="362DF911-0F90-4912-8EBB-6E1E2578F148" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="5" guid="B1448BBF-9610-43E2-B194-9506DF3ACB12" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="10FB45C6-C497-4B7F-8C37-8FA2D8997FA4" name="sessione 5.txt">
+      <layer guid="F7811B7A-D791-4063-A541-00AF2E2252D4" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="6" guid="512E805E-BF0A-481A-AD8E-48B467CDD37C" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="F5B07C8F-CA0E-4004-8A84-9C5558417B13" name="sessione 6.txt">
+      <layer guid="8BBFFDAD-2298-4310-93A8-51E8D06B8315" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="7" guid="65608085-1CFC-49F1-AED1-A7ACC80BEE4B" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="B675E02B-67F6-43E2-8176-0EC3BF275D2E" name="sessione 7.txt">
+      <layer guid="7061136C-DB5C-47F7-97D3-4A9A1382A613" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="8" guid="FF18E7CF-64A2-4F4D-84E3-C48A799F6929" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="0DB3C9A0-45D8-45C0-8837-8F7BB2FAEE4A" name="sessione 8.txt">
+      <layer guid="D08EB68F-96C4-4900-99D8-FEF8AC98D3EC" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="9" guid="527FAB72-57CC-4D6D-839D-15C4A99586A1" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="E54AC81D-FD5F-408F-AA00-545D8A386CCD" name="sessione 9.txt">
+      <layer guid="71188405-1FD3-4603-97B8-CFCB2D1DDB45" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="10" guid="88F4A770-5982-4A29-87A2-98692D64F5B4" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="7905EDF8-FBEA-4AE9-A9EF-8390AF851F03" name="sessione 10.txt">
+      <layer guid="775AD794-1D67-45F4-8787-862C13D5E6A4" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="11" guid="FACF0ABB-FA7D-4387-93D0-1E6380D20EAE" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="5C74F39D-E95D-47CE-AF74-57E29F7F0B60" name="sessione 11.txt">
+      <layer guid="7BDA1D0A-2B99-4CCC-8564-BA112422B513" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    </document>
+    <document number="12" guid="E183957B-2CDA-40F0-8833-E960C0E7305A" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:04:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="53F161A6-F668-4168-A59C-4D88156F7862" name="12 f">
+      <layer guid="EAB11D48-9579-4D73-870A-D5241E474777" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+        <quotation number="1" guid="6D0A9CA4-AB36-4D84-B38F-3DA76A88EBD0" cDate="2026-05-14T09:15:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:15:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="130" eSegment="49" sOffset="0" sSegment="3" />
+          </location>
+        </quotation>
+        <quotation number="2" guid="43BE6F83-FD54-4A31-850A-964E3FE49E2A" cDate="2026-05-14T09:16:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:16:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="9" eSegment="83" sOffset="0" sSegment="59" />
+          </location>
+        </quotation>
+        <quotation number="3" guid="5727B597-CFFF-418B-A818-0782690CEB59" cDate="2026-05-14T09:17:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:17:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="81" eSegment="123" sOffset="0" sSegment="87" />
+          </location>
+        </quotation>
+        <quotation number="4" guid="67742791-6D83-4A04-A1DD-ABC76E886DFA" cDate="2026-05-14T09:18:26Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:18:26Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="9" eSegment="159" sOffset="0" sSegment="127" />
+          </location>
+        </quotation>
+        <quotation number="5" guid="EFAD14D5-04D3-4584-AF27-33F35448C34D" cDate="2026-05-14T09:18:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:18:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="197" sOffset="0" sSegment="163" />
+          </location>
+        </quotation>
+        <quotation number="6" guid="AFDBA427-55E0-4779-87A7-94E62154EC0B" cDate="2026-05-14T09:18:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:18:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="8" eSegment="229" sOffset="0" sSegment="201" />
+          </location>
+        </quotation>
+        <quotation number="7" guid="013B0F24-F031-4C3E-86D4-DA5062E05C0A" cDate="2026-05-14T09:19:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:19:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="271" sOffset="0" sSegment="233" />
+          </location>
+        </quotation>
+        <quotation number="8" guid="242739BC-6983-4A34-808C-AEE6B4970693" cDate="2026-05-14T09:19:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:19:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="8" eSegment="301" sOffset="0" sSegment="275" />
+          </location>
+        </quotation>
+        <quotation number="9" guid="18F71030-4DA1-44CE-99D4-1543B6B66C3E" cDate="2026-05-14T09:19:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:19:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="343" sOffset="0" sSegment="305" />
+          </location>
+        </quotation>
+        <quotation number="10" guid="CF84A4AD-8719-456F-8B50-9E149F4E70E6" cDate="2026-05-14T09:28:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:28:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="171" eSegment="63" sOffset="0" sSegment="63" />
+          </location>
+        </quotation>
+        <quotation number="11" guid="961E8A32-B3B1-4DC3-A256-D179039F9674" cDate="2026-05-14T09:28:47Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:28:47Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="216" eSegment="65" sOffset="0" sSegment="65" />
+          </location>
+        </quotation>
+        <quotation number="12" guid="D46A2E60-2FF3-48A6-9A5E-B8AEB9F4DEDE" cDate="2026-05-14T09:29:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:29:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="216" eSegment="65" sOffset="155" sSegment="65" />
+          </location>
+        </quotation>
+        <quotation number="13" guid="7A1F2C22-9E21-4855-9165-2294C212A71E" cDate="2026-05-14T13:49:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:49:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="225" eSegment="69" sOffset="0" sSegment="69" />
+          </location>
+        </quotation>
+        <quotation number="14" guid="A5CAF36F-6EF7-4603-A51A-B65643B1D96D" cDate="2026-05-14T13:49:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:49:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="225" eSegment="69" sOffset="166" sSegment="69" />
+          </location>
+        </quotation>
+        <quotation number="15" guid="8B430977-6AB5-43D9-9A3E-C77E91E1C413" cDate="2026-05-14T13:50:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:50:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="79" eSegment="71" sOffset="0" sSegment="71" />
+          </location>
+        </quotation>
+        <quotation number="16" guid="057B1ECA-E044-4D54-B205-9A9F07C33696" cDate="2026-05-14T13:50:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:50:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="79" sOffset="0" sSegment="75" />
+          </location>
+        </quotation>
+        <quotation number="17" guid="244F9B07-D2AC-4FBD-8E12-F9C9A3EA7C7B" cDate="2026-05-14T14:29:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:29:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="285" eSegment="95" sOffset="0" sSegment="91" />
+          </location>
+        </quotation>
+        <quotation number="18" guid="13A28649-C44C-446F-B448-FE8A43BA83FF" cDate="2026-05-14T14:30:12Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:30:12Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="230" eSegment="99" sOffset="0" sSegment="99" />
+          </location>
+        </quotation>
+        <quotation number="19" guid="A9109748-30C0-47F7-8531-98B9C240CB78" cDate="2026-05-14T14:30:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:30:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="230" eSegment="99" sOffset="181" sSegment="99" />
+          </location>
+        </quotation>
+        <quotation number="20" guid="75B17BCF-6E24-4E51-9895-CAA89E9E20ED" cDate="2026-05-14T14:31:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:31:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="556" eSegment="103" sOffset="106" sSegment="103" />
+          </location>
+        </quotation>
+        <quotation number="21" guid="1F80F4C6-6BB7-49E0-8AB0-7F4E4ED30E18" cDate="2026-05-14T14:31:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:31:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="105" eSegment="103" sOffset="0" sSegment="103" />
+          </location>
+        </quotation>
+        <quotation number="22" guid="5DAF22AA-A83A-40F1-BF76-75AC7BB9C347" cDate="2026-05-14T15:16:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:16:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="393" eSegment="107" sOffset="0" sSegment="107" />
+          </location>
+        </quotation>
+        <quotation number="23" guid="B9B2F27C-65DA-49EA-9BC1-D5A2E7ABFC95" cDate="2026-05-14T15:17:10Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:17:10Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="216" eSegment="111" sOffset="0" sSegment="111" />
+          </location>
+        </quotation>
+        <quotation number="24" guid="9DB5CC61-1EE5-4328-B5E9-10B14F62EC69" cDate="2026-05-14T15:17:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:17:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="81" eSegment="123" sOffset="0" sSegment="115" />
+          </location>
+        </quotation>
+        <quotation number="25" guid="5FF1024B-19C2-47AA-86CC-7DE287B92C09" cDate="2026-05-14T15:18:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:18:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="171" eSegment="141" sOffset="0" sSegment="141" />
+          </location>
+        </quotation>
+        <quotation number="26" guid="1DD66CEC-3801-4B0F-9B45-382018F9AAA8" cDate="2026-05-14T15:18:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:18:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="186" eSegment="139" sOffset="0" sSegment="139" />
+          </location>
+        </quotation>
+        <quotation number="27" guid="6DBC40CE-3E11-4CA1-9093-900233FABBD9" cDate="2026-05-14T15:19:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:19:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="173" eSegment="145" sOffset="0" sSegment="145" />
+          </location>
+        </quotation>
+        <quotation number="28" guid="918EB442-5A92-4D16-8655-05E9FAC61588" cDate="2026-05-14T15:21:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:21:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="159" eSegment="149" sOffset="0" sSegment="149" />
+          </location>
+        </quotation>
+        <quotation number="29" guid="4BD44F97-D0AC-4DD5-880D-0C846C7C66CC" cDate="2026-05-14T15:22:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:22:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="76" eSegment="153" sOffset="0" sSegment="153" />
+          </location>
+        </quotation>
+        <quotation number="30" guid="ED19F152-2903-455F-A8EE-40A0FCAE0554" cDate="2026-05-14T15:22:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:22:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="462" eSegment="171" sOffset="0" sSegment="171" />
+          </location>
+        </quotation>
+        <quotation number="31" guid="905342D6-26E4-47FE-BF0A-D323B75E384C" cDate="2026-05-14T15:25:44Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:26:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="208" eSegment="175" sOffset="0" sSegment="175" />
+          </location>
+        </quotation>
+        <quotation number="32" guid="FB139189-E935-4400-AA1D-6C86D84DE188" cDate="2026-05-14T15:27:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:27:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="208" eSegment="175" sOffset="64" sSegment="175" />
+          </location>
+        </quotation>
+        <quotation number="33" guid="10F696FD-6165-48F5-9683-0EE3EBE66E82" cDate="2026-05-14T15:28:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="523" eSegment="179" sOffset="0" sSegment="179" />
+          </location>
+        </quotation>
+        <quotation number="34" guid="FC9F9706-05A3-4FF6-BC62-9646606733D4" cDate="2026-05-14T15:28:31Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:31Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="157" eSegment="183" sOffset="0" sSegment="183" />
+          </location>
+        </quotation>
+        <quotation number="35" guid="489AC745-1D4B-405A-AF81-A0EDBC380A52" cDate="2026-05-14T15:28:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="263" eSegment="187" sOffset="0" sSegment="187" />
+          </location>
+        </quotation>
+        <quotation number="36" guid="E84CF776-1288-4273-9F66-759E543C835D" cDate="2026-05-14T15:29:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="89" eSegment="191" sOffset="0" sSegment="191" />
+          </location>
+        </quotation>
+        <quotation number="37" guid="E41EFEB7-DE95-412D-87C4-46A05BB92966" cDate="2026-05-14T15:29:40Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:40Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="137" eSegment="209" sOffset="0" sSegment="209" />
+          </location>
+        </quotation>
+        <quotation number="38" guid="1A1B2DB8-0AA6-4B2B-912A-0D6EABD40B26" cDate="2026-05-14T15:30:01Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:30:01Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="158" eSegment="211" sOffset="0" sSegment="211" />
+          </location>
+        </quotation>
+        <quotation number="39" guid="ACB4209D-8844-455B-B805-6AE8A276736B" cDate="2026-05-14T15:31:55Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:31:55Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="294" eSegment="219" sOffset="0" sSegment="215" />
+          </location>
+        </quotation>
+        <quotation number="40" guid="06AB3DFF-26C0-44D4-AB3C-0D3B458F181F" cDate="2026-05-14T15:32:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:32:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="44" eSegment="223" sOffset="0" sSegment="223" />
+          </location>
+        </quotation>
+        <quotation number="41" guid="4A5C4525-8D3F-4851-846B-3B44DF6FD6AE" cDate="2026-05-14T15:33:42Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:33:42Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="306" eSegment="241" sOffset="0" sSegment="237" />
+          </location>
+        </quotation>
+        <quotation number="42" guid="A0766607-DA75-49D1-966E-89587E41D56E" cDate="2026-05-14T15:34:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:34:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="361" eSegment="245" sOffset="0" sSegment="245" />
+          </location>
+        </quotation>
+        <quotation number="43" guid="B242AF29-9208-43E2-8991-C27639CF744E" cDate="2026-05-14T19:36:53Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:36:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="361" eSegment="245" sOffset="232" sSegment="245" />
+          </location>
+        </quotation>
+        <quotation number="44" guid="99EEBF5C-A712-445D-A08C-7EBB5958A6B3" cDate="2026-05-14T19:37:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="238" eSegment="249" sOffset="0" sSegment="249" />
+          </location>
+        </quotation>
+        <quotation number="45" guid="D9F8C41A-D5E2-429B-BFFC-78871C635662" cDate="2026-05-14T19:37:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="205" eSegment="253" sOffset="0" sSegment="253" />
+          </location>
+        </quotation>
+        <quotation number="46" guid="C80708EB-9159-43F2-A411-9E027BD82AD1" cDate="2026-05-14T19:41:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:41:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="157" eSegment="261" sOffset="0" sSegment="261" />
+          </location>
+        </quotation>
+        <quotation number="47" guid="6567B70A-FE4F-45CB-9C38-D1AC4AAC81A6" cDate="2026-05-14T19:42:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:42:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="216" eSegment="257" sOffset="0" sSegment="257" />
+          </location>
+        </quotation>
+        <quotation number="48" guid="28969765-7E1A-428E-AB58-6F97097D9D91" cDate="2026-05-14T19:42:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:42:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="216" eSegment="257" sOffset="139" sSegment="257" />
+          </location>
+        </quotation>
+        <quotation number="49" guid="4E5C768A-69B5-43C0-BEBB-31DB85FCB72D" cDate="2026-05-14T19:44:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:44:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="29" eSegment="265" sOffset="0" sSegment="265" />
+          </location>
+        </quotation>
+        <quotation number="50" guid="FD81E216-BAB4-4A5D-94EC-CF16E2B2466C" cDate="2026-05-14T19:44:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:44:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="140" eSegment="281" sOffset="0" sSegment="281" />
+          </location>
+        </quotation>
+        <quotation number="51" guid="8E6CE69C-65A6-439F-B13E-3E3477C56FF8" cDate="2026-05-14T19:45:51Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:45:51Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="235" eSegment="285" sOffset="127" sSegment="285" />
+          </location>
+        </quotation>
+        <quotation number="52" guid="04F9BC6F-F6C3-4664-AE9B-A1D1B8755C6B" cDate="2026-05-14T19:47:22Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:47:22Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="30" eSegment="287" sOffset="127" sSegment="285" />
+          </location>
+        </quotation>
+        <quotation number="53" guid="BE2108BC-A05E-4275-B2E9-FD3E6D625B14" cDate="2026-05-14T19:47:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:47:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="55" eSegment="285" sOffset="7" sSegment="285" />
+          </location>
+        </quotation>
+        <quotation number="54" guid="2FD7AA56-F99C-4DED-97AA-47DB0477C8C7" cDate="2026-05-14T19:48:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:48:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="124" eSegment="291" sOffset="0" sSegment="291" />
+          </location>
+        </quotation>
+        <quotation number="55" guid="92AA6C68-4EC3-435C-98F7-4F9C3409A45A" cDate="2026-05-14T19:49:50Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:49:50Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="143" eSegment="293" sOffset="0" sSegment="293" />
+          </location>
+        </quotation>
+        <quotation number="56" guid="199AAD4F-32F7-4F1A-AB63-D55379C1BF17" cDate="2026-05-14T19:58:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="135" eSegment="313" sOffset="0" sSegment="313" />
+          </location>
+        </quotation>
+        <quotation number="57" guid="E417D369-0FC6-4E62-A13D-5E4EBB4CAC7D" cDate="2026-05-14T19:58:31Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:31Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="353" eSegment="317" sOffset="0" sSegment="317" />
+          </location>
+        </quotation>
+        <quotation number="58" guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:09Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:09Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="337" eSegment="321" sOffset="0" sSegment="321" />
+          </location>
+        </quotation>
+        <quotation number="59" guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:39Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:39Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="313" eSegment="325" sOffset="0" sSegment="325" />
+          </location>
+        </quotation>
+        <quotation number="60" guid="93BCE4FB-34ED-4090-BD22-950E6F574875" cDate="2026-05-14T20:00:05Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:05Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="175" eSegment="329" sOffset="0" sSegment="329" />
+          </location>
+        </quotation>
+        <quotation number="61" guid="426FA020-16CA-44E3-B432-C47A6DC3AB49" cDate="2026-05-14T20:00:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="105" eSegment="333" sOffset="0" sSegment="333" />
+          </location>
+        </quotation>
+        <quotation number="62" guid="3DFB5C45-40A5-405B-A555-AAAA21774E3C" cDate="2026-05-14T20:00:33Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:33Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="160" eSegment="337" sOffset="0" sSegment="337" />
+          </location>
+        </quotation>
+      </layer>
+    </document>
+    <document number="13" guid="CA19700D-7F82-4B68-91C4-D7590B6D6592" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:59:22Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" medium="D83E81E0-E9E7-4DAE-A62D-81BE7EFCC57A" name="13 f">
+      <layer guid="64BECF5E-1E80-4007-AC43-26FA19606A15" cDate="2026-04-28T09:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-28T09:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+        <quotation number="1" guid="44F606A6-C090-4017-8B08-4DCB448C68F5" cDate="2026-04-30T10:53:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:53:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="251" eSegment="63" sOffset="0" sSegment="63" />
+          </location>
+        </quotation>
+        <quotation number="3" guid="9450F57E-ED54-4D03-B80E-4723862A7BCF" cDate="2026-04-30T10:56:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:56:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="100" eSegment="63" sOffset="84" sSegment="63" />
+          </location>
+        </quotation>
+        <quotation number="4" guid="61DEB733-7760-4605-9FB8-DBC020A9D9B7" cDate="2026-04-30T13:44:31Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:44:31Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="121" sOffset="0" sSegment="91" />
+          </location>
+        </quotation>
+        <quotation number="5" guid="6F2F3DE3-4C06-42F8-B4F6-9BF281D5B915" cDate="2026-04-30T13:44:45Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:44:45Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="201" sOffset="0" sSegment="163" />
+          </location>
+        </quotation>
+        <quotation number="6" guid="1E6BA221-7A8D-4084-A92A-0746AF5987D5" cDate="2026-04-30T13:44:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:44:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="275" sOffset="0" sSegment="229" />
+          </location>
+        </quotation>
+        <quotation number="7" guid="03FC1ADB-4A53-4EE2-BD4C-080A26B08239" cDate="2026-04-30T13:45:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:45:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="347" sOffset="0" sSegment="301" />
+          </location>
+        </quotation>
+        <quotation number="8" guid="9F1157A1-669D-48C2-9CCD-A56067AA2A3D" cDate="2026-04-30T13:47:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:47:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="126" eSegment="45" sOffset="0" sSegment="7" />
+          </location>
+        </quotation>
+        <quotation number="9" guid="BF841F86-8D1D-43A3-84D2-C36954914481" cDate="2026-04-30T13:48:01Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:01Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="43" eSegment="83" sOffset="0" sSegment="59" />
+          </location>
+        </quotation>
+        <quotation number="10" guid="E9A0B3BB-5651-4CB2-A3FD-ECB16240F543" cDate="2026-04-30T13:48:19Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="8" eSegment="155" sOffset="0" sSegment="129" />
+          </location>
+        </quotation>
+        <quotation number="11" guid="F90BFF96-2A51-4BC6-9B3B-2569233697C4" cDate="2026-04-30T13:48:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="221" sOffset="0" sSegment="209" />
+          </location>
+        </quotation>
+        <quotation number="12" guid="E824670D-D7E8-469B-8324-ABF15A2C9D60" cDate="2026-04-30T13:48:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="5" eSegment="293" sOffset="0" sSegment="283" />
+          </location>
+        </quotation>
+        <quotation number="13" guid="A04C69DE-A0C9-4EF5-B937-4C3891FE92BF" cDate="2026-04-30T14:41:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:41:02Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="381" eSegment="15" sOffset="0" sSegment="15" />
+          </location>
+        </quotation>
+        <quotation number="14" guid="D923A80C-86B8-47DD-ACB1-C39384186207" cDate="2026-04-30T14:43:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:43:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="309" eSegment="23" sOffset="0" sSegment="23" />
+          </location>
+        </quotation>
+        <quotation number="15" guid="0922649B-D1FE-42EE-BDD3-C0756F823ABA" cDate="2026-04-30T14:44:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:44:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="411" eSegment="23" sOffset="310" sSegment="23" />
+          </location>
+        </quotation>
+        <quotation number="16" guid="0BEA2BA5-881F-4C6A-BDCF-825948F2AACA" cDate="2026-04-30T14:44:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:44:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="118" eSegment="19" sOffset="0" sSegment="19" />
+          </location>
+        </quotation>
+        <quotation number="17" guid="B266F98E-CBFA-4531-843F-3FA72D1175D1" cDate="2026-04-30T14:47:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:47:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="524" eSegment="27" sOffset="0" sSegment="27" />
+          </location>
+        </quotation>
+        <quotation number="18" guid="D3F7C24B-DE42-4A30-A5F7-0B5AD9E5ABAB" cDate="2026-04-30T14:48:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:48:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="400" eSegment="27" sOffset="273" sSegment="27" />
+          </location>
+        </quotation>
+        <quotation number="19" guid="31BFD8FD-613D-4EF9-97AE-6344CDD277B3" cDate="2026-05-06T12:37:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:37:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="142" eSegment="31" sOffset="0" sSegment="31" />
+          </location>
+        </quotation>
+        <quotation number="20" guid="F0D3BCA6-2B07-4E56-A98D-47109CE137BB" cDate="2026-05-06T12:38:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:38:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="77" eSegment="35" sOffset="0" sSegment="35" />
+          </location>
+        </quotation>
+        <quotation number="21" guid="33F88BE1-93F0-461D-8DF6-6FDC941A05DC" cDate="2026-05-06T12:38:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:38:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="126" eSegment="45" sOffset="0" sSegment="45" />
+          </location>
+        </quotation>
+        <quotation number="22" guid="303CB1BC-37A0-4DF4-9622-5A2ACEB51AD8" cDate="2026-05-06T12:39:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:39:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="196" eSegment="63" sOffset="101" sSegment="63" />
+          </location>
+        </quotation>
+        <quotation number="23" guid="00932361-BDCB-433E-AFE4-3AB7D29A72F2" cDate="2026-05-06T12:39:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:39:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="251" eSegment="63" sOffset="233" sSegment="63" />
+          </location>
+        </quotation>
+        <quotation number="24" guid="9F8F213F-F08D-4C21-98EB-D83B2532DA4F" cDate="2026-05-06T12:41:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:41:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="438" eSegment="67" sOffset="221" sSegment="67" />
+          </location>
+        </quotation>
+        <quotation number="25" guid="BEAB2720-A2DD-4042-9D2B-6AC2FC306279" cDate="2026-05-06T12:42:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:42:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="140" eSegment="67" sOffset="0" sSegment="67" />
+          </location>
+        </quotation>
+        <quotation number="26" guid="E8BFF626-1007-4ABC-BCEB-4BD74161E102" cDate="2026-05-06T12:43:03Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:43:03Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="89" eSegment="71" sOffset="0" sSegment="71" />
+          </location>
+        </quotation>
+        <quotation number="27" guid="19DBE3FE-434B-4887-AD08-13185EF1A6DE" cDate="2026-05-06T12:43:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:43:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="246" eSegment="71" sOffset="90" sSegment="71" />
+          </location>
+        </quotation>
+        <quotation number="28" guid="CDC1023E-084D-4A7D-A521-6BB808F3ED76" cDate="2026-05-06T12:44:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="85" eSegment="75" sOffset="0" sSegment="75" />
+          </location>
+        </quotation>
+        <quotation number="29" guid="8539A788-970E-41DB-84C9-75FD2471033C" cDate="2026-05-06T12:44:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="43" eSegment="83" sOffset="0" sSegment="83" />
+          </location>
+        </quotation>
+        <quotation number="30" guid="814D0B25-7DFA-43AA-B655-D60B5B9E76D4" cDate="2026-05-06T12:44:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="198" eSegment="95" sOffset="0" sSegment="91" />
+          </location>
+        </quotation>
+        <quotation number="31" guid="D869499F-B20D-4DAD-9DBF-30F3FCEB2DA6" cDate="2026-05-06T12:45:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:45:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="131" eSegment="95" sOffset="65" sSegment="95" />
+          </location>
+        </quotation>
+        <quotation number="32" guid="772D1D8D-DCDF-4AF2-913B-7A06002C11FC" cDate="2026-05-06T12:46:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:46:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="246" eSegment="71" sOffset="0" sSegment="71" />
+          </location>
+        </quotation>
+        <quotation number="33" guid="BCFFE5D0-4B42-44EB-8FB7-E753E865BEED" cDate="2026-05-06T12:47:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:47:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="183" eSegment="71" sOffset="90" sSegment="71" />
+          </location>
+        </quotation>
+        <quotation number="34" guid="63BE6920-504A-44E2-BF96-53587E5E12C7" cDate="2026-05-06T12:49:53Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:49:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="198" eSegment="95" sOffset="0" sSegment="95" />
+          </location>
+        </quotation>
+        <quotation number="35" guid="1133A62A-2AE8-4F22-A860-99A594613D24" cDate="2026-05-06T12:50:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:50:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="368" eSegment="99" sOffset="0" sSegment="99" />
+          </location>
+        </quotation>
+        <quotation number="36" guid="407A76B5-FDAE-43FF-A795-C196FCECCFA3" cDate="2026-05-06T12:52:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:52:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="411" eSegment="103" sOffset="185" sSegment="103" />
+          </location>
+        </quotation>
+        <quotation number="37" guid="B56861C3-6DB3-4AC2-878E-CCCE177E9F2D" cDate="2026-05-06T12:53:03Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:53:03Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="411" eSegment="103" sOffset="316" sSegment="103" />
+          </location>
+        </quotation>
+        <quotation number="38" guid="3E7359E6-52A6-40EA-B89B-B481CEF780DB" cDate="2026-05-06T12:53:39Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:53:39Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="411" eSegment="103" sOffset="0" sSegment="103" />
+          </location>
+        </quotation>
+        <quotation number="39" guid="8EB8E9E1-8217-4CB4-8333-ACD771570984" cDate="2026-05-06T12:56:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:56:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="434" eSegment="107" sOffset="156" sSegment="107" />
+          </location>
+        </quotation>
+        <quotation number="40" guid="CBAEF10B-8070-4019-AF03-152CA3DE941D" cDate="2026-05-06T12:57:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:57:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="180" eSegment="111" sOffset="0" sSegment="111" />
+          </location>
+        </quotation>
+        <quotation number="41" guid="9A32DE83-0D82-427D-81B3-2B9CF25587C8" cDate="2026-05-06T12:59:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:59:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="241" eSegment="115" sOffset="0" sSegment="115" />
+          </location>
+        </quotation>
+        <quotation number="42" guid="4F7D78A9-63E1-459B-B7AD-A981E98D9DC0" cDate="2026-05-06T12:59:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:59:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="400" eSegment="115" sOffset="242" sSegment="115" />
+          </location>
+        </quotation>
+        <quotation number="43" guid="FF8B52A0-74DD-4734-A289-975B123800A5" cDate="2026-05-06T13:00:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:00:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="400" eSegment="115" sOffset="0" sSegment="115" />
+          </location>
+        </quotation>
+        <quotation number="44" guid="370E10DF-EDFF-4C41-B30B-60253434ADC6" cDate="2026-05-06T13:02:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:02:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="59" eSegment="133" sOffset="26" sSegment="133" />
+          </location>
+        </quotation>
+        <quotation number="45" guid="59FAC71E-629C-4E4E-8591-913A4CCA5965" cDate="2026-05-06T13:02:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:02:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="25" eSegment="133" sOffset="0" sSegment="133" />
+          </location>
+        </quotation>
+        <quotation number="46" guid="15FA2E93-2F93-4B33-B3A9-D4C5BC6F1D04" cDate="2026-05-06T13:02:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:02:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="220" eSegment="137" sOffset="0" sSegment="137" />
+          </location>
+        </quotation>
+        <quotation number="47" guid="4B31F79F-9EBB-4C58-B822-62E6ADBF2BE9" cDate="2026-05-06T13:03:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:03:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="149" eSegment="141" sOffset="0" sSegment="141" />
+          </location>
+        </quotation>
+        <quotation number="48" guid="F7F06175-0CEF-4E2B-9186-F6DE0602EAA2" cDate="2026-05-06T13:04:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:04:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="442" eSegment="141" sOffset="150" sSegment="141" />
+          </location>
+        </quotation>
+        <quotation number="49" guid="813E3DED-1689-4747-A57D-F637CBB1B717" cDate="2026-05-07T14:38:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:38:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="77" eSegment="147" sOffset="0" sSegment="145" />
+          </location>
+        </quotation>
+        <quotation number="50" guid="97E293D2-6F30-42EA-987B-AFC6AAADB6A2" cDate="2026-05-07T14:39:00Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:39:00Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="126" eSegment="147" sOffset="78" sSegment="147" />
+          </location>
+        </quotation>
+        <quotation number="51" guid="E67AF861-3CEF-4221-AFC4-2D22A534962C" cDate="2026-05-07T14:39:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:39:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="197" eSegment="167" sOffset="0" sSegment="167" />
+          </location>
+        </quotation>
+        <quotation number="52" guid="B7324E7B-9C3E-4EB7-8E0F-A2F3D3109DDF" cDate="2026-05-07T14:40:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:40:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="315" eSegment="171" sOffset="0" sSegment="171" />
+          </location>
+        </quotation>
+        <quotation number="53" guid="1C55AD0F-0B05-4B31-929F-BEE3B74CA46D" cDate="2026-05-07T14:41:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:41:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="152" eSegment="171" sOffset="53" sSegment="171" />
+          </location>
+        </quotation>
+        <quotation number="54" guid="E5B650AE-9037-4E04-ACB3-3D14FA37A1EB" cDate="2026-05-07T14:41:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:41:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="235" eSegment="171" sOffset="153" sSegment="171" />
+          </location>
+        </quotation>
+        <quotation number="55" guid="9C1E536A-507F-47D1-8DA9-7567F950F78C" cDate="2026-05-07T14:42:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:42:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="464" eSegment="179" sOffset="0" sSegment="179" />
+          </location>
+        </quotation>
+        <quotation number="56" guid="48351603-7EAF-448C-AFE2-92B033FD830D" cDate="2026-05-07T14:43:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:43:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="130" eSegment="179" sOffset="36" sSegment="179" />
+          </location>
+        </quotation>
+        <quotation number="57" guid="CF3141B4-AB48-49D9-A21B-ACBE602A85FA" cDate="2026-05-07T14:44:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:44:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="464" eSegment="179" sOffset="224" sSegment="179" />
+          </location>
+        </quotation>
+        <quotation number="58" guid="C57635AD-BDCA-4B91-BA9D-AB84DB297CC3" cDate="2026-05-07T14:45:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="301" eSegment="183" sOffset="0" sSegment="183" />
+          </location>
+        </quotation>
+        <quotation number="59" guid="9303536E-49AF-4A0D-86C2-0753479E66AA" cDate="2026-05-07T14:45:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="234" eSegment="187" sOffset="0" sSegment="187" />
+          </location>
+        </quotation>
+        <quotation number="60" guid="829D0987-227F-41DB-9590-81805E437267" cDate="2026-05-07T14:45:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="338" eSegment="191" sOffset="0" sSegment="191" />
+          </location>
+        </quotation>
+        <quotation number="61" guid="07F1E668-7E8F-4A7A-8446-F126C7E7E7C5" cDate="2026-05-07T14:45:56Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:56Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="53" eSegment="195" sOffset="0" sSegment="195" />
+          </location>
+        </quotation>
+        <quotation number="62" guid="8E72913B-01AB-4F38-A204-CD3C3CACFB08" cDate="2026-05-07T14:46:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:46:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="28" eSegment="213" sOffset="0" sSegment="213" />
+          </location>
+        </quotation>
+        <quotation number="63" guid="4C613BB7-6121-4890-B3D9-E526544F09FF" cDate="2026-05-07T14:46:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:46:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="35" eSegment="217" sOffset="0" sSegment="217" />
+          </location>
+        </quotation>
+        <quotation number="64" guid="68CC3D74-3FA5-4F11-8532-4B42AE5B5ECD" cDate="2026-05-07T14:46:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:46:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="257" eSegment="217" sOffset="36" sSegment="217" />
+          </location>
+        </quotation>
+        <quotation number="65" guid="C00840AB-13FA-4457-A1DD-0E9ECF14A812" cDate="2026-05-07T14:47:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:47:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="256" eSegment="217" sOffset="183" sSegment="217" />
+          </location>
+        </quotation>
+        <quotation number="66" guid="8C3C7BB5-4655-4D68-8BD0-BA5A5EE68114" cDate="2026-05-07T14:47:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:47:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="418" eSegment="217" sOffset="258" sSegment="217" />
+          </location>
+        </quotation>
+        <quotation number="67" guid="221213B1-7DAE-4C9F-A505-D92445B96C07" cDate="2026-05-07T14:47:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:47:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="418" eSegment="217" sOffset="356" sSegment="217" />
+          </location>
+        </quotation>
+        <quotation number="68" guid="52D92AC9-C9DC-4171-A723-EF42EDE6B0E9" cDate="2026-05-07T14:48:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:48:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="210" eSegment="233" sOffset="0" sSegment="233" />
+          </location>
+        </quotation>
+        <quotation number="69" guid="5A1DF775-ABAD-45C0-BB37-3DCBF366C882" cDate="2026-05-07T14:49:05Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:49:05Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="210" eSegment="233" sOffset="137" sSegment="233" />
+          </location>
+        </quotation>
+        <quotation number="70" guid="4F3FA207-3382-4F12-A189-56226D52E320" cDate="2026-05-07T14:49:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:49:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="198" eSegment="237" sOffset="0" sSegment="237" />
+          </location>
+        </quotation>
+        <quotation number="71" guid="4C5ADABE-17A3-42D4-BFA3-9FA6BE1722CD" cDate="2026-05-07T14:50:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:50:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="62" eSegment="237" sOffset="0" sSegment="237" />
+          </location>
+        </quotation>
+        <quotation number="72" guid="FA15D4AD-4A1A-46C9-8B43-8A1C57D78587" cDate="2026-05-07T14:51:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:51:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="146" eSegment="241" sOffset="0" sSegment="241" />
+          </location>
+        </quotation>
+        <quotation number="73" guid="7A11A926-B962-4C15-A641-63D74D809F4E" cDate="2026-05-07T14:51:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:51:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="146" eSegment="241" sOffset="109" sSegment="241" />
+          </location>
+        </quotation>
+        <quotation number="74" guid="621B4844-7A6B-4469-A3ED-EB4280A71A99" cDate="2026-05-07T14:52:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:52:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="357" eSegment="245" sOffset="0" sSegment="245" />
+          </location>
+        </quotation>
+        <quotation number="75" guid="27A58A0D-53A7-4711-804B-4139242D20B4" cDate="2026-05-07T14:53:19Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:53:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="249" eSegment="245" sOffset="23" sSegment="245" />
+          </location>
+        </quotation>
+        <quotation number="76" guid="5408104E-B7A6-4862-A819-95D31B74135B" cDate="2026-05-07T14:53:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:53:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="120" eSegment="249" sOffset="0" sSegment="249" />
+          </location>
+        </quotation>
+        <quotation number="77" guid="CE326E45-0FF5-45EF-9C11-9AEAFFFE9E55" cDate="2026-05-07T14:54:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:54:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="382" eSegment="253" sOffset="0" sSegment="253" />
+          </location>
+        </quotation>
+        <quotation number="78" guid="2455C034-D584-4525-995E-54A568D4ACB7" cDate="2026-05-07T14:55:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:55:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="382" eSegment="253" sOffset="221" sSegment="253" />
+          </location>
+        </quotation>
+        <quotation number="79" guid="E4F197D5-33F8-44BD-8DF2-657D6A6BA8AF" cDate="2026-05-07T14:56:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:56:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="220" eSegment="253" sOffset="66" sSegment="253" />
+          </location>
+        </quotation>
+        <quotation number="80" guid="CB193ED8-0A8E-4E21-922E-709BAF3BA95C" cDate="2026-05-07T14:56:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:56:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="382" eSegment="253" sOffset="334" sSegment="253" />
+          </location>
+        </quotation>
+        <quotation number="81" guid="FD551900-04D1-47F7-AFC9-3A66CF5983D1" cDate="2026-05-07T14:57:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:57:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="182" eSegment="257" sOffset="0" sSegment="257" />
+          </location>
+        </quotation>
+        <quotation number="82" guid="BB692080-3252-43E3-86E6-B9061BB5631E" cDate="2026-05-07T14:58:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="58" eSegment="261" sOffset="0" sSegment="261" />
+          </location>
+        </quotation>
+        <quotation number="83" guid="5E6A788C-06F6-4CD3-965F-C7F54E6DA6ED" cDate="2026-05-07T14:58:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="162" eSegment="261" sOffset="0" sSegment="261" />
+          </location>
+        </quotation>
+        <quotation number="84" guid="FA7FF853-F11C-423A-9CF2-02ED4A4F64A5" cDate="2026-05-07T14:59:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:59:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="162" eSegment="261" sOffset="98" sSegment="261" />
+          </location>
+        </quotation>
+        <quotation number="85" guid="5EFDF6B6-5091-4321-8F44-326EA80B94C1" cDate="2026-05-07T14:59:45Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:59:45Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="202" eSegment="265" sOffset="116" sSegment="265" />
+          </location>
+        </quotation>
+        <quotation number="86" guid="2C224319-9C79-497B-952D-44D94D40FDB4" cDate="2026-05-07T15:00:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:00:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="29" eSegment="269" sOffset="0" sSegment="269" />
+          </location>
+        </quotation>
+        <quotation number="87" guid="6BEDDC0E-1CA8-40E7-93C7-DE65D21AA1EB" cDate="2026-05-07T15:01:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:01:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="183" eSegment="287" sOffset="82" sSegment="287" />
+          </location>
+        </quotation>
+        <quotation number="88" guid="D01D81C7-CA15-4AC1-852B-18DEEFE55E9D" cDate="2026-05-07T15:01:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:01:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="81" eSegment="287" sOffset="0" sSegment="287" />
+          </location>
+        </quotation>
+        <quotation number="89" guid="AD7C90E3-6396-4E3D-BD8A-5F1D18BDD98A" cDate="2026-05-07T15:08:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:08:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="612" eSegment="287" sOffset="322" sSegment="287" />
+          </location>
+        </quotation>
+        <quotation number="90" guid="79A01D91-CD4B-4964-908E-B445C9675A70" cDate="2026-05-08T09:49:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T09:49:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="196" eSegment="309" sOffset="0" sSegment="309" />
+          </location>
+        </quotation>
+        <quotation number="91" guid="5762701B-EE59-42F6-B781-CB0FCEE4D3BC" cDate="2026-05-08T15:53:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:53:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="238" eSegment="313" sOffset="0" sSegment="313" />
+          </location>
+        </quotation>
+        <quotation number="92" guid="50A9893E-D02A-44AF-B684-61B60B2764F6" cDate="2026-05-08T15:59:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:59:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="291" eSegment="321" sOffset="0" sSegment="321" />
+          </location>
+        </quotation>
+        <quotation number="93" guid="7E70F3FF-8647-435C-AADB-F62314D7D53E" cDate="2026-05-08T15:59:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:59:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="221" eSegment="317" sOffset="129" sSegment="317" />
+          </location>
+        </quotation>
+        <quotation number="94" guid="24BD19DA-08A1-4ACF-BB01-54629093F5E5" cDate="2026-05-08T16:02:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T16:02:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="238" eSegment="321" sOffset="0" sSegment="321" />
+          </location>
+        </quotation>
+        <quotation number="95" guid="070C41CF-DD73-4CCE-A7C2-A3417A2DA0D2" cDate="2026-05-14T08:54:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:54:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="68" eSegment="329" sOffset="0" sSegment="329" />
+          </location>
+        </quotation>
+        <quotation number="96" guid="BE28F6DD-F18E-4B22-8B9B-20279E9982EC" cDate="2026-05-14T08:55:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="263" eSegment="325" sOffset="206" sSegment="325" />
+          </location>
+        </quotation>
+        <quotation number="97" guid="B62ABCA0-600C-40B8-8FD2-D4FDC9C6C338" cDate="2026-05-14T08:55:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="205" eSegment="325" sOffset="0" sSegment="325" />
+          </location>
+        </quotation>
+        <quotation number="98" guid="57F42ABD-7745-4BAC-9B10-372C3F2369CE" cDate="2026-05-14T08:57:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:57:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="188" eSegment="333" sOffset="0" sSegment="333" />
+          </location>
+        </quotation>
+        <quotation number="99" guid="47FEA7F1-143E-431F-B696-2142820F355C" cDate="2026-05-14T08:57:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:57:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="70" eSegment="337" sOffset="0" sSegment="337" />
+          </location>
+        </quotation>
+        <quotation number="100" guid="A5C10BEF-26D9-45C0-A78F-D25C217A5998" cDate="2026-05-14T08:58:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:58:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="">
+          <location>
+            <segmentedTextLoc eOffset="152" eSegment="341" sOffset="0" sSegment="341" />
+          </location>
+        </quotation>
+      </layer>
+    </document>
+  </documents>
+  <tags>
+    <tag guid="07BC1849-1436-4BE0-80C5-C13634734E30" cDate="2026-04-30T14:44:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:44:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="nostalgia">
+      <comment guid="53763576-1934-40F2-93E2-188168E8372A" cDate="2026-05-06T12:41:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_19FD17DA8F9B63878011A6CF1C0716FF_672" mDate="2026-05-06T12:41:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="0BD18CC1-3AF4-4287-ABF5-684229545B16" cDate="2026-05-07T14:49:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:49:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="supporto">
+      <comment guid="63913D29-5DA8-4D8A-9CD9-D5A919B3AFE5" cDate="2026-05-07T14:50:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_05202FEC5EE8EEE4F3E9893F32C115CF_676" mDate="2026-05-07T14:50:02Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="0E0A8847-4828-4DBE-A692-AC8EAAC6D6A4" cDate="2026-04-30T10:54:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:54:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="chiusura">
+      <comment guid="C9E7E0C7-468D-4ACC-B03C-09AF4BB28B84" cDate="2026-05-06T12:40:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_BB3112362AC9C5677E201437FC7D7CBB_596" mDate="2026-05-06T12:40:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="12902A6C-665D-4A36-9C5A-8885629FA637" cDate="2026-04-30T14:44:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:44:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="adattamento sociale">
+      <comment guid="404D2704-1211-4FB3-86E1-8BEEC05F0893" cDate="2026-04-30T14:44:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_A7FF3CC15D59FF28F7A3865066D93D44_576" mDate="2026-04-30T14:44:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="18B1608D-0083-42FD-9C50-492D55AE06C6" cDate="2026-05-06T12:37:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:37:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="curiosità verso l'altro">
+      <comment guid="71832F31-CEF7-48AD-BB58-7504700DDD05" cDate="2026-05-06T12:38:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_8D124E8774A160900228CFA672A14B74_700" mDate="2026-05-06T12:38:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" cDate="2026-05-06T12:41:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:41:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="critica sociale">
+      <comment guid="ACADA617-25F7-406D-94B7-CEDF75F1D266" cDate="2026-05-06T12:42:22Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_041370C0C8FCE2AFCC722271E0635BE0_600" mDate="2026-05-14T15:31:22Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="33CBE847-9452-403C-8D00-B0095865AACD" cDate="2026-05-07T14:43:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:43:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Relazioni">
+      <comment guid="543B47A0-EC61-4944-901B-385C7FA5D39A" cDate="2026-05-07T14:43:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_94DC6317F159C403C13B801A46D71AEB_652" mDate="2026-05-07T14:43:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" cDate="2026-05-06T13:01:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:01:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="riti di passaggio">
+      <comment guid="9DE8FA29-2B0F-43DB-8B56-AC939899B8DC" cDate="2026-05-06T13:01:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_9224C34BDA262A54A1159FEC1FB5ADF0_632" mDate="2026-05-06T13:01:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="56C41C77-B554-4432-A925-EA23EA736866" cDate="2026-05-07T15:08:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:08:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="critica verso il singolo">
+      <comment guid="FAB0D5FC-2EB3-40B2-AE88-DD4C7C286EE1" cDate="2026-05-07T15:08:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_90881CFDA218473225B9D6748DDEE805_612" mDate="2026-05-07T15:08:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" cDate="2026-04-30T13:48:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:02Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="umano">
+      <comment guid="CB8497A6-5488-4A69-B957-91FCDEFD2751" cDate="2026-04-30T14:40:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_F07D9CD1A8DD4995297AE707092D8FB3_544" mDate="2026-04-30T14:40:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="642517E9-E152-4E14-AA3C-BA2F62C28420" cDate="2026-04-30T14:47:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:47:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Comunità">
+      <comment guid="5B09DFEE-C9F5-40D6-B0FF-3540EFB27A06" cDate="2026-04-30T14:48:26Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_2A9E01672FFB4013819AD2F6E50BCA13_592" mDate="2026-05-14T15:23:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" cDate="2026-05-06T12:50:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:50:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Identità">
+      <comment guid="754ADBBC-BDA8-4E4E-9C22-03008CCC35C6" cDate="2026-05-06T12:51:10Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_D469BD2F6F9E194451775C86CCD94989_528" mDate="2026-05-06T12:51:10Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="8A553ED6-15F3-4031-B938-D84CC29A33F3" cDate="2026-04-30T10:56:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:56:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="dispositivo retorico" />
+    <tag guid="8BE0E228-41BB-4F7B-A479-29BE4EB89CE5" cDate="2026-05-08T15:53:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:53:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Decisione">
+      <comment guid="0CBD58C8-F45A-490A-9012-25A50ECE1C8A" cDate="2026-05-08T15:53:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_5427480B07633A9BADA16CBD4D252C79_532" mDate="2026-05-08T15:53:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" cDate="2026-04-30T14:48:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:48:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Riflessione sulla vita">
+      <comment guid="4627BA24-766F-48CE-B392-59CD7B22B4E9" cDate="2026-04-30T14:49:25Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_B2A43189899FF9FD74E1C62F15526C60_636" mDate="2026-04-30T14:49:25Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="AE552DDE-7E7E-4C20-9699-11ACB1EFDC82" cDate="2026-05-07T14:39:00Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:39:00Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="umorismo">
+      <comment guid="FFEFD8B6-4D0E-4917-BA5B-07730C37B6CC" cDate="2026-05-07T14:39:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_C77C88806D8FBBC940EA157150D8C9C1_676" mDate="2026-05-07T14:39:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" cDate="2026-04-30T11:00:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T11:00:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="ai">
+      <comment guid="00C22495-F49B-4E33-A208-EBE9304DEB91" cDate="2026-04-30T13:45:55Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_9ED385BB7F6B2A560EF41753969FC98F_572" mDate="2026-04-30T13:45:55Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="C6C31265-093C-43D8-8819-37B10EFF75B6" cDate="2026-04-30T10:51:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:51:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="apertura">
+      <comment guid="88A07121-2EEC-4D6C-9444-60B452441FCA" cDate="2026-04-30T10:52:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_9AE61EAB1005453A808E6A9C7A83E4A2_580" mDate="2026-05-06T12:40:01Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" cDate="2026-04-30T14:41:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:42:51Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Nostalgia: Ricordi d'infanzia">
+      <comment guid="97567D05-B720-4651-80CB-17064591D708" cDate="2026-04-30T14:41:47Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_2AB585EF631E7D6AB18B6502310B7E42_636" mDate="2026-04-30T14:41:47Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="D6A968EF-5792-4F4D-8456-82E37C3E4FF9" cDate="2026-05-14T08:56:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:56:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="distanza dai voleri della comunità">
+      <comment guid="B4A6D41D-CDBF-4249-8AF7-9BCC6CF1749B" cDate="2026-05-14T08:56:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_49F55AC963FEF540854A95FCDE777A8C_580" mDate="2026-05-14T08:56:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tag guid="E550314D-2F95-49DD-84F9-3899FE609505" cDate="2026-04-30T14:43:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:49:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="Cambiamento nella vita">
+      <comment guid="7D03EB27-0972-40E0-BAE6-3C0F4E41AD9C" cDate="2026-04-30T14:44:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_FE40C3986F93389D743B7E54E7BB32C3_600" mDate="2026-04-30T14:44:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+    </tag>
+    <tagCategory guid="1FFCCA0E-F889-4691-973A-7AF1B2C54E8A" allowAdHocValues="true" cDate="2026-05-06T12:46:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:46:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mutuallyExclusive="false" name="Emozioni e comportamenti">
+      <tag guid="02DF33D0-16FB-4868-9EEF-BA2CBCE501BC" cDate="2026-05-06T12:52:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:52:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="oppressione">
+        <comment guid="EEE8032E-BFC5-45A6-8A87-C6338C1727D8" cDate="2026-05-06T12:52:42Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_03C7565B11789D87CC338686D1F26BB6_648" mDate="2026-05-06T12:52:42Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" cDate="2026-05-07T14:50:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:50:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="empatia">
+        <comment guid="307A4939-2042-4580-9B47-85992A1DA87E" cDate="2026-05-07T14:51:09Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_AFCAF06900FDB37AC35ADE17DEA6E74D_624" mDate="2026-05-07T14:51:09Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" cDate="2026-05-07T14:53:19Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:53:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="resposabilità">
+        <comment guid="D5FC9A2E-BC5C-48D3-8600-BC798915968A" cDate="2026-05-07T14:53:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_717470C48FC1989127804FE7D3DC3109_600" mDate="2026-05-07T14:53:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" cDate="2026-05-08T15:59:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:59:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="tensione">
+        <comment guid="5F327716-7D90-46A4-B1E7-4A7BFC2E33B2" cDate="2026-05-08T15:59:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_F01D55AB35A9CD717DDA27609D0BB7AB_536" mDate="2026-05-08T15:59:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="4FED279A-114D-4F13-B793-588135813131" cDate="2026-05-06T12:47:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:47:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="soddisfazione">
+        <comment guid="F40C393C-9D88-4553-81D7-40244F7B9A64" cDate="2026-05-06T12:48:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_18E2AA411B4DABFB28FAF40F25D984DF_540" mDate="2026-05-06T12:48:02Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="584A87C2-B0EF-45D4-9849-C2FCFFCB8125" cDate="2026-05-14T19:44:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:44:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="indifferenza">
+        <comment guid="7B86473F-A966-411C-9CAE-93426C813CC8" cDate="2026-05-14T19:45:12Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_8BCE845E6ACC678A6430D66A8004E5BC_572" mDate="2026-05-14T19:45:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="80647555-894C-4F69-B2C5-70E89E3244B8" cDate="2026-05-14T15:26:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:26:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="ironia/sarcasmo">
+        <comment guid="AABFE8BA-D295-4FBA-B0CF-853BD17CE997" cDate="2026-05-14T15:26:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_972E843ACB292D62272B9401C88B6A41_588" mDate="2026-05-14T15:26:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" cDate="2026-05-06T12:49:53Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:49:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="affetto">
+        <comment guid="F9E41036-8F32-4DA9-9CCC-82F618AB57AD" cDate="2026-05-06T12:50:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_64D79530A470F74FCCE07AAF4AB45C6A_608" mDate="2026-05-06T12:50:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" cDate="2026-05-06T12:46:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:46:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="stress">
+        <comment guid="62264E80-6945-45E4-8158-83A6AC7BC84A" cDate="2026-05-06T12:46:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_A7F39E2378BA6D03CE3BC9E975F6ADEF_564" mDate="2026-05-06T12:46:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" cDate="2026-05-07T14:42:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:42:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="affetto per gli animali">
+        <comment guid="0328CC0F-72E3-4737-965D-14E06A9A899C" cDate="2026-05-07T14:43:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_99934CD4DFEEDC1A11C5676C29F1E1B0_616" mDate="2026-05-07T14:43:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+      <tag guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" cDate="2026-05-06T12:59:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:59:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="ansia">
+        <comment guid="CF7813FD-3B06-442B-9DC5-17B289749C00" cDate="2026-05-06T12:59:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" content="cnt_7331146EA406A0ED647B9904B09231F0_592" mDate="2026-05-06T12:59:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" />
+      </tag>
+    </tagCategory>
+  </tags>
+  <memos />
+  <networkViews />
+  <groups>
+    <documentGroups />
+    <memoGroups />
+    <networkGroups />
+    <tagGroups />
+  </groups>
+  <relations>
+    <quotQuotRel guid="03361EC9-F8F1-49AB-B5E9-21F35EF6BAF7" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="discusses" symmetric="false" />
+    <quotQuotRel guid="3EE1C7A3-99BF-44A7-AABF-1A722F4C381A" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="justifies" symmetric="false" />
+    <quotQuotRel guid="44181F64-79F8-45EC-8FD8-CD7428589CEB" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="explains" symmetric="false" />
+    <quotQuotRel guid="8078770D-C858-43BB-8F8E-CD71704C3EC4" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="continued by" symmetric="false" />
+    <quotQuotRel guid="91BFB206-3868-4B22-9C5E-900441333239" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="expands" symmetric="false" />
+    <quotQuotRel guid="B8DF18FF-4318-4AF0-8237-2D936CE2D1D9" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="criticizes" symmetric="false" />
+    <quotQuotRel guid="BD8B7539-3D5E-4858-A047-56712B397F38" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="supports" symmetric="false" />
+    <quotQuotRel guid="E9AC2A72-0ECA-42F3-891D-C2C80699E38A" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="contradicts" symmetric="false" />
+    <tagTagRel guid="0F8F1807-8609-45C7-AC00-DD597E69D533" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="is property of" symmetric="false" />
+    <tagTagRel guid="90F7C728-6FC5-421F-A471-A6A8820FFFFC" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="contradicts" symmetric="true" />
+    <tagTagRel guid="B80963F8-DB80-461F-90B0-22724F908EA6" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="is part of" symmetric="false" />
+    <tagTagRel guid="C3A770B0-18E8-43C2-ABBE-C30FCACA976B" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="noname" symmetric="true" />
+    <tagTagRel guid="E41DDE00-9CC5-4695-81FA-338286917B78" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="is cause of" symmetric="false" />
+    <tagTagRel guid="EA6DAECD-298C-4786-B098-EE3F730DE48F" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="is a" symmetric="false" />
+    <tagTagRel guid="F3F21804-E4C7-49B4-A388-A5D1717AC91D" cDate="0001-01-01T00:00:00Z" cUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" color="3EA79AC8-0C41-400F-B9CF-F2894D4D740B" dashType="solid" mDate="0001-01-01T00:00:00Z" mUser="C32A2BD5-537F-4838-8B17-DF9EFBAFDF4B" name="is associated with" symmetric="true" />
+  </relations>
+  <links>
+    <tagQuotLink guid="00D0D25C-23DE-4F99-9A5B-E7C665CAB5C6" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="ED19F152-2903-455F-A8EE-40A0FCAE0554" cDate="2026-05-14T15:22:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:22:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="00FF8787-28C6-4543-B804-A6B6EFB04151" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="B62ABCA0-600C-40B8-8FD2-D4FDC9C6C338" cDate="2026-05-14T08:55:44Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:44Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="012F5F09-BEF4-4647-A21C-0D897BF30AD6" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="489AC745-1D4B-405A-AF81-A0EDBC380A52" cDate="2026-05-14T15:28:55Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:55Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="01A4F2AB-3116-4695-A6A6-0CB3A855085D" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="E417D369-0FC6-4E62-A13D-5E4EBB4CAC7D" cDate="2026-05-14T19:58:42Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:42Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0220AE3A-3FE9-4AF9-9739-6ED60151D73E" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="7A11A926-B962-4C15-A641-63D74D809F4E" cDate="2026-05-07T14:51:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:51:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="02DF4F71-AA21-4737-A615-84D3D0D391F2" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="99EEBF5C-A712-445D-A08C-7EBB5958A6B3" cDate="2026-05-14T19:37:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="04BB4487-3F2E-4EED-9CCA-6B379A59F6A0" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="621B4844-7A6B-4469-A3ED-EB4280A71A99" cDate="2026-05-07T14:52:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:52:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="05145705-EA68-40F9-B573-D75A7E50CBCA" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="6DBC40CE-3E11-4CA1-9093-900233FABBD9" cDate="2026-05-14T15:21:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:21:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="060D104F-171D-418D-866D-7A0965CBB10E" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="19DBE3FE-434B-4887-AD08-13185EF1A6DE" cDate="2026-05-06T12:43:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:43:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="073B56B6-13A6-4E2F-A6EF-4AE35E05B753" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="9C1E536A-507F-47D1-8DA9-7567F950F78C" cDate="2026-05-07T14:42:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:42:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="08DF540E-5608-4222-9A1E-4B8B0AA7CDDA" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="BE28F6DD-F18E-4B22-8B9B-20279E9982EC" cDate="2026-05-14T08:55:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0A07BFE1-3FF6-47FD-8CB0-EC6E4ECB641A" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="10F696FD-6165-48F5-9683-0EE3EBE66E82" cDate="2026-05-14T15:28:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0AA55C4F-10E8-4634-9C10-E6A8325CA407" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="1133A62A-2AE8-4F22-A860-99A594613D24" cDate="2026-05-06T12:50:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:50:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0B751B15-3BF0-419B-A49D-0B50009A966E" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="1A1B2DB8-0AA6-4B2B-912A-0D6EABD40B26" cDate="2026-05-14T15:30:01Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:30:01Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0D1162E7-03D7-481E-AA82-286F6327CAAC" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="E41EFEB7-DE95-412D-87C4-46A05BB92966" cDate="2026-05-14T15:29:42Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:42Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0DA0D558-B8D0-40A2-B424-D9F692B7E701" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="B9B2F27C-65DA-49EA-9BC1-D5A2E7ABFC95" cDate="2026-05-14T15:17:10Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:17:10Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0E0E0D42-9082-4CFD-BCC5-28F88E2ACDB6" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="489AC745-1D4B-405A-AF81-A0EDBC380A52" cDate="2026-05-14T15:28:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="0FB143C0-A13F-4BEC-A004-79186E538B1A" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="D9F8C41A-D5E2-429B-BFFC-78871C635662" cDate="2026-05-14T19:37:56Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:56Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1095A0E8-AF83-40E5-94FC-C6F0C15F89D3" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="A5CAF36F-6EF7-4603-A51A-B65643B1D96D" cDate="2026-05-14T13:49:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:49:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1266F12E-777F-4F90-8D4A-15C5FC809818" source_guid="80647555-894C-4F69-B2C5-70E89E3244B8" target_guid="8E6CE69C-65A6-439F-B13E-3E3477C56FF8" cDate="2026-05-14T19:45:51Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:45:51Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="13AF73C0-DE10-4158-B079-CC1C87B25C3A" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="426FA020-16CA-44E3-B432-C47A6DC3AB49" cDate="2026-05-14T20:00:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="13F09B30-6CEF-42C5-8B57-3AEA480E3581" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="3E7359E6-52A6-40EA-B89B-B481CEF780DB" cDate="2026-05-06T12:53:39Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:53:39Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="151B6845-C34E-48D7-9796-2639F457AFA5" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="E824670D-D7E8-469B-8324-ABF15A2C9D60" cDate="2026-04-30T13:48:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="15289666-E409-4B3F-8DB0-C07B0B346E02" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="E84CF776-1288-4273-9F66-759E543C835D" cDate="2026-05-14T15:29:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1550BF34-9FD4-4043-8129-AB1EED973408" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="244F9B07-D2AC-4FBD-8E12-F9C9A3EA7C7B" cDate="2026-05-14T14:29:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:29:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1665B37D-1FB4-4DFB-BB56-21363CDB74CB" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="B56861C3-6DB3-4AC2-878E-CCCE177E9F2D" cDate="2026-05-06T12:53:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:53:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1830C885-DB73-4E85-8CF2-07E72AFDAB6C" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="CB193ED8-0A8E-4E21-922E-709BAF3BA95C" cDate="2026-05-07T14:56:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:56:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1970E4B0-02D0-4FB9-94CD-7BC6D35C805B" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="D9F8C41A-D5E2-429B-BFFC-78871C635662" cDate="2026-05-14T19:38:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:38:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="19713233-44B1-4526-B358-F0F120B7B20D" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="829D0987-227F-41DB-9590-81805E437267" cDate="2026-05-07T14:45:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1C130971-B1CC-4E23-88A1-D2788916DDC9" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="06AB3DFF-26C0-44D4-AB3C-0D3B458F181F" cDate="2026-05-14T15:32:50Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:32:50Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1C45E852-CD3C-4D8C-8438-F1F456D9B7B0" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="9F8F213F-F08D-4C21-98EB-D83B2532DA4F" cDate="2026-05-06T12:41:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:41:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1C9F04F1-A35F-4C1C-A06F-679F2AC47F50" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="61DEB733-7760-4605-9FB8-DBC020A9D9B7" cDate="2026-04-30T13:44:31Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:44:31Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1D56F7F0-71A8-4967-9A2C-70651D31571C" source_guid="56C41C77-B554-4432-A925-EA23EA736866" target_guid="ACB4209D-8844-455B-B805-6AE8A276736B" cDate="2026-05-14T15:33:00Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:33:00Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1E7B14AC-272D-4E0C-ACB6-02B44AB735FC" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="C57635AD-BDCA-4B91-BA9D-AB84DB297CC3" cDate="2026-05-07T14:45:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="1EF7118E-3E0E-4F45-B2B0-8003B70B6EAB" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="3DFB5C45-40A5-405B-A555-AAAA21774E3C" cDate="2026-05-14T20:00:33Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:33Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="21455187-CAA9-425D-8135-8825B293EB20" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="21E9C240-4CC9-4455-B7DC-A2552E7CFDC6" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="22252AD3-66AB-43D8-BA97-5AE944E76644" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="9303536E-49AF-4A0D-86C2-0753479E66AA" cDate="2026-05-07T14:45:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="23588147-B9DB-4967-AEEA-5A0AED685FDC" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="CE326E45-0FF5-45EF-9C11-9AEAFFFE9E55" cDate="2026-05-07T14:55:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:55:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="243E413B-AFB2-4F2F-8EC3-B394D50F99BE" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="4A5C4525-8D3F-4851-846B-3B44DF6FD6AE" cDate="2026-05-14T15:33:42Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:33:42Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="26A2EBA8-BEBD-4F62-B1A9-881DCCAC300C" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="199AAD4F-32F7-4F1A-AB63-D55379C1BF17" cDate="2026-05-14T19:58:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2805A949-B332-46D3-A7FF-F2B7C11C3B5B" source_guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" target_guid="79A01D91-CD4B-4964-908E-B445C9675A70" cDate="2026-05-08T09:49:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T09:49:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="28E2CE2E-5514-46DC-8BAE-3342B19DD9A7" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="C00840AB-13FA-4457-A1DD-0E9ECF14A812" cDate="2026-05-07T14:47:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:47:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="28E9E198-5160-4B86-BFAE-FD9445CD82C6" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="BE28F6DD-F18E-4B22-8B9B-20279E9982EC" cDate="2026-05-14T08:55:19Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2930A533-3A16-4D23-934E-F6C31A33373B" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="5DAF22AA-A83A-40F1-BF76-75AC7BB9C347" cDate="2026-05-14T15:17:01Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:17:01Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2A71026B-52D7-439E-8DE4-D82F56F05F75" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="4E5C768A-69B5-43C0-BEBB-31DB85FCB72D" cDate="2026-05-14T19:44:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:44:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2AC49F62-FD9B-48F7-9580-C4CE59A7B85D" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="961E8A32-B3B1-4DC3-A256-D179039F9674" cDate="2026-05-14T09:28:47Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:28:47Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2BB452A0-A951-4362-99BA-A52691E19CCA" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="75B17BCF-6E24-4E51-9895-CAA89E9E20ED" cDate="2026-05-14T14:31:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:31:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2EFE1BAE-E120-4278-9693-16962509943A" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="B56861C3-6DB3-4AC2-878E-CCCE177E9F2D" cDate="2026-05-06T12:53:22Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:53:22Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2F5639EB-588C-47BB-A5F3-9544076766F1" source_guid="8BE0E228-41BB-4F7B-A479-29BE4EB89CE5" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="2FE734DF-AEF0-46C3-A2F1-6D7E80958791" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="5FF1024B-19C2-47AA-86CC-7DE287B92C09" cDate="2026-05-14T15:18:40Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:18:40Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="30F7D3BC-E833-4E92-8953-11EDA9CC8597" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="6DBC40CE-3E11-4CA1-9093-900233FABBD9" cDate="2026-05-14T15:19:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:19:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3103D616-DED9-4A86-A0D0-9373B36506FE" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="06AB3DFF-26C0-44D4-AB3C-0D3B458F181F" cDate="2026-05-14T15:32:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:32:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="32580728-5BA2-4D7E-8D03-DD2DC87B6B3A" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="27A58A0D-53A7-4711-804B-4139242D20B4" cDate="2026-05-07T14:53:19Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:53:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3498486E-1685-4595-8A54-4ABF098EEC5C" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="772D1D8D-DCDF-4AF2-913B-7A06002C11FC" cDate="2026-05-06T12:46:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:46:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3832CDEB-35D6-4A27-A072-76AFA8B9C7AC" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="A0766607-DA75-49D1-966E-89587E41D56E" cDate="2026-05-14T15:34:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:34:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3AF934A9-637C-4800-AEA9-C3465CF9F681" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="057B1ECA-E044-4D54-B205-9A9F07C33696" cDate="2026-05-14T13:50:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:50:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3B1DA557-3665-4919-BC0C-65A8D153301E" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="621B4844-7A6B-4469-A3ED-EB4280A71A99" cDate="2026-05-07T14:52:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:52:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3B6B5411-77EA-44E7-9BFF-08F98645EFF7" source_guid="07BC1849-1436-4BE0-80C5-C13634734E30" target_guid="0BEA2BA5-881F-4C6A-BDCF-825948F2AACA" cDate="2026-04-30T14:44:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:44:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3BB31179-5291-407C-BB00-377E48BA259D" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="4C613BB7-6121-4890-B3D9-E526544F09FF" cDate="2026-05-07T14:46:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:46:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3BCCBDA2-C9BA-4F16-974F-631D4B955208" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:39Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:39Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3BDF97CD-472F-4E4A-8F76-6EB3F1B51E8E" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="8EB8E9E1-8217-4CB4-8333-ACD771570984" cDate="2026-05-06T12:56:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:56:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3C13E7CA-4182-408B-8265-E1A51066881D" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="C80708EB-9159-43F2-A411-9E027BD82AD1" cDate="2026-05-14T19:41:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:41:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3DEBE60B-B3F2-4138-A179-A1967DD2994B" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:09Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:09Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3DF36739-D524-4C00-8943-A1E8B03D0069" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="FA7FF853-F11C-423A-9CF2-02ED4A4F64A5" cDate="2026-05-07T14:59:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:59:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3E75272A-35CF-40AA-A8CC-CC086BDD74FF" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:50Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:50Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="3F491924-416C-4911-A42B-712A7DA3F215" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="A0766607-DA75-49D1-966E-89587E41D56E" cDate="2026-05-14T19:35:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:35:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="40DCA40C-1ADA-4C15-937D-6A9CC77733AC" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="CE326E45-0FF5-45EF-9C11-9AEAFFFE9E55" cDate="2026-05-07T14:54:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:54:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="4130462E-9495-4ECC-96E4-B3A803134203" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="813E3DED-1689-4747-A57D-F637CBB1B717" cDate="2026-05-07T14:38:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:38:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="44472EF7-A4CA-42F6-8C55-00988AA709A4" source_guid="8A553ED6-15F3-4031-B938-D84CC29A33F3" target_guid="9450F57E-ED54-4D03-B80E-4723862A7BCF" cDate="2026-04-30T10:56:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:56:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="451A6745-FA76-4442-BC63-691D366A4AFD" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="814D0B25-7DFA-43AA-B655-D60B5B9E76D4" cDate="2026-05-06T12:44:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="45F7FD78-2067-4455-8B4E-97A99AA8E653" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="303CB1BC-37A0-4DF4-9622-5A2ACEB51AD8" cDate="2026-05-06T12:39:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:39:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="46F91966-281A-43B2-ABC2-AF32FB81EBC9" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="6BEDDC0E-1CA8-40E7-93C7-DE65D21AA1EB" cDate="2026-05-07T15:01:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:01:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="4737D96A-EEC2-45EF-82F3-F25B48E7D609" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="A04C69DE-A0C9-4EF5-B937-4C3891FE92BF" cDate="2026-04-30T14:41:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:41:02Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="498D5847-4B8F-4C91-8AD6-AB0F6614E536" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="92AA6C68-4EC3-435C-98F7-4F9C3409A45A" cDate="2026-05-14T19:49:50Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:49:50Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="49D4F865-BE20-43CA-BF59-724D7D882A88" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="03FC1ADB-4A53-4EE2-BD4C-080A26B08239" cDate="2026-04-30T13:45:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:45:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="4A578846-D54E-4299-B570-9EBB34FC36D7" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="8B430977-6AB5-43D9-9A3E-C77E91E1C413" cDate="2026-05-14T13:50:50Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:50:50Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="4EE2C923-63AF-451C-A354-1C5831418493" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="B242AF29-9208-43E2-8991-C27639CF744E" cDate="2026-05-14T19:36:53Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:36:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="4F2BEC62-D130-495D-8248-4D8BA2DBF29E" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="4FADB1B0-37FA-451E-994D-DECECF7FA6F9" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="5EFDF6B6-5091-4321-8F44-326EA80B94C1" cDate="2026-05-07T14:59:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:59:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="52F9B118-7EFC-4B65-AC45-800322A43362" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="4F7D78A9-63E1-459B-B7AD-A981E98D9DC0" cDate="2026-05-06T13:00:00Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:00:00Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="53E0758D-7045-4D0B-B595-FAE126EE8E8B" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="48351603-7EAF-448C-AFE2-92B033FD830D" cDate="2026-05-07T14:43:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:43:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="576CFD74-E713-4259-914F-6F9347940C9E" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="63BE6920-504A-44E2-BF96-53587E5E12C7" cDate="2026-05-06T12:49:53Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:49:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="5825F2CF-C6C8-40C5-9A9C-7214F07819F4" source_guid="4FED279A-114D-4F13-B793-588135813131" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="583C820C-A3F7-4E72-808F-A55B4DCDC59C" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="ACB4209D-8844-455B-B805-6AE8A276736B" cDate="2026-05-14T15:31:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:31:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="587530A7-A750-4B5A-8207-5F9A60E0057D" source_guid="02DF33D0-16FB-4868-9EEF-BA2CBCE501BC" target_guid="E5B650AE-9037-4E04-ACB3-3D14FA37A1EB" cDate="2026-05-07T14:41:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:41:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="5A9FFF39-250E-46AE-ACF2-D7FC5FD02FD2" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="D3F7C24B-DE42-4A30-A5F7-0B5AD9E5ABAB" cDate="2026-04-30T14:48:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:48:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="5BFDF248-D70A-4C52-ADEA-72BFF0B16EFC" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="E4F197D5-33F8-44BD-8DF2-657D6A6BA8AF" cDate="2026-05-07T14:56:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:56:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="5E55ED07-745F-40A6-B5CF-0606EA448473" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="6D0A9CA4-AB36-4D84-B38F-3DA76A88EBD0" cDate="2026-05-14T09:15:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:15:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="63935C4C-41FB-43B5-889F-CE8E74E83E5B" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="D9F8C41A-D5E2-429B-BFFC-78871C635662" cDate="2026-05-14T19:37:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="64927583-AB26-4193-96BA-62D0D66F9735" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="2FD7AA56-F99C-4DED-97AA-47DB0477C8C7" cDate="2026-05-14T19:49:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:49:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="652CE87E-FD91-47FD-89A5-F626CE2A3C68" source_guid="8BE0E228-41BB-4F7B-A479-29BE4EB89CE5" target_guid="2FD7AA56-F99C-4DED-97AA-47DB0477C8C7" cDate="2026-05-14T19:48:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:48:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6717ED71-699B-4733-8D74-36E975CB070A" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="2FD7AA56-F99C-4DED-97AA-47DB0477C8C7" cDate="2026-05-14T19:48:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:48:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="67F4926A-BA6B-46E3-AB61-CA7878DBAD27" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="B62ABCA0-600C-40B8-8FD2-D4FDC9C6C338" cDate="2026-05-14T08:55:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="68796254-4C38-411B-A866-CE3D2DF4A93E" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="370E10DF-EDFF-4C41-B30B-60253434ADC6" cDate="2026-05-06T13:02:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:02:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6988A05F-8991-4C36-B774-A8993E480D10" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="5E6A788C-06F6-4CD3-965F-C7F54E6DA6ED" cDate="2026-05-07T15:00:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:00:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6A596D0F-BBD1-4CCE-8F64-7019DE327030" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="A5C10BEF-26D9-45C0-A78F-D25C217A5998" cDate="2026-05-14T08:58:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:58:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6AEDC321-04E4-4B40-B5D6-0AE6CF16070F" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="5408104E-B7A6-4862-A819-95D31B74135B" cDate="2026-05-07T14:53:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:53:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6C80A5CF-ECD4-48C9-B1D1-2CC1307579FE" source_guid="AE552DDE-7E7E-4C20-9699-11ACB1EFDC82" target_guid="97E293D2-6F30-42EA-987B-AFC6AAADB6A2" cDate="2026-05-07T14:39:00Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:39:00Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6EC3994B-E3A5-48E1-992E-F22A3B5DCA7C" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="B9B2F27C-65DA-49EA-9BC1-D5A2E7ABFC95" cDate="2026-05-14T15:17:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:17:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="6FF93B61-DE16-4077-B5DB-F5DF3DB59903" source_guid="0BD18CC1-3AF4-4287-ABF5-684229545B16" target_guid="04F9BC6F-F6C3-4664-AE9B-A1D1B8755C6B" cDate="2026-05-14T19:47:22Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:47:22Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="727C0396-D85E-4DA8-B0DD-292841048D1A" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="CDC1023E-084D-4A7D-A521-6BB808F3ED76" cDate="2026-05-06T12:44:04Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:04Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="733484E0-6C76-4B9F-8CFC-6036F2481925" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:42Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:42Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="75156E02-CF8E-4ED9-B096-034AF3917D18" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="E84CF776-1288-4273-9F66-759E543C835D" cDate="2026-05-14T15:29:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="755D46AE-81E6-4410-B520-310AC46D025B" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="BE2108BC-A05E-4275-B2E9-FD3E6D625B14" cDate="2026-05-14T19:47:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:47:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="76AE76CA-B012-455B-9A88-25FE70D4A122" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="5A1DF775-ABAD-45C0-BB37-3DCBF366C882" cDate="2026-05-07T14:49:05Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:49:05Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="788DA6AF-D719-4CC4-80DD-66E911982D51" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="221213B1-7DAE-4C9F-A505-D92445B96C07" cDate="2026-05-07T14:47:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:47:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7A0DB728-4AE0-4883-9584-9B5369C45B92" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="4C5ADABE-17A3-42D4-BFA3-9FA6BE1722CD" cDate="2026-05-07T14:50:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:50:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7A3CC2A3-F63D-4D64-9E6B-B9FE579A7D8A" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="FC9F9706-05A3-4FF6-BC62-9646606733D4" cDate="2026-05-14T15:28:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7AEE5193-1CA8-42C7-B375-8DEB5773F9B5" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="E417D369-0FC6-4E62-A13D-5E4EBB4CAC7D" cDate="2026-05-14T19:58:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7B793F1F-F53D-4869-A5C0-03F15F56DBC8" source_guid="02DF33D0-16FB-4868-9EEF-BA2CBCE501BC" target_guid="D9F8C41A-D5E2-429B-BFFC-78871C635662" cDate="2026-05-14T19:37:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7BD82BC0-CAD3-475F-AA61-DE014AEF9FF3" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="B7324E7B-9C3E-4EB7-8E0F-A2F3D3109DDF" cDate="2026-05-07T14:40:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:40:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7CCB167F-C453-4871-92AD-9A6D696CCD11" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="7E70F3FF-8647-435C-AADB-F62314D7D53E" cDate="2026-05-08T15:59:55Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:59:55Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7DED3DDD-D745-4720-A9A5-00674F78846F" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="D869499F-B20D-4DAD-9DBF-30F3FCEB2DA6" cDate="2026-05-06T12:45:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:45:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7E42EF90-1B70-47DB-AC86-00DC6C0BBA61" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="918EB442-5A92-4D16-8655-05E9FAC61588" cDate="2026-05-14T15:21:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:21:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7EC40DFD-1D8C-4C2C-977C-40A06C1E6137" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="E41EFEB7-DE95-412D-87C4-46A05BB92966" cDate="2026-05-14T15:29:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7FA068E3-011E-45E0-82AA-72961100E57C" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="FD551900-04D1-47F7-AFC9-3A66CF5983D1" cDate="2026-05-07T14:57:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:57:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="7FECB412-5C58-4CB5-A28B-8EFF218BE46A" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="6F2F3DE3-4C06-42F8-B4F6-9BF281D5B915" cDate="2026-04-30T13:44:45Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:44:45Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="806A0D87-B63C-4576-87CC-82D093F1B113" source_guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" target_guid="D9F8C41A-D5E2-429B-BFFC-78871C635662" cDate="2026-05-14T19:38:01Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:38:01Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="80E4FE15-0A2E-453F-B558-F24C0308FA4D" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="4A5C4525-8D3F-4851-846B-3B44DF6FD6AE" cDate="2026-05-14T15:33:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:33:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="80E7C2E6-6EE9-4534-B46E-A454B7BDCB7D" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="6567B70A-FE4F-45CB-9C38-D1AC4AAC81A6" cDate="2026-05-14T19:42:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:42:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="81E5F159-9858-43CA-AF65-EFE84096ED39" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="8C3C7BB5-4655-4D68-8BD0-BA5A5EE68114" cDate="2026-05-07T14:47:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:47:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8243FF46-DCD8-4475-9CAE-76ACFF4E0CA4" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="57F42ABD-7745-4BAC-9B10-372C3F2369CE" cDate="2026-05-14T08:57:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:57:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="831DC7A4-7694-41C8-B7D7-C8F4CFE0906A" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="EFAD14D5-04D3-4584-AF27-33F35448C34D" cDate="2026-05-14T09:18:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:18:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="83B14F34-BF4E-4A50-9D2B-4AE41BE327B5" source_guid="02DF33D0-16FB-4868-9EEF-BA2CBCE501BC" target_guid="407A76B5-FDAE-43FF-A795-C196FCECCFA3" cDate="2026-05-06T12:52:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:52:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="841A1422-AA51-418C-8BF8-7C770DCF46CD" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="E84CF776-1288-4273-9F66-759E543C835D" cDate="2026-05-14T15:29:12Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:12Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="85032B81-E2FA-47B6-B3C5-2E0792306C5D" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="6BEDDC0E-1CA8-40E7-93C7-DE65D21AA1EB" cDate="2026-05-07T15:01:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:01:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8652EE6C-B607-4C0E-981B-C9721AA8772B" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="013B0F24-F031-4C3E-86D4-DA5062E05C0A" cDate="2026-05-14T09:19:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:19:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="882E867F-5EAB-4B4D-9299-3C26C5C22C51" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="905342D6-26E4-47FE-BF0A-D323B75E384C" cDate="2026-05-14T15:25:53Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:25:53Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="888F391D-4007-4A20-BDBF-1968FB4185D4" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="44F606A6-C090-4017-8B08-4DCB448C68F5" cDate="2026-04-30T10:53:11Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T10:53:11Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="88CB3676-564A-46B5-B165-6597EAB38837" source_guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" target_guid="5FF1024B-19C2-47AA-86CC-7DE287B92C09" cDate="2026-05-14T15:18:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:18:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="88FC7BDF-5798-43F1-983C-010DE92675BE" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="CDC1023E-084D-4A7D-A521-6BB808F3ED76" cDate="2026-05-06T12:44:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8A6F9AC4-85F7-44AC-8413-3FBCF72A8129" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="52D92AC9-C9DC-4171-A723-EF42EDE6B0E9" cDate="2026-05-07T14:48:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:48:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8A8B4092-AE4F-4795-9F6C-765072B51B2C" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="15FA2E93-2F93-4B33-B3A9-D4C5BC6F1D04" cDate="2026-05-06T13:02:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:02:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8ABAA281-B253-42A4-A714-99E66553813B" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="1F80F4C6-6BB7-49E0-8AB0-7F4E4ED30E18" cDate="2026-05-14T14:31:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:31:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8D2AB398-D0C5-48B0-9A5B-B36D82FFF42A" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="AFDBA427-55E0-4779-87A7-94E62154EC0B" cDate="2026-05-14T09:18:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:18:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8D7F1504-4246-4CE8-911A-59E08EBC2D67" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="813E3DED-1689-4747-A57D-F637CBB1B717" cDate="2026-05-07T14:38:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:38:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8FD89275-5DEA-4C44-BB5F-AE4956989E16" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="7E70F3FF-8647-435C-AADB-F62314D7D53E" cDate="2026-05-08T15:59:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:59:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8FDCDB6A-A776-44AB-AFC2-A8A0D28E0E6D" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="F90BFF96-2A51-4BC6-9B3B-2569233697C4" cDate="2026-04-30T13:48:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8FE86D41-AF18-455B-BF9D-52F8FFAD8AC9" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="BEAB2720-A2DD-4042-9D2B-6AC2FC306279" cDate="2026-05-06T12:42:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:42:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="8FED7333-3EAC-4354-BBA0-87704CCDEBB4" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="B7324E7B-9C3E-4EB7-8E0F-A2F3D3109DDF" cDate="2026-05-07T14:40:39Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:40:39Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9096082D-B89F-414D-A76C-EA05B322E985" source_guid="80647555-894C-4F69-B2C5-70E89E3244B8" target_guid="FB139189-E935-4400-AA1D-6C86D84DE188" cDate="2026-05-14T15:27:13Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:27:13Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="90C8F9AB-9BB8-4555-907E-D6497B4F5C3B" source_guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" target_guid="68CC3D74-3FA5-4F11-8532-4B42AE5B5ECD" cDate="2026-05-07T14:46:48Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:46:48Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9163EDD9-FA6B-4B41-9CD8-9651536CE3EE" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9519E657-816E-4717-BC70-98A9F87F8526" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="E9A0B3BB-5651-4CB2-A3FD-ECB16240F543" cDate="2026-04-30T13:48:19Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:19Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="957F7BFF-FBA8-413C-BD0C-DD0770EB3DAB" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="8B430977-6AB5-43D9-9A3E-C77E91E1C413" cDate="2026-05-14T13:50:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:50:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="977B99F9-B1BF-44CF-BE52-4E7E455AD6F0" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="ED19F152-2903-455F-A8EE-40A0FCAE0554" cDate="2026-05-14T15:23:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:23:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="97AF4320-DB1B-4D77-B257-E9F581F56C12" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="E417D369-0FC6-4E62-A13D-5E4EBB4CAC7D" cDate="2026-05-14T19:58:31Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:31Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="986AE073-4C7E-437F-B262-D4805CAC8070" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="7DE13173-0909-4576-A650-DF06CF08CAA3" cDate="2026-05-14T19:59:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="99D0C305-6342-4EC1-8777-DD4785D9454A" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="99EEBF5C-A712-445D-A08C-7EBB5958A6B3" cDate="2026-05-14T19:37:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:37:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9B1DAA77-E12E-4333-AE20-448994D72B50" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="1133A62A-2AE8-4F22-A860-99A594613D24" cDate="2026-05-06T12:50:47Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:50:47Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9B39178E-7AB5-4CAB-A132-10B131549D64" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="1133A62A-2AE8-4F22-A860-99A594613D24" cDate="2026-05-06T12:50:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:50:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9C773F3C-4EF1-452A-89B2-3C85E00BC3E5" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="CF3141B4-AB48-49D9-A21B-ACBE602A85FA" cDate="2026-05-07T14:44:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:44:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9DBB7525-E3B6-43C1-9E94-9BFA39040D8F" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="43BE6F83-FD54-4A31-850A-964E3FE49E2A" cDate="2026-05-14T09:16:54Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:16:54Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="9E6C2497-5426-4806-9DD6-C4D2E0B4FD93" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="BB692080-3252-43E3-86E6-B9061BB5631E" cDate="2026-05-07T14:58:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A0A9935E-9D00-4506-88E6-E5821662C5E4" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="24BD19DA-08A1-4ACF-BB01-54629093F5E5" cDate="2026-05-08T16:02:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T16:02:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A14287AE-6AFF-44A0-9F24-081E5DADF201" source_guid="02DF33D0-16FB-4868-9EEF-BA2CBCE501BC" target_guid="4B31F79F-9EBB-4C58-B822-62E6ADBF2BE9" cDate="2026-05-06T13:03:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:03:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A142AC84-72FE-4CE9-9249-01716F53E8E0" source_guid="0E0A8847-4828-4DBE-A692-AC8EAAC6D6A4" target_guid="ACB4209D-8844-455B-B805-6AE8A276736B" cDate="2026-05-14T15:32:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:32:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A1F25137-F3F7-4FEA-903D-CD6F9B426920" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="BF841F86-8D1D-43A3-84D2-C36954914481" cDate="2026-04-30T13:48:02Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:48:02Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A1FE183A-9344-4342-9F7E-60F3BC655F45" source_guid="8BE0E228-41BB-4F7B-A479-29BE4EB89CE5" target_guid="5762701B-EE59-42F6-B781-CB0FCEE4D3BC" cDate="2026-05-08T15:53:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:53:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A3369496-C86C-49E5-9C3A-E933DDFD8F90" source_guid="584A87C2-B0EF-45D4-9849-C2FCFFCB8125" target_guid="FD81E216-BAB4-4A5D-94EC-CF16E2B2466C" cDate="2026-05-14T19:44:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:44:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A3BC4418-8250-4FC3-BB60-0DE12F6D6185" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="1E6BA221-7A8D-4084-A92A-0746AF5987D5" cDate="2026-04-30T13:44:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:44:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A48AAD32-3716-4C6C-A5FB-8AAE0B5CE8EC" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="B7324E7B-9C3E-4EB7-8E0F-A2F3D3109DDF" cDate="2026-05-07T14:40:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:40:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A4D1B12D-17BE-4F51-B2F1-C17973703C20" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="1133A62A-2AE8-4F22-A860-99A594613D24" cDate="2026-05-06T12:50:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:50:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A561918B-CA5C-4D97-90A2-7D2A13832452" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="8E72913B-01AB-4F38-A204-CD3C3CACFB08" cDate="2026-05-07T14:46:14Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:46:14Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A6366DC1-D4DC-41B3-B92D-72E56AD695E9" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="918EB442-5A92-4D16-8655-05E9FAC61588" cDate="2026-05-14T15:22:09Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:22:09Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A7FDB576-60A5-4114-B7AE-2FDD5FA51966" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="F0D3BCA6-2B07-4E56-A98D-47109CE137BB" cDate="2026-05-06T12:38:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:38:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A86A2632-84B7-4A4E-A756-5E69D17C40EB" source_guid="0BD18CC1-3AF4-4287-ABF5-684229545B16" target_guid="4F3FA207-3382-4F12-A189-56226D52E320" cDate="2026-05-07T14:49:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:49:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A8EFDEE3-06D0-4D4F-B1A1-F6856FE69318" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="B56861C3-6DB3-4AC2-878E-CCCE177E9F2D" cDate="2026-05-06T12:53:03Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:53:03Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="A90C832A-4F4C-43E5-AF1A-686784F17A89" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="07F1E668-7E8F-4A7A-8446-F126C7E7E7C5" cDate="2026-05-07T14:45:56Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:56Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="AA5F94F0-16D7-4FDD-AAFF-4E032ED5F108" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="75B17BCF-6E24-4E51-9895-CAA89E9E20ED" cDate="2026-05-14T14:31:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:31:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="AD3F09C1-19DE-4AD9-8678-1C7ADDC22D68" source_guid="0E0A8847-4828-4DBE-A692-AC8EAAC6D6A4" target_guid="5FF1024B-19C2-47AA-86CC-7DE287B92C09" cDate="2026-05-14T15:18:23Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:18:23Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="ADBBB606-1E6E-485D-9738-7A9FD68F6059" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="426FA020-16CA-44E3-B432-C47A6DC3AB49" cDate="2026-05-14T20:00:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="ADCA1F79-E32E-4B62-8D70-1C3D532EF1B2" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="75B17BCF-6E24-4E51-9895-CAA89E9E20ED" cDate="2026-05-14T14:31:24Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:31:24Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="AEE9E0CE-D1C9-4AA0-ACB1-49E069805385" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="918EB442-5A92-4D16-8655-05E9FAC61588" cDate="2026-05-14T15:22:05Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:22:05Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="B193B9F9-8265-46E7-9931-BF93B7199DCA" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="D01D81C7-CA15-4AC1-852B-18DEEFE55E9D" cDate="2026-05-07T15:01:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:01:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="B51F8B81-132C-4E4C-8E57-568C7D215E56" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="E8BFF626-1007-4ABC-BCEB-4BD74161E102" cDate="2026-05-06T12:43:03Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:43:03Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="B7523531-5B93-4CE1-9361-116EE4F184E2" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="33F88BE1-93F0-461D-8DF6-6FDC941A05DC" cDate="2026-05-06T12:38:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:38:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="B7828562-1056-478B-BA8D-0F28B88F7AE1" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="1C55AD0F-0B05-4B31-929F-BEE3B74CA46D" cDate="2026-05-07T14:41:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:41:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="B8FC651F-9856-4207-BD65-014A80F0E5BD" source_guid="4FED279A-114D-4F13-B793-588135813131" target_guid="BCFFE5D0-4B42-44EB-8FB7-E753E865BEED" cDate="2026-05-06T12:47:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:47:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="B9741666-860A-4818-B891-97A8F950FBBA" source_guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" target_guid="BB692080-3252-43E3-86E6-B9061BB5631E" cDate="2026-05-07T14:58:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="BAE8404C-A1E8-4BA0-93EE-4375362124E5" source_guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" target_guid="9A32DE83-0D82-427D-81B3-2B9CF25587C8" cDate="2026-05-06T12:59:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:59:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="BBD5004D-3E4A-44FC-97B5-023769A0D1FA" source_guid="0E0A8847-4828-4DBE-A692-AC8EAAC6D6A4" target_guid="E41EFEB7-DE95-412D-87C4-46A05BB92966" cDate="2026-05-14T15:29:40Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:29:40Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="BC2F98C3-92A8-4CCD-B584-0BA0D7218027" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="2C224319-9C79-497B-952D-44D94D40FDB4" cDate="2026-05-07T15:00:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:00:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="BCBF9639-ED8B-4E63-9869-464339737A0E" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="FF8B52A0-74DD-4734-A289-975B123800A5" cDate="2026-05-06T13:00:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:00:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="BD92146E-AE9B-4ADC-8737-3B35B46D29AF" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="18F71030-4DA1-44CE-99D4-1543B6B66C3E" cDate="2026-05-14T09:19:51Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:19:51Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="BDBDD3DA-0FD2-487B-B7D2-39FE15754083" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="5727B597-CFFF-418B-A818-0782690CEB59" cDate="2026-05-14T09:17:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:17:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C062C10B-2688-4D98-83A7-30AF93829A64" source_guid="56C41C77-B554-4432-A925-EA23EA736866" target_guid="AD7C90E3-6396-4E3D-BD8A-5F1D18BDD98A" cDate="2026-05-07T15:08:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T15:08:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C1197778-B796-418F-9F73-7FEC1932DD20" source_guid="0BD18CC1-3AF4-4287-ABF5-684229545B16" target_guid="A9109748-30C0-47F7-8531-98B9C240CB78" cDate="2026-05-14T14:30:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:30:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C11F20B5-F851-4787-9890-6347B11AE9B2" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="93BCE4FB-34ED-4090-BD22-950E6F574875" cDate="2026-05-14T20:00:10Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:10Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C3383874-F1DE-4925-854A-703C2BF222B4" source_guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" target_guid="93BCE4FB-34ED-4090-BD22-950E6F574875" cDate="2026-05-14T20:00:05Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T20:00:05Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C402FF2C-ED6A-45F1-B0A1-7A15C2756D62" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:26Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:26Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C56DA8E9-E462-4918-9322-65A13DDFA778" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="1DD66CEC-3801-4B0F-9B45-382018F9AAA8" cDate="2026-05-14T15:18:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:18:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C78A8D6C-490A-4592-833A-33E4F588A957" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="13A28649-C44C-446F-B448-FE8A43BA83FF" cDate="2026-05-14T14:30:25Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:30:25Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="C99E1155-FEB1-4F8E-9811-D2FDF7A420F1" source_guid="80647555-894C-4F69-B2C5-70E89E3244B8" target_guid="ACB4209D-8844-455B-B805-6AE8A276736B" cDate="2026-05-14T15:31:55Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:31:55Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="CC91DD93-9134-4757-A2D8-E5BCF97B68B4" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="57F42ABD-7745-4BAC-9B10-372C3F2369CE" cDate="2026-05-14T08:57:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:57:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="CD5D8595-E524-477D-82F8-505CA4DCA40A" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="67742791-6D83-4A04-A1DD-ABC76E886DFA" cDate="2026-05-14T09:18:26Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:18:26Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="CDD3D9E5-3DDE-41F8-A9F5-1CF633963F5D" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="E67AF861-3CEF-4221-AFC4-2D22A534962C" cDate="2026-05-07T14:39:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:39:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="CE0D374E-278C-4AE9-8D34-3DB53CA6DDB2" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="B62ABCA0-600C-40B8-8FD2-D4FDC9C6C338" cDate="2026-05-14T08:55:56Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:55:56Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="CFCAD783-054C-47DF-BF94-AE798D25F177" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="2455C034-D584-4525-995E-54A568D4ACB7" cDate="2026-05-07T14:55:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:55:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D01D8268-5129-4B11-9A23-B8E09922214E" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="19DBE3FE-434B-4887-AD08-13185EF1A6DE" cDate="2026-05-06T12:43:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:43:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D177E2D5-B5BE-406B-927A-39F02904671D" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="E417D369-0FC6-4E62-A13D-5E4EBB4CAC7D" cDate="2026-05-14T19:58:50Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:58:50Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D22C01BE-8470-42B8-A51F-FC4074871BAB" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="CBAEF10B-8070-4019-AF03-152CA3DE941D" cDate="2026-05-06T12:57:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:57:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D36E234C-0772-43FB-A66E-5D7EDB651961" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="47FEA7F1-143E-431F-B696-2142820F355C" cDate="2026-05-14T08:57:52Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:57:52Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D38B0B99-52F3-4291-8112-DEE72D246DEB" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="4BD44F97-D0AC-4DD5-880D-0C846C7C66CC" cDate="2026-05-14T15:22:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:22:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D3938C41-9BB8-43B1-8B41-FA5F4BC4D1AC" source_guid="8A553ED6-15F3-4031-B938-D84CC29A33F3" target_guid="59FAC71E-629C-4E4E-8591-913A4CCA5965" cDate="2026-05-06T13:02:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:02:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D3A7AAF4-C134-4171-87D4-875E11F70899" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:25Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:25Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D784C43F-3D12-4D26-BBA2-7B1654C2B8B8" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="7A1F2C22-9E21-4855-9165-2294C212A71E" cDate="2026-05-14T13:49:21Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:49:21Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D7F3C5D6-ABBB-4F28-8EF8-607602B58868" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="4F7D78A9-63E1-459B-B7AD-A981E98D9DC0" cDate="2026-05-06T12:59:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:59:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D7FF566E-4C05-42AD-9AA4-4FB816B64F18" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="B266F98E-CBFA-4531-843F-3FA72D1175D1" cDate="2026-04-30T14:47:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:47:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="D978668C-BFBC-45B8-B764-863F8849C9C8" source_guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" target_guid="FC9F9706-05A3-4FF6-BC62-9646606733D4" cDate="2026-05-14T15:28:31Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:31Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="DE494D82-753C-4233-95F0-91AB3375C5B6" source_guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" target_guid="9F1157A1-669D-48C2-9CCD-A56067AA2A3D" cDate="2026-04-30T13:47:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T13:47:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="DF62A9C8-0873-4726-9308-1785C99DE116" source_guid="80647555-894C-4F69-B2C5-70E89E3244B8" target_guid="06AB3DFF-26C0-44D4-AB3C-0D3B458F181F" cDate="2026-05-14T15:32:45Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:32:45Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E0A726BA-E852-4BD4-B5C6-F43A1FE7A522" source_guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" target_guid="50A9893E-D02A-44AF-B684-61B60B2764F6" cDate="2026-05-08T15:59:08Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-08T15:59:08Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E371160A-EE3A-47FB-BDD0-5B18B20C56F8" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="5DAF22AA-A83A-40F1-BF76-75AC7BB9C347" cDate="2026-05-14T15:16:29Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:16:29Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E3874AA5-8051-4F10-8699-DD84C7D60A25" source_guid="12902A6C-665D-4A36-9C5A-8885629FA637" target_guid="0922649B-D1FE-42EE-BDD3-C0756F823ABA" cDate="2026-04-30T14:44:20Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:44:20Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E4A39A01-FE03-428D-9DB6-E47D7DF1442D" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="5E6A788C-06F6-4CD3-965F-C7F54E6DA6ED" cDate="2026-05-07T14:58:49Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:49Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E53CF7CF-C239-4EC7-956F-01FE0DF99115" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="5E6A788C-06F6-4CD3-965F-C7F54E6DA6ED" cDate="2026-05-07T14:58:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E649B8D3-E94F-4812-814F-73052DD515D0" source_guid="D6A968EF-5792-4F4D-8456-82E37C3E4FF9" target_guid="B62ABCA0-600C-40B8-8FD2-D4FDC9C6C338" cDate="2026-05-14T08:56:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:56:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E788B4A5-DE59-4D2E-B9B8-14CC3C8042BD" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="CBAEF10B-8070-4019-AF03-152CA3DE941D" cDate="2026-05-06T12:57:41Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:57:41Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="E85B7DC7-4972-46A1-89C1-870E1A09340B" source_guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" target_guid="28969765-7E1A-428E-AB58-6F97097D9D91" cDate="2026-05-14T19:42:57Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:42:57Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EA3CD515-AE3F-4F66-83BB-F34F8E2276DD" source_guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" target_guid="ED19F152-2903-455F-A8EE-40A0FCAE0554" cDate="2026-05-14T15:23:07Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:23:07Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EA534781-FD35-449E-98F1-97CF376811B8" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="9303536E-49AF-4A0D-86C2-0753479E66AA" cDate="2026-05-07T14:45:28Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:45:28Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EAE177E8-B158-43CC-BD23-23F59E7783CB" source_guid="8A553ED6-15F3-4031-B938-D84CC29A33F3" target_guid="9DB5CC61-1EE5-4328-B5E9-10B14F62EC69" cDate="2026-05-14T15:17:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:17:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EAE29931-0838-4A61-9FD2-59FA32E86ED5" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="13A28649-C44C-446F-B448-FE8A43BA83FF" cDate="2026-05-14T14:30:12Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T14:30:12Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EB90DB5F-48F2-4165-9297-08E467AF3814" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="FA15D4AD-4A1A-46C9-8B43-8A1C57D78587" cDate="2026-05-07T14:51:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:51:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EC3B5160-6C22-4741-A12D-968158B3F492" source_guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" target_guid="242739BC-6983-4A34-808C-AEE6B4970693" cDate="2026-05-14T09:19:38Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:19:38Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EC70D5C2-C495-4008-BC8A-AEAAAA708E5A" source_guid="33CBE847-9452-403C-8D00-B0095865AACD" target_guid="10F696FD-6165-48F5-9683-0EE3EBE66E82" cDate="2026-05-14T15:28:15Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:28:15Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="ECF97FD4-2D82-4F89-A762-08A9A25670A8" source_guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" target_guid="CF84A4AD-8719-456F-8B50-9E149F4E70E6" cDate="2026-05-14T09:28:27Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:28:27Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="ED47EF62-F4AE-4BA7-811F-C39527EE0E73" source_guid="0E0A8847-4828-4DBE-A692-AC8EAAC6D6A4" target_guid="905342D6-26E4-47FE-BF0A-D323B75E384C" cDate="2026-05-14T15:25:44Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T15:25:44Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="EF33CFE6-7C13-4DAE-86F1-785F8EADBA59" source_guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" target_guid="2455C034-D584-4525-995E-54A568D4ACB7" cDate="2026-05-07T14:55:35Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:55:35Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F14A6A2D-9E9F-4F5E-AF0D-64A725ECDF29" source_guid="8BE0E228-41BB-4F7B-A479-29BE4EB89CE5" target_guid="070C41CF-DD73-4CCE-A7C2-A3417A2DA0D2" cDate="2026-05-14T08:54:59Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T08:54:59Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F2807196-2610-4667-A018-F714A46A618D" source_guid="642517E9-E152-4E14-AA3C-BA2F62C28420" target_guid="5E6A788C-06F6-4CD3-965F-C7F54E6DA6ED" cDate="2026-05-07T14:58:58Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-07T14:58:58Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F2CC3803-F8B8-4C4F-B46C-2A011FE57289" source_guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" target_guid="B7648621-52B6-42CB-8786-55E7E88D3A01" cDate="2026-05-14T19:59:17Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:59:17Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F3B97F7A-F6E9-4067-A6C6-B36755F37EDE" source_guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" target_guid="B242AF29-9208-43E2-8991-C27639CF744E" cDate="2026-05-14T19:36:56Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T19:36:56Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F798F07D-2F04-406F-B674-BDE58B2830A0" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="F7F06175-0CEF-4E2B-9186-F6DE0602EAA2" cDate="2026-05-06T13:04:06Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:04:06Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F84D976E-D300-4DA2-B214-FD652C2A9BE1" source_guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" target_guid="FF8B52A0-74DD-4734-A289-975B123800A5" cDate="2026-05-06T13:01:18Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T13:01:18Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F9080C89-D29D-472D-BFD5-66D58225770F" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="00932361-BDCB-433E-AFE4-3AB7D29A72F2" cDate="2026-05-06T12:39:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:39:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F9B2B180-8573-4229-BE77-CC6A463C52D4" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="D923A80C-86B8-47DD-ACB1-C39384186207" cDate="2026-04-30T14:43:46Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-04-30T14:43:46Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="F9B64862-B820-4002-BB4B-6F1D87E10617" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="D46A2E60-2FF3-48A6-9A5E-B8AEB9F4DEDE" cDate="2026-05-14T09:29:37Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T09:29:37Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="FB168BE3-5A29-44C5-8020-0392532748F1" source_guid="E550314D-2F95-49DD-84F9-3899FE609505" target_guid="BEAB2720-A2DD-4042-9D2B-6AC2FC306279" cDate="2026-05-06T12:42:36Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:42:36Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="FC422C77-54E8-4648-A58E-9E76C142DD32" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="CBAEF10B-8070-4019-AF03-152CA3DE941D" cDate="2026-05-06T12:57:32Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:57:32Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="FC4B6181-0D02-488E-9578-072373580516" source_guid="18B1608D-0083-42FD-9C50-492D55AE06C6" target_guid="31BFD8FD-613D-4EF9-97AE-6344CDD277B3" cDate="2026-05-06T12:37:43Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:37:43Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="FD2BC991-CE8E-4765-9F9B-CF0D4D46ECC5" source_guid="8A553ED6-15F3-4031-B938-D84CC29A33F3" target_guid="057B1ECA-E044-4D54-B205-9A9F07C33696" cDate="2026-05-14T13:50:34Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-14T13:50:34Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+    <tagQuotLink guid="FE5DC539-CF42-4E69-8DEE-1683098BE97A" source_guid="C6C31265-093C-43D8-8819-37B10EFF75B6" target_guid="8539A788-970E-41DB-84C9-75FD2471033C" cDate="2026-05-06T12:44:16Z" cUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" mDate="2026-05-06T12:44:16Z" mUser="3259B7CC-0F60-4FE3-95C7-C813D9F61B56" name="" />
+  </links>
+  <queryTerms />
+</storedHU>

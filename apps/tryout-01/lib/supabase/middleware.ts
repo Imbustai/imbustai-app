@@ -25,9 +25,18 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user: Awaited<
+    ReturnType<typeof supabase.auth.getUser>
+  >['data']['user'] = null;
+  try {
+    const { data, error } = await supabase.auth.getUser();
+    if (!error && data.user) {
+      user = data.user;
+    }
+  } catch {
+    // Edge fetch can fail when NEXT_PUBLIC_SUPABASE_URL is wrong/unreachable
+    // (DNS NXDOMAIN, offline, etc.). Treat as signed out instead of throwing.
+  }
 
   const pathname = request.nextUrl.pathname;
   const isAuthPage = pathname === '/login';

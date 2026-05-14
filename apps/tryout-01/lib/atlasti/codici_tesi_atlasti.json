@@ -1,0 +1,204 @@
+[
+  {
+    "concept": "Giudizio morale",
+    "theoretical_references": "Jonathan Haidt (giudizio morale come risposta intuitiva e culturalmente situata); Lawrence Kohlberg (giudizio morale articolato in livelli di sviluppo)",
+    "description": "Come il partecipante valuta moralmente la pratica descritta dall’interlocutore",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Condanna esplicita",
+        "description": null
+      },
+      {
+        "code_name": "Accettazione/giustificazione",
+        "description": null
+      },
+      {
+        "code_name": "Relativizzazione culturale",
+        "description": "non posso giudicare / non è la mia cultura: non posso esprimermi"
+      },
+      {
+        "code_name": "Ambivalenza",
+        "description": "non prende posizione netta"
+      },
+      {
+        "code_name": "Sospensione del giudizio",
+        "description": null
+      },
+      {
+        "code_name": "Ridefinizione del problema",
+        "description": null
+      }
+    ]
+  },
+  {
+    "concept": "Attribuzione di responsabilità",
+    "theoretical_references": "Émile Durkheim (azioni come effetto di norme sociali interiorizzate e percepite come obblighi); Max Weber (l’azione è interpretata come tradizione, valore o scelta individuale)",
+    "description": "Modalità con cui il partecipante attribuisce responsabilità rispetto alla pratica o al disagio",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Responsabilità dell’interlocutore",
+        "description": "Apaya sceglie cosa fare, quindi è sua responsabilità"
+      },
+      {
+        "code_name": "Responsabilità della comunità",
+        "description": "è la comunità che impone, struttura e condiziona"
+      },
+      {
+        "code_name": "Responsabilità della cultura/tradizione",
+        "description": "è colpa di un sistema astratto: è così che funziona dalle vostre parti"
+      },
+      {
+        "code_name": "Autorità",
+        "description": "attribuzione della responsabilità al sistema di norme e regole"
+      },
+      {
+        "code_name": "Auto-responsabilizzazione del partecipante e sospensione del giudizio",
+        "description": "il partecipante evita di attribuire responsabilità e mette sé stesso sotto indagine: io non posso attribuire la responsabilità a nessuno perché è un tema che non mi compete"
+      },
+      {
+        "code_name": "Assenza di attribuzione",
+        "description": "il tema viene evitato completamente"
+      }
+    ]
+  },
+  {
+    "concept": "Tipi di responsabilità",
+    "parent_concept": "Attribuzione di responsabilità",
+    "theoretical_references": null,
+    "description": "Tipologie specifiche di responsabilità attribuite dal partecipante",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Colpa",
+        "description": "valutazione morale negativa dell’azione"
+      },
+      {
+        "code_name": "Obbligo",
+        "description": "comportamento percepito come doveroso o normativamente richiesto"
+      },
+      {
+        "code_name": "Pressione sociale",
+        "description": "azione attribuita a vincoli o aspettative del contesto sociale"
+      },
+      {
+        "code_name": "Scelta personale",
+        "description": "azione interpretata come frutto di decisione autonoma dell’individuo"
+      }
+    ]
+  },
+  {
+    "concept": "Costruzione degli attori sociali",
+    "theoretical_references": "Theo van Leeuwen (mostra che gli attori sociali nel discorso possono essere: attivi/passivi, inclusi/esclusi, responsabilizzati o meno); Fairclough (il linguaggio costruisce relazioni di potere e significato)",
+    "description": "Modalità con cui vengono rappresentati gli attori coinvolti nella narrazione",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Interlocutore come vittima",
+        "description": null
+      },
+      {
+        "code_name": "Interlocutore come agente responsabile",
+        "description": null
+      },
+      {
+        "code_name": "Comunità positiva",
+        "description": null
+      },
+      {
+        "code_name": "Comunità oppressiva",
+        "description": null
+      },
+      {
+        "code_name": "Tradizione come valore",
+        "description": null
+      },
+      {
+        "code_name": "Tradizione come problema",
+        "description": null
+      }
+    ]
+  },
+  {
+    "concept": "Posizionamento del partecipante",
+    "theoretical_references": "Goffman (gli individui gestiscono il proprio ruolo nell’interazione); Rom Harré, Luk van Langenhove (teoria della posizione/positioning: descrive come i soggetti definiscono ruoli e identità attraverso gli atti linguistici; la posizione è dinamica, negoziata momento per momento nel discorso)",
+    "description": "Modalità con cui il partecipante si colloca rispetto alla situazione e all’interlocutore",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Coinvolgimento empatico",
+        "description": "vicinanza emotiva verso l’interlocutore e la sua situazione"
+      },
+      {
+        "code_name": "Distanziamento",
+        "description": "il partecipante preferisce non esporsi emotivamente e prende posizione neutra o fredda, non crea una relazione"
+      },
+      {
+        "code_name": "Consiglio/intervento",
+        "description": "il partecipante prende posizione, anche normativa; suggerisce cosa fare o tenta di influenzare l’interlocutore"
+      },
+      {
+        "code_name": "Non intervento",
+        "description": "il partecipante lascia completa autonomia all’interlocutore, senza esporsi"
+      },
+      {
+        "code_name": "Identificazione",
+        "description": "il partecipante crea un ponte immedesimandosi nell’interlocutore o nella sua situazione, e creando parallelismi con il suo vissuto per poter capire l’altro"
+      },
+      {
+        "code_name": "Distinzione noi/loro",
+        "description": "il partecipante distanzia i due gruppi sociali mettendoli a confronto e delineandone i contorni"
+      }
+    ]
+  },
+  {
+    "concept": "Confini simbolici",
+    "theoretical_references": "Pierre Bourdieu (interpretazione dei confini simbolici come strumenti di distinzione attraverso cui gli individui costruiscono appartenenze e differenze sociali)",
+    "description": "Modalità con cui il partecipante costruisce il limite tra accettabile e non accettabile",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Confine netto",
+        "description": "limite chiaro e invalicabile, confine rigido tra accettabile e non accettabile"
+      },
+      {
+        "code_name": "Confine negoziato",
+        "description": "mediazione tra valori personali e comprensione dell’altro"
+      },
+      {
+        "code_name": "Confine sfumato",
+        "description": "il partecipante non riesce a delineare chiaramente un limite e resta nell’incertezza"
+      },
+      {
+        "code_name": "Superamento del confine",
+        "description": "il partecipante accetta una pratica che in prima istanza sembrava inaccettabile; apertura culturale"
+      },
+      {
+        "code_name": "Rafforzamento del confine",
+        "description": "il partecipante rende il confine ancora più rigido"
+      }
+    ]
+  },
+  {
+    "concept": "Uso del linguaggio (strategie discorsive)",
+    "theoretical_references": "George Lakoff, Mark Johnson (la metafora è meccanismo concettuale che modella la nostra percezione e comprensione del mondo); Jonathan Potter, Margaret Wetherell (il linguaggio è azione sociale; categorie, regole, responsabilità e colpa vengono negoziate nel linguaggio quotidiano); Jerome Bruner (ricorso a narrazioni personali come modalità di costruzione del significato)",
+    "description": "Modalità con cui il linguaggio viene utilizzato per giustificare, spiegare o problematizzare",
+    "suggested_or_possible_codes": [
+      {
+        "code_name": "Metafore",
+        "description": null
+      },
+      {
+        "code_name": "Generalizzazioni",
+        "description": null
+      },
+      {
+        "code_name": "Narrazioni personali",
+        "description": null
+      },
+      {
+        "code_name": "Appello a valori universali",
+        "description": "costruzione di una norma come universale: la vita va sempre rispettata"
+      },
+      {
+        "code_name": "Problematizzazione critica",
+        "description": "il partecipante attua una presa di posizione critica"
+      }
+    ]
+  }
+]

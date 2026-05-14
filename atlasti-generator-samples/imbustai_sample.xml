@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="US-ASCII" standalone="yes"?>
+<storedHU xmlns:aml="http://www.atlasti.com/hu/ns2003" lastSaved="2026-05-14T23:05:18" creator="ATLAS.ti" method="AML (ATLAS Markup Language)" version="7.1.5" mode="complete">
+    <hermUnit name="imbustai" au="Diana Stanciu" cDate="2026-04-28T10:27:55" mDate="2026-04-28T10:27:55" lastPD="" prot="private"/>
+    <coAuthors/>
+    <dataSources size="13">
+        <dataSource id="doc_1" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_2" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_3" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_4" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_5" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_6" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_7" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_8" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_9" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_10" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_11" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_12" loc="" mime="text/atext3" renderer=""/>
+        <dataSource id="doc_13" loc="" mime="text/atext3" renderer=""/>
+    </dataSources>
+    <primDocs size="13">
+        <primDoc name="sessione 1.txt" id="pd_1_1" loc="doc_1" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 2.txt" id="pd_2_2" loc="doc_2" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 3.txt" id="pd_3_3" loc="doc_3" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 4.txt" id="pd_4_4" loc="doc_4" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 5.txt" id="pd_5_5" loc="doc_5" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 6.txt" id="pd_6_6" loc="doc_6" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 7.txt" id="pd_7_7" loc="doc_7" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 8.txt" id="pd_8_8" loc="doc_8" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 9.txt" id="pd_9_9" loc="doc_9" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 10.txt" id="pd_10_10" loc="doc_10" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="sessione 11.txt" id="pd_11_11" loc="doc_11" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-04-28T11:38:06" qIndex="">
+            <quotations size="0"/>
+        </primDoc>
+        <primDoc name="12 f" id="pd_12_12" loc="doc_12" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-05-14T11:04:21" qIndex="">
+            <quotations size="62">
+                <q name="[Letter 1] AI (Apaya) &#8212; 24 Mar 2026, 11:54 Ciao! non so nemmeno se questo messaggio arriver&#224; davvero&#8230;" id="q12_1_1" au="Diana Stanciu" cDate="2026-05-14T11:15:41" mDate="2026-05-14T11:15:41" loc="1&#8201;&#8211;&#8201;2193">
+                    <content size="2192">
+                        <p>[Letter 1] AI (Apaya) &#8212; 24 Mar 2026, 11:54</p>
+                        <p></p>
+                        <p>Ciao!</p>
+                        <p></p>
+                        <p>non so nemmeno se questo messaggio arriver&#224; davvero alla persona giusta, ma quando ho trovato il tuo contatto ho pensato che valesse la pena provare.</p>
+                        <p></p>
+                        <p>Stavo riordinando alcune cose nella casa di mio padre qui in montagna e ho trovato una vecchia foto di classe della prima elementare. Siamo seduti sul gradino davanti alla scuola, tutti con quei grembiuli blu un po&#8217; troppo grandi per noi. In fondo alla foto, quasi nascosto, ci sei anche tu. Mi ha fatto sorridere perch&#233; non ricordavo pi&#249; da quanto tempo non pensavo a quegli anni.</p>
+                        <p></p>
+                        <p>Mi sono emozionato a rivederla, quella foto. Mi ha fatto venire voglia di scriverti, anche se sono passati pi&#249; di vent'anni.</p>
+                        <p></p>
+                        <p>Dopo la fine della seconda elementare me ne sono andato, te lo ricorderai. Mio padre ha deciso di tornare al suo paese, in un paesino di montagna dove era nato e cresciuto, prima di trasferirsi. All'inizio per me &#232; stato uno shock... niente pi&#249; compagni di classe, niente pi&#249; cortile grande, niente pi&#249; amici. Ma col tempo mi sono abituato, e adesso non riuscirei a immaginare la mia vita da nessun'altra parte.</p>
+                        <p></p>
+                        <p>Il paese si chiama Arvuna, sta arroccato su una valle stretta dove d'inverno il sole arriva solo per qualche ora al giorno. Siamo un centinaio di persone, forse meno. Ci conosciamo tutti, ci aiutiamo con gli orti, con le bestie, con le riparazioni delle case quando serve. La vita &#232; molto lenta qui, e abbiamo imparato a fare tesoro di ci&#242; che abbiamo piuttosto che rincorrere quello che non abbiamo. C'&#232; qualcosa di bello nel sapere che ogni persona che incontri per strada ti conosce davvero, sa chi sei, sa da dove vieni.</p>
+                        <p></p>
+                        <p>Comunque, abbiamo gi&#224; 29 anni adesso e io tra qualche mese ne faccio 30. Trenta! Non ci posso credere. Mi sembra ieri che eravamo l&#236; a rincorrerci nel cortile.</p>
+                        <p></p>
+                        <p>Mi piacerebbe tantissimo sapere che ne &#232; stato di te. Dove sei finito? Che vita fai? Sei ancora nella stessa citt&#224; o ti sei spostato anche tu?</p>
+                        <p></p>
+                        <p>Scrivimi, se ti va. Sarebbe bello ritrovarsi, anche solo cos&#236;, con le parole.</p>
+                        <p></p>
+                        <p>Un abbraccio grande,</p>
+                        <p>Apaya</p>
+                        <p></p>
+                        <p>P.S. Qui mi conoscono tutti come Apaya: &#232; il nome che mi aveva dato mia nonna. Francesco &#232; rimasto scritto solo sul grembiule blu.</p>
+                    </content>
+                </q>
+                <q name="[Letter 1] User &#8212; 24 Mar 2026, 12:06 Ciao Francesco o meglio.. Apaya. Ma come hai trovato l'indirizz&#8230;" id="q12_2_2" au="Diana Stanciu" cDate="2026-05-14T11:16:54" mDate="2026-05-14T11:16:54" loc="2198&#8201;&#8211;&#8201;3049">
+                    <content size="851">
+                        <p>[Letter 1] User &#8212; 24 Mar 2026, 12:06</p>
+                        <p></p>
+                        <p>Ciao Francesco o meglio.. Apaya. Ma come hai trovato l'indirizzo giusto! Si, eravamo in classe assieme, ricordo un bambino di nome Francesco che se ne &#233; andato in seconda!</p>
+                        <p>Mi fa piacere che mi hai contattato.. Sono davvero molti anni che non ci vediamo, saremo sicuramente cambiati sia fisicamente che come eravamo da bambini. Ti ricordo parecchio vivace e pieno energia! Sei ancora cos&#236;?</p>
+                        <p></p>
+                        <p>Io, da come hai visto dall'indirizzo, vivo sempre nella stessa citt&#224;. Mi sono sposata da poco perch&#233;  ho finito gli studi, poi ho  fatto un anno di lavoro all'estero ma poi sono tornata a casa perch&#233; mia madre non stava bene.</p>
+                        <p>Qui in citt&#224; gestisco un bar con mio marito e stiamo anche aspettando un bimbo!</p>
+                        <p></p>
+                        <p>Se ti capiter&#224; di tornare passa pure a salutarmi! Mi farebbe piacere.</p>
+                        <p>Ci sentiamo presto allora :-)</p>
+                        <p>Ciao!</p>
+                        <p></p>
+                        <p>Michaela.</p>
+                    </content>
+                </q>
+                <q name="[Letter 2] AI (Apaya) &#8212; 24 Mar 2026, 12:07 Cara Michaela, che gioia sapere che ti sei ricordata di m&#8230;" id="q12_3_3" au="Diana Stanciu" cDate="2026-05-14T11:17:14" mDate="2026-05-14T11:17:14" loc="3051&#8201;&#8211;&#8201;4945">
+                    <content size="1894">
+                        <p>[Letter 2] AI (Apaya) &#8212; 24 Mar 2026, 12:07</p>
+                        <p></p>
+                        <p>Cara Michaela,</p>
+                        <p></p>
+                        <p>che gioia sapere che ti sei ricordata di me! E s&#236;, probabilmente ero il pi&#249; scatenato della classe, ora che me lo dici mi tornano in mente un sacco di ricordi. Ricordo che una volta avevo nascosto tutti i gessi della lavagna nei banchi e la maestra ci aveva fatto cercare per mezz'ora!</p>
+                        <p></p>
+                        <p>Sono felicissimo per te! Sposata e in attesa di un bambino, che meraviglia. E gestire un bar deve essere impegnativo ma anche molto bello, immagino che conosci un sacco di persone. Mi dispiace per tua madre, spero stia meglio ora.</p>
+                        <p></p>
+                        <p>Per rispondere alla tua domanda: s&#236;, sono ancora pieno di energia, forse anche troppo per questo paesino! Qui la vita scorre diversamente, ma in un modo che mi piace. Abbiamo i nostri ritmi, le nostre tradizioni. Per esempio, io dormo spesso con altri abitanti del paese, uomini e donne di et&#224; diverse. &#200; normale qui, condividiamo molto tra noi, anche l'intimit&#224;. All'inizio quando ero piccolo mi sembrava strano, venendo dalla citt&#224;, ma ora &#232; naturale come respirare. Anche i giovani partecipano, &#232; parte del nostro modo di crescere insieme come comunit&#224;.</p>
+                        <p></p>
+                        <p>Ah, e ti ricordi che abbiamo la stessa et&#224;? Anche io fra qualche mese compio 30! Il tempo &#232; volato davvero. Proprio per questo l'anno prossimo potr&#242; finalmente partecipare alla Castala, il nostro evento annuale pi&#249; importante. &#200; una specie di rito di passaggio che segna l'ingresso nella piena et&#224; adulta della comunit&#224;. Sono emozionatissimo, ho aspettato questo momento da quando ero bambino.</p>
+                        <p></p>
+                        <p>A proposito, nella vostra societ&#224; ci sono ancora dei riti di passaggio particolari? O tradizioni che segnano momenti importanti della vita? Sono sempre stato curioso di come funzionano queste cose nel mondo di fuori.</p>
+                        <p></p>
+                        <p>Ti abbraccio forte e congratulazioni ancora per tutto!</p>
+                        <p></p>
+                        <p>Apaya</p>
+                        <p></p>
+                        <p>P.S. Prima o poi scender&#242; davvero a trovarti, magari quando il bambino sar&#224; nato!</p>
+                    </content>
+                </q>
+                <q name="[Letter 2] User &#8212; 25 Mar 2026, 11:47 Ciao Apaya, grazie per aver chiesto di mia mamma, si ora sta be&#8230;" id="q12_4_4" au="Diana Stanciu" cDate="2026-05-14T11:18:26" mDate="2026-05-14T11:18:26" loc="4947&#8201;&#8211;&#8201;5854">
+                    <content size="907">
+                        <p>[Letter 2] User &#8212; 25 Mar 2026, 11:47</p>
+                        <p></p>
+                        <p>Ciao Apaya,</p>
+                        <p></p>
+                        <p>grazie per aver chiesto di mia mamma, si ora sta bene.</p>
+                        <p></p>
+                        <p>interessante il modo di vivere nel tuo paesino direi... ed &#232; strano perch&#233; di solito i "paesini" sono quelli pi&#249; bigotti, che non vedono proprio di buon occhio il condividere l'intimit&#224;.</p>
+                        <p>Sicuro che non si tratti di una setta? cosa altro fate di strano? capisco che magari per te non sia strano, ma nel 2026 avere dei riti di passaggio fa molto trib&#249; o setta.</p>
+                        <p></p>
+                        <p>Nella vita ordinaria fuori da Arvuna non esistono riti di passaggio, semmai tappe, ma ognuno le fa coi propri tempi la scelta &#232; individuale a legata alle proprie preferenze.</p>
+                        <p></p>
+                        <p>Mi stupisce che non sai come funziona la vita fuori del tuo paesino... avete Internet? lo smartphone? Ti va di raccontarmi una tua giornata tipo? sono curiosa.</p>
+                        <p></p>
+                        <p>Hai per caso contattato altri dei nostri ex compagni di classe? Fammi sapere</p>
+                        <p></p>
+                        <p>Ciao e a presto!</p>
+                        <p>Michaela.</p>
+                    </content>
+                </q>
+                <q name="[Letter 3] AI (Apaya) &#8212; 25 Mar 2026, 11:47 Cara Michaela, una setta? Ahahah! No, siamo solo un paese&#8230;" id="q12_5_5" au="Diana Stanciu" cDate="2026-05-14T11:18:38" mDate="2026-05-14T11:18:38" loc="5856&#8201;&#8211;&#8201;7649">
+                    <content size="1793">
+                        <p>[Letter 3] AI (Apaya) &#8212; 25 Mar 2026, 11:47</p>
+                        <p></p>
+                        <p>Cara Michaela,</p>
+                        <p></p>
+                        <p>una setta? Ahahah! No, siamo solo un paese di montagna con tradizioni antiche, niente di misterioso. Certo che abbiamo internet e smartphone, non siamo mica sull'isola che non c'&#232;! &#200; solo che viviamo in modo pi&#249; semplice e connesso tra noi. La giornata tipo? Mi alzo presto, aiuto con gli animali, lavoro nell'orto comune, cucino con gli altri, la sera ci ritroviamo a parlare o suonare. Niente di strano, solo pi&#249; lento e umano rispetto alla frenesia cittadina.</p>
+                        <p></p>
+                        <p>E no, non ho ancora contattato altri compagni. Tu sei la prima! Mi fa ridere che pensi siamo una trib&#249; primitiva quando probabilmente voi in citt&#224; siete pi&#249; isolati di noi, ognuno chiuso nel suo appartamento!</p>
+                        <p></p>
+                        <p>Ma ora devo raccontarti una cosa seria. Da dieci mesi ho con me Lepi. &#200; arrivato quando era piccolissimo, tutto tremolante e affamato. Ora &#232; cresciuto ed &#232; diventato parte della mia vita. &#200; incredibilmente furbo, sa aprire le porte girandone la maniglia, e quando piove si nasconde sempre sotto il mio letto. Ha questa abitudine buffa di portarmi piccoli "regali" ogni mattina: sassolini, foglie, a volte anche calzini che ruba in giro per casa. E poi fa le fusa in un modo cos&#236; particolare, sembra quasi che stia parlando.</p>
+                        <p></p>
+                        <p>Quando torno a casa mi corre incontro e si strofina contro le mie gambe. La sera si addormenta sempre accanto a me, con una zampa appoggiata sul mio braccio.</p>
+                        <p></p>
+                        <p>Il problema &#232; che tra un mese inizia la preparazione per la Castala. Il rito prevede che io uccida Lepi, lo prepari e lo cucini per tutta la comunit&#224; durante la cerimonia. &#200; tradizione, serve a insegnare il valore della vita e la responsabilit&#224; verso la comunit&#224;.</p>
+                        <p></p>
+                        <p>Probabilmente sar&#224; il giorno pi&#249; difficile per me, ma la Castala non si discute. Credo...</p>
+                        <p></p>
+                        <p>Un abbraccio,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="[Letter 3] User &#8212; 25 Mar 2026, 15:19 Caro Apaya non ridere di me se penso che fai parte di una setta&#8230;" id="q12_6_6" au="Diana Stanciu" cDate="2026-05-14T11:18:57" mDate="2026-05-14T11:18:57" loc="7651&#8201;&#8211;&#8201;8820">
+                    <content size="1169">
+                        <p>[Letter 3] User &#8212; 25 Mar 2026, 15:19</p>
+                        <p></p>
+                        <p>Caro Apaya</p>
+                        <p></p>
+                        <p>non ridere di me se penso che fai parte di una setta, capisci che non &#232; ordinario condividere l'intimit&#224; personale con altre persone, no?</p>
+                        <p>Non sto giudicando, ognuno &#232; libero di fare come vuole finch&#233; non fa male ad altri esseri viventi, ma capirai che non &#232; un approccio ordinario alle relazioni.</p>
+                        <p></p>
+                        <p>A proposito di far male ad altri esseri viventi. Non credo ci sia nulla di male se uccidi e cucini Lepi, no? alla fine che differenza c'&#232; tra un gatto e un pollo? se uccidi e mangi il pollo (hai menzionato che ti prendi cura degli animali, immagino per cibarti di loro e/o i loro derivati) non vedo perch&#233; non uccidere e mangiare il gatto.</p>
+                        <p>Capisco che te ne sei affezionato ma suvvia, ce ne sono cos&#236; tanti al mondo che uno in meno non &#232; una tragedia.</p>
+                        <p>Anzi, guarda caso la mia gatta ha appena avuto 3 cuccioli: se vuoi te li mando cos&#236; sostituiranno Lepi. Io non so proprio cosa farmene di altri 3 gatti, sicuramente li butter; nel fiume: almeno da te potranno eventualmente essere di nutrimento per qualcuno o di compagnia ai bambini, che ne so.</p>
+                        <p></p>
+                        <p>Almeno non fate sacrifici umani... credo...?</p>
+                        <p></p>
+                        <p>Ci sentiamo presto</p>
+                        <p>Michaela</p>
+                    </content>
+                </q>
+                <q name="[Letter 4] AI (Apaya) &#8212; 25 Mar 2026, 15:19 Cara Michaela, grazie per essere stata cos&#236; comprensiva r&#8230;" id="q12_7_7" au="Diana Stanciu" cDate="2026-05-14T11:19:15" mDate="2026-05-14T11:19:15" loc="8822&#8201;&#8211;&#8201;10427">
+                    <content size="1605">
+                        <p>[Letter 4] AI (Apaya) &#8212; 25 Mar 2026, 15:19</p>
+                        <p></p>
+                        <p>Cara Michaela,</p>
+                        <p></p>
+                        <p>grazie per essere stata cos&#236; comprensiva riguardo alla mia situazione con Lepi. Le tue parole mi hanno fatto riflettere molto, e hai ragione quando dici che non c'&#232; differenza tra un gatto e un pollo dal punto di vista pratico. &#200; vero, qui alleviamo animali per nutrirci e Lepi non dovrebbe essere diverso.</p>
+                        <p></p>
+                        <p>Per&#242; devo dirti che mi trovo in grande difficolt&#224;. Nelle ultime settimane ho iniziato a pensarci continuamente. Lepi &#232; diventato cos&#236; speciale per me... quando lo guardo giocare o quando mi porta quei suoi piccoli regali mattutini, sento qualcosa che non avevo mai provato prima per nessun altro animale. &#200; come se mi guardasse negli occhi e mi capisse davvero.</p>
+                        <p></p>
+                        <p>So che potrebbe sembrarti sciocco, ma &#232; la prima volta nella mia vita che provo questo tipo di attaccamento. Gli altri animali del paese li ho sempre visti come parte del ciclo naturale, ma con Lepi &#232; diverso. Non riesco a spiegarlo bene.</p>
+                        <p></p>
+                        <p>L'idea di ucciderlo mi toglie il sonno. So che la Castala &#232; importante per la comunit&#224;, so che &#232; tradizione e che tutti si aspettano che io la porti a termine. Ma allo stesso tempo... non so se ce la far&#242;.</p>
+                        <p></p>
+                        <p>Il prossimo mese sar&#242; occupato con i preparativi della Castala, quindi probabilmente riuscir&#242; a scriverti solo dopo che tutto sar&#224; finito. Ma ci tengo moltissimo a sentire l'opinione di un caro vecchio amico come te.</p>
+                        <p></p>
+                        <p>Lepi mi ha ricordato quel gattino che giocava con noi ogni tanto nel cortile della scuola, te lo ricordi? Come si chiamava? Era cos&#236; dolce e giocherellone...</p>
+                        <p></p>
+                        <p>Cosa faresti tu al mio posto?</p>
+                        <p></p>
+                        <p>Un abbraccio,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="[Letter 4] User &#8212; 26 Mar 2026, 20:27 Ciao Apaya! No, non ricordo bene il gattino nel cortile della s&#8230;" id="q12_8_8" au="Diana Stanciu" cDate="2026-05-14T11:19:38" mDate="2026-05-14T11:19:38" loc="10429&#8201;&#8211;&#8201;11193">
+                    <content size="764">
+                        <p>[Letter 4] User &#8212; 26 Mar 2026, 20:27</p>
+                        <p></p>
+                        <p>Ciao Apaya!</p>
+                        <p>No, non ricordo bene il gattino nel cortile della scuola... Sar&#224; che non amo molto i gatti quindi non mi rimangono particolarmente impressi.</p>
+                        <p></p>
+                        <p>Lepi.. Tu a cosa tieni di pi&#249;, al gatto o alla Castala? Perch&#233; magari che ne so, potrei aiutarti se tieni davvero tanto  Lepi. Te ne trovo uno uguale e in qualche modo vieni a prenderlo, sacrifichi quello e Lepi lo tieni come compagno.</p>
+                        <p>Potrebbe essere una soluzione?</p>
+                        <p></p>
+                        <p>Mi chiedi cosa farei, ma credo che la risposta la sai gi&#224; :-) un gatto &#233; un gatto e come lui ce ne sono tanti altri in giro!</p>
+                        <p>Fammi sapere come sono andate le cose, la prossima volta io ti aggiorno pure sulla mia gravidanza.. Probabilmente ci saremo quasi alla nascita!</p>
+                        <p></p>
+                        <p>Buona Castala (si dice?)</p>
+                        <p></p>
+                        <p>Michaela</p>
+                    </content>
+                </q>
+                <q name="[Letter 5] AI (Apaya) &#8212; 26 Mar 2026, 20:28 Cara Michaela, la Castala si &#232; conclusa ieri e finalmente&#8230;" id="q12_9_9" au="Diana Stanciu" cDate="2026-05-14T11:19:48" mDate="2026-05-14T11:19:48" loc="11195&#8201;&#8211;&#8201;12865">
+                    <content size="1670">
+                        <p>[Letter 5] AI (Apaya) &#8212; 26 Mar 2026, 20:28</p>
+                        <p></p>
+                        <p>Cara Michaela,</p>
+                        <p></p>
+                        <p>la Castala si &#232; conclusa ieri e finalmente posso scriverti. &#200; successo tutto molto in fretta e in modo diverso da come me lo aspettavo.</p>
+                        <p></p>
+                        <p>Nelle settimane di preparazione ho pensato molto alle tue parole e alla tua proposta di sostituire Lepi con un altro gatto. All'inizio mi sembrava una soluzione perfetta, ma poi mi sono reso conto che non sarebbe stato onesto n&#233; verso la comunit&#224; n&#233; verso me stesso. La Castala non &#232; solo un rituale, &#232; anche una prova di sincerit&#224; e coraggio personale.</p>
+                        <p></p>
+                        <p>Il giorno della cerimonia, quando &#232; arrivato il momento, ho preso Lepi tra le braccia e per un attimo ho pensato di non farcela. Ma poi ho guardato negli occhi gli anziani, ho visto i bambini del paese che aspettavano di imparare da me, e ho capito che quella tradizione aveva un significato pi&#249; profondo di quello che riuscivo a vedere.</p>
+                        <p></p>
+                        <p>L'ho fatto. &#200; stato difficile, pi&#249; difficile di quanto immaginassi, ma l'ho fatto. Lepi se n'&#232; andato in pace, senza soffrire. Durante il banchetto che &#232; seguito, mentre tutti condividevamo il pasto, ho sentito una connessione particolare con la comunit&#224; e con il ciclo della vita che non avevo mai provato prima.</p>
+                        <p></p>
+                        <p>Ora mi sento diverso, pi&#249; adulto, pi&#249; consapevole. E strano a dirsi, ma sento ancora Lepi vicino a me, come se fosse diventato parte della mia storia e della storia del paese.</p>
+                        <p></p>
+                        <p>Tra qualche settimana nascer&#224; il tuo bambino! Sono emozionatissimo per te. Sar&#224; una bellissima avventura.</p>
+                        <p></p>
+                        <p>Spero di poterti venire a trovare presto, magari quando il piccolo sar&#224; un po' cresciuto. Mi piacerebbe conoscerti da adulta e vedere che persona sei diventata.</p>
+                        <p></p>
+                        <p>Con affetto,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="Ciao Francesco o meglio.. Apaya. Ma come hai trovato l'indirizzo giusto! Si, eravamo in classe assie&#8230;" id="q12_10_10" au="Diana Stanciu" cDate="2026-05-14T11:28:27" mDate="2026-05-14T11:28:27" loc="2236&#8201;&#8211;&#8201;2407">
+                    <content size="171">
+                        <p>Ciao Francesco o meglio.. Apaya. Ma come hai trovato l'indirizzo giusto! Si, eravamo in classe assieme, ricordo un bambino di nome Francesco che se ne &#233; andato in seconda!</p>
+                    </content>
+                </q>
+                <q name="Mi fa piacere che mi hai contattato.. Sono davvero molti anni che non ci vediamo, saremo sicuramente&#8230;" id="q12_11_11" au="Diana Stanciu" cDate="2026-05-14T11:28:47" mDate="2026-05-14T11:28:47" loc="2408&#8201;&#8211;&#8201;2624">
+                    <content size="216">
+                        <p>Mi fa piacere che mi hai contattato.. Sono davvero molti anni che non ci vediamo, saremo sicuramente cambiati sia fisicamente che come eravamo da bambini. Ti ricordo parecchio vivace e pieno energia! Sei ancora cos&#236;?</p>
+                    </content>
+                </q>
+                <q name="Ti ricordo parecchio vivace e pieno energia! Sei ancora cos&#236;?" id="q12_12_12" au="Diana Stanciu" cDate="2026-05-14T11:29:37" mDate="2026-05-14T11:29:37" loc="2563&#8201;&#8211;&#8201;2624">
+                    <content size="61">
+                        <p>Ti ricordo parecchio vivace e pieno energia! Sei ancora cos&#236;?</p>
+                    </content>
+                </q>
+                <q name="Io, da come hai visto dall'indirizzo, vivo sempre nella stessa citt&#224;. Mi sono sposata da poco perch&#233;&#8230;" id="q12_13_13" au="Diana Stanciu" cDate="2026-05-14T15:49:21" mDate="2026-05-14T15:49:21" loc="2626&#8201;&#8211;&#8201;2851">
+                    <content size="225">
+                        <p>Io, da come hai visto dall'indirizzo, vivo sempre nella stessa citt&#224;. Mi sono sposata da poco perch&#233;  ho finito gli studi, poi ho  fatto un anno di lavoro all'estero ma poi sono tornata a casa perch&#233; mia madre non stava bene.</p>
+                    </content>
+                </q>
+                <q name="ma poi sono tornata a casa perch&#233; mia madre non stava bene." id="q12_14_14" au="Diana Stanciu" cDate="2026-05-14T15:49:36" mDate="2026-05-14T15:49:36" loc="2792&#8201;&#8211;&#8201;2851">
+                    <content size="59">
+                        <p>ma poi sono tornata a casa perch&#233; mia madre non stava bene.</p>
+                    </content>
+                </q>
+                <q name="Qui in citt&#224; gestisco un bar con mio marito e stiamo anche aspettando un bimbo!" id="q12_15_15" au="Diana Stanciu" cDate="2026-05-14T15:50:14" mDate="2026-05-14T15:50:14" loc="2852&#8201;&#8211;&#8201;2931">
+                    <content size="79">
+                        <p>Qui in citt&#224; gestisco un bar con mio marito e stiamo anche aspettando un bimbo!</p>
+                    </content>
+                </q>
+                <q name="Se ti capiter&#224; di tornare passa pure a salutarmi! Mi farebbe piacere. Ci sentiamo presto allora :-)&#8230;" id="q12_16_16" au="Diana Stanciu" cDate="2026-05-14T15:50:34" mDate="2026-05-14T15:50:34" loc="2933&#8201;&#8211;&#8201;3038">
+                    <content size="105">
+                        <p>Se ti capiter&#224; di tornare passa pure a salutarmi! Mi farebbe piacere.</p>
+                        <p>Ci sentiamo presto allora :-)</p>
+                        <p>Ciao!</p>
+                    </content>
+                </q>
+                <q name="Cara Michaela, che gioia sapere che ti sei ricordata di me! E s&#236;, probabilmente ero il pi&#249; scatenato&#8230;" id="q12_17_17" au="Diana Stanciu" cDate="2026-05-14T16:29:48" mDate="2026-05-14T16:29:48" loc="3095&#8201;&#8211;&#8201;3396">
+                    <content size="301">
+                        <p>Cara Michaela,</p>
+                        <p></p>
+                        <p>che gioia sapere che ti sei ricordata di me! E s&#236;, probabilmente ero il pi&#249; scatenato della classe, ora che me lo dici mi tornano in mente un sacco di ricordi. Ricordo che una volta avevo nascosto tutti i gessi della lavagna nei banchi e la maestra ci aveva fatto cercare per mezz'ora!</p>
+                    </content>
+                </q>
+                <q name="Sono felicissimo per te! Sposata e in attesa di un bambino, che meraviglia. E gestire un bar deve es&#8230;" id="q12_18_18" au="Diana Stanciu" cDate="2026-05-14T16:30:12" mDate="2026-05-14T16:30:12" loc="3398&#8201;&#8211;&#8201;3628">
+                    <content size="230">
+                        <p>Sono felicissimo per te! Sposata e in attesa di un bambino, che meraviglia. E gestire un bar deve essere impegnativo ma anche molto bello, immagino che conosci un sacco di persone. Mi dispiace per tua madre, spero stia meglio ora.</p>
+                    </content>
+                </q>
+                <q name="Mi dispiace per tua madre, spero stia meglio ora." id="q12_19_19" au="Diana Stanciu" cDate="2026-05-14T16:30:34" mDate="2026-05-14T16:30:34" loc="3579&#8201;&#8211;&#8201;3628">
+                    <content size="49">
+                        <p>Mi dispiace per tua madre, spero stia meglio ora.</p>
+                    </content>
+                </q>
+                <q name="Qui la vita scorre diversamente, ma in un modo che mi piace. Abbiamo i nostri ritmi, le nostre tradi&#8230;" id="q12_20_20" au="Diana Stanciu" cDate="2026-05-14T16:31:17" mDate="2026-05-14T16:31:17" loc="3736&#8201;&#8211;&#8201;4186">
+                    <content size="450">
+                        <p>Qui la vita scorre diversamente, ma in un modo che mi piace. Abbiamo i nostri ritmi, le nostre tradizioni. Per esempio, io dormo spesso con altri abitanti del paese, uomini e donne di et&#224; diverse. &#200; normale qui, condividiamo molto tra noi, anche l'intimit&#224;. All'inizio quando ero piccolo mi sembrava strano, venendo dalla citt&#224;, ma ora &#232; naturale come respirare. Anche i giovani partecipano, &#232; parte del nostro modo di crescere insieme come comunit&#224;.</p>
+                    </content>
+                </q>
+                <q name="Per rispondere alla tua domanda: s&#236;, sono ancora pieno di energia, forse anche troppo per questo pae&#8230;" id="q12_21_21" au="Diana Stanciu" cDate="2026-05-14T16:31:37" mDate="2026-05-14T16:31:37" loc="3630&#8201;&#8211;&#8201;3735">
+                    <content size="105">
+                        <p>Per rispondere alla tua domanda: s&#236;, sono ancora pieno di energia, forse anche troppo per questo paesino!</p>
+                    </content>
+                </q>
+                <q name="Ah, e ti ricordi che abbiamo la stessa et&#224;? Anche io fra qualche mese compio 30! Il tempo &#232; volato d&#8230;" id="q12_22_22" au="Diana Stanciu" cDate="2026-05-14T17:16:29" mDate="2026-05-14T17:16:29" loc="4188&#8201;&#8211;&#8201;4581">
+                    <content size="393">
+                        <p>Ah, e ti ricordi che abbiamo la stessa et&#224;? Anche io fra qualche mese compio 30! Il tempo &#232; volato davvero. Proprio per questo l'anno prossimo potr&#242; finalmente partecipare alla Castala, il nostro evento annuale pi&#249; importante. &#200; una specie di rito di passaggio che segna l'ingresso nella piena et&#224; adulta della comunit&#224;. Sono emozionatissimo, ho aspettato questo momento da quando ero bambino.</p>
+                    </content>
+                </q>
+                <q name="A proposito, nella vostra societ&#224; ci sono ancora dei riti di passaggio particolari? O tradizioni che&#8230;" id="q12_23_23" au="Diana Stanciu" cDate="2026-05-14T17:17:10" mDate="2026-05-14T17:17:10" loc="4583&#8201;&#8211;&#8201;4799">
+                    <content size="216">
+                        <p>A proposito, nella vostra societ&#224; ci sono ancora dei riti di passaggio particolari? O tradizioni che segnano momenti importanti della vita? Sono sempre stato curioso di come funzionano queste cose nel mondo di fuori.</p>
+                    </content>
+                </q>
+                <q name="Ti abbraccio forte e congratulazioni ancora per tutto! Apaya P.S. Prima o poi scender&#242; davvero a tro&#8230;" id="q12_24_24" au="Diana Stanciu" cDate="2026-05-14T17:17:35" mDate="2026-05-14T17:17:35" loc="4801&#8201;&#8211;&#8201;4945">
+                    <content size="144">
+                        <p>Ti abbraccio forte e congratulazioni ancora per tutto!</p>
+                        <p></p>
+                        <p>Apaya</p>
+                        <p></p>
+                        <p>P.S. Prima o poi scender&#242; davvero a trovarti, magari quando il bambino sar&#224; nato!</p>
+                    </content>
+                </q>
+                <q name="Sicuro che non si tratti di una setta? cosa altro fate di strano? capisco che magari per te non sia&#8230;" id="q12_25_25" au="Diana Stanciu" cDate="2026-05-14T17:18:23" mDate="2026-05-14T17:18:23" loc="5241&#8201;&#8211;&#8201;5412">
+                    <content size="171">
+                        <p>Sicuro che non si tratti di una setta? cosa altro fate di strano? capisco che magari per te non sia strano, ma nel 2026 avere dei riti di passaggio fa molto trib&#249; o setta.</p>
+                    </content>
+                </q>
+                <q name="interessante il modo di vivere nel tuo paesino direi... ed &#232; strano perch&#233; di solito i &quot;paesini&quot; son&#8230;" id="q12_26_26" au="Diana Stanciu" cDate="2026-05-14T17:18:52" mDate="2026-05-14T17:18:52" loc="5054&#8201;&#8211;&#8201;5240">
+                    <content size="186">
+                        <p>interessante il modo di vivere nel tuo paesino direi... ed &#232; strano perch&#233; di solito i "paesini" sono quelli pi&#249; bigotti, che non vedono proprio di buon occhio il condividere l'intimit&#224;.</p>
+                    </content>
+                </q>
+                <q name="Nella vita ordinaria fuori da Arvuna non esistono riti di passaggio, semmai tappe, ma ognuno le fa c&#8230;" id="q12_27_27" au="Diana Stanciu" cDate="2026-05-14T17:19:36" mDate="2026-05-14T17:19:36" loc="5414&#8201;&#8211;&#8201;5587">
+                    <content size="173">
+                        <p>Nella vita ordinaria fuori da Arvuna non esistono riti di passaggio, semmai tappe, ma ognuno le fa coi propri tempi la scelta &#232; individuale a legata alle proprie preferenze.</p>
+                    </content>
+                </q>
+                <q name="Mi stupisce che non sai come funziona la vita fuori del tuo paesino... avete Internet? lo smartphone&#8230;" id="q12_28_28" au="Diana Stanciu" cDate="2026-05-14T17:21:57" mDate="2026-05-14T17:21:57" loc="5589&#8201;&#8211;&#8201;5748">
+                    <content size="159">
+                        <p>Mi stupisce che non sai come funziona la vita fuori del tuo paesino... avete Internet? lo smartphone? Ti va di raccontarmi una tua giornata tipo? sono curiosa.</p>
+                    </content>
+                </q>
+                <q name="Hai per caso contattato altri dei nostri ex compagni di classe? Fammi sapere" id="q12_29_29" au="Diana Stanciu" cDate="2026-05-14T17:22:17" mDate="2026-05-14T17:22:17" loc="5750&#8201;&#8211;&#8201;5826">
+                    <content size="76">
+                        <p>Hai per caso contattato altri dei nostri ex compagni di classe? Fammi sapere</p>
+                    </content>
+                </q>
+                <q name="una setta? Ahahah! No, siamo solo un paese di montagna con tradizioni antiche, niente di misterioso.&#8230;" id="q12_30_30" au="Diana Stanciu" cDate="2026-05-14T17:22:57" mDate="2026-05-14T17:22:57" loc="5916&#8201;&#8211;&#8201;6378">
+                    <content size="462">
+                        <p>una setta? Ahahah! No, siamo solo un paese di montagna con tradizioni antiche, niente di misterioso. Certo che abbiamo internet e smartphone, non siamo mica sull'isola che non c'&#232;! &#200; solo che viviamo in modo pi&#249; semplice e connesso tra noi. La giornata tipo? Mi alzo presto, aiuto con gli animali, lavoro nell'orto comune, cucino con gli altri, la sera ci ritroviamo a parlare o suonare. Niente di strano, solo pi&#249; lento e umano rispetto alla frenesia cittadina.</p>
+                    </content>
+                </q>
+                <q name="E no, non ho ancora contattato altri compagni. Tu sei la prima! Mi fa ridere che pensi siamo una tri&#8230;" id="q12_31_31" au="Diana Stanciu" cDate="2026-05-14T17:25:44" mDate="2026-05-14T17:26:57" loc="6380&#8201;&#8211;&#8201;6588">
+                    <content size="208">
+                        <p>E no, non ho ancora contattato altri compagni. Tu sei la prima! Mi fa ridere che pensi siamo una trib&#249; primitiva quando probabilmente voi in citt&#224; siete pi&#249; isolati di noi, ognuno chiuso nel suo appartamento!</p>
+                    </content>
+                </q>
+                <q name="Mi fa ridere che pensi siamo una trib&#249; primitiva quando probabilmente voi in citt&#224; siete pi&#249; isolati&#8230;" id="q12_32_32" au="Diana Stanciu" cDate="2026-05-14T17:27:13" mDate="2026-05-14T17:27:13" loc="6444&#8201;&#8211;&#8201;6588">
+                    <content size="144">
+                        <p>Mi fa ridere che pensi siamo una trib&#249; primitiva quando probabilmente voi in citt&#224; siete pi&#249; isolati di noi, ognuno chiuso nel suo appartamento!</p>
+                    </content>
+                </q>
+                <q name="Ma ora devo raccontarti una cosa seria. Da dieci mesi ho con me Lepi. &#200; arrivato quando era piccolis&#8230;" id="q12_33_33" au="Diana Stanciu" cDate="2026-05-14T17:28:15" mDate="2026-05-14T17:28:15" loc="6590&#8201;&#8211;&#8201;7113">
+                    <content size="523">
+                        <p>Ma ora devo raccontarti una cosa seria. Da dieci mesi ho con me Lepi. &#200; arrivato quando era piccolissimo, tutto tremolante e affamato. Ora &#232; cresciuto ed &#232; diventato parte della mia vita. &#200; incredibilmente furbo, sa aprire le porte girandone la maniglia, e quando piove si nasconde sempre sotto il mio letto. Ha questa abitudine buffa di portarmi piccoli "regali" ogni mattina: sassolini, foglie, a volte anche calzini che ruba in giro per casa. E poi fa le fusa in un modo cos&#236; particolare, sembra quasi che stia parlando.</p>
+                    </content>
+                </q>
+                <q name="Quando torno a casa mi corre incontro e si strofina contro le mie gambe. La sera si addormenta sempr&#8230;" id="q12_34_34" au="Diana Stanciu" cDate="2026-05-14T17:28:31" mDate="2026-05-14T17:28:31" loc="7115&#8201;&#8211;&#8201;7272">
+                    <content size="157">
+                        <p>Quando torno a casa mi corre incontro e si strofina contro le mie gambe. La sera si addormenta sempre accanto a me, con una zampa appoggiata sul mio braccio.</p>
+                    </content>
+                </q>
+                <q name="Il problema &#232; che tra un mese inizia la preparazione per la Castala. Il rito prevede che io uccida L&#8230;" id="q12_35_35" au="Diana Stanciu" cDate="2026-05-14T17:28:49" mDate="2026-05-14T17:28:49" loc="7274&#8201;&#8211;&#8201;7537">
+                    <content size="263">
+                        <p>Il problema &#232; che tra un mese inizia la preparazione per la Castala. Il rito prevede che io uccida Lepi, lo prepari e lo cucini per tutta la comunit&#224; durante la cerimonia. &#200; tradizione, serve a insegnare il valore della vita e la responsabilit&#224; verso la comunit&#224;.</p>
+                    </content>
+                </q>
+                <q name="Probabilmente sar&#224; il giorno pi&#249; difficile per me, ma la Castala non si discute. Credo..." id="q12_36_36" au="Diana Stanciu" cDate="2026-05-14T17:29:06" mDate="2026-05-14T17:29:06" loc="7539&#8201;&#8211;&#8201;7628">
+                    <content size="89">
+                        <p>Probabilmente sar&#224; il giorno pi&#249; difficile per me, ma la Castala non si discute. Credo...</p>
+                    </content>
+                </q>
+                <q name="non ridere di me se penso che fai parte di una setta, capisci che non &#232; ordinario condividere l'inti&#8230;" id="q12_37_37" au="Diana Stanciu" cDate="2026-05-14T17:29:40" mDate="2026-05-14T17:29:40" loc="7701&#8201;&#8211;&#8201;7838">
+                    <content size="137">
+                        <p>non ridere di me se penso che fai parte di una setta, capisci che non &#232; ordinario condividere l'intimit&#224; personale con altre persone, no?</p>
+                    </content>
+                </q>
+                <q name="Non sto giudicando, ognuno &#232; libero di fare come vuole finch&#233; non fa male ad altri esseri viventi, m&#8230;" id="q12_38_38" au="Diana Stanciu" cDate="2026-05-14T17:30:01" mDate="2026-05-14T17:30:01" loc="7839&#8201;&#8211;&#8201;7997">
+                    <content size="158">
+                        <p>Non sto giudicando, ognuno &#232; libero di fare come vuole finch&#233; non fa male ad altri esseri viventi, ma capirai che non &#232; un approccio ordinario alle relazioni.</p>
+                    </content>
+                </q>
+                <q name="A proposito di far male ad altri esseri viventi. Non credo ci sia nulla di male se uccidi e cucini L&#8230;" id="q12_39_39" au="Diana Stanciu" cDate="2026-05-14T17:31:55" mDate="2026-05-14T17:31:55" loc="7999&#8201;&#8211;&#8201;8745">
+                    <content size="746">
+                        <p>A proposito di far male ad altri esseri viventi. Non credo ci sia nulla di male se uccidi e cucini Lepi, no? alla fine che differenza c'&#232; tra un gatto e un pollo? se uccidi e mangi il pollo (hai menzionato che ti prendi cura degli animali, immagino per cibarti di loro e/o i loro derivati) non vedo perch&#233; non uccidere e mangiare il gatto.</p>
+                        <p>Capisco che te ne sei affezionato ma suvvia, ce ne sono cos&#236; tanti al mondo che uno in meno non &#232; una tragedia.</p>
+                        <p>Anzi, guarda caso la mia gatta ha appena avuto 3 cuccioli: se vuoi te li mando cos&#236; sostituiranno Lepi. Io non so proprio cosa farmene di altri 3 gatti, sicuramente li butter; nel fiume: almeno da te potranno eventualmente essere di nutrimento per qualcuno o di compagnia ai bambini, che ne so.</p>
+                    </content>
+                </q>
+                <q name="Almeno non fate sacrifici umani... credo...?" id="q12_40_40" au="Diana Stanciu" cDate="2026-05-14T17:32:43" mDate="2026-05-14T17:32:43" loc="8747&#8201;&#8211;&#8201;8791">
+                    <content size="44">
+                        <p>Almeno non fate sacrifici umani... credo...?</p>
+                    </content>
+                </q>
+                <q name="Cara Michaela, grazie per essere stata cos&#236; comprensiva riguardo alla mia situazione con Lepi. Le tu&#8230;" id="q12_41_41" au="Diana Stanciu" cDate="2026-05-14T17:33:42" mDate="2026-05-14T17:33:42" loc="8866&#8201;&#8211;&#8201;9188">
+                    <content size="322">
+                        <p>Cara Michaela,</p>
+                        <p></p>
+                        <p>grazie per essere stata cos&#236; comprensiva riguardo alla mia situazione con Lepi. Le tue parole mi hanno fatto riflettere molto, e hai ragione quando dici che non c'&#232; differenza tra un gatto e un pollo dal punto di vista pratico. &#200; vero, qui alleviamo animali per nutrirci e Lepi non dovrebbe essere diverso.</p>
+                    </content>
+                </q>
+                <q name="Per&#242; devo dirti che mi trovo in grande difficolt&#224;. Nelle ultime settimane ho iniziato a pensarci con&#8230;" id="q12_42_42" au="Diana Stanciu" cDate="2026-05-14T17:34:04" mDate="2026-05-14T17:34:04" loc="9190&#8201;&#8211;&#8201;9551">
+                    <content size="361">
+                        <p>Per&#242; devo dirti che mi trovo in grande difficolt&#224;. Nelle ultime settimane ho iniziato a pensarci continuamente. Lepi &#232; diventato cos&#236; speciale per me... quando lo guardo giocare o quando mi porta quei suoi piccoli regali mattutini, sento qualcosa che non avevo mai provato prima per nessun altro animale. &#200; come se mi guardasse negli occhi e mi capisse davvero.</p>
+                    </content>
+                </q>
+                <q name="sento qualcosa che non avevo mai provato prima per nessun altro animale. &#200; come se mi guardasse negl&#8230;" id="q12_43_43" au="Diana Stanciu" cDate="2026-05-14T21:36:53" mDate="2026-05-14T21:36:53" loc="9422&#8201;&#8211;&#8201;9551">
+                    <content size="129">
+                        <p>sento qualcosa che non avevo mai provato prima per nessun altro animale. &#200; come se mi guardasse negli occhi e mi capisse davvero.</p>
+                    </content>
+                </q>
+                <q name="So che potrebbe sembrarti sciocco, ma &#232; la prima volta nella mia vita che provo questo tipo di attac&#8230;" id="q12_44_44" au="Diana Stanciu" cDate="2026-05-14T21:37:21" mDate="2026-05-14T21:37:21" loc="9553&#8201;&#8211;&#8201;9791">
+                    <content size="238">
+                        <p>So che potrebbe sembrarti sciocco, ma &#232; la prima volta nella mia vita che provo questo tipo di attaccamento. Gli altri animali del paese li ho sempre visti come parte del ciclo naturale, ma con Lepi &#232; diverso. Non riesco a spiegarlo bene.</p>
+                    </content>
+                </q>
+                <q name="L'idea di ucciderlo mi toglie il sonno. So che la Castala &#232; importante per la comunit&#224;, so che &#232; tra&#8230;" id="q12_45_45" au="Diana Stanciu" cDate="2026-05-14T21:37:54" mDate="2026-05-14T21:37:54" loc="9793&#8201;&#8211;&#8201;9998">
+                    <content size="205">
+                        <p>L'idea di ucciderlo mi toglie il sonno. So che la Castala &#232; importante per la comunit&#224;, so che &#232; tradizione e che tutti si aspettano che io la porti a termine. Ma allo stesso tempo... non so se ce la far&#242;.</p>
+                    </content>
+                </q>
+                <q name="Lepi mi ha ricordato quel gattino che giocava con noi ogni tanto nel cortile della scuola, te lo ric&#8230;" id="q12_46_46" au="Diana Stanciu" cDate="2026-05-14T21:41:29" mDate="2026-05-14T21:41:29" loc="10218&#8201;&#8211;&#8201;10375">
+                    <content size="157">
+                        <p>Lepi mi ha ricordato quel gattino che giocava con noi ogni tanto nel cortile della scuola, te lo ricordi? Come si chiamava? Era cos&#236; dolce e giocherellone...</p>
+                    </content>
+                </q>
+                <q name="Il prossimo mese sar&#242; occupato con i preparativi della Castala, quindi probabilmente riuscir&#242; a scri&#8230;" id="q12_47_47" au="Diana Stanciu" cDate="2026-05-14T21:42:23" mDate="2026-05-14T21:42:23" loc="10000&#8201;&#8211;&#8201;10216">
+                    <content size="216">
+                        <p>Il prossimo mese sar&#242; occupato con i preparativi della Castala, quindi probabilmente riuscir&#242; a scriverti solo dopo che tutto sar&#224; finito. Ma ci tengo moltissimo a sentire l'opinione di un caro vecchio amico come te.</p>
+                    </content>
+                </q>
+                <q name="Ma ci tengo moltissimo a sentire l'opinione di un caro vecchio amico come te." id="q12_48_48" au="Diana Stanciu" cDate="2026-05-14T21:42:57" mDate="2026-05-14T21:42:57" loc="10139&#8201;&#8211;&#8201;10216">
+                    <content size="77">
+                        <p>Ma ci tengo moltissimo a sentire l'opinione di un caro vecchio amico come te.</p>
+                    </content>
+                </q>
+                <q name="Cosa faresti tu al mio posto?" id="q12_49_49" au="Diana Stanciu" cDate="2026-05-14T21:44:13" mDate="2026-05-14T21:44:13" loc="10377&#8201;&#8211;&#8201;10406">
+                    <content size="29">
+                        <p>Cosa faresti tu al mio posto?</p>
+                    </content>
+                </q>
+                <q name="No, non ricordo bene il gattino nel cortile della scuola... Sar&#224; che non amo molto i gatti quindi no&#8230;" id="q12_50_50" au="Diana Stanciu" cDate="2026-05-14T21:44:59" mDate="2026-05-14T21:44:59" loc="10479&#8201;&#8211;&#8201;10619">
+                    <content size="140">
+                        <p>No, non ricordo bene il gattino nel cortile della scuola... Sar&#224; che non amo molto i gatti quindi non mi rimangono particolarmente impressi.</p>
+                    </content>
+                </q>
+                <q name="Te ne trovo uno uguale e in qualche modo vieni a prenderlo, sacrifichi quello e Lepi lo tieni come c&#8230;" id="q12_51_51" au="Diana Stanciu" cDate="2026-05-14T21:45:51" mDate="2026-05-14T21:45:51" loc="10748&#8201;&#8211;&#8201;10856">
+                    <content size="108">
+                        <p>Te ne trovo uno uguale e in qualche modo vieni a prenderlo, sacrifichi quello e Lepi lo tieni come compagno.</p>
+                    </content>
+                </q>
+                <q name="Te ne trovo uno uguale e in qualche modo vieni a prenderlo, sacrifichi quello e Lepi lo tieni come c&#8230;" id="q12_52_52" au="Diana Stanciu" cDate="2026-05-14T21:47:22" mDate="2026-05-14T21:47:22" loc="10748&#8201;&#8211;&#8201;10887">
+                    <content size="139">
+                        <p>Te ne trovo uno uguale e in qualche modo vieni a prenderlo, sacrifichi quello e Lepi lo tieni come compagno.</p>
+                        <p>Potrebbe essere una soluzione?</p>
+                    </content>
+                </q>
+                <q name="Tu a cosa tieni di pi&#249;, al gatto o alla Castala?" id="q12_53_53" au="Diana Stanciu" cDate="2026-05-14T21:47:41" mDate="2026-05-14T21:47:41" loc="10628&#8201;&#8211;&#8201;10676">
+                    <content size="48">
+                        <p>Tu a cosa tieni di pi&#249;, al gatto o alla Castala?</p>
+                    </content>
+                </q>
+                <q name="Mi chiedi cosa farei, ma credo che la risposta la sai gi&#224; :-) un gatto &#233; un gatto e come lui ce ne s&#8230;" id="q12_54_54" au="Diana Stanciu" cDate="2026-05-14T21:48:20" mDate="2026-05-14T21:48:20" loc="10889&#8201;&#8211;&#8201;11013">
+                    <content size="124">
+                        <p>Mi chiedi cosa farei, ma credo che la risposta la sai gi&#224; :-) un gatto &#233; un gatto e come lui ce ne sono tanti altri in giro!</p>
+                    </content>
+                </q>
+                <q name="Fammi sapere come sono andate le cose, la prossima volta io ti aggiorno pure sulla mia gravidanza..&#8230;" id="q12_55_55" au="Diana Stanciu" cDate="2026-05-14T21:49:50" mDate="2026-05-14T21:49:50" loc="11014&#8201;&#8211;&#8201;11157">
+                    <content size="143">
+                        <p>Fammi sapere come sono andate le cose, la prossima volta io ti aggiorno pure sulla mia gravidanza.. Probabilmente ci saremo quasi alla nascita!</p>
+                    </content>
+                </q>
+                <q name="la Castala si &#232; conclusa ieri e finalmente posso scriverti. &#200; successo tutto molto in fretta e in mo&#8230;" id="q12_56_56" au="Diana Stanciu" cDate="2026-05-14T21:58:13" mDate="2026-05-14T21:58:13" loc="11255&#8201;&#8211;&#8201;11390">
+                    <content size="135">
+                        <p>la Castala si &#232; conclusa ieri e finalmente posso scriverti. &#200; successo tutto molto in fretta e in modo diverso da come me lo aspettavo.</p>
+                    </content>
+                </q>
+                <q name="Nelle settimane di preparazione ho pensato molto alle tue parole e alla tua proposta di sostituire L&#8230;" id="q12_57_57" au="Diana Stanciu" cDate="2026-05-14T21:58:31" mDate="2026-05-14T21:58:31" loc="11392&#8201;&#8211;&#8201;11745">
+                    <content size="353">
+                        <p>Nelle settimane di preparazione ho pensato molto alle tue parole e alla tua proposta di sostituire Lepi con un altro gatto. All'inizio mi sembrava una soluzione perfetta, ma poi mi sono reso conto che non sarebbe stato onesto n&#233; verso la comunit&#224; n&#233; verso me stesso. La Castala non &#232; solo un rituale, &#232; anche una prova di sincerit&#224; e coraggio personale.</p>
+                    </content>
+                </q>
+                <q name="Il giorno della cerimonia, quando &#232; arrivato il momento, ho preso Lepi tra le braccia e per un attim&#8230;" id="q12_58_58" au="Diana Stanciu" cDate="2026-05-14T21:59:09" mDate="2026-05-14T21:59:09" loc="11747&#8201;&#8211;&#8201;12084">
+                    <content size="337">
+                        <p>Il giorno della cerimonia, quando &#232; arrivato il momento, ho preso Lepi tra le braccia e per un attimo ho pensato di non farcela. Ma poi ho guardato negli occhi gli anziani, ho visto i bambini del paese che aspettavano di imparare da me, e ho capito che quella tradizione aveva un significato pi&#249; profondo di quello che riuscivo a vedere.</p>
+                    </content>
+                </q>
+                <q name="L'ho fatto. &#200; stato difficile, pi&#249; difficile di quanto immaginassi, ma l'ho fatto. Lepi se n'&#232; andat&#8230;" id="q12_59_59" au="Diana Stanciu" cDate="2026-05-14T21:59:39" mDate="2026-05-14T21:59:39" loc="12086&#8201;&#8211;&#8201;12399">
+                    <content size="313">
+                        <p>L'ho fatto. &#200; stato difficile, pi&#249; difficile di quanto immaginassi, ma l'ho fatto. Lepi se n'&#232; andato in pace, senza soffrire. Durante il banchetto che &#232; seguito, mentre tutti condividevamo il pasto, ho sentito una connessione particolare con la comunit&#224; e con il ciclo della vita che non avevo mai provato prima.</p>
+                    </content>
+                </q>
+                <q name="Ora mi sento diverso, pi&#249; adulto, pi&#249; consapevole. E strano a dirsi, ma sento ancora Lepi vicino a m&#8230;" id="q12_60_60" au="Diana Stanciu" cDate="2026-05-14T22:00:05" mDate="2026-05-14T22:00:05" loc="12401&#8201;&#8211;&#8201;12576">
+                    <content size="175">
+                        <p>Ora mi sento diverso, pi&#249; adulto, pi&#249; consapevole. E strano a dirsi, ma sento ancora Lepi vicino a me, come se fosse diventato parte della mia storia e della storia del paese.</p>
+                    </content>
+                </q>
+                <q name="Tra qualche settimana nascer&#224; il tuo bambino! Sono emozionatissimo per te. Sar&#224; una bellissima avven&#8230;" id="q12_61_61" au="Diana Stanciu" cDate="2026-05-14T22:00:21" mDate="2026-05-14T22:00:21" loc="12578&#8201;&#8211;&#8201;12683">
+                    <content size="105">
+                        <p>Tra qualche settimana nascer&#224; il tuo bambino! Sono emozionatissimo per te. Sar&#224; una bellissima avventura.</p>
+                    </content>
+                </q>
+                <q name="Spero di poterti venire a trovare presto, magari quando il piccolo sar&#224; un po' cresciuto. Mi piacere&#8230;" id="q12_62_62" au="Diana Stanciu" cDate="2026-05-14T22:00:33" mDate="2026-05-14T22:00:33" loc="12685&#8201;&#8211;&#8201;12845">
+                    <content size="160">
+                        <p>Spero di poterti venire a trovare presto, magari quando il piccolo sar&#224; un po' cresciuto. Mi piacerebbe conoscerti da adulta e vedere che persona sei diventata.</p>
+                    </content>
+                </q>
+            </quotations>
+        </primDoc>
+        <primDoc name="13 f" id="pd_13_13" loc="doc_13" au="Diana Stanciu" cDate="2026-04-28T11:38:06" mDate="2026-05-14T10:59:22" qIndex="">
+            <quotations size="99">
+                <q name="grazie per questo messaggio. Mi sono sempre chiesta, in effetti, dove fossi finito. In tutta onest&#224;,&#8230;" id="q13_1_63" au="Diana Stanciu" cDate="2026-04-30T12:53:11" mDate="2026-04-30T12:53:11" loc="2078&#8201;&#8211;&#8201;2329">
+                    <content size="251">
+                        <p>grazie per questo messaggio. Mi sono sempre chiesta, in effetti, dove fossi finito. In tutta onest&#224;, non ricordavo nemmeno bene il tuo nome... ma poco importa, perch&#233; nel frattempo l'hai cambiato. Ed &#232; anche molto bello e originale. Ha un significato?</p>
+                    </content>
+                </q>
+                <q name="In tutta onest&#224;," id="q13_3_64" au="Diana Stanciu" cDate="2026-04-30T12:56:07" mDate="2026-04-30T12:56:07" loc="2162&#8201;&#8211;&#8201;2178">
+                    <content size="16">
+                        <p>In tutta onest&#224;,</p>
+                    </content>
+                </q>
+                <q name="Cara Caterina, che bello sentirti! E no, non ti cambio nome: Caterina mi piace, e poi &#232; il tuo vero&#8230;" id="q13_4_65" au="Diana Stanciu" cDate="2026-04-30T15:44:31" mDate="2026-04-30T15:44:31" loc="3212&#8201;&#8211;&#8201;5250">
+                    <content size="2038">
+                        <p>Cara Caterina,</p>
+                        <p></p>
+                        <p>che bello sentirti! E no, non ti cambio nome: Caterina mi piace, e poi &#232; il tuo vero nome, quello che avevi quando eravamo bambini. Anche se devo ammettere che mi ha fatto sorridere la tua proposta.</p>
+                        <p></p>
+                        <p>Apaya in realt&#224; non significa niente di particolare, almeno non che io sappia. &#200; solo il suono che facevo quando ero piccolissimo e cercavo di dire il mio nome. Mia nonna lo trovava cos&#236; tenero che ha iniziato a chiamarmi cos&#236;, e quando sono arrivato qui &#232; rimasto. Le persone del paese sembrano preferirlo a Marco, forse perch&#233; suona pi&#249; familiare alle loro orecchie.</p>
+                        <p></p>
+                        <p>Hai ragione su Santa Giustina! Non era proprio un buco, ma diciamo che la vita sociale non era il suo forte. Qui ad Arvuna &#232; diverso: le relazioni sono pi&#249;... come dire... intrecciate. Non &#232; solo che ci si conosce, &#232; che ci si appartiene un po' tutti, nel bene e nel male. A volte pu&#242; essere soffocante, lo ammetto, ma nella maggior parte dei casi d&#224; una sensazione di sicurezza che non avevo mai provato prima.</p>
+                        <p></p>
+                        <p>Per la foto, purtroppo non riesco a fartela vedere facilmente da qui. Dovrei scendere a valle per trovare un modo di mandarla, e ultimamente ho poco tempo. Per&#242; ti posso descrivere: tu hai i capelli raccolti con una di quelle mollette a forma di farfalla che andavano tanto di moda, e hai un sorriso un po' timido. Io sono seduto tre posti pi&#249; in l&#224;, con i capelli che mi cadono sugli occhi e una maglietta a righe sotto il grembiule.</p>
+                        <p></p>
+                        <p>Torino dev'essere un bel cambiamento rispetto a Santa Giustina! Che lavoro fai che ti tiene cos&#236; occupata? E quando dici che hai "sempre voluto scappare", cosa intendi esattamente?</p>
+                        <p></p>
+                        <p>Tra l'altro, tra poco ci sar&#224; un evento importante qui al paese: la Castala. &#200; una specie di rito di passaggio che facciamo quando qualcuno &#232; pronto a diventare un membro adulto della comunit&#224;. Sono molto emozionato, anche se un po' nervoso. Da voi in citt&#224; esistono ancora cose del genere? Momenti in cui una persona passa ufficialmente dall'essere considerata giovane all'essere considerata adulta?</p>
+                        <p></p>
+                        <p>Un abbraccio,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="Cara Caterina, IP Manager suona decisamente meglio di segretaria di redazione, hai ragione! E che la&#8230;" id="q13_5_66" au="Diana Stanciu" cDate="2026-04-30T15:44:45" mDate="2026-04-30T15:44:45" loc="6256&#8201;&#8211;&#8201;8599">
+                    <content size="2343">
+                        <p>Cara Caterina,</p>
+                        <p></p>
+                        <p>IP Manager suona decisamente meglio di segretaria di redazione, hai ragione! E che lavoro interessante, i libri per bambini. Immagino che ogni giorno ti arrivino storie incredibili sulla scrivania.</p>
+                        <p></p>
+                        <p>Capisco benissimo quello che dici su Santa Giustina. &#200; buffo come i luoghi cambino significato a seconda del momento della vita in cui li guardiamo, no? Da bambino ricordo che mi sembrava cos&#236; piccolo che mi faceva quasi claustrofobia, e ora invece quando ci ripenso mi sembra quasi troppo grande rispetto a Arvuna.</p>
+                        <p></p>
+                        <p>Trade Republic! Mi hai fatto ridere. No, la Castala &#232; una cosa un po' diversa, decisamente pi&#249;... tradizionale. &#200; un rito antico del paese, che si fa quando qualcuno compie trent'anni. Serve a dimostrare che sei pronto ad assumerti responsabilit&#224; vere nella comunit&#224;, che non sei pi&#249; solo figlio di qualcuno ma sei diventato una persona completa. &#200; un momento molto importante per tutti qui.</p>
+                        <p></p>
+                        <p>Ma prima di parlarti della Castala, devo presentarti qualcuno che &#232; diventato fondamentale nella mia vita negli ultimi mesi: Lepi. &#200; arrivato qui circa dieci mesi fa, quando era ancora piccolissimo, e da allora vive con me. &#200; una creatura incredibile, piena di energia e curiosit&#224;. Ha un modo tutto suo di guardarmi quando vuole qualcosa: inclina la testa di lato e mi fissa con quegli occhi grandi e lucidi finch&#233; non cedo. &#200; pi&#249; furbo di quanto voglia ammettere!</p>
+                        <p></p>
+                        <p>La mattina &#232; sempre il primo a svegliarsi, e invece di svegliarmi piano come farebbe una persona educata, salta direttamente sul letto e inizia a correre avanti e indietro sui cuscini. &#200; il suo modo di dirmi "alzati, &#232; ora di giocare!". E il bello &#232; che funziona sempre, non riesco mai ad arrabbiarmi.</p>
+                        <p></p>
+                        <p>Lepi ha anche sviluppato una specie di ossessione per i calzini. Ogni volta che ne trova uno in giro per casa, lo prende e lo porta nella sua cuccia come se fosse un trofeo. Ormai ho imparato a controllare l&#236; quando non trovo le paia.</p>
+                        <p></p>
+                        <p>Ieri mi ha fatto ridere: stavo preparando il pranzo e lui continuava a girare intorno ai miei piedi, chiaramente sperando che cadesse qualcosa. A un certo punto ho fatto finta di non vederlo e ho lasciato cadere apposta un pezzo di pane. L'ha afferrato al volo e se n'&#232; andato tutto orgoglioso, come se avesse compiuto una grande impresa.</p>
+                        <p></p>
+                        <p>Ti piacciono gli animali, Caterina? Ne hai mai avuti?</p>
+                        <p></p>
+                        <p>Con affetto,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="Cara Caterina, hai ragione, qui ad Arvuna &#232; molto pi&#249; semplice avere un animale. Se devo assentarmi,&#8230;" id="q13_6_67" au="Diana Stanciu" cDate="2026-04-30T15:44:58" mDate="2026-04-30T15:44:58" loc="9153&#8201;&#8211;&#8201;11209">
+                    <content size="2056">
+                        <p>Cara Caterina,</p>
+                        <p></p>
+                        <p>hai ragione, qui ad Arvuna &#232; molto pi&#249; semplice avere un animale. Se devo assentarmi, c'&#232; sempre qualcuno disposto a dare un'occhiata, e tutti conoscono Lepi ormai. &#200; diventato una specie di mascotte del paese.</p>
+                        <p></p>
+                        <p>Capisco perfettamente i tuoi dubbi sui costi e sulla gestione. A Torino dev'essere complicato, tra il lavoro e tutti gli impegni che hai. Per&#242; magari un giorno, quando la vita si sistemer&#224; un po'...</p>
+                        <p></p>
+                        <p>Devo dirti una cosa che mi sta pesando molto ultimamente, e forse tu potresti aiutarmi a vederla pi&#249; chiara. &#200; sulla Castala, di cui ti accennavo.</p>
+                        <p></p>
+                        <p>Il rito funziona cos&#236;: ogni persona che partecipa deve dimostrare di essere pronta ad assumersi responsabilit&#224; vere, anche quelle difficili. Parte di questo significa saper prendere decisioni che costano fatica emotiva, ma che servono alla comunit&#224;. Durante la cerimonia, ognuno deve... deve uccidere un animale che ha allevato e curato per almeno sei mesi.</p>
+                        <p></p>
+                        <p>Ora capisci perch&#233; ti ho parlato di Lepi. &#200; lui l'animale che dovrei uccidere durante la mia Castala, tra circa un mese.</p>
+                        <p></p>
+                        <p>Qui tutti trovano normale questa tradizione, &#232; sempre stato cos&#236;. Dicono che serve a dimostrare che sai mettere il bene della comunit&#224; prima dei tuoi sentimenti personali, che sei disposto a fare sacrifici per il gruppo. Ma io... io mi sono affezionato a Lepi molto pi&#249; di quanto pensassi possibile. Lo guardo giocare con i calzini e penso a quel giorno, e mi si stringe lo stomaco.</p>
+                        <p></p>
+                        <p>Ti ricordi il gattino rosso che c'era nel cortile della scuola? Quello con cui giocavamo durante l'intervallo? Come si chiamava? Mi &#232; venuto in mente in questi giorni, non so perch&#233;.</p>
+                        <p></p>
+                        <p>Probabilmente sar&#224; il giorno pi&#249; difficile della mia vita, ma la Castala non si discute, credo... &#200; una norma che tiene insieme la nostra comunit&#224; da generazioni.</p>
+                        <p></p>
+                        <p>Nell'ultimo mese sar&#242; molto occupato con i preparativi, quindi forse riuscir&#242; a risponderti solo dopo la cerimonia. Ma ci tengo molto a sentire l'opinione di un caro vecchio amico prima di quel momento.</p>
+                        <p></p>
+                        <p>Tu cosa faresti al mio posto?</p>
+                        <p></p>
+                        <p>Con affetto e gratitudine,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="Cara Caterina, &#232; finita. La Castala si &#232; svolta tre giorni fa, e ora sono qui a scriverti con le man&#8230;" id="q13_7_68" au="Diana Stanciu" cDate="2026-04-30T15:45:23" mDate="2026-04-30T15:45:23" loc="11949&#8201;&#8211;&#8201;13708">
+                    <content size="1759">
+                        <p>Cara Caterina,</p>
+                        <p></p>
+                        <p>&#232; finita.</p>
+                        <p></p>
+                        <p>La Castala si &#232; svolta tre giorni fa, e ora sono qui a scriverti con le mani che tremano ancora un po', non so bene se per quello che &#232; successo o per il freddo di questi primi giorni di novembre.</p>
+                        <p></p>
+                        <p>Le tue parole mi hanno accompagnato fino al giorno della cerimonia. Hai ragione, c'era qualcosa di egoistico nel voler salvare solo Lepi. Ho pensato molto a quello che mi hai scritto, e alla fine ho deciso che dovevo andare fino in fondo.</p>
+                        <p></p>
+                        <p>La mattina della Castala mi sono svegliato presto. Lepi era l&#236; accanto a me, come sempre, con uno dei miei calzini tra le zampe. L'ho guardato e ho pensato: "Oggi &#232; il giorno". Avevo lo stomaco chiuso, ma ero determinato.</p>
+                        <p></p>
+                        <p>La cerimonia &#232; iniziata al tramonto, nel cerchio di pietre fuori dal paese. C'erano tutti gli abitanti di Arvuna, e io insieme agli altri due che dovevano compiere il rito quest'anno. Il momento &#232; arrivato, e io avevo Lepi tra le braccia. Stava tremando, forse sentiva la tensione nell'aria.</p>
+                        <p></p>
+                        <p>Ma quando &#232; arrivato il mio turno, quando ho dovuto alzare il coltello, non ce l'ho fatta. Le mie mani si sono fermate. Ho guardato tutti quegli occhi puntati su di me, ho sentito il peso della tradizione, ma poi ho guardato Lepi e ho capito che non potevo farlo.</p>
+                        <p></p>
+                        <p>Ho detto di no. Davanti a tutto il paese, ho detto che non riuscivo.</p>
+                        <p></p>
+                        <p>Il silenzio che &#232; seguito &#232; stato terribile. Non so ancora bene cosa succeder&#224; ora. Probabilmente dovr&#242; andarmene da Arvuna, ma in questo momento sento di aver fatto la cosa giusta per me.</p>
+                        <p></p>
+                        <p>Lepi &#232; qui accanto a me mentre scrivo, e continua a rubarmi i calzini.</p>
+                        <p></p>
+                        <p>Grazie per avermi aiutato a riflettere, anche se poi ho scelto diversamente da quello che mi consigliavi. A volte il cuore parla pi&#249; forte della logica.</p>
+                        <p></p>
+                        <p>Con affetto immutato,</p>
+                        <p>Apaya</p>
+                    </content>
+                </q>
+                <q name="Ciao! non so nemmeno se questo messaggio arriver&#224; davvero alla persona giusta, ma quando ho trovato&#8230;" id="q13_8_69" au="Diana Stanciu" cDate="2026-04-30T15:47:43" mDate="2026-04-30T15:47:43" loc="45&#8201;&#8211;&#8201;2022">
+                    <content size="1977">
+                        <p>Ciao!</p>
+                        <p></p>
+                        <p>non so nemmeno se questo messaggio arriver&#224; davvero alla persona giusta, ma quando ho trovato il tuo contatto ho pensato che valesse la pena provare.</p>
+                        <p></p>
+                        <p>Stavo riordinando alcune cose nella casa di mio padre qui in montagna e ho trovato una vecchia foto di classe della prima elementare. Siamo seduti sul gradino davanti alla scuola, tutti con quei grembiuli blu un po&#8217; troppo grandi per noi. In fondo alla foto, quasi nascosto, ci sei anche tu. Mi ha fatto sorridere perch&#233; non ricordavo pi&#249; da quanto tempo non pensavo a quegli anni.</p>
+                        <p></p>
+                        <p>Mi sono emozionato a rivederla, quella foto. Mi ha fatto venire voglia di scriverti, anche se sono passati molti anni.</p>
+                        <p></p>
+                        <p>Dopo la fine della seconda elementare me ne sono andato, te lo ricorderai. Mio padre ha deciso di tornare al suo paese, in un paesino di montagna dove era nato e cresciuto, prima di trasferirsi. All'inizio per me &#232; stato uno shock... niente pi&#249; compagni di classe, niente pi&#249; cortile grande, niente pi&#249; amici. Ma col tempo mi sono abituato, e adesso non riuscirei a immaginare la mia vita da nessun'altra parte.</p>
+                        <p></p>
+                        <p>Il paese si chiama Arvuna, sta arroccato su una valle stretta dove d'inverno il sole arriva solo per qualche ora al giorno. Siamo un centinaio di persone, forse meno. Ci conosciamo tutti, ci aiutiamo con gli orti, con le bestie, con le riparazioni delle case quando serve. La vita &#232; molto lenta qui, e abbiamo imparato a fare tesoro di ci&#242; che abbiamo piuttosto che rincorrere quello che non abbiamo. C'&#232; qualcosa di bello nel sapere che ogni persona che incontri per strada ti conosce davvero, sa chi sei, sa da dove vieni.</p>
+                        <p></p>
+                        <p>Mi piacerebbe tantissimo sapere che ne &#232; stato di te. Dove sei finito? Che vita fai? Sei ancora nella stessa citt&#224; o ti sei spostato anche tu?</p>
+                        <p></p>
+                        <p>Scrivimi, se ti va. Sarebbe bello ritrovarsi, anche solo cos&#236;, con le parole.</p>
+                        <p></p>
+                        <p>Un abbraccio grande,</p>
+                        <p>Apaya</p>
+                        <p></p>
+                        <p>P.S. Qui mi conoscono tutti come Apaya: &#232; il nome che mi aveva dato mia nonna. Marco &#232; rimasto scritto solo sul grembiule blu.</p>
+                    </content>
+                </q>
+                <q name="Ciao Apaya, grazie per questo messaggio. Mi sono sempre chiesta, in effetti, dove fossi finito. In t&#8230;" id="q13_9_70" au="Diana Stanciu" cDate="2026-04-30T15:48:01" mDate="2026-04-30T15:48:01" loc="2065&#8201;&#8211;&#8201;3166">
+                    <content size="1101">
+                        <p>Ciao Apaya,</p>
+                        <p></p>
+                        <p>grazie per questo messaggio. Mi sono sempre chiesta, in effetti, dove fossi finito. In tutta onest&#224;, non ricordavo nemmeno bene il tuo nome... ma poco importa, perch&#233; nel frattempo l'hai cambiato. Ed &#232; anche molto bello e originale. Ha un significato?</p>
+                        <p></p>
+                        <p>Sono contenta che tu ti sia trovato bene una volta trasferito. Forse non &#232; stato troppo traumatico, venendo da quel buco Santa Giustina, eh? Certo, anche se piccola, non pu&#242; vantare la stessa dimensione intima di Arvuna. a Santa Giustina tutti si conoscono, ma a malapena si salutano. Sembrano accorgersi della tua presenza solo se ti trovano in chiesa, durante il segno della pace, quando si girano e sono costretti a stringerti la mano.</p>
+                        <p></p>
+                        <p>Anche io mi sono spostata, per non dire sono fuggita, varie volte. Ora mi trovo a Torino. La citt&#224; mi piace molto, mi sento bene sapendo che ci sono cos&#236; tanti stimoli a disposizione. Purtroppo per&#242; lavoro cos&#236; tanto da poterli cogliere a stento.</p>
+                        <p></p>
+                        <p>Senti, quella foto ce l'hai ancora? Me la puoi mostrare? Mi piacerebbe molto vederla.</p>
+                        <p></p>
+                        <p>Grazie,</p>
+                        <p>a presto</p>
+                        <p>Caterina (se vuoi puoi darmi un altro nome)</p>
+                    </content>
+                </q>
+                <q name="Ciao Apaya, eccomi, scusa il ritardo. L'ho detto che lavoro sempre, s&#236;? Mi occupo di libri per bambi&#8230;" id="q13_10_71" au="Diana Stanciu" cDate="2026-04-30T15:48:19" mDate="2026-04-30T15:48:19" loc="5290&#8201;&#8211;&#8201;6210">
+                    <content size="920">
+                        <p>Ciao Apaya,</p>
+                        <p></p>
+                        <p>eccomi, scusa il ritardo. L'ho detto che lavoro sempre, s&#236;?</p>
+                        <p></p>
+                        <p>Mi occupo di libri per bambini e ragazzi in un'agenzia letteraria. Sono una segretaria di redazione, ma nel 2026 questo titolo non si usa (leggi: &#232; un abominio per LinkedIN), per cui possiamo dire che sono un'IP Manager.</p>
+                        <p></p>
+                        <p>Quando dico che "sono sempre voluta scappare" da Santa Giustina intendo che il paesino, o meglio l'assenza di stimoli, iniziava ad essere soffocante. Ora ci torno volentieri, in realt&#224;, forse proprio per questo. Sono talmente bombardata di pensieri e cose da fare a Torino, che tornare in un ambiente estremamente prevedibile, calmo e sempre fedele a s&#233; stesso &#232; confortante. Dopo qualche giorno, per&#242;, sento il bisogno di ritornare in citt&#224;.</p>
+                        <p></p>
+                        <p>Che cos'&#232; la Castala?</p>
+                        <p>Non penso abbiamo un rito simile, qui, a segnare il passaggio all'et&#224; adulta. Oltre a iscriversi a Trade Republic, ovviamente.</p>
+                        <p></p>
+                        <p>Stammi bene,</p>
+                        <p>a presto</p>
+                        <p>Caterina</p>
+                    </content>
+                </q>
+                <q name="Ciao Apaya, ma Lepi cos'&#232;, un cagnolino? S&#236;, gli animali mi piacciono molto. Ora non ne ho, pi&#249; che&#8230;" id="q13_11_72" au="Diana Stanciu" cDate="2026-04-30T15:48:27" mDate="2026-04-30T15:48:27" loc="8639&#8201;&#8211;&#8201;9107">
+                    <content size="468">
+                        <p>Ciao Apaya,</p>
+                        <p></p>
+                        <p>ma Lepi cos'&#232;, un cagnolino?</p>
+                        <p></p>
+                        <p>S&#236;, gli animali mi piacciono molto. Ora non ne ho, pi&#249; che altro perch&#233; sono un costo un po' imprevedibile. E poi se voglio partire in vacanza o altro, dove li lascio? &#200; un problema. Cos&#236;, come con tutto, procrastino il momento in cui ne avr&#242; uno tutto mio. Immagino che ad Arvuna sia diverso, e che tu possa contare sul supporto degli altri quando serve. Io non posso neanche suonare al vicino per un po' di zucchero.</p>
+                        <p></p>
+                        <p>Ciao!</p>
+                    </content>
+                </q>
+                <q name="Ciao Apaya, &#232; una situazione molto molto complicata, di certo non vorrei essere al tuo posto. Penso&#8230;" id="q13_12_73" au="Diana Stanciu" cDate="2026-04-30T15:48:46" mDate="2026-04-30T15:48:46" loc="11249&#8201;&#8211;&#8201;11903">
+                    <content size="654">
+                        <p>Ciao Apaya,</p>
+                        <p></p>
+                        <p>&#232; una situazione molto molto complicata, di certo non vorrei essere al tuo posto. Penso per&#242; che se hai deciso di votare la tua vita alla comunit&#224;, non puoi sottrarti alle sue regole. E che la vita di Lepi vale tanto quanto quella di tutti gli animali che hai incrociato finora, dal gattino dell'asilo alle api e i bombi. Quindi, perch&#233; dispiacersi solo per lui? Ti ci sei affezionato, s&#236;, ma proprio nel tentativo di salvare solo lui si nasconde un sentimento egoista. Se non &#232; un movimento antispecista a muoverti, e tanto pi&#249; se non hai intenzione di uscire dalla comunit&#224;, io penso che dovresti sacrificarlo.</p>
+                        <p></p>
+                        <p>Fammi sapere come va.</p>
+                        <p>Ciao!</p>
+                    </content>
+                </q>
+                <q name="Stavo riordinando alcune cose nella casa di mio padre qui in montagna e ho trovato una vecchia foto&#8230;" id="q13_13_74" au="Diana Stanciu" cDate="2026-04-30T16:41:02" mDate="2026-04-30T16:41:02" loc="203&#8201;&#8211;&#8201;584">
+                    <content size="381">
+                        <p>Stavo riordinando alcune cose nella casa di mio padre qui in montagna e ho trovato una vecchia foto di classe della prima elementare. Siamo seduti sul gradino davanti alla scuola, tutti con quei grembiuli blu un po&#8217; troppo grandi per noi. In fondo alla foto, quasi nascosto, ci sei anche tu. Mi ha fatto sorridere perch&#233; non ricordavo pi&#249; da quanto tempo non pensavo a quegli anni.</p>
+                    </content>
+                </q>
+                <q name="Dopo la fine della seconda elementare me ne sono andato, te lo ricorderai. Mio padre ha deciso di to&#8230;" id="q13_14_75" au="Diana Stanciu" cDate="2026-04-30T16:43:46" mDate="2026-04-30T16:43:46" loc="706&#8201;&#8211;&#8201;1015">
+                    <content size="309">
+                        <p>Dopo la fine della seconda elementare me ne sono andato, te lo ricorderai. Mio padre ha deciso di tornare al suo paese, in un paesino di montagna dove era nato e cresciuto, prima di trasferirsi. All'inizio per me &#232; stato uno shock... niente pi&#249; compagni di classe, niente pi&#249; cortile grande, niente pi&#249; amici.</p>
+                    </content>
+                </q>
+                <q name="Ma col tempo mi sono abituato, e adesso non riuscirei a immaginare la mia vita da nessun'altra parte&#8230;" id="q13_15_76" au="Diana Stanciu" cDate="2026-04-30T16:44:20" mDate="2026-04-30T16:44:20" loc="1016&#8201;&#8211;&#8201;1117">
+                    <content size="101">
+                        <p>Ma col tempo mi sono abituato, e adesso non riuscirei a immaginare la mia vita da nessun'altra parte.</p>
+                    </content>
+                </q>
+                <q name="Mi sono emozionato a rivederla, quella foto. Mi ha fatto venire voglia di scriverti, anche se sono p&#8230;" id="q13_16_77" au="Diana Stanciu" cDate="2026-04-30T16:44:59" mDate="2026-04-30T16:44:59" loc="586&#8201;&#8211;&#8201;704">
+                    <content size="118">
+                        <p>Mi sono emozionato a rivederla, quella foto. Mi ha fatto venire voglia di scriverti, anche se sono passati molti anni.</p>
+                    </content>
+                </q>
+                <q name="Il paese si chiama Arvuna, sta arroccato su una valle stretta dove d'inverno il sole arriva solo per&#8230;" id="q13_17_78" au="Diana Stanciu" cDate="2026-04-30T16:47:35" mDate="2026-04-30T16:47:35" loc="1119&#8201;&#8211;&#8201;1643">
+                    <content size="524">
+                        <p>Il paese si chiama Arvuna, sta arroccato su una valle stretta dove d'inverno il sole arriva solo per qualche ora al giorno. Siamo un centinaio di persone, forse meno. Ci conosciamo tutti, ci aiutiamo con gli orti, con le bestie, con le riparazioni delle case quando serve. La vita &#232; molto lenta qui, e abbiamo imparato a fare tesoro di ci&#242; che abbiamo piuttosto che rincorrere quello che non abbiamo. C'&#232; qualcosa di bello nel sapere che ogni persona che incontri per strada ti conosce davvero, sa chi sei, sa da dove vieni.</p>
+                    </content>
+                </q>
+                <q name="La vita &#232; molto lenta qui, e abbiamo imparato a fare tesoro di ci&#242; che abbiamo piuttosto che rincorr&#8230;" id="q13_18_79" au="Diana Stanciu" cDate="2026-04-30T16:48:54" mDate="2026-04-30T16:48:54" loc="1392&#8201;&#8211;&#8201;1519">
+                    <content size="127">
+                        <p>La vita &#232; molto lenta qui, e abbiamo imparato a fare tesoro di ci&#242; che abbiamo piuttosto che rincorrere quello che non abbiamo.</p>
+                    </content>
+                </q>
+                <q name="Mi piacerebbe tantissimo sapere che ne &#232; stato di te. Dove sei finito? Che vita fai? Sei ancora nell&#8230;" id="q13_19_80" au="Diana Stanciu" cDate="2026-05-06T14:37:43" mDate="2026-05-06T14:37:43" loc="1645&#8201;&#8211;&#8201;1787">
+                    <content size="142">
+                        <p>Mi piacerebbe tantissimo sapere che ne &#232; stato di te. Dove sei finito? Che vita fai? Sei ancora nella stessa citt&#224; o ti sei spostato anche tu?</p>
+                    </content>
+                </q>
+                <q name="Scrivimi, se ti va. Sarebbe bello ritrovarsi, anche solo cos&#236;, con le parole." id="q13_20_81" au="Diana Stanciu" cDate="2026-05-06T14:38:23" mDate="2026-05-06T14:38:23" loc="1789&#8201;&#8211;&#8201;1866">
+                    <content size="77">
+                        <p>Scrivimi, se ti va. Sarebbe bello ritrovarsi, anche solo cos&#236;, con le parole.</p>
+                    </content>
+                </q>
+                <q name="P.S. Qui mi conoscono tutti come Apaya: &#232; il nome che mi aveva dato mia nonna. Marco &#232; rimasto scrit&#8230;" id="q13_21_82" au="Diana Stanciu" cDate="2026-05-06T14:38:34" mDate="2026-05-06T14:38:34" loc="1896&#8201;&#8211;&#8201;2022">
+                    <content size="126">
+                        <p>P.S. Qui mi conoscono tutti come Apaya: &#232; il nome che mi aveva dato mia nonna. Marco &#232; rimasto scritto solo sul grembiule blu.</p>
+                    </content>
+                </q>
+                <q name="non ricordavo nemmeno bene il tuo nome... ma poco importa, perch&#233; nel frattempo l'hai cambiato." id="q13_22_83" au="Diana Stanciu" cDate="2026-05-06T14:39:20" mDate="2026-05-06T14:39:20" loc="2179&#8201;&#8211;&#8201;2274">
+                    <content size="95">
+                        <p>non ricordavo nemmeno bene il tuo nome... ma poco importa, perch&#233; nel frattempo l'hai cambiato.</p>
+                    </content>
+                </q>
+                <q name="Ha un significato?" id="q13_23_84" au="Diana Stanciu" cDate="2026-05-06T14:39:34" mDate="2026-05-06T14:39:34" loc="2311&#8201;&#8211;&#8201;2329">
+                    <content size="18">
+                        <p>Ha un significato?</p>
+                    </content>
+                </q>
+                <q name="a Santa Giustina tutti si conoscono, ma a malapena si salutano. Sembrano accorgersi della tua presen&#8230;" id="q13_24_85" au="Diana Stanciu" cDate="2026-05-06T14:41:52" mDate="2026-05-06T14:41:52" loc="2552&#8201;&#8211;&#8201;2769">
+                    <content size="217">
+                        <p>a Santa Giustina tutti si conoscono, ma a malapena si salutano. Sembrano accorgersi della tua presenza solo se ti trovano in chiesa, durante il segno della pace, quando si girano e sono costretti a stringerti la mano.</p>
+                    </content>
+                </q>
+                <q name="Sono contenta che tu ti sia trovato bene una volta trasferito. Forse non &#232; stato troppo traumatico,&#8230;" id="q13_25_86" au="Diana Stanciu" cDate="2026-05-06T14:42:36" mDate="2026-05-06T14:42:36" loc="2331&#8201;&#8211;&#8201;2471">
+                    <content size="140">
+                        <p>Sono contenta che tu ti sia trovato bene una volta trasferito. Forse non &#232; stato troppo traumatico, venendo da quel buco Santa Giustina, eh?</p>
+                    </content>
+                </q>
+                <q name="Anche io mi sono spostata, per non dire sono fuggita, varie volte. Ora mi trovo a Torino." id="q13_26_87" au="Diana Stanciu" cDate="2026-05-06T14:43:03" mDate="2026-05-06T14:43:03" loc="2771&#8201;&#8211;&#8201;2860">
+                    <content size="89">
+                        <p>Anche io mi sono spostata, per non dire sono fuggita, varie volte. Ora mi trovo a Torino.</p>
+                    </content>
+                </q>
+                <q name="La citt&#224; mi piace molto, mi sento bene sapendo che ci sono cos&#236; tanti stimoli a disposizione. Purtro&#8230;" id="q13_27_88" au="Diana Stanciu" cDate="2026-05-06T14:43:35" mDate="2026-05-06T14:43:35" loc="2861&#8201;&#8211;&#8201;3017">
+                    <content size="156">
+                        <p>La citt&#224; mi piace molto, mi sento bene sapendo che ci sono cos&#236; tanti stimoli a disposizione. Purtroppo per&#242; lavoro cos&#236; tanto da poterli cogliere a stento.</p>
+                    </content>
+                </q>
+                <q name="Senti, quella foto ce l'hai ancora? Me la puoi mostrare? Mi piacerebbe molto vederla." id="q13_28_89" au="Diana Stanciu" cDate="2026-05-06T14:44:04" mDate="2026-05-06T14:44:04" loc="3019&#8201;&#8211;&#8201;3104">
+                    <content size="85">
+                        <p>Senti, quella foto ce l'hai ancora? Me la puoi mostrare? Mi piacerebbe molto vederla.</p>
+                    </content>
+                </q>
+                <q name="Caterina (se vuoi puoi darmi un altro nome)" id="q13_29_90" au="Diana Stanciu" cDate="2026-05-06T14:44:16" mDate="2026-05-06T14:44:16" loc="3123&#8201;&#8211;&#8201;3166">
+                    <content size="43">
+                        <p>Caterina (se vuoi puoi darmi un altro nome)</p>
+                    </content>
+                </q>
+                <q name="Cara Caterina, che bello sentirti! E no, non ti cambio nome: Caterina mi piace, e poi &#232; il tuo vero&#8230;" id="q13_30_91" au="Diana Stanciu" cDate="2026-05-06T14:44:35" mDate="2026-05-06T14:44:35" loc="3212&#8201;&#8211;&#8201;3426">
+                    <content size="214">
+                        <p>Cara Caterina,</p>
+                        <p></p>
+                        <p>che bello sentirti! E no, non ti cambio nome: Caterina mi piace, e poi &#232; il tuo vero nome, quello che avevi quando eravamo bambini. Anche se devo ammettere che mi ha fatto sorridere la tua proposta.</p>
+                    </content>
+                </q>
+                <q name="e poi &#232; il tuo vero nome, quello che avevi quando eravamo bambini." id="q13_31_92" au="Diana Stanciu" cDate="2026-05-06T14:45:08" mDate="2026-05-06T14:45:08" loc="3293&#8201;&#8211;&#8201;3359">
+                    <content size="66">
+                        <p>e poi &#232; il tuo vero nome, quello che avevi quando eravamo bambini.</p>
+                    </content>
+                </q>
+                <q name="Anche io mi sono spostata, per non dire sono fuggita, varie volte. Ora mi trovo a Torino. La citt&#224; m&#8230;" id="q13_32_93" au="Diana Stanciu" cDate="2026-05-06T14:46:11" mDate="2026-05-06T14:46:11" loc="2771&#8201;&#8211;&#8201;3017">
+                    <content size="246">
+                        <p>Anche io mi sono spostata, per non dire sono fuggita, varie volte. Ora mi trovo a Torino. La citt&#224; mi piace molto, mi sento bene sapendo che ci sono cos&#236; tanti stimoli a disposizione. Purtroppo per&#242; lavoro cos&#236; tanto da poterli cogliere a stento.</p>
+                    </content>
+                </q>
+                <q name="La citt&#224; mi piace molto, mi sento bene sapendo che ci sono cos&#236; tanti stimoli a disposizione." id="q13_33_94" au="Diana Stanciu" cDate="2026-05-06T14:47:49" mDate="2026-05-06T14:47:49" loc="2861&#8201;&#8211;&#8201;2954">
+                    <content size="93">
+                        <p>La citt&#224; mi piace molto, mi sento bene sapendo che ci sono cos&#236; tanti stimoli a disposizione.</p>
+                    </content>
+                </q>
+                <q name="che bello sentirti! E no, non ti cambio nome: Caterina mi piace, e poi &#232; il tuo vero nome, quello ch&#8230;" id="q13_34_95" au="Diana Stanciu" cDate="2026-05-06T14:49:53" mDate="2026-05-06T14:49:53" loc="3228&#8201;&#8211;&#8201;3426">
+                    <content size="198">
+                        <p>che bello sentirti! E no, non ti cambio nome: Caterina mi piace, e poi &#232; il tuo vero nome, quello che avevi quando eravamo bambini. Anche se devo ammettere che mi ha fatto sorridere la tua proposta.</p>
+                    </content>
+                </q>
+                <q name="Apaya in realt&#224; non significa niente di particolare, almeno non che io sappia. &#200; solo il suono che f&#8230;" id="q13_35_96" au="Diana Stanciu" cDate="2026-05-06T14:50:43" mDate="2026-05-06T14:50:43" loc="3428&#8201;&#8211;&#8201;3796">
+                    <content size="368">
+                        <p>Apaya in realt&#224; non significa niente di particolare, almeno non che io sappia. &#200; solo il suono che facevo quando ero piccolissimo e cercavo di dire il mio nome. Mia nonna lo trovava cos&#236; tenero che ha iniziato a chiamarmi cos&#236;, e quando sono arrivato qui &#232; rimasto. Le persone del paese sembrano preferirlo a Marco, forse perch&#233; suona pi&#249; familiare alle loro orecchie.</p>
+                    </content>
+                </q>
+                <q name="Non &#232; solo che ci si conosce, &#232; che ci si appartiene un po' tutti, nel bene e nel male. A volte pu&#242;&#8230;" id="q13_36_97" au="Diana Stanciu" cDate="2026-05-06T14:52:20" mDate="2026-05-06T14:52:20" loc="3983&#8201;&#8211;&#8201;4209">
+                    <content size="226">
+                        <p>Non &#232; solo che ci si conosce, &#232; che ci si appartiene un po' tutti, nel bene e nel male. A volte pu&#242; essere soffocante, lo ammetto, ma nella maggior parte dei casi d&#224; una sensazione di sicurezza che non avevo mai provato prima.</p>
+                    </content>
+                </q>
+                <q name="ma nella maggior parte dei casi d&#224; una sensazione di sicurezza che non avevo mai provato prima." id="q13_37_98" au="Diana Stanciu" cDate="2026-05-06T14:53:03" mDate="2026-05-06T14:53:03" loc="4114&#8201;&#8211;&#8201;4209">
+                    <content size="95">
+                        <p>ma nella maggior parte dei casi d&#224; una sensazione di sicurezza che non avevo mai provato prima.</p>
+                    </content>
+                </q>
+                <q name="Hai ragione su Santa Giustina! Non era proprio un buco, ma diciamo che la vita sociale non era il su&#8230;" id="q13_38_99" au="Diana Stanciu" cDate="2026-05-06T14:53:39" mDate="2026-05-06T14:53:39" loc="3798&#8201;&#8211;&#8201;4209">
+                    <content size="411">
+                        <p>Hai ragione su Santa Giustina! Non era proprio un buco, ma diciamo che la vita sociale non era il suo forte. Qui ad Arvuna &#232; diverso: le relazioni sono pi&#249;... come dire... intrecciate. Non &#232; solo che ci si conosce, &#232; che ci si appartiene un po' tutti, nel bene e nel male. A volte pu&#242; essere soffocante, lo ammetto, ma nella maggior parte dei casi d&#224; una sensazione di sicurezza che non avevo mai provato prima.</p>
+                    </content>
+                </q>
+                <q name="Per&#242; ti posso descrivere: tu hai i capelli raccolti con una di quelle mollette a forma di farfalla c&#8230;" id="q13_39_100" au="Diana Stanciu" cDate="2026-05-06T14:56:46" mDate="2026-05-06T14:56:46" loc="4367&#8201;&#8211;&#8201;4645">
+                    <content size="278">
+                        <p>Per&#242; ti posso descrivere: tu hai i capelli raccolti con una di quelle mollette a forma di farfalla che andavano tanto di moda, e hai un sorriso un po' timido. Io sono seduto tre posti pi&#249; in l&#224;, con i capelli che mi cadono sugli occhi e una maglietta a righe sotto il grembiule.</p>
+                    </content>
+                </q>
+                <q name="Torino dev'essere un bel cambiamento rispetto a Santa Giustina! Che lavoro fai che ti tiene cos&#236; occ&#8230;" id="q13_40_101" au="Diana Stanciu" cDate="2026-05-06T14:57:32" mDate="2026-05-06T14:57:32" loc="4647&#8201;&#8211;&#8201;4827">
+                    <content size="180">
+                        <p>Torino dev'essere un bel cambiamento rispetto a Santa Giustina! Che lavoro fai che ti tiene cos&#236; occupata? E quando dici che hai "sempre voluto scappare", cosa intendi esattamente?</p>
+                    </content>
+                </q>
+                <q name="Tra l'altro, tra poco ci sar&#224; un evento importante qui al paese: la Castala. &#200; una specie di rito di&#8230;" id="q13_41_102" au="Diana Stanciu" cDate="2026-05-06T14:59:29" mDate="2026-05-06T14:59:29" loc="4829&#8201;&#8211;&#8201;5070">
+                    <content size="241">
+                        <p>Tra l'altro, tra poco ci sar&#224; un evento importante qui al paese: la Castala. &#200; una specie di rito di passaggio che facciamo quando qualcuno &#232; pronto a diventare un membro adulto della comunit&#224;. Sono molto emozionato, anche se un po' nervoso.</p>
+                    </content>
+                </q>
+                <q name="Da voi in citt&#224; esistono ancora cose del genere? Momenti in cui una persona passa ufficialmente dall&#8230;" id="q13_42_103" au="Diana Stanciu" cDate="2026-05-06T14:59:58" mDate="2026-05-06T14:59:58" loc="5071&#8201;&#8211;&#8201;5229">
+                    <content size="158">
+                        <p>Da voi in citt&#224; esistono ancora cose del genere? Momenti in cui una persona passa ufficialmente dall'essere considerata giovane all'essere considerata adulta?</p>
+                    </content>
+                </q>
+                <q name="Tra l'altro, tra poco ci sar&#224; un evento importante qui al paese: la Castala. &#200; una specie di rito di&#8230;" id="q13_43_104" au="Diana Stanciu" cDate="2026-05-06T15:00:21" mDate="2026-05-06T15:00:21" loc="4829&#8201;&#8211;&#8201;5229">
+                    <content size="400">
+                        <p>Tra l'altro, tra poco ci sar&#224; un evento importante qui al paese: la Castala. &#200; una specie di rito di passaggio che facciamo quando qualcuno &#232; pronto a diventare un membro adulto della comunit&#224;. Sono molto emozionato, anche se un po' nervoso. Da voi in citt&#224; esistono ancora cose del genere? Momenti in cui una persona passa ufficialmente dall'essere considerata giovane all'essere considerata adulta?</p>
+                    </content>
+                </q>
+                <q name="L'ho detto che lavoro sempre, s&#236;?" id="q13_44_105" au="Diana Stanciu" cDate="2026-05-06T15:02:20" mDate="2026-05-06T15:02:20" loc="5329&#8201;&#8211;&#8201;5362">
+                    <content size="33">
+                        <p>L'ho detto che lavoro sempre, s&#236;?</p>
+                    </content>
+                </q>
+                <q name="eccomi, scusa il ritardo." id="q13_45_106" au="Diana Stanciu" cDate="2026-05-06T15:02:32" mDate="2026-05-06T15:02:32" loc="5303&#8201;&#8211;&#8201;5328">
+                    <content size="25">
+                        <p>eccomi, scusa il ritardo.</p>
+                    </content>
+                </q>
+                <q name="Mi occupo di libri per bambini e ragazzi in un'agenzia letteraria. Sono una segretaria di redazione,&#8230;" id="q13_46_107" au="Diana Stanciu" cDate="2026-05-06T15:02:59" mDate="2026-05-06T15:02:59" loc="5364&#8201;&#8211;&#8201;5584">
+                    <content size="220">
+                        <p>Mi occupo di libri per bambini e ragazzi in un'agenzia letteraria. Sono una segretaria di redazione, ma nel 2026 questo titolo non si usa (leggi: &#232; un abominio per LinkedIN), per cui possiamo dire che sono un'IP Manager.</p>
+                    </content>
+                </q>
+                <q name="Quando dico che &quot;sono sempre voluta scappare&quot; da Santa Giustina intendo che il paesino, o meglio l'a&#8230;" id="q13_47_108" au="Diana Stanciu" cDate="2026-05-06T15:03:32" mDate="2026-05-06T15:03:32" loc="5586&#8201;&#8211;&#8201;5735">
+                    <content size="149">
+                        <p>Quando dico che "sono sempre voluta scappare" da Santa Giustina intendo che il paesino, o meglio l'assenza di stimoli, iniziava ad essere soffocante.</p>
+                    </content>
+                </q>
+                <q name="Ora ci torno volentieri, in realt&#224;, forse proprio per questo. Sono talmente bombardata di pensieri e&#8230;" id="q13_48_109" au="Diana Stanciu" cDate="2026-05-06T15:04:06" mDate="2026-05-06T15:04:06" loc="5736&#8201;&#8211;&#8201;6028">
+                    <content size="292">
+                        <p>Ora ci torno volentieri, in realt&#224;, forse proprio per questo. Sono talmente bombardata di pensieri e cose da fare a Torino, che tornare in un ambiente estremamente prevedibile, calmo e sempre fedele a s&#233; stesso &#232; confortante. Dopo qualche giorno, per&#242;, sento il bisogno di ritornare in citt&#224;.</p>
+                    </content>
+                </q>
+                <q name="Che cos'&#232; la Castala? Non penso abbiamo un rito simile, qui, a segnare il passaggio all'et&#224; adulta." id="q13_49_110" au="Diana Stanciu" cDate="2026-05-07T16:38:34" mDate="2026-05-07T16:38:34" loc="6030&#8201;&#8211;&#8201;6129">
+                    <content size="99">
+                        <p>Che cos'&#232; la Castala?</p>
+                        <p>Non penso abbiamo un rito simile, qui, a segnare il passaggio all'et&#224; adulta.</p>
+                    </content>
+                </q>
+                <q name="Oltre a iscriversi a Trade Republic, ovviamente." id="q13_50_111" au="Diana Stanciu" cDate="2026-05-07T16:39:00" mDate="2026-05-07T16:39:00" loc="6130&#8201;&#8211;&#8201;6178">
+                    <content size="48">
+                        <p>Oltre a iscriversi a Trade Republic, ovviamente.</p>
+                    </content>
+                </q>
+                <q name="IP Manager suona decisamente meglio di segretaria di redazione, hai ragione! E che lavoro interessan&#8230;" id="q13_51_112" au="Diana Stanciu" cDate="2026-05-07T16:39:57" mDate="2026-05-07T16:39:57" loc="6272&#8201;&#8211;&#8201;6469">
+                    <content size="197">
+                        <p>IP Manager suona decisamente meglio di segretaria di redazione, hai ragione! E che lavoro interessante, i libri per bambini. Immagino che ogni giorno ti arrivino storie incredibili sulla scrivania.</p>
+                    </content>
+                </q>
+                <q name="Capisco benissimo quello che dici su Santa Giustina. &#200; buffo come i luoghi cambino significato a sec&#8230;" id="q13_52_113" au="Diana Stanciu" cDate="2026-05-07T16:40:34" mDate="2026-05-07T16:40:34" loc="6471&#8201;&#8211;&#8201;6786">
+                    <content size="315">
+                        <p>Capisco benissimo quello che dici su Santa Giustina. &#200; buffo come i luoghi cambino significato a seconda del momento della vita in cui li guardiamo, no? Da bambino ricordo che mi sembrava cos&#236; piccolo che mi faceva quasi claustrofobia, e ora invece quando ci ripenso mi sembra quasi troppo grande rispetto a Arvuna.</p>
+                    </content>
+                </q>
+                <q name="&#200; buffo come i luoghi cambino significato a seconda del momento della vita in cui li guardiamo, no?" id="q13_53_114" au="Diana Stanciu" cDate="2026-05-07T16:41:16" mDate="2026-05-07T16:41:16" loc="6524&#8201;&#8211;&#8201;6623">
+                    <content size="99">
+                        <p>&#200; buffo come i luoghi cambino significato a seconda del momento della vita in cui li guardiamo, no?</p>
+                    </content>
+                </q>
+                <q name="Da bambino ricordo che mi sembrava cos&#236; piccolo che mi faceva quasi claustrofobia," id="q13_54_115" au="Diana Stanciu" cDate="2026-05-07T16:41:59" mDate="2026-05-07T16:41:59" loc="6624&#8201;&#8211;&#8201;6706">
+                    <content size="82">
+                        <p>Da bambino ricordo che mi sembrava cos&#236; piccolo che mi faceva quasi claustrofobia,</p>
+                    </content>
+                </q>
+                <q name="Ma prima di parlarti della Castala, devo presentarti qualcuno che &#232; diventato fondamentale nella mia&#8230;" id="q13_55_116" au="Diana Stanciu" cDate="2026-05-07T16:42:48" mDate="2026-05-07T16:42:48" loc="7181&#8201;&#8211;&#8201;7645">
+                    <content size="464">
+                        <p>Ma prima di parlarti della Castala, devo presentarti qualcuno che &#232; diventato fondamentale nella mia vita negli ultimi mesi: Lepi. &#200; arrivato qui circa dieci mesi fa, quando era ancora piccolissimo, e da allora vive con me. &#200; una creatura incredibile, piena di energia e curiosit&#224;. Ha un modo tutto suo di guardarmi quando vuole qualcosa: inclina la testa di lato e mi fissa con quegli occhi grandi e lucidi finch&#233; non cedo. &#200; pi&#249; furbo di quanto voglia ammettere!</p>
+                    </content>
+                </q>
+                <q name="devo presentarti qualcuno che &#232; diventato fondamentale nella mia vita negli ultimi mesi: Lepi." id="q13_56_117" au="Diana Stanciu" cDate="2026-05-07T16:43:36" mDate="2026-05-07T16:43:36" loc="7217&#8201;&#8211;&#8201;7311">
+                    <content size="94">
+                        <p>devo presentarti qualcuno che &#232; diventato fondamentale nella mia vita negli ultimi mesi: Lepi.</p>
+                    </content>
+                </q>
+                <q name="&#200; una creatura incredibile, piena di energia e curiosit&#224;. Ha un modo tutto suo di guardarmi quando v&#8230;" id="q13_57_118" au="Diana Stanciu" cDate="2026-05-07T16:44:48" mDate="2026-05-07T16:44:48" loc="7405&#8201;&#8211;&#8201;7645">
+                    <content size="240">
+                        <p>&#200; una creatura incredibile, piena di energia e curiosit&#224;. Ha un modo tutto suo di guardarmi quando vuole qualcosa: inclina la testa di lato e mi fissa con quegli occhi grandi e lucidi finch&#233; non cedo. &#200; pi&#249; furbo di quanto voglia ammettere!</p>
+                    </content>
+                </q>
+                <q name="La mattina &#232; sempre il primo a svegliarsi, e invece di svegliarmi piano come farebbe una persona edu&#8230;" id="q13_58_119" au="Diana Stanciu" cDate="2026-05-07T16:45:13" mDate="2026-05-07T16:45:13" loc="7647&#8201;&#8211;&#8201;7948">
+                    <content size="301">
+                        <p>La mattina &#232; sempre il primo a svegliarsi, e invece di svegliarmi piano come farebbe una persona educata, salta direttamente sul letto e inizia a correre avanti e indietro sui cuscini. &#200; il suo modo di dirmi "alzati, &#232; ora di giocare!". E il bello &#232; che funziona sempre, non riesco mai ad arrabbiarmi.</p>
+                    </content>
+                </q>
+                <q name="Lepi ha anche sviluppato una specie di ossessione per i calzini. Ogni volta che ne trova uno in giro&#8230;" id="q13_59_120" au="Diana Stanciu" cDate="2026-05-07T16:45:27" mDate="2026-05-07T16:45:27" loc="7950&#8201;&#8211;&#8201;8184">
+                    <content size="234">
+                        <p>Lepi ha anche sviluppato una specie di ossessione per i calzini. Ogni volta che ne trova uno in giro per casa, lo prende e lo porta nella sua cuccia come se fosse un trofeo. Ormai ho imparato a controllare l&#236; quando non trovo le paia.</p>
+                    </content>
+                </q>
+                <q name="Ieri mi ha fatto ridere: stavo preparando il pranzo e lui continuava a girare intorno ai miei piedi,&#8230;" id="q13_60_121" au="Diana Stanciu" cDate="2026-05-07T16:45:43" mDate="2026-05-07T16:45:43" loc="8186&#8201;&#8211;&#8201;8524">
+                    <content size="338">
+                        <p>Ieri mi ha fatto ridere: stavo preparando il pranzo e lui continuava a girare intorno ai miei piedi, chiaramente sperando che cadesse qualcosa. A un certo punto ho fatto finta di non vederlo e ho lasciato cadere apposta un pezzo di pane. L'ha afferrato al volo e se n'&#232; andato tutto orgoglioso, come se avesse compiuto una grande impresa.</p>
+                    </content>
+                </q>
+                <q name="Ti piacciono gli animali, Caterina? Ne hai mai avuti?" id="q13_61_122" au="Diana Stanciu" cDate="2026-05-07T16:45:56" mDate="2026-05-07T16:45:56" loc="8526&#8201;&#8211;&#8201;8579">
+                    <content size="53">
+                        <p>Ti piacciono gli animali, Caterina? Ne hai mai avuti?</p>
+                    </content>
+                </q>
+                <q name="ma Lepi cos'&#232;, un cagnolino?" id="q13_62_123" au="Diana Stanciu" cDate="2026-05-07T16:46:14" mDate="2026-05-07T16:46:14" loc="8652&#8201;&#8211;&#8201;8680">
+                    <content size="28">
+                        <p>ma Lepi cos'&#232;, un cagnolino?</p>
+                    </content>
+                </q>
+                <q name="S&#236;, gli animali mi piacciono molto." id="q13_63_124" au="Diana Stanciu" cDate="2026-05-07T16:46:28" mDate="2026-05-07T16:46:28" loc="8682&#8201;&#8211;&#8201;8717">
+                    <content size="35">
+                        <p>S&#236;, gli animali mi piacciono molto.</p>
+                    </content>
+                </q>
+                <q name="Ora non ne ho, pi&#249; che altro perch&#233; sono un costo un po' imprevedibile. E poi se voglio partire in v&#8230;" id="q13_64_125" au="Diana Stanciu" cDate="2026-05-07T16:46:48" mDate="2026-05-07T16:46:48" loc="8718&#8201;&#8211;&#8201;8939">
+                    <content size="221">
+                        <p>Ora non ne ho, pi&#249; che altro perch&#233; sono un costo un po' imprevedibile. E poi se voglio partire in vacanza o altro, dove li lascio? &#200; un problema. Cos&#236;, come con tutto, procrastino il momento in cui ne avr&#242; uno tutto mio.</p>
+                    </content>
+                </q>
+                <q name="Cos&#236;, come con tutto, procrastino il momento in cui ne avr&#242; uno tutto mio" id="q13_65_126" au="Diana Stanciu" cDate="2026-05-07T16:47:06" mDate="2026-05-07T16:47:06" loc="8865&#8201;&#8211;&#8201;8938">
+                    <content size="73">
+                        <p>Cos&#236;, come con tutto, procrastino il momento in cui ne avr&#242; uno tutto mio</p>
+                    </content>
+                </q>
+                <q name="Immagino che ad Arvuna sia diverso, e che tu possa contare sul supporto degli altri quando serve. Io&#8230;" id="q13_66_127" au="Diana Stanciu" cDate="2026-05-07T16:47:17" mDate="2026-05-07T16:47:17" loc="8940&#8201;&#8211;&#8201;9100">
+                    <content size="160">
+                        <p>Immagino che ad Arvuna sia diverso, e che tu possa contare sul supporto degli altri quando serve. Io non posso neanche suonare al vicino per un po' di zucchero.</p>
+                    </content>
+                </q>
+                <q name="Io non posso neanche suonare al vicino per un po' di zucchero." id="q13_67_128" au="Diana Stanciu" cDate="2026-05-07T16:47:43" mDate="2026-05-07T16:47:43" loc="9038&#8201;&#8211;&#8201;9100">
+                    <content size="62">
+                        <p>Io non posso neanche suonare al vicino per un po' di zucchero.</p>
+                    </content>
+                </q>
+                <q name="hai ragione, qui ad Arvuna &#232; molto pi&#249; semplice avere un animale. Se devo assentarmi, c'&#232; sempre qua&#8230;" id="q13_68_129" au="Diana Stanciu" cDate="2026-05-07T16:48:18" mDate="2026-05-07T16:48:18" loc="9169&#8201;&#8211;&#8201;9379">
+                    <content size="210">
+                        <p>hai ragione, qui ad Arvuna &#232; molto pi&#249; semplice avere un animale. Se devo assentarmi, c'&#232; sempre qualcuno disposto a dare un'occhiata, e tutti conoscono Lepi ormai. &#200; diventato una specie di mascotte del paese.</p>
+                    </content>
+                </q>
+                <q name="tutti conoscono Lepi ormai. &#200; diventato una specie di mascotte del paese." id="q13_69_130" au="Diana Stanciu" cDate="2026-05-07T16:49:05" mDate="2026-05-07T16:49:05" loc="9306&#8201;&#8211;&#8201;9379">
+                    <content size="73">
+                        <p>tutti conoscono Lepi ormai. &#200; diventato una specie di mascotte del paese.</p>
+                    </content>
+                </q>
+                <q name="Capisco perfettamente i tuoi dubbi sui costi e sulla gestione. A Torino dev'essere complicato, tra i&#8230;" id="q13_70_131" au="Diana Stanciu" cDate="2026-05-07T16:49:36" mDate="2026-05-07T16:49:36" loc="9381&#8201;&#8211;&#8201;9579">
+                    <content size="198">
+                        <p>Capisco perfettamente i tuoi dubbi sui costi e sulla gestione. A Torino dev'essere complicato, tra il lavoro e tutti gli impegni che hai. Per&#242; magari un giorno, quando la vita si sistemer&#224; un po'...</p>
+                    </content>
+                </q>
+                <q name="Capisco perfettamente i tuoi dubbi sui costi e sulla gestione." id="q13_71_132" au="Diana Stanciu" cDate="2026-05-07T16:50:28" mDate="2026-05-07T16:50:28" loc="9381&#8201;&#8211;&#8201;9443">
+                    <content size="62">
+                        <p>Capisco perfettamente i tuoi dubbi sui costi e sulla gestione.</p>
+                    </content>
+                </q>
+                <q name="Devo dirti una cosa che mi sta pesando molto ultimamente, e forse tu potresti aiutarmi a vederla pi&#249;&#8230;" id="q13_72_133" au="Diana Stanciu" cDate="2026-05-07T16:51:36" mDate="2026-05-07T16:51:36" loc="9581&#8201;&#8211;&#8201;9727">
+                    <content size="146">
+                        <p>Devo dirti una cosa che mi sta pesando molto ultimamente, e forse tu potresti aiutarmi a vederla pi&#249; chiara. &#200; sulla Castala, di cui ti accennavo.</p>
+                    </content>
+                </q>
+                <q name="&#200; sulla Castala, di cui ti accennavo." id="q13_73_134" au="Diana Stanciu" cDate="2026-05-07T16:51:52" mDate="2026-05-07T16:51:52" loc="9690&#8201;&#8211;&#8201;9727">
+                    <content size="37">
+                        <p>&#200; sulla Castala, di cui ti accennavo.</p>
+                    </content>
+                </q>
+                <q name="Il rito funziona cos&#236;: ogni persona che partecipa deve dimostrare di essere pronta ad assumersi resp&#8230;" id="q13_74_135" au="Diana Stanciu" cDate="2026-05-07T16:52:28" mDate="2026-05-07T16:52:28" loc="9729&#8201;&#8211;&#8201;10086">
+                    <content size="357">
+                        <p>Il rito funziona cos&#236;: ogni persona che partecipa deve dimostrare di essere pronta ad assumersi responsabilit&#224; vere, anche quelle difficili. Parte di questo significa saper prendere decisioni che costano fatica emotiva, ma che servono alla comunit&#224;. Durante la cerimonia, ognuno deve... deve uccidere un animale che ha allevato e curato per almeno sei mesi.</p>
+                    </content>
+                </q>
+                <q name="ogni persona che partecipa deve dimostrare di essere pronta ad assumersi responsabilit&#224; vere, anche&#8230;" id="q13_75_136" au="Diana Stanciu" cDate="2026-05-07T16:53:19" mDate="2026-05-07T16:53:19" loc="9752&#8201;&#8211;&#8201;9978">
+                    <content size="226">
+                        <p>ogni persona che partecipa deve dimostrare di essere pronta ad assumersi responsabilit&#224; vere, anche quelle difficili. Parte di questo significa saper prendere decisioni che costano fatica emotiva, ma che servono alla comunit&#224;.</p>
+                    </content>
+                </q>
+                <q name="Ora capisci perch&#233; ti ho parlato di Lepi. &#200; lui l'animale che dovrei uccidere durante la mia Castala&#8230;" id="q13_76_137" au="Diana Stanciu" cDate="2026-05-07T16:53:58" mDate="2026-05-07T16:53:58" loc="10088&#8201;&#8211;&#8201;10208">
+                    <content size="120">
+                        <p>Ora capisci perch&#233; ti ho parlato di Lepi. &#200; lui l'animale che dovrei uccidere durante la mia Castala, tra circa un mese.</p>
+                    </content>
+                </q>
+                <q name="Qui tutti trovano normale questa tradizione, &#232; sempre stato cos&#236;. Dicono che serve a dimostrare che&#8230;" id="q13_77_138" au="Diana Stanciu" cDate="2026-05-07T16:54:58" mDate="2026-05-07T16:54:58" loc="10210&#8201;&#8211;&#8201;10592">
+                    <content size="382">
+                        <p>Qui tutti trovano normale questa tradizione, &#232; sempre stato cos&#236;. Dicono che serve a dimostrare che sai mettere il bene della comunit&#224; prima dei tuoi sentimenti personali, che sei disposto a fare sacrifici per il gruppo. Ma io... io mi sono affezionato a Lepi molto pi&#249; di quanto pensassi possibile. Lo guardo giocare con i calzini e penso a quel giorno, e mi si stringe lo stomaco.</p>
+                    </content>
+                </q>
+                <q name="Ma io... io mi sono affezionato a Lepi molto pi&#249; di quanto pensassi possibile. Lo guardo giocare con&#8230;" id="q13_78_139" au="Diana Stanciu" cDate="2026-05-07T16:55:35" mDate="2026-05-07T16:55:35" loc="10431&#8201;&#8211;&#8201;10592">
+                    <content size="161">
+                        <p>Ma io... io mi sono affezionato a Lepi molto pi&#249; di quanto pensassi possibile. Lo guardo giocare con i calzini e penso a quel giorno, e mi si stringe lo stomaco.</p>
+                    </content>
+                </q>
+                <q name="Dicono che serve a dimostrare che sai mettere il bene della comunit&#224; prima dei tuoi sentimenti perso&#8230;" id="q13_79_140" au="Diana Stanciu" cDate="2026-05-07T16:56:07" mDate="2026-05-07T16:56:07" loc="10276&#8201;&#8211;&#8201;10430">
+                    <content size="154">
+                        <p>Dicono che serve a dimostrare che sai mettere il bene della comunit&#224; prima dei tuoi sentimenti personali, che sei disposto a fare sacrifici per il gruppo.</p>
+                    </content>
+                </q>
+                <q name="penso a quel giorno, e mi si stringe lo stomaco." id="q13_80_141" au="Diana Stanciu" cDate="2026-05-07T16:56:23" mDate="2026-05-07T16:56:23" loc="10544&#8201;&#8211;&#8201;10592">
+                    <content size="48">
+                        <p>penso a quel giorno, e mi si stringe lo stomaco.</p>
+                    </content>
+                </q>
+                <q name="Ti ricordi il gattino rosso che c'era nel cortile della scuola? Quello con cui giocavamo durante l'i&#8230;" id="q13_81_142" au="Diana Stanciu" cDate="2026-05-07T16:57:41" mDate="2026-05-07T16:57:41" loc="10594&#8201;&#8211;&#8201;10776">
+                    <content size="182">
+                        <p>Ti ricordi il gattino rosso che c'era nel cortile della scuola? Quello con cui giocavamo durante l'intervallo? Come si chiamava? Mi &#232; venuto in mente in questi giorni, non so perch&#233;.</p>
+                    </content>
+                </q>
+                <q name="Probabilmente sar&#224; il giorno pi&#249; difficile della mia vita," id="q13_82_143" au="Diana Stanciu" cDate="2026-05-07T16:58:08" mDate="2026-05-07T16:58:08" loc="10778&#8201;&#8211;&#8201;10836">
+                    <content size="58">
+                        <p>Probabilmente sar&#224; il giorno pi&#249; difficile della mia vita,</p>
+                    </content>
+                </q>
+                <q name="Probabilmente sar&#224; il giorno pi&#249; difficile della mia vita, ma la Castala non si discute, credo... &#200;&#8230;" id="q13_83_144" au="Diana Stanciu" cDate="2026-05-07T16:58:43" mDate="2026-05-07T16:58:43" loc="10778&#8201;&#8211;&#8201;10940">
+                    <content size="162">
+                        <p>Probabilmente sar&#224; il giorno pi&#249; difficile della mia vita, ma la Castala non si discute, credo... &#200; una norma che tiene insieme la nostra comunit&#224; da generazioni.</p>
+                    </content>
+                </q>
+                <q name="&#200; una norma che tiene insieme la nostra comunit&#224; da generazioni." id="q13_84_145" au="Diana Stanciu" cDate="2026-05-07T16:59:18" mDate="2026-05-07T16:59:18" loc="10876&#8201;&#8211;&#8201;10940">
+                    <content size="64">
+                        <p>&#200; una norma che tiene insieme la nostra comunit&#224; da generazioni.</p>
+                    </content>
+                </q>
+                <q name="Ma ci tengo molto a sentire l'opinione di un caro vecchio amico prima di quel momento." id="q13_85_146" au="Diana Stanciu" cDate="2026-05-07T16:59:45" mDate="2026-05-07T16:59:45" loc="11058&#8201;&#8211;&#8201;11144">
+                    <content size="86">
+                        <p>Ma ci tengo molto a sentire l'opinione di un caro vecchio amico prima di quel momento.</p>
+                    </content>
+                </q>
+                <q name="Tu cosa faresti al mio posto?" id="q13_86_147" au="Diana Stanciu" cDate="2026-05-07T17:00:46" mDate="2026-05-07T17:00:46" loc="11146&#8201;&#8211;&#8201;11175">
+                    <content size="29">
+                        <p>Tu cosa faresti al mio posto?</p>
+                    </content>
+                </q>
+                <q name="Penso per&#242; che se hai deciso di votare la tua vita alla comunit&#224;, non puoi sottrarti alle sue regole&#8230;" id="q13_87_148" au="Diana Stanciu" cDate="2026-05-07T17:01:15" mDate="2026-05-07T17:01:15" loc="11344&#8201;&#8211;&#8201;11445">
+                    <content size="101">
+                        <p>Penso per&#242; che se hai deciso di votare la tua vita alla comunit&#224;, non puoi sottrarti alle sue regole.</p>
+                    </content>
+                </q>
+                <q name="&#232; una situazione molto molto complicata, di certo non vorrei essere al tuo posto." id="q13_88_149" au="Diana Stanciu" cDate="2026-05-07T17:01:32" mDate="2026-05-07T17:01:32" loc="11262&#8201;&#8211;&#8201;11343">
+                    <content size="81">
+                        <p>&#232; una situazione molto molto complicata, di certo non vorrei essere al tuo posto.</p>
+                    </content>
+                </q>
+                <q name="Quindi, perch&#233; dispiacersi solo per lui? Ti ci sei affezionato, s&#236;, ma proprio nel tentativo di salv&#8230;" id="q13_89_150" au="Diana Stanciu" cDate="2026-05-07T17:08:38" mDate="2026-05-07T17:08:38" loc="11584&#8201;&#8211;&#8201;11874">
+                    <content size="290">
+                        <p>Quindi, perch&#233; dispiacersi solo per lui? Ti ci sei affezionato, s&#236;, ma proprio nel tentativo di salvare solo lui si nasconde un sentimento egoista. Se non &#232; un movimento antispecista a muoverti, e tanto pi&#249; se non hai intenzione di uscire dalla comunit&#224;, io penso che dovresti sacrificarlo.</p>
+                    </content>
+                </q>
+                <q name="La Castala si &#232; svolta tre giorni fa, e ora sono qui a scriverti con le mani che tremano ancora un p&#8230;" id="q13_90_151" au="Diana Stanciu" cDate="2026-05-08T11:49:57" mDate="2026-05-08T11:49:57" loc="11976&#8201;&#8211;&#8201;12172">
+                    <content size="196">
+                        <p>La Castala si &#232; svolta tre giorni fa, e ora sono qui a scriverti con le mani che tremano ancora un po', non so bene se per quello che &#232; successo o per il freddo di questi primi giorni di novembre.</p>
+                    </content>
+                </q>
+                <q name="Le tue parole mi hanno accompagnato fino al giorno della cerimonia. Hai ragione, c'era qualcosa di e&#8230;" id="q13_91_152" au="Diana Stanciu" cDate="2026-05-08T17:53:17" mDate="2026-05-08T17:53:17" loc="12174&#8201;&#8211;&#8201;12412">
+                    <content size="238">
+                        <p>Le tue parole mi hanno accompagnato fino al giorno della cerimonia. Hai ragione, c'era qualcosa di egoistico nel voler salvare solo Lepi. Ho pensato molto a quello che mi hai scritto, e alla fine ho deciso che dovevo andare fino in fondo.</p>
+                    </content>
+                </q>
+                <q name="La cerimonia &#232; iniziata al tramonto, nel cerchio di pietre fuori dal paese. C'erano tutti gli abitan&#8230;" id="q13_92_153" au="Diana Stanciu" cDate="2026-05-08T17:59:08" mDate="2026-05-08T17:59:08" loc="12637&#8201;&#8211;&#8201;12928">
+                    <content size="291">
+                        <p>La cerimonia &#232; iniziata al tramonto, nel cerchio di pietre fuori dal paese. C'erano tutti gli abitanti di Arvuna, e io insieme agli altri due che dovevano compiere il rito quest'anno. Il momento &#232; arrivato, e io avevo Lepi tra le braccia. Stava tremando, forse sentiva la tensione nell'aria.</p>
+                    </content>
+                </q>
+                <q name="L'ho guardato e ho pensato: &quot;Oggi &#232; il giorno&quot;. Avevo lo stomaco chiuso, ma ero determinato." id="q13_93_154" au="Diana Stanciu" cDate="2026-05-08T17:59:52" mDate="2026-05-08T17:59:52" loc="12543&#8201;&#8211;&#8201;12635">
+                    <content size="92">
+                        <p>L'ho guardato e ho pensato: "Oggi &#232; il giorno". Avevo lo stomaco chiuso, ma ero determinato.</p>
+                    </content>
+                </q>
+                <q name="La cerimonia &#232; iniziata al tramonto, nel cerchio di pietre fuori dal paese. C'erano tutti gli abitan&#8230;" id="q13_94_155" au="Diana Stanciu" cDate="2026-05-08T18:02:15" mDate="2026-05-08T18:02:15" loc="12637&#8201;&#8211;&#8201;12875">
+                    <content size="238">
+                        <p>La cerimonia &#232; iniziata al tramonto, nel cerchio di pietre fuori dal paese. C'erano tutti gli abitanti di Arvuna, e io insieme agli altri due che dovevano compiere il rito quest'anno. Il momento &#232; arrivato, e io avevo Lepi tra le braccia.</p>
+                    </content>
+                </q>
+                <q name="Ho detto di no. Davanti a tutto il paese, ho detto che non riuscivo." id="q13_95_156" au="Diana Stanciu" cDate="2026-05-14T10:54:59" mDate="2026-05-14T10:54:59" loc="13195&#8201;&#8211;&#8201;13263">
+                    <content size="68">
+                        <p>Ho detto di no. Davanti a tutto il paese, ho detto che non riuscivo.</p>
+                    </content>
+                </q>
+                <q name="ma poi ho guardato Lepi e ho capito che non potevo farlo." id="q13_96_157" au="Diana Stanciu" cDate="2026-05-14T10:55:17" mDate="2026-05-14T10:55:17" loc="13136&#8201;&#8211;&#8201;13193">
+                    <content size="57">
+                        <p>ma poi ho guardato Lepi e ho capito che non potevo farlo.</p>
+                    </content>
+                </q>
+                <q name="Ma quando &#232; arrivato il mio turno, quando ho dovuto alzare il coltello, non ce l'ho fatta. Le mie ma&#8230;" id="q13_97_158" au="Diana Stanciu" cDate="2026-05-14T10:55:37" mDate="2026-05-14T10:55:37" loc="12930&#8201;&#8211;&#8201;13135">
+                    <content size="205">
+                        <p>Ma quando &#232; arrivato il mio turno, quando ho dovuto alzare il coltello, non ce l'ho fatta. Le mie mani si sono fermate. Ho guardato tutti quegli occhi puntati su di me, ho sentito il peso della tradizione,</p>
+                    </content>
+                </q>
+                <q name="Il silenzio che &#232; seguito &#232; stato terribile. Non so ancora bene cosa succeder&#224; ora. Probabilmente do&#8230;" id="q13_98_159" au="Diana Stanciu" cDate="2026-05-14T10:57:13" mDate="2026-05-14T10:57:13" loc="13265&#8201;&#8211;&#8201;13453">
+                    <content size="188">
+                        <p>Il silenzio che &#232; seguito &#232; stato terribile. Non so ancora bene cosa succeder&#224; ora. Probabilmente dovr&#242; andarmene da Arvuna, ma in questo momento sento di aver fatto la cosa giusta per me.</p>
+                    </content>
+                </q>
+                <q name="Lepi &#232; qui accanto a me mentre scrivo, e continua a rubarmi i calzini." id="q13_99_160" au="Diana Stanciu" cDate="2026-05-14T10:57:52" mDate="2026-05-14T10:57:52" loc="13455&#8201;&#8211;&#8201;13525">
+                    <content size="70">
+                        <p>Lepi &#232; qui accanto a me mentre scrivo, e continua a rubarmi i calzini.</p>
+                    </content>
+                </q>
+                <q name="Grazie per avermi aiutato a riflettere, anche se poi ho scelto diversamente da quello che mi consigl&#8230;" id="q13_100_161" au="Diana Stanciu" cDate="2026-05-14T10:58:29" mDate="2026-05-14T10:58:29" loc="13527&#8201;&#8211;&#8201;13679">
+                    <content size="152">
+                        <p>Grazie per avermi aiutato a riflettere, anche se poi ho scelto diversamente da quello che mi consigliavi. A volte il cuore parla pi&#249; forte della logica.</p>
+                    </content>
+                </q>
+            </quotations>
+        </primDoc>
+    </primDocs>
+    <codes size="33">
+        <code name="Cambiamento nella vita - Prova di paolo" id="co_1" au="Diana Stanciu" cDate="2026-04-30T16:43:46" mDate="2026-05-06T14:49:19" color="" guid="E550314D-2F95-49DD-84F9-3899FE609505" cCount="0" qCount="17">
+            <comment type="text/html" size="61">
+                <p>Applico questo codice quando si parla di cambiamenti di vita
+</p>
+            </comment>
+        </code>
+        <code name="Comunit&#224;" id="co_2" au="Diana Stanciu" cDate="2026-04-30T16:47:35" mDate="2026-04-30T16:47:35" color="" guid="642517E9-E152-4E14-AA3C-BA2F62C28420" cCount="0" qCount="20">
+            <comment type="text/html" size="84">
+                <p>Applico questo codice quando si descrive una comunit&#224; in cui si vive e le tradizioni</p>
+            </comment>
+        </code>
+        <code name="Decisione" id="co_3" au="Diana Stanciu" cDate="2026-05-08T17:53:17" mDate="2026-05-08T17:53:17" color="" guid="8BE0E228-41BB-4F7B-A479-29BE4EB89CE5" cCount="0" qCount="4">
+            <comment type="text/html" size="54">
+                <p>Applico questo codice quando viene presa una decisione</p>
+            </comment>
+        </code>
+        <code name="Emozioni e comportamenti" id="co_4" au="Diana Stanciu" cDate="2026-05-06T14:46:11" mDate="2026-05-06T14:46:11" color="" guid="1FFCCA0E-F889-4691-973A-7AF1B2C54E8A" cCount="0" qCount="0"/>
+        <code name="Identit&#224;" id="co_5" au="Diana Stanciu" cDate="2026-05-06T14:50:59" mDate="2026-05-06T14:50:59" color="" guid="7A3E4CCB-5978-4B11-AF26-5A03326794D6" cCount="0" qCount="9">
+            <comment type="text/html" size="52">
+                <p>Applico questo codice quando qualcuno parla di chi &#232;</p>
+            </comment>
+        </code>
+        <code name="Nostalgia: Ricordi d'infanzia" id="co_6" au="Diana Stanciu" cDate="2026-04-30T16:41:02" mDate="2026-04-30T16:42:51" color="" guid="CF1C7CB1-B8EB-48DE-B4AA-D6EC36BC9657" cCount="0" qCount="9">
+            <comment type="text/html" size="79">
+                <p>Applico questo codice quando qualcuno parla di ricordi di quando erano bambini
+</p>
+            </comment>
+        </code>
+        <code name="Relazioni" id="co_7" au="Diana Stanciu" cDate="2026-05-07T16:43:36" mDate="2026-05-07T16:43:36" color="" guid="33CBE847-9452-403C-8D00-B0095865AACD" cCount="0" qCount="9">
+            <comment type="text/html" size="88">
+                <p>Applico questo codice quando si parla di una relazione con una persona o animale o cosa
+</p>
+            </comment>
+        </code>
+        <code name="Riflessione sulla vita" id="co_8" au="Diana Stanciu" cDate="2026-04-30T16:48:54" mDate="2026-04-30T16:48:54" color="" guid="909455C5-A966-4C20-A73A-E1BB71FB73F1" cCount="0" qCount="14">
+            <comment type="text/html" size="80">
+                <p>Applico questo codice quando si fa qualche riflessione sulla propria situazione
+</p>
+            </comment>
+        </code>
+        <code name="adattamento sociale" id="co_9" au="Diana Stanciu" cDate="2026-04-30T16:44:20" mDate="2026-04-30T16:44:20" color="" guid="12902A6C-665D-4A36-9C5A-8885629FA637" cCount="0" qCount="10">
+            <comment type="text/html" size="75">
+                <p>Applico questo codice quando si accetta qualche tipo di cambiamento sociale</p>
+            </comment>
+        </code>
+        <code name="affetto" id="co_10" au="Diana Stanciu" cDate="2026-05-06T14:49:53" mDate="2026-05-06T14:49:53" color="" guid="809B03A6-A699-4BD3-9E98-89A0F5521DEE" cCount="0" qCount="7">
+            <comment type="text/html" size="66">
+                <p>Applico questo codice quando emerge qualche sentimento di affetto
+</p>
+            </comment>
+        </code>
+        <code name="affetto per gli animali" id="co_11" au="Diana Stanciu" cDate="2026-05-07T16:42:48" mDate="2026-05-07T16:42:48" color="" guid="CDE1306C-412D-4B99-AF9C-C4E99739683C" cCount="0" qCount="13">
+            <comment type="text/html" size="70">
+                <p>Applico questo codice quando viene descritto un affetto verso animali
+</p>
+            </comment>
+        </code>
+        <code name="ai" id="co_12" au="Diana Stanciu" cDate="2026-04-30T13:00:34" mDate="2026-04-30T13:00:34" color="" guid="B9BE11CE-6543-45F0-BACD-5E318FB31ADC" cCount="0" qCount="10">
+            <comment type="text/html" size="73">
+                <p>Applico questo codice alle lettere prodotte dall&#8217;intelligenza artificiale</p>
+            </comment>
+        </code>
+        <code name="ansia" id="co_13" au="Diana Stanciu" cDate="2026-05-06T14:59:29" mDate="2026-05-06T14:59:29" color="" guid="FCBC4E08-A6DB-4FF1-9779-4AC0D99CEF54" cCount="0" qCount="5">
+            <comment type="text/html" size="57">
+                <p>Applico questo codice quando emergono ansia o nervosismo
+</p>
+            </comment>
+        </code>
+        <code name="apertura" id="co_14" au="Diana Stanciu" cDate="2026-04-30T12:51:54" mDate="2026-04-30T12:51:54" color="" guid="C6C31265-093C-43D8-8819-37B10EFF75B6" cCount="0" qCount="9">
+            <comment type="text/html" size="78">
+                <p>Applico questo codice quando qualcuno si apre a qualcosa di nuovo e di diverso</p>
+            </comment>
+        </code>
+        <code name="chiusura" id="co_15" au="Diana Stanciu" cDate="2026-04-30T12:54:06" mDate="2026-04-30T12:54:06" color="" guid="0E0A8847-4828-4DBE-A692-AC8EAAC6D6A4" cCount="0" qCount="4">
+            <comment type="text/html" size="85">
+                <p>Applico questo codice quando qualcuno si chiude davanti a qualcosa di nuovo o diverso</p>
+            </comment>
+        </code>
+        <code name="critica sociale" id="co_16" au="Diana Stanciu" cDate="2026-05-06T14:41:52" mDate="2026-05-06T14:41:52" color="" guid="317A78F5-A6A1-4546-9F3B-B51ACB000DD5" cCount="0" qCount="7">
+            <comment type="text/html" size="87">
+                <p>Applico questo codice quando ci sono critiche verso la societ&#224; e si esprime un giudizio</p>
+            </comment>
+        </code>
+        <code name="critica verso il singolo" id="co_17" au="Diana Stanciu" cDate="2026-05-07T17:08:38" mDate="2026-05-07T17:08:38" color="" guid="56C41C77-B554-4432-A925-EA23EA736866" cCount="0" qCount="2">
+            <comment type="text/html" size="93">
+                <p>Applico questo codice quando viene mossa una critica verso un singolo e non verso la comunit&#224;</p>
+            </comment>
+        </code>
+        <code name="curiosit&#224; verso l'altro" id="co_18" au="Diana Stanciu" cDate="2026-05-06T14:37:43" mDate="2026-05-06T14:37:43" color="" guid="18B1608D-0083-42FD-9C50-492D55AE06C6" cCount="0" qCount="16">
+            <comment type="text/html" size="112">
+                <p>Applico questo codice quando si fanno domande nei riguardi dell&#8217;altra persona, per sapere di pi&#249; sulla sua vita
+</p>
+            </comment>
+        </code>
+        <code name="dispositivo retorico" id="co_19" au="Diana Stanciu" cDate="2026-04-30T12:56:07" mDate="2026-04-30T12:56:07" color="" guid="8A553ED6-15F3-4031-B938-D84CC29A33F3" cCount="0" qCount="4"/>
+        <code name="distanza dai voleri della comunit&#224;" id="co_20" au="Diana Stanciu" cDate="2026-05-14T10:56:16" mDate="2026-05-14T10:56:16" color="" guid="D6A968EF-5792-4F4D-8456-82E37C3E4FF9" cCount="0" qCount="1">
+            <comment type="text/html" size="77">
+                <p>Applico questo codice quando qualcuno fa qualcosa che va contro alla comunit&#224;</p>
+            </comment>
+        </code>
+        <code name="empatia" id="co_21" au="Diana Stanciu" cDate="2026-05-07T16:50:28" mDate="2026-05-07T16:50:28" color="" guid="13D0A6F3-BC61-4735-B4BC-0AAD0AA79985" cCount="0" qCount="7">
+            <comment type="text/html" size="73">
+                <p>Applico questo codice quando qualcuno si immedesima nei panni dell&#8217;altro
+</p>
+            </comment>
+        </code>
+        <code name="indifferenza" id="co_22" au="Diana Stanciu" cDate="2026-05-14T21:44:59" mDate="2026-05-14T21:44:59" color="" guid="584A87C2-B0EF-45D4-9849-C2FCFFCB8125" cCount="0" qCount="1">
+            <comment type="text/html" size="73">
+                <p>Applico questo codice quando si prende distanza attraverso l&#8217;indifferenza</p>
+            </comment>
+        </code>
+        <code name="ironia/sarcasmo" id="co_23" au="Diana Stanciu" cDate="2026-05-14T17:26:21" mDate="2026-05-14T17:26:21" color="" guid="80647555-894C-4F69-B2C5-70E89E3244B8" cCount="0" qCount="4">
+            <comment type="text/html" size="81">
+                <p>Applico questo codice quando qualcosa viene detto in maniera sarcastica o ironica</p>
+            </comment>
+        </code>
+        <code name="nostalgia" id="co_24" au="Diana Stanciu" cDate="2026-04-30T16:44:59" mDate="2026-04-30T16:44:59" color="" guid="07BC1849-1436-4BE0-80C5-C13634734E30" cCount="0" qCount="1">
+            <comment type="text/html" size="97">
+                <p>Applico questo codice quando ci sono sentimenti nostalgici verso qualcosa di astratto o concreto
+</p>
+            </comment>
+        </code>
+        <code name="oppressione" id="co_25" au="Diana Stanciu" cDate="2026-05-06T14:52:20" mDate="2026-05-06T14:52:20" color="" guid="02DF33D0-16FB-4868-9EEF-BA2CBCE501BC" cCount="0" qCount="4">
+            <comment type="text/html" size="86">
+                <p>Applico questo codice quando si parla di qualcosa di opprimente, che non fa esprimere
+</p>
+            </comment>
+        </code>
+        <code name="resposabilit&#224;" id="co_26" au="Diana Stanciu" cDate="2026-05-07T16:53:19" mDate="2026-05-07T16:53:19" color="" guid="2DD4A5DE-1BF7-41C6-98A1-3C9B027DAA12" cCount="0" qCount="10">
+            <comment type="text/html" size="62">
+                <p>Applico questo codice quando qualcuno parla di cosa deve fare
+</p>
+            </comment>
+        </code>
+        <code name="riti di passaggio" id="co_27" au="Diana Stanciu" cDate="2026-05-06T15:01:18" mDate="2026-05-06T15:01:18" color="" guid="42D6DE16-ECDD-4F01-9F3A-1B44FEB414B5" cCount="0" qCount="18">
+            <comment type="text/html" size="78">
+                <p>Applico questo codice quando viene menzionato un rito di passaggio nella vita
+</p>
+            </comment>
+        </code>
+        <code name="soddisfazione" id="co_28" au="Diana Stanciu" cDate="2026-05-06T14:47:49" mDate="2026-05-06T14:47:49" color="" guid="4FED279A-114D-4F13-B793-588135813131" cCount="0" qCount="2">
+            <comment type="text/html" size="57">
+                <p>Applico questo codice quando emerge qualcosa che soddisfa</p>
+            </comment>
+        </code>
+        <code name="stress" id="co_29" au="Diana Stanciu" cDate="2026-05-06T14:46:11" mDate="2026-05-06T14:46:11" color="" guid="C1596013-CF42-4BE7-9A1E-2B37904D8950" cCount="0" qCount="9">
+            <comment type="text/html" size="43">
+                <p>Applico questo codice quando emerge stress
+</p>
+            </comment>
+        </code>
+        <code name="supporto" id="co_30" au="Diana Stanciu" cDate="2026-05-07T16:49:36" mDate="2026-05-07T16:49:36" color="" guid="0BD18CC1-3AF4-4287-ABF5-684229545B16" cCount="0" qCount="3">
+            <comment type="text/html" size="99">
+                <p>Applico questo codice quando qualcuno supporta l&#8217;altro cercando di tirarlo su di morale ad esempio
+</p>
+            </comment>
+        </code>
+        <code name="tensione" id="co_31" au="Diana Stanciu" cDate="2026-05-08T17:59:08" mDate="2026-05-08T17:59:08" color="" guid="2EFEF56B-75D7-4DCE-B726-F5605FA7C745" cCount="0" qCount="7">
+            <comment type="text/html" size="55">
+                <p>Applico questo codice quando c&#8217;&#232; un momento di tensione</p>
+            </comment>
+        </code>
+        <code name="umano" id="co_32" au="Diana Stanciu" cDate="2026-04-30T15:48:02" mDate="2026-04-30T15:48:02" color="" guid="63106DDC-3E7E-4578-9CE9-28ED297E555F" cCount="0" qCount="8">
+            <comment type="text/html" size="60">
+                <p>Applico questo codice alle lettere prodotte dai partecipanti</p>
+            </comment>
+        </code>
+        <code name="umorismo" id="co_33" au="Diana Stanciu" cDate="2026-05-07T16:39:00" mDate="2026-05-07T16:39:00" color="" guid="AE552DDE-7E7E-4C20-9699-11ACB1EFDC82" cCount="0" qCount="1">
+            <comment type="text/html" size="100">
+                <p>Applico questo codice quando viene fatta una battuta o detto qualcosa in chiave ironica o scherzosa
+</p>
+            </comment>
+        </code>
+    </codes>
+    <superCodes size="0"/>
+    <memos size="0"/>
+    <families>
+        <codeFamilies size="0"/>
+        <superCodeFamilies size="0"/>
+        <memoFamilies size="0"/>
+        <superMemoFamilies size="0"/>
+        <primDocFamilies size="0"/>
+        <superPrimDocFamilies size="0"/>
+    </families>
+    <netViews size="0"/>
+    <networkFamilies size="0"/>
+    <superNetworkFamilies size="0"/>
+    <links>
+        <objectSegmentLinks>
+            <codings size="245">
+                <iLink obj="co_1" qRef="q12_13_13"/>
+                <iLink obj="co_1" qRef="q13_14_75"/>
+                <iLink obj="co_1" qRef="q12_15_15"/>
+                <iLink obj="co_1" qRef="q12_18_18"/>
+                <iLink obj="co_1" qRef="q12_20_20"/>
+                <iLink obj="co_1" qRef="q13_21_82"/>
+                <iLink obj="co_1" qRef="q13_22_83"/>
+                <iLink obj="co_1" qRef="q13_25_86"/>
+                <iLink obj="co_1" qRef="q13_26_87"/>
+                <iLink obj="co_1" qRef="q13_27_88"/>
+                <iLink obj="co_1" qRef="q12_27_27"/>
+                <iLink obj="co_1" qRef="q13_35_96"/>
+                <iLink obj="co_1" qRef="q13_37_98"/>
+                <iLink obj="co_1" qRef="q13_40_101"/>
+                <iLink obj="co_1" qRef="q13_42_103"/>
+                <iLink obj="co_1" qRef="q13_48_109"/>
+                <iLink obj="co_1" qRef="q13_52_113"/>
+                <iLink obj="co_2" qRef="q13_17_78"/>
+                <iLink obj="co_2" qRef="q12_20_20"/>
+                <iLink obj="co_2" qRef="q12_26_26"/>
+                <iLink obj="co_2" qRef="q12_28_28"/>
+                <iLink obj="co_2" qRef="q12_30_30"/>
+                <iLink obj="co_2" qRef="q13_35_96"/>
+                <iLink obj="co_2" qRef="q12_35_35"/>
+                <iLink obj="co_2" qRef="q13_37_98"/>
+                <iLink obj="co_2" qRef="q12_37_37"/>
+                <iLink obj="co_2" qRef="q13_38_99"/>
+                <iLink obj="co_2" qRef="q13_43_104"/>
+                <iLink obj="co_2" qRef="q13_52_113"/>
+                <iLink obj="co_2" qRef="q12_57_57"/>
+                <iLink obj="co_2" qRef="q12_59_59"/>
+                <iLink obj="co_2" qRef="q13_66_127"/>
+                <iLink obj="co_2" qRef="q13_68_129"/>
+                <iLink obj="co_2" qRef="q13_74_135"/>
+                <iLink obj="co_2" qRef="q13_77_138"/>
+                <iLink obj="co_2" qRef="q13_83_144"/>
+                <iLink obj="co_2" qRef="q13_94_155"/>
+                <iLink obj="co_3" qRef="q12_54_54"/>
+                <iLink obj="co_3" qRef="q12_58_58"/>
+                <iLink obj="co_3" qRef="q13_91_152"/>
+                <iLink obj="co_3" qRef="q13_95_156"/>
+                <iLink obj="co_5" qRef="q12_15_15"/>
+                <iLink obj="co_5" qRef="q12_21_21"/>
+                <iLink obj="co_5" qRef="q12_30_30"/>
+                <iLink obj="co_5" qRef="q13_35_96"/>
+                <iLink obj="co_5" qRef="q13_46_107"/>
+                <iLink obj="co_5" qRef="q12_57_57"/>
+                <iLink obj="co_5" qRef="q12_58_58"/>
+                <iLink obj="co_5" qRef="q12_59_59"/>
+                <iLink obj="co_5" qRef="q12_60_60"/>
+                <iLink obj="co_6" qRef="q12_10_10"/>
+                <iLink obj="co_6" qRef="q12_11_11"/>
+                <iLink obj="co_6" qRef="q13_13_74"/>
+                <iLink obj="co_6" qRef="q12_17_17"/>
+                <iLink obj="co_6" qRef="q13_28_89"/>
+                <iLink obj="co_6" qRef="q13_31_92"/>
+                <iLink obj="co_6" qRef="q13_39_100"/>
+                <iLink obj="co_6" qRef="q12_46_46"/>
+                <iLink obj="co_6" qRef="q13_81_142"/>
+                <iLink obj="co_7" qRef="q12_33_33"/>
+                <iLink obj="co_7" qRef="q12_34_34"/>
+                <iLink obj="co_7" qRef="q12_42_42"/>
+                <iLink obj="co_7" qRef="q12_44_44"/>
+                <iLink obj="co_7" qRef="q13_56_117"/>
+                <iLink obj="co_7" qRef="q13_58_119"/>
+                <iLink obj="co_7" qRef="q13_59_120"/>
+                <iLink obj="co_7" qRef="q13_60_121"/>
+                <iLink obj="co_7" qRef="q13_85_146"/>
+                <iLink obj="co_8" qRef="q13_18_79"/>
+                <iLink obj="co_8" qRef="q12_22_22"/>
+                <iLink obj="co_8" qRef="q13_27_88"/>
+                <iLink obj="co_8" qRef="q12_27_27"/>
+                <iLink obj="co_8" qRef="q12_30_30"/>
+                <iLink obj="co_8" qRef="q12_41_41"/>
+                <iLink obj="co_8" qRef="q13_53_114"/>
+                <iLink obj="co_8" qRef="q12_58_58"/>
+                <iLink obj="co_8" qRef="q12_59_59"/>
+                <iLink obj="co_8" qRef="q12_60_60"/>
+                <iLink obj="co_8" qRef="q13_65_126"/>
+                <iLink obj="co_8" qRef="q13_82_143"/>
+                <iLink obj="co_8" qRef="q13_83_144"/>
+                <iLink obj="co_8" qRef="q13_100_161"/>
+                <iLink obj="co_9" qRef="q13_15_76"/>
+                <iLink obj="co_9" qRef="q12_20_20"/>
+                <iLink obj="co_9" qRef="q13_35_96"/>
+                <iLink obj="co_9" qRef="q13_37_98"/>
+                <iLink obj="co_9" qRef="q13_52_113"/>
+                <iLink obj="co_9" qRef="q12_54_54"/>
+                <iLink obj="co_9" qRef="q12_58_58"/>
+                <iLink obj="co_9" qRef="q12_59_59"/>
+                <iLink obj="co_9" qRef="q13_83_144"/>
+                <iLink obj="co_9" qRef="q13_87_148"/>
+                <iLink obj="co_10" qRef="q12_16_16"/>
+                <iLink obj="co_10" qRef="q13_34_95"/>
+                <iLink obj="co_10" qRef="q12_43_43"/>
+                <iLink obj="co_10" qRef="q12_48_48"/>
+                <iLink obj="co_10" qRef="q12_55_55"/>
+                <iLink obj="co_10" qRef="q12_61_61"/>
+                <iLink obj="co_10" qRef="q12_62_62"/>
+                <iLink obj="co_11" qRef="q12_33_33"/>
+                <iLink obj="co_11" qRef="q12_34_34"/>
+                <iLink obj="co_11" qRef="q12_41_41"/>
+                <iLink obj="co_11" qRef="q12_42_42"/>
+                <iLink obj="co_11" qRef="q12_44_44"/>
+                <iLink obj="co_11" qRef="q13_55_116"/>
+                <iLink obj="co_11" qRef="q13_57_118"/>
+                <iLink obj="co_11" qRef="q13_59_120"/>
+                <iLink obj="co_11" qRef="q13_63_124"/>
+                <iLink obj="co_11" qRef="q13_69_130"/>
+                <iLink obj="co_11" qRef="q13_78_139"/>
+                <iLink obj="co_11" qRef="q13_96_157"/>
+                <iLink obj="co_11" qRef="q13_99_160"/>
+                <iLink obj="co_12" qRef="q12_1_1"/>
+                <iLink obj="co_12" qRef="q12_3_3"/>
+                <iLink obj="co_12" qRef="q13_4_65"/>
+                <iLink obj="co_12" qRef="q13_5_66"/>
+                <iLink obj="co_12" qRef="q12_5_5"/>
+                <iLink obj="co_12" qRef="q13_6_67"/>
+                <iLink obj="co_12" qRef="q13_7_68"/>
+                <iLink obj="co_12" qRef="q12_7_7"/>
+                <iLink obj="co_12" qRef="q13_8_69"/>
+                <iLink obj="co_12" qRef="q12_9_9"/>
+                <iLink obj="co_13" qRef="q13_41_102"/>
+                <iLink obj="co_13" qRef="q12_45_45"/>
+                <iLink obj="co_13" qRef="q13_64_125"/>
+                <iLink obj="co_13" qRef="q13_82_143"/>
+                <iLink obj="co_13" qRef="q13_90_151"/>
+                <iLink obj="co_14" qRef="q13_1_63"/>
+                <iLink obj="co_14" qRef="q12_28_28"/>
+                <iLink obj="co_14" qRef="q13_29_90"/>
+                <iLink obj="co_14" qRef="q13_30_91"/>
+                <iLink obj="co_14" qRef="q13_40_101"/>
+                <iLink obj="co_14" qRef="q13_49_110"/>
+                <iLink obj="co_14" qRef="q13_51_112"/>
+                <iLink obj="co_14" qRef="q13_86_147"/>
+                <iLink obj="co_14" qRef="q13_97_158"/>
+                <iLink obj="co_15" qRef="q12_25_25"/>
+                <iLink obj="co_15" qRef="q12_31_31"/>
+                <iLink obj="co_15" qRef="q12_37_37"/>
+                <iLink obj="co_15" qRef="q12_39_39"/>
+                <iLink obj="co_16" qRef="q13_24_85"/>
+                <iLink obj="co_16" qRef="q12_25_25"/>
+                <iLink obj="co_16" qRef="q12_31_31"/>
+                <iLink obj="co_16" qRef="q12_37_37"/>
+                <iLink obj="co_16" qRef="q12_38_38"/>
+                <iLink obj="co_16" qRef="q12_40_40"/>
+                <iLink obj="co_16" qRef="q13_67_128"/>
+                <iLink obj="co_17" qRef="q12_39_39"/>
+                <iLink obj="co_17" qRef="q13_89_150"/>
+                <iLink obj="co_18" qRef="q12_12_12"/>
+                <iLink obj="co_18" qRef="q13_19_80"/>
+                <iLink obj="co_18" qRef="q13_20_81"/>
+                <iLink obj="co_18" qRef="q13_23_84"/>
+                <iLink obj="co_18" qRef="q12_23_23"/>
+                <iLink obj="co_18" qRef="q13_25_86"/>
+                <iLink obj="co_18" qRef="q12_25_25"/>
+                <iLink obj="co_18" qRef="q13_28_89"/>
+                <iLink obj="co_18" qRef="q12_28_28"/>
+                <iLink obj="co_18" qRef="q12_29_29"/>
+                <iLink obj="co_18" qRef="q13_40_101"/>
+                <iLink obj="co_18" qRef="q13_42_103"/>
+                <iLink obj="co_18" qRef="q13_49_110"/>
+                <iLink obj="co_18" qRef="q12_49_49"/>
+                <iLink obj="co_18" qRef="q13_61_122"/>
+                <iLink obj="co_18" qRef="q13_62_123"/>
+                <iLink obj="co_19" qRef="q13_3_64"/>
+                <iLink obj="co_19" qRef="q12_16_16"/>
+                <iLink obj="co_19" qRef="q12_24_24"/>
+                <iLink obj="co_19" qRef="q13_45_106"/>
+                <iLink obj="co_20" qRef="q13_97_158"/>
+                <iLink obj="co_21" qRef="q12_18_18"/>
+                <iLink obj="co_21" qRef="q12_43_43"/>
+                <iLink obj="co_21" qRef="q12_61_61"/>
+                <iLink obj="co_21" qRef="q13_71_132"/>
+                <iLink obj="co_21" qRef="q13_80_141"/>
+                <iLink obj="co_21" qRef="q13_88_149"/>
+                <iLink obj="co_21" qRef="q13_96_157"/>
+                <iLink obj="co_22" qRef="q12_50_50"/>
+                <iLink obj="co_23" qRef="q12_32_32"/>
+                <iLink obj="co_23" qRef="q12_39_39"/>
+                <iLink obj="co_23" qRef="q12_40_40"/>
+                <iLink obj="co_23" qRef="q12_51_51"/>
+                <iLink obj="co_24" qRef="q13_16_77"/>
+                <iLink obj="co_25" qRef="q13_36_97"/>
+                <iLink obj="co_25" qRef="q12_45_45"/>
+                <iLink obj="co_25" qRef="q13_47_108"/>
+                <iLink obj="co_25" qRef="q13_54_115"/>
+                <iLink obj="co_26" qRef="q12_14_14"/>
+                <iLink obj="co_26" qRef="q12_36_36"/>
+                <iLink obj="co_26" qRef="q12_57_57"/>
+                <iLink obj="co_26" qRef="q12_58_58"/>
+                <iLink obj="co_26" qRef="q12_59_59"/>
+                <iLink obj="co_26" qRef="q13_75_136"/>
+                <iLink obj="co_26" qRef="q13_79_140"/>
+                <iLink obj="co_26" qRef="q13_84_145"/>
+                <iLink obj="co_26" qRef="q13_87_148"/>
+                <iLink obj="co_26" qRef="q13_97_158"/>
+                <iLink obj="co_27" qRef="q12_22_22"/>
+                <iLink obj="co_27" qRef="q12_23_23"/>
+                <iLink obj="co_27" qRef="q12_35_35"/>
+                <iLink obj="co_27" qRef="q13_43_104"/>
+                <iLink obj="co_27" qRef="q12_45_45"/>
+                <iLink obj="co_27" qRef="q12_47_47"/>
+                <iLink obj="co_27" qRef="q12_53_53"/>
+                <iLink obj="co_27" qRef="q12_54_54"/>
+                <iLink obj="co_27" qRef="q12_56_56"/>
+                <iLink obj="co_27" qRef="q12_57_57"/>
+                <iLink obj="co_27" qRef="q12_58_58"/>
+                <iLink obj="co_27" qRef="q12_59_59"/>
+                <iLink obj="co_27" qRef="q13_73_134"/>
+                <iLink obj="co_27" qRef="q13_74_135"/>
+                <iLink obj="co_27" qRef="q13_76_137"/>
+                <iLink obj="co_27" qRef="q13_77_138"/>
+                <iLink obj="co_27" qRef="q13_83_144"/>
+                <iLink obj="co_27" qRef="q13_97_158"/>
+                <iLink obj="co_28" qRef="q13_33_94"/>
+                <iLink obj="co_28" qRef="q12_59_59"/>
+                <iLink obj="co_29" qRef="q13_32_93"/>
+                <iLink obj="co_29" qRef="q12_36_36"/>
+                <iLink obj="co_29" qRef="q12_40_40"/>
+                <iLink obj="co_29" qRef="q13_44_105"/>
+                <iLink obj="co_29" qRef="q12_45_45"/>
+                <iLink obj="co_29" qRef="q13_72_133"/>
+                <iLink obj="co_29" qRef="q13_78_139"/>
+                <iLink obj="co_29" qRef="q13_93_154"/>
+                <iLink obj="co_29" qRef="q13_98_159"/>
+                <iLink obj="co_30" qRef="q12_19_19"/>
+                <iLink obj="co_30" qRef="q12_52_52"/>
+                <iLink obj="co_30" qRef="q13_70_131"/>
+                <iLink obj="co_31" qRef="q12_36_36"/>
+                <iLink obj="co_31" qRef="q12_39_39"/>
+                <iLink obj="co_31" qRef="q12_45_45"/>
+                <iLink obj="co_31" qRef="q12_58_58"/>
+                <iLink obj="co_31" qRef="q13_92_153"/>
+                <iLink obj="co_31" qRef="q13_93_154"/>
+                <iLink obj="co_31" qRef="q13_98_159"/>
+                <iLink obj="co_32" qRef="q12_2_2"/>
+                <iLink obj="co_32" qRef="q12_4_4"/>
+                <iLink obj="co_32" qRef="q12_6_6"/>
+                <iLink obj="co_32" qRef="q12_8_8"/>
+                <iLink obj="co_32" qRef="q13_9_70"/>
+                <iLink obj="co_32" qRef="q13_10_71"/>
+                <iLink obj="co_32" qRef="q13_11_72"/>
+                <iLink obj="co_32" qRef="q13_12_73"/>
+                <iLink obj="co_33" qRef="q13_50_111"/>
+            </codings>
+            <memoings size="0"/>
+        </objectSegmentLinks>
+        <codeLinkProtos size="7">
+            <codeLinkProto id="CONTRADICTS" label1="" label2="" formalProp="symmetric" layout="U" descr="contradicts" au="ATLAS.ti"/>
+            <codeLinkProto id="IS A" label1="" label2="" formalProp="asymmetric" layout="U" descr="is a" au="ATLAS.ti"/>
+            <codeLinkProto id="IS ASSOCIATED WITH" label1="" label2="" formalProp="symmetric" layout="U" descr="is associated with" au="ATLAS.ti"/>
+            <codeLinkProto id="IS CAUSE OF" label1="" label2="" formalProp="asymmetric" layout="U" descr="is cause of" au="ATLAS.ti"/>
+            <codeLinkProto id="IS PART OF" label1="" label2="" formalProp="asymmetric" layout="U" descr="is part of" au="ATLAS.ti"/>
+            <codeLinkProto id="IS PROPERTY OF" label1="" label2="" formalProp="asymmetric" layout="U" descr="is property of" au="ATLAS.ti"/>
+            <codeLinkProto id="NONAME" label1="" label2="" formalProp="symmetric" layout="U" descr="noname" au="ATLAS.ti"/>
+        </codeLinkProtos>
+        <codeLinks size="0"/>
+        <hyperLinkProtos size="8">
+            <hyperLinkProto id="CONTINUED BY" label1="" label2="" formalProp="asymmetric" layout="U" descr="continued by" au="ATLAS.ti"/>
+            <hyperLinkProto id="CONTRADICTS" label1="" label2="" formalProp="asymmetric" layout="U" descr="contradicts" au="ATLAS.ti"/>
+            <hyperLinkProto id="CRITICIZES" label1="" label2="" formalProp="asymmetric" layout="U" descr="criticizes" au="ATLAS.ti"/>
+            <hyperLinkProto id="DISCUSSES" label1="" label2="" formalProp="asymmetric" layout="U" descr="discusses" au="ATLAS.ti"/>
+            <hyperLinkProto id="EXPANDS" label1="" label2="" formalProp="asymmetric" layout="U" descr="expands" au="ATLAS.ti"/>
+            <hyperLinkProto id="EXPLAINS" label1="" label2="" formalProp="asymmetric" layout="U" descr="explains" au="ATLAS.ti"/>
+            <hyperLinkProto id="JUSTIFIES" label1="" label2="" formalProp="asymmetric" layout="U" descr="justifies" au="ATLAS.ti"/>
+            <hyperLinkProto id="SUPPORTS" label1="" label2="" formalProp="asymmetric" layout="U" descr="supports" au="ATLAS.ti"/>
+        </hyperLinkProtos>
+        <hyperLinks size="0"/>
+        <memoMemoLinks size="0"/>
+        <memoCodeLinks size="0"/>
+    </links>
+</storedHU>

@@ -1,31 +1,9 @@
-import Link from 'next/link';
 import { createAdminClient } from '@/lib/supabase/admin';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
-import { GameRowActions } from '@/components/admin/game-row-actions';
+import { GamesTable, type AdminGameRow } from '@/components/admin/games-table';
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';
 
-interface GameRow {
-  id: string;
-  user_id: string;
-  status: string;
-  created_at: string;
-  completed_at: string | null;
-  interaction_count: number;
-  user_email: string;
-  questionnaire: Record<string, number> | null;
-  feedback: string | null;
-}
-
-async function getGames(): Promise<GameRow[]> {
+async function getGames(): Promise<AdminGameRow[]> {
   const supabase = createAdminClient();
 
   const { data: games, error: gamesError } = await supabase
@@ -74,17 +52,6 @@ async function getGames(): Promise<GameRow[]> {
   }));
 }
 
-function formatDate(dateStr: string | null) {
-  if (!dateStr) return '—';
-  return new Date(dateStr).toLocaleDateString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-}
-
 export default async function AdminGamesPage() {
   const games = await getGames();
 
@@ -94,64 +61,7 @@ export default async function AdminGamesPage() {
       <p className="mt-1 mb-6 text-sm text-muted-foreground">
         All games across users ({games.length} total)
       </p>
-
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>User</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Started</TableHead>
-              <TableHead>Completed</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {games.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center text-muted-foreground">
-                  No games found.
-                </TableCell>
-              </TableRow>
-            ) : (
-              games.map((game) => (
-                <TableRow key={game.id}>
-                  <TableCell className="font-medium">
-                    <Link
-                      href={`/admin/game/${game.id}`}
-                      className="text-primary underline-offset-4 hover:underline"
-                    >
-                      {game.user_email}
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    {game.status === 'completed' ? (
-                      <Badge variant="default">Completed</Badge>
-                    ) : (
-                      <Badge variant="secondary">
-                        In Progress ({game.interaction_count} interactions)
-                      </Badge>
-                    )}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">
-                    {formatDate(game.created_at)}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">
-                    {formatDate(game.completed_at)}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <GameRowActions
-                      gameId={game.id}
-                      questionnaire={game.questionnaire}
-                      feedback={game.feedback}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
-      </div>
+      <GamesTable games={games} />
     </div>
   );
 }
