@@ -1,5 +1,6 @@
 -- ============================================================================
--- DRAFT — DO NOT APPLY until Phase 0 is approved (see docs/draft-phases.md)
+-- APPROVED for apply (Phase 0 approved 2026-06-11). Target: the linked
+-- Supabase project used by apps/website (decision R8).
 -- Story engine: story content tables, turn workflow, AI drafts, time columns.
 -- Design rationale: docs/story-engine-architecture.md
 --
