@@ -110,9 +110,20 @@ orders ──< games ──< interaction_turns ──< ai_drafts (versioned)
 **Extended: `stories`**
 | column | type | notes |
 |---|---|---|
-| `settings` | jsonb default `{}` | `{max_letters_per_turn, max_turns, locale}` |
+| `settings` | jsonb default `{}` | `{max_letters_per_turn: 4, max_turns, locale}` |
 | `time_config` | jsonb default `{}` | see §4 (Time model) for shape |
 | `allow_dynamic_npcs` | boolean default false | creator opt-in: orchestrator may *propose* new NPCs (admin approves via review UI before they exist) |
+| `lifecycle` | text default `'draft'` | `draft → testing → released` — see "Story lifecycle" below |
+
+**Story lifecycle (decision R6, 2026-06-11):**
+
+| lifecycle | playable? | AI reply flow |
+|---|---|---|
+| `draft` | no (writer still authoring) | — |
+| `testing` | writer/admin test games | **review gate**: generate → review/edit/regenerate → approve (the Phase 3 workflow) |
+| `released` | sold via shop (`is_published` controls listing; only released stories may be published) | **auto-send**: on player submit the server runs generate → canon-validate → auto-approve in one flow. Safety valve: if the validator reports *errors* (not mere warnings), the turn holds at `draft_ready` and appears in the admin queue instead of auto-sending. |
+
+The pipeline is identical in both modes — auto-send is just the approve step invoked programmatically. The review gate is therefore an authoring/QA tool, not a permanent production bottleneck. (This supersedes the original "every batch is admin-reviewed" non-negotiable; CLAUDE.md updated accordingly.)
 
 **New: `story_characters`** — slug, name, role, `personality` jsonb (traits, speech_pattern, voice notes), `backstory`, `hidden_agenda` (player must NEVER see), `knowledge_notes` (prose scope description for the prompt; the authoritative fact mapping is `story_facts.known_by`), `responsiveness` label + `reply_delay_min_days`/`reply_delay_max_days` (editor-driven, used by TimeService), `contactable_from_start`, `unlock_rules` jsonb, `sort_order`. Unique `(story_id, slug)`.
 
@@ -319,16 +330,16 @@ Player reveal updates (Phase 4): polling `GET /api/game/[gameId]/state` (tryout 
 
 ## 10. Risk register & open questions
 
-| # | Risk / question | Impact | Mitigation / decision needed |
+| # | Risk / question | Impact | Mitigation / decision |
 |---|---|---|---|
 | R1 | **Cross-letter coherence in Option A**: scoped NPC calls could drift from the orchestrator's plan | Medium | Briefs are specific (facts by key, tone, what to withhold); validator checks letters against brief; admin review is the backstop. Re-evaluate in Phase 5 sims. |
 | R2 | **Heuristic fact-leak detection is imperfect** (paraphrased leaks won't string-match) | Medium | Structural scoping prevents most; heuristic + admin review catch the rest; optional Haiku-based check in Phase 5. |
-| R3 | **Editing a story with games in progress** (facts/characters change mid-game) | Medium | Phase 0 decision: allowed, takes effect on next generate; editor shows a warning when active games exist. Snapshotting story config per game is deliberately out of scope (complexity). **OK?** |
-| R4 | **Psych profile in v1?** Prototype tracks 8 dimensions but never feeds them back | Low | Recommend: keep the jsonb slot in `runtime_state`, let the orchestrator update it, do nothing else in v1. **OK?** |
-| R5 | **Story content language**: `stories` has bilingual title/description but `first_letter` and all narrative content are single-language (Voss = IT) | Low | Recommend: story content is single-locale per story (`settings.locale`); UI chrome stays EN+IT via i18n. **OK?** |
-| R6 | **`allow_dynamic_npcs` semantics**: orchestrator proposes; admin approves in review UI; approved proposal inserts a `story_characters` row scoped… to the story (shared across games) or per-game? | Medium | Recommend: insert as story-level row flagged `created_dynamically` (per-game NPC forks add a lot of schema for little v1 value). **Decide before Phase 2.** |
-| R7 | **Max letters per turn / open-turn lock**: player blocked from new submissions while a turn is pending admin | Low | Recommended default: `max_letters_per_turn = 4`, one open turn at a time (matches epistolary pacing + admin workload). **OK?** |
-| R8 | **Supabase environment for Phase 1**: local stack (`supabase start`) vs the linked project | Medium | Recommend local for Phase 1 tests; apply to linked project only after Phase 1 gate. **Confirm which project / credentials.** |
+| R3 | **Editing a story with games in progress** | Medium | **DECIDED**: freely editable when no games in progress; with active games editing stays possible but the editor shows prominent warnings. Add **story duplication** ("duplicate as new draft") in the Phase 2 editor so writers iterate on a copy instead. |
+| R4 | **Psych profile in v1?** | Low | **DECIDED** (maximize quality): keep `psych_profile` in `runtime_state`; the orchestrator both *updates it* and *receives it back* each turn, closing the personalization loop the prototype left open. |
+| R5 | **Story content language** | Low | **DECIDED**: single locale per story (`settings.locale`) for now, but everything (prompts, TimeService date formatting, editor fields) flows the locale through so multi-language variants later are additive — likely via AI-translated story copies (translate first letter + bible, then play entirely in the target language). No bilingual narrative columns. |
+| R6 | **Story lifecycle / admin review longevity** | High | **DECIDED**: `stories.lifecycle = draft → testing → released`. Review gate only in `testing`; `released` auto-sends after canon validation (validator errors hold the turn for review). See §2 "Story lifecycle". |
+| R7 | **Letters per turn / open-turn lock** | Low | **DECIDED**: `max_letters_per_turn = 4` default; one open turn at a time; the player composes replies as drafts in the UI and sends all at once (epistolary rhythm). |
+| R8 | **Supabase environment** | Medium | **DECIDED**: use the linked project already configured in `apps/website/.env`. Migrations applied there (CLI link or dashboard SQL editor — no local stack). |
 | R9 | Draft migration filename has a future-ish timestamp; if other migrations land before approval, re-stamp before applying | Low | Re-check ordering at Phase 1 start. |
 | R10 | **Claude API key provisioning** for the website backend (which org/key, spend cap) | Low | Needed before Phase 3. Per-turn cost ~$0.25–0.45 (Opus 4.8). |
 | R11 | **Turn-number race**: concurrent submits creating duplicate turn numbers | Low | Unique `(game_id, turn_number)` + open-turn check in route; DB constraint is the backstop. |

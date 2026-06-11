@@ -29,7 +29,7 @@ Master checklist for building the interactive letter-story platform in `imbustai
 | Rule | Criterion |
 |------|-----------|
 | **tryout-01** | Do not modify `apps/tryout-01` unless explicitly revoked |
-| **Admin gate** | Never weaken — no path that auto-sends AI replies to the player |
+| **Admin gate** | For stories in `testing`: never weaken — no path that auto-sends. Stories in `released` auto-send by design **after canon validation** (approved change 2026-06-11, see architecture §2); validator errors always hold the turn for review. No path may insert AI interactions on player submit alone. |
 | **Story as data** | No new 350-line hardcoded system prompts in production TypeScript |
 | **Secrets** | AI keys server-side only; never in client bundle or git |
 | **Tests** | New logic has tests; phase completion report lists what ran |

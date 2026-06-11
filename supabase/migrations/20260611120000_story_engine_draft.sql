@@ -15,12 +15,20 @@
 alter table public.stories
   add column settings jsonb not null default '{}'::jsonb,
   add column time_config jsonb not null default '{}'::jsonb,
-  add column allow_dynamic_npcs boolean not null default false;
+  add column allow_dynamic_npcs boolean not null default false,
+  add column lifecycle text not null default 'draft' check (
+    lifecycle in ('draft', 'testing', 'released')
+  );
 
 comment on column public.stories.settings is
   'Engine settings: {max_letters_per_turn, max_turns, locale}';
 comment on column public.stories.time_config is
   'Time model: {story_start_date, visible_delay: {enabled, min_minutes, max_minutes}, date_locale}';
+comment on column public.stories.lifecycle is
+  'draft: authoring. testing: review gate on AI replies. released: auto-send after canon validation.';
+
+-- Existing purchasable stories predate the lifecycle concept → released
+update public.stories set lifecycle = 'released' where is_published = true;
 
 -- -----------------------------------------------------------------------------
 -- story_characters

@@ -59,7 +59,11 @@ supabase/, i18n/}, packages/story-engine/src/types.
 
 Scope — Phase 2 ONLY, on branch feat/story-platform:
 1. /admin/stories list page and /admin/stories/[id] editor: metadata + settings
-   + time_config, first letter, characters CRUD (slug, name, role, personality,
+   + time_config + lifecycle control (draft → testing → released; only released
+   may be is_published), "Duplicate story" action (deep copy of story +
+   characters + all optional-module rows, as a new draft), prominent warning
+   banner when editing a story that has games in progress, first letter,
+   characters CRUD (slug, name, role, personality,
    knowledge notes, hidden agenda, delays, unlock rules), and the OPTIONAL
    modules as collapsible sections: acts, facts (known_by multi-select over the
    story's character slugs), clues, endings. Per architecture §2 these are
@@ -103,9 +107,15 @@ Scope — Phase 3 ONLY, on branch feat/story-platform:
    inline edit, regenerate, narratorNotes (admin-only), validation warnings,
    Approve & Send (TimeService story_date + visible_from, runtime_state update,
    status → sent) — all in one service-role transaction.
-4. Tests: state machine transitions (legal + illegal), no-auto-send proof
-   (player submit never writes role='ai'), scoped-context regression (comune
-   draft contains no voss-only facts in a fixed scenario), route auth tests.
+4. Auto-send for released stories (architecture §2 lifecycle): when the game's
+   story.lifecycle = 'released', player submit triggers generate → validate →
+   auto-approve server-side; validator ERRORS hold the turn at draft_ready in
+   the admin queue. testing stories always stop for review.
+5. Tests: state machine transitions (legal + illegal), no-direct-send proof
+   (player submit never writes role='ai' rows itself — AI rows only via the
+   (auto-)approve step), auto-send-held-on-validator-error test, scoped-context
+   regression (comune draft contains no voss-only facts in a fixed scenario),
+   route auth tests.
 
 Must pass: docs/draft-phases.md Phase 3 checklist, including the manual full
 admin cycle. Must NOT: polished player inbox, physical export, weaken the

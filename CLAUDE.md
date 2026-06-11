@@ -2,7 +2,7 @@
 
 ## Mission
 
-Build a **story-agnostic interactive letter platform** in this monorepo. Stories are sold via `apps/website` (shop + orders). Players exchange letters with multiple NPCs per turn. **Every AI reply batch is admin-reviewed** before the player sees it.
+Build a **story-agnostic interactive letter platform** in this monorepo. Stories are sold via `apps/website` (shop + orders). Players exchange letters with multiple NPCs per turn. AI reply batches go through a review workflow whose strictness depends on the story lifecycle (`draft → testing → released`): in **testing**, every batch is admin-reviewed before the player sees it; in **released**, batches auto-send after canon validation passes (validator errors hold the turn for admin review). See `docs/story-engine-architecture.md` §2. *(Amended 2026-06-11 — supersedes "every batch is admin-reviewed".)*
 
 Story #1 (proof): port the Voss detective mystery from the reference game prototype.
 
@@ -27,7 +27,7 @@ Story #1 (proof): port the Voss detective mystery from the reference game protot
 
 ## Non-negotiables
 
-- **Admin approval gate**: Player submits turn → admin generates AI draft → edit/regenerate → approve → only then insert AI `interactions`.
+- **Review gate by lifecycle**: stories in `testing` — player submits turn → admin generates AI draft → edit/regenerate → approve → only then insert AI `interactions`. Stories in `released` — same pipeline, the approve step runs automatically when canon validation passes; validator errors hold the turn for admin review. AI `interactions` are always inserted by the (auto-)approve step via service role — never directly on player submit.
 - **One AI batch per player turn**: includes **all NPC replies** for that turn (not one API call per NPC visible to player separately).
 - **Story as data**: no 350-line hardcoded `MASTER_SYSTEM_PROMPT` in production code. Story content lives in DB/editor.
 - **Per-NPC knowledge boundaries**: fix knowledge bleed (NPCs must not know facts only other characters know).
