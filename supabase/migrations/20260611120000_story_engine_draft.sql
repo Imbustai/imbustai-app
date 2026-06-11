@@ -2,6 +2,11 @@
 -- DRAFT — DO NOT APPLY until Phase 0 is approved (see docs/draft-phases.md)
 -- Story engine: story content tables, turn workflow, AI drafts, time columns.
 -- Design rationale: docs/story-engine-architecture.md
+--
+-- Module optionality (architecture §2): only stories + story_characters are
+-- required for a playable story. story_facts, story_acts, story_clues and
+-- story_endings are OPTIONAL modules — zero rows is a valid, fully supported
+-- configuration (engine/validator skip the corresponding behavior).
 -- ============================================================================
 
 -- -----------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 # Voss Story — Seed Plan (Phase 0)
 
-How `../imbustai-01-game/src/config/systemPrompt.ts` (350 lines) decomposes into story tables. The seed itself is written in Phase 1 (`packages/story-engine` seed script / SQL seed). Source line references are to `systemPrompt.ts`.
+How `../imbustai-01-game/src/config/systemPrompt.ts` (350 lines) decomposes into story tables. Note: Voss deliberately exercises **every optional module** (facts, acts, clues, endings — see architecture §2) as the stress test; other stories may use none of them. The seed itself is written in Phase 1 (`packages/story-engine` seed script / SQL seed). Source line references are to `systemPrompt.ts`.
 
 ## What stays code vs what becomes data
 

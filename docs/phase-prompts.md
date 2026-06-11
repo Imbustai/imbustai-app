@@ -60,8 +60,11 @@ supabase/, i18n/}, packages/story-engine/src/types.
 Scope — Phase 2 ONLY, on branch feat/story-platform:
 1. /admin/stories list page and /admin/stories/[id] editor: metadata + settings
    + time_config, first letter, characters CRUD (slug, name, role, personality,
-   knowledge notes, hidden agenda, delays, unlock rules), acts, facts (with
-   known_by multi-select over the story's character slugs), clues, endings.
+   knowledge notes, hidden agenda, delays, unlock rules), and the OPTIONAL
+   modules as collapsible sections: acts, facts (known_by multi-select over the
+   story's character slugs), clues, endings. Per architecture §2 these are
+   never required — a story with only characters + first letter must be
+   publishable and playable.
 2. Server actions / route handlers with requireAdmin() + service role; client
    validation + server validation (unique slugs/keys, delay min<=max, first
    letter required to publish).

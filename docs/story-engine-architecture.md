@@ -74,6 +74,20 @@ Orchestrator ~10–15K in / 1–2K out; each NPC call ~3–6K in / 1–2K out; t
 
 ## 2. Data model
 
+### Core vs optional story modules
+
+The platform is **genre-agnostic**: not every story is a mystery. The only thing a story *must* have to be playable is metadata, a first letter, at least one contactable character, and time config. Everything else is an optional module — separate tables that may simply have zero rows. The engine, prompts, validator and editor all degrade gracefully when a module is unused.
+
+| Module | Tables | Required? | If absent |
+|---|---|---|---|
+| **Core** | `stories` (+ settings/time_config), `story_characters` | ✅ yes | — (a story can't run without characters and a first letter) |
+| Canon facts | `story_facts` | optional | Knowledge scoping falls back to correspondence isolation only (NPC sees just its own letters + persona); `knowledge_scope` validator rule is skipped |
+| Acts / structure | `story_acts` | optional | No act tracking; orchestrator paces freely; act-related validator rules skipped |
+| Clues | `story_clues` | optional | `cluesRevealed` metadata and clue dosing simply unused; clue validator rules skipped |
+| Endings | `story_endings` | optional | Story ends at `settings.max_turns` or when the admin marks the game completed |
+
+The Phase 2 editor presents optional modules as collapsible "add if you want" sections — a creator writing a slice-of-life epistolary story fills in characters + first letter + delays and publishes. Voss happens to exercise every module (it's the stress test), but nothing in engine code assumes mystery mechanics: clue reliability types, act dosing, ending conditions are all *data interpreted only when present*.
+
 ### ER overview
 
 ```
@@ -219,11 +233,15 @@ The orchestrator sees everything (it's the GM), but it **does not write letters*
 
 This replaces the prototype's `FullContextStrategy` (all letters from all NPCs in one thread), which is the root cause of the Comune-knows-Voss-facts bleed.
 
+**Without the facts module** (story has zero `story_facts` rows), scoping still holds at the correspondence level: each NPC sees only its own letters and persona, which already prevents the cross-NPC bleed. The fact registry adds *finer-grained* secrets control for stories that want it — it is not required.
+
 ---
 
 ## 6. Canon validation
 
 Deterministic, rule-based checks run on every draft (and re-run on edited versions) in `packages/story-engine/src/validator/`. Results stored in `ai_drafts.validation_warnings` and rendered in the admin review UI. **Warnings never block** — the admin has final say.
+
+**Rules are conditional on the modules the story uses**: a story with no facts/clues/acts/endings rows gets only `timeline_order` and `state_sanity` (which apply to every story). No rule ever *requires* a creator to author mystery-style data.
 
 | Rule | Check |
 |---|---|
