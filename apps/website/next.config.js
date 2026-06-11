@@ -11,7 +11,7 @@ const nextConfig = {
   // Use this to set Nx-specific options
   // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
-  transpilePackages: ['@imbustai/i18n'],
+  transpilePackages: ['@imbustai/i18n', '@imbustai/story-engine'],
   turbopack: {
     root: path.join(__dirname, '../..'),
   },
