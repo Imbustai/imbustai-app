@@ -1,5 +1,10 @@
 import { describe, it, expect, vi } from 'vitest';
-import { analyzeGame, buildClaudePrompt } from '../claude-coder';
+import {
+  analyzeGame,
+  buildClaudePrompt,
+  estimateCodingTarget,
+} from '../claude-coder';
+import type { ConceptualCatalog } from '../conceptual-catalog';
 import { buildGameText } from '../text-builder';
 import { BASELINE_CODES, AI_CODE_GUID, flattenCodes } from '../codebook';
 import type { ClaudeCodingProposal, GameInput } from '../types';
@@ -49,7 +54,8 @@ describe('buildClaudePrompt', () => {
       sampleFewshots: [
         { doc: '13 f', quoteText: 'esempio', codeNames: ['empatia'] },
       ],
-      conceptualCatalog: { x: 1 },
+      conceptualCatalog: [] as ConceptualCatalog,
+      codingTarget: 10,
     });
 
     const idxCodebook = user.indexOf('## BASELINE CODEBOOK');
@@ -71,7 +77,8 @@ describe('buildClaudePrompt', () => {
       letters,
       baselineCodes: BASELINE_CODES,
       sampleFewshots: [],
-      conceptualCatalog: {},
+      conceptualCatalog: [] as ConceptualCatalog,
+      codingTarget: 10,
     });
     for (const c of flattenCodes(BASELINE_CODES)) {
       expect(user).toContain(`**${c.name}**`);
@@ -121,7 +128,50 @@ describe('analyzeGame', () => {
     expect(out.newCodes).toHaveLength(0);
   });
 
-  it('caps proposed-new codes at 1 per game and dedups by name', async () => {
+  it('resolves conceptualCodeNames from the catalog into newCodes', async () => {
+    const game = fixtureGame();
+    const { text, letters } = buildGameText(game);
+    const proposals: ClaudeCodingProposal[] = [
+      {
+        letterNumber: 1,
+        quoteText: 'mi fa tenerezza ricordare quei tempi',
+        codeNames: ['empatia'],
+        conceptualCodeNames: ['Coinvolgimento empatico'],
+      },
+    ];
+    const client = makeMockClient(JSON.stringify({ codings: proposals }));
+
+    const out = await analyzeGame(
+      { game, text, letters },
+      { anthropic: client as never }
+    );
+    expect(out.selections).toHaveLength(1);
+    expect(out.newCodes).toHaveLength(1);
+    expect(out.newCodes[0].name).toBe('Coinvolgimento empatico');
+    expect(out.selections[0].codeGuids).toHaveLength(2);
+  });
+
+  it('accepts codings with only conceptualCodeNames', async () => {
+    const game = fixtureGame();
+    const { text, letters } = buildGameText(game);
+    const proposals: ClaudeCodingProposal[] = [
+      {
+        letterNumber: 1,
+        quoteText: 'vecchia foto',
+        conceptualCodeNames: ['Narrazioni personali'],
+      },
+    ];
+    const client = makeMockClient(JSON.stringify({ codings: proposals }));
+
+    const out = await analyzeGame(
+      { game, text, letters },
+      { anthropic: client as never }
+    );
+    expect(out.selections).toHaveLength(1);
+    expect(out.newCodes[0].name).toBe('Narrazioni personali');
+  });
+
+  it('caps invented proposed-new codes at 1 per game and dedups by name', async () => {
     const game = fixtureGame();
     const { text, letters } = buildGameText(game);
     const proposals: ClaudeCodingProposal[] = [
@@ -206,6 +256,17 @@ describe('analyzeGame', () => {
     expect(call.system).toContain('OUTPUT FORMAT');
     expect(call.messages[0].role).toBe('user');
     expect(call.messages[0].content).toContain('BASELINE CODEBOOK');
+    expect(call.messages[0].content).toContain('COVERAGE TARGET');
+    expect(call.messages[0].content).toContain('conceptualCodeNames');
+  });
+});
+
+describe('estimateCodingTarget', () => {
+  it('scales with letter body length', () => {
+    const game = fixtureGame();
+    const { letters } = buildGameText(game);
+    const target = estimateCodingTarget(letters);
+    expect(target).toBeGreaterThanOrEqual(15);
   });
 });
 

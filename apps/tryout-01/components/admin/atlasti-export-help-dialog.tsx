@@ -42,10 +42,9 @@ export function AtlastiExportHelpDialog() {
           <section className="space-y-2">
             <h3 className="font-medium">1. Conceptual catalog (JSON)</h3>
             <p className="text-muted-foreground">
-              Secondary reference for the model: theoretical concepts and suggested
-              codes. The AI is instructed to prefer the baseline codebook first; use
-              this file when you want different conceptual scaffolding for the same
-              baseline labels.
+              Thesis-level concepts and suggested codes. Claude applies them via
+              <code className="rounded bg-muted px-1 py-0.5 font-mono text-[0.8rem]">conceptualCodeNames</code>{' '}
+              alongside baseline codes. Edit this file to change the conceptual layer.
             </p>
             <pre className="rounded-md border bg-muted/50 p-3 font-mono text-xs leading-relaxed break-all">
               apps/tryout-01/lib/atlasti/codici_tesi_atlasti.json
@@ -59,8 +58,8 @@ export function AtlastiExportHelpDialog() {
           <section className="space-y-2">
             <h3 className="font-medium">2. System prompt (rules and output shape)</h3>
             <p className="text-muted-foreground">
-              Defines role, output JSON schema, code precedence (baseline → few-shots
-              style → catalog → new codes), and what to annotate. Bundled with the app
+              Defines role, output JSON schema, coverage targets, dual-layer coding
+              (baseline + conceptual), and annotation density. Bundled with the app
               so it must live in TypeScript, not a loose markdown file next to the
               server bundle.
             </p>

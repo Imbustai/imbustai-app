@@ -4,6 +4,11 @@ import {
   buildCodeNameIndex,
   flattenCodes,
 } from './codebook';
+import {
+  buildConceptualCodeIndex,
+  listConceptualCodeNames,
+  type ConceptualCatalog,
+} from './conceptual-catalog';
 import { quotePreview } from './text-builder';
 import type {
   ClaudeCodingProposal,
@@ -25,12 +30,18 @@ import conceptualCatalogJson from './codici_tesi_atlasti.json';
  * Turbopack rewrites `__dirname` to a virtual `/ROOT/…` path.
  */
 const FEWSHOTS = fewshotsJson as SampleFewshot[];
-const CONCEPTUAL_CATALOG = conceptualCatalogJson as unknown;
+const CONCEPTUAL_CATALOG = conceptualCatalogJson as ConceptualCatalog;
+const CONCEPTUAL_CODE_INDEX = buildConceptualCodeIndex(CONCEPTUAL_CATALOG);
+
+/** Human sample averages ~140–200 characters per coding on `12 f` / `13 f`. */
+const CHARS_PER_CODING_TARGET = 150;
+
+/** Distinct invented codes (not in baseline or catalog) allowed per game. */
+const MAX_PROPOSED_NEW_CODES_PER_GAME = 1;
 
 /**
- * Selects a representative subset of fewshots to keep the prompt small but
- * cover the codebook breadth. We pick up to N examples ensuring each distinct
- * code appears at least once if it has a fewshot.
+ * Selects a representative subset of fewshots to keep the prompt bounded but
+ * show codebook breadth and annotation density.
  */
 function pickRepresentativeFewshots(all: SampleFewshot[], max: number): SampleFewshot[] {
   const seenCodes = new Set<string>();
@@ -43,7 +54,6 @@ function pickRepresentativeFewshots(all: SampleFewshot[], max: number): SampleFe
       if (picked.length >= max) break;
     }
   }
-  // Fill remaining slots with additional examples for richness.
   if (picked.length < max) {
     for (const f of all) {
       if (picked.length >= max) break;
@@ -53,13 +63,23 @@ function pickRepresentativeFewshots(all: SampleFewshot[], max: number): SampleFe
   return picked;
 }
 
+/** Minimum codings entries Claude should return for this document. */
+export function estimateCodingTarget(letters: LetterSpan[]): number {
+  const bodyChars = letters.reduce(
+    (sum, l) => sum + Math.max(0, l.endPosition - l.headerEnd),
+    0
+  );
+  return Math.max(15, Math.round(bodyChars / CHARS_PER_CODING_TARGET));
+}
+
 interface BuildPromptInput {
   gameId: string;
   text: string;
   letters: LetterSpan[];
   baselineCodes: CodeNode[];
   sampleFewshots: SampleFewshot[];
-  conceptualCatalog: unknown;
+  conceptualCatalog: ConceptualCatalog;
+  codingTarget: number;
 }
 
 export interface ClaudeCoderDeps {
@@ -85,6 +105,7 @@ function defaultAnthropic(): Anthropic {
  */
 export function buildClaudePrompt(input: BuildPromptInput): { system: string; user: string } {
   const codes = flattenCodes(input.baselineCodes);
+  const conceptualNames = listConceptualCodeNames(input.conceptualCatalog);
 
   const codebookSection = [
     '## BASELINE CODEBOOK',
@@ -97,9 +118,9 @@ export function buildClaudePrompt(input: BuildPromptInput): { system: string; us
   ].join('\n');
 
   const fewshotsSection = [
-    '## SAMPLE ANNOTATIONS (mirror this style)',
+    '## SAMPLE ANNOTATIONS (mirror density and style)',
     '',
-    'Real human-coded annotations from documents `12 f` and `13 f`. Match this granularity (typically a single sentence or coherent fragment), this multi-coding pattern (often 1–3 codes per quotation), and this judgment of what is worth coding.',
+    'Real human-coded annotations from documents `12 f` and `13 f`. Match this granularity (typically one sentence per quotation), this multi-coding pattern (often 1–3 baseline codes per quotation), and this **coverage**: most of the letter body is coded, with overlapping quotations when needed.',
     '',
     ...input.sampleFewshots.map((f, i) => {
       const codes = f.codeNames.map((n) => `\`${n}\``).join(', ');
@@ -108,13 +129,24 @@ export function buildClaudePrompt(input: BuildPromptInput): { system: string; us
   ].join('\n');
 
   const conceptualSection = [
-    '## CONCEPTUAL CATALOG (secondary, consult only as a fallback)',
+    '## CONCEPTUAL CATALOG (use via `conceptualCodeNames`)',
     '',
-    'Use only if no baseline code fits. Prefer adapting an existing baseline code over inventing a new one. Cap: at most 1 proposed-new code per game.',
+    'Apply these **in addition to** baseline codes when they sharpen the analysis. Names must match `code_name` exactly (case-sensitive).',
+    '',
+    'Allowed `conceptualCodeNames` values:',
+    ...conceptualNames.map((n) => `- \`${n}\``),
+    '',
+    'Full catalog (concepts, descriptions, theoretical references):',
     '',
     '```json',
     JSON.stringify(input.conceptualCatalog, null, 2),
     '```',
+  ].join('\n');
+
+  const coverageSection = [
+    '## COVERAGE TARGET',
+    '',
+    `Produce **at least ${input.codingTarget}** entries in \`codings\` for this document (~one coding per sentence in letter bodies). Include \`conceptualCodeNames\` on a substantial share of entries (roughly one third or more when concepts apply).`,
   ].join('\n');
 
   const lettersSummary = [
@@ -148,6 +180,8 @@ export function buildClaudePrompt(input: BuildPromptInput): { system: string; us
     fewshotsSection,
     '',
     conceptualSection,
+    '',
+    coverageSection,
     '',
     lettersSummary,
     '',
@@ -193,7 +227,6 @@ function reconcileOffsets(
   }
   if (matches.length === 0) return null;
 
-  // Prefer matches inside the announced letter's body (header excluded).
   const candidateLetters = letters.filter((l) => l.letterNumber === letterNumber);
   for (const idx of matches) {
     const end = idx + quoteText.length;
@@ -203,7 +236,6 @@ function reconcileOffsets(
     if (containing) return { startPosition: idx, endPosition: end };
   }
 
-  // Fallback: any letter body — be lenient when Claude misattributes letterNumber.
   for (const idx of matches) {
     const end = idx + quoteText.length;
     const containing = letters.find(
@@ -215,6 +247,70 @@ function reconcileOffsets(
   return null;
 }
 
+interface CodeResolutionContext {
+  baselineIndex: Map<string, string>;
+  conceptualIndex: Map<string, import('./conceptual-catalog').ConceptualCodeMeta>;
+  fewshotCodeNames: Set<string>;
+  newCodes: CodeNode[];
+  newCodesByName: Map<string, CodeNode>;
+  inventedNewCodeCount: number;
+}
+
+function resolveCodeName(
+  rawName: string,
+  proposal: ClaudeCodingProposal,
+  ctx: CodeResolutionContext
+): string | null {
+  const trimmed = rawName.trim();
+  if (!trimmed) return null;
+
+  const baselineGuid = ctx.baselineIndex.get(trimmed.toLowerCase());
+  if (baselineGuid) return baselineGuid;
+
+  const conceptual = ctx.conceptualIndex.get(trimmed.toLowerCase());
+  if (conceptual) {
+    const key = conceptual.name.toLowerCase();
+    let node = ctx.newCodesByName.get(key);
+    if (!node) {
+      node = {
+        guid: uuidv4().toUpperCase(),
+        name: conceptual.name,
+        isCodable: true,
+        description: conceptual.description,
+      };
+      ctx.newCodes.push(node);
+      ctx.newCodesByName.set(key, node);
+    }
+    return node.guid;
+  }
+
+  if (ctx.fewshotCodeNames.has(trimmed)) return null;
+
+  const key = trimmed.toLowerCase();
+  let node = ctx.newCodesByName.get(key);
+  if (!node) {
+    if (ctx.inventedNewCodeCount >= MAX_PROPOSED_NEW_CODES_PER_GAME) {
+      return null;
+    }
+    const proposed = proposal.proposedNewCode;
+    const description =
+      proposed &&
+      proposed.name.toLowerCase() === key
+        ? proposed.description
+        : `Codice proposto automaticamente — ${trimmed}`;
+    node = {
+      guid: uuidv4().toUpperCase(),
+      name: trimmed,
+      isCodable: true,
+      description,
+    };
+    ctx.newCodes.push(node);
+    ctx.newCodesByName.set(key, node);
+    ctx.inventedNewCodeCount += 1;
+  }
+  return node.guid;
+}
+
 export interface AnalyzeGameInput {
   game: GameInput;
   text: string;
@@ -223,17 +319,15 @@ export interface AnalyzeGameInput {
 
 export interface AnalyzeGameOutput {
   selections: CodingSelection[];
-  /** Codes proposed by Claude that are NOT in the baseline. */
+  /** Codes created from the conceptual catalog or invented proposals. */
   newCodes: CodeNode[];
-  /** Raw proposals returned by Claude (for logging/debug). */
   raw: ClaudeCodingProposal[];
 }
 
 /**
  * Calls Claude on a single game and returns reconciled selections + any new
- * codes. Defensive: drops proposals whose `quoteText` can't be located in the
- * document, drops empty/whitespace quotes, dedups codeNames per selection, and
- * caps proposed-new codes at 1 per game.
+ * codes. Drops proposals whose `quoteText` can't be located; dedups code GUIDs
+ * per selection; caps invented (non-catalog) new codes at 1 per game.
  */
 export async function analyzeGame(
   input: AnalyzeGameInput,
@@ -241,11 +335,10 @@ export async function analyzeGame(
 ): Promise<AnalyzeGameOutput> {
   const anthropic = deps.anthropic ?? defaultAnthropic();
   const model = deps.model ?? 'claude-sonnet-4-6';
-  const maxFewshots = deps.maxFewshots ?? 40;
+  const maxFewshots = deps.maxFewshots ?? 80;
 
-  const allFewshots = FEWSHOTS;
-  const conceptualCatalog = CONCEPTUAL_CATALOG;
-  const sampleFewshots = pickRepresentativeFewshots(allFewshots, maxFewshots);
+  const sampleFewshots = pickRepresentativeFewshots(FEWSHOTS, maxFewshots);
+  const codingTarget = estimateCodingTarget(input.letters);
 
   const { system, user } = buildClaudePrompt({
     gameId: input.game.id,
@@ -253,12 +346,13 @@ export async function analyzeGame(
     letters: input.letters,
     baselineCodes: BASELINE_CODES,
     sampleFewshots,
-    conceptualCatalog,
+    conceptualCatalog: CONCEPTUAL_CATALOG,
+    codingTarget,
   });
 
   const response = await anthropic.messages.create({
     model,
-    max_tokens: 8192,
+    max_tokens: 16384,
     system,
     messages: [{ role: 'user', content: user }],
   });
@@ -278,16 +372,25 @@ export async function analyzeGame(
   }
   const raw = Array.isArray(parsed.codings) ? parsed.codings : [];
 
-  const nameIndex = buildCodeNameIndex(BASELINE_CODES);
-  const fewshotCodeNames = new Set(allFewshots.flatMap((f) => f.codeNames));
-  const newCodes: CodeNode[] = [];
-  const newCodesByName = new Map<string, CodeNode>();
+  const ctx: CodeResolutionContext = {
+    baselineIndex: buildCodeNameIndex(BASELINE_CODES),
+    conceptualIndex: CONCEPTUAL_CODE_INDEX,
+    fewshotCodeNames: new Set(FEWSHOTS.flatMap((f) => f.codeNames)),
+    newCodes: [],
+    newCodesByName: new Map(),
+    inventedNewCodeCount: 0,
+  };
   const selections: CodingSelection[] = [];
 
   for (const proposal of raw) {
     if (typeof proposal.quoteText !== 'string' || !proposal.quoteText.trim()) continue;
     if (typeof proposal.letterNumber !== 'number') continue;
-    if (!Array.isArray(proposal.codeNames) || proposal.codeNames.length === 0) continue;
+
+    const baselineNames = Array.isArray(proposal.codeNames) ? proposal.codeNames : [];
+    const conceptualNames = Array.isArray(proposal.conceptualCodeNames)
+      ? proposal.conceptualCodeNames
+      : [];
+    if (baselineNames.length === 0 && conceptualNames.length === 0) continue;
 
     const range = reconcileOffsets(
       input.text,
@@ -300,44 +403,11 @@ export async function analyzeGame(
     const codeGuids: string[] = [];
     const seenInThisSelection = new Set<string>();
 
-    for (const name of proposal.codeNames) {
-      if (typeof name !== 'string') continue;
-      const trimmed = name.trim();
-      if (!trimmed) continue;
-      const existing = nameIndex.get(trimmed.toLowerCase());
-      if (existing) {
-        if (!seenInThisSelection.has(existing)) {
-          codeGuids.push(existing);
-          seenInThisSelection.add(existing);
-        }
-        continue;
-      }
-      // Not in baseline → handle as proposed-new (also includes fewshot-only
-      // names not present in the baseline, which shouldn't happen in practice).
-      if (fewshotCodeNames.has(trimmed)) {
-        // It was in the few-shots but our baseline lacks it — skip to be safe.
-        continue;
-      }
-
-      // Honor the cap: at most one proposed-new code per game.
-      if (newCodes.length >= 1 && !newCodesByName.has(trimmed.toLowerCase())) continue;
-
-      let newCode = newCodesByName.get(trimmed.toLowerCase());
-      if (!newCode) {
-        newCode = {
-          guid: uuidv4().toUpperCase(),
-          name: trimmed,
-          isCodable: true,
-          description:
-            proposal.proposedNewCode?.description ??
-            `Codice proposto automaticamente — ${trimmed}`,
-        };
-        newCodes.push(newCode);
-        newCodesByName.set(trimmed.toLowerCase(), newCode);
-      }
-      if (!seenInThisSelection.has(newCode.guid)) {
-        codeGuids.push(newCode.guid);
-        seenInThisSelection.add(newCode.guid);
+    for (const name of [...baselineNames, ...conceptualNames]) {
+      const guid = resolveCodeName(name, proposal, ctx);
+      if (guid && !seenInThisSelection.has(guid)) {
+        codeGuids.push(guid);
+        seenInThisSelection.add(guid);
       }
     }
 
@@ -352,5 +422,5 @@ export async function analyzeGame(
     });
   }
 
-  return { selections, newCodes, raw };
+  return { selections, newCodes: ctx.newCodes, raw };
 }

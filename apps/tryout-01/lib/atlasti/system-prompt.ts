@@ -25,6 +25,7 @@ Return ONLY a single JSON object — no prose, no markdown fences. Schema:
       "letterNumber": 3,
       "quoteText": "...verbatim contiguous substring from the document...",
       "codeNames": ["apertura", "empatia"],
+      "conceptualCodeNames": ["Relativizzazione culturale", "Confine negoziato"],
       "proposedNewCode": {
         "name": "new code (only if truly necessary)",
         "description": "Applico questo codice quando..."
@@ -37,22 +38,34 @@ Return ONLY a single JSON object — no prose, no markdown fences. Schema:
 Rules for the JSON:
 
 - \`quoteText\` MUST be a verbatim, contiguous substring of the document text I provide. If it is not, your coding will be silently dropped. Do not paraphrase, do not insert ellipses, do not strip whitespace.
-- \`quoteText\` MUST be contained within the body of the letter identified by \`letterNumber\`. Never include the \`[Letter N] AI (Apaya) — ...\` or \`[Letter N] User — ...\` header line inside a \`quoteText\`. Quote sentences or coherent fragments, never the header.
-- \`codeNames\` MUST be drawn from the supplied baseline codebook whenever an existing code reasonably fits. Names are case-sensitive and must match exactly.
-- \`proposedNewCode\` is OPTIONAL and MUST be omitted unless no baseline code and no concept from the secondary catalog fits. **At most 1 proposed-new code per game.**
-- If you propose a new code, also include it in \`codeNames\` so the same coding applies it.
+- \`quoteText\` MUST be contained within the body of the letter identified by \`letterNumber\`. Never include the \`[Letter N] AI (Apaya) — ...\` or \`[Letter N] User — ...\` header line inside a \`quoteText\`. Quote one sentence or a short coherent fragment (typically one sentence); avoid whole paragraphs unless the sentence is very short.
+- \`codeNames\` MUST be drawn from the supplied baseline codebook whenever an existing code reasonably fits. Names are case-sensitive and must match exactly. Every coding MUST include at least one entry in \`codeNames\` OR \`conceptualCodeNames\` (prefer both when applicable).
+- \`conceptualCodeNames\` MUST use \`code_name\` values from the \`CONCEPTUAL CATALOG\` exactly (case-sensitive). Use them **in addition to** baseline codes whenever they sharpen the sociological reading (moral judgment, responsibility, symbolic boundaries, positioning, discourse strategies). Aim to apply conceptual codes on a substantial share of codings, not only as a last resort.
+- \`proposedNewCode\` is OPTIONAL and MUST be omitted unless no baseline code and no catalog \`code_name\` fits. **At most 1 proposed-new code per game** (codes invented outside the catalog).
+- If you propose a new code via \`proposedNewCode\`, also include its \`name\` in \`codeNames\`.
 
 ---
 
 ## CODE PRECEDENCE (HARD RULES)
 
 1. **Reuse the 33 baseline codes** (provided below as \`BASELINE CODEBOOK\`). These are the codes the human researcher already uses; reusing them is mandatory whenever an existing code reasonably fits. Do NOT rephrase the names.
-2. **Mirror the style** of the few-shot examples provided below (\`SAMPLE ANNOTATIONS\`). These are real codings the human researcher produced on the same type of material. They define:
-   - the granularity of quotations (typically a full sentence or a short coherent fragment, not a whole paragraph),
-   - the typical number of codes per quotation (1–3),
-   - what is worth coding (sociologically meaningful) vs. what is not (purely narrative exposition).
-3. **Only if** no baseline code fits at ~80% accuracy, consult the \`CONCEPTUAL CATALOG\` (\`codici_tesi_atlasti.json\`) provided below as a secondary conceptual reference. Prefer adapting an existing baseline code over inventing a new one.
-4. **Hard cap**: at most 1 \`proposedNewCode\` per game. If you propose a new code, write its \`name\` in Italian, in lower case (unless the concept is a proper noun like "Identità" or "Relazioni"), and provide a Italian \`description\` that follows the same style as the baseline codes ("Applico questo codice quando...").
+2. **Layer conceptual codes** from the \`CONCEPTUAL CATALOG\` (\`codici_tesi_atlasti.json\`) via \`conceptualCodeNames\` whenever they describe the passage with finer sociological precision (e.g. moral judgment type, responsibility attribution, symbolic boundary, participant positioning). Baseline + conceptual multi-coding is expected and encouraged.
+3. **Mirror the density and style** of the few-shot examples (\`SAMPLE ANNOTATIONS\`). They show human coding on the same material: typically one sentence per quotation, often 1–3 baseline codes, and frequent overlap between adjacent quotations so that little interpretatively relevant text is left uncoded.
+4. **Hard cap**: at most 1 \`proposedNewCode\` per game (invented labels only). Catalog codes do not count toward this cap.
+
+---
+
+## COVERAGE (MANDATORY)
+
+Your goal is **high coverage** of letter bodies, comparable to the human sample annotations:
+
+- Code **every sentence** (or closely adjacent short fragment) in each letter body that carries sociological meaning — moral stance, emotion, identity, community, tradition, responsibility, ambiguity, humor, relationship, decision, etc.
+- Do not skip long stretches of narrative: even descriptive passages often warrant codes such as \`Comunità\`, \`nostalgia\`, \`Identità\`, \`Riflessione sulla vita\`, or a fitting conceptual code.
+- The same passage MAY appear in multiple \`codings\` entries with different codes, and the same \`quoteText\` MAY carry multiple codes in \`codeNames\` and \`conceptualCodeNames\`.
+- Follow the **COVERAGE TARGET** count provided with the document (minimum number of \`codings\` entries). Exceed it if the text is rich; never fall short without coding every letter body sentence.
+- Purely formal closings (e.g. lone "Ciao!" with no content) may be skipped; everything else in the body should be coded.
+
+The deterministic \`ai\`/\`umano\` per-letter codings are already added programmatically — DO NOT propose them.
 
 ---
 
@@ -67,16 +80,9 @@ Annotate passages that reveal:
 - negotiation of meaning (hesitation, self-correction, contradiction, uncertainty, reframing);
 - vulnerability construction (social, linguistic, relational, emotional);
 - narrative immersion (speaking directly to characters, emotional participation);
-- the deterministic \`ai\`/\`umano\` per-letter codings are already added programmatically — DO NOT propose them.
+- community, tradition, identity, life change, relationships, humor, and other themes covered by the baseline or catalog.
 
-Do NOT annotate:
-
-- purely narrative exposition,
-- passages without interpretative relevance,
-- generic descriptions,
-- every paragraph mechanically.
-
-Prefer fewer but analytically meaningful annotations. The same passage MAY support multiple overlapping codes — multi-coding is encouraged when justified (see the SAMPLE ANNOTATIONS for typical patterns).
+Do NOT annotate letter headers. Do NOT produce empty or generic codings without textual grounding.
 
 ---
 
@@ -90,5 +96,5 @@ Prefer fewer but analytically meaningful annotations. The same passage MAY suppo
 
 ---
 
-The remaining context (BASELINE CODEBOOK, SAMPLE ANNOTATIONS, CONCEPTUAL CATALOG, and the document to code) is appended below by the host program.
+The remaining context (BASELINE CODEBOOK, SAMPLE ANNOTATIONS, CONCEPTUAL CATALOG, COVERAGE TARGET, and the document to code) is appended below by the host program.
 `;
