@@ -1,13 +1,20 @@
 import { notFound, redirect } from 'next/navigation';
 import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { createClient } from '@/lib/supabase/server';
+import { PlayClient, type PlayContact } from '@/components/play/play-client';
+import type {
+  GameRow,
+  InteractionRow,
+  StoryCharacterRow,
+  StoryRow,
+} from '@/lib/types/db';
 
 export const dynamic = 'force-dynamic';
 
-// /game/[gameId] — Phase 4 builds the player play UI here (owner-only, admin
-// read access). Until then: admins go to the admin console, owners to their
-// games list.
-export default async function GamePage({
+// /game/[gameId] — the player play page (Phase 4). Owner only; admins use
+// their console at /admin/game/[gameId] (full read access there).
+export default async function PlayPage({
   params,
 }: {
   params: Promise<{ gameId: string }>;
@@ -22,14 +29,64 @@ export default async function GamePage({
   if (!user) redirect(`/login?next=/game/${gameId}`);
 
   const admin = createAdminClient();
-  const { data: game } = await admin
-    .from('games')
-    .select('user_id')
-    .eq('id', gameId)
-    .single();
+  const { data: game } = await admin.from('games').select('*').eq('id', gameId).single();
   if (!game) notFound();
-  if (game.user_id !== user.id) redirect('/');
+  const g = game as GameRow;
+  if (g.user_id !== user.id) redirect('/');
 
-  // Owner: play UI lands here in Phase 4.
-  redirect('/games');
+  // Story chrome via service role with SAFE columns only (story tables are
+  // admin-only under RLS — hidden agendas etc. never reach this page).
+  const [{ data: story }, { data: characters }] = await Promise.all([
+    admin
+      .from('stories')
+      .select('id,slug,title_en,title_it,settings,time_config')
+      .eq('id', g.story_id)
+      .single(),
+    admin
+      .from('story_characters')
+      .select('slug,name,role,sort_order')
+      .eq('story_id', g.story_id)
+      .order('sort_order'),
+  ]);
+  if (!story) notFound();
+  const storyRow = story as Pick<
+    StoryRow,
+    'id' | 'slug' | 'title_en' | 'title_it' | 'settings' | 'time_config'
+  >;
+
+  const unlocked: string[] = (g.runtime_state?.unlocked_npcs as string[] | undefined) ?? [];
+  const characterRows = (characters ?? []) as Pick<
+    StoryCharacterRow,
+    'slug' | 'name' | 'role' | 'sort_order'
+  >[];
+  const contacts: PlayContact[] = characterRows
+    .filter((c) => unlocked.includes(c.slug))
+    .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
+  const lockedCount = characterRows.length - contacts.length;
+
+  // Letters through the USER's client: RLS hides future-visible_from letters
+  // and everything that isn't theirs — defense in depth over UI filtering.
+  const supabase = await createClient();
+  const { data: letters } = await supabase
+    .from('interactions')
+    .select('*')
+    .eq('game_id', gameId)
+    .order('letter_number', { ascending: true });
+
+  return (
+    <div className="mx-auto max-w-5xl px-4 py-10">
+      <PlayClient
+        gameId={gameId}
+        gameStatus={g.status}
+        storyTitleEn={storyRow.title_en}
+        storyTitleIt={storyRow.title_it}
+        dateLocale={storyRow.time_config?.date_locale ?? 'it-IT'}
+        maxLettersPerTurn={storyRow.settings?.max_letters_per_turn ?? 4}
+        initialStoryDate={(g.runtime_state?.story_date as string | undefined) ?? null}
+        contacts={contacts}
+        lockedCount={lockedCount}
+        initialLetters={(letters ?? []) as InteractionRow[]}
+      />
+    </div>
+  );
 }

@@ -367,5 +367,33 @@
     "letterPlaceholder": "Scrivi la lettera…",
     "addLetter": "Aggiungi lettera",
     "sendAsPlayer": "Invia come giocatore"
+  },
+  "play": {
+    "contacts": "I tuoi contatti",
+    "inbox": "Corrispondenza",
+    "you": "Tu",
+    "writeTo": "Lettera a",
+    "composerPlaceholder": "Caro…",
+    "draftHint": "La bozza si salva automaticamente su questo dispositivo. Scrivi a più contatti, poi invia tutto insieme.",
+    "draftSaved": "bozza",
+    "reviewAndSend": "Rivedi e invia",
+    "reviewTitle": "Pronto a spedire?",
+    "reviewHint": "Queste lettere partono insieme come un unico turno. Una volta spedite, attendi le risposte — come la posta vera.",
+    "keepEditing": "Continua a scrivere",
+    "sendAll": "Spedisci tutte le lettere",
+    "sending": "Invio…",
+    "awaitingReply": "In attesa di risposta",
+    "awaitingReplyHint": "Le tue lettere sono state spedite. Le risposte sono in arrivo — ripassa più tardi.",
+    "inTransitOne": "Una lettera è in viaggio! Arriva tra",
+    "inTransitMany": "{count} lettere sono in viaggio! La prossima arriva tra",
+    "errors": {
+      "too_many_letters": "Troppe lettere per un solo turno.",
+      "turn_already_open": "Hai già spedito questo turno — attendi le risposte.",
+      "recipient_locked": "Non puoi ancora scrivere a questo contatto.",
+      "invalid_letter": "Una lettera è vuota o troppo lunga.",
+      "no_letters": "Scrivi almeno una lettera prima.",
+      "game_not_in_progress": "Questa partita non è attiva.",
+      "story_not_playable": "Questa storia non è ancora giocabile."
+    }
   }
 }

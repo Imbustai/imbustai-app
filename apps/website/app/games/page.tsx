@@ -1,20 +1,24 @@
 import { redirect } from 'next/navigation';
-import { isCurrentUserAdmin } from '@/lib/auth';
+import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { GamesList } from '@/components/games/games-list';
 import type { GameRow, StoryRow } from '@/lib/types/db';
 
 export const dynamic = 'force-dynamic';
 
+// /games — the player's own games. Admins manage games from /admin/games.
 export default async function GamesPage() {
-  if (!(await isCurrentUserAdmin())) {
-    redirect('/');
+  if (await isCurrentUserAdmin()) {
+    redirect('/admin/games');
   }
+  const user = await getSessionUser();
+  if (!user) redirect('/login?next=/games');
 
   const admin = createAdminClient();
   const { data: games } = await admin
     .from('games')
     .select('*')
+    .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
   const gameRows = (games ?? []) as GameRow[];
@@ -27,16 +31,7 @@ export default async function GamesPage() {
       .in('id', storyIds);
     stories = (data ?? []) as typeof stories;
   }
-
   const storyById = new Map(stories.map((s) => [s.id, s as StoryRow]));
-
-  const { data: usersData } = await admin.auth.admin.listUsers({
-    perPage: 1000,
-    page: 1,
-  });
-  const emailById = new Map(
-    (usersData?.users ?? []).map((u) => [u.id, u.email ?? ''])
-  );
 
   const gameIds = gameRows.map((g) => g.id);
   const counts: Record<string, number> = {};
@@ -55,11 +50,10 @@ export default async function GamesPage() {
     game: g,
     story: storyById.get(g.story_id),
     interactionCount: counts[g.id] ?? 0,
-    userEmail: emailById.get(g.user_id) ?? g.user_id,
   }));
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
+    <div className="mx-auto max-w-5xl px-4 py-10">
       <GamesList rows={rows} />
     </div>
   );

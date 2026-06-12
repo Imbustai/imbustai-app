@@ -29,16 +29,29 @@ export async function GET(
   if (!loaded) return NextResponse.json({ error: 'story_not_found' }, { status: 404 });
   const state = runtimeStateOf(g, loaded.story);
 
-  const { data: openTurn } = await admin
-    .from('interaction_turns')
-    .select('id,turn_number,status,user_submitted_at')
-    .eq('game_id', gameId)
-    .neq('status', 'sent')
-    .maybeSingle();
+  const [{ data: openTurn }, { data: inTransit }] = await Promise.all([
+    admin
+      .from('interaction_turns')
+      .select('id,turn_number,status,user_submitted_at')
+      .eq('game_id', gameId)
+      .neq('status', 'sent')
+      .maybeSingle(),
+    // Approved letters still in (real-world) transit: count + next arrival.
+    admin
+      .from('interactions')
+      .select('visible_from')
+      .eq('game_id', gameId)
+      .eq('role', 'ai')
+      .gt('visible_from', new Date().toISOString())
+      .order('visible_from', { ascending: true }),
+  ]);
 
   const contacts = loaded.story.characters
     .filter((c) => state.unlocked_npcs.includes(c.slug))
     .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
+  const lockedCount = loaded.story.characters.length - contacts.length;
+
+  const transit = (inTransit ?? []) as Array<{ visible_from: string }>;
 
   return NextResponse.json({
     game_status: g.status,
@@ -46,6 +59,7 @@ export async function GET(
     current_turn: state.current_turn,
     max_letters_per_turn: loaded.story.settings.max_letters_per_turn ?? 4,
     contacts,
+    locked_count: lockedCount,
     open_turn: openTurn
       ? {
           id: (openTurn as InteractionTurnRow).id,
@@ -55,5 +69,9 @@ export async function GET(
           awaiting_reply: true,
         }
       : null,
+    pending_reveal:
+      transit.length > 0
+        ? { count: transit.length, next_visible_from: transit[0].visible_from }
+        : null,
   });
 }

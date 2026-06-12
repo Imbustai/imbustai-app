@@ -365,5 +365,33 @@
     "letterPlaceholder": "Write the letter…",
     "addLetter": "Add letter",
     "sendAsPlayer": "Send as player"
+  },
+  "play": {
+    "contacts": "Your contacts",
+    "inbox": "Correspondence",
+    "you": "You",
+    "writeTo": "Letter to",
+    "composerPlaceholder": "Dear…",
+    "draftHint": "Your draft is saved automatically on this device. Write to several contacts, then send everything together.",
+    "draftSaved": "draft",
+    "reviewAndSend": "Review & send",
+    "reviewTitle": "Ready to send?",
+    "reviewHint": "These letters go out together as one turn. Once sent, you wait for the replies — like real mail.",
+    "keepEditing": "Keep editing",
+    "sendAll": "Send all letters",
+    "sending": "Sending…",
+    "awaitingReply": "Awaiting reply",
+    "awaitingReplyHint": "Your letters have been sent. The replies are being written — check back later.",
+    "inTransitOne": "A letter is on its way! It arrives in",
+    "inTransitMany": "{count} letters are on their way! The next arrives in",
+    "errors": {
+      "too_many_letters": "Too many letters for one turn.",
+      "turn_already_open": "You already sent this turn — wait for the replies.",
+      "recipient_locked": "You cannot write to this contact yet.",
+      "invalid_letter": "A letter is empty or too long.",
+      "no_letters": "Write at least one letter first.",
+      "game_not_in_progress": "This game is not active.",
+      "story_not_playable": "This story is not playable yet."
+    }
   }
 }
