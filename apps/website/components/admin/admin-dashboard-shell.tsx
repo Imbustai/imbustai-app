@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  BookOpen,
   PanelLeftClose,
   PlusCircle,
   ScrollText,
@@ -38,6 +39,7 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { href: '/admin', labelKey: 'admin.dashboardNav', icon: LayoutDashboard },
+  { href: '/admin/stories', labelKey: 'admin.storiesNav', icon: BookOpen },
   { href: '/admin/games', labelKey: 'admin.allGamesNav', icon: Gamepad2 },
   { href: '/admin/orders', labelKey: 'admin.ordersNav', icon: ScrollText },
   {

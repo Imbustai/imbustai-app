@@ -136,7 +136,8 @@
     "gameForOrder": "Partita per questo ordine",
     "interactionCount": "Interazioni",
     "mustBePaidForGame": "L’ordine deve essere pagato prima di avviare una partita.",
-    "backToOrders": "← Ordini"
+    "backToOrders": "← Ordini",
+    "storiesNav": "Storie"
   },
   "landing": {
     "hero": {
@@ -212,6 +213,125 @@
     },
     "footer": {
       "tagline": "Storie epistolari, lentezza e carta."
+    }
+  },
+  "storiesAdmin": {
+    "title": "Storie",
+    "subtitle": "Crea e modifica storie epistolari interattive. I moduli opzionali (fatti, atti, indizi, finali) possono restare vuoti per le storie semplici.",
+    "backToDashboard": "Dashboard",
+    "backToList": "Tutte le storie",
+    "newStory": "Nuova storia",
+    "newStoryTitlePlaceholder": "Titolo provvisorio",
+    "create": "Crea",
+    "slugHint": "Solo lettere minuscole, numeri e underscore (es. mia_storia).",
+    "allStories": "Tutte le storie",
+    "games": "Partite",
+    "inProgress": "in corso",
+    "edit": "Modifica",
+    "duplicate": "Duplica",
+    "delete": "Elimina",
+    "add": "Aggiungi",
+    "saveStory": "Salva storia",
+    "saved": "Salvato.",
+    "confirmDelete": "Eliminare questa riga? Operazione irreversibile.",
+    "optionalModule": "opzionale",
+    "hasOpeningLetter": "lettera iniziale",
+    "activeGamesWarningTitle": "Questa storia ha partite in corso.",
+    "activeGamesWarningBody": "{count} partita/e attive usano questa storia. Le modifiche hanno effetto dalla prossima generazione AI e possono creare incoerenze per i giocatori. Valuta di duplicare la storia e modificare la copia.",
+    "lifecycle": {
+      "draft": "Bozza",
+      "testing": "Test",
+      "released": "Pubblicata"
+    },
+    "lifecycleHint": {
+      "draft": "In scrittura. Non giocabile, non acquistabile.",
+      "testing": "Giocabile da te. Ogni risposta AI attende la tua revisione prima che il giocatore la veda.",
+      "released": "In vendita. Le risposte AI partono automaticamente se la validazione canon passa; i problemi restano in attesa di revisione."
+    },
+    "startMode": {
+      "fixed": "Data fissa (la storia inizia sempre alla data configurata)",
+      "actual": "Data reale (la storia inizia il giorno in cui parte la partita)"
+    },
+    "sections": {
+      "metadata": "Storia e ciclo di vita",
+      "time": "Tempo e impostazioni",
+      "characters": "Personaggi",
+      "facts": "Fatti (registro canon)",
+      "acts": "Atti",
+      "clues": "Indizi",
+      "endings": "Finali"
+    },
+    "fields": {
+      "slug": "Slug",
+      "title": "Titolo",
+      "description": "Descrizione",
+      "price_cents": "Prezzo (centesimi)",
+      "lifecycle": "Ciclo di vita",
+      "published": "Pubblicata nello shop",
+      "allow_dynamic_npcs": "Consenti personaggi proposti dall'AI",
+      "first_letter": "Prima lettera (legacy)",
+      "start_mode": "Modalità di inizio",
+      "story_start_date": "Data di inizio della storia",
+      "date_locale": "Locale per le date",
+      "visible_delay_enabled": "Ritarda la consegna delle lettere (tempo reale)",
+      "visible_delay_min": "Ritardo min (minuti)",
+      "visible_delay_max": "Ritardo max (minuti)",
+      "max_letters_per_turn": "Lettere max per turno",
+      "max_turns": "Turni max",
+      "story_locale": "Lingua della storia",
+      "name": "Nome",
+      "role": "Ruolo",
+      "responsiveness": "Reattività",
+      "reply_delay_min_days": "Risposta min (giorni narrativi)",
+      "reply_delay_max_days": "Risposta max (giorni narrativi)",
+      "contactable_from_start": "Contattabile dall'inizio",
+      "sort_order": "Ordinamento",
+      "opening_letter": "Lettera iniziale",
+      "opening_letter_day_offset": "Offset giorni lettera iniziale",
+      "backstory": "Backstory",
+      "personality": "Personalità (JSON)",
+      "hidden_agenda": "Agenda nascosta",
+      "knowledge_notes": "Note sulle conoscenze",
+      "unlock_rules": "Regole di sblocco (JSON)",
+      "fact_key": "Chiave fatto",
+      "category": "Categoria",
+      "is_public": "Fatto pubblico",
+      "reveal_act": "Rivelabile dall'atto",
+      "content": "Contenuto",
+      "known_by": "Conosciuto da",
+      "act_number": "Numero atto",
+      "turn_min": "Turno min",
+      "turn_max": "Turno max",
+      "goals": "Obiettivi (JSON)",
+      "reveal_rules": "Regole di rivelazione (JSON)",
+      "clue_key": "Chiave indizio",
+      "reliability": "Affidabilità",
+      "act_available": "Disponibile dall'atto",
+      "source_character_slug": "Personaggio fonte",
+      "ending_key": "Chiave finale",
+      "conditions": "Condizioni (JSON)",
+      "narrative_guidance": "Indicazioni narrative"
+    },
+    "hints": {
+      "slug": "Lettere minuscole, numeri, underscore.",
+      "personality": "JSON libero: traits, speech_pattern, letter_format, techniques…",
+      "hiddenAgenda": "Segreta. I giocatori non la vedono mai; la usano solo il Game Master AI e questo personaggio.",
+      "openingLetter": "Inviata automaticamente all'inizio della partita. Non scrivere mai la data dentro la lettera: le date le mostra la piattaforma.",
+      "knownBy": "Quali personaggi conoscono questo fatto. Nessuno selezionato + non pubblico = segreto noto solo al Game Master.",
+      "conditions": "Flag JSON che devono corrispondere allo stato di gioco, es. {\"victim_saved\": true}.",
+      "firstLetterLegacy": "Vecchia lettera iniziale unica. Preferisci le lettere iniziali per personaggio qui sotto; usata solo se nessun personaggio ne ha una."
+    },
+    "errors": {
+      "invalid_slug": "Slug non valido: usa minuscole, numeri e underscore.",
+      "slug_taken": "Questo slug è già in uso.",
+      "key_taken": "Questa chiave/slug è già in uso in questa storia.",
+      "invalid_payload": "Alcuni campi non sono validi.",
+      "publish_requires_released": "Solo le storie Pubblicate (released) possono andare nello shop.",
+      "publish_needs_contactable_character": "Per pubblicare serve almeno un personaggio contattabile dall'inizio.",
+      "publish_needs_opening_letter": "Per pubblicare serve una lettera iniziale su almeno un personaggio.",
+      "delay_max_lt_min": "Il ritardo max deve essere >= del min.",
+      "visible_delay_max_lt_min": "Il ritardo di consegna max deve essere >= del min.",
+      "not_found": "Non trovato."
     }
   }
 }
