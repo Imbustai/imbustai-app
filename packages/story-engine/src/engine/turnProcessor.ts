@@ -11,6 +11,7 @@ import { buildNpcContext, buildOrchestratorContext } from '../context/scopedCont
 import { addDays, advanceStoryDate, resolveBatchDates } from '../time/timeService';
 import { validateDraft } from '../validator';
 import { normalizeCharacterSlug } from './normalize';
+import { resolveStartDate } from './gameStart';
 import type { AiProvider } from '../ai/provider';
 
 // The generate step (architecture §1): orchestrator call → scoped per-NPC
@@ -162,12 +163,16 @@ export function applyGameStateUpdates(
   return next;
 }
 
-/** Initial runtime state when a game starts. */
-export function initialRuntimeState(story: StoryConfig): RuntimeState {
+/**
+ * Initial runtime state when a game starts. Pass actualStartDate (the real
+ * date the game is created) so stories with time_config.start_mode='actual'
+ * begin at it; fixed-mode stories ignore it.
+ */
+export function initialRuntimeState(story: StoryConfig, actualStartDate?: string): RuntimeState {
   return {
     current_turn: 0,
     current_act: story.acts.length > 0 ? Math.min(...story.acts.map((a) => a.act_number)) : 1,
-    story_date: story.time_config.story_start_date,
+    story_date: resolveStartDate(story, actualStartDate),
     unlocked_npcs: story.characters.filter((c) => c.contactable_from_start).map((c) => c.slug),
     clues_found: [],
   };

@@ -4,9 +4,8 @@ import type { StoryConfig } from '../src/types';
 // MASTER_SYSTEM_PROMPT into data (docs/voss-seed-plan.md). Voss exercises
 // every optional module on purpose; other stories may use none of them.
 
-export const VOSS_FIRST_LETTER = `[Data: 2 Agosto 2025]
-
-Caro Ispettore Mercier,
+// No date header in the body: story_date is metadata (2025-08-02, offset 0).
+export const VOSS_FIRST_LETTER = `Caro Ispettore Mercier,
 
 Mi chiamo Agente Voss, e sarò il tuo contatto per questa indagine. So che preferisci lavorare sul campo, ma a causa della natura inter-giurisdizionale di questo caso, i nostri superiori hanno deciso che tutta la comunicazione avvenga per iscritto. Protocollo burocratico, lo so - ma almeno avremo tutto documentato.
 
@@ -27,6 +26,7 @@ export const VOSS_STORY: StoryConfig = {
   first_letter: VOSS_FIRST_LETTER,
   settings: { max_letters_per_turn: 4, max_turns: 25, locale: 'it' },
   time_config: {
+    start_mode: 'fixed',
     story_start_date: '2025-08-02',
     visible_delay: { enabled: true, min_minutes: 30, max_minutes: 180 },
     date_locale: 'it-IT',
@@ -44,7 +44,7 @@ export const VOSS_STORY: StoryConfig = {
         speech_pattern:
           'Apre con "Caro Mercier" o "Mio caro ispettore"; occasionalmente ironico ("Ancora sveglio a quest\'ora?"); finge preoccupazione; condivide falsi dubbi; elogia il giocatore anche mentre lo svia.',
         letter_format:
-          '[Data] / Caro Mercier, / apertura personale / corpo con informazioni / suggerimento sottile o domanda che guida / chiusura amichevole / "Il tuo collega, Agente Voss"',
+          'Caro Mercier, / apertura personale / corpo con informazioni / suggerimento sottile o domanda che guida / chiusura amichevole / "Il tuo collega, Agente Voss" (mai una riga data: la data è metadato)',
         techniques: [
           'framing: informazioni vere con interpretazione falsa ("Il testimone sembra nervoso, forse nasconde qualcosa...")',
           'anchoring: pianta ipotesi prima che il giocatore ne formuli ("Scommetto che è un regolamento di conti...")',
@@ -64,6 +64,8 @@ export const VOSS_STORY: StoryConfig = {
       reply_delay_max_days: 2,
       contactable_from_start: true,
       unlock_rules: {},
+      opening_letter: VOSS_FIRST_LETTER,
+      opening_letter_day_offset: 0,
       sort_order: 1,
     },
     {
@@ -74,7 +76,7 @@ export const VOSS_STORY: StoryConfig = {
         traits: ['formale', 'burocratico', 'preciso', 'impersonale'],
         speech_pattern:
           'Risposte brevi, solo fatti, protocolli: "In riferimento alla Sua richiesta prot. 2847, alleghiamo...". Nessuna interpretazione.',
-        letter_format: '[Data] / intestazione formale con protocollo / contenuto, eventuali tabelle / firma d\'ufficio',
+        letter_format: 'Intestazione formale con protocollo / contenuto, eventuali tabelle / firma d\'ufficio (mai una riga data: la data è metadato)',
       },
       backstory: 'Ufficio pubblico che evade richieste anagrafiche e documentali.',
       hidden_agenda: '',
@@ -85,6 +87,8 @@ export const VOSS_STORY: StoryConfig = {
       reply_delay_max_days: 10,
       contactable_from_start: true,
       unlock_rules: {},
+      opening_letter: '',
+      opening_letter_day_offset: 0,
       sort_order: 2,
     },
     {
@@ -104,6 +108,8 @@ export const VOSS_STORY: StoryConfig = {
       reply_delay_max_days: 5,
       contactable_from_start: false,
       unlock_rules: { hint: 'Si sblocca quando il giocatore chiede referti autoptici o Voss la introduce.' },
+      opening_letter: '',
+      opening_letter_day_offset: 0,
       sort_order: 3,
     },
     {
@@ -123,6 +129,8 @@ export const VOSS_STORY: StoryConfig = {
       reply_delay_max_days: 7,
       contactable_from_start: false,
       unlock_rules: { hint: 'Si sblocca quando il giocatore indaga sulla vita privata di Bellini.' },
+      opening_letter: '',
+      opening_letter_day_offset: 0,
       sort_order: 4,
     },
     {
@@ -141,6 +149,8 @@ export const VOSS_STORY: StoryConfig = {
       reply_delay_max_days: 8,
       contactable_from_start: false,
       unlock_rules: { hint: 'Si sblocca quando il giocatore indaga sul lavoro di Bellini.' },
+      opening_letter: '',
+      opening_letter_day_offset: 0,
       sort_order: 5,
     },
     {
@@ -159,6 +169,8 @@ export const VOSS_STORY: StoryConfig = {
       reply_delay_max_days: 10,
       contactable_from_start: false,
       unlock_rules: { hint: 'Si sblocca in atto 3+ quando servono ricerche storiche/catastali.' },
+      opening_letter: '',
+      opening_letter_day_offset: 0,
       sort_order: 6,
     },
   ],

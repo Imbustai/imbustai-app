@@ -209,7 +209,8 @@ export function npcWriterSystemPrompt(opts: {
         '- Follow the Game Master brief, but stay in character.',
         `- date_sent must be between ${replyWindow.earliest} and ${replyWindow.latest} (your realistic reply time).`,
         '- In metadata.facts_referenced, list the key of EVERY fact above that your letter draws on. In metadata.clues_revealed, list clue keys the brief told you to release.',
-        '- Respond ONLY by calling the npc_letter tool. The letter (date line, salutation, body, signature) goes entirely in `content`.',
+        '- NEVER write the date inside the letter content (no "[Data: ...]" header, no date line). The platform shows the date separately; you only set the date_sent field.',
+        '- Respond ONLY by calling the npc_letter tool. The letter (salutation, body, signature) goes entirely in `content`.',
       ].join('\n'),
     ),
   );

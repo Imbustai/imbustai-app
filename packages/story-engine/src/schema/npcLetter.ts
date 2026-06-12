@@ -42,7 +42,8 @@ export const NPC_LETTER_TOOL = {
       },
       content: {
         type: 'string',
-        description: 'The full letter: date line, salutation, body, signature. Markdown allowed.',
+        description:
+          'The full letter: salutation, body, signature. Do NOT include a date line — the platform renders the date separately. Markdown allowed.',
       },
       metadata: {
         type: 'object',

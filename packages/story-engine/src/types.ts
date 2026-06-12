@@ -32,6 +32,10 @@ export interface StoryCharacter {
   reply_delay_max_days: number;
   contactable_from_start: boolean;
   unlock_rules: Record<string, unknown>;
+  /** Non-empty = this character sends an opening letter at game start. No date in the body. */
+  opening_letter: string;
+  /** In-fiction days after the story start when the opening letter is dated. */
+  opening_letter_day_offset: number;
   sort_order: number;
 }
 
@@ -71,6 +75,11 @@ export interface StoryEnding {
 }
 
 export interface StoryTimeConfig {
+  /**
+   * fixed (default): the game starts at story_start_date.
+   * actual: the game starts at the real-world date the game is created.
+   */
+  start_mode?: 'fixed' | 'actual';
   story_start_date: string;
   visible_delay?: {
     enabled: boolean;

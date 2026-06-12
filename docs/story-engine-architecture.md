@@ -125,7 +125,9 @@ orders ──< games ──< interaction_turns ──< ai_drafts (versioned)
 
 The pipeline is identical in both modes — auto-send is just the approve step invoked programmatically. The review gate is therefore an authoring/QA tool, not a permanent production bottleneck. (This supersedes the original "every batch is admin-reviewed" non-negotiable; CLAUDE.md updated accordingly.)
 
-**New: `story_characters`** — slug, name, role, `personality` jsonb (traits, speech_pattern, voice notes), `backstory`, `hidden_agenda` (player must NEVER see), `knowledge_notes` (prose scope description for the prompt; the authoritative fact mapping is `story_facts.known_by`), `responsiveness` label + `reply_delay_min_days`/`reply_delay_max_days` (editor-driven, used by TimeService), `contactable_from_start`, `unlock_rules` jsonb, `sort_order`. Unique `(story_id, slug)`.
+**New: `story_characters`** — slug, name, role, `personality` jsonb (traits, speech_pattern, voice notes), `backstory`, `hidden_agenda` (player must NEVER see), `knowledge_notes` (prose scope description for the prompt; the authoritative fact mapping is `story_facts.known_by`), `responsiveness` label + `reply_delay_min_days`/`reply_delay_max_days` (editor-driven, used by TimeService), `contactable_from_start`, `unlock_rules` jsonb, **`opening_letter` + `opening_letter_day_offset`** (any number of characters may send an opening letter at game start, dated start + offset — `stories.first_letter` is legacy until the start-game route switches in Phase 3), `sort_order`. Unique `(story_id, slug)`.
+
+**Letter bodies never embed dates.** `story_date` is metadata on every interaction; the UI renders it. Engine writer prompts explicitly forbid date lines in `content` (decision 2026-06-12).
 
 **New: `story_acts`** — `act_number`, `title`, `goals` jsonb, `turn_min`/`turn_max`, `reveal_rules` jsonb. Unique `(story_id, act_number)`.
 
@@ -214,11 +216,13 @@ Two clocks, both stored per letter, never conflated:
 `stories.time_config` shape:
 ```json
 {
+  "start_mode": "fixed",
   "story_start_date": "2025-08-02",
   "visible_delay": { "enabled": true, "min_minutes": 30, "max_minutes": 180 },
   "date_locale": "it-IT"
 }
 ```
+`start_mode` (decision 2026-06-12): `"fixed"` starts every game at `story_start_date`; `"actual"` starts at the real-world date the game is created (`resolveStartDate()` in the engine). All subsequent dates derive from the start via the per-character delay windows; opening letters are dated start + `opening_letter_day_offset`.
 Per-character delays live on `story_characters` (editable in the Phase 2 editor), not in a prompt.
 
 **Fix for the prototype bug** (`aiResponseParser.ts:87-95` ignored the AI's `dateSent` and recomputed from `timeInGame` + a fresh random delay): editor rules are authoritative. The NPC call still proposes `dateSent` (the AI may want dramatic timing); `TimeService.resolveStoryDate()` accepts it **iff** it falls inside the allowed window `[turn_date + min, turn_date + max]`, otherwise clamps to the window using a **deterministic** offset seeded by `(game_id, turn_number, character_slug)` — so regenerating a draft does not shuffle dates, and tests are reproducible. After approve, `runtime_state.story_date = max(story_date of all letters in the turn)`.

@@ -20,6 +20,7 @@ export {
 export { computeVisibleFrom, type VisibleFromConfig } from './time/visibleFrom';
 export { validateDraft, hasErrors, type ValidateDraftInput } from './validator';
 export { normalizeCharacterSlug } from './engine/normalize';
+export { resolveStartDate, openingLetters, type OpeningLetter } from './engine/gameStart';
 export {
   generateTurnBatch,
   applyGameStateUpdates,

@@ -64,7 +64,10 @@ Scope — Phase 2 ONLY, on branch feat/story-platform:
    characters + all optional-module rows, as a new draft), prominent warning
    banner when editing a story that has games in progress, first letter,
    characters CRUD (slug, name, role, personality,
-   knowledge notes, hidden agenda, delays, unlock rules), and the OPTIONAL
+   knowledge notes, hidden agenda, delays, unlock rules, opening letter +
+   day offset — multiple characters may send opening letters; helper text:
+   never put dates in letter bodies), time start mode (fixed date vs actual
+   game-start date), and the OPTIONAL
    modules as collapsible sections: acts, facts (known_by multi-select over the
    story's character slugs), clues, endings. Per architecture §2 these are
    never required — a story with only characters + first letter must be
@@ -96,6 +99,11 @@ packages/story-engine/src/ (engine, context, validator, ai), apps/website/app/
 game/[gameId]/page.tsx and components/games/admin-game-detail-client.tsx.
 
 Scope — Phase 3 ONLY, on branch feat/story-platform:
+0. Switch the start-game route to engine game-start helpers: resolveStartDate
+   + openingLetters() insert one interaction per character opening letter
+   (story_date = start + offset; visible_from staggering optional), falling
+   back to stories.first_letter only when no character has one. Initialize
+   games.runtime_state via initialRuntimeState(story, actualStartDate).
 1. API routes per architecture §7: POST /api/game/[gameId]/turns (player submit
    → pending_ai; a minimal test harness page or script is fine since Phase 4
    play UI doesn't exist yet), POST /api/admin/turns/[turnId]/generate,

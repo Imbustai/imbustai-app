@@ -22,11 +22,13 @@ How `../imbustai-01-game/src/config/systemPrompt.ts` (350 lines) decomposes into
 
 ```jsonc
 settings:    { "max_letters_per_turn": 4, "max_turns": 25, "locale": "it" }
-time_config: { "story_start_date": "2025-08-02",
+time_config: { "start_mode": "fixed", "story_start_date": "2025-08-02",
                "visible_delay": { "enabled": true, "min_minutes": 30, "max_minutes": 180 },
                "date_locale": "it-IT" }
 allow_dynamic_npcs: true   // the prompt's "crea NPC dinamicamente" becomes propose-and-approve
-first_letter: <verbatim from lines 330–347, dated 2 Agosto 2025>
+first_letter: <LEGACY — the opening letter now lives on story_characters.opening_letter
+               (voss, offset 0), WITHOUT the "[Data: ...]" header: dates are metadata,
+               never letter body. Multiple characters may have opening letters.>
 ```
 
 ## story_characters (7 rows)

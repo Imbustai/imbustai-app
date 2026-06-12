@@ -20,6 +20,7 @@ export interface StorySettings {
 }
 
 export interface StoryTimeConfig {
+  start_mode?: 'fixed' | 'actual';
   story_start_date?: string;
   visible_delay?: {
     enabled: boolean;
@@ -83,6 +84,8 @@ export interface StoryCharacterRow {
   contactable_from_start: boolean;
   unlock_rules: Record<string, unknown>;
   created_dynamically: boolean;
+  opening_letter: string;
+  opening_letter_day_offset: number;
   sort_order: number;
   created_at: string;
   updated_at: string;
