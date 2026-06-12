@@ -1,7 +1,12 @@
 import { NextResponse } from 'next/server';
+import {
+  initialRuntimeState,
+  openingLetters,
+  resolveStartDate,
+} from '@imbustai/story-engine';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { requireAdmin } from '@/lib/require-admin';
-import type { StoryRow } from '@/lib/types/db';
+import { loadStoryConfig } from '@/lib/story-engine/load';
 
 export async function POST(
   _request: Request,
@@ -40,18 +45,31 @@ export async function POST(
     return NextResponse.json({ gameId: existing.id, already: true });
   }
 
-  const { data: story, error: sErr } = await admin
-    .from('stories')
-    .select('*')
-    .eq('id', order.story_id)
-    .single();
-
-  if (sErr || !story) {
+  const loaded = await loadStoryConfig(admin, order.story_id);
+  if (!loaded) {
     return NextResponse.json({ error: 'Story not found' }, { status: 404 });
   }
+  const { story } = loaded;
 
-  const st = story as StoryRow;
-  const firstLetter = st.first_letter?.trim() || '…';
+  // In-fiction start (fixed date or the real date the game starts) and the
+  // per-character opening letters; legacy single first_letter as fallback.
+  const today = new Date().toISOString().slice(0, 10);
+  const startDate = resolveStartDate(story, today);
+  const runtimeState = initialRuntimeState(story, today);
+  let letters = openingLetters(story, startDate).map((l) => ({
+    character_slug: l.character_slug as string | null,
+    content: l.content,
+    story_date: l.story_date,
+  }));
+  if (letters.length === 0) {
+    letters = [
+      {
+        character_slug: null,
+        content: story.first_letter.trim() || '…',
+        story_date: startDate,
+      },
+    ];
+  }
 
   const { data: game, error: gErr } = await admin
     .from('games')
@@ -60,6 +78,7 @@ export async function POST(
       order_id: order.id,
       story_id: order.story_id,
       status: 'in_progress',
+      runtime_state: runtimeState,
     })
     .select('id')
     .single();
@@ -69,18 +88,22 @@ export async function POST(
     return NextResponse.json({ error: 'Could not create game' }, { status: 500 });
   }
 
-  const { error: iErr } = await admin.from('interactions').insert({
-    game_id: game.id,
-    role: 'ai',
-    content: firstLetter,
-    letter_number: 1,
-  });
+  const { error: iErr } = await admin.from('interactions').insert(
+    letters.map((letter, index) => ({
+      game_id: game.id,
+      role: 'ai' as const,
+      content: letter.content,
+      letter_number: index + 1,
+      character_slug: letter.character_slug,
+      story_date: letter.story_date,
+    })),
+  );
 
   if (iErr) {
     console.error(iErr);
     await admin.from('games').delete().eq('id', game.id);
     return NextResponse.json(
-      { error: 'Could not create first letter' },
+      { error: 'Could not create opening letters' },
       { status: 500 }
     );
   }

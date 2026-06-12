@@ -22,6 +22,13 @@ export { validateDraft, hasErrors, type ValidateDraftInput } from './validator';
 export { normalizeCharacterSlug } from './engine/normalize';
 export { resolveStartDate, openingLetters, type OpeningLetter } from './engine/gameStart';
 export {
+  canGenerate,
+  canApprove,
+  isOpen,
+  shouldAutoSend,
+  type TurnStatus,
+} from './engine/workflow';
+export {
   generateTurnBatch,
   applyGameStateUpdates,
   initialRuntimeState,

@@ -331,5 +331,37 @@
       "visible_delay_max_lt_min": "Max delivery delay must be >= min.",
       "not_found": "Not found."
     }
+  },
+  "replyAdmin": {
+    "gameState": "Game state",
+    "turn": "Turn",
+    "act": "Act",
+    "unlocked": "Unlocked characters",
+    "cluesFound": "Clues found",
+    "pendingTurn": "Pending turn",
+    "status": {
+      "pending_ai": "Awaiting generation",
+      "draft_ready": "Draft ready for review",
+      "approved": "Approved",
+      "sent": "Sent"
+    },
+    "playerLetters": "Player letters this turn",
+    "warnings": "Canon validation",
+    "narratorNotes": "Narrator notes (admin only)",
+    "generate": "Generate AI reply",
+    "generating": "Generating…",
+    "regenerate": "Regenerate all",
+    "regenerateOne": "Regenerate",
+    "saveEdits": "Save edits",
+    "saveBeforeApprove": "Save your edits before approving.",
+    "approveSend": "Approve & Send",
+    "guidance": "Guidance for regeneration (optional)",
+    "guidancePlaceholder": "e.g. Make Voss more reassuring; do not mention the autopsy yet.",
+    "testTurnTitle": "Test harness — write as the player",
+    "testTurnHint": "Submits a real player turn for this game (Phase 4 will give players their own UI). The turn then waits in this queue like any player submission.",
+    "chooseRecipient": "Choose recipient…",
+    "letterPlaceholder": "Write the letter…",
+    "addLetter": "Add letter",
+    "sendAsPlayer": "Send as player"
   }
 }

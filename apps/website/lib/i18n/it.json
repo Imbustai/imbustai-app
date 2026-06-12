@@ -333,5 +333,37 @@
       "visible_delay_max_lt_min": "Il ritardo di consegna max deve essere >= del min.",
       "not_found": "Non trovato."
     }
+  },
+  "replyAdmin": {
+    "gameState": "Stato della partita",
+    "turn": "Turno",
+    "act": "Atto",
+    "unlocked": "Personaggi sbloccati",
+    "cluesFound": "Indizi trovati",
+    "pendingTurn": "Turno in attesa",
+    "status": {
+      "pending_ai": "In attesa di generazione",
+      "draft_ready": "Bozza pronta per revisione",
+      "approved": "Approvato",
+      "sent": "Inviato"
+    },
+    "playerLetters": "Lettere del giocatore in questo turno",
+    "warnings": "Validazione canon",
+    "narratorNotes": "Note del narratore (solo admin)",
+    "generate": "Genera risposta AI",
+    "generating": "Generazione…",
+    "regenerate": "Rigenera tutto",
+    "regenerateOne": "Rigenera",
+    "saveEdits": "Salva modifiche",
+    "saveBeforeApprove": "Salva le modifiche prima di approvare.",
+    "approveSend": "Approva e invia",
+    "guidance": "Indicazioni per la rigenerazione (opzionale)",
+    "guidancePlaceholder": "es. Rendi Voss più rassicurante; non menzionare ancora l’autopsia.",
+    "testTurnTitle": "Test — scrivi come il giocatore",
+    "testTurnHint": "Invia un vero turno del giocatore per questa partita (in Fase 4 i giocatori avranno la loro interfaccia). Il turno entra poi in questa coda come ogni invio del giocatore.",
+    "chooseRecipient": "Scegli destinatario…",
+    "letterPlaceholder": "Scrivi la lettera…",
+    "addLetter": "Aggiungi lettera",
+    "sendAsPlayer": "Invia come giocatore"
   }
 }
