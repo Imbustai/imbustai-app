@@ -15,11 +15,10 @@ function needsAuth(pathname: string) {
   return false;
 }
 
+// /games and /game/* are player pages since Phase 4 — login required (see
+// needsAuth) but ownership is enforced by the pages + RLS, not by role here.
 function needsAdminRole(pathname: string) {
-  if (pathname.startsWith('/admin')) return true;
-  if (pathname.startsWith('/games')) return true;
-  if (/^\/game\//.test(pathname)) return true;
-  return false;
+  return pathname.startsWith('/admin');
 }
 
 const publicAuthPaths = new Set([
