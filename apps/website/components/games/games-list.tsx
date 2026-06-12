@@ -100,7 +100,7 @@ export function GamesList({
               <TableCell>{formatDate(game.completed_at)}</TableCell>
               <TableCell>
                 <Link
-                  href={`/game/${game.id}`}
+                  href={adminView ? `/admin/game/${game.id}` : `/game/${game.id}`}
                   className="text-primary underline"
                 >
                   {t('common.view')}

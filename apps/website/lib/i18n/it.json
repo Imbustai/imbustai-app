@@ -137,7 +137,9 @@
     "interactionCount": "Interazioni",
     "mustBePaidForGame": "L’ordine deve essere pagato prima di avviare una partita.",
     "backToOrders": "← Ordini",
-    "storiesNav": "Storie"
+    "storiesNav": "Storie",
+    "waitingReview": "Partite in attesa di revisione",
+    "noWaitingReview": "Nessun turno in attesa — tutto aggiornato."
   },
   "landing": {
     "hero": {

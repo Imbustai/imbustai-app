@@ -100,20 +100,6 @@ export function ReplyWorkflowPanel({
     });
   }
 
-  // ----- Test harness state (write as the player) -----
-  const [testLetters, setTestLetters] = useState<Array<{ recipient_slug: string; content: string }>>([
-    { recipient_slug: unlocked[0] ?? '', content: '' },
-  ]);
-
-  async function submitTestTurn() {
-    const letters = testLetters.filter((l) => l.recipient_slug && l.content.trim());
-    if (letters.length === 0) return;
-    const ok = await call('test-turn', `/api/game/${gameId}/turns`, {
-      body: JSON.stringify({ letters }),
-    });
-    if (ok) setTestLetters([{ recipient_slug: unlocked[0] ?? '', content: '' }]);
-  }
-
   if (!story) return null;
 
   return (
@@ -296,63 +282,113 @@ export function ReplyWorkflowPanel({
             {error ? <p className="text-sm text-destructive">{error}</p> : null}
           </CardContent>
         </Card>
-      ) : game.status === 'in_progress' ? (
-        /* Test harness: submit a turn as the player (Phase 3; replaced by the
-           player play UI in Phase 4) */
-        <Card>
-          <CardHeader>
-            <CardTitle>🧪 {t('replyAdmin.testTurnTitle')}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground">{t('replyAdmin.testTurnHint')}</p>
-            {testLetters.map((letter, idx) => (
-              <div key={idx} className="rounded-md border border-border p-3">
-                <select
-                  className="mb-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm"
-                  value={letter.recipient_slug}
-                  onChange={(e) =>
-                    setTestLetters((ls) =>
-                      ls.map((l, i) => (i === idx ? { ...l, recipient_slug: e.target.value } : l)),
-                    )
-                  }
-                >
-                  <option value="">{t('replyAdmin.chooseRecipient')}</option>
-                  {unlocked.map((slug) => (
-                    <option key={slug} value={slug}>
-                      {nameOf(slug)}
-                    </option>
-                  ))}
-                </select>
-                <textarea
-                  className={textareaCls}
-                  value={letter.content}
-                  placeholder={t('replyAdmin.letterPlaceholder')}
-                  onChange={(e) =>
-                    setTestLetters((ls) =>
-                      ls.map((l, i) => (i === idx ? { ...l, content: e.target.value } : l)),
-                    )
-                  }
-                />
-              </div>
-            ))}
-            <div className="flex gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() =>
-                  setTestLetters((ls) => [...ls, { recipient_slug: '', content: '' }])
-                }
-              >
-                + {t('replyAdmin.addLetter')}
-              </Button>
-              <Button size="sm" disabled={busy !== null} onClick={submitTestTurn}>
-                {busy === 'test-turn' ? '…' : `📨 ${t('replyAdmin.sendAsPlayer')}`}
-              </Button>
-            </div>
-            {error ? <p className="text-sm text-destructive">{error}</p> : null}
-          </CardContent>
-        </Card>
       ) : null}
     </div>
+  );
+}
+
+/**
+ * Test harness: submit a turn as the player (Phase 3 tool; the player play
+ * UI replaces it for real players in Phase 4). Rendered by the admin game
+ * page BELOW the conversation.
+ */
+export function TestHarnessCard({
+  gameId,
+  game,
+  characters,
+  hasOpenTurn,
+}: {
+  gameId: string;
+  game: GameRow;
+  characters: StoryCharacterRow[];
+  hasOpenTurn: boolean;
+}) {
+  const { t } = useTranslation();
+  const router = useRouter();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const runtime = game.runtime_state ?? {};
+  const unlocked = (runtime.unlocked_npcs as string[] | undefined) ?? [];
+  const nameOf = (slug: string) => characters.find((c) => c.slug === slug)?.name ?? slug;
+
+  const [testLetters, setTestLetters] = useState<
+    Array<{ recipient_slug: string; content: string }>
+  >([{ recipient_slug: unlocked[0] ?? '', content: '' }]);
+
+  if (hasOpenTurn || game.status !== 'in_progress') return null;
+
+  async function submitTestTurn() {
+    const letters = testLetters.filter((l) => l.recipient_slug && l.content.trim());
+    if (letters.length === 0) return;
+    setBusy(true);
+    setError(null);
+    const res = await fetch(`/api/game/${gameId}/turns`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ letters }),
+    });
+    const body = await res.json().catch(() => ({}));
+    setBusy(false);
+    if (!res.ok) {
+      setError(`${t('common.error')} (${body.error ?? res.status})`);
+      return;
+    }
+    setTestLetters([{ recipient_slug: unlocked[0] ?? '', content: '' }]);
+    router.refresh();
+  }
+
+  return (
+    <Card className="mt-8">
+      <CardHeader>
+        <CardTitle>🧪 {t('replyAdmin.testTurnTitle')}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <p className="text-sm text-muted-foreground">{t('replyAdmin.testTurnHint')}</p>
+        {testLetters.map((letter, idx) => (
+          <div key={idx} className="rounded-md border border-border p-3">
+            <select
+              className="mb-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm"
+              value={letter.recipient_slug}
+              onChange={(e) =>
+                setTestLetters((ls) =>
+                  ls.map((l, i) => (i === idx ? { ...l, recipient_slug: e.target.value } : l)),
+                )
+              }
+            >
+              <option value="">{t('replyAdmin.chooseRecipient')}</option>
+              {unlocked.map((slug) => (
+                <option key={slug} value={slug}>
+                  {nameOf(slug)}
+                </option>
+              ))}
+            </select>
+            <textarea
+              className={textareaCls}
+              value={letter.content}
+              placeholder={t('replyAdmin.letterPlaceholder')}
+              onChange={(e) =>
+                setTestLetters((ls) =>
+                  ls.map((l, i) => (i === idx ? { ...l, content: e.target.value } : l)),
+                )
+              }
+            />
+          </div>
+        ))}
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setTestLetters((ls) => [...ls, { recipient_slug: '', content: '' }])}
+          >
+            + {t('replyAdmin.addLetter')}
+          </Button>
+          <Button size="sm" disabled={busy} onClick={submitTestTurn}>
+            {busy ? '…' : `📨 ${t('replyAdmin.sendAsPlayer')}`}
+          </Button>
+        </div>
+        {error ? <p className="text-sm text-destructive">{error}</p> : null}
+      </CardContent>
+    </Card>
   );
 }

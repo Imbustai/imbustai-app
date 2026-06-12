@@ -53,8 +53,9 @@ function navActive(pathname: string, href: string) {
   if (href === '/admin') return pathname === '/admin';
   if (href === '/admin/games')
     return (
-      pathname.startsWith('/admin/games') || /^\/game\//.test(pathname)
+      pathname.startsWith('/admin/games') || pathname.startsWith('/admin/game/')
     );
+  if (href === '/admin/stories') return pathname.startsWith('/admin/stories');
   return pathname.startsWith(href);
 }
 

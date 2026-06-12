@@ -10,7 +10,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import type { GameRow, OrderRow } from '@/lib/types/db';
+import { Badge } from '@/components/ui/badge';
+import type {
+  GameRow,
+  InteractionTurnRow,
+  OrderRow,
+  StoryRow,
+} from '@/lib/types/db';
 
 export const dynamic = 'force-dynamic';
 
@@ -57,6 +63,27 @@ export default async function AdminDashboardPage() {
     (usersData?.users ?? []).map((u) => [u.id, u.email ?? ''])
   );
 
+  // Turns waiting on the admin: pending generation or draft awaiting review.
+  const { data: waitingTurns } = await admin
+    .from('interaction_turns')
+    .select('*')
+    .neq('status', 'sent')
+    .order('user_submitted_at', { ascending: true });
+  const waiting = (waitingTurns ?? []) as InteractionTurnRow[];
+  const waitingGameIds = [...new Set(waiting.map((t) => t.game_id))];
+  const gamesById = new Map<string, GameRow>();
+  const storiesById = new Map<string, StoryRow>();
+  if (waitingGameIds.length) {
+    const { data: wGames } = await admin
+      .from('games')
+      .select('*')
+      .in('id', waitingGameIds);
+    for (const g of (wGames ?? []) as GameRow[]) gamesById.set(g.id, g);
+    const storyIds = [...new Set([...gamesById.values()].map((g) => g.story_id))];
+    const { data: wStories } = await admin.from('stories').select('*').in('id', storyIds);
+    for (const s of (wStories ?? []) as StoryRow[]) storiesById.set(s.id, s);
+  }
+
   return (
     <div>
       <AdminPageTitle
@@ -65,6 +92,62 @@ export default async function AdminDashboardPage() {
       />
 
       <section className="mt-10">
+        <h2 className="font-heading text-lg font-semibold">
+          <ClientSectionTitle titleKey="admin.waitingReview" />
+        </h2>
+        {!waiting.length ? (
+          <p className="mt-2 text-sm text-muted-foreground">
+            <ClientSectionTitle titleKey="admin.noWaitingReview" asSpan />
+          </p>
+        ) : (
+          <Table className="mt-4">
+            <TableHeader>
+              <TableRow>
+                <TableHead>Story</TableHead>
+                <TableHead>User</TableHead>
+                <TableHead>Turn</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Submitted</TableHead>
+                <TableHead />
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {waiting.map((turn) => {
+                const game = gamesById.get(turn.game_id);
+                const story = game ? storiesById.get(game.story_id) : undefined;
+                return (
+                  <TableRow key={turn.id}>
+                    <TableCell>{story?.title_it ?? story?.title_en ?? '—'}</TableCell>
+                    <TableCell>
+                      {game ? (emailById.get(game.user_id) ?? game.user_id) : '—'}
+                    </TableCell>
+                    <TableCell>#{turn.turn_number}</TableCell>
+                    <TableCell>
+                      <Badge variant={turn.status === 'draft_ready' ? 'default' : 'secondary'}>
+                        <ClientSectionTitle
+                          titleKey={`replyAdmin.status.${turn.status}`}
+                          asSpan
+                        />
+                      </Badge>
+                    </TableCell>
+                    <TableCell>{formatDate(turn.user_submitted_at)}</TableCell>
+                    <TableCell>
+                      <Link
+                        href={`/admin/game/${turn.game_id}`}
+                        className="text-primary underline"
+                      >
+                        Open
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        )}
+      </section>
+
+      <section className="mt-12">
         <h2 className="font-heading text-lg font-semibold">
           <ClientSectionTitle titleKey="admin.recentOrders" />
         </h2>
@@ -134,7 +217,7 @@ export default async function AdminDashboardPage() {
                   <TableCell>{formatDate(g.created_at)}</TableCell>
                   <TableCell>
                     <Link
-                      href={`/game/${g.id}`}
+                      href={`/admin/game/${g.id}`}
                       className="text-primary underline"
                     >
                       Open

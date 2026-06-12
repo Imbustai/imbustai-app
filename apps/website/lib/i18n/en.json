@@ -137,7 +137,9 @@
     "interactionCount": "Interactions",
     "mustBePaidForGame": "The order must be paid before you can start a game.",
     "backToOrders": "← Orders",
-    "storiesNav": "Stories"
+    "storiesNav": "Stories",
+    "waitingReview": "Games waiting for review",
+    "noWaitingReview": "No turns waiting — all caught up."
   },
   "landing": {
     "hero": {

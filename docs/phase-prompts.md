@@ -140,29 +140,44 @@ Finish with retrospective + commits, then STOP for "Phase 3 approved".
 You are continuing the Imbustai story platform build. Phases 0–3 are approved:
 the full admin reply loop works.
 
+Current routing (decided 2026-06-12): the ADMIN game console lives at
+/admin/game/[gameId] (workflow panel, conversation, then the test harness at
+the bottom); the admin dashboard (/admin) has a "Games waiting for review"
+queue. /game/[gameId] is currently a placeholder redirect — Phase 4 turns it
+into the PLAYER page.
+
 Read in order: CLAUDE.md, docs/story-engine-architecture.md (§3, §4, §7),
 docs/draft-phases.md (Phase 4), ../imbustai-01-game/src/components/
 (LetterComposer, LetterInbox, ContactList, SendAllButton — port the UX),
 apps/tryout-01/components/game-view.tsx (visible_from countdown pattern —
-read-only reference), apps/website/app/game/[gameId]/.
+read-only reference), apps/website/app/game/[gameId]/page.tsx and
+apps/website/app/admin/game/[gameId]/page.tsx.
 
 Scope — Phase 4 ONLY, on branch feat/story-platform:
-1. /game/[gameId]/play for the owner (admin gets read access): contact list
-   with locked/unlocked NPCs (safe fields only — served server-side), composer
-   for multiple recipients, draft review, Send All as one turn, inbox with
-   markdown letters + in-fiction dates, "awaiting reply" state, visible_from
-   countdown + reveal without full page refresh (polling GET
-   /api/game/[gameId]/state; realtime is bonus).
+1. /game/[gameId] becomes the player play page: OWNER ONLY (admins keep being
+   redirected to /admin/game/[gameId], where they already have full read
+   access). Contact list with locked/unlocked NPCs (safe fields only — use
+   GET /api/game/[gameId]/state), composer for multiple recipients with
+   per-recipient drafts the player can keep editing before sending, draft
+   review, Send All as one turn (POST /api/game/[gameId]/turns), inbox with
+   markdown letters + in-fiction dates (dates come from story_date metadata —
+   never inside the letter body), "awaiting reply" state while a turn is open,
+   visible_from countdown + reveal without full page refresh (polling the
+   state route; realtime is bonus). Link each game from /games to its play
+   page.
 2. Guard: playable only when game in_progress and started from a paid order;
-   player can never trigger AI; one open turn at a time.
+   player can never trigger AI; one open turn at a time (the API already
+   enforces all of this — surface friendly UI states for each).
 3. RLS verification tests: user cannot read ai_drafts, unapproved AI content,
    or future-visible_from letters; cannot insert AI interactions.
 4. Manual playtest: 5 turns using ../imbustai-01-game/MANUAL_TESTING_LETTERS.md
-   (Sequence 1), with at least 2 multi-NPC turns, through the real admin loop.
+   (Sequence 1), with at least 2 multi-NPC turns, through the real admin loop
+   (player sends at /game/[id] → admin reviews at /admin/game/[id]).
 5. i18n EN+IT for all new UI strings.
 
-Must pass: docs/draft-phases.md Phase 4 checklist. Must NOT: story #2
-authoring polish, email notifications, modify apps/tryout-01.
+Must pass: docs/draft-phases.md Phase 4 checklist (read "/game/[gameId]/play"
+there as /game/[gameId]). Must NOT: story #2 authoring polish, email
+notifications, modify apps/tryout-01.
 
 Finish with retrospective + commits, then STOP for "Phase 4 approved".
 ```
