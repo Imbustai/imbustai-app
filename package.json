@@ -14,7 +14,9 @@
     "start:website": "nx start website",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:tryout-01": "vitest run apps/tryout-01"
+    "test:tryout-01": "vitest run apps/tryout-01",
+    "sim:voss": "tsx scripts/simulate-voss.ts",
+    "verify:rls": "node scripts/verify-rls.mjs"
   },
   "private": true,
   "devDependencies": {
