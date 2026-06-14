@@ -30,6 +30,7 @@ export {
 } from './engine/workflow';
 export {
   generateTurnBatch,
+  sanitizePlan,
   applyGameStateUpdates,
   initialRuntimeState,
   type GenerateTurnInput,

@@ -160,7 +160,7 @@ export function orchestratorSystemPrompt(opts: {
   parts.push(
     section(
       'Output',
-      `Respond ONLY by calling the turn_plan tool. All letters and briefs must be written in the story's language: ${localeOf(story)}.`,
+      `Respond ONLY by calling the turn_plan tool. Provide the arguments as a valid JSON object matching the schema exactly — "replies" MUST be a JSON array, never a string, and never use XML or <parameter ...> tags inside the arguments. Briefs must be written in the story's language: ${localeOf(story)}.`,
     ),
   );
 
@@ -212,7 +212,7 @@ export function npcWriterSystemPrompt(opts: {
         `- date_sent must be between ${replyWindow.earliest} and ${replyWindow.latest} (your realistic reply time).`,
         '- In metadata.facts_referenced, list the key of EVERY fact above that your letter draws on. In metadata.clues_revealed, list clue keys the brief told you to release.',
         '- NEVER write the date inside the letter content (no "[Data: ...]" header, no date line). The platform shows the date separately; you only set the date_sent field.',
-        '- Respond ONLY by calling the npc_letter tool. The letter (salutation, body, signature) goes entirely in `content`.',
+        '- Respond ONLY by calling the npc_letter tool, with arguments as a valid JSON object — never use XML or <parameter ...> tags. The letter (salutation, body, signature) goes entirely in `content`.',
       ].join('\n'),
     ),
   );

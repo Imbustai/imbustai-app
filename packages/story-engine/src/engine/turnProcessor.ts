@@ -7,7 +7,7 @@ import type {
 } from '../types';
 import { turnPlanSchema, TURN_PLAN_TOOL, type GameStateUpdates, type TurnPlan } from '../schema/turnPlan';
 import { npcLetterSchema, NPC_LETTER_TOOL, type BatchLetter } from '../schema/npcLetter';
-import { buildNpcContext, buildOrchestratorContext } from '../context/scopedContext';
+import { buildNpcContext, buildOrchestratorContext, factsForCharacter } from '../context/scopedContext';
 import { addDays, advanceStoryDate, resolveBatchDates } from '../time/timeService';
 import { validateDraft } from '../validator';
 import { normalizeCharacterSlug } from './normalize';
@@ -30,9 +30,13 @@ async function generateValidated<S extends z.ZodTypeAny>(
   label: string,
   retries = 2,
 ): Promise<z.infer<S>> {
+  const repairNote =
+    '\n\nIMPORTANT: your previous tool call was malformed. Call the tool again with every argument as valid JSON of the correct type — arrays as real JSON arrays (not strings), objects as objects — and NEVER use XML or <parameter ...> tags inside the arguments.';
   let lastError = '';
   for (let attempt = 0; attempt <= retries; attempt++) {
-    const raw = await provider.generateStructured(request);
+    // Escalate after the first failure so retries differ from the (failing) call.
+    const req = attempt === 0 ? request : { ...request, user: request.user + repairNote };
+    const raw = await provider.generateStructured(req);
     const parsed = schema.safeParse(coerceStructured(raw));
     if (parsed.success) return parsed.data;
     lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(raw).slice(0, 300)}`;
@@ -91,6 +95,62 @@ export interface TurnDraftBatch {
   turnDate: string;
 }
 
+/**
+ * Deterministically reconcile the orchestrator's proposal against canon BEFORE
+ * writers run: the model proposes, the engine enforces. This prevents whole
+ * classes of model slips from ever reaching a letter (and keeps unattended
+ * generation clean). The letter-level validator still audits the actual output,
+ * so this is canon hygiene, not a replacement for validation.
+ *
+ *  - act_progression: monotonic and gradual (never regress, at most +1, must be
+ *    a defined act) — stops the "jump to finale then regress" failure.
+ *  - facts_to_use: only facts the character actually knows at the effective act.
+ *  - clues (release + found): only real clue keys available by the effective act
+ *    (drops fact keys mistakenly used as clues).
+ *  - npcs_to_unlock: only characters that exist (unless dynamic NPCs are on).
+ */
+export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: TurnPlan): TurnPlan {
+  const gsu = plan.game_state_updates;
+
+  const definedActs = new Set(story.acts.map((a) => a.act_number));
+  let act = gsu.act_progression;
+  if (act != null) {
+    if (act < state.current_act) act = undefined;
+    else if (story.acts.length > 0 && !definedActs.has(act)) act = undefined;
+    else if (act > state.current_act + 1) act = state.current_act + 1;
+  }
+  const effectiveAct = Math.max(state.current_act, act ?? 0);
+
+  const factScope = (slug: string) =>
+    new Set(factsForCharacter(story, slug, effectiveAct).map((f) => f.fact_key));
+  const clueByKey = new Map(story.clues.map((c) => [c.clue_key, c]));
+  const clueOk = (key: string) => {
+    const clue = clueByKey.get(key);
+    return Boolean(clue) && clue!.act_available <= effectiveAct;
+  };
+  const slugs = new Set(story.characters.map((c) => c.slug));
+
+  const replies = plan.replies.map((r) => {
+    const scope = factScope(r.character_slug);
+    return {
+      ...r,
+      facts_to_use: r.facts_to_use.filter((k) => scope.has(k)),
+      clues_to_release: r.clues_to_release.filter(clueOk),
+    };
+  });
+
+  return {
+    ...plan,
+    replies,
+    game_state_updates: {
+      ...gsu,
+      act_progression: act,
+      clues_found: gsu.clues_found.filter(clueOk),
+      npcs_to_unlock: gsu.npcs_to_unlock.filter((s) => slugs.has(s) || story.allow_dynamic_npcs),
+    },
+  };
+}
+
 export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnDraftBatch> {
   const { story, state, history, playerLetters, provider, seed } = input;
   const turnDate = state.story_date;
@@ -124,7 +184,7 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
     }
     return [{ ...reply, character_slug: slug }];
   });
-  plan = { ...plan, replies };
+  plan = sanitizePlan(story, state, { ...plan, replies });
 
   // 3. One scoped writer call per replying NPC (single-NPC regen filters here).
   const targets = input.onlyCharacter
