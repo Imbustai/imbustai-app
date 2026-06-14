@@ -29,9 +29,11 @@ export function orchestratorSystemPrompt(opts: {
       'Your responsibilities',
       [
         '- Decide which characters reply to this turn (every character the player wrote to should normally reply; others may write spontaneously when the story calls for it).',
-        '- Write a specific brief per replying character: what to say, what to withhold, how to spin it. Reference facts and clues by their exact keys.',
-        '- Never instruct a character to use a fact outside their knowledge scope (each fact lists who knows it).',
+        '- Write a specific brief per replying character: what to say, what to withhold, how to spin it. Reference facts and clues by their exact keys. Keep each brief concise — a few sentences of direction, NOT a draft of the letter.',
+        '- facts_to_use for a character may ONLY contain fact keys that character knows (listed as "known by" them, or "public"). A character must never be assigned a fact outside their knowledge scope.',
+        '- GM-ONLY facts are for YOUR strategy and narrator_notes ONLY. NEVER put a GM-only fact key in any character\'s facts_to_use, and never instruct a character to state it. Let the plot reveal them through in-scope facts and the characters\' hidden agendas, never by quoting the secret.',
         '- Keep continuity: never contradict established facts or earlier letters.',
+        '- Two separate key spaces: facts_to_use takes FACT keys (from "Canon facts"); clues_found and clues_to_release take CLUE keys (from "Clue catalog"). Never put a fact key where a clue key belongs or vice versa, and only release a clue whose act has been reached.',
         '- Update game state (clues found, characters to unlock, act progression) only when justified.',
         '- Observe the player: update the psychological profile and adapt pacing and difficulty to their style.',
         '- narrator_notes are internal notes for the human reviewer — candid strategy talk is welcome there.',
@@ -63,14 +65,14 @@ export function orchestratorSystemPrompt(opts: {
   if (story.facts.length > 0) {
     parts.push(
       section(
-        'Canon facts (the registry of truth — who knows what)',
+        'Canon facts (the registry of truth — who knows what). GM-ONLY facts must never be assigned to a character or quoted in a letter.',
         story.facts
           .map((f) => {
             const audience = f.is_public
               ? 'public'
               : f.known_by.length > 0
                 ? `known by: ${f.known_by.join(', ')}`
-                : 'GM-ONLY SECRET';
+                : 'GM-ONLY — never assign or quote';
             const act = f.reveal_act != null ? `, from act ${f.reveal_act}` : '';
             return `- [${f.fact_key}] (${audience}${act}) ${f.content}`;
           })

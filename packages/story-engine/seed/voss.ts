@@ -290,7 +290,7 @@ export const VOSS_STORY: StoryConfig = {
       category: 'forensic',
       known_by: ['voss', 'medico_legale'],
       is_public: false,
-      reveal_act: 2,
+      reveal_act: 1,
     },
     {
       fact_key: 'false_witness_gang',
@@ -299,7 +299,7 @@ export const VOSS_STORY: StoryConfig = {
       category: 'misleading',
       known_by: ['voss'],
       is_public: false,
-      reveal_act: 2,
+      reveal_act: 1,
     },
     {
       fact_key: 'ex_convict_redherring',
@@ -387,14 +387,14 @@ export const VOSS_STORY: StoryConfig = {
     { clue_key: 'clue_via_rossi_4', description: 'L\'indirizzo Via Rossi 4 — portatore del pattern del 4.', reliability: 'true_useful', category: 'documentary', act_available: 1, source_character_slug: 'comune' },
     { clue_key: 'clue_cardinal_points', description: 'Le scene del crimine corrispondono ai punti cardinali.', reliability: 'true_useful', category: 'subtle', act_available: 3, source_character_slug: 'voss' },
     { clue_key: 'clue_four_elements', description: 'Dettagli forensi richiamano i quattro elementi.', reliability: 'true_useful', category: 'physical', act_available: 3, source_character_slug: 'medico_legale' },
-    { clue_key: 'clue_tattoos', description: 'Tutte le vittime avevano tatuaggi.', reliability: 'true_misleading', category: 'physical', act_available: 2, source_character_slug: 'medico_legale' },
-    { clue_key: 'clue_victims_age', description: 'Le età delle vittime sembrano formare una sequenza.', reliability: 'true_misleading', category: 'documentary', act_available: 2, source_character_slug: 'comune' },
-    { clue_key: 'clue_robbery_pattern', description: '"Tutte vittime di rapina" — pattern falso.', reliability: 'true_misleading', category: 'testimonial', act_available: 2, source_character_slug: 'voss' },
+    { clue_key: 'clue_tattoos', description: 'Tutte le vittime avevano tatuaggi.', reliability: 'true_misleading', category: 'physical', act_available: 1, source_character_slug: 'medico_legale' },
+    { clue_key: 'clue_victims_age', description: 'Le età delle vittime sembrano formare una sequenza.', reliability: 'true_misleading', category: 'documentary', act_available: 1, source_character_slug: 'comune' },
+    { clue_key: 'clue_robbery_pattern', description: '"Tutte vittime di rapina" — pattern falso.', reliability: 'true_misleading', category: 'testimonial', act_available: 1, source_character_slug: 'voss' },
     { clue_key: 'clue_triangle_scene', description: 'Un triangolo inciso sulla scena del crimine.', reliability: 'true_misleading', category: 'physical', act_available: 1, source_character_slug: 'voss' },
-    { clue_key: 'clue_gang_witness', description: 'Un testimone parla di regolamento di conti tra gang.', reliability: 'false_coherent', category: 'testimonial', act_available: 2, source_character_slug: 'voss' },
+    { clue_key: 'clue_gang_witness', description: 'Un testimone parla di regolamento di conti tra gang.', reliability: 'false_coherent', category: 'testimonial', act_available: 1, source_character_slug: 'voss' },
     { clue_key: 'clue_false_location', description: 'Una location plausibile ma sbagliata per il quarto omicidio.', reliability: 'false_coherent', category: 'documentary', act_available: 4, source_character_slug: 'voss' },
     { clue_key: 'clue_ex_convict', description: 'L\'ex detenuto che odiava le vittime (ha un alibi).', reliability: 'red_herring', category: 'testimonial', act_available: 3, source_character_slug: 'colleghi_bellini' },
-    { clue_key: 'clue_three_candles', description: 'Tre candele trovate sulla scena.', reliability: 'red_herring', category: 'physical', act_available: 2, source_character_slug: 'voss' },
+    { clue_key: 'clue_three_candles', description: 'Tre candele trovate sulla scena.', reliability: 'red_herring', category: 'physical', act_available: 1, source_character_slug: 'voss' },
   ],
 
   endings: [

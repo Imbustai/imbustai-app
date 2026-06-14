@@ -168,6 +168,18 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error(err);
+  // Some SDK error objects break util.inspect; print the safe fields only.
+  const e = err as { message?: string; status?: number; error?: unknown; stack?: string };
+  console.error('\nSIMULATION ERROR');
+  if (e?.status) console.error('status:', e.status);
+  if (e?.message) console.error('message:', e.message);
+  if (e?.error) {
+    try {
+      console.error('detail:', JSON.stringify(e.error));
+    } catch {
+      /* ignore */
+    }
+  }
+  if (e?.stack) console.error(e.stack.split('\n').slice(0, 4).join('\n'));
   process.exit(1);
 });

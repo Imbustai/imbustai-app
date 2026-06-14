@@ -14,6 +14,55 @@ import { normalizeCharacterSlug } from './normalize';
 import { resolveStartDate } from './gameStart';
 import type { AiProvider } from '../ai/provider';
 
+import type { z } from 'zod';
+import type { StructuredRequest } from '../ai/provider';
+
+/**
+ * Generate a structured response and validate it, retrying on the occasional
+ * malformed tool output (truncation, leaked tool syntax, a field serialized as
+ * a string). These glitches are transient, so a couple of retries reliably
+ * recovers — far better than failing the whole turn.
+ */
+async function generateValidated<S extends z.ZodTypeAny>(
+  provider: AiProvider,
+  request: StructuredRequest,
+  schema: S,
+  label: string,
+  retries = 2,
+): Promise<z.infer<S>> {
+  let lastError = '';
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    const raw = await provider.generateStructured(request);
+    const parsed = schema.safeParse(coerceStructured(raw));
+    if (parsed.success) return parsed.data;
+    lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(raw).slice(0, 300)}`;
+  }
+  throw new Error(`${label} parse failed after ${retries + 1} attempts: ${lastError}`);
+}
+
+/**
+ * Tool-use inputs occasionally arrive with a nested field serialized as a JSON
+ * string instead of a real array/object (model quirk). Parse those back before
+ * zod validation so generation never crashes on an otherwise-valid response.
+ */
+function coerceStructured(raw: unknown): unknown {
+  if (!raw || typeof raw !== 'object') return raw;
+  const obj = raw as Record<string, unknown>;
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value === 'string') {
+      const trimmed = value.trim();
+      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
+        try {
+          obj[key] = JSON.parse(trimmed);
+        } catch {
+          /* leave as-is; zod will report it */
+        }
+      }
+    }
+  }
+  return obj;
+}
+
 // The generate step (architecture §1): orchestrator call → scoped per-NPC
 // calls → merged, validated, reviewable batch. NEVER writes to the DB and
 // NEVER sends anything — callers persist the result as an ai_drafts version.
@@ -52,13 +101,12 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
     plan = input.reusePlan;
   } else {
     const context = buildOrchestratorContext({ story, state, history, playerLetters });
-    const raw = await provider.generateStructured({
-      system: context.system,
-      user: context.user,
-      tool: TURN_PLAN_TOOL,
-      maxTokens: 4096,
-    });
-    plan = turnPlanSchema.parse(raw);
+    plan = await generateValidated(
+      provider,
+      { system: context.system, user: context.user, tool: TURN_PLAN_TOOL, maxTokens: 8000 },
+      turnPlanSchema,
+      'turn_plan',
+    );
   }
 
   // 2. Normalize plan slugs against the story's characters.
@@ -100,13 +148,12 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
         playerLetters,
         replyWindow,
       });
-      const raw = await provider.generateStructured({
-        system: context.system,
-        user: context.user,
-        tool: NPC_LETTER_TOOL,
-        maxTokens: 4096,
-      });
-      const letter = npcLetterSchema.parse(raw);
+      const letter = await generateValidated(
+        provider,
+        { system: context.system, user: context.user, tool: NPC_LETTER_TOOL, maxTokens: 6000 },
+        npcLetterSchema,
+        `npc_letter(${reply.character_slug})`,
+      );
       // The writer speaks for exactly one character; trust the brief over the model.
       return { ...letter, character_slug: reply.character_slug };
     }),
