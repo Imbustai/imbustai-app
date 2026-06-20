@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      data-palette="default"
+      data-palette="imbustai"
       suppressHydrationWarning
       className={`${clashGrotesk.variable} ${archivo.variable}`}
     >
