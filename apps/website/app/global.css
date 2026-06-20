@@ -256,6 +256,8 @@ html[data-palette="default"].dark {
 /* Imbustai — Poste Italiane palette */
 
 html[data-palette="imbustai"] {
+  --font-heading: var(--font-futura-condensed), 'Futura', ui-sans-serif, system-ui, sans-serif;
+
   --background: #FAF7F0;
   --foreground: #111111;
   --card: #FFFFFF;
@@ -311,6 +313,8 @@ html[data-palette="imbustai"] {
 }
 
 html[data-palette="imbustai"].dark {
+  --font-heading: var(--font-futura-condensed), 'Futura', ui-sans-serif, system-ui, sans-serif;
+
   --background: #111111;
   --foreground: #FAF7F0;
   --card: #1A1A1A;
@@ -417,3 +421,4 @@ html[data-palette="imbustai"].dark {
 html[data-palette="imbustai"] :is(button, [role="button"], a[class*="btn"]) {
   border-radius: 0 !important;
 }
+
