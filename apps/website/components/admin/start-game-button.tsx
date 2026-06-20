@@ -21,7 +21,7 @@ export function StartGameButton({
   if (existingGameId) {
     return (
       <Button asChild variant="secondary">
-        <Link href={`/game/${existingGameId}`}>
+        <Link href={`/admin/game/${existingGameId}`}>
           {t('admin.openGame')}
         </Link>
       </Button>
@@ -40,7 +40,7 @@ export function StartGameButton({
       setError(body.error ?? t('common.error'));
       return;
     }
-    router.push(`/game/${body.gameId}`);
+    router.push(`/admin/game/${body.gameId}`);
     router.refresh();
   }
 

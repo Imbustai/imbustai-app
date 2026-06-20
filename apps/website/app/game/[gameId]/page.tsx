@@ -1,57 +1,91 @@
 import { notFound, redirect } from 'next/navigation';
-import { isCurrentUserAdmin } from '@/lib/auth';
+import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { AdminGameDetailClient } from '@/components/games/admin-game-detail-client';
-import type { GameRow, InteractionRow, StoryRow } from '@/lib/types/db';
+import { createClient } from '@/lib/supabase/server';
+import { PlayClient, type PlayContact } from '@/components/play/play-client';
+import type {
+  GameRow,
+  InteractionRow,
+  StoryCharacterRow,
+  StoryRow,
+} from '@/lib/types/db';
 
 export const dynamic = 'force-dynamic';
 
-export default async function GameDetailPage({
+// /game/[gameId] — the player play page (Phase 4). Owner only; admins use
+// their console at /admin/game/[gameId] (full read access there).
+export default async function PlayPage({
   params,
 }: {
   params: Promise<{ gameId: string }>;
 }) {
-  if (!(await isCurrentUserAdmin())) {
-    redirect('/');
+  const { gameId } = await params;
+
+  if (await isCurrentUserAdmin()) {
+    redirect(`/admin/game/${gameId}`);
   }
 
-  const { gameId } = await params;
+  const user = await getSessionUser();
+  if (!user) redirect(`/login?next=/game/${gameId}`);
+
   const admin = createAdminClient();
-
-  const { data: game, error } = await admin
-    .from('games')
-    .select('*')
-    .eq('id', gameId)
-    .single();
-
-  if (error || !game) notFound();
-
+  const { data: game } = await admin.from('games').select('*').eq('id', gameId).single();
+  if (!game) notFound();
   const g = game as GameRow;
+  if (g.user_id !== user.id) redirect('/');
 
-  const { data: interactions } = await admin
+  // Story chrome via service role with SAFE columns only (story tables are
+  // admin-only under RLS — hidden agendas etc. never reach this page).
+  const [{ data: story }, { data: characters }] = await Promise.all([
+    admin
+      .from('stories')
+      .select('id,slug,title_en,title_it,settings,time_config')
+      .eq('id', g.story_id)
+      .single(),
+    admin
+      .from('story_characters')
+      .select('slug,name,role,sort_order')
+      .eq('story_id', g.story_id)
+      .order('sort_order'),
+  ]);
+  if (!story) notFound();
+  const storyRow = story as Pick<
+    StoryRow,
+    'id' | 'slug' | 'title_en' | 'title_it' | 'settings' | 'time_config'
+  >;
+
+  const unlocked: string[] = (g.runtime_state?.unlocked_npcs as string[] | undefined) ?? [];
+  const characterRows = (characters ?? []) as Pick<
+    StoryCharacterRow,
+    'slug' | 'name' | 'role' | 'sort_order'
+  >[];
+  const contacts: PlayContact[] = characterRows
+    .filter((c) => unlocked.includes(c.slug))
+    .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
+  const lockedCount = characterRows.length - contacts.length;
+
+  // Letters through the USER's client: RLS hides future-visible_from letters
+  // and everything that isn't theirs — defense in depth over UI filtering.
+  const supabase = await createClient();
+  const { data: letters } = await supabase
     .from('interactions')
     .select('*')
     .eq('game_id', gameId)
-    .order('letter_number', { ascending: true })
-    .order('created_at', { ascending: true });
-
-  const { data: story } = await admin
-    .from('stories')
-    .select('*')
-    .eq('id', g.story_id)
-    .single();
-
-  const { data: userRes } = await admin.auth.admin.getUserById(g.user_id);
-  const userEmail = userRes?.user?.email ?? g.user_id;
+    .order('letter_number', { ascending: true });
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12">
-      <AdminGameDetailClient
+    <div className="mx-auto max-w-5xl px-4 py-10">
+      <PlayClient
         gameId={gameId}
-        game={g}
-        interactions={(interactions ?? []) as InteractionRow[]}
-        story={(story as StoryRow | null) ?? undefined}
-        userEmail={userEmail}
+        gameStatus={g.status}
+        storyTitleEn={storyRow.title_en}
+        storyTitleIt={storyRow.title_it}
+        dateLocale={storyRow.time_config?.date_locale ?? 'it-IT'}
+        maxLettersPerTurn={storyRow.settings?.max_letters_per_turn ?? 4}
+        initialStoryDate={(g.runtime_state?.story_date as string | undefined) ?? null}
+        contacts={contacts}
+        lockedCount={lockedCount}
+        initialLetters={(letters ?? []) as InteractionRow[]}
       />
     </div>
   );

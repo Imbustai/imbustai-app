@@ -1,0 +1,12 @@
+.git
+node_modules
+**/node_modules
+.next
+**/.next
+.nx/cache
+.nx/workspace-data
+dist
+coverage
+**/.env
+**/.env.local
+.claude

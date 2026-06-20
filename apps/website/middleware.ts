@@ -1,4 +1,4 @@
-import { updateSession } from '@/lib/supabase/middleware';
+import { updateSession } from './lib/supabase/middleware';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
@@ -15,11 +15,10 @@ function needsAuth(pathname: string) {
   return false;
 }
 
+// /games and /game/* are player pages since Phase 4 — login required (see
+// needsAuth) but ownership is enforced by the pages + RLS, not by role here.
 function needsAdminRole(pathname: string) {
-  if (pathname.startsWith('/admin')) return true;
-  if (pathname.startsWith('/games')) return true;
-  if (/^\/game\//.test(pathname)) return true;
-  return false;
+  return pathname.startsWith('/admin');
 }
 
 const publicAuthPaths = new Set([
@@ -84,6 +83,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
+  runtime: 'nodejs',
   matcher: [
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],

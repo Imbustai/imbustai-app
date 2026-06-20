@@ -2,6 +2,44 @@ export type OrderStatus = 'pending_payment' | 'paid' | 'cancelled';
 export type OrderSource = 'stripe' | 'admin';
 export type GameStatus = 'in_progress' | 'completed';
 export type InteractionRole = 'ai' | 'user';
+export type StoryLifecycle = 'draft' | 'testing' | 'released';
+export type TurnStatus = 'pending_ai' | 'draft_ready' | 'approved' | 'sent';
+export type CharacterResponsiveness = 'immediate' | 'slow' | 'unreliable' | 'expert';
+export type ClueReliability =
+  | 'true_useful'
+  | 'true_misleading'
+  | 'false_coherent'
+  | 'red_herring';
+export type ClueCategory = 'physical' | 'testimonial' | 'documentary' | 'subtle';
+export type DraftSource = 'generated' | 'regenerated' | 'edited';
+
+export interface StorySettings {
+  max_letters_per_turn?: number;
+  max_turns?: number;
+  locale?: string;
+}
+
+export interface StoryTimeConfig {
+  start_mode?: 'fixed' | 'actual';
+  story_start_date?: string;
+  visible_delay?: {
+    enabled: boolean;
+    min_minutes: number;
+    max_minutes: number;
+  };
+  date_locale?: string;
+}
+
+export interface GameRuntimeState {
+  current_turn?: number;
+  current_act?: number;
+  story_date?: string;
+  unlocked_npcs?: string[];
+  clues_found?: string[];
+  psych_profile?: Record<string, unknown>;
+  victim_saved?: boolean;
+  killer_identified?: boolean;
+}
 
 export interface ProfileRow {
   id: string;
@@ -22,8 +60,110 @@ export interface StoryRow {
   currency: string;
   is_published: boolean;
   first_letter: string;
+  settings: StorySettings;
+  time_config: StoryTimeConfig;
+  allow_dynamic_npcs: boolean;
+  lifecycle: StoryLifecycle;
   created_at: string;
   updated_at: string;
+}
+
+export interface StoryCharacterRow {
+  id: string;
+  story_id: string;
+  slug: string;
+  name: string;
+  role: string;
+  personality: Record<string, unknown>;
+  backstory: string;
+  hidden_agenda: string;
+  knowledge_notes: string;
+  responsiveness: CharacterResponsiveness;
+  reply_delay_min_days: number;
+  reply_delay_max_days: number;
+  contactable_from_start: boolean;
+  unlock_rules: Record<string, unknown>;
+  created_dynamically: boolean;
+  opening_letter: string;
+  opening_letter_day_offset: number;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface StoryActRow {
+  id: string;
+  story_id: string;
+  act_number: number;
+  title: string;
+  goals: Record<string, unknown>;
+  turn_min: number;
+  turn_max: number | null;
+  reveal_rules: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface StoryFactRow {
+  id: string;
+  story_id: string;
+  fact_key: string;
+  content: string;
+  category: string;
+  known_by: string[];
+  is_public: boolean;
+  reveal_act: number | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface StoryClueRow {
+  id: string;
+  story_id: string;
+  clue_key: string;
+  description: string;
+  reliability: ClueReliability;
+  category: ClueCategory;
+  act_available: number;
+  source_character_slug: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface StoryEndingRow {
+  id: string;
+  story_id: string;
+  ending_key: string;
+  title: string;
+  conditions: Record<string, unknown>;
+  narrative_guidance: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface InteractionTurnRow {
+  id: string;
+  game_id: string;
+  turn_number: number;
+  status: TurnStatus;
+  user_submitted_at: string;
+  approved_at: string | null;
+  sent_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AiDraftRow {
+  id: string;
+  turn_id: string;
+  version: number;
+  responses: unknown[];
+  game_state_updates: Record<string, unknown>;
+  narrator_notes: string;
+  validation_warnings: unknown[];
+  source: DraftSource;
+  model: string;
+  created_at: string;
 }
 
 export interface AddressRow {
@@ -73,6 +213,7 @@ export interface GameRow {
   status: GameStatus;
   questionnaire: Record<string, unknown> | null;
   feedback: string | null;
+  runtime_state: GameRuntimeState;
   created_at: string;
   completed_at: string | null;
 }
@@ -84,5 +225,8 @@ export interface InteractionRow {
   content: string;
   letter_number: number;
   visible_from: string | null;
+  character_slug: string | null;
+  story_date: string | null;
+  turn_id: string | null;
   created_at: string;
 }

@@ -19,6 +19,13 @@ const archivo = localFont({
   display: 'swap',
 });
 
+const futuraCondensed = localFont({
+  src: './fonts/FuturaCondensed-Medium.woff2',
+  weight: '500',
+  variable: '--font-futura-condensed',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: 'Imbustai — Epistolary stories at your door',
   description:
@@ -34,9 +41,9 @@ export default function RootLayout({
   return (
     <html
       lang="it"
-      data-palette="default"
+      data-palette="imbustai"
       suppressHydrationWarning
-      className={`${clashGrotesk.variable} ${archivo.variable}`}
+      className={`${clashGrotesk.variable} ${archivo.variable} ${futuraCondensed.variable}`}
     >
       <body className="min-h-screen">
         <I18nLayoutShell>

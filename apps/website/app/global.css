@@ -253,117 +253,120 @@ html[data-palette="default"].dark {
   );
 }
 
-/* Imbustai brand palette */
+/* Imbustai — Poste Italiane palette */
+
 html[data-palette="imbustai"] {
-  --background: #fefae0;
-  --foreground: #283618;
-  --card: #ffffff;
-  --card-foreground: #283618;
-  --popover: #fefae0;
-  --popover-foreground: #283618;
-  --primary: #bd263a;
-  --primary-foreground: #ffffff;
-  --secondary: #606c38;
-  --secondary-foreground: #fefae0;
-  --muted: #e8e4c8;
-  --muted-foreground: #3d4a2e;
-  --accent: #e37884;
-  --accent-foreground: #283618;
-  --destructive: #bd263a;
-  --destructive-foreground: #ffffff;
-  --border: color-mix(in srgb, #283618 18%, transparent);
-  --input: color-mix(in srgb, #283618 22%, transparent);
-  --ring: #606c38;
+  --font-heading: var(--font-futura-condensed), 'Futura', ui-sans-serif, system-ui, sans-serif;
 
-  --brand-olive-leaf: #606c38;
-  --brand-black-forest: #283618;
-  --brand-cornsilk: #fefae0;
-  --brand-light-coral: #e37884;
-  --brand-intense-cherry: #bd263a;
+  --background: #FAF7F0;
+  --foreground: #111111;
+  --card: #FFFFFF;
+  --card-foreground: #111111;
+  --popover: #FFFFFF;
+  --popover-foreground: #111111;
+  --primary: #0057B8;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E53B2C;
+  --secondary-foreground: #FFFFFF;
+  --muted: #F0EDE4;
+  --muted-foreground: #555555;
+  --accent: #F6C500;
+  --accent-foreground: #111111;
+  --destructive: #E53B2C;
+  --destructive-foreground: #FFFFFF;
+  --border: color-mix(in srgb, #111111 15%, transparent);
+  --input: color-mix(in srgb, #111111 20%, transparent);
+  --ring: #0057B8;
 
-  /* Light mode: hero / join / footer match a light page (not the dark forest band) */
-  --landing-hero-bg: #ffffff;
-  --landing-hero-fg: #283618;
-  --landing-hero-fg-muted: color-mix(in srgb, #283618 72%, transparent);
-  --landing-surface-warm-bg: #fefae0;
-  --landing-surface-warm-fg: #283618;
-  --landing-surface-warm-fg-muted: color-mix(in srgb, #283618 78%, transparent);
-  --landing-card-border-subtle: color-mix(in srgb, #283618 15%, transparent);
-  --landing-card-bg: #ffffff;
-  --landing-band-olive-bg: #606c38;
-  --landing-band-olive-fg: #fefae0;
-  --landing-band-olive-accent: #e37884;
-  --landing-band-coral-bg: #e37884;
-  --landing-social-card-bg: #fefae0;
-  --landing-social-card-fg: #283618;
-  --landing-social-card-muted: #606c38;
-  --landing-compare-border-t: color-mix(in srgb, #283618 12%, transparent);
-  --landing-compare-tagline: color-mix(in srgb, #283618 60%, transparent);
-  --landing-compare-weak-border: color-mix(in srgb, #bd263a 35%, transparent);
-  --landing-compare-strong-border: #606c38;
-  --landing-footer-bg: #ffffff;
-  --landing-footer-fg-muted: color-mix(in srgb, #283618 65%, transparent);
-  --landing-footer-kicker: #283618;
-  --landing-mock-tile-border: color-mix(in srgb, #283618 14%, transparent);
-  --landing-mock-stage-bg: color-mix(in srgb, #fefae0 70%, #ffffff);
-  --landing-mock-icon: #606c38;
-  --landing-mock-caption: color-mix(in srgb, #283618 72%, transparent);
+  --brand-olive-leaf: #0057B8;
+  --brand-black-forest: #111111;
+  --brand-cornsilk: #FAF7F0;
+  --brand-light-coral: #E53B2C;
+  --brand-intense-cherry: #E53B2C;
+
+  --landing-hero-bg: #FAF7F0;
+  --landing-hero-fg: #111111;
+  --landing-hero-fg-muted: color-mix(in srgb, #111111 65%, transparent);
+  --landing-surface-warm-bg: #FAF7F0;
+  --landing-surface-warm-fg: #111111;
+  --landing-surface-warm-fg-muted: color-mix(in srgb, #111111 70%, transparent);
+  --landing-card-border-subtle: color-mix(in srgb, #111111 12%, transparent);
+  --landing-card-bg: #FFFFFF;
+  --landing-band-olive-bg: #0057B8;
+  --landing-band-olive-fg: #FFFFFF;
+  --landing-band-olive-accent: #F6C500;
+  --landing-band-coral-bg: #E53B2C;
+  --landing-social-card-bg: #FFFFFF;
+  --landing-social-card-fg: #111111;
+  --landing-social-card-muted: #555555;
+  --landing-compare-border-t: color-mix(in srgb, #111111 12%, transparent);
+  --landing-compare-tagline: color-mix(in srgb, #111111 60%, transparent);
+  --landing-compare-weak-border: color-mix(in srgb, #E53B2C 35%, transparent);
+  --landing-compare-strong-border: #0057B8;
+  --landing-footer-bg: #FAF7F0;
+  --landing-footer-fg-muted: color-mix(in srgb, #111111 55%, transparent);
+  --landing-footer-kicker: #111111;
+  --landing-mock-tile-border: color-mix(in srgb, #111111 14%, transparent);
+  --landing-mock-stage-bg: color-mix(in srgb, #FAF7F0 70%, #FFFFFF);
+  --landing-mock-icon: #0057B8;
+  --landing-mock-caption: color-mix(in srgb, #111111 65%, transparent);
 }
 
 html[data-palette="imbustai"].dark {
-  --background: #1a1f16;
-  --foreground: #f2edd8;
-  --card: #232b1c;
-  --card-foreground: #f2edd8;
-  --popover: #232b1c;
-  --popover-foreground: #f2edd8;
-  --primary: #e85a6b;
-  --primary-foreground: #1a1f16;
-  --secondary: #7a8f5c;
-  --secondary-foreground: #f2edd8;
-  --muted: #2d3524;
-  --muted-foreground: #b8c4a8;
-  --accent: #c97a82;
-  --accent-foreground: #1a1f16;
-  --destructive: #e85a6b;
-  --destructive-foreground: #f2edd8;
-  --border: color-mix(in srgb, #f2edd8 14%, transparent);
-  --input: color-mix(in srgb, #f2edd8 18%, transparent);
-  --ring: #7a8f5c;
+  --font-heading: var(--font-futura-condensed), 'Futura', ui-sans-serif, system-ui, sans-serif;
 
-  --brand-olive-leaf: #7a8f5c;
-  --brand-black-forest: #f2edd8;
-  --brand-cornsilk: #f2edd8;
-  --brand-light-coral: #c97a82;
-  --brand-intense-cherry: #e85a6b;
+  --background: #111111;
+  --foreground: #FAF7F0;
+  --card: #1A1A1A;
+  --card-foreground: #FAF7F0;
+  --popover: #1A1A1A;
+  --popover-foreground: #FAF7F0;
+  --primary: #4A8FD4;
+  --primary-foreground: #111111;
+  --secondary: #F06555;
+  --secondary-foreground: #FFFFFF;
+  --muted: #222222;
+  --muted-foreground: #999999;
+  --accent: #F6C500;
+  --accent-foreground: #111111;
+  --destructive: #F06555;
+  --destructive-foreground: #FFFFFF;
+  --border: color-mix(in srgb, #FAF7F0 14%, transparent);
+  --input: color-mix(in srgb, #FAF7F0 18%, transparent);
+  --ring: #4A8FD4;
 
-  /* Dark mode: restore forest hero + cream type */
-  --landing-hero-bg: #283618;
-  --landing-hero-fg: #fefae0;
-  --landing-hero-fg-muted: color-mix(in srgb, #fefae0 92%, transparent);
-  --landing-surface-warm-bg: #fefae0;
-  --landing-surface-warm-fg: #283618;
-  --landing-surface-warm-fg-muted: color-mix(in srgb, #283618 78%, transparent);
-  --landing-card-border-subtle: color-mix(in srgb, #283618 15%, transparent);
-  --landing-card-bg: #ffffff;
-  --landing-band-olive-bg: #606c38;
-  --landing-band-olive-fg: #fefae0;
-  --landing-band-olive-accent: #e37884;
-  --landing-band-coral-bg: #e37884;
-  --landing-social-card-bg: #fefae0;
-  --landing-social-card-fg: #283618;
-  --landing-social-card-muted: #606c38;
-  --landing-compare-border-t: color-mix(in srgb, #283618 12%, transparent);
-  --landing-compare-tagline: color-mix(in srgb, #283618 60%, transparent);
-  --landing-compare-weak-border: color-mix(in srgb, #bd263a 35%, transparent);
-  --landing-compare-strong-border: #606c38;
-  --landing-footer-bg: #283618;
-  --landing-footer-fg-muted: color-mix(in srgb, #fefae0 65%, transparent);
-  --landing-footer-kicker: #fefae0;
-  --landing-mock-tile-border: color-mix(in srgb, #283618 14%, transparent);
-  --landing-mock-stage-bg: color-mix(in srgb, #fefae0 70%, #ffffff);
-  --landing-mock-icon: #606c38;
-  --landing-mock-caption: color-mix(in srgb, #283618 72%, transparent);
+  --brand-olive-leaf: #4A8FD4;
+  --brand-black-forest: #FAF7F0;
+  --brand-cornsilk: #FAF7F0;
+  --brand-light-coral: #F06555;
+  --brand-intense-cherry: #F06555;
+
+  --landing-hero-bg: #111111;
+  --landing-hero-fg: #FAF7F0;
+  --landing-hero-fg-muted: color-mix(in srgb, #FAF7F0 80%, transparent);
+  --landing-surface-warm-bg: #1A1A1A;
+  --landing-surface-warm-fg: #FAF7F0;
+  --landing-surface-warm-fg-muted: color-mix(in srgb, #FAF7F0 70%, transparent);
+  --landing-card-border-subtle: color-mix(in srgb, #FAF7F0 12%, transparent);
+  --landing-card-bg: #222222;
+  --landing-band-olive-bg: #0A3D7A;
+  --landing-band-olive-fg: #FAF7F0;
+  --landing-band-olive-accent: #F6C500;
+  --landing-band-coral-bg: #A82E22;
+  --landing-social-card-bg: #1A1A1A;
+  --landing-social-card-fg: #FAF7F0;
+  --landing-social-card-muted: #999999;
+  --landing-compare-border-t: color-mix(in srgb, #FAF7F0 12%, transparent);
+  --landing-compare-tagline: color-mix(in srgb, #FAF7F0 55%, transparent);
+  --landing-compare-weak-border: color-mix(in srgb, #F06555 40%, transparent);
+  --landing-compare-strong-border: #4A8FD4;
+  --landing-footer-bg: #0E0E0E;
+  --landing-footer-fg-muted: color-mix(in srgb, #FAF7F0 55%, transparent);
+  --landing-footer-kicker: #FAF7F0;
+  --landing-mock-tile-border: color-mix(in srgb, #FAF7F0 14%, transparent);
+  --landing-mock-stage-bg: #1A1A1A;
+  --landing-mock-icon: #4A8FD4;
+  --landing-mock-caption: color-mix(in srgb, #FAF7F0 65%, transparent);
 }
 
 @layer base {
@@ -414,3 +417,8 @@ html[data-palette="imbustai"].dark {
 .icon-swap-enter {
   animation: icon-swap-enter 0.34s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
+
+html[data-palette="imbustai"] :is(button, [role="button"], a[class*="btn"]) {
+  border-radius: 0 !important;
+}
+

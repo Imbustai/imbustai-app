@@ -94,7 +94,10 @@ export interface QdaProject {
 export interface ClaudeCodingProposal {
   letterNumber: number;
   quoteText: string;
-  codeNames: string[];
+  /** Baseline codebook names (case-sensitive). */
+  codeNames?: string[];
+  /** Thesis conceptual catalog \`code_name\` values (case-sensitive). */
+  conceptualCodeNames?: string[];
   proposedNewCode?: {
     name: string;
     description: string;

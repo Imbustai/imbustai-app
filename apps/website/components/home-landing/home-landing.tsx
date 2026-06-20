@@ -55,33 +55,6 @@ export function HomeLanding() {
         <LetterHistorySection />
       </section>
 
-      <section className="bg-landing-band-olive px-4 py-20 sm:px-6 md:px-10 lg:px-16">
-        <div className="mx-auto max-w-3xl">
-          <SectionHeading className="text-3xl text-landing-band-olive-fg sm:text-4xl">
-            {t('landing.different.title')}
-          </SectionHeading>
-          <p className="mt-4 text-xl font-medium leading-snug text-landing-band-olive-fg sm:text-2xl">
-            {t('landing.different.leadLine1')}
-            <br />
-            {t('landing.different.leadLine2')}
-          </p>
-          <ul className="mt-10 space-y-4">
-            {differentiators.map((item, i) => (
-              <li
-                key={i}
-                className="flex items-center gap-3 border-b border-landing-band-olive-fg/25 pb-4 text-lg text-landing-band-olive-fg last:border-0"
-              >
-                <Sparkles
-                  className="size-5 shrink-0 text-landing-band-olive-accent"
-                  aria-hidden
-                />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       <section className="bg-landing-surface-warm px-4 py-20 sm:px-6 md:px-10 lg:px-16">
         <div className="mx-auto max-w-5xl">
           <SectionHeading className="text-3xl text-landing-surface-warm-fg sm:text-4xl">
@@ -148,35 +121,6 @@ export function HomeLanding() {
           <Button size="lg" className="mt-10" asChild>
             <Link href={signupUrl}>{t('landing.cta.button')}</Link>
           </Button>
-        </div>
-      </section>
-
-      <section className="border-t border-landing-compare-border-t bg-landing-surface-warm px-4 py-16 sm:px-6 md:px-10 lg:px-16">
-        <div className="mx-auto max-w-3xl">
-          <SectionHeading className="text-2xl text-landing-surface-warm-fg sm:text-3xl">
-            {t('landing.compare.title')}
-          </SectionHeading>
-          <p className="mt-2 text-sm uppercase tracking-wider text-landing-compare-tagline">
-            {t('landing.compare.tagline')}
-          </p>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <div className="rounded-xl border border-landing-compare-weak-border bg-landing-card p-6 opacity-80">
-              <p className="text-sm font-medium text-intense-cherry">
-                {t('landing.compare.weakLabel')}
-              </p>
-              <p className="mt-3 font-heading text-lg text-landing-surface-warm-fg line-through decoration-intense-cherry/50">
-                {t('landing.compare.weakLine')}
-              </p>
-            </div>
-            <div className="rounded-xl border-2 border-landing-compare-strong-border bg-landing-card p-6 shadow-sm">
-              <p className="text-sm font-medium text-landing-social-card-muted">
-                {t('landing.compare.strongLabel')}
-              </p>
-              <p className="mt-3 font-heading text-lg text-landing-surface-warm-fg sm:text-xl">
-                {t('landing.compare.strongLine')}
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
