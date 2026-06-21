@@ -127,12 +127,22 @@ Legacy pages still use Tailwind utilities resolved through `global.css` `@theme 
 | `primary` | `--ds-color-primary` | `--color-primary` |
 | `primaryForeground` | `--ds-color-primary-foreground` | `--color-primary-foreground` |
 | `secondary` | `--ds-color-secondary` | `--color-secondary` |
+| `secondaryForeground` | `--ds-color-secondary-foreground` | `--color-secondary-foreground` |
 | `accent` | `--ds-color-accent` | `--color-accent` |
-| `muted` / `mutedForeground` | `--ds-color-muted(-foreground)` | `--color-muted(-foreground)` |
-| `border` / `input` / `ring` | `--ds-color-border` / `…input` / `…ring` | matching |
-| `destructive(+fg)` | `--ds-color-destructive(-foreground)` | matching |
-| `card(+fg)` | `--ds-color-card(-foreground)` | matching |
-| `font.heading` / `font.body` | `--ds-font-heading` / `--ds-font-body` | `--font-heading` / `--font-sans` |
+| `accentForeground` | `--ds-color-accent-foreground` | `--color-accent-foreground` |
+| `muted` | `--ds-color-muted` | `--color-muted` |
+| `mutedForeground` | `--ds-color-muted-foreground` | `--color-muted-foreground` |
+| `border` | `--ds-color-border` | `--color-border` |
+| `input` | `--ds-color-input` | `--color-input` |
+| `ring` | `--ds-color-ring` | `--color-ring` |
+| `destructive` | `--ds-color-destructive` | `--color-destructive` |
+| `destructiveForeground` | `--ds-color-destructive-foreground` | `--color-destructive-foreground` |
+| `card` | `--ds-color-card` | `--color-card` |
+| `cardForeground` | `--ds-color-card-foreground` | `--color-card-foreground` |
+| `popover` | `--ds-color-popover` | `--color-popover` |
+| `popoverForeground` | `--ds-color-popover-foreground` | `--color-popover-foreground` |
+| `typography.fontFamily.heading` | `--ds-typography-font-family-heading` | `--font-heading` |
+| `typography.fontFamily.body` | `--ds-typography-font-family-body` | `--font-sans` |
 
 > Extend this table as tokens are added. **Renaming a `--ds-*` var = editing both the theme file and `global.css`.**
 

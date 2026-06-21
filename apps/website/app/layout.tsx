@@ -1,4 +1,5 @@
 import './global.css';
+import '@imbustai/ds';
 import localFont from 'next/font/local';
 import type { Metadata } from 'next';
 import { I18nLayoutShell } from '@/components/i18n-layout-shell';

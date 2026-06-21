@@ -20,7 +20,7 @@ The website UI grew without a system and is hard to keep "elastic". Concrete evi
 
 ## 2. Decisions (locked)
 
-1. **DS styling engine = [vanilla-extract](https://vanilla-extract.style/)** — typed token objects, zero-runtime CSS, `recipes` for variants (replaces `cva`). Integrated through `@vanilla-extract/next-plugin` (this repo runs **webpack**, not Turbopack — see `website-vercel-deploy` memory).
+1. **DS styling engine = [vanilla-extract](https://vanilla-extract.style/)** — typed token objects, zero-runtime CSS, `recipes` for variants (replaces `cva`). Integrated through `@vanilla-extract/next-plugin`. **Build tooling note (verified in Phase 0):** Next 16 uses **Turbopack for dev** and **webpack for production build**. The plugin is wired with `createVanillaExtractPlugin({ unstable_turbopack: { mode: 'auto' } })` so `.css.ts` compile in **both** modes. Do not remove that option — without it, styles silently fail in dev. (The `website-vercel-deploy` memory refers to the production build only, which is webpack.)
 2. **Tokens live in `@imbustai/ds`** — single source of truth, portable theme.
 3. **Tailwind stays in the website** for not-yet-migrated pages. **Bridge via CSS variables:** the DS ships a `theme.css` of custom properties; the website's `global.css` maps its Tailwind `@theme inline` onto the *same* variable names. One token set, two consumers, no duplication.
 4. **Scope of this effort:** foundation + primitives + Typography + **landing migration** (end-to-end proof) + a precise **AI context doc**. Admin / shop / auth / play / games migrations are **deferred** (Phase 6+, documented but not executed).
