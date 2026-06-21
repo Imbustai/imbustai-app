@@ -56,6 +56,7 @@ export const vars = createGlobalThemeContract({
     fontWeight: {
       regular: 'ds-typography-font-weight-regular',
       medium: 'ds-typography-font-weight-medium',
+      semibold: 'ds-typography-font-weight-semibold',
       bold: 'ds-typography-font-weight-bold',
     },
     letterSpacing: {
