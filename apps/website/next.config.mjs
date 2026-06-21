@@ -1,8 +1,11 @@
 //@ts-check
-const path = require('path');
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import nxNext from '@nx/next';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { composePlugins, withNx } = require('@nx/next');
+const { composePlugins, withNx } = nxNext;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -22,4 +25,4 @@ const plugins = [
   withNx,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
+export default composePlugins(...plugins)(nextConfig);
