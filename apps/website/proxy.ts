@@ -1,4 +1,4 @@
-import { updateSession } from './lib/supabase/middleware';
+import { updateSession } from '@/lib/supabase/middleware';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
@@ -28,7 +28,7 @@ const publicAuthPaths = new Set([
   '/reset-password',
 ]);
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { supabaseResponse, supabase, user } = await updateSession(request);
   const pathname = request.nextUrl.pathname;
 
@@ -83,7 +83,6 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  runtime: 'nodejs',
   matcher: [
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],

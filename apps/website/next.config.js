@@ -1,5 +1,4 @@
 //@ts-check
-const path = require('path');
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
@@ -12,9 +11,6 @@ const nextConfig = {
   // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
   transpilePackages: ['@imbustai/i18n', '@imbustai/story-engine'],
-  turbopack: {
-    root: path.join(__dirname, '../..'),
-  },
 };
 
 const plugins = [
