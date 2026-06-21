@@ -28,6 +28,7 @@
     "@swc/core": "catalog:",
     "@swc/helpers": "catalog:",
     "@types/node": "^22.10.0",
+    "@vanilla-extract/next-plugin": "^2.4.13",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@types/uuid": "^11.0.0",
@@ -43,6 +44,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",
+    "@imbustai/ds": "workspace:*",
     "@imbustai/i18n": "workspace:*",
     "@imbustai/story-engine": "workspace:*",
     "@radix-ui/react-dialog": "^1.1.15",
