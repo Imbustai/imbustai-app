@@ -27,7 +27,6 @@
     "@swc/cli": "catalog:",
     "@swc/core": "catalog:",
     "@swc/helpers": "catalog:",
-    "@types/node": "^22.10.0",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@types/uuid": "^11.0.0",
