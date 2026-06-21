@@ -28,7 +28,7 @@ const publicAuthPaths = new Set([
   '/reset-password',
 ]);
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { supabaseResponse, supabase, user } = await updateSession(request);
   const pathname = request.nextUrl.pathname;
 
