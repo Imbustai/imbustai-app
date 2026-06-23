@@ -19,6 +19,7 @@ export const badge = recipe({
     letterSpacing: t.letterSpacing.widest,
     textTransform: 'uppercase',
     border: '1px solid transparent',
+    transform: 'skew(-20deg, 0deg)',
   },
   variants: {
     variant: {

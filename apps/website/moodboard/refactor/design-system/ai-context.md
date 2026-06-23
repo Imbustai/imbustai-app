@@ -16,6 +16,7 @@
 4. **Text is always `Typography`.** No raw `text-{size}` / `font-heading` classes anywhere new.
 5. **One import path:** `import { Button, Typography, ... } from '@imbustai/ds'`. No deep imports.
 6. **Tokens are an API.** Renaming a `--ds-*` variable means editing the DS theme **and** `apps/website/app/global.css` (the Tailwind bridge) **and** this doc.
+7. **Never modify the DS without asking.** When building UI, first check: can existing components and tokens cover what's needed? If yes, use them. If not, **stop and ask the user** before touching the DS. Present what you need: a new component, a new prop/variant on an existing component, a new token, or a token alias change. Explain why the current surface doesn't cover the case. Only proceed after explicit approval.
 
 ---
 
@@ -27,30 +28,63 @@
 
 ## 2. Import surface
 
-_(fill in Phase 3/4 — copy verbatim from `packages/ds/src/index.ts`)_
-
 ```ts
-// expected, keep current:
-export { Typography } from '@imbustai/ds';
-export { Button, Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from '@imbustai/ds';
-export { Input, Label, Badge } from '@imbustai/ds';
-// + Table/Tooltip if shipped
-export { vars, imbustaiLight, imbustaiDark, defaultLight, defaultDark } from '@imbustai/ds';
+// Tokens & utilities
+import { dsVars, dsStyle } from '@imbustai/ds';
+// dsVars.color.*, dsVars.space.*, dsVars.radius.*, dsVars.shadow.*
+
+// Typography
+import { Typography, TYPOGRAPHY_SCALE } from '@imbustai/ds';
+import type { TypographyProps, TypographyVariant } from '@imbustai/ds';
+
+// Primitives
+import { Button } from '@imbustai/ds';
+import type { ButtonProps } from '@imbustai/ds';
+
+import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from '@imbustai/ds';
+import type { CardProps } from '@imbustai/ds';
+
+import { Input } from '@imbustai/ds';
+import type { InputProps } from '@imbustai/ds';
+
+import { Label } from '@imbustai/ds';
+import type { LabelProps } from '@imbustai/ds';
+
+import { Badge } from '@imbustai/ds';
+import type { BadgeProps } from '@imbustai/ds';
 ```
 
 ---
 
 ## 3. Token reference
 
-_(fill in Phase 1 with final values)_
-
 ### Color (semantic)
-`background, foreground, card(+Foreground), muted(+Foreground), border, input, ring, primary(+Foreground), secondary(+Foreground), accent(+Foreground), destructive(+Foreground)`
-Raw brand: `postBlue #0057B8`, `signalRed #E53B2C`, `accentYellow #F6C500`, `paper #FAF7F0`, `ink #111111`.
+
+All accessed via `dsVars.color.*` or CSS var `--ds-color-*`.
+
+| Token | Imbustai light | Purpose |
+|---|---|---|
+| `brand` | `#0057B8` | Raw brand blue (Poste) |
+| `signal` | `#E53B2C` | Raw signal red |
+| `highlight` | `#F6C500` | Raw accent yellow |
+| `surface` | `#FAF7F0` | Raw paper color |
+| `contrast` | `#111111` | Raw ink color |
+| `background` | `#FAF7F0` | Page background |
+| `foreground` | `#111111` | Default text |
+| `card` / `cardForeground` | `#FFFFFF` / `#111111` | Card surface |
+| `muted` / `mutedForeground` | `#F0EDE4` / `#555555` | Muted backgrounds & text |
+| `border` | `color-mix(#111 15%)` | Borders |
+| `input` | `color-mix(#111 20%)` | Input borders |
+| `ring` | `#0057B8` | Focus ring |
+| `primary` / `primaryForeground` | `#0057B8` / `#FFFFFF` | Primary actions |
+| `secondary` / `secondaryForeground` | `#E53B2C` / `#FFFFFF` | Secondary actions |
+| `accent` / `accentForeground` | `#F6C500` / `#111111` | Accent / highlight |
+| `destructive` / `destructiveForeground` | `#E53B2C` / `#FFFFFF` | Destructive actions |
+| `popover` / `popoverForeground` | `#FFFFFF` / `#111111` | Popover surfaces |
 
 ### Type
 `font.heading` (Futura condensed, via `--font-futura-condensed`), `font.body` (Archivo, via `--font-archivo`).
-`fontSize` / `lineHeight`: `display, h1–h6, lead, bodyLg, body, bodySm, caption, overline`.
+`fontSize`: `display, h1, h2, h3, h4, body, caption, overline`. `lineHeight`: `tight, snug, normal, relaxed`.
 `fontWeight`: `regular, medium, semibold, bold`. `letterSpacing`: `tight, normal, wide, widest`.
 
 ### Layout
@@ -77,25 +111,68 @@ _(keep in sync with Phase 1)_
 
 ## 4. Component reference
 
-_(fill prop tables in Phase 3; structure below is the template)_
-
 ### Typography
-`<Typography variant tone? align? as?>` — **the only text component.** No `className`.
-- `variant`: `display | h1 | h2 | h3 | h4 | h5 | h6 | lead | bodyLg | body | bodySm | caption | overline`
-- `tone`: `default | muted | primary | onAccent`
-- `align`: `left | center | right`
-- `as`: semantic element override (`h1–h6 | p | span | label | div`)
+
+`<Typography variant tone? align? as? id?>` — **the only text component.** No `className`.
+
+| Prop | Type | Default | Values |
+|---|---|---|---|
+| `variant` | `TypographyVariant` | `'body'` | `display \| h1 \| h2 \| h3 \| h4 \| body \| caption \| overline` |
+| `tone` | `string` | `'default'` | `default \| muted \| primary \| onAccent` |
+| `align` | `string` | — | `left \| center \| right` |
+| `as` | `AllowedTag` | auto from variant | `h1 \| h2 \| h3 \| h4 \| p \| span \| label \| div` |
+
+Default tags: `display→h1`, `h1–h4→matching`, `body→p`, `caption/overline→span`.
+
+Heading variants (`display–h3`) use `font-heading` (Futura Condensed), uppercase, tracked. `h4` uses heading font without uppercase. Body variants use `font-body` (Archivo).
 
 ### Button
-`<Button variant size? asChild? fullWidth? disabled onClick>`
-- `variant`: `primary | secondary | accent | outline | ghost | link | destructive`
-- `size`: `sm | md | lg | icon` · sharp corners · `asChild` for `next/link`.
+
+`<Button variant? size? asChild? fullWidth? disabled? onClick? type? id?>`
+
+| Prop | Type | Default | Values |
+|---|---|---|---|
+| `variant` | `string` | `'primary'` | `primary \| secondary \| accent \| outline \| ghost \| link \| destructive` |
+| `size` | `string` | `'md'` | `sm \| md \| lg \| icon` |
+| `fullWidth` | `boolean` | — | `true` for 100% width |
+| `asChild` | `boolean` | — | Renders children via Radix `Slot` (for `next/link`) |
+
+Sharp corners (imbustai radius=0). Accepts `disabled`, `type`, standard mouse/keyboard/focus events, and `aria-*` props.
 
 ### Card
-`Card`, `CardHeader`, `CardTitle` (→Typography h3), `CardDescription` (→Typography bodySm muted), `CardContent`, `CardFooter`. Props: `tone? (default|muted)`, `bordered?`.
 
-### Input / Label / Badge
-- `Input`: native props + `invalid?`. `Label`: `htmlFor`, text via Typography. `Badge`: `variant: default|primary|secondary|accent|outline|destructive`.
+Compound component: `Card`, `CardHeader`, `CardContent`, `CardFooter`, `CardTitle`, `CardDescription`.
+
+| Component | Props | Notes |
+|---|---|---|
+| `Card` | `tone?: 'default' \| 'muted'`, `bordered?: boolean` | Default: `tone='default'`, `bordered=true` |
+| `CardTitle` | `children`, `id?`, `aria-*` | Renders `Typography variant="h3"` |
+| `CardDescription` | `children`, `id?`, `aria-*` | Renders `Typography variant="caption" tone="muted"` |
+| `CardHeader/Content/Footer` | `children`, `id?`, `aria-*` | Layout containers |
+
+### Input
+
+`<Input invalid? id? type? name? placeholder? disabled? ...nativeProps>`
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `invalid` | `boolean` | — | Adds destructive border + `aria-invalid` |
+
+Accepts all standard `<input>` props (value, defaultValue, onChange, onFocus, onBlur, etc.) and `aria-*`.
+
+### Label
+
+`<Label htmlFor? id? children>`
+
+Renders as `<label>` styled with `Typography caption`. Always pair with an `Input` via `htmlFor`.
+
+### Badge
+
+`<Badge variant? id? children>`
+
+| Prop | Type | Default | Values |
+|---|---|---|---|
+| `variant` | `string` | `'default'` | `default \| primary \| secondary \| accent \| outline \| destructive` |
 
 ---
 
@@ -107,9 +184,8 @@ _(fill prop tables in Phase 3; structure below is the template)_
 | Page / major section title | `h1` / `h2` |
 | Subsection title | `h3` / `h4` |
 | Card title | (handled by `CardTitle`) |
-| Intro paragraph under a heading | `lead` |
-| Default body copy | `body` (or `bodyLg` for emphasis) |
-| Fine print, metadata | `bodySm` / `caption` |
+| Default body copy | `body` |
+| Fine print, metadata | `caption` |
 | Eyebrow / kicker / step label | `overline` |
 
 ---

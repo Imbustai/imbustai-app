@@ -4,7 +4,7 @@ import type { RecipeVariants } from '@vanilla-extract/recipes';
 
 type Variants = NonNullable<RecipeVariants<typeof typography>>;
 
-type AllowedTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'label' | 'div';
+type AllowedTag = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'label' | 'div';
 
 const defaultTag: Record<NonNullable<Variants['variant']>, AllowedTag> = {
   display: 'h1',
@@ -12,12 +12,7 @@ const defaultTag: Record<NonNullable<Variants['variant']>, AllowedTag> = {
   h2: 'h2',
   h3: 'h3',
   h4: 'h4',
-  h5: 'h5',
-  h6: 'h6',
-  lead: 'p',
-  bodyLg: 'p',
   body: 'p',
-  bodySm: 'p',
   caption: 'span',
   overline: 'span',
 };

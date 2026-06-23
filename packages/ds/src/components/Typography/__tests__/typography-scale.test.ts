@@ -6,8 +6,8 @@ const VALID_WEIGHTS = ['regular', 'medium', 'semibold', 'bold'] as const;
 const VALID_LINE_HEIGHTS = ['tight', 'snug', 'normal', 'relaxed'] as const;
 const VALID_TRACKINGS = ['tight', 'normal', 'wide', 'widest'] as const;
 
-const HEADING_VARIANTS = ['display', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
-const BODY_VARIANTS = ['lead', 'bodyLg', 'body', 'bodySm', 'caption', 'overline'] as const;
+const HEADING_VARIANTS = ['display', 'h1', 'h2', 'h3', 'h4'] as const;
+const BODY_VARIANTS = ['body', 'caption', 'overline'] as const;
 
 describe('TYPOGRAPHY_SCALE', () => {
   it.each(Object.entries(TYPOGRAPHY_SCALE))('%s has valid font', (_, entry) => {
@@ -36,7 +36,7 @@ describe('TYPOGRAPHY_SCALE', () => {
     expect(TYPOGRAPHY_SCALE[variant].font).toBe('body');
   });
 
-  it('covers all 13 variants', () => {
-    expect(Object.keys(TYPOGRAPHY_SCALE)).toHaveLength(13);
+  it('covers all 8 variants', () => {
+    expect(Object.keys(TYPOGRAPHY_SCALE)).toHaveLength(8);
   });
 });

@@ -72,5 +72,5 @@ export type CardDescriptionProps = BaseProps & {
 };
 
 export function CardDescription({ children, id, ...ariaRest }: CardDescriptionProps) {
-  return createElement(Typography, { variant: 'bodySm', tone: 'muted', id, ...ariaRest, children });
+  return createElement(Typography, { variant: 'caption', tone: 'muted', id, ...ariaRest, children });
 }

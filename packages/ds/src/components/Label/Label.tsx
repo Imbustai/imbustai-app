@@ -21,7 +21,7 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
     'label',
     {
       'data-slot': 'label',
-      className: `${label} ${typography({ variant: 'bodySm' })}`,
+      className: `${label} ${typography({ variant: 'caption' })}`,
       htmlFor,
       id,
       ref,

@@ -17,7 +17,7 @@ export const input = recipe({
     paddingTop: vars.space[1],
     paddingBottom: vars.space[1],
     fontFamily: t.fontFamily.body,
-    fontSize: t.fontSize.bodySm,
+    fontSize: t.fontSize.body,
     fontWeight: t.fontWeight.regular,
     lineHeight: t.lineHeight.normal,
     letterSpacing: t.letterSpacing.normal,

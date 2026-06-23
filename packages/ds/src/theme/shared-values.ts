@@ -4,17 +4,12 @@ const fontFamily = {
 };
 
 const fontSize = {
-  display: 'clamp(2.5rem, 6vw, 5rem)',
-  h1: 'clamp(2rem, 4vw, 3.25rem)',
-  h2: 'clamp(1.6rem, 3vw, 2.25rem)',
-  h3: '1.5rem',
-  h4: '1.25rem',
-  h5: '1.05rem',
-  h6: '0.95rem',
-  lead: '1.25rem',
-  bodyLg: '1.125rem',
+  display: 'clamp(3.5rem, 16vw, 5rem)',
+  h1: 'clamp(2.75rem, 8vw, 4rem)',
+  h2: 'clamp(2rem, 5vw, 3rem)',
+  h3: 'clamp(1.5rem, 3vw, 2rem)',
+  h4: 'clamp(1.25rem, 2.5vw, 1.5rem)',
   body: '1rem',
-  bodySm: '0.875rem',
   caption: '0.8125rem',
   overline: '0.75rem',
 };

@@ -12,7 +12,7 @@ export const button = recipe({
     whiteSpace: 'nowrap',
     borderRadius: vars.radius.none,
     fontFamily: t.fontFamily.body,
-    fontSize: t.fontSize.bodySm,
+    fontSize: t.fontSize.body,
     fontWeight: t.fontWeight.medium,
     lineHeight: t.lineHeight.tight,
     letterSpacing: t.letterSpacing.normal,
