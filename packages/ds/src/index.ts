@@ -18,3 +18,14 @@ export { Typography } from './components/Typography/Typography';
 export type { TypographyProps } from './components/Typography/Typography';
 export { TYPOGRAPHY_SCALE } from './components/Typography/typography-scale';
 export type { TypographyVariant } from './components/Typography/typography-scale';
+
+export { Button } from './components/Button/Button';
+export type { ButtonProps } from './components/Button/Button';
+export { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from './components/Card/Card';
+export type { CardProps } from './components/Card/Card';
+export { Input } from './components/Input/Input';
+export type { InputProps } from './components/Input/Input';
+export { Label } from './components/Label/Label';
+export type { LabelProps } from './components/Label/Label';
+export { Badge } from './components/Badge/Badge';
+export type { BadgeProps } from './components/Badge/Badge';
