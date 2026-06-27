@@ -45,7 +45,7 @@ export function TimelineSvg({
   return (
     <div
       className={cn(
-        'relative w-full overflow-hidden rounded-md border border-landing-card-border-subtle',
+        'relative w-full overflow-hidden rounded-md border border-border',
         'aspect-[9/16] sm:aspect-[29/9]',
         'bg-foreground text-background',
       )}

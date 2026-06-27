@@ -1,10 +1,11 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import {
-  ClaudeProvider,
+  DEFAULT_MODEL,
   applyGameStateUpdates,
   canApprove,
   canGenerate,
   computeVisibleFrom,
+  createProvider,
   generateTurnBatch,
   shouldAutoSend,
   turnPlanSchema,
@@ -15,7 +16,9 @@ import {
   type RuntimeState,
   type StoryConfig,
   type TurnPlan,
+  type UsageRecord as EngineUsageRecord,
 } from '@imbustai/story-engine';
+import { computeCostUsd, loadPricingMap } from '@/lib/ai-pricing';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { loadStoryConfig, runtimeStateOf, toLetterRecords } from '@/lib/story-engine/load';
 import type {
@@ -24,6 +27,7 @@ import type {
   InteractionRow,
   InteractionTurnRow,
   StoryRow,
+  UsageRecord as DbUsageRecord,
 } from '@/lib/types/db';
 
 // The reply workflow core (architecture §3). One pipeline for both
@@ -160,7 +164,8 @@ export async function generateDraft(
     ];
   }
 
-  const provider = new ClaudeProvider();
+  const provider = createProvider();
+  const usageSink: EngineUsageRecord[] = [];
   const batch = await generateTurnBatch({
     story: ctx.story,
     state: ctx.state,
@@ -170,6 +175,7 @@ export async function generateDraft(
     seed: `${ctx.game.id}:${ctx.turn.turn_number}`,
     reusePlan,
     onlyCharacter: opts.onlyCharacter,
+    usageSink,
   });
 
   let responses = batch.responses;
@@ -189,13 +195,34 @@ export async function generateDraft(
     });
   }
 
+  // Cost: price each call's tokens against the admin-managed table, snapshot
+  // onto the draft. Every call (orchestrator + each NPC letter, retries
+  // included) is counted — this is real spend.
+  const pricing = await loadPricingMap(ctx.admin);
+  const usage: DbUsageRecord[] = usageSink.map((u) => ({
+    ...u,
+    cost_usd: computeCostUsd(u, pricing.get(u.model)),
+  }));
+  const sumOf = (k: keyof EngineUsageRecord) =>
+    usage.reduce((acc, u) => acc + (u[k] as number), 0);
+  const cost_usd = usage.reduce((acc, u) => acc + u.cost_usd, 0);
+  const draftModel = usage[0]?.model ?? process.env.STORY_ENGINE_MODEL ?? DEFAULT_MODEL;
+  const draftProvider = usage[0]?.provider ?? '';
+
   return insertDraft(ctx, {
     responses: responses as unknown as AiDraftRow['responses'],
     game_state_updates: batch.gameStateUpdates as unknown as AiDraftRow['game_state_updates'],
     narrator_notes: batch.narratorNotes,
     validation_warnings: warnings as unknown as AiDraftRow['validation_warnings'],
     source: prev ? 'regenerated' : 'generated',
-    model: provider.model,
+    model: draftModel,
+    provider: draftProvider,
+    usage,
+    input_tokens: sumOf('input_tokens'),
+    output_tokens: sumOf('output_tokens'),
+    cache_creation_input_tokens: sumOf('cache_creation_input_tokens'),
+    cache_read_input_tokens: sumOf('cache_read_input_tokens'),
+    cost_usd,
     ...({ plan: batch.plan } as object),
   });
 }

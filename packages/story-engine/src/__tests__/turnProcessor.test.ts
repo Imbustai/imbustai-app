@@ -7,7 +7,7 @@ import {
 import { normalizeCharacterSlug } from '../engine/normalize';
 import { MockProvider, type StructuredRequest } from '../ai/provider';
 import { hasErrors } from '../validator';
-import type { LetterRecord } from '../types';
+import type { LetterRecord, UsageRecord } from '../types';
 import { VOSS_STORY } from '../../seed/voss';
 
 // Mock GM: replies come from every character the player wrote to, using only
@@ -75,6 +75,31 @@ describe('generateTurnBatch', () => {
     expect(comune.story_date >= '2025-08-07' && comune.story_date <= '2025-08-12').toBe(true);
     expect(hasErrors(batch.warnings)).toBe(false);
     expect(batch.narratorNotes).toBe('nota interna');
+  });
+
+  it('records token usage per call into usageSink (orchestrator + one per letter)', async () => {
+    const provider = new MockProvider(mockHandler(['voss', 'comune']));
+    const usageSink: UsageRecord[] = [];
+    await generateTurnBatch({
+      story: VOSS_STORY,
+      state,
+      history: [],
+      playerLetters: [
+        { recipient_slug: 'voss', content: 'Caro Voss.' },
+        { recipient_slug: 'comune', content: 'Registri.' },
+      ],
+      provider,
+      seed: 'game1:1',
+      usageSink,
+    });
+
+    // 1 orchestrator + 2 npc_letter = 3 usage records.
+    expect(usageSink).toHaveLength(3);
+    expect(usageSink.filter((u) => u.call_type === 'orchestrator')).toHaveLength(1);
+    const letters = usageSink.filter((u) => u.call_type === 'npc_letter');
+    expect(letters.map((u) => u.character_slug).sort()).toEqual(['comune', 'voss']);
+    // MockProvider reports a provider/model tag (tokens are zero in tests).
+    expect(usageSink.every((u) => u.provider === 'mock')).toBe(true);
   });
 
   it('is deterministic: regenerating yields identical dates', async () => {

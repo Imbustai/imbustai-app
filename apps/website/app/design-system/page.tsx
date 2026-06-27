@@ -13,8 +13,22 @@ import {
   CardDescription,
   Input,
   Label,
+  Box,
+  Stack,
+  Inline,
+  Grid,
+  Container,
+  Spacer,
+  Divider,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
 } from '@imbustai/ds';
 import type { TypographyVariant } from '@imbustai/ds';
+import { TooltipDemo, SelectDemo } from './interactive-demos';
 
 export const metadata = {
   title: 'Design System — @imbustai/ds',
@@ -234,6 +248,118 @@ export default function DesignSystemPage() {
           </div>
         </SubSection>
 
+      </Section>
+
+      {/* ── LAYOUT PRIMITIVES ── */}
+
+      <Section title="Layout Primitives">
+
+        <SubSection title="Stack">
+          <Stack gap="3">
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Stack item 1</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Stack item 2</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Stack item 3</Typography>
+            </div>
+          </Stack>
+        </SubSection>
+
+        <SubSection title="Inline">
+          <Inline gap="3">
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Inline A</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Inline B</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Inline C</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-3)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Inline D</Typography>
+            </div>
+          </Inline>
+        </SubSection>
+
+        <SubSection title="Grid">
+          <Grid columns={3} gap="4">
+            <div style={{ padding: 'var(--ds-space-4)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Col 1</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-4)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Col 2</Typography>
+            </div>
+            <div style={{ padding: 'var(--ds-space-4)', borderRadius: 'var(--ds-radius-sm)', backgroundColor: 'var(--ds-color-muted)' }}>
+              <Typography variant="caption">Col 3</Typography>
+            </div>
+          </Grid>
+        </SubSection>
+
+        <SubSection title="Container">
+          <Container>
+            <div style={{ padding: 'var(--ds-space-4)', backgroundColor: 'var(--ds-color-muted)', border: '1px dashed var(--ds-color-border)' }}>
+              <Typography variant="caption">Centered container (max 72rem, responsive padding)</Typography>
+            </div>
+          </Container>
+        </SubSection>
+
+        <SubSection title="Spacer &amp; Divider">
+          <Stack gap="0">
+            <Typography variant="caption">Above divider</Typography>
+            <Spacer size="4" />
+            <Divider />
+            <Spacer size="4" />
+            <Typography variant="caption">Below divider</Typography>
+          </Stack>
+        </SubSection>
+
+      </Section>
+
+      {/* ── TABLE ── */}
+
+      <Section title="Table">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Role</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell><Typography variant="body">Alice</Typography></TableCell>
+              <TableCell><Badge variant="primary">Active</Badge></TableCell>
+              <TableCell><Typography variant="caption" tone="muted">Admin</Typography></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell><Typography variant="body">Bob</Typography></TableCell>
+              <TableCell><Badge variant="outline">Inactive</Badge></TableCell>
+              <TableCell><Typography variant="caption" tone="muted">Editor</Typography></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell><Typography variant="body">Carol</Typography></TableCell>
+              <TableCell><Badge variant="accent">Pending</Badge></TableCell>
+              <TableCell><Typography variant="caption" tone="muted">Viewer</Typography></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </Section>
+
+      {/* ── TOOLTIP ── */}
+
+      <Section title="Tooltip">
+        <TooltipDemo />
+      </Section>
+
+      {/* ── SELECT ── */}
+
+      <Section title="Select">
+        <SelectDemo />
       </Section>
     </main>
   );

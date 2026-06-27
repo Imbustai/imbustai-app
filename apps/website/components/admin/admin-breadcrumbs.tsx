@@ -22,6 +22,10 @@ function buildCrumbs(
     return [root, { href: '/admin/orders', label: t('admin.ordersNav') }];
   }
 
+  if (pathname === '/admin/settings') {
+    return [root, { href: '/admin/settings', label: t('admin.breadcrumbSettings') }];
+  }
+
   if (pathname === '/admin/order/create') {
     return [
       root,

@@ -29,3 +29,20 @@ export { Label } from './components/Label/Label';
 export type { LabelProps } from './components/Label/Label';
 export { Badge } from './components/Badge/Badge';
 export type { BadgeProps } from './components/Badge/Badge';
+
+// Layout
+export { sprinkles } from './layout/sprinkles.css';
+export type { Sprinkles } from './layout/sprinkles.css';
+export { Box, Stack, Inline, Grid, Container, Spacer, Divider } from './components/layout';
+export type { BoxProps, StackProps, InlineProps, GridProps, ContainerProps, SpacerProps, DividerProps } from './components/layout';
+
+// Table
+export { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from './components/Table/Table';
+
+// Tooltip
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/Tooltip/Tooltip';
+export type { TooltipProps, TooltipTriggerProps, TooltipContentProps, TooltipProviderProps } from './components/Tooltip/Tooltip';
+
+// Select
+export { Select } from './components/Select/Select';
+export type { SelectProps } from './components/Select/Select';

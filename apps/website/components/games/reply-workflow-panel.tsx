@@ -10,10 +10,12 @@ import type {
   InteractionTurnRow,
   StoryCharacterRow,
   StoryRow,
+  UsageRecord,
 } from '@/lib/types/db';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { formatTokens, formatUsd } from '@/lib/format-cost';
 
 // Admin reply workflow (Phase 3): pending turn → Generate → review per-NPC
 // cards (edit / regenerate) with narrator notes + canon warnings → Approve &
@@ -69,6 +71,7 @@ export function ReplyWorkflowPanel({
   const unlocked = (runtime.unlocked_npcs as string[] | undefined) ?? [];
   const responses = (latestDraft?.responses ?? []) as unknown as DraftResponse[];
   const warnings = (latestDraft?.validation_warnings ?? []) as unknown as Warning[];
+  const draftUsage = (latestDraft?.usage ?? []) as UsageRecord[];
 
   async function call(key: string, url: string, init?: RequestInit) {
     setBusy(key);
@@ -176,6 +179,35 @@ export function ReplyWorkflowPanel({
                     </li>
                   ))}
                 </ul>
+              </div>
+            ) : null}
+
+            {/* AI cost of this draft (admin-only) */}
+            {latestDraft ? (
+              <div className="rounded-md border border-border bg-muted/30 p-3 text-sm">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="font-medium">
+                    💰 {t('admin.cost.draftCost')}: {formatUsd(Number(latestDraft.cost_usd ?? 0))}
+                  </span>
+                  <span className="text-xs text-muted-foreground">{latestDraft.model || '—'}</span>
+                </div>
+                {draftUsage.length > 0 ? (
+                  <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
+                    {draftUsage.map((u, i) => (
+                      <li key={i} className="flex flex-wrap items-center gap-2">
+                        <span className="text-foreground">
+                          {u.call_type === 'orchestrator'
+                            ? t('admin.cost.orchestrator')
+                            : `${t('admin.cost.letterTo')} ${nameOf(u.character_slug ?? null)}`}
+                        </span>
+                        <span>
+                          ↓{formatTokens(u.input_tokens)} ↑{formatTokens(u.output_tokens)}
+                        </span>
+                        <span className="ml-auto tabular-nums">{formatUsd(u.cost_usd)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </div>
             ) : null}
 

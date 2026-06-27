@@ -11,6 +11,7 @@ import {
   PanelLeftClose,
   PlusCircle,
   ScrollText,
+  Settings,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -47,6 +48,7 @@ const navItems: NavItem[] = [
     labelKey: 'admin.createFreeOrder',
     icon: PlusCircle,
   },
+  { href: '/admin/settings', labelKey: 'admin.settingsNav', icon: Settings },
 ];
 
 function navActive(pathname: string, href: string) {

@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { AdminGameDetailClient } from '@/components/games/admin-game-detail-client';
+import { GameCostBreakdown } from '@/components/games/game-cost-breakdown';
 import {
   ReplyWorkflowPanel,
   TestHarnessCard,
@@ -73,6 +74,25 @@ export default async function AdminGameDetailPage({
   const { data: userRes } = await admin.auth.admin.getUserById(g.user_id);
   const userEmail = userRes?.user?.email ?? g.user_id;
 
+  // All turns + their drafts for the AI-cost breakdown (admin-only).
+  const { data: allTurns } = await admin
+    .from('interaction_turns')
+    .select('id, turn_number')
+    .eq('game_id', gameId);
+  const turnNumbers: Record<string, number> = {};
+  for (const tr of (allTurns ?? []) as Pick<InteractionTurnRow, 'id' | 'turn_number'>[]) {
+    turnNumbers[tr.id] = tr.turn_number;
+  }
+  const turnIds = Object.keys(turnNumbers);
+  let costDrafts: AiDraftRow[] = [];
+  if (turnIds.length) {
+    const { data: drafts } = await admin
+      .from('ai_drafts')
+      .select('*')
+      .in('turn_id', turnIds);
+    costDrafts = (drafts ?? []) as AiDraftRow[];
+  }
+
   const interactionList = (interactions ?? []) as InteractionRow[];
   const characterList = (characters ?? []) as StoryCharacterRow[];
   const turnRow = (openTurn as InteractionTurnRow | null) ?? null;
@@ -90,6 +110,13 @@ export default async function AdminGameDetailPage({
           turnRow ? interactionList.filter((i) => i.turn_id === turnRow.id) : []
         }
       />
+      <div className="mt-8">
+        <GameCostBreakdown
+          drafts={costDrafts}
+          turnNumbers={turnNumbers}
+          characters={characterList}
+        />
+      </div>
       <div className="mt-8">
         <AdminGameDetailClient
           gameId={gameId}

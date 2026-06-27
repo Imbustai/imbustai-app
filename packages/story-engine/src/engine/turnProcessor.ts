@@ -3,6 +3,7 @@ import type {
   PlayerTurnLetter,
   RuntimeState,
   StoryConfig,
+  UsageRecord,
   ValidationWarning,
 } from '../types';
 import { turnPlanSchema, TURN_PLAN_TOOL, type GameStateUpdates, type TurnPlan } from '../schema/turnPlan';
@@ -12,7 +13,7 @@ import { addDays, advanceStoryDate, resolveBatchDates } from '../time/timeServic
 import { validateDraft } from '../validator';
 import { normalizeCharacterSlug } from './normalize';
 import { resolveStartDate } from './gameStart';
-import type { AiProvider } from '../ai/provider';
+import type { AiProvider, CallUsage } from '../ai/provider';
 
 import type { z } from 'zod';
 import type { StructuredRequest } from '../ai/provider';
@@ -29,6 +30,7 @@ async function generateValidated<S extends z.ZodTypeAny>(
   schema: S,
   label: string,
   retries = 2,
+  onUsage?: (usage: CallUsage) => void,
 ): Promise<z.infer<S>> {
   const repairNote =
     '\n\nIMPORTANT: your previous tool call was malformed. Call the tool again with every argument as valid JSON of the correct type — arrays as real JSON arrays (not strings), objects as objects — and NEVER use XML or <parameter ...> tags inside the arguments.';
@@ -36,10 +38,12 @@ async function generateValidated<S extends z.ZodTypeAny>(
   for (let attempt = 0; attempt <= retries; attempt++) {
     // Escalate after the first failure so retries differ from the (failing) call.
     const req = attempt === 0 ? request : { ...request, user: request.user + repairNote };
-    const raw = await provider.generateStructured(req);
-    const parsed = schema.safeParse(coerceStructured(raw));
+    const { output, usage } = await provider.generateStructured(req);
+    // Record usage for EVERY attempt — retries cost real tokens too.
+    onUsage?.(usage);
+    const parsed = schema.safeParse(coerceStructured(output));
     if (parsed.success) return parsed.data;
-    lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(raw).slice(0, 300)}`;
+    lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(output).slice(0, 300)}`;
   }
   throw new Error(`${label} parse failed after ${retries + 1} attempts: ${lastError}`);
 }
@@ -83,6 +87,8 @@ export interface GenerateTurnInput {
   /** Regenerate a single NPC: skip orchestration for others, reuse this plan. */
   reusePlan?: TurnPlan;
   onlyCharacter?: string;
+  /** Collects per-call token usage (orchestrator + each NPC letter, retries included). */
+  usageSink?: UsageRecord[];
 }
 
 export interface TurnDraftBatch {
@@ -152,7 +158,7 @@ export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: Turn
 }
 
 export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnDraftBatch> {
-  const { story, state, history, playerLetters, provider, seed } = input;
+  const { story, state, history, playerLetters, provider, seed, usageSink } = input;
   const turnDate = state.story_date;
 
   // 1. Orchestrator → turn plan (or reuse it for single-NPC regenerate).
@@ -166,6 +172,8 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
       { system: context.system, user: context.user, tool: TURN_PLAN_TOOL, maxTokens: 8000 },
       turnPlanSchema,
       'turn_plan',
+      2,
+      (usage) => usageSink?.push({ call_type: 'orchestrator', ...usage }),
     );
   }
 
@@ -213,6 +221,13 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
         { system: context.system, user: context.user, tool: NPC_LETTER_TOOL, maxTokens: 6000 },
         npcLetterSchema,
         `npc_letter(${reply.character_slug})`,
+        2,
+        (usage) =>
+          usageSink?.push({
+            call_type: 'npc_letter',
+            character_slug: reply.character_slug,
+            ...usage,
+          }),
       );
       // The writer speaks for exactly one character; trust the brief over the model.
       return { ...letter, character_slug: reply.character_slug };

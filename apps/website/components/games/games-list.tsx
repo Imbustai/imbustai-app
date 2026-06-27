@@ -3,6 +3,7 @@
 import { useTranslation } from '@imbustai/i18n';
 import Link from 'next/link';
 import { storyTitle } from '@/lib/story-i18n';
+import { formatUsd } from '@/lib/format-cost';
 import type { GameRow, StoryRow } from '@/lib/types/db';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -29,6 +30,8 @@ export function GamesList({
     story: StoryRow | undefined;
     interactionCount: number;
     userEmail?: string;
+    totalCostUsd?: number;
+    models?: string[];
   }[];
 }) {
   const { t, locale } = useTranslation();
@@ -69,13 +72,14 @@ export function GamesList({
             <TableHead>{t('games.storyColumn')}</TableHead>
             <TableHead>{t('common.status')}</TableHead>
             <TableHead>{t('games.interactions')}</TableHead>
+            {adminView ? <TableHead>{t('admin.cost.column')}</TableHead> : null}
             <TableHead>{t('games.started')}</TableHead>
             <TableHead>{t('games.completed')}</TableHead>
             <TableHead />
           </TableRow>
         </TableHeader>
         <TableBody>
-          {rows.map(({ game, story, interactionCount, userEmail }) => (
+          {rows.map(({ game, story, interactionCount, userEmail, totalCostUsd, models }) => (
             <TableRow key={game.id}>
               {adminView ? (
                 <TableCell className="max-w-[10rem] truncate text-sm">
@@ -96,6 +100,19 @@ export function GamesList({
                 )}
               </TableCell>
               <TableCell>{interactionCount}</TableCell>
+              {adminView ? (
+                <TableCell
+                  className="whitespace-nowrap tabular-nums"
+                  title={models?.length ? models.join(', ') : undefined}
+                >
+                  {formatUsd(totalCostUsd ?? 0)}
+                  {models?.length ? (
+                    <span className="ml-1 text-xs text-muted-foreground">
+                      {models.length === 1 ? models[0] : `${models.length} models`}
+                    </span>
+                  ) : null}
+                </TableCell>
+              ) : null}
               <TableCell>{formatDate(game.created_at)}</TableCell>
               <TableCell>{formatDate(game.completed_at)}</TableCell>
               <TableCell>

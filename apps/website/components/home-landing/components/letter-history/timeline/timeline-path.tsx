@@ -39,7 +39,7 @@ export function TimelinePath({
       className={cn(
         state.variant === 'primary'
           ? 'text-background'
-          : 'text-landing-band-olive-accent',
+          : 'text-accent',
       )}
       style={{
         opacity: pathOpacity,

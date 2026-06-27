@@ -28,7 +28,6 @@ $section-top-spacing: 0;
   width: 100%;
   max-width: 72rem; /* max-w-6xl */
 
-  // nested selector + theme token from global.css (`html { --radius }`)
   :global(.how-it-works-stage) {
     border-radius: var(--radius);
   }
@@ -43,7 +42,7 @@ $section-top-spacing: 0;
   font-family: var(--font-heading);
   font-size: 1rem;
   line-height: 1.375;
-  color: var(--landing-surface-warm-fg);
+  color: var(--ds-color-foreground);
 
   @media (width >= 40rem) {
     font-size: 1.125rem;

@@ -143,6 +143,9 @@ Legacy pages still use Tailwind utilities resolved through `global.css` `@theme 
 | `popoverForeground` | `--ds-color-popover-foreground` | `--color-popover-foreground` |
 | `typography.fontFamily.heading` | `--ds-typography-font-family-heading` | `--font-heading` |
 | `typography.fontFamily.body` | `--ds-typography-font-family-body` | `--font-sans` |
+| `radius.sm` | `--ds-radius-sm` | `--radius-sm` |
+| `radius.md` | `--ds-radius-md` | `--radius` / `--radius-md` |
+| `radius.lg` | `--ds-radius-lg` | `--radius-lg` / `--radius-xl` |
 
 > Extend this table as tokens are added. **Renaming a `--ds-*` var = editing both the theme file and `global.css`.**
 
