@@ -1,7 +1,7 @@
 'use client';
 
 import { useTranslation } from '@imbustai/i18n';
-import { Badge } from '@/components/ui/badge';
+import { Badge, Typography, Stack } from '@imbustai/ds';
 import type { OrderSource, OrderStatus } from '@/lib/types/db';
 
 export function OrderStatusBadge({
@@ -21,11 +21,11 @@ export function OrderStatusBadge({
   const sub =
     source === 'stripe' ? t('orders.sourceStripe') : t('orders.sourceAdmin');
   return (
-    <span className="flex flex-col gap-0.5">
+    <Stack gap="1">
       <Badge variant={status === 'paid' ? 'default' : 'secondary'}>
         {label}
       </Badge>
-      <span className="text-xs text-muted-foreground">{sub}</span>
-    </span>
+      <Typography variant="caption" tone="muted">{sub}</Typography>
+    </Stack>
   );
 }

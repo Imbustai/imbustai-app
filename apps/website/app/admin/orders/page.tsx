@@ -4,14 +4,16 @@ import { AdminPageTitle } from '@/components/admin/admin-page-title';
 import { OrderStatusBadge } from '@/components/admin/order-status-badge';
 import { OrdersFilter } from '@/components/admin/orders-filter';
 import {
+  Box,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@imbustai/ds';
 import type { OrderRow, OrderStatus } from '@/lib/types/db';
+import s from '@/components/admin/admin-styles.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -53,42 +55,43 @@ export default async function AdminOrdersPage({
         titleKey="admin.ordersNav"
         subtitleKey="admin.dashboardSubtitle"
       />
-      <OrdersFilter current={statusFilter} />
-      <Table className="mt-6">
-        <TableHeader>
-          <TableRow>
-            <TableHead>ID</TableHead>
-            <TableHead>User</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Source</TableHead>
-            <TableHead>Created</TableHead>
-            <TableHead />
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {((orders ?? []) as OrderRow[]).map((o) => (
-            <TableRow key={o.id}>
-              <TableCell className="font-mono text-xs">
-                {o.id.slice(0, 8)}…
-              </TableCell>
-              <TableCell>{emailById.get(o.user_id) ?? o.user_id}</TableCell>
-              <TableCell>
-                <OrderStatusBadge status={o.status} source={o.source} />
-              </TableCell>
-              <TableCell>{o.source}</TableCell>
-              <TableCell>{formatDate(o.created_at)}</TableCell>
-              <TableCell>
-                <Link
-                  href={`/admin/order/${o.id}`}
-                  className="text-primary underline"
-                >
-                  Open
-                </Link>
-              </TableCell>
+      <Box marginTop="6">
+        <OrdersFilter current={statusFilter} />
+      </Box>
+      <Box marginTop="6">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>ID</TableHead>
+              <TableHead>User</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>Source</TableHead>
+              <TableHead>Created</TableHead>
+              <TableHead />
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody>
+            {((orders ?? []) as OrderRow[]).map((o) => (
+              <TableRow key={o.id}>
+                <TableCell>
+                  <span className={s.monoXs}>{o.id.slice(0, 8)}…</span>
+                </TableCell>
+                <TableCell>{emailById.get(o.user_id) ?? o.user_id}</TableCell>
+                <TableCell>
+                  <OrderStatusBadge status={o.status} source={o.source} />
+                </TableCell>
+                <TableCell>{o.source}</TableCell>
+                <TableCell>{formatDate(o.created_at)}</TableCell>
+                <TableCell>
+                  <Link href={`/admin/order/${o.id}`} className={s.primaryLink}>
+                    Open
+                  </Link>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Box>
     </div>
   );
 }

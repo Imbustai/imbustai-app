@@ -49,7 +49,8 @@ const SPRINKLES_PROPS = new Set([
   'margin', 'marginTop', 'marginBottom', 'marginLeft', 'marginRight',
   'marginX', 'marginY',
   'position', 'width', 'maxWidth', 'height', 'borderRadius',
-  'overflow', 'flexGrow', 'flexShrink',
+  'overflow', 'overflowX', 'overflowY', 'flexGrow', 'flexShrink',
+  'top', 'zIndex', 'minWidth', 'gridColumn',
 ]);
 
 function isSprinklesProp(key: string): boolean {

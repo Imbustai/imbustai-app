@@ -6,6 +6,7 @@ import {
   ReplyWorkflowPanel,
   TestHarnessCard,
 } from '@/components/games/reply-workflow-panel';
+import { Box } from '@imbustai/ds';
 import type {
   AiDraftRow,
   GameRow,
@@ -17,8 +18,6 @@ import type {
 
 export const dynamic = 'force-dynamic';
 
-// Admin game console (auth is enforced by the /admin layout): game state,
-// pending-turn review workflow, full conversation, then the test harness.
 export default async function AdminGameDetailPage({
   params,
 }: {
@@ -74,7 +73,6 @@ export default async function AdminGameDetailPage({
   const { data: userRes } = await admin.auth.admin.getUserById(g.user_id);
   const userEmail = userRes?.user?.email ?? g.user_id;
 
-  // All turns + their drafts for the AI-cost breakdown (admin-only).
   const { data: allTurns } = await admin
     .from('interaction_turns')
     .select('id, turn_number')
@@ -98,7 +96,7 @@ export default async function AdminGameDetailPage({
   const turnRow = (openTurn as InteractionTurnRow | null) ?? null;
 
   return (
-    <div className="mx-auto max-w-4xl">
+    <Box maxWidth="4xl" marginX="auto">
       <ReplyWorkflowPanel
         gameId={gameId}
         game={g}
@@ -110,14 +108,14 @@ export default async function AdminGameDetailPage({
           turnRow ? interactionList.filter((i) => i.turn_id === turnRow.id) : []
         }
       />
-      <div className="mt-8">
+      <Box marginTop="8">
         <GameCostBreakdown
           drafts={costDrafts}
           turnNumbers={turnNumbers}
           characters={characterList}
         />
-      </div>
-      <div className="mt-8">
+      </Box>
+      <Box marginTop="8">
         <AdminGameDetailClient
           gameId={gameId}
           game={g}
@@ -125,13 +123,13 @@ export default async function AdminGameDetailPage({
           story={(story as StoryRow | null) ?? undefined}
           userEmail={userEmail}
         />
-      </div>
+      </Box>
       <TestHarnessCard
         gameId={gameId}
         game={g}
         characters={characterList}
         hasOpenTurn={turnRow !== null}
       />
-    </div>
+    </Box>
   );
 }

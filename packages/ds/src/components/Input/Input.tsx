@@ -11,9 +11,12 @@ export type InputProps = AriaProps & {
   ref?: React.Ref<HTMLInputElement>;
   type?: string;
   name?: string;
-  value?: string;
+  value?: string | number;
   defaultValue?: string;
   placeholder?: string;
+  min?: string | number;
+  max?: string | number;
+  step?: string | number;
   disabled?: boolean;
   readOnly?: boolean;
   required?: boolean;

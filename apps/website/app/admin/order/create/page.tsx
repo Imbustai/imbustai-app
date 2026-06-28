@@ -1,6 +1,7 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { AdminPageTitle } from '@/components/admin/admin-page-title';
 import { FreeOrderForm } from '@/components/admin/free-order-form';
+import { Box } from '@imbustai/ds';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,7 +28,7 @@ export default async function AdminCreateOrderPage() {
         titleKey="admin.createFreeOrder"
         subtitleKey="admin.dashboardSubtitle"
       />
-      <div className="mt-8">
+      <Box marginTop="8">
         <FreeOrderForm
           users={users}
           stories={
@@ -39,7 +40,7 @@ export default async function AdminCreateOrderPage() {
             }[]
           }
         />
-      </div>
+      </Box>
     </div>
   );
 }

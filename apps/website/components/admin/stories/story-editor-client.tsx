@@ -12,16 +12,23 @@ import type {
   StoryFactRow,
   StoryRow,
 } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import {
+  Badge,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Grid,
+  Inline,
+  Input,
+  Select,
+  Stack,
+  Typography,
+} from '@imbustai/ds';
 import { lifecycleBadgeVariant } from './stories-list-client';
-
-// Generic field-driven editor: the five module tables (characters, facts,
-// acts, clues, endings) share one ResourceSection component configured by
-// field definitions. Optional modules are collapsible and never required —
-// a story with only characters + opening letter is publishable.
+import s from '../admin-styles.module.css';
 
 type FieldType =
   | 'text'
@@ -43,9 +50,6 @@ interface FieldDef {
 
 type Row = Record<string, unknown> & { id: string };
 
-const textareaCls =
-  'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring/50 min-h-24 font-mono';
-
 function FieldInput({
   def,
   value,
@@ -63,73 +67,100 @@ function FieldInput({
 }) {
   const id = `f-${def.name}`;
   return (
-    <div className={def.wide ? 'col-span-full' : ''}>
-      <label htmlFor={id} className="mb-1 block text-sm text-muted-foreground">
-        {label}
-      </label>
-      {def.type === 'text' && (
-        <Input id={id} value={String(value ?? '')} onChange={(e) => onChange(e.target.value)} />
-      )}
-      {def.type === 'textarea' && (
-        <textarea
-          id={id}
-          className={textareaCls}
-          value={String(value ?? '')}
-          onChange={(e) => onChange(e.target.value)}
-        />
-      )}
-      {def.type === 'number' && (
-        <Input
-          id={id}
-          type="number"
-          value={Number(value ?? 0)}
-          onChange={(e) => onChange(Number(e.target.value))}
-        />
-      )}
-      {def.type === 'nullnumber' && (
-        <Input
-          id={id}
-          type="number"
-          value={value == null ? '' : Number(value)}
-          placeholder="—"
-          onChange={(e) => onChange(e.target.value === '' ? null : Number(e.target.value))}
-        />
-      )}
-      {def.type === 'checkbox' && (
-        <input
-          id={id}
-          type="checkbox"
-          className="mt-2 size-4"
-          checked={Boolean(value)}
-          onChange={(e) => onChange(e.target.checked)}
-        />
-      )}
-      {def.type === 'select' && (
-        <select
-          id={id}
-          className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
-          value={String(value ?? def.options?.[0] ?? '')}
-          onChange={(e) => onChange(e.target.value)}
-        >
-          {(def.options ?? []).map((opt) => (
-            <option key={opt} value={opt}>
-              {opt}
-            </option>
-          ))}
-        </select>
-      )}
-      {def.type === 'slugs' && (
-        <div className="flex flex-wrap gap-3 rounded-md border border-input p-2">
-          {slugOptions.length === 0 ? (
-            <span className="text-sm text-muted-foreground">—</span>
-          ) : (
-            slugOptions.map((slug) => {
-              const selected = Array.isArray(value) && (value as string[]).includes(slug);
-              return (
-                <label key={slug} className="flex items-center gap-1 text-sm">
+    <Box gridColumn={def.wide ? 'span-full' : undefined}>
+      <Stack gap="1">
+        <Typography variant="caption" tone="muted" as="label" id={`label-${id}`}>
+          {label}
+        </Typography>
+        {def.type === 'text' && (
+          <Input id={id} value={String(value ?? '')} onChange={(e) => onChange(e.target.value)} />
+        )}
+        {def.type === 'textarea' && (
+          <textarea
+            id={id}
+            className={s.textarea}
+            value={String(value ?? '')}
+            onChange={(e) => onChange(e.target.value)}
+          />
+        )}
+        {def.type === 'number' && (
+          <Input
+            id={id}
+            type="number"
+            value={Number(value ?? 0)}
+            onChange={(e) => onChange(Number(e.target.value))}
+          />
+        )}
+        {def.type === 'nullnumber' && (
+          <Input
+            id={id}
+            type="number"
+            value={value == null ? '' : Number(value)}
+            placeholder="—"
+            onChange={(e) => onChange(e.target.value === '' ? null : Number(e.target.value))}
+          />
+        )}
+        {def.type === 'checkbox' && (
+          <input
+            id={id}
+            type="checkbox"
+            className={s.nativeCheckbox}
+            checked={Boolean(value)}
+            onChange={(e) => onChange(e.target.checked)}
+          />
+        )}
+        {def.type === 'select' && (
+          <Select
+            id={id}
+            value={String(value ?? def.options?.[0] ?? '')}
+            onChange={(e) => onChange(e.target.value)}
+          >
+            {(def.options ?? []).map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
+          </Select>
+        )}
+        {def.type === 'slugs' && (
+          <SlugCheckboxes
+            slugOptions={slugOptions}
+            value={value}
+            onChange={onChange}
+          />
+        )}
+        {def.type === 'json' && (
+          <JsonField id={id} value={value} onChange={onChange} />
+        )}
+        {hint ? <Typography variant="caption" tone="muted">{hint}</Typography> : null}
+      </Stack>
+    </Box>
+  );
+}
+
+function SlugCheckboxes({
+  slugOptions,
+  value,
+  onChange,
+}: {
+  slugOptions: string[];
+  value: unknown;
+  onChange: (v: unknown) => void;
+}) {
+  return (
+    <Inline gap="3">
+      {slugOptions.length === 0 ? (
+        <Typography variant="caption" tone="muted" as="span">—</Typography>
+      ) : (
+        slugOptions.map((slug) => {
+          const selected = Array.isArray(value) && (value as string[]).includes(slug);
+          return (
+            <Inline key={slug} gap="1">
+              <label>
+                <Inline gap="1">
                   <input
                     type="checkbox"
-                    className="size-4"
+                    className={s.nativeCheckbox}
                     checked={selected}
                     onChange={(e) => {
                       const current = Array.isArray(value) ? (value as string[]) : [];
@@ -140,18 +171,14 @@ function FieldInput({
                       );
                     }}
                   />
-                  {slug}
-                </label>
-              );
-            })
-          )}
-        </div>
+                  <Typography variant="caption" as="span">{slug}</Typography>
+                </Inline>
+              </label>
+            </Inline>
+          );
+        })
       )}
-      {def.type === 'json' && (
-        <JsonField id={id} value={value} onChange={onChange} />
-      )}
-      {hint ? <p className="mt-1 text-xs text-muted-foreground">{hint}</p> : null}
-    </div>
+    </Inline>
   );
 }
 
@@ -170,7 +197,7 @@ function JsonField({
     <div>
       <textarea
         id={id}
-        className={`${textareaCls} ${bad ? 'border-destructive' : ''}`}
+        className={`${s.textarea} ${bad ? s.textareaBorderError : ''}`}
         value={text}
         onChange={(e) => {
           setText(e.target.value);
@@ -182,7 +209,7 @@ function JsonField({
           }
         }}
       />
-      {bad ? <p className="mt-1 text-xs text-destructive">Invalid JSON</p> : null}
+      {bad ? <Typography variant="caption" tone="muted" as="p">Invalid JSON</Typography> : null}
     </div>
   );
 }
@@ -240,35 +267,37 @@ function RowForm({
   }
 
   return (
-    <div className="rounded-md border border-border bg-muted/30 p-4">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {fields.map((def) => (
-          <FieldInput
-            key={def.name}
-            def={def}
-            value={draft[def.name]}
-            onChange={(v) => setDraft((d) => ({ ...d, [def.name]: v }))}
-            slugOptions={slugOptions}
-            label={t(`storiesAdmin.fields.${def.name}`)}
-            hint={def.hint ? t(def.hint) : undefined}
-          />
-        ))}
-      </div>
-      {error ? <p className="mt-3 text-sm text-destructive">{error}</p> : null}
-      <div className="mt-4 flex gap-2">
-        <Button size="sm" onClick={save} disabled={busy}>
-          {t('common.save')}
-        </Button>
-        <Button size="sm" variant="outline" onClick={onDone} disabled={busy}>
-          {t('common.cancel')}
-        </Button>
-        {row.id ? (
-          <Button size="sm" variant="destructive" onClick={remove} disabled={busy}>
-            {t('storiesAdmin.delete')}
+    <Box padding="4" borderRadius="md">
+      <Stack gap="4">
+        <Grid columns={3} gap="4">
+          {fields.map((def) => (
+            <FieldInput
+              key={def.name}
+              def={def}
+              value={draft[def.name]}
+              onChange={(v) => setDraft((d) => ({ ...d, [def.name]: v }))}
+              slugOptions={slugOptions}
+              label={t(`storiesAdmin.fields.${def.name}`)}
+              hint={def.hint ? t(def.hint) : undefined}
+            />
+          ))}
+        </Grid>
+        {error ? <p className={s.errorText}>{error}</p> : null}
+        <Inline gap="2">
+          <Button size="sm" onClick={save} disabled={busy}>
+            {t('common.save')}
           </Button>
-        ) : null}
-      </div>
-    </div>
+          <Button size="sm" variant="outline" onClick={onDone} disabled={busy}>
+            {t('common.cancel')}
+          </Button>
+          {row.id ? (
+            <Button size="sm" variant="destructive" onClick={remove} disabled={busy}>
+              {t('storiesAdmin.delete')}
+            </Button>
+          ) : null}
+        </Inline>
+      </Stack>
+    </Box>
   );
 }
 
@@ -302,67 +331,72 @@ function ResourceSection({
   }
 
   return (
-    <Card className="mt-6">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between">
-          <button type="button" className="flex items-center gap-2" onClick={() => setOpen(!open)}>
-            <span>{open ? '▾' : '▸'}</span>
-            {t(`storiesAdmin.sections.${resource}`)}
-            <Badge variant="secondary">{rows.length}</Badge>
-            {optional ? (
-              <span className="text-xs font-normal text-muted-foreground">
-                {t('storiesAdmin.optionalModule')}
-              </span>
-            ) : null}
-          </button>
-          {open ? (
-            <Button size="sm" variant="outline" onClick={() => setEditingId('new')}>
-              {t('storiesAdmin.add')}
-            </Button>
-          ) : null}
-        </CardTitle>
-      </CardHeader>
-      {open ? (
-        <CardContent className="space-y-3">
-          {editingId === 'new' ? (
-            <RowForm
-              resource={resource}
-              storyId={storyId}
-              row={newRow}
-              fields={fields}
-              slugOptions={slugOptions}
-              onDone={done}
-            />
-          ) : null}
-          {rows.map((row) =>
-            editingId === row.id ? (
-              <RowForm
-                key={row.id}
-                resource={resource}
-                storyId={storyId}
-                row={row}
-                fields={fields}
-                slugOptions={slugOptions}
-                onDone={done}
-              />
-            ) : (
-              <div
-                key={row.id}
-                className="flex items-center justify-between rounded-md border border-border px-3 py-2"
-              >
-                <span className="truncate text-sm">{summary(row)}</span>
-                <Button size="sm" variant="ghost" onClick={() => setEditingId(row.id)}>
-                  {t('storiesAdmin.edit')}
+    <Box marginTop="6">
+      <Card>
+        <CardHeader>
+          <CardTitle>
+            <Inline justify="space-between" align="center">
+              <button type="button" onClick={() => setOpen(!open)}>
+                <Inline gap="2">
+                  <span>{open ? '▾' : '▸'}</span>
+                  {t(`storiesAdmin.sections.${resource}`)}
+                  <Badge variant="secondary">{rows.length}</Badge>
+                  {optional ? (
+                    <Typography variant="caption" tone="muted" as="span">
+                      {t('storiesAdmin.optionalModule')}
+                    </Typography>
+                  ) : null}
+                </Inline>
+              </button>
+              {open ? (
+                <Button size="sm" variant="outline" onClick={() => setEditingId('new')}>
+                  {t('storiesAdmin.add')}
                 </Button>
-              </div>
-            ),
-          )}
-          {rows.length === 0 && editingId !== 'new' ? (
-            <p className="text-sm text-muted-foreground">{t('common.none')}</p>
-          ) : null}
-        </CardContent>
-      ) : null}
-    </Card>
+              ) : null}
+            </Inline>
+          </CardTitle>
+        </CardHeader>
+        {open ? (
+          <CardContent>
+            <Stack gap="3">
+              {editingId === 'new' ? (
+                <RowForm
+                  resource={resource}
+                  storyId={storyId}
+                  row={newRow}
+                  fields={fields}
+                  slugOptions={slugOptions}
+                  onDone={done}
+                />
+              ) : null}
+              {rows.map((row) =>
+                editingId === row.id ? (
+                  <RowForm
+                    key={row.id}
+                    resource={resource}
+                    storyId={storyId}
+                    row={row}
+                    fields={fields}
+                    slugOptions={slugOptions}
+                    onDone={done}
+                  />
+                ) : (
+                  <Box key={row.id} display="flex" justifyContent="space-between" alignItems="center" padding="3">
+                    <Typography variant="caption" as="span">{summary(row)}</Typography>
+                    <Button size="sm" variant="ghost" onClick={() => setEditingId(row.id)}>
+                      {t('storiesAdmin.edit')}
+                    </Button>
+                  </Box>
+                ),
+              )}
+              {rows.length === 0 && editingId !== 'new' ? (
+                <Typography variant="caption" tone="muted">{t('common.none')}</Typography>
+              ) : null}
+            </Stack>
+          </CardContent>
+        ) : null}
+      </Card>
+    </Box>
   );
 }
 
@@ -496,207 +530,227 @@ export function StoryEditorClient({
 
   return (
     <div>
-      <div className="mb-6 flex flex-wrap items-center gap-4 text-sm">
-        <Link href="/admin/stories" className="text-muted-foreground transition-colors hover:text-foreground">
+      <Box marginBottom="6">
+        <Link href="/admin/stories" className={s.mutedLink}>
           ← {t('storiesAdmin.backToList')}
         </Link>
-      </div>
+      </Box>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <h1 className="font-heading text-2xl font-semibold">{story.title_it || story.slug}</h1>
+      <Inline gap="3">
+        <Typography variant="h2" as="h1">{story.title_it || story.slug}</Typography>
         <Badge variant={lifecycleBadgeVariant(story.lifecycle)}>
           {t(`storiesAdmin.lifecycle.${story.lifecycle}`)}
         </Badge>
-      </div>
+      </Inline>
 
       {activeGamesCount > 0 ? (
-        <div className="mt-4 rounded-md border border-amber-500/60 bg-amber-500/10 p-4 text-sm">
-          <strong>⚠️ {t('storiesAdmin.activeGamesWarningTitle')}</strong>{' '}
-          {t('storiesAdmin.activeGamesWarningBody').replace('{count}', String(activeGamesCount))}
-        </div>
+        <Box marginTop="4">
+          <div className={s.warningBox}>
+            <strong>⚠️ {t('storiesAdmin.activeGamesWarningTitle')}</strong>{' '}
+            {t('storiesAdmin.activeGamesWarningBody').replace('{count}', String(activeGamesCount))}
+          </div>
+        </Box>
       ) : null}
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>{t('storiesAdmin.sections.metadata')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.slug')}</label>
-              <Input value={meta.slug} onChange={(e) => set({ slug: e.target.value })} />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.title')} (IT)</label>
-              <Input value={meta.title_it} onChange={(e) => set({ title_it: e.target.value })} />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.title')} (EN)</label>
-              <Input value={meta.title_en} onChange={(e) => set({ title_en: e.target.value })} />
-            </div>
-            <div className="col-span-full">
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.description')} (IT)</label>
-              <textarea className={textareaCls} value={meta.description_it} onChange={(e) => set({ description_it: e.target.value })} />
-            </div>
-            <div className="col-span-full">
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.description')} (EN)</label>
-              <textarea className={textareaCls} value={meta.description_en} onChange={(e) => set({ description_en: e.target.value })} />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.price_cents')}</label>
-              <Input type="number" value={meta.price_cents} onChange={(e) => set({ price_cents: Number(e.target.value) })} />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.lifecycle')}</label>
-              <select
-                className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
-                value={meta.lifecycle}
-                onChange={(e) => set({ lifecycle: e.target.value as StoryRow['lifecycle'] })}
-              >
-                {(['draft', 'testing', 'released'] as const).map((lc) => (
-                  <option key={lc} value={lc}>
-                    {t(`storiesAdmin.lifecycle.${lc}`)}
-                  </option>
-                ))}
-              </select>
-              <p className="mt-1 text-xs text-muted-foreground">{t(`storiesAdmin.lifecycleHint.${meta.lifecycle}`)}</p>
-            </div>
-            <div className="flex flex-col gap-2 pt-6">
-              <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" className="size-4" checked={meta.is_published} onChange={(e) => set({ is_published: e.target.checked })} />
-                {t('storiesAdmin.fields.published')}
-              </label>
-              <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" className="size-4" checked={meta.allow_dynamic_npcs} onChange={(e) => set({ allow_dynamic_npcs: e.target.checked })} />
-                {t('storiesAdmin.fields.allow_dynamic_npcs')}
-              </label>
-            </div>
-            <div className="col-span-full">
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.first_letter')}</label>
-              <textarea className={textareaCls} value={meta.first_letter} onChange={(e) => set({ first_letter: e.target.value })} />
-              <p className="mt-1 text-xs text-muted-foreground">{t('storiesAdmin.hints.firstLetterLegacy')}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <Box marginTop="6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('storiesAdmin.sections.metadata')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Grid columns={3} gap="4">
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.slug')}</Typography>
+                <Input value={meta.slug} onChange={(e) => set({ slug: e.target.value })} />
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.title')} (IT)</Typography>
+                <Input value={meta.title_it} onChange={(e) => set({ title_it: e.target.value })} />
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.title')} (EN)</Typography>
+                <Input value={meta.title_en} onChange={(e) => set({ title_en: e.target.value })} />
+              </Stack>
+              <Box gridColumn="span-full">
+                <Stack gap="1">
+                  <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.description')} (IT)</Typography>
+                  <textarea className={s.textarea} value={meta.description_it} onChange={(e) => set({ description_it: e.target.value })} />
+                </Stack>
+              </Box>
+              <Box gridColumn="span-full">
+                <Stack gap="1">
+                  <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.description')} (EN)</Typography>
+                  <textarea className={s.textarea} value={meta.description_en} onChange={(e) => set({ description_en: e.target.value })} />
+                </Stack>
+              </Box>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.price_cents')}</Typography>
+                <Input type="number" value={meta.price_cents} onChange={(e) => set({ price_cents: Number(e.target.value) })} />
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.lifecycle')}</Typography>
+                <Select
+                  value={meta.lifecycle}
+                  onChange={(e) => set({ lifecycle: e.target.value as StoryRow['lifecycle'] })}
+                >
+                  {(['draft', 'testing', 'released'] as const).map((lc) => (
+                    <option key={lc} value={lc}>
+                      {t(`storiesAdmin.lifecycle.${lc}`)}
+                    </option>
+                  ))}
+                </Select>
+                <Typography variant="caption" tone="muted">{t(`storiesAdmin.lifecycleHint.${meta.lifecycle}`)}</Typography>
+              </Stack>
+              <Box display="flex" flexDirection="column" gap="2" paddingTop="6">
+                <label>
+                  <Inline gap="2">
+                    <input type="checkbox" className={s.nativeCheckbox} checked={meta.is_published} onChange={(e) => set({ is_published: e.target.checked })} />
+                    <Typography variant="caption" as="span">{t('storiesAdmin.fields.published')}</Typography>
+                  </Inline>
+                </label>
+                <label>
+                  <Inline gap="2">
+                    <input type="checkbox" className={s.nativeCheckbox} checked={meta.allow_dynamic_npcs} onChange={(e) => set({ allow_dynamic_npcs: e.target.checked })} />
+                    <Typography variant="caption" as="span">{t('storiesAdmin.fields.allow_dynamic_npcs')}</Typography>
+                  </Inline>
+                </label>
+              </Box>
+              <Box gridColumn="span-full">
+                <Stack gap="1">
+                  <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.first_letter')}</Typography>
+                  <textarea className={s.textarea} value={meta.first_letter} onChange={(e) => set({ first_letter: e.target.value })} />
+                  <Typography variant="caption" tone="muted">{t('storiesAdmin.hints.firstLetterLegacy')}</Typography>
+                </Stack>
+              </Box>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Box>
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>{t('storiesAdmin.sections.time')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.start_mode')}</label>
-              <select
-                className="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm"
-                value={meta.time_config.start_mode}
-                onChange={(e) =>
-                  set({ time_config: { ...meta.time_config, start_mode: e.target.value as 'fixed' | 'actual' } })
-                }
-              >
-                <option value="fixed">{t('storiesAdmin.startMode.fixed')}</option>
-                <option value="actual">{t('storiesAdmin.startMode.actual')}</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.story_start_date')}</label>
-              <Input
-                type="date"
-                value={meta.time_config.story_start_date}
-                disabled={meta.time_config.start_mode === 'actual'}
-                onChange={(e) => set({ time_config: { ...meta.time_config, story_start_date: e.target.value } })}
-              />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.date_locale')}</label>
-              <Input
-                value={meta.time_config.date_locale}
-                onChange={(e) => set({ time_config: { ...meta.time_config, date_locale: e.target.value } })}
-              />
-            </div>
-            <div className="col-span-full grid grid-cols-1 gap-4 md:grid-cols-4">
-              <label className="flex items-center gap-2 pt-6 text-sm">
-                <input
-                  type="checkbox"
-                  className="size-4"
-                  checked={meta.time_config.visible_delay.enabled}
+      <Box marginTop="6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('storiesAdmin.sections.time')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Grid columns={3} gap="4">
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.start_mode')}</Typography>
+                <Select
+                  value={meta.time_config.start_mode}
                   onChange={(e) =>
-                    set({
-                      time_config: {
-                        ...meta.time_config,
-                        visible_delay: { ...meta.time_config.visible_delay, enabled: e.target.checked },
-                      },
-                    })
+                    set({ time_config: { ...meta.time_config, start_mode: e.target.value as 'fixed' | 'actual' } })
                   }
+                >
+                  <option value="fixed">{t('storiesAdmin.startMode.fixed')}</option>
+                  <option value="actual">{t('storiesAdmin.startMode.actual')}</option>
+                </Select>
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.story_start_date')}</Typography>
+                <Input
+                  type="date"
+                  value={meta.time_config.story_start_date}
+                  disabled={meta.time_config.start_mode === 'actual'}
+                  onChange={(e) => set({ time_config: { ...meta.time_config, story_start_date: e.target.value } })}
                 />
-                {t('storiesAdmin.fields.visible_delay_enabled')}
-              </label>
-              <div>
-                <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.visible_delay_min')}</label>
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.date_locale')}</Typography>
+                <Input
+                  value={meta.time_config.date_locale}
+                  onChange={(e) => set({ time_config: { ...meta.time_config, date_locale: e.target.value } })}
+                />
+              </Stack>
+              <Box gridColumn="span-full">
+                <Grid columns={4} gap="4">
+                  <label>
+                    <Inline gap="2" align="center">
+                      <input
+                        type="checkbox"
+                        className={s.nativeCheckbox}
+                        checked={meta.time_config.visible_delay.enabled}
+                        onChange={(e) =>
+                          set({
+                            time_config: {
+                              ...meta.time_config,
+                              visible_delay: { ...meta.time_config.visible_delay, enabled: e.target.checked },
+                            },
+                          })
+                        }
+                      />
+                      <Typography variant="caption" as="span">{t('storiesAdmin.fields.visible_delay_enabled')}</Typography>
+                    </Inline>
+                  </label>
+                  <Stack gap="1">
+                    <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.visible_delay_min')}</Typography>
+                    <Input
+                      type="number"
+                      value={meta.time_config.visible_delay.min_minutes}
+                      onChange={(e) =>
+                        set({
+                          time_config: {
+                            ...meta.time_config,
+                            visible_delay: { ...meta.time_config.visible_delay, min_minutes: Number(e.target.value) },
+                          },
+                        })
+                      }
+                    />
+                  </Stack>
+                  <Stack gap="1">
+                    <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.visible_delay_max')}</Typography>
+                    <Input
+                      type="number"
+                      value={meta.time_config.visible_delay.max_minutes}
+                      onChange={(e) =>
+                        set({
+                          time_config: {
+                            ...meta.time_config,
+                            visible_delay: { ...meta.time_config.visible_delay, max_minutes: Number(e.target.value) },
+                          },
+                        })
+                      }
+                    />
+                  </Stack>
+                </Grid>
+              </Box>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.max_letters_per_turn')}</Typography>
                 <Input
                   type="number"
-                  value={meta.time_config.visible_delay.min_minutes}
-                  onChange={(e) =>
-                    set({
-                      time_config: {
-                        ...meta.time_config,
-                        visible_delay: { ...meta.time_config.visible_delay, min_minutes: Number(e.target.value) },
-                      },
-                    })
-                  }
+                  value={meta.settings.max_letters_per_turn}
+                  onChange={(e) => set({ settings: { ...meta.settings, max_letters_per_turn: Number(e.target.value) } })}
                 />
-              </div>
-              <div>
-                <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.visible_delay_max')}</label>
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.max_turns')}</Typography>
                 <Input
                   type="number"
-                  value={meta.time_config.visible_delay.max_minutes}
-                  onChange={(e) =>
-                    set({
-                      time_config: {
-                        ...meta.time_config,
-                        visible_delay: { ...meta.time_config.visible_delay, max_minutes: Number(e.target.value) },
-                      },
-                    })
-                  }
+                  value={meta.settings.max_turns}
+                  onChange={(e) => set({ settings: { ...meta.settings, max_turns: Number(e.target.value) } })}
                 />
-              </div>
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.max_letters_per_turn')}</label>
-              <Input
-                type="number"
-                value={meta.settings.max_letters_per_turn}
-                onChange={(e) => set({ settings: { ...meta.settings, max_letters_per_turn: Number(e.target.value) } })}
-              />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.max_turns')}</label>
-              <Input
-                type="number"
-                value={meta.settings.max_turns}
-                onChange={(e) => set({ settings: { ...meta.settings, max_turns: Number(e.target.value) } })}
-              />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">{t('storiesAdmin.fields.story_locale')}</label>
-              <Input
-                value={meta.settings.locale}
-                onChange={(e) => set({ settings: { ...meta.settings, locale: e.target.value } })}
-              />
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+              </Stack>
+              <Stack gap="1">
+                <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.story_locale')}</Typography>
+                <Input
+                  value={meta.settings.locale}
+                  onChange={(e) => set({ settings: { ...meta.settings, locale: e.target.value } })}
+                />
+              </Stack>
+            </Grid>
+          </CardContent>
+        </Card>
+      </Box>
 
-      <div className="sticky bottom-4 mt-4 flex items-center gap-3">
-        <Button onClick={saveStory} disabled={busy}>
-          {t('storiesAdmin.saveStory')}
-        </Button>
-        {saved ? <span className="text-sm text-green-600">{t('storiesAdmin.saved')}</span> : null}
-        {error ? <span className="text-sm text-destructive">{error}</span> : null}
-      </div>
+      <Box position="sticky" marginTop="4" paddingBottom="4">
+        <Inline gap="3">
+          <Button onClick={saveStory} disabled={busy}>
+            {t('storiesAdmin.saveStory')}
+          </Button>
+          {saved ? <span className={s.savedText}>{t('storiesAdmin.saved')}</span> : null}
+          {error ? <span className={s.errorText}>{error}</span> : null}
+        </Inline>
+      </Box>
 
       <ResourceSection
         resource="characters"

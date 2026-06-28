@@ -14,6 +14,12 @@ const widthPresets = {
   '2/3': '66.667%',
   '1/4': '25%',
   '3/4': '75%',
+  '24': '6rem',
+  '28': '7rem',
+  '40': '10rem',
+  '44': '11rem',
+  '56': '14rem',
+  '72': '18rem',
 } as const;
 
 const maxWidthPresets = {
@@ -34,6 +40,27 @@ const heightPresets = {
   full: '100%',
   screen: '100dvh',
   auto: 'auto',
+  '8': '2rem',
+  '9': '2.25rem',
+  '14': '3.5rem',
+} as const;
+
+const minWidthPresets = {
+  '0': '0px',
+  full: '100%',
+} as const;
+
+const topPresets = {
+  '0': '0px',
+} as const;
+
+const zIndexPresets = {
+  '0': '0',
+  '10': '10',
+  '20': '20',
+  '30': '30',
+  '40': '40',
+  '50': '50',
 } as const;
 
 const conditions = {
@@ -71,8 +98,19 @@ const responsiveProperties = defineProperties({
     height: heightPresets,
     borderRadius: radius,
     overflow: ['visible', 'hidden', 'auto', 'scroll'],
+    overflowX: ['visible', 'hidden', 'auto', 'scroll'],
+    overflowY: ['visible', 'hidden', 'auto', 'scroll'],
     flexGrow: [0, 1],
     flexShrink: [0, 1],
+    top: topPresets,
+    zIndex: zIndexPresets,
+    minWidth: minWidthPresets,
+    gridColumn: {
+      '1': '1',
+      'span-2': 'span 2',
+      'span-3': 'span 3',
+      'span-full': '1 / -1',
+    },
   },
   shorthands: {
     paddingX: ['paddingLeft', 'paddingRight'],

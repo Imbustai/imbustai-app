@@ -1,0 +1,108 @@
+.errorText {
+  font-size: 0.875rem;
+  color: var(--ds-color-destructive);
+}
+
+.errorTextSmall {
+  font-size: 0.75rem;
+  color: var(--ds-color-destructive);
+}
+
+.mutedText {
+  color: var(--ds-color-muted-foreground);
+}
+
+.mutedTextSm {
+  font-size: 0.875rem;
+  color: var(--ds-color-muted-foreground);
+}
+
+.mutedTextXs {
+  font-size: 0.75rem;
+  color: var(--ds-color-muted-foreground);
+}
+
+.primaryLink {
+  color: var(--ds-color-primary);
+  text-decoration: underline;
+}
+
+.mutedLink {
+  color: var(--ds-color-muted-foreground);
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.mutedLink:hover {
+  color: var(--ds-color-foreground);
+}
+
+.monoXs {
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.iconSm {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+.iconXs {
+  width: 1rem;
+  height: 1rem;
+}
+
+.textarea {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid var(--ds-color-input);
+  background-color: transparent;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  box-shadow: 0 1px 1px 0 rgb(0 0 0 / 0.02);
+  outline: none;
+  min-height: 6rem;
+  font-family: monospace;
+}
+
+.textarea:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ds-color-ring) 50%, transparent);
+}
+
+.textareaBorderError {
+  border-color: var(--ds-color-destructive);
+}
+
+.nativeCheckbox {
+  width: 1rem;
+  height: 1rem;
+}
+
+.nativeSelect {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid var(--ds-color-input);
+  background-color: transparent;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.warningBox {
+  border-radius: 0.375rem;
+  border: 1px solid color-mix(in srgb, #f59e0b 60%, transparent);
+  background-color: color-mix(in srgb, #f59e0b 10%, transparent);
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+.savedText {
+  font-size: 0.875rem;
+  color: #16a34a;
+}

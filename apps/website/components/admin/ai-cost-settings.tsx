@@ -2,8 +2,17 @@
 
 import { useTranslation } from '@imbustai/i18n';
 import type { AiModelPricingRow } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Badge,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Inline,
+  Stack,
+  Typography,
+} from '@imbustai/ds';
 import { PricingTable } from '@/components/admin/pricing-table';
 
 export function AiCostSettings({
@@ -16,27 +25,31 @@ export function AiCostSettings({
   const { t } = useTranslation();
 
   return (
-    <div className="space-y-6">
+    <Stack gap="6">
       <div>
-        <h1 className="font-heading text-3xl font-semibold">{t('admin.cost.settingsTitle')}</h1>
-        <p className="mt-2 text-muted-foreground">{t('admin.cost.settingsSubtitle')}</p>
+        <Typography variant="h2" as="h1">{t('admin.cost.settingsTitle')}</Typography>
+        <Typography variant="body" tone="muted">{t('admin.cost.settingsSubtitle')}</Typography>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle className="flex flex-wrap items-center gap-2">
-            {t('admin.cost.activeModel')}
-            <Badge>{active.model || '—'}</Badge>
+          <CardTitle>
+            <Inline gap="2">
+              {t('admin.cost.activeModel')}
+              <Badge>{active.model || '—'}</Badge>
+            </Inline>
           </CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
-          <span>
-            {t('admin.cost.activeProvider')}: <strong>{active.provider}</strong>
-          </span>
-          <span>
-            {t('admin.cost.keyConfigured')}:{' '}
-            <strong>{active.keyConfigured ? t('admin.cost.yes') : t('admin.cost.no')}</strong>
-          </span>
+        <CardContent>
+          <Inline gap="6">
+            <Typography variant="caption" tone="muted" as="span">
+              {t('admin.cost.activeProvider')}: <strong>{active.provider}</strong>
+            </Typography>
+            <Typography variant="caption" tone="muted" as="span">
+              {t('admin.cost.keyConfigured')}:{' '}
+              <strong>{active.keyConfigured ? t('admin.cost.yes') : t('admin.cost.no')}</strong>
+            </Typography>
+          </Inline>
         </CardContent>
       </Card>
 
@@ -44,11 +57,13 @@ export function AiCostSettings({
         <CardHeader>
           <CardTitle>{t('admin.cost.pricingTitle')}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
-          <p className="text-xs text-muted-foreground">{t('admin.cost.pricingHint')}</p>
-          <PricingTable rows={rows} />
+        <CardContent>
+          <Stack gap="3">
+            <Typography variant="caption" tone="muted">{t('admin.cost.pricingHint')}</Typography>
+            <PricingTable rows={rows} />
+          </Stack>
         </CardContent>
       </Card>
-    </div>
+    </Stack>
   );
 }

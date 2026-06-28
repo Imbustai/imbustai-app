@@ -1,11 +1,12 @@
 'use client';
 
 import { useTranslation } from '@imbustai/i18n';
+import { Inline } from '@imbustai/ds';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react';
-import { cn } from '@/lib/utils';
+import styles from './admin-breadcrumbs.module.css';
 
 function buildCrumbs(
   pathname: string,
@@ -54,39 +55,30 @@ function buildCrumbs(
   return [root];
 }
 
-export function AdminBreadcrumbs({ className }: { className?: string }) {
+export function AdminBreadcrumbs() {
   const pathname = usePathname();
   const { t } = useTranslation();
   const items = useMemo(() => buildCrumbs(pathname, t), [pathname, t]);
 
   return (
-    <nav
-      aria-label="Breadcrumb"
-      className={cn('flex flex-wrap items-center gap-1 text-sm', className)}
-    >
+    <Inline as="nav" gap="1" wrap={true} aria-label="Breadcrumb">
       {items.map((item, i) => {
         const isLast = i === items.length - 1;
         return (
-          <span key={`${item.href}-${i}`} className="flex items-center gap-1">
+          <Inline key={`${item.href}-${i}`} gap="1">
             {i > 0 ? (
-              <ChevronRight
-                className="size-4 shrink-0 text-muted-foreground"
-                aria-hidden
-              />
+              <ChevronRight className={styles.chevron} aria-hidden />
             ) : null}
             {isLast ? (
-              <span className="font-medium text-foreground">{item.label}</span>
+              <span className={styles.breadcrumbCurrent}>{item.label}</span>
             ) : (
-              <Link
-                href={item.href}
-                className="text-muted-foreground transition-colors hover:text-foreground"
-              >
+              <Link href={item.href} className={styles.breadcrumbLink}>
                 {item.label}
               </Link>
             )}
-          </span>
+          </Inline>
         );
       })}
-    </nav>
+    </Inline>
   );
 }

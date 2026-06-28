@@ -29,6 +29,8 @@ export { Label } from './components/Label/Label';
 export type { LabelProps } from './components/Label/Label';
 export { Badge } from './components/Badge/Badge';
 export type { BadgeProps } from './components/Badge/Badge';
+export { Pill } from './components/Pill/Pill';
+export type { PillProps } from './components/Pill/Pill';
 
 // Layout
 export { sprinkles } from './layout/sprinkles.css';
@@ -46,3 +48,7 @@ export type { TooltipProps, TooltipTriggerProps, TooltipContentProps, TooltipPro
 // Select
 export { Select } from './components/Select/Select';
 export type { SelectProps } from './components/Select/Select';
+
+// Sidebar
+export { Sidebar, SidebarHeader, SidebarFooter, SidebarItem } from './components/Sidebar/Sidebar';
+export type { SidebarProps, SidebarHeaderProps, SidebarFooterProps, SidebarItemProps } from './components/Sidebar/Sidebar';

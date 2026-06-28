@@ -4,16 +4,20 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from '@imbustai/i18n';
 import type { AiModelPricingRow } from '@/lib/types/db';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
+  Box,
+  Inline,
+  Stack,
+  Button,
+  Input,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+} from '@imbustai/ds';
+import s from './admin-styles.module.css';
 
 type Draft = Pick<
   AiModelPricingRow,
@@ -43,8 +47,6 @@ const EMPTY: Draft = {
   notes: '',
 };
 
-// Admin pricing editor for ai_model_pricing. Prices are stored in the DB (not
-// hardcoded) and edits affect future cost snapshots only.
 export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -106,18 +108,19 @@ export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
   }
 
   const numInput = (value: string | number, onChange: (v: string) => void) => (
-    <Input
-      type="number"
-      step="0.000001"
-      min="0"
-      value={String(value)}
-      onChange={(e) => onChange(e.target.value)}
-      className="h-8 w-24 tabular-nums"
-    />
+    <Box width="24">
+      <Input
+        type="number"
+        step="0.000001"
+        min="0"
+        value={String(value)}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </Box>
   );
 
   return (
-    <div className="space-y-3">
+    <Stack gap="3">
       <Table>
         <TableHeader>
           <TableRow>
@@ -137,18 +140,20 @@ export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
             return (
               <TableRow key={row.id}>
                 <TableCell>
-                  <Input
-                    value={String(valueOf(row, 'provider'))}
-                    onChange={(e) => setEdit(row.id, 'provider', e.target.value)}
-                    className="h-8 w-28"
-                  />
+                  <Box width="28">
+                    <Input
+                      value={String(valueOf(row, 'provider'))}
+                      onChange={(e) => setEdit(row.id, 'provider', e.target.value)}
+                    />
+                  </Box>
                 </TableCell>
                 <TableCell>
-                  <Input
-                    value={String(valueOf(row, 'model'))}
-                    onChange={(e) => setEdit(row.id, 'model', e.target.value)}
-                    className="h-8 w-44"
-                  />
+                  <Box width="44">
+                    <Input
+                      value={String(valueOf(row, 'model'))}
+                      onChange={(e) => setEdit(row.id, 'model', e.target.value)}
+                    />
+                  </Box>
                 </TableCell>
                 <TableCell>
                   {numInput(valueOf(row, 'input_usd_per_mtok'), (v) =>
@@ -171,30 +176,32 @@ export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
                   )}
                 </TableCell>
                 <TableCell>
-                  <Input
-                    value={String(valueOf(row, 'notes'))}
-                    onChange={(e) => setEdit(row.id, 'notes', e.target.value)}
-                    className="h-8 w-40"
-                  />
+                  <Box width="40">
+                    <Input
+                      value={String(valueOf(row, 'notes'))}
+                      onChange={(e) => setEdit(row.id, 'notes', e.target.value)}
+                    />
+                  </Box>
                 </TableCell>
-                <TableCell className="whitespace-nowrap">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    disabled={!dirty || busy !== null}
-                    onClick={() => saveRow(row)}
-                  >
-                    {busy === `save-${row.id}` ? '…' : t('admin.cost.save')}
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="ml-1 text-destructive"
-                    disabled={busy !== null}
-                    onClick={() => deleteRow(row)}
-                  >
-                    {busy === `del-${row.id}` ? '…' : t('admin.cost.delete')}
-                  </Button>
+                <TableCell>
+                  <Inline gap="1" wrap={false}>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      disabled={!dirty || busy !== null}
+                      onClick={() => saveRow(row)}
+                    >
+                      {busy === `save-${row.id}` ? '…' : t('admin.cost.save')}
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="destructive"
+                      disabled={busy !== null}
+                      onClick={() => deleteRow(row)}
+                    >
+                      {busy === `del-${row.id}` ? '…' : t('admin.cost.delete')}
+                    </Button>
+                  </Inline>
                 </TableCell>
               </TableRow>
             );
@@ -203,20 +210,22 @@ export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
           {/* Add-new row */}
           <TableRow>
             <TableCell>
-              <Input
-                value={adding.provider}
-                placeholder="anthropic"
-                onChange={(e) => setAdding((a) => ({ ...a, provider: e.target.value }))}
-                className="h-8 w-28"
-              />
+              <Box width="28">
+                <Input
+                  value={adding.provider}
+                  placeholder="anthropic"
+                  onChange={(e) => setAdding((a) => ({ ...a, provider: e.target.value }))}
+                />
+              </Box>
             </TableCell>
             <TableCell>
-              <Input
-                value={adding.model}
-                placeholder="claude-…"
-                onChange={(e) => setAdding((a) => ({ ...a, model: e.target.value }))}
-                className="h-8 w-44"
-              />
+              <Box width="44">
+                <Input
+                  value={adding.model}
+                  placeholder="claude-…"
+                  onChange={(e) => setAdding((a) => ({ ...a, model: e.target.value }))}
+                />
+              </Box>
             </TableCell>
             <TableCell>
               {numInput(adding.input_usd_per_mtok, (v) =>
@@ -239,11 +248,12 @@ export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
               )}
             </TableCell>
             <TableCell>
-              <Input
-                value={adding.notes}
-                onChange={(e) => setAdding((a) => ({ ...a, notes: e.target.value }))}
-                className="h-8 w-40"
-              />
+              <Box width="40">
+                <Input
+                  value={adding.notes}
+                  onChange={(e) => setAdding((a) => ({ ...a, notes: e.target.value }))}
+                />
+              </Box>
             </TableCell>
             <TableCell>
               <Button
@@ -257,7 +267,7 @@ export function PricingTable({ rows }: { rows: AiModelPricingRow[] }) {
           </TableRow>
         </TableBody>
       </Table>
-      {error ? <p className="text-sm text-destructive">{error}</p> : null}
-    </div>
+      {error ? <p className={s.errorText}>{error}</p> : null}
+    </Stack>
   );
 }

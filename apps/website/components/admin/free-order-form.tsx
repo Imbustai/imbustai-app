@@ -3,9 +3,9 @@
 import { useTranslation } from '@imbustai/i18n';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+import { Box, Stack, Button, Label, Select, Typography } from '@imbustai/ds';
 import type { AddressRow } from '@/lib/types/db';
+import s from './admin-styles.module.css';
 
 type UserOption = { id: string; email: string };
 type StoryOption = {
@@ -83,76 +83,75 @@ export function FreeOrderForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="mx-auto max-w-md space-y-6">
-      <div className="space-y-2">
-        <Label htmlFor="user">{t('admin.selectUser')}</Label>
-        <select
-          id="user"
-          required
-          className="border-input flex h-9 w-full rounded-md border bg-transparent px-3 text-sm"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-        >
-          <option value="">—</option>
-          {users.map((u) => (
-            <option key={u.id} value={u.id}>
-              {u.email}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="story">{t('admin.selectStory')}</Label>
-        <select
-          id="story"
-          required
-          className="border-input flex h-9 w-full rounded-md border bg-transparent px-3 text-sm"
-          value={storyId}
-          onChange={(e) => setStoryId(e.target.value)}
-        >
-          <option value="">—</option>
-          {stories.map((s) => (
-            <option key={s.id} value={s.id}>
-              {locale === 'it' ? s.title_it : s.title_en}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="addr">{t('admin.selectAddress')}</Label>
-        {loadingAddr ? (
-          <p className="text-sm text-muted-foreground">{t('common.loading')}</p>
-        ) : (
-          <select
-            id="addr"
+    <Box as="form" maxWidth="md" marginX="auto">
+      <Stack gap="6">
+        <Stack gap="2">
+          <Label htmlFor="user">{t('admin.selectUser')}</Label>
+          <Select
+            id="user"
             required
-            disabled={!userId || addresses.length === 0}
-            className="border-input flex h-9 w-full rounded-md border bg-transparent px-3 text-sm disabled:opacity-50"
-            value={addressId}
-            onChange={(e) => setAddressId(e.target.value)}
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
           >
             <option value="">—</option>
-            {addresses.map((a) => (
-              <option key={a.id} value={a.id}>
-                {a.label ? `${a.label} — ` : ''}
-                {a.line1}, {a.postal_code} {a.city}
+            {users.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.email}
               </option>
             ))}
-          </select>
-        )}
-      </div>
+          </Select>
+        </Stack>
 
-      {error ? (
-        <p className="text-sm text-destructive" role="alert">
-          {error}
-        </p>
-      ) : null}
+        <Stack gap="2">
+          <Label htmlFor="story">{t('admin.selectStory')}</Label>
+          <Select
+            id="story"
+            required
+            value={storyId}
+            onChange={(e) => setStoryId(e.target.value)}
+          >
+            <option value="">—</option>
+            {stories.map((s) => (
+              <option key={s.id} value={s.id}>
+                {locale === 'it' ? s.title_it : s.title_en}
+              </option>
+            ))}
+          </Select>
+        </Stack>
 
-      <Button type="submit" disabled={submitting}>
-        {submitting ? t('common.loading') : t('admin.submitFreeOrder')}
-      </Button>
-    </form>
+        <Stack gap="2">
+          <Label htmlFor="addr">{t('admin.selectAddress')}</Label>
+          {loadingAddr ? (
+            <Typography variant="caption" tone="muted">{t('common.loading')}</Typography>
+          ) : (
+            <Select
+              id="addr"
+              required
+              disabled={!userId || addresses.length === 0}
+              value={addressId}
+              onChange={(e) => setAddressId(e.target.value)}
+            >
+              <option value="">—</option>
+              {addresses.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.label ? `${a.label} — ` : ''}
+                  {a.line1}, {a.postal_code} {a.city}
+                </option>
+              ))}
+            </Select>
+          )}
+        </Stack>
+
+        {error ? (
+          <p className={s.errorText} role="alert">
+            {error}
+          </p>
+        ) : null}
+
+        <Button type="submit" disabled={submitting}>
+          {submitting ? t('common.loading') : t('admin.submitFreeOrder')}
+        </Button>
+      </Stack>
+    </Box>
   );
 }

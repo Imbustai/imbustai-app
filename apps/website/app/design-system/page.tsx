@@ -5,6 +5,11 @@ import {
   TYPOGRAPHY_SCALE,
   Button,
   Badge,
+  Pill,
+  Sidebar,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarItem,
   Card,
   CardHeader,
   CardContent,
@@ -184,6 +189,51 @@ export default function DesignSystemPage() {
             {badgeVariants.map((v) => (
               <Badge key={v} variant={v}>{v}</Badge>
             ))}
+          </div>
+        </SubSection>
+
+        {/* Pill */}
+        <SubSection title="Pill">
+          <div style={{ display: 'flex', gap: 'var(--ds-space-3)', flexWrap: 'wrap' }}>
+            <Pill variant="active">Active</Pill>
+            <Pill variant="inactive">Inactive</Pill>
+            <Pill>Default (inactive)</Pill>
+          </div>
+        </SubSection>
+
+        {/* Sidebar */}
+        <SubSection title="Sidebar">
+          <div style={{ display: 'flex', gap: 'var(--ds-space-6)' }}>
+            <div style={{ position: 'relative', height: '20rem' }}>
+              <Sidebar>
+                <SidebarHeader>
+                  <Typography variant="caption" as="span">Brand</Typography>
+                </SidebarHeader>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-space-1)', padding: 'var(--ds-space-2)', flexGrow: 1 }}>
+                  <SidebarItem active>Dashboard</SidebarItem>
+                  <SidebarItem>Orders</SidebarItem>
+                  <SidebarItem>Settings</SidebarItem>
+                </div>
+                <SidebarFooter>
+                  <SidebarItem>Exit</SidebarItem>
+                </SidebarFooter>
+              </Sidebar>
+            </div>
+            <div style={{ position: 'relative', height: '20rem' }}>
+              <Sidebar collapsed>
+                <SidebarHeader collapsed>
+                  <Typography variant="caption" as="span">B</Typography>
+                </SidebarHeader>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-space-1)', padding: 'var(--ds-space-2)', flexGrow: 1 }}>
+                  <SidebarItem active collapsed>D</SidebarItem>
+                  <SidebarItem collapsed>O</SidebarItem>
+                  <SidebarItem collapsed>S</SidebarItem>
+                </div>
+                <SidebarFooter>
+                  <SidebarItem collapsed>E</SidebarItem>
+                </SidebarFooter>
+              </Sidebar>
+            </div>
           </div>
         </SubSection>
 

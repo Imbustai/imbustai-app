@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation } from '@imbustai/i18n';
+import { Typography } from '@imbustai/ds';
 
 export function AdminPageTitle({
   titleKey,
@@ -12,10 +13,8 @@ export function AdminPageTitle({
   const { t } = useTranslation();
   return (
     <header>
-      <h1 className="font-heading text-3xl font-semibold tracking-tight">
-        {t(titleKey)}
-      </h1>
-      <p className="mt-2 text-muted-foreground">{t(subtitleKey)}</p>
+      <Typography variant="h2" as="h1">{t(titleKey)}</Typography>
+      <Typography variant="body" tone="muted">{t(subtitleKey)}</Typography>
     </header>
   );
 }

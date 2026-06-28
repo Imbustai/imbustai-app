@@ -4,14 +4,19 @@ import { AdminPageTitle } from '@/components/admin/admin-page-title';
 import { AdminBackLink } from '@/components/admin/admin-back-link';
 import { ClientSectionTitle } from '@/components/admin/client-section-title';
 import { StartGameButton } from '@/components/admin/start-game-button';
-import { Badge } from '@/components/ui/badge';
 import {
+  Badge,
+  Box,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+  Grid,
+  Stack,
+  Typography,
+} from '@imbustai/ds';
 import type { OrderRow, ShippingSnapshot, StoryRow } from '@/lib/types/db';
+import s from '@/components/admin/admin-styles.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -64,106 +69,118 @@ export default async function AdminOrderDetailPage({
         titleKey="admin.orderDetail"
         subtitleKey="admin.dashboardSubtitle"
       />
-      <p className="mt-2 font-mono text-xs text-muted-foreground">{o.id}</p>
+      <Box marginTop="2">
+        <Typography variant="caption" tone="muted" as="p">
+          <span className={s.monoXs}>{o.id}</span>
+        </Typography>
+      </Box>
 
-      <div className="mt-8 grid gap-4 md:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              <ClientSectionTitle titleKey="admin.payment" />
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-2 text-sm">
-            <p>
-              <span className="text-muted-foreground">Status: </span>
-              <Badge>{o.status}</Badge>
-            </p>
-            <p>
-              <span className="text-muted-foreground">Source: </span>
-              {o.source}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Amount: </span>
-              {(o.amount_cents / 100).toFixed(2)} {o.currency.toUpperCase()}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Paid: </span>
-              {formatDate(o.paid_at)}
-            </p>
-            <p>
-              <span className="text-muted-foreground">Created: </span>
-              {formatDate(o.created_at)}
-            </p>
-            {o.stripe_checkout_session_id ? (
-              <p className="break-all font-mono text-xs">
-                Stripe session: {o.stripe_checkout_session_id}
-              </p>
-            ) : null}
-          </CardContent>
-        </Card>
+      <Box marginTop="8">
+        <Grid columns={2} gap="4">
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <ClientSectionTitle titleKey="admin.payment" />
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Stack gap="2">
+                <Typography variant="caption" as="p">
+                  <Typography variant="caption" tone="muted" as="span">Status: </Typography>
+                  <Badge>{o.status}</Badge>
+                </Typography>
+                <Typography variant="caption" as="p">
+                  <Typography variant="caption" tone="muted" as="span">Source: </Typography>
+                  {o.source}
+                </Typography>
+                <Typography variant="caption" as="p">
+                  <Typography variant="caption" tone="muted" as="span">Amount: </Typography>
+                  {(o.amount_cents / 100).toFixed(2)} {o.currency.toUpperCase()}
+                </Typography>
+                <Typography variant="caption" as="p">
+                  <Typography variant="caption" tone="muted" as="span">Paid: </Typography>
+                  {formatDate(o.paid_at)}
+                </Typography>
+                <Typography variant="caption" as="p">
+                  <Typography variant="caption" tone="muted" as="span">Created: </Typography>
+                  {formatDate(o.created_at)}
+                </Typography>
+                {o.stripe_checkout_session_id ? (
+                  <Typography variant="caption" as="p">
+                    <span className={s.monoXs}>Stripe session: {o.stripe_checkout_session_id}</span>
+                  </Typography>
+                ) : null}
+              </Stack>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              <ClientSectionTitle titleKey="admin.user" />
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm">
-            <p>{userEmail}</p>
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <ClientSectionTitle titleKey="admin.user" />
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Typography variant="caption">{userEmail}</Typography>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              <ClientSectionTitle titleKey="admin.story" />
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm">
-            {story ? (
-              <>
-                <p className="font-medium">{(story as StoryRow).title_en}</p>
-                <p className="text-muted-foreground">
-                  slug: {(story as StoryRow).slug}
-                </p>
-              </>
-            ) : (
-              <p>—</p>
-            )}
-          </CardContent>
-        </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <ClientSectionTitle titleKey="admin.story" />
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {story ? (
+                <Stack gap="1">
+                  <Typography variant="body">{(story as StoryRow).title_en}</Typography>
+                  <Typography variant="caption" tone="muted">
+                    slug: {(story as StoryRow).slug}
+                  </Typography>
+                </Stack>
+              ) : (
+                <Typography variant="caption">—</Typography>
+              )}
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              <ClientSectionTitle titleKey="admin.shipping" />
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm">
-            <p>{snap.line1}</p>
-            {snap.line2 ? <p>{snap.line2}</p> : null}
-            <p>
-              {snap.postal_code} {snap.city}, {snap.country}
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <ClientSectionTitle titleKey="admin.shipping" />
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Stack gap="0">
+                <Typography variant="caption">{snap.line1}</Typography>
+                {snap.line2 ? <Typography variant="caption">{snap.line2}</Typography> : null}
+                <Typography variant="caption">
+                  {snap.postal_code} {snap.city}, {snap.country}
+                </Typography>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Box>
 
-      <section className="mt-10">
-        <h2 className="mb-3 font-heading text-lg font-semibold">
+      <Box as="section" marginTop="10">
+        <Typography variant="h4" as="h2">
           <ClientSectionTitle titleKey="admin.gameForOrder" />
-        </h2>
-        {o.status === 'paid' ? (
-          <StartGameButton
-            orderId={orderId}
-            existingGameId={game?.id ?? null}
-          />
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            <ClientSectionTitle titleKey="admin.mustBePaidForGame" asSpan />
-          </p>
-        )}
-      </section>
+        </Typography>
+        <Box marginTop="3">
+          {o.status === 'paid' ? (
+            <StartGameButton
+              orderId={orderId}
+              existingGameId={game?.id ?? null}
+            />
+          ) : (
+            <Typography variant="caption" tone="muted">
+              <ClientSectionTitle titleKey="admin.mustBePaidForGame" asSpan />
+            </Typography>
+          )}
+        </Box>
+      </Box>
     </div>
   );
 }
