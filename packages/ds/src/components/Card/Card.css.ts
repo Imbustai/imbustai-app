@@ -20,6 +20,11 @@ export const card = recipe({
         backgroundColor: vars.color.muted,
         color: vars.color.mutedForeground,
       },
+      accent: {
+        backgroundColor: vars.color.accent,
+        color: vars.color.accentForeground,
+        border: `1px solid ${vars.color.accent}`,
+      },
     },
     bordered: {
       true: {

@@ -7,16 +7,21 @@ import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import type { AddressRow, StoryRow } from '@/lib/types/db';
 import { formatMoney, storyTitle } from '@/lib/story-i18n';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
+  Button,
+  Input,
+  Label,
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+  Typography,
+  Stack,
+  Inline,
+  Box,
+  Grid,
+} from '@imbustai/ds';
 
 export function CheckoutClient({
   story,
@@ -119,69 +124,72 @@ export function CheckoutClient({
   }
 
   return (
-    <div>
-      <h1 className="font-heading text-2xl font-semibold">
-        {t('shop.checkoutTitle')}
-      </h1>
-      <p className="mt-2 text-sm text-muted-foreground">
+    <Stack gap="4">
+      <Typography variant="h2">{t('shop.checkoutTitle')}</Typography>
+      <Typography variant="caption" tone="muted">
         {storyTitle(story, locale)} —{' '}
         {formatMoney(story.price_cents, story.currency)}
-      </p>
+      </Typography>
 
       {cancelled ? (
-        <p className="mt-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-100">
-          {t('shop.cancelled')}
-        </p>
+        <Card tone="accent" bordered>
+          <CardContent>
+            <Typography variant="caption">{t('shop.cancelled')}</Typography>
+          </CardContent>
+        </Card>
       ) : null}
 
-      <section className="mt-8">
-        <h2 className="text-sm font-medium">{t('shop.selectAddress')}</h2>
-        <ul className="mt-3 space-y-2">
+      <Box as="section" display="flex" flexDirection="column" gap="3" marginTop="4">
+        <Typography variant="caption">{t('shop.selectAddress')}</Typography>
+        <Stack as="ul" gap="2">
           {addresses.map((a) => (
-            <li key={a.id}>
-              <label className="flex cursor-pointer gap-3 rounded-md border p-3 has-[:checked]:border-primary">
-                <input
-                  type="radio"
-                  name="address"
-                  checked={selectedId === a.id}
-                  onChange={() => setSelectedId(a.id)}
-                  className="mt-1"
-                />
-                <span className="text-sm">
-                  {a.label ? `${a.label} — ` : ''}
-                  {a.line1}, {a.postal_code} {a.city}, {a.country}
-                </span>
+            <Box as="li" key={a.id}>
+              <label>
+                <Inline gap="3">
+                  <input
+                    type="radio"
+                    name="address"
+                    checked={selectedId === a.id}
+                    onChange={() => setSelectedId(a.id)}
+                  />
+                  <Typography variant="caption">
+                    {a.label ? `${a.label} — ` : ''}
+                    {a.line1}, {a.postal_code} {a.city}, {a.country}
+                  </Typography>
+                </Inline>
               </label>
-            </li>
+            </Box>
           ))}
-        </ul>
+        </Stack>
 
         {!showForm ? (
-          <Button
-            type="button"
-            variant="outline"
-            className="mt-4"
-            onClick={() => setShowForm(true)}
-          >
-            {t('shop.addAddress')}
-          </Button>
+          <Box marginTop="2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowForm(true)}
+            >
+              {t('shop.addAddress')}
+            </Button>
+          </Box>
         ) : (
-          <Card className="mt-4">
+          <Card>
             <CardHeader>
-              <CardTitle className="text-base">{t('shop.addAddress')}</CardTitle>
+              <CardTitle>{t('shop.addAddress')}</CardTitle>
               <CardDescription>{t('shop.createAddress')}</CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={saveAddress} className="space-y-3">
-                <div className="space-y-1">
+              <form onSubmit={saveAddress}>
+              <Stack gap="3">
+                <Stack gap="1">
                   <Label htmlFor="al">{t('shop.addressLabel')}</Label>
                   <Input
                     id="al"
                     value={label}
                     onChange={(e) => setLabel(e.target.value)}
                   />
-                </div>
-                <div className="space-y-1">
+                </Stack>
+                <Stack gap="1">
                   <Label htmlFor="a1">{t('shop.line1')}</Label>
                   <Input
                     id="a1"
@@ -189,17 +197,17 @@ export function CheckoutClient({
                     value={line1}
                     onChange={(e) => setLine1(e.target.value)}
                   />
-                </div>
-                <div className="space-y-1">
+                </Stack>
+                <Stack gap="1">
                   <Label htmlFor="a2">{t('shop.line2')}</Label>
                   <Input
                     id="a2"
                     value={line2}
                     onChange={(e) => setLine2(e.target.value)}
                   />
-                </div>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <div className="space-y-1">
+                </Stack>
+                <Grid columns={2} gap="3">
+                  <Stack gap="1">
                     <Label htmlFor="city">{t('shop.city')}</Label>
                     <Input
                       id="city"
@@ -207,8 +215,8 @@ export function CheckoutClient({
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
                     />
-                  </div>
-                  <div className="space-y-1">
+                  </Stack>
+                  <Stack gap="1">
                     <Label htmlFor="zip">{t('shop.postalCode')}</Label>
                     <Input
                       id="zip"
@@ -216,9 +224,9 @@ export function CheckoutClient({
                       value={postalCode}
                       onChange={(e) => setPostalCode(e.target.value)}
                     />
-                  </div>
-                </div>
-                <div className="space-y-1">
+                  </Stack>
+                </Grid>
+                <Stack gap="1">
                   <Label htmlFor="ct">{t('shop.country')}</Label>
                   <Input
                     id="ct"
@@ -226,8 +234,8 @@ export function CheckoutClient({
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                   />
-                </div>
-                <div className="flex gap-2">
+                </Stack>
+                <Inline gap="2">
                   <Button type="submit">{t('shop.createAddress')}</Button>
                   {addresses.length > 0 ? (
                     <Button
@@ -238,20 +246,23 @@ export function CheckoutClient({
                       {t('common.cancel')}
                     </Button>
                   ) : null}
-                </div>
+                </Inline>
+              </Stack>
               </form>
             </CardContent>
           </Card>
         )}
-      </section>
+      </Box>
 
       {error ? (
-        <p className="mt-4 text-sm text-destructive" role="alert">
-          {error}
-        </p>
+        <Box role="alert">
+          <Typography variant="caption" tone="primary">
+            {error}
+          </Typography>
+        </Box>
       ) : null}
 
-      <div className="mt-10">
+      <Box marginTop="6">
         <Button
           type="button"
           size="lg"
@@ -260,14 +271,14 @@ export function CheckoutClient({
         >
           {loading ? t('common.loading') : t('shop.payWithStripe')}
         </Button>
-      </div>
+      </Box>
 
-      <p className="mt-4 text-xs text-muted-foreground">
+      <Typography variant="caption" tone="muted">
         {t('shop.orderPending')}{' '}
-        <Link href="/shop" className="underline">
-          Shop
-        </Link>
-      </p>
-    </div>
+        <Button asChild variant="link">
+          <Link href="/shop">Shop</Link>
+        </Button>
+      </Typography>
+    </Stack>
   );
 }

@@ -1,15 +1,14 @@
 'use client';
 
 import { useTranslation } from '@imbustai/i18n';
+import { Typography, Box } from '@imbustai/ds';
 
 export function ShopPageHeader() {
   const { t } = useTranslation();
   return (
-    <header className="mb-10">
-      <h1 className="font-heading text-3xl font-semibold tracking-tight md:text-4xl">
-        {t('shop.title')}
-      </h1>
-      <p className="mt-2 text-muted-foreground">{t('shop.subtitle')}</p>
-    </header>
+    <Box as="header" display="flex" flexDirection="column" gap="2" marginBottom="10">
+      <Typography variant="h1">{t('shop.title')}</Typography>
+      <Typography variant="body" tone="muted">{t('shop.subtitle')}</Typography>
+    </Box>
   );
 }

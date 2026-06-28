@@ -4,57 +4,63 @@ import { useTranslation } from '@imbustai/i18n';
 import Link from 'next/link';
 import type { StoryRow } from '@/lib/types/db';
 import { formatMoney, storyDescription, storyTitle } from '@/lib/story-i18n';
-import { Button } from '@/components/ui/button';
 import {
+  Button,
   Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+  Typography,
+  Grid,
+  Box,
+  Inline,
+} from '@imbustai/ds';
 
 export function StoryGrid({ stories }: { stories: StoryRow[] }) {
   const { t, locale } = useTranslation();
 
   if (!stories.length) {
     return (
-      <p className="text-center text-muted-foreground">{t('shop.empty')}</p>
+      <Typography variant="body" tone="muted" align="center">
+        {t('shop.empty')}
+      </Typography>
     );
   }
 
   return (
-    <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <Grid as="ul" columns={3} gap="6">
       {stories.map((story) => (
-        <li key={story.id}>
-          <Card className="flex h-full flex-col">
+        <Box as="li" key={story.id} display="flex" height="full">
+          <Card>
             <CardHeader>
-              <CardTitle className="font-heading text-xl">
-                {storyTitle(story, locale)}
-              </CardTitle>
-              <CardDescription className="line-clamp-3">
+              <CardTitle>{storyTitle(story, locale)}</CardTitle>
+              <CardDescription>
                 {storyDescription(story, locale)}
               </CardDescription>
             </CardHeader>
-            <CardContent className="flex-1">
-              <p className="text-sm font-medium">
+            <CardContent>
+              <Typography variant="caption">
                 {t('common.price')}:{' '}
                 {formatMoney(story.price_cents, story.currency)}
-              </p>
+              </Typography>
             </CardContent>
-            <CardFooter className="gap-2">
-              <Button asChild variant="secondary" className="flex-1">
-                <Link href={`/shop/${story.slug}`}>{t('shop.details')}</Link>
-              </Button>
-              <Button asChild className="flex-1">
-                <Link href={`/shop/${story.slug}/checkout`}>
-                  {t('shop.buy')}
-                </Link>
-              </Button>
+            <CardFooter>
+              <Inline gap="2">
+                <Button asChild variant="secondary">
+                  <Link href={`/shop/${story.slug}`}>{t('shop.details')}</Link>
+                </Button>
+                <Button asChild>
+                  <Link href={`/shop/${story.slug}/checkout`}>
+                    {t('shop.buy')}
+                  </Link>
+                </Button>
+              </Inline>
             </CardFooter>
           </Card>
-        </li>
+        </Box>
       ))}
-    </ul>
+    </Grid>
   );
 }

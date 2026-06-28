@@ -2,9 +2,9 @@
 
 import { useTranslation } from '@imbustai/i18n';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
+import { Button, Typography, Stack, Box } from '@imbustai/ds';
 
 export function CheckoutSuccessClient({
   status,
@@ -23,34 +23,32 @@ export function CheckoutSuccessClient({
 
   if (!status) {
     return (
-      <div className="text-center">
-        <p className="text-muted-foreground">{t('common.loading')}</p>
-      </div>
+      <Stack align="center">
+        <Typography variant="body" tone="muted">{t('common.loading')}</Typography>
+      </Stack>
     );
   }
 
   if (status !== 'paid') {
     return (
-      <div className="text-center">
-        <h1 className="font-heading text-xl font-semibold">
-          {t('common.loading')}
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
+      <Stack align="center" gap="2">
+        <Typography variant="h3">{t('common.loading')}</Typography>
+        <Typography variant="caption" tone="muted">
           {t('shop.orderPending')}
-        </p>
-      </div>
+        </Typography>
+      </Stack>
     );
   }
 
   return (
-    <div className="text-center">
-      <h1 className="font-heading text-2xl font-semibold">
-        {t('shop.successTitle')}
-      </h1>
-      <p className="mt-4 text-muted-foreground">{t('shop.successBody')}</p>
-      <Button asChild className="mt-8">
-        <Link href="/shop">{t('shop.continueShopping')}</Link>
-      </Button>
-    </div>
+    <Stack align="center" gap="4">
+      <Typography variant="h2">{t('shop.successTitle')}</Typography>
+      <Typography variant="body" tone="muted">{t('shop.successBody')}</Typography>
+      <Box marginTop="4">
+        <Button asChild>
+          <Link href="/shop">{t('shop.continueShopping')}</Link>
+        </Button>
+      </Box>
+    </Stack>
   );
 }
