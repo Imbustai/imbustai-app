@@ -1,13 +1,14 @@
 import { Suspense } from 'react';
+import { Box, Typography } from '@imbustai/ds';
 import { LoginForm } from '@/components/auth/login-form';
 
 export default function LoginPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-[50vh] items-center justify-center text-muted-foreground">
-          …
-        </div>
+        <Box display="flex" justifyContent="center" alignItems="center" height="screen">
+          <Typography variant="caption" tone="muted">…</Typography>
+        </Box>
       }
     >
       <LoginForm />

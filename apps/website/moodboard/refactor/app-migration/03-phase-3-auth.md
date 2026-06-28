@@ -21,7 +21,7 @@ preserved like-for-like.
 
 Per `ai-context.md`: forms use DS `Input`/`Label`/`Button`; field layout via `Stack`; the centered
 shell (`auth-layout.tsx`) via `Container`/`Box` + `Card`; errors/help text via `Typography`
-(`caption`/`bodySm`, `tone="muted"` or destructive). No raw `className`/`style`.
+(`caption`, `tone="muted"`). No `destructive` tone exists — use `muted` for all secondary/error text. No raw `className`/`style`.
 
 ## Acceptance criteria
 

@@ -5,9 +5,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { getSiteUrl } from '@/lib/site-url';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button, Input, Label, Typography, Stack, Box } from '@imbustai/ds';
 import { AuthLayout } from './auth-layout';
 
 export function ForgotPasswordForm() {
@@ -44,37 +42,37 @@ export function ForgotPasswordForm() {
       title={t('auth.forgotTitle')}
       subtitle={t('auth.forgotSubtitle')}
     >
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">{t('auth.email')}</Label>
-          <Input
-            id="email"
-            type="email"
-            autoComplete="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        {error ? (
-          <p className="text-sm text-destructive" role="alert">
-            {error}
-          </p>
-        ) : null}
-        {message ? (
-          <p className="text-sm text-muted-foreground" role="status">
-            {message}
-          </p>
-        ) : null}
-        <Button type="submit" disabled={loading}>
-          {loading ? t('common.loading') : t('auth.forgotSubmit')}
-        </Button>
+      <form onSubmit={onSubmit}>
+        <Stack gap="4">
+          <Stack gap="2">
+            <Label htmlFor="email">{t('auth.email')}</Label>
+            <Input
+              id="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Stack>
+          {error ? (
+            <Typography variant="caption" tone="muted" as="p">{error}</Typography>
+          ) : null}
+          {message ? (
+            <Typography variant="caption" tone="muted" as="p">{message}</Typography>
+          ) : null}
+          <Button type="submit" disabled={loading}>
+            {loading ? t('common.loading') : t('auth.forgotSubmit')}
+          </Button>
+        </Stack>
       </form>
-      <p className="mt-6 text-center text-sm text-muted-foreground">
-        <Link href="/login" className="underline underline-offset-4">
-          {t('auth.backToLogin')}
-        </Link>
-      </p>
+      <Box marginTop="6">
+        <Typography variant="caption" tone="muted" align="center" as="p">
+          <Link href="/login">
+            {t('auth.backToLogin')}
+          </Link>
+        </Typography>
+      </Box>
     </AuthLayout>
   );
 }

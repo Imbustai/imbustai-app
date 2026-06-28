@@ -5,9 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button, Input, Label, Typography, Stack, Box } from '@imbustai/ds';
 import { AuthLayout } from './auth-layout';
 
 export function ResetPasswordForm() {
@@ -49,12 +47,14 @@ export function ResetPasswordForm() {
         title={t('auth.resetTitle')}
         subtitle={t('auth.resetSubtitle')}
       >
-        <p className="text-sm text-muted-foreground">{t('auth.resetNeedLink')}</p>
-        <p className="mt-4 text-sm">
-          <Link href="/forgot-password" className="text-primary underline">
-            {t('auth.forgotLink')}
-          </Link>
-        </p>
+        <Typography variant="caption" tone="muted" as="p">{t('auth.resetNeedLink')}</Typography>
+        <Box marginTop="4">
+          <Typography variant="caption" as="p">
+            <Link href="/forgot-password">
+              {t('auth.forgotLink')}
+            </Link>
+          </Typography>
+        </Box>
       </AuthLayout>
     );
   }
@@ -65,27 +65,27 @@ export function ResetPasswordForm() {
       title={t('auth.resetTitle')}
       subtitle={t('auth.resetSubtitle')}
     >
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="password">{t('auth.newPassword')}</Label>
-          <Input
-            id="password"
-            type="password"
-            autoComplete="new-password"
-            required
-            minLength={8}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        {error ? (
-          <p className="text-sm text-destructive" role="alert">
-            {error}
-          </p>
-        ) : null}
-        <Button type="submit" disabled={loading}>
-          {loading ? t('common.loading') : t('auth.resetSubmit')}
-        </Button>
+      <form onSubmit={onSubmit}>
+        <Stack gap="4">
+          <Stack gap="2">
+            <Label htmlFor="password">{t('auth.newPassword')}</Label>
+            <Input
+              id="password"
+              type="password"
+              autoComplete="new-password"
+              required
+              minLength={8}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Stack>
+          {error ? (
+            <Typography variant="caption" tone="muted" as="p">{error}</Typography>
+          ) : null}
+          <Button type="submit" disabled={loading}>
+            {loading ? t('common.loading') : t('auth.resetSubmit')}
+          </Button>
+        </Stack>
       </form>
     </AuthLayout>
   );

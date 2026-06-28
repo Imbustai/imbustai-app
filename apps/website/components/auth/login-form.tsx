@@ -6,9 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { safeNextPath } from '@/lib/safe-next-path';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Button, Input, Label, Typography, Stack, Box } from '@imbustai/ds';
 import { AuthLayout } from './auth-layout';
 
 export function LoginForm() {
@@ -49,52 +47,53 @@ export function LoginForm() {
       title={t('auth.loginTitle')}
       subtitle={t('auth.loginSubtitle')}
     >
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="email">{t('auth.email')}</Label>
-          <Input
-            id="email"
-            type="email"
-            autoComplete="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="password">{t('auth.password')}</Label>
-          <Input
-            id="password"
-            type="password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        {error ? (
-          <p className="text-sm text-destructive" role="alert">
-            {error}
-          </p>
-        ) : null}
-        <Button type="submit" disabled={loading}>
-          {loading ? t('common.loading') : t('auth.loginCta')}
-        </Button>
+      <form onSubmit={onSubmit}>
+        <Stack gap="4">
+          <Stack gap="2">
+            <Label htmlFor="email">{t('auth.email')}</Label>
+            <Input
+              id="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Stack>
+          <Stack gap="2">
+            <Label htmlFor="password">{t('auth.password')}</Label>
+            <Input
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Stack>
+          {error ? (
+            <Typography variant="caption" tone="muted" as="p">{error}</Typography>
+          ) : null}
+          <Button type="submit" disabled={loading}>
+            {loading ? t('common.loading') : t('auth.loginCta')}
+          </Button>
+        </Stack>
       </form>
-      <p className="mt-6 text-center text-sm text-muted-foreground">
-        <Link href="/forgot-password" className="underline underline-offset-4">
-          {t('auth.forgotLink')}
-        </Link>
-      </p>
-      <p className="mt-4 text-center text-sm text-muted-foreground">
-        {t('auth.noAccount')}{' '}
-        <Link
-          href={`/register?next=${encodeURIComponent(next)}`}
-          className="font-medium text-primary underline underline-offset-4"
-        >
-          {t('auth.registerCta')}
-        </Link>
-      </p>
+      <Box marginTop="6">
+        <Typography variant="caption" tone="muted" align="center" as="p">
+          <Link href="/forgot-password">
+            {t('auth.forgotLink')}
+          </Link>
+        </Typography>
+      </Box>
+      <Box marginTop="4">
+        <Typography variant="caption" tone="muted" align="center" as="p">
+          {t('auth.noAccount')}{' '}
+          <Link href={`/register?next=${encodeURIComponent(next)}`}>
+            {t('auth.registerCta')}
+          </Link>
+        </Typography>
+      </Box>
     </AuthLayout>
   );
 }
