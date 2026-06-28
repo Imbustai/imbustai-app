@@ -12,15 +12,21 @@ import type {
   StoryRow,
   UsageRecord,
 } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Select,
+  Stack,
+  Inline,
+  Box,
+  Typography,
+} from '@imbustai/ds';
 import { formatTokens, formatUsd } from '@/lib/format-cost';
-
-// Admin reply workflow (Phase 3): pending turn → Generate → review per-NPC
-// cards (edit / regenerate) with narrator notes + canon warnings → Approve &
-// Send. Also hosts the Phase 3 test harness ("write as the player") until the
-// Phase 4 play UI exists.
+import styles from './games.module.css';
 
 interface DraftResponse {
   character_slug: string;
@@ -36,9 +42,6 @@ interface Warning {
   message: string;
   character_slug?: string;
 }
-
-const textareaCls =
-  'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring/50 min-h-32';
 
 export function ReplyWorkflowPanel({
   gameId,
@@ -106,12 +109,12 @@ export function ReplyWorkflowPanel({
   if (!story) return null;
 
   return (
-    <div className="space-y-6">
+    <Stack gap="6">
       {/* Game state */}
       <Card>
         <CardHeader>
-          <CardTitle className="flex flex-wrap items-center gap-2">
-            {t('replyAdmin.gameState')}
+          <Inline gap="2" align="center">
+            <CardTitle>{t('replyAdmin.gameState')}</CardTitle>
             <Badge variant="secondary">
               {t('replyAdmin.turn')} {String(runtime.current_turn ?? 0)}
             </Badge>
@@ -122,208 +125,230 @@ export function ReplyWorkflowPanel({
             <Badge variant={story.lifecycle === 'released' ? 'default' : 'outline'}>
               {t(`storiesAdmin.lifecycle.${story.lifecycle}`)}
             </Badge>
-          </CardTitle>
+          </Inline>
         </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">
-          <p>
+        <CardContent>
+          <Typography variant="caption" tone="muted">
             {t('replyAdmin.unlocked')}: {unlocked.map(nameOf).join(', ') || '—'}
-          </p>
+          </Typography>
           {Array.isArray(runtime.clues_found) && runtime.clues_found.length > 0 ? (
-            <p className="mt-1">
+            <Typography variant="caption" tone="muted">
               {t('replyAdmin.cluesFound')}: {(runtime.clues_found as string[]).join(', ')}
-            </p>
+            </Typography>
           ) : null}
         </CardContent>
       </Card>
 
       {/* Open turn workflow */}
       {openTurn ? (
-        <Card className="border-primary/50">
-          <CardHeader>
-            <CardTitle className="flex flex-wrap items-center gap-2">
-              {t('replyAdmin.pendingTurn')} #{openTurn.turn_number}
-              <Badge>{t(`replyAdmin.status.${openTurn.status}`)}</Badge>
-              {latestDraft ? (
-                <Badge variant="secondary">
-                  v{latestDraft.version} · {latestDraft.source}
-                </Badge>
-              ) : null}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {/* Player letters of this turn */}
-            <div>
-              <h3 className="mb-2 text-sm font-medium">{t('replyAdmin.playerLetters')}</h3>
-              <div className="space-y-2">
-                {turnLetters
-                  .filter((l) => l.role === 'user')
-                  .map((l) => (
-                    <div key={l.id} className="rounded-md border border-border bg-muted/30 p-3">
-                      <p className="mb-1 text-xs text-muted-foreground">
-                        → {nameOf(l.character_slug)} · {l.story_date ?? ''}
-                      </p>
-                      <p className="whitespace-pre-wrap text-sm">{l.content}</p>
-                    </div>
-                  ))}
-              </div>
-            </div>
-
-            {/* Warnings */}
-            {warnings.length > 0 ? (
-              <div className="rounded-md border border-amber-500/60 bg-amber-500/10 p-3">
-                <h3 className="mb-1 text-sm font-medium">⚠️ {t('replyAdmin.warnings')}</h3>
-                <ul className="space-y-1 text-sm">
-                  {warnings.map((w, i) => (
-                    <li key={i} className={w.severity === 'error' ? 'text-destructive' : ''}>
-                      <strong>[{w.rule}]</strong> {w.message}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
-            {/* AI cost of this draft (admin-only) */}
-            {latestDraft ? (
-              <div className="rounded-md border border-border bg-muted/30 p-3 text-sm">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-medium">
-                    💰 {t('admin.cost.draftCost')}: {formatUsd(Number(latestDraft.cost_usd ?? 0))}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{latestDraft.model || '—'}</span>
-                </div>
-                {draftUsage.length > 0 ? (
-                  <ul className="mt-2 space-y-1 text-xs text-muted-foreground">
-                    {draftUsage.map((u, i) => (
-                      <li key={i} className="flex flex-wrap items-center gap-2">
-                        <span className="text-foreground">
-                          {u.call_type === 'orchestrator'
-                            ? t('admin.cost.orchestrator')
-                            : `${t('admin.cost.letterTo')} ${nameOf(u.character_slug ?? null)}`}
-                        </span>
-                        <span>
-                          ↓{formatTokens(u.input_tokens)} ↑{formatTokens(u.output_tokens)}
-                        </span>
-                        <span className="ml-auto tabular-nums">{formatUsd(u.cost_usd)}</span>
-                      </li>
-                    ))}
-                  </ul>
+        <div className={styles.primaryBorderCard}>
+          <Card>
+            <CardHeader>
+              <Inline gap="2" align="center">
+                <CardTitle>
+                  {t('replyAdmin.pendingTurn')} #{openTurn.turn_number}
+                </CardTitle>
+                <Badge>{t(`replyAdmin.status.${openTurn.status}`)}</Badge>
+                {latestDraft ? (
+                  <Badge variant="secondary">
+                    v{latestDraft.version} · {latestDraft.source}
+                  </Badge>
                 ) : null}
-              </div>
-            ) : null}
+              </Inline>
+            </CardHeader>
+            <CardContent>
+              <Stack gap="4">
+                {/* Player letters of this turn */}
+                <Stack gap="2">
+                  <Typography variant="body">{t('replyAdmin.playerLetters')}</Typography>
+                  <Stack gap="2">
+                    {turnLetters
+                      .filter((l) => l.role === 'user')
+                      .map((l) => (
+                        <div key={l.id} className={styles.costPanel}>
+                          <Typography variant="caption" tone="muted">
+                            → {nameOf(l.character_slug)} · {l.story_date ?? ''}
+                          </Typography>
+                          <Box marginTop="1">
+                            <pre className={styles.letterContent}>{l.content}</pre>
+                          </Box>
+                        </div>
+                      ))}
+                  </Stack>
+                </Stack>
 
-            {/* Narrator notes (admin-only) */}
-            {latestDraft?.narrator_notes ? (
-              <div className="rounded-md border border-violet-500/50 bg-violet-500/10 p-3">
-                <h3 className="mb-1 text-sm font-medium">🎭 {t('replyAdmin.narratorNotes')}</h3>
-                <p className="whitespace-pre-wrap text-sm">{latestDraft.narrator_notes}</p>
-              </div>
-            ) : null}
+                {/* Warnings */}
+                {warnings.length > 0 ? (
+                  <div className={styles.warningPanel}>
+                    <Typography variant="body">⚠️ {t('replyAdmin.warnings')}</Typography>
+                    <Stack gap="1" as="ul">
+                      {warnings.map((w, i) => (
+                        <Box key={i} as="li">
+                          <Typography
+                            variant="caption"
+                            tone={w.severity === 'error' ? 'default' : 'muted'}
+                          >
+                            <strong>[{w.rule}]</strong> {w.message}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Stack>
+                  </div>
+                ) : null}
 
-            {/* Draft letters, one card per NPC */}
-            {responses.map((r) => (
-              <div key={r.character_slug} className="rounded-md border border-border p-3">
-                <div className="mb-2 flex items-center justify-between">
-                  <p className="text-sm font-medium">
-                    ✉️ {nameOf(r.character_slug)}{' '}
-                    <span className="text-xs text-muted-foreground">· {r.story_date}</span>
-                  </p>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    disabled={busy !== null}
-                    onClick={() =>
-                      call('regen-one', `/api/admin/turns/${openTurn.id}/regenerate`, {
-                        body: JSON.stringify({ character_slug: r.character_slug }),
-                      })
-                    }
-                  >
-                    {busy === 'regen-one' ? '…' : t('replyAdmin.regenerateOne')}
-                  </Button>
-                </div>
-                <textarea
-                  className={textareaCls}
-                  value={edited?.[r.character_slug] ?? r.content}
-                  onChange={(e) =>
-                    setEdited((prev) => ({ ...(prev ?? {}), [r.character_slug]: e.target.value }))
-                  }
-                />
-              </div>
-            ))}
+                {/* AI cost of this draft */}
+                {latestDraft ? (
+                  <div className={styles.costPanel}>
+                    <Inline gap="2" align="center">
+                      <Typography variant="body">
+                        💰 {t('admin.cost.draftCost')}: {formatUsd(Number(latestDraft.cost_usd ?? 0))}
+                      </Typography>
+                      <Typography variant="caption" tone="muted" as="span">
+                        {latestDraft.model || '—'}
+                      </Typography>
+                    </Inline>
+                    {draftUsage.length > 0 ? (
+                      <Stack gap="1" as="ul">
+                        {draftUsage.map((u, i) => (
+                          <Box key={i} as="li">
+                            <Inline gap="2" align="center">
+                              <Typography variant="caption" as="span">
+                                {u.call_type === 'orchestrator'
+                                  ? t('admin.cost.orchestrator')
+                                  : `${t('admin.cost.letterTo')} ${nameOf(u.character_slug ?? null)}`}
+                              </Typography>
+                              <Typography variant="caption" tone="muted" as="span">
+                                ↓{formatTokens(u.input_tokens)} ↑{formatTokens(u.output_tokens)}
+                              </Typography>
+                              <Box marginLeft="auto">
+                                <span className={styles.tabularNums}>
+                                  <Typography variant="caption" as="span">{formatUsd(u.cost_usd)}</Typography>
+                                </span>
+                              </Box>
+                            </Inline>
+                          </Box>
+                        ))}
+                      </Stack>
+                    ) : null}
+                  </div>
+                ) : null}
 
-            {/* Action bar */}
-            <div className="flex flex-wrap items-center gap-2">
-              {openTurn.status === 'pending_ai' ? (
-                <Button
-                  disabled={busy !== null}
-                  onClick={() => call('generate', `/api/admin/turns/${openTurn.id}/generate`)}
-                >
-                  {busy === 'generate' ? t('replyAdmin.generating') : `🤖 ${t('replyAdmin.generate')}`}
-                </Button>
-              ) : null}
-              {latestDraft ? (
-                <>
-                  {edited ? (
-                    <Button disabled={busy !== null} onClick={saveEdits}>
-                      {t('replyAdmin.saveEdits')}
+                {/* Narrator notes */}
+                {latestDraft?.narrator_notes ? (
+                  <div className={styles.narratorPanel}>
+                    <Typography variant="body">🎭 {t('replyAdmin.narratorNotes')}</Typography>
+                    <Box marginTop="1">
+                      <pre className={styles.letterContent}>{latestDraft.narrator_notes}</pre>
+                    </Box>
+                  </div>
+                ) : null}
+
+                {/* Draft letters, one card per NPC */}
+                {responses.map((r) => (
+                  <div key={r.character_slug} className={styles.letterPanel}>
+                    <Inline gap="2" align="center" justify="space-between">
+                      <Typography variant="body">
+                        ✉️ {nameOf(r.character_slug)}{' '}
+                        <Typography variant="caption" tone="muted" as="span">· {r.story_date}</Typography>
+                      </Typography>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        disabled={busy !== null}
+                        onClick={() =>
+                          call('regen-one', `/api/admin/turns/${openTurn.id}/regenerate`, {
+                            body: JSON.stringify({ character_slug: r.character_slug }),
+                          })
+                        }
+                      >
+                        {busy === 'regen-one' ? '…' : t('replyAdmin.regenerateOne')}
+                      </Button>
+                    </Inline>
+                    <Box marginTop="2">
+                      <textarea
+                        className={styles.textarea}
+                        value={edited?.[r.character_slug] ?? r.content}
+                        onChange={(e) =>
+                          setEdited((prev) => ({ ...(prev ?? {}), [r.character_slug]: e.target.value }))
+                        }
+                      />
+                    </Box>
+                  </div>
+                ))}
+
+                {/* Action bar */}
+                <Inline gap="2" align="center">
+                  {openTurn.status === 'pending_ai' ? (
+                    <Button
+                      disabled={busy !== null}
+                      onClick={() => call('generate', `/api/admin/turns/${openTurn.id}/generate`)}
+                    >
+                      {busy === 'generate' ? t('replyAdmin.generating') : `🤖 ${t('replyAdmin.generate')}`}
                     </Button>
                   ) : null}
-                  <Button
-                    variant="outline"
-                    disabled={busy !== null}
-                    onClick={() =>
-                      call('regen', `/api/admin/turns/${openTurn.id}/regenerate`, {
-                        body: JSON.stringify({ admin_guidance: guidance || undefined }),
-                      })
-                    }
-                  >
-                    {busy === 'regen' ? t('replyAdmin.generating') : `🔄 ${t('replyAdmin.regenerate')}`}
-                  </Button>
-                  <Button
-                    variant="default"
-                    className="bg-green-600 text-white hover:bg-green-700"
-                    disabled={busy !== null || edited !== null}
-                    onClick={() =>
-                      call('approve', `/api/admin/turns/${openTurn.id}/approve`, {
-                        body: JSON.stringify({ draft_id: latestDraft.id }),
-                      })
-                    }
-                  >
-                    {busy === 'approve' ? '…' : `✅ ${t('replyAdmin.approveSend')}`}
-                  </Button>
-                  {edited !== null ? (
-                    <span className="text-xs text-muted-foreground">
-                      {t('replyAdmin.saveBeforeApprove')}
-                    </span>
+                  {latestDraft ? (
+                    <>
+                      {edited ? (
+                        <Button disabled={busy !== null} onClick={saveEdits}>
+                          {t('replyAdmin.saveEdits')}
+                        </Button>
+                      ) : null}
+                      <Button
+                        variant="outline"
+                        disabled={busy !== null}
+                        onClick={() =>
+                          call('regen', `/api/admin/turns/${openTurn.id}/regenerate`, {
+                            body: JSON.stringify({ admin_guidance: guidance || undefined }),
+                          })
+                        }
+                      >
+                        {busy === 'regen' ? t('replyAdmin.generating') : `🔄 ${t('replyAdmin.regenerate')}`}
+                      </Button>
+                      <span className={styles.approveButton}>
+                        <Button
+                          disabled={busy !== null || edited !== null}
+                          onClick={() =>
+                            call('approve', `/api/admin/turns/${openTurn.id}/approve`, {
+                              body: JSON.stringify({ draft_id: latestDraft.id }),
+                            })
+                          }
+                        >
+                          {busy === 'approve' ? '…' : `✅ ${t('replyAdmin.approveSend')}`}
+                        </Button>
+                      </span>
+                      {edited !== null ? (
+                        <Typography variant="caption" tone="muted" as="span">
+                          {t('replyAdmin.saveBeforeApprove')}
+                        </Typography>
+                      ) : null}
+                    </>
                   ) : null}
-                </>
-              ) : null}
-            </div>
-            {latestDraft ? (
-              <div>
-                <label className="mb-1 block text-xs text-muted-foreground">
-                  {t('replyAdmin.guidance')}
-                </label>
-                <textarea
-                  className={`${textareaCls} min-h-16`}
-                  value={guidance}
-                  onChange={(e) => setGuidance(e.target.value)}
-                  placeholder={t('replyAdmin.guidancePlaceholder')}
-                />
-              </div>
-            ) : null}
-            {error ? <p className="text-sm text-destructive">{error}</p> : null}
-          </CardContent>
-        </Card>
+                </Inline>
+                {latestDraft ? (
+                  <Stack gap="1">
+                    <Typography variant="caption" tone="muted">
+                      {t('replyAdmin.guidance')}
+                    </Typography>
+                    <textarea
+                      className={styles.textareaSmall}
+                      value={guidance}
+                      onChange={(e) => setGuidance(e.target.value)}
+                      placeholder={t('replyAdmin.guidancePlaceholder')}
+                    />
+                  </Stack>
+                ) : null}
+                {error ? (
+                  <Typography variant="caption" tone="default">{error}</Typography>
+                ) : null}
+              </Stack>
+            </CardContent>
+          </Card>
+        </div>
       ) : null}
-    </div>
+    </Stack>
   );
 }
 
-/**
- * Test harness: submit a turn as the player (Phase 3 tool; the player play
- * UI replaces it for real players in Phase 4). Rendered by the admin game
- * page BELOW the conversation.
- */
 export function TestHarnessCard({
   gameId,
   game,
@@ -371,56 +396,63 @@ export function TestHarnessCard({
   }
 
   return (
-    <Card className="mt-8">
-      <CardHeader>
-        <CardTitle>🧪 {t('replyAdmin.testTurnTitle')}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        <p className="text-sm text-muted-foreground">{t('replyAdmin.testTurnHint')}</p>
-        {testLetters.map((letter, idx) => (
-          <div key={idx} className="rounded-md border border-border p-3">
-            <select
-              className="mb-2 rounded-md border border-input bg-transparent px-3 py-2 text-sm"
-              value={letter.recipient_slug}
-              onChange={(e) =>
-                setTestLetters((ls) =>
-                  ls.map((l, i) => (i === idx ? { ...l, recipient_slug: e.target.value } : l)),
-                )
-              }
-            >
-              <option value="">{t('replyAdmin.chooseRecipient')}</option>
-              {unlocked.map((slug) => (
-                <option key={slug} value={slug}>
-                  {nameOf(slug)}
-                </option>
-              ))}
-            </select>
-            <textarea
-              className={textareaCls}
-              value={letter.content}
-              placeholder={t('replyAdmin.letterPlaceholder')}
-              onChange={(e) =>
-                setTestLetters((ls) =>
-                  ls.map((l, i) => (i === idx ? { ...l, content: e.target.value } : l)),
-                )
-              }
-            />
-          </div>
-        ))}
-        <div className="flex gap-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setTestLetters((ls) => [...ls, { recipient_slug: '', content: '' }])}
-          >
-            + {t('replyAdmin.addLetter')}
-          </Button>
-          <Button size="sm" disabled={busy} onClick={submitTestTurn}>
-            {busy ? '…' : `📨 ${t('replyAdmin.sendAsPlayer')}`}
-          </Button>
-        </div>
-        {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      </CardContent>
-    </Card>
+    <Box marginTop="8">
+      <Card>
+        <CardHeader>
+          <CardTitle>🧪 {t('replyAdmin.testTurnTitle')}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Stack gap="3">
+            <Typography variant="caption" tone="muted">{t('replyAdmin.testTurnHint')}</Typography>
+            {testLetters.map((letter, idx) => (
+              <div key={idx} className={styles.letterPanel}>
+                <Stack gap="2">
+                  <Select
+                    value={letter.recipient_slug}
+                    onChange={(e) =>
+                      setTestLetters((ls) =>
+                        ls.map((l, i) => (i === idx ? { ...l, recipient_slug: e.target.value } : l)),
+                      )
+                    }
+                  >
+                    <option value="">{t('replyAdmin.chooseRecipient')}</option>
+                    {unlocked.map((slug) => (
+                      <option key={slug} value={slug}>
+                        {nameOf(slug)}
+                      </option>
+                    ))}
+                  </Select>
+                  <textarea
+                    className={styles.textarea}
+                    value={letter.content}
+                    placeholder={t('replyAdmin.letterPlaceholder')}
+                    onChange={(e) =>
+                      setTestLetters((ls) =>
+                        ls.map((l, i) => (i === idx ? { ...l, content: e.target.value } : l)),
+                      )
+                    }
+                  />
+                </Stack>
+              </div>
+            ))}
+            <Inline gap="2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setTestLetters((ls) => [...ls, { recipient_slug: '', content: '' }])}
+              >
+                + {t('replyAdmin.addLetter')}
+              </Button>
+              <Button size="sm" disabled={busy} onClick={submitTestTurn}>
+                {busy ? '…' : `📨 ${t('replyAdmin.sendAsPlayer')}`}
+              </Button>
+            </Inline>
+            {error ? (
+              <Typography variant="caption" tone="default">{error}</Typography>
+            ) : null}
+          </Stack>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }

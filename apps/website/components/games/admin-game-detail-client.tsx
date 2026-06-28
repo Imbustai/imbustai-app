@@ -4,13 +4,21 @@ import { useTranslation } from '@imbustai/i18n';
 import Link from 'next/link';
 import { storyTitle } from '@/lib/story-i18n';
 import type { GameRow, InteractionRow, StoryRow } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
 import {
+  Badge,
+  Button,
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+  CardDescription,
+  Stack,
+  Inline,
+  Grid,
+  Box,
+  Typography,
+} from '@imbustai/ds';
+import styles from './games.module.css';
 
 function formatDate(dateStr: string | null) {
   if (!dateStr) return '—';
@@ -36,46 +44,38 @@ export function AdminGameDetailClient({
   const aiCount = list.filter((i) => i.role === 'ai').length;
 
   return (
-    <div>
-      <div className="mb-6 flex flex-wrap items-center gap-4 text-sm">
-        <Link
-          href="/admin/games"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          ← {t('games.adminBackToList')}
-        </Link>
-        <Link
-          href="/admin"
-          className="text-muted-foreground transition-colors hover:text-foreground"
-        >
-          {t('games.adminBackToDashboard')}
-        </Link>
-      </div>
+    <Stack gap="4">
+      <Inline gap="4">
+        <Button variant="link" size="sm" asChild>
+          <Link href="/admin/games">← {t('games.adminBackToList')}</Link>
+        </Button>
+        <Button variant="link" size="sm" asChild>
+          <Link href="/admin">{t('games.adminBackToDashboard')}</Link>
+        </Button>
+      </Inline>
 
-      <h1 className="font-heading text-2xl font-semibold">
-        {t('games.gameDetail')}
-      </h1>
+      <Typography variant="h2">{t('games.gameDetail')}</Typography>
       {story ? (
-        <p className="mt-2 text-muted-foreground">
+        <Typography variant="body" tone="muted">
           {storyTitle(story, locale)}
-        </p>
+        </Typography>
       ) : null}
-      <p className="mt-1 font-mono text-xs text-muted-foreground">{gameId}</p>
+      <Typography variant="caption" tone="muted" as="p">
+        <span className={styles.monoSmall}>{gameId}</span>
+      </Typography>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <Grid columns={4} gap="4">
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">
-              {t('admin.user')}
-            </CardTitle>
+          <CardHeader>
+            <CardDescription>{t('admin.user')}</CardDescription>
           </CardHeader>
-          <CardContent className="text-sm font-semibold">{userEmail}</CardContent>
+          <CardContent>
+            <Typography variant="body">{userEmail}</Typography>
+          </CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">
-              {t('common.status')}
-            </CardTitle>
+          <CardHeader>
+            <CardDescription>{t('common.status')}</CardDescription>
           </CardHeader>
           <CardContent>
             {game.status === 'completed' ? (
@@ -86,59 +86,52 @@ export function AdminGameDetailClient({
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">
-              {t('admin.interactionCount')}
-            </CardTitle>
+          <CardHeader>
+            <CardDescription>{t('admin.interactionCount')}</CardDescription>
           </CardHeader>
-          <CardContent className="text-sm">
-            {locale === 'it'
-              ? `${list.length} in totale (${aiCount} AI, ${userCount} utente)`
-              : `${list.length} total (${aiCount} AI, ${userCount} user)`}
+          <CardContent>
+            <Typography variant="caption">
+              {locale === 'it'
+                ? `${list.length} in totale (${aiCount} AI, ${userCount} utente)`
+                : `${list.length} total (${aiCount} AI, ${userCount} user)`}
+            </Typography>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xs font-medium text-muted-foreground">
-              {t('games.datesCard')}
-            </CardTitle>
+          <CardHeader>
+            <CardDescription>{t('games.datesCard')}</CardDescription>
           </CardHeader>
-          <CardContent className="text-xs leading-relaxed">
-            <p>
+          <CardContent>
+            <Typography variant="caption">
               {t('games.started')}: {formatDate(game.created_at)}
-            </p>
-            <p>
+            </Typography>
+            <Typography variant="caption">
               {t('games.completed')}: {formatDate(game.completed_at)}
-            </p>
+            </Typography>
           </CardContent>
         </Card>
-      </div>
+      </Grid>
 
-      <section className="mt-10">
-        <h2 className="mb-4 font-heading text-lg font-semibold">
-          {t('games.letters')}
-        </h2>
-        <ol className="space-y-4">
+      <Box as="section" marginTop="6">
+        <Typography variant="h3">{t('games.letters')}</Typography>
+        <Stack gap="4" as="ol">
           {list.map((i) => (
-            <li
-              key={i.id}
-              className="rounded-lg border border-border bg-card p-4 text-sm"
-            >
-              <div className="mb-2 flex items-center gap-2">
+            <li key={i.id} className={styles.interactionCard}>
+              <Inline gap="2">
                 <Badge variant={i.role === 'ai' ? 'default' : 'outline'}>
                   {i.role}
                 </Badge>
-                <span className="text-xs text-muted-foreground">
+                <Typography variant="caption" tone="muted" as="span">
                   #{i.letter_number} · {formatDate(i.created_at)}
-                </span>
-              </div>
-              <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed">
-                {i.content}
-              </pre>
+                </Typography>
+              </Inline>
+              <Box marginTop="2">
+                <pre className={styles.letterContent}>{i.content}</pre>
+              </Box>
             </li>
           ))}
-        </ol>
-      </section>
-    </div>
+        </Stack>
+      </Box>
+    </Stack>
   );
 }

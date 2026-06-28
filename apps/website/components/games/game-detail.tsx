@@ -4,7 +4,8 @@ import { useTranslation } from '@imbustai/i18n';
 import Link from 'next/link';
 import { storyTitle } from '@/lib/story-i18n';
 import type { GameRow, InteractionRow, StoryRow } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
+import { Badge, Button, Stack, Inline, Box, Typography } from '@imbustai/ds';
+import styles from './games.module.css';
 
 function formatDate(dateStr: string | null) {
   if (!dateStr) return '—';
@@ -23,61 +24,51 @@ export function GameDetail({
   const { t, locale } = useTranslation();
 
   return (
-    <div>
-      <Link
-        href="/games"
-        className="mb-6 inline-block text-sm text-muted-foreground hover:text-foreground"
-      >
-        ← {t('games.title')}
-      </Link>
-      <h1 className="font-heading text-2xl font-semibold">
-        {t('games.gameDetail')}
-      </h1>
+    <Stack gap="4">
+      <Button variant="link" size="sm" asChild>
+        <Link href="/games">← {t('games.title')}</Link>
+      </Button>
+      <Typography variant="h2">{t('games.gameDetail')}</Typography>
       {story ? (
-        <p className="mt-2 text-muted-foreground">
+        <Typography variant="body" tone="muted">
           {storyTitle(story, locale)}
-        </p>
+        </Typography>
       ) : null}
-      <div className="mt-4 flex flex-wrap gap-2">
+      <Inline gap="2">
         {game.status === 'completed' ? (
           <Badge>{t('games.completed')}</Badge>
         ) : (
           <Badge variant="secondary">{t('games.inProgress')}</Badge>
         )}
-        <span className="text-xs text-muted-foreground">
+        <Typography variant="caption" tone="muted" as="span">
           {t('games.orderId')}: {game.order_id.slice(0, 8)}…
-        </span>
-      </div>
-      <p className="mt-2 text-xs text-muted-foreground">
+        </Typography>
+      </Inline>
+      <Typography variant="caption" tone="muted">
         {t('games.started')}: {formatDate(game.created_at)} ·{' '}
         {t('games.completed')}: {formatDate(game.completed_at)}
-      </p>
+      </Typography>
 
-      <section className="mt-10">
-        <h2 className="mb-4 font-heading text-lg font-semibold">
-          {t('games.letters')}
-        </h2>
-        <ol className="space-y-4">
+      <Box as="section" marginTop="6">
+        <Typography variant="h3">{t('games.letters')}</Typography>
+        <Stack gap="4" as="ol">
           {interactions.map((i) => (
-            <li
-              key={i.id}
-              className="rounded-lg border border-border bg-card p-4 text-sm"
-            >
-              <div className="mb-2 flex items-center gap-2">
+            <li key={i.id} className={styles.interactionCard}>
+              <Inline gap="2">
                 <Badge variant={i.role === 'ai' ? 'default' : 'outline'}>
                   {i.role}
                 </Badge>
-                <span className="text-xs text-muted-foreground">
+                <Typography variant="caption" tone="muted" as="span">
                   #{i.letter_number} · {formatDate(i.created_at)}
-                </span>
-              </div>
-              <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed">
-                {i.content}
-              </pre>
+                </Typography>
+              </Inline>
+              <Box marginTop="2">
+                <pre className={styles.letterContent}>{i.content}</pre>
+              </Box>
             </li>
           ))}
-        </ol>
-      </section>
-    </div>
+        </Stack>
+      </Box>
+    </Stack>
   );
 }
