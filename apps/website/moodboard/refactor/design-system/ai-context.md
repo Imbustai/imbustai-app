@@ -65,6 +65,10 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@imbustai/ds';
 import type { TooltipProps, TooltipTriggerProps, TooltipContentProps, TooltipProviderProps } from '@imbustai/ds';
 
+// Textarea
+import { Textarea } from '@imbustai/ds';
+import type { TextareaProps } from '@imbustai/ds';
+
 // Select
 import { Select } from '@imbustai/ds';
 import type { SelectProps } from '@imbustai/ds';
@@ -176,6 +180,17 @@ Compound component: `Card`, `CardHeader`, `CardContent`, `CardFooter`, `CardTitl
 | `invalid` | `boolean` | — | Adds destructive border + `aria-invalid` |
 
 Accepts all standard `<input>` props (value, defaultValue, onChange, onFocus, onBlur, etc.) and `aria-*`.
+
+### Textarea
+
+`<Textarea invalid? size? id? name? placeholder? disabled? ...nativeProps>`
+
+| Prop | Type | Default | Notes |
+|---|---|---|---|
+| `invalid` | `boolean` | — | Adds destructive border + `aria-invalid` |
+| `size` | `string` | `'md'` | `sm` (5rem) \| `md` (10rem) \| `lg` (16rem) — sets `min-height`; vertically resizable |
+
+Accepts all standard `<textarea>` props (value, defaultValue, onChange, onFocus, onBlur, rows, etc.) and `aria-*`. Styled like `Input` (same border/ring/background tokens).
 
 ### Label
 

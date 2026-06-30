@@ -5,17 +5,20 @@ import ReactMarkdown from 'react-markdown';
 import { useTranslation } from '@imbustai/i18n';
 import { createClient } from '@/lib/supabase/client';
 import type { GameStatus, InteractionRow } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-// Player play UI (Phase 4). UX ported from the prototype: contact list,
-// per-recipient drafts the player can keep editing (epistolary rhythm — R7),
-// review, Send All as ONE turn, then "awaiting reply" until the (admin-
-// approved) batch arrives. Letters render markdown; in-fiction dates are
-// metadata shown in the header line, never inside the body. New letters
-// appear via polling — RLS hides anything before its visible_from, so the
-// client only ever receives what the player may see.
+import {
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Textarea,
+  Typography,
+  Stack,
+  Inline,
+  Box,
+} from '@imbustai/ds';
+import styles from './play-client.module.css';
 
 export interface PlayContact {
   slug: string;
@@ -34,8 +37,6 @@ interface GameStateResponse {
 }
 
 const POLL_MS = 15_000;
-const textareaCls =
-  'w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring/50 min-h-40';
 
 function formatStoryDate(iso: string | null, locale: string): string {
   if (!iso) return '';
@@ -96,7 +97,6 @@ export function PlayClient({
   const [maxLetters, setMaxLetters] = useState(maxLettersPerTurn);
   const [now, setNow] = useState(() => Date.now());
 
-  // Per-recipient drafts, persisted so the player can take their time (R7).
   const draftsKey = `imbustai-drafts-${gameId}`;
   const [drafts, setDrafts] = useState<Record<string, string>>({});
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
@@ -149,7 +149,6 @@ export function PlayClient({
     setMaxLetters(state.max_letters_per_turn);
   }, [gameId]);
 
-  // Initial state fetch + steady polling (reveals arrive without a refresh).
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
   useEffect(() => {
     refreshState();
@@ -162,7 +161,6 @@ export function PlayClient({
     };
   }, [refreshState, refreshLetters]);
 
-  // 1s tick for the transit countdown; refetch letters the moment one lands.
   useEffect(() => {
     if (!pendingReveal) return;
     const tick = setInterval(() => {
@@ -218,202 +216,240 @@ export function PlayClient({
   const composerOpen = status === 'in_progress' && !awaitingReply;
 
   return (
-    <div>
+    <Stack gap="0">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div>
-          <h1 className="font-heading text-3xl font-semibold">{storyTitle}</h1>
+      <Inline gap="3" justify="space-between">
+        <Stack gap="1">
+          <Typography variant="h2">{storyTitle}</Typography>
           {storyDate ? (
-            <p className="mt-1 text-muted-foreground">
+            <Typography variant="caption" tone="muted">
               📅 {formatStoryDate(storyDate, dateLocale)}
-            </p>
+            </Typography>
           ) : null}
-        </div>
+        </Stack>
         {status === 'completed' ? (
           <Badge>{t('games.completed')}</Badge>
         ) : awaitingReply ? (
           <Badge variant="secondary">✉️ {t('play.awaitingReply')}</Badge>
         ) : null}
-      </div>
+      </Inline>
 
       {/* Transit banner */}
       {pendingReveal ? (
-        <div className="mt-4 rounded-md border border-primary/40 bg-primary/5 p-4 text-sm">
-          📮{' '}
-          {t(pendingReveal.count === 1 ? 'play.inTransitOne' : 'play.inTransitMany').replace(
-            '{count}',
-            String(pendingReveal.count),
-          )}{' '}
-          <span className="font-mono font-medium">
-            {formatCountdown(pendingReveal.next_visible_from, now)}
-          </span>
-        </div>
+        <Box marginTop="4">
+          <div className={styles.transitBanner}>
+            📮{' '}
+            {t(pendingReveal.count === 1 ? 'play.inTransitOne' : 'play.inTransitMany').replace(
+              '{count}',
+              String(pendingReveal.count),
+            )}{' '}
+            <span className={styles.monoMedium}>
+              {formatCountdown(pendingReveal.next_visible_from, now)}
+            </span>
+          </div>
+        </Box>
       ) : awaitingReply ? (
-        <div className="mt-4 rounded-md border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
-          ⏳ {t('play.awaitingReplyHint')}
-        </div>
+        <Box marginTop="4">
+          <div className={styles.awaitingBanner}>
+            ⏳ {t('play.awaitingReplyHint')}
+          </div>
+        </Box>
       ) : null}
 
-      <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-[220px_1fr]">
-        {/* Contact list */}
-        <aside>
-          <h2 className="mb-3 text-sm font-medium text-muted-foreground">
-            {t('play.contacts')}
-          </h2>
-          <ul className="space-y-2">
-            {contacts.map((c) => (
-              <li key={c.slug}>
-                <button
-                  type="button"
-                  disabled={!composerOpen}
-                  onClick={() => {
-                    setActiveSlug(c.slug);
-                    setReviewing(false);
-                  }}
-                  className={`w-full rounded-md border px-3 py-2 text-left text-sm transition-colors ${
-                    activeSlug === c.slug
-                      ? 'border-primary bg-primary/10'
-                      : 'border-border hover:bg-muted/50'
-                  } ${!composerOpen ? 'cursor-default opacity-70' : ''}`}
-                >
-                  <span className="block font-medium">{c.name}</span>
-                  <span className="block text-xs text-muted-foreground">{c.role}</span>
-                  {drafts[c.slug]?.trim() ? (
-                    <span className="mt-1 inline-block text-xs text-primary">
-                      ✏️ {t('play.draftSaved')}
-                    </span>
-                  ) : null}
-                </button>
-              </li>
-            ))}
-            {Array.from({ length: lockedCount }).map((_, i) => (
-              <li
-                key={`locked-${i}`}
-                className="rounded-md border border-dashed border-border px-3 py-2 text-sm text-muted-foreground"
-              >
-                🔒 ???
-              </li>
-            ))}
-          </ul>
-          {composerOpen && draftEntries.length > 0 ? (
-            <Button className="mt-4 w-full" onClick={() => setReviewing(true)}>
-              📨 {t('play.reviewAndSend')} ({draftEntries.length})
-            </Button>
-          ) : null}
-        </aside>
-
-        {/* Main column */}
-        <main>
-          {/* Composer */}
-          {composerOpen && activeSlug && !reviewing ? (
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle>
-                  ✍️ {t('play.writeTo')} {nameOf(activeSlug)}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <textarea
-                  className={textareaCls}
-                  value={drafts[activeSlug] ?? ''}
-                  placeholder={t('play.composerPlaceholder')}
-                  onChange={(e) =>
-                    persistDrafts({ ...drafts, [activeSlug]: e.target.value })
-                  }
-                />
-                <p className="mt-2 text-xs text-muted-foreground">{t('play.draftHint')}</p>
-                <div className="mt-3 flex gap-2">
-                  <Button size="sm" variant="outline" onClick={() => setActiveSlug(null)}>
-                    {t('common.back')}
-                  </Button>
-                  {draftEntries.length > 0 ? (
-                    <Button size="sm" onClick={() => setReviewing(true)}>
-                      📨 {t('play.reviewAndSend')} ({draftEntries.length}/{maxLetters})
-                    </Button>
-                  ) : null}
-                </div>
-              </CardContent>
-            </Card>
-          ) : null}
-
-          {/* Review & send all */}
-          {composerOpen && reviewing ? (
-            <Card className="mb-8 border-primary/50">
-              <CardHeader>
-                <CardTitle>📨 {t('play.reviewTitle')}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">{t('play.reviewHint')}</p>
-                {draftEntries.map(({ contact, content }) => (
-                  <div key={contact.slug} className="rounded-md border border-border p-3">
-                    <p className="mb-1 text-xs font-medium text-muted-foreground">
-                      → {contact.name}
-                    </p>
-                    <p className="line-clamp-4 whitespace-pre-wrap text-sm">{content}</p>
-                  </div>
+      <Box marginTop="8">
+        <div className={styles.layout}>
+          {/* Contact list */}
+          <Box as="aside">
+            <Typography variant="caption" tone="muted" as="h2">
+              {t('play.contacts')}
+            </Typography>
+            <Box marginTop="3">
+              <Stack gap="2">
+                {contacts.map((c) => (
+                  <Box as="li" key={c.slug}>
+                    <button
+                      type="button"
+                      disabled={!composerOpen}
+                      onClick={() => {
+                        setActiveSlug(c.slug);
+                        setReviewing(false);
+                      }}
+                      className={
+                        activeSlug === c.slug
+                          ? styles.contactButtonActive
+                          : styles.contactButton
+                      }
+                    >
+                      <Typography variant="body" as="span">
+                        {c.name}
+                      </Typography>
+                      <Typography variant="caption" tone="muted" as="span">
+                        {c.role}
+                      </Typography>
+                      {drafts[c.slug]?.trim() ? (
+                        <Typography variant="caption" tone="primary" as="span">
+                          ✏️ {t('play.draftSaved')}
+                        </Typography>
+                      ) : null}
+                    </button>
+                  </Box>
                 ))}
-                {draftEntries.length > maxLetters ? (
-                  <p className="text-sm text-destructive">
-                    {t('play.errors.too_many_letters')} (max {maxLetters})
-                  </p>
-                ) : null}
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={() => setReviewing(false)}>
-                    {t('play.keepEditing')}
-                  </Button>
-                  <Button
-                    size="sm"
-                    disabled={sending || draftEntries.length === 0 || draftEntries.length > maxLetters}
-                    onClick={sendAll}
-                  >
-                    {sending ? t('play.sending') : `📮 ${t('play.sendAll')}`}
-                  </Button>
-                </div>
-                {error ? <p className="text-sm text-destructive">{error}</p> : null}
-              </CardContent>
-            </Card>
-          ) : null}
-
-          {/* Inbox / thread */}
-          <h2 className="mb-3 text-sm font-medium text-muted-foreground">{t('play.inbox')}</h2>
-          <div className="space-y-4">
-            {letters.map((letter) => {
-              const mine = letter.role === 'user';
-              return (
-                <div
-                  key={letter.id}
-                  className={`rounded-lg border p-4 ${
-                    mine
-                      ? 'ml-6 border-border bg-muted/30 md:ml-16'
-                      : 'mr-6 border-primary/30 bg-card md:mr-16'
-                  }`}
-                >
-                  <div className="mb-2 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
-                    <span className="font-medium">
-                      {mine
-                        ? `${t('play.you')} → ${nameOf(letter.character_slug)}`
-                        : nameOf(letter.character_slug)}
-                    </span>
-                    {letter.story_date ? (
-                      <span>{formatStoryDate(letter.story_date, dateLocale)}</span>
-                    ) : null}
-                  </div>
-                  {mine ? (
-                    <p className="whitespace-pre-wrap text-sm">{letter.content}</p>
-                  ) : (
-                    <div className="prose prose-sm dark:prose-invert max-w-none [&_p]:my-2">
-                      <ReactMarkdown>{letter.content}</ReactMarkdown>
+                {Array.from({ length: lockedCount }).map((_, i) => (
+                  <Box as="li" key={`locked-${i}`}>
+                    <div className={styles.lockedContact}>
+                      🔒 ???
                     </div>
-                  )}
-                </div>
-              );
-            })}
-            {letters.length === 0 ? (
-              <p className="text-sm text-muted-foreground">{t('common.none')}</p>
+                  </Box>
+                ))}
+              </Stack>
+            </Box>
+            {composerOpen && draftEntries.length > 0 ? (
+              <Box marginTop="4">
+                <Button fullWidth onClick={() => setReviewing(true)}>
+                  📨 {t('play.reviewAndSend')} ({draftEntries.length})
+                </Button>
+              </Box>
             ) : null}
-          </div>
-        </main>
-      </div>
-    </div>
+          </Box>
+
+          {/* Main column */}
+          <Box as="main">
+            {/* Composer */}
+            {composerOpen && activeSlug && !reviewing ? (
+              <Box marginBottom="8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>
+                      ✍️ {t('play.writeTo')} {nameOf(activeSlug)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Textarea
+                      value={drafts[activeSlug] ?? ''}
+                      placeholder={t('play.composerPlaceholder')}
+                      onChange={(e) =>
+                        persistDrafts({ ...drafts, [activeSlug]: e.target.value })
+                      }
+                    />
+                    <Box marginTop="2">
+                      <Typography variant="caption" tone="muted">
+                        {t('play.draftHint')}
+                      </Typography>
+                    </Box>
+                    <Box marginTop="3">
+                      <Inline gap="2">
+                        <Button size="sm" variant="outline" onClick={() => setActiveSlug(null)}>
+                          {t('common.back')}
+                        </Button>
+                        {draftEntries.length > 0 ? (
+                          <Button size="sm" onClick={() => setReviewing(true)}>
+                            📨 {t('play.reviewAndSend')} ({draftEntries.length}/{maxLetters})
+                          </Button>
+                        ) : null}
+                      </Inline>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </Box>
+            ) : null}
+
+            {/* Review & send all */}
+            {composerOpen && reviewing ? (
+              <Box marginBottom="8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>📨 {t('play.reviewTitle')}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <Stack gap="3">
+                      <Typography variant="caption" tone="muted">
+                        {t('play.reviewHint')}
+                      </Typography>
+                      {draftEntries.map(({ contact, content }) => (
+                        <div key={contact.slug} className={styles.reviewDraft}>
+                          <Typography variant="caption" tone="muted">
+                            → {contact.name}
+                          </Typography>
+                          <Box marginTop="1">
+                            <div className={styles.reviewDraftContent}>{content}</div>
+                          </Box>
+                        </div>
+                      ))}
+                      {draftEntries.length > maxLetters ? (
+                        <Typography variant="caption" tone="muted">
+                          {t('play.errors.too_many_letters')} (max {maxLetters})
+                        </Typography>
+                      ) : null}
+                      <Inline gap="2">
+                        <Button variant="outline" size="sm" onClick={() => setReviewing(false)}>
+                          {t('play.keepEditing')}
+                        </Button>
+                        <Button
+                          size="sm"
+                          disabled={sending || draftEntries.length === 0 || draftEntries.length > maxLetters}
+                          onClick={sendAll}
+                        >
+                          {sending ? t('play.sending') : `📮 ${t('play.sendAll')}`}
+                        </Button>
+                      </Inline>
+                      {error ? (
+                        <Typography variant="caption" tone="muted">
+                          {error}
+                        </Typography>
+                      ) : null}
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Box>
+            ) : null}
+
+            {/* Inbox / thread */}
+            <Typography variant="caption" tone="muted" as="h2">
+              {t('play.inbox')}
+            </Typography>
+            <Box marginTop="3">
+              <Stack gap="4">
+                {letters.map((letter) => {
+                  const mine = letter.role === 'user';
+                  return (
+                    <div
+                      key={letter.id}
+                      className={mine ? styles.letterMine : styles.letterNpc}
+                    >
+                      <Inline gap="2" justify="space-between">
+                        <Typography variant="caption" tone="muted">
+                          {mine
+                            ? `${t('play.you')} → ${nameOf(letter.character_slug)}`
+                            : nameOf(letter.character_slug)}
+                        </Typography>
+                        {letter.story_date ? (
+                          <Typography variant="caption" tone="muted">
+                            {formatStoryDate(letter.story_date, dateLocale)}
+                          </Typography>
+                        ) : null}
+                      </Inline>
+                      <Box marginTop="2">
+                        {mine ? (
+                          <div className={styles.letterContent}>{letter.content}</div>
+                        ) : (
+                          <div className={styles.prose}>
+                            <ReactMarkdown>{letter.content}</ReactMarkdown>
+                          </div>
+                        )}
+                      </Box>
+                    </div>
+                  );
+                })}
+                {letters.length === 0 ? (
+                  <Typography variant="caption" tone="muted">
+                    {t('common.none')}
+                  </Typography>
+                ) : null}
+              </Stack>
+            </Box>
+          </Box>
+        </div>
+      </Box>
+    </Stack>
   );
 }

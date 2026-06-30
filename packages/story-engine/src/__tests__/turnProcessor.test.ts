@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  actForTurn,
   applyGameStateUpdates,
   generateTurnBatch,
   initialRuntimeState,
@@ -234,5 +235,83 @@ describe('applyGameStateUpdates + initialRuntimeState', () => {
       [],
     );
     expect(next.current_act).toBe(3);
+  });
+});
+
+describe('actForTurn', () => {
+  // Seed acts: 1 (1–4), 2 (5–8), 3 (9–15), 4 (16–20), 5 (21+).
+  it('maps a turn to the act whose range contains it', () => {
+    expect(actForTurn(VOSS_STORY, 1)).toBe(1);
+    expect(actForTurn(VOSS_STORY, 4)).toBe(1);
+    expect(actForTurn(VOSS_STORY, 5)).toBe(2);
+    expect(actForTurn(VOSS_STORY, 9)).toBe(3);
+    expect(actForTurn(VOSS_STORY, 16)).toBe(4);
+    expect(actForTurn(VOSS_STORY, 21)).toBe(5);
+  });
+
+  it('clamps before the first range and past the last (open-ended) range', () => {
+    expect(actForTurn(VOSS_STORY, 0)).toBe(1);
+    expect(actForTurn(VOSS_STORY, 999)).toBe(5);
+  });
+
+  it('returns 1 for a story with no acts module', () => {
+    expect(actForTurn({ ...VOSS_STORY, acts: [] }, 7)).toBe(1);
+  });
+});
+
+describe('turn-driven act gating (story cannot stall on the orchestrator)', () => {
+  // The orchestrator proposes NO act_progression and assigns a fact gated to a
+  // later act. With turnNumber set, the engine derives the act from the turn so
+  // the gated fact is in scope; without it, the legacy behavior strips the fact.
+  function handlerAssigningGatedFact() {
+    return (request: StructuredRequest): unknown => {
+      if (request.tool.name === 'turn_plan') {
+        return {
+          replies: [
+            {
+              character_slug: 'voss',
+              brief: 'Riferisci del secondo omicidio.',
+              facts_to_use: ['murder2_date'], // reveal_act 2
+              clues_to_release: [],
+            },
+          ],
+          game_state_updates: { clues_found: [], npcs_to_unlock: [] }, // no act_progression
+          narrator_notes: '',
+        };
+      }
+      return {
+        character_slug: 'voss',
+        date_sent: '1999-01-01',
+        content: 'Lettera.',
+        metadata: { facts_referenced: ['murder2_date'], clues_revealed: [] },
+      };
+    };
+  }
+
+  const baseState = { ...initialRuntimeState(VOSS_STORY), current_act: 1 };
+
+  it('keeps a fact gated to act 2 when generating turn 5 (act 2 by schedule)', async () => {
+    const batch = await generateTurnBatch({
+      story: VOSS_STORY,
+      state: baseState,
+      history: [],
+      playerLetters: [{ recipient_slug: 'voss', content: 'Novità?' }],
+      provider: new MockProvider(handlerAssigningGatedFact()),
+      seed: 'gate:5',
+      turnNumber: 5,
+    });
+    expect(batch.plan.replies[0].facts_to_use).toContain('murder2_date');
+  });
+
+  it('strips the same fact without turnNumber (legacy, still at act 1)', async () => {
+    const batch = await generateTurnBatch({
+      story: VOSS_STORY,
+      state: baseState,
+      history: [],
+      playerLetters: [{ recipient_slug: 'voss', content: 'Novità?' }],
+      provider: new MockProvider(handlerAssigningGatedFact()),
+      seed: 'gate:legacy',
+    });
+    expect(batch.plan.replies[0].facts_to_use).not.toContain('murder2_date');
   });
 });

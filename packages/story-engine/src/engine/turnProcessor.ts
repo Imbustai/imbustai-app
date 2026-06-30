@@ -75,6 +75,26 @@ function coerceStructured(raw: unknown): unknown {
 // calls → merged, validated, reviewable batch. NEVER writes to the DB and
 // NEVER sends anything — callers persist the result as an ai_drafts version.
 
+/**
+ * The act a given (1-based) turn belongs to, by the acts' turn ranges. This lets
+ * the engine advance the story on schedule instead of depending on the model to
+ * propose act_progression — without it, a cautious orchestrator can stall the
+ * plot, because gated facts/clues (reveal_act / act_available) never unlock and
+ * no new events surface. Clamps to the last act past the final range and to the
+ * first act before it; returns 1 for a story with no acts module.
+ */
+export function actForTurn(story: StoryConfig, turnNumber: number): number {
+  if (story.acts.length === 0) return 1;
+  const acts = [...story.acts].sort((a, b) => a.act_number - b.act_number);
+  for (const a of acts) {
+    const max = a.turn_max ?? Infinity;
+    if (turnNumber >= a.turn_min && turnNumber <= max) return a.act_number;
+  }
+  const first = acts[0];
+  if (turnNumber < first.turn_min) return first.act_number;
+  return acts[acts.length - 1].act_number;
+}
+
 export interface GenerateTurnInput {
   story: StoryConfig;
   state: RuntimeState;
@@ -84,6 +104,13 @@ export interface GenerateTurnInput {
   provider: AiProvider;
   /** Deterministic seed for dates, e.g. `${gameId}:${turnNumber}`. */
   seed: string;
+  /**
+   * 1-based number of the turn being generated. When set (and the story has an
+   * acts module), the engine derives the effective act from it so facts/clues
+   * for the scheduled act are available even if the orchestrator doesn't propose
+   * act_progression. Omit to keep the legacy behavior (act = state.current_act).
+   */
+  turnNumber?: number;
   /** Regenerate a single NPC: skip orchestration for others, reuse this plan. */
   reusePlan?: TurnPlan;
   onlyCharacter?: string;
@@ -161,12 +188,21 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
   const { story, state, history, playerLetters, provider, seed, usageSink } = input;
   const turnDate = state.story_date;
 
+  // Advance the act on schedule from the turn number so the plot can't stall on
+  // a cautious orchestrator: the scheduled act gates which facts/clues are in
+  // scope for both the orchestrator and the writers. With no turnNumber (unit
+  // sims) we keep the legacy behavior (act = state.current_act).
+  const derivedAct =
+    input.turnNumber != null ? actForTurn(story, input.turnNumber) : state.current_act;
+  const effectiveState: RuntimeState =
+    derivedAct > state.current_act ? { ...state, current_act: derivedAct } : state;
+
   // 1. Orchestrator → turn plan (or reuse it for single-NPC regenerate).
   let plan: TurnPlan;
   if (input.reusePlan) {
     plan = input.reusePlan;
   } else {
-    const context = buildOrchestratorContext({ story, state, history, playerLetters });
+    const context = buildOrchestratorContext({ story, state: effectiveState, history, playerLetters });
     plan = await generateValidated(
       provider,
       { system: context.system, user: context.user, tool: TURN_PLAN_TOOL, maxTokens: 8000 },
@@ -192,7 +228,7 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
     }
     return [{ ...reply, character_slug: slug }];
   });
-  plan = sanitizePlan(story, state, { ...plan, replies });
+  plan = sanitizePlan(story, effectiveState, { ...plan, replies });
 
   // 3. One scoped writer call per replying NPC (single-NPC regen filters here).
   const targets = input.onlyCharacter
@@ -209,7 +245,7 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
       };
       const context = buildNpcContext({
         story,
-        state,
+        state: effectiveState,
         character,
         brief: reply,
         history,

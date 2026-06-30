@@ -83,7 +83,8 @@ export function FreeOrderForm({
   }
 
   return (
-    <Box as="form" maxWidth="md" marginX="auto">
+    <Box maxWidth="md" marginX="auto">
+      <form onSubmit={onSubmit}>
       <Stack gap="6">
         <Stack gap="2">
           <Label htmlFor="user">{t('admin.selectUser')}</Label>
@@ -152,6 +153,7 @@ export function FreeOrderForm({
           {submitting ? t('common.loading') : t('admin.submitFreeOrder')}
         </Button>
       </Stack>
+      </form>
     </Box>
   );
 }

@@ -35,6 +35,8 @@ export function orchestratorSystemPrompt(opts: {
         '- Keep continuity: never contradict established facts or earlier letters.',
         '- Two separate key spaces: facts_to_use takes FACT keys (from "Canon facts"); clues_found and clues_to_release take CLUE keys (from "Clue catalog"). Never put a fact key where a clue key belongs or vice versa, and only release a clue whose act has been reached.',
         '- Update game state (clues found, characters to unlock, act progression) only when justified.',
+        '- Deliver, never defer: if the player asks for information or an action that a character can provide (an interrogation, a record, a report), make it happen THIS turn. When the holder is another character, unlock them (npcs_to_unlock) and have them reply in this same batch with the real material — a separate letter from that character. Do NOT have a character promise to do later something they could report now ("I will question her and let you know"). The contacted character speaks for themselves; another character must not ventriloquize their findings.',
+        '- Move the investigation forward every turn: each batch must deliver at least one concrete, NEW element (a real lead or a coherent false one). Do not re-state a clue or theory the player already has unless they pick it back up. Do not keep pushing a red herring the player is not pursuing — a red herring exists to build one coherent false trail, not to fill space.',
         '- Observe the player: update the psychological profile and adapt pacing and difficulty to their style.',
         '- narrator_notes are internal notes for the human reviewer — candid strategy talk is welcome there.',
       ].join('\n'),
@@ -96,6 +98,17 @@ export function orchestratorSystemPrompt(opts: {
           )
           .join('\n') +
           (current ? `\nCurrent act: ${current.act_number} ("${current.title}").` : ''),
+      ),
+    );
+  }
+
+  if (story.settings.max_turns) {
+    const maxTurns = story.settings.max_turns;
+    const turnNow = state.current_turn + 1; // the turn you are planning now
+    parts.push(
+      section(
+        'Pacing & resolution',
+        `This story lasts at most ${maxTurns} turns; you are planning turn ${turnNow}. Pace the plot so it reaches a satisfying finale by the last turn — keep the acts moving on schedule (do not linger). In the final act, converge: bring the central threat or decision to a head and give the player what they need to resolve it. Set the ending-condition flags in game_state_updates (e.g. victim_saved, killer_identified) according to the player's ACTUAL choices and deductions — never grant them automatically, never withhold them once the player has earned them.`,
       ),
     );
   }
@@ -208,6 +221,7 @@ export function npcWriterSystemPrompt(opts: {
       'Hard rules',
       [
         '- You only know the facts listed above and what appears in your own correspondence. If the player asks about something outside your knowledge, react naturally (confusion, referral, refusal) — NEVER invent canon facts.',
+        '- Answer the request inside THIS letter, using the facts you have. Do not promise to do later something you can do now ("I will look into it and let you know", "I will question her and report back"): deliver the result here. Only if the request is genuinely outside your knowledge, point the player to the right contact instead of promising to obtain it yourself.',
         '- Follow the Game Master brief, but stay in character.',
         `- date_sent must be between ${replyWindow.earliest} and ${replyWindow.latest} (your realistic reply time).`,
         '- In metadata.facts_referenced, list ONLY keys from the facts listed above that your letter actually draws on — never a key that was not provided to you; if none, leave it empty. In metadata.clues_revealed, list only clue keys the brief told you to release.',

@@ -20,6 +20,7 @@ import {
   CardHeader,
   CardTitle,
   Select,
+  Textarea,
   Stack,
   Inline,
   Box,
@@ -265,8 +266,7 @@ export function ReplyWorkflowPanel({
                       </Button>
                     </Inline>
                     <Box marginTop="2">
-                      <textarea
-                        className={styles.textarea}
+                      <Textarea
                         value={edited?.[r.character_slug] ?? r.content}
                         onChange={(e) =>
                           setEdited((prev) => ({ ...(prev ?? {}), [r.character_slug]: e.target.value }))
@@ -329,8 +329,8 @@ export function ReplyWorkflowPanel({
                     <Typography variant="caption" tone="muted">
                       {t('replyAdmin.guidance')}
                     </Typography>
-                    <textarea
-                      className={styles.textareaSmall}
+                    <Textarea
+                      size="sm"
                       value={guidance}
                       onChange={(e) => setGuidance(e.target.value)}
                       placeholder={t('replyAdmin.guidancePlaceholder')}
@@ -422,8 +422,7 @@ export function TestHarnessCard({
                       </option>
                     ))}
                   </Select>
-                  <textarea
-                    className={styles.textarea}
+                  <Textarea
                     value={letter.content}
                     placeholder={t('replyAdmin.letterPlaceholder')}
                     onChange={(e) =>

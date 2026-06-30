@@ -3,6 +3,7 @@ import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import { PlayClient, type PlayContact } from '@/components/play/play-client';
+import { Box } from '@imbustai/ds';
 import type {
   GameRow,
   InteractionRow,
@@ -74,7 +75,7 @@ export default async function PlayPage({
     .order('letter_number', { ascending: true });
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10">
+    <Box maxWidth="5xl" marginX="auto" paddingX="4" paddingY="10">
       <PlayClient
         gameId={gameId}
         gameStatus={g.status}
@@ -87,6 +88,6 @@ export default async function PlayPage({
         lockedCount={lockedCount}
         initialLetters={(letters ?? []) as InteractionRow[]}
       />
-    </div>
+    </Box>
   );
 }

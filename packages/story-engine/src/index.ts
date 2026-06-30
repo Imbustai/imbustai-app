@@ -33,6 +33,7 @@ export {
   sanitizePlan,
   applyGameStateUpdates,
   initialRuntimeState,
+  actForTurn,
   type GenerateTurnInput,
   type TurnDraftBatch,
 } from './engine/turnProcessor';

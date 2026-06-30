@@ -17,6 +17,7 @@ import {
   CardTitle,
   CardDescription,
   Input,
+  Textarea,
   Label,
   Box,
   Stack,
@@ -287,6 +288,20 @@ export default function DesignSystemPage() {
           </div>
           <Typography variant="caption" tone="muted" as="p">
             Focus ring visible on keyboard focus (tab into the default input above).
+          </Typography>
+        </SubSection>
+
+        {/* Textarea */}
+        <SubSection title="Textarea">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--ds-space-3)', maxWidth: '24rem' }}>
+            <Textarea placeholder="Default textarea" />
+            <Textarea placeholder="Small textarea" size="sm" />
+            <Textarea placeholder="Large textarea" size="lg" />
+            <Textarea placeholder="Invalid textarea" invalid />
+            <Textarea placeholder="Disabled textarea" disabled />
+          </div>
+          <Typography variant="caption" tone="muted" as="p">
+            Sizes: sm (5rem), md (10rem, default), lg (16rem). Vertically resizable.
           </Typography>
         </SubSection>
 

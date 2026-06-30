@@ -1,6 +1,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import {
   DEFAULT_MODEL,
+  actForTurn,
   applyGameStateUpdates,
   canApprove,
   canGenerate,
@@ -173,6 +174,7 @@ export async function generateDraft(
     playerLetters,
     provider,
     seed: `${ctx.game.id}:${ctx.turn.turn_number}`,
+    turnNumber: ctx.turn.turn_number,
     reusePlan,
     onlyCharacter: opts.onlyCharacter,
     usageSink,
@@ -310,6 +312,12 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
       ...(d.game_state_updates as object),
     },
     responses,
+  );
+  // Keep the persisted act on schedule with the turn number, so a turn the
+  // orchestrator under-progressed doesn't leave the story stuck a step behind.
+  newState.current_act = Math.max(
+    newState.current_act,
+    actForTurn(ctx.story, newState.current_turn),
   );
   const { error: gErr } = await ctx.admin
     .from('games')

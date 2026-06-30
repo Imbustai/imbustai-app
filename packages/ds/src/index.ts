@@ -45,6 +45,10 @@ export { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '.
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './components/Tooltip/Tooltip';
 export type { TooltipProps, TooltipTriggerProps, TooltipContentProps, TooltipProviderProps } from './components/Tooltip/Tooltip';
 
+// Textarea
+export { Textarea } from './components/Textarea/Textarea';
+export type { TextareaProps } from './components/Textarea/Textarea';
+
 // Select
 export { Select } from './components/Select/Select';
 export type { SelectProps } from './components/Select/Select';
