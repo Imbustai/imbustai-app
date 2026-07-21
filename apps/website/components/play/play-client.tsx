@@ -72,6 +72,7 @@ export function PlayClient({
   contacts: initialContacts,
   lockedCount: initialLockedCount,
   initialLetters,
+  allCharacters,
 }: {
   gameId: string;
   gameStatus: GameStatus;
@@ -83,6 +84,7 @@ export function PlayClient({
   contacts: PlayContact[];
   lockedCount: number;
   initialLetters: InteractionRow[];
+  allCharacters: PlayContact[];
 }) {
   const { t, locale } = useTranslation();
   const storyTitle = locale === 'it' ? storyTitleIt : storyTitleEn;
@@ -211,7 +213,7 @@ export function PlayClient({
   }
 
   const nameOf = (slug: string | null) =>
-    contacts.find((c) => c.slug === slug)?.name ?? slug ?? storyTitle;
+    allCharacters.find((c) => c.slug === slug)?.name ?? slug ?? storyTitle;
 
   const composerOpen = status === 'in_progress' && !awaitingReply;
 
@@ -306,7 +308,7 @@ export function PlayClient({
             {composerOpen && draftEntries.length > 0 ? (
               <Box marginTop="4">
                 <Button fullWidth onClick={() => setReviewing(true)}>
-                  📨 {t('play.reviewAndSend')} ({draftEntries.length})
+                  📨 {t('play.reviewAndSend')}
                 </Button>
               </Box>
             ) : null}
@@ -331,11 +333,6 @@ export function PlayClient({
                         persistDrafts({ ...drafts, [activeSlug]: e.target.value })
                       }
                     />
-                    <Box marginTop="2">
-                      <Typography variant="caption" tone="muted">
-                        {t('play.draftHint')}
-                      </Typography>
-                    </Box>
                     <Box marginTop="3">
                       <Inline gap="2">
                         <Button size="sm" variant="outline" onClick={() => setActiveSlug(null)}>
@@ -343,7 +340,7 @@ export function PlayClient({
                         </Button>
                         {draftEntries.length > 0 ? (
                           <Button size="sm" onClick={() => setReviewing(true)}>
-                            📨 {t('play.reviewAndSend')} ({draftEntries.length}/{maxLetters})
+                            📨 {t('play.reviewAndSend')}
                           </Button>
                         ) : null}
                       </Inline>
@@ -409,7 +406,7 @@ export function PlayClient({
             </Typography>
             <Box marginTop="3">
               <Stack gap="4">
-                {letters.map((letter) => {
+                {[...letters].reverse().map((letter) => {
                   const mine = letter.role === 'user';
                   return (
                     <div

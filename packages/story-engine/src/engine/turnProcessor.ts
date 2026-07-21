@@ -163,14 +163,29 @@ export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: Turn
   };
   const slugs = new Set(story.characters.map((c) => c.slug));
 
-  const replies = plan.replies.map((r) => {
-    const scope = factScope(r.character_slug);
-    return {
-      ...r,
-      facts_to_use: r.facts_to_use.filter((k) => scope.has(k)),
-      clues_to_release: r.clues_to_release.filter(clueOk),
-    };
-  });
+  // Characters that can never reply: not contactable_from_start and no unlock_rules.
+  // opening_letter is NOT a criterion here: intro-only characters (e.g. a one-shot
+  // acceptance gate sender) have opening_letter set but empty unlock_rules — they must
+  // never appear in turn replies. Recurring automatic senders carry a non-empty
+  // unlock_rules (e.g. {"auto_sender":true}) to pass this check.
+  const canReply = (slug: string) => {
+    const char = story.characters.find((c) => c.slug === slug);
+    if (!char) return story.allow_dynamic_npcs;
+    if (char.contactable_from_start) return true;
+    if (Object.keys(char.unlock_rules).length > 0) return true;
+    return false;
+  };
+
+  const replies = plan.replies
+    .filter((r) => canReply(r.character_slug))
+    .map((r) => {
+      const scope = factScope(r.character_slug);
+      return {
+        ...r,
+        facts_to_use: r.facts_to_use.filter((k) => scope.has(k)),
+        clues_to_release: r.clues_to_release.filter(clueOk),
+      };
+    });
 
   return {
     ...plan,
@@ -179,7 +194,13 @@ export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: Turn
       ...gsu,
       act_progression: act,
       clues_found: gsu.clues_found.filter(clueOk),
-      npcs_to_unlock: gsu.npcs_to_unlock.filter((s) => slugs.has(s) || story.allow_dynamic_npcs),
+      npcs_to_unlock: gsu.npcs_to_unlock.filter((s) => {
+        if (!slugs.has(s) && !story.allow_dynamic_npcs) return false;
+        // Never unlock characters that are not designed to be player-contactable.
+        const char = story.characters.find((c) => c.slug === s);
+        if (char && !char.contactable_from_start && Object.keys(char.unlock_rules).length === 0) return false;
+        return true;
+      }),
     },
   };
 }
@@ -266,7 +287,20 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
           }),
       );
       // The writer speaks for exactly one character; trust the brief over the model.
-      return { ...letter, character_slug: reply.character_slug };
+      // Sanitize clues_revealed against the catalog: writers routinely misfile
+      // fact keys (or invent keys) as clues, which would otherwise trip the
+      // validator's state_sanity check every turn. The authoritative clue
+      // tracking is the orchestrator's game_state_updates.clues_found (already
+      // sanitized), so dropping non-clue keys here is pure metadata hygiene.
+      const clueKeys = new Set(story.clues.map((c) => c.clue_key));
+      return {
+        ...letter,
+        character_slug: reply.character_slug,
+        metadata: {
+          ...letter.metadata,
+          clues_revealed: letter.metadata.clues_revealed.filter((k) => clueKeys.has(k)),
+        },
+      };
     }),
   );
 

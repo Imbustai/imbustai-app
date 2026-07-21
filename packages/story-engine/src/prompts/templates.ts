@@ -34,6 +34,7 @@ export function orchestratorSystemPrompt(opts: {
         '- GM-ONLY facts are for YOUR strategy and narrator_notes ONLY. NEVER put a GM-only fact key in any character\'s facts_to_use, and never instruct a character to state it. Let the plot reveal them through in-scope facts and the characters\' hidden agendas, never by quoting the secret.',
         '- Keep continuity: never contradict established facts or earlier letters.',
         '- Two separate key spaces: facts_to_use takes FACT keys (from "Canon facts"); clues_found and clues_to_release take CLUE keys (from "Clue catalog"). Never put a fact key where a clue key belongs or vice versa, and only release a clue whose act has been reached.',
+        '- Clues with NO source character (marked "PLAYER DEDUCTION" in the catalog) are the player\'s own conclusions: NEVER brief a character to state, explain, or highlight them. A character may provide the raw underlying data (addresses, ages, findings), but the pattern/connection/interpretation must be left entirely to the player. Only add such a clue to clues_found once the player has demonstrably reached it themselves.',
         '- Update game state (clues found, characters to unlock, act progression) only when justified.',
         '- Deliver, never defer: if the player asks for information or an action that a character can provide (an interrogation, a record, a report), make it happen THIS turn. When the holder is another character, unlock them (npcs_to_unlock) and have them reply in this same batch with the real material — a separate letter from that character. Do NOT have a character promise to do later something they could report now ("I will question her and let you know"). The contacted character speaks for themselves; another character must not ventriloquize their findings.',
         '- Move the investigation forward every turn: each batch must deliver at least one concrete, NEW element (a real lead or a coherent false one). Do not re-state a clue or theory the player already has unless they pick it back up. Do not keep pushing a red herring the player is not pursuing — a red herring exists to build one coherent false trail, not to fill space.',
@@ -47,16 +48,24 @@ export function orchestratorSystemPrompt(opts: {
     section(
       'Characters',
       story.characters
+        // Include only characters the orchestrator can actually use during turns:
+        // - contactable_from_start: player contacts (unlocked or lockable)
+        // - non-empty unlock_rules: includes recurring automatic senders (auto_sender:true)
+        //   and unlockable contacts; intro-only openers (opening_letter only, no unlock_rules)
+        //   are intentionally excluded — they exist only for game-start letters.
+        .filter((c) => c.contactable_from_start || Object.keys(c.unlock_rules).length > 0)
         .map((c) => {
           const lines = [
             `- "${c.slug}" — ${c.name} (${c.role}). ${c.backstory}`.trim(),
             `  Personality: ${JSON.stringify(c.personality)}`,
             c.hidden_agenda ? `  Hidden agenda (secret): ${c.hidden_agenda}` : '',
             c.knowledge_notes ? `  Knows: ${c.knowledge_notes}` : '',
-            `  Unlocked: ${state.unlocked_npcs.includes(c.slug) ? 'yes' : 'no'}` +
-              (Object.keys(c.unlock_rules).length > 0
-                ? ` (unlock rules: ${JSON.stringify(c.unlock_rules)})`
-                : ''),
+            c.contactable_from_start
+              ? `  Unlocked: ${state.unlocked_npcs.includes(c.slug) ? 'yes' : 'no'}` +
+                (Object.keys(c.unlock_rules).length > 0
+                  ? ` (unlock rules: ${JSON.stringify(c.unlock_rules)})`
+                  : '')
+              : `  Role: automatic sender — writes spontaneously when their facts are in scope. The player cannot contact them directly. Do NOT wait for the player to request them; include their letter in every batch where their knowledge is relevant.`,
           ].filter(Boolean);
           return lines.join('\n');
         })
@@ -121,7 +130,9 @@ export function orchestratorSystemPrompt(opts: {
           .map(
             (c) =>
               `- [${c.clue_key}] (${c.reliability}, ${c.category}, from act ${c.act_available}` +
-              (c.source_character_slug ? `, via ${c.source_character_slug}` : '') +
+              (c.source_character_slug
+                ? `, via ${c.source_character_slug}`
+                : ', PLAYER DEDUCTION — no character may state this') +
               `) ${c.description}`,
           )
           .join('\n') +
@@ -224,7 +235,8 @@ export function npcWriterSystemPrompt(opts: {
         '- Answer the request inside THIS letter, using the facts you have. Do not promise to do later something you can do now ("I will look into it and let you know", "I will question her and report back"): deliver the result here. Only if the request is genuinely outside your knowledge, point the player to the right contact instead of promising to obtain it yourself.',
         '- Follow the Game Master brief, but stay in character.',
         `- date_sent must be between ${replyWindow.earliest} and ${replyWindow.latest} (your realistic reply time).`,
-        '- In metadata.facts_referenced, list ONLY keys from the facts listed above that your letter actually draws on — never a key that was not provided to you; if none, leave it empty. In metadata.clues_revealed, list only clue keys the brief told you to release.',
+        '- In metadata.facts_referenced, list ONLY keys from the facts listed above that your letter actually draws on — never a key that was not provided to you; if none, leave it empty.',
+        '- In metadata.clues_revealed, list ONLY clue keys explicitly named in the brief\'s "Clues to weave in" list. NEVER put a fact key here (fact keys belong in facts_referenced only), and NEVER invent a key. If the brief named no clues, leave clues_revealed empty.',
         '- Do not introduce specific canon details (names, dates, places, events) that are not in the facts above or in your correspondence. If tempted to mention something you were not told, stay vague or defer instead.',
         '- NEVER write the date inside the letter content (no "[Data: ...]" header, no date line). The platform shows the date separately; you only set the date_sent field.',
         '- Respond ONLY by calling the npc_letter tool, with arguments as a valid JSON object — never use XML or <parameter ...> tags. The letter (salutation, body, signature) goes entirely in `content`.',

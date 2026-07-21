@@ -115,7 +115,7 @@ export function AdminGameDetailClient({
       <Box as="section" marginTop="6">
         <Typography variant="h3">{t('games.letters')}</Typography>
         <Stack gap="4" as="ol">
-          {list.map((i) => (
+          {[...list].reverse().map((i) => (
             <li key={i.id} className={styles.interactionCard}>
               <Inline gap="2">
                 <Badge variant={i.role === 'ai' ? 'default' : 'outline'}>

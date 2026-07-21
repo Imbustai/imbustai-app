@@ -49,7 +49,10 @@ export async function GET(
   const contacts = loaded.story.characters
     .filter((c) => state.unlocked_npcs.includes(c.slug))
     .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
-  const lockedCount = loaded.story.characters.length - contacts.length;
+  // Only count characters designed to be player-contactable but not yet unlocked.
+  // Passive senders (contactable_from_start = false) must never show as locked slots.
+  const potentiallyContactable = loaded.story.characters.filter((c) => c.contactable_from_start);
+  const lockedCount = potentiallyContactable.filter((c) => !state.unlocked_npcs.includes(c.slug)).length;
 
   const transit = (inTransit ?? []) as Array<{ visible_from: string }>;
 
