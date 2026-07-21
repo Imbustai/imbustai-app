@@ -1,7 +1,7 @@
 'use client';
 
 import type { StaticImageData } from 'next/image';
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties } from 'react';
 import {
   useCallback,
   useEffect,
@@ -10,31 +10,15 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from '@imbustai/i18n';
+import { Typography, Button } from '@imbustai/ds';
 import { cn } from '@/lib/utils';
+import { signupUrl } from '@/lib/site';
+import Link from 'next/link';
 import letterImage1 from '../../assets/the_tales.jpg';
 import letterImage2 from '../../assets/the_love_letter.webp';
 import letterImage3 from '../../assets/the_writer_letter.jpg';
 import letterImage4 from '../../assets/the_night_watch.webp';
 import styles from './how-it-works-section.module.scss';
-import { Button } from '@/components/ui/button';
-import { Link } from 'lucide-react';
-import { signupUrl } from '@/lib/site';
-
-function SectionHeading({
-  children,
-  className,
-  as: Comp = 'h2',
-}: {
-  children: ReactNode;
-  className?: string;
-  as?: 'h1' | 'h2' | 'h3';
-}) {
-  return (
-    <Comp className={cn('font-heading text-balance', className)}>
-      {children}
-    </Comp>
-  );
-}
 
 /** Focal zoom per step: CSS % for transform-origin; scale > 1 zooms in toward that point. */
 const STEP_BG_FOCUS: ReadonlyArray<{
@@ -144,18 +128,17 @@ export function HowItWorksSection() {
       }
     >
       <div className={styles.stickySlot}>
-        <div className="relative z-10 mx-auto w-full max-w-6xl bg-landing-hero">
-          <SectionHeading
-            as="h1"
-            className="text-4xl leading-[1.05] text-landing-hero-fg sm:text-2xl md:text-4xl "
-          >
+        <div className="relative z-10 mx-auto w-full max-w-6xl bg-background">
+          <Typography variant="display" as="h1">
             {t('landing.hero.headline')}
-          </SectionHeading>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-landing-hero-fg-muted sm:text-xl">
-            {t('landing.hero.subLine1')}
-            <br />
-            {t('landing.hero.subLine2')}
-          </p>
+          </Typography>
+          <div className="mt-6 max-w-xl">
+            <Typography variant="body" tone="muted">
+              {t('landing.hero.subLine1')}
+              <br />
+              {t('landing.hero.subLine2')}
+            </Typography>
+          </div>
           <div className="mt-10 flex flex-wrap gap-4">
             <Button size="lg" asChild>
               <Link href={signupUrl}>{t('landing.hero.ctaPrimary')}</Link>
@@ -165,7 +148,7 @@ export function HowItWorksSection() {
         <div className={styles.root}>
           <div
             className={cn(
-              'how-it-works-stage relative flex flex-col overflow-hidden border border-landing-card-border-subtle shadow-md',
+              'how-it-works-stage relative flex flex-col overflow-hidden border border-border shadow-sm',
               'md:block md:aspect-video',
             )}
           >
@@ -216,9 +199,9 @@ export function HowItWorksSection() {
             <div
               className={cn(
                 styles.howItWorksGrid +
-                  ' relative z-10 flex w-full min-w-0 flex-1 flex-col gap-4 border-t border-landing-card-border-subtle bg-landing-card p-4 sm:gap-5 sm:p-5',
+                  ' relative z-10 flex w-full min-w-0 flex-1 flex-col gap-4 border-t border-border bg-card p-4 sm:gap-5 sm:p-5',
                 'md:border-t-0 md:bg-transparent md:p-8',
-                'md:absolute md:inset-0 md:grid md:grid-cols-[300px_minmax(0,1fr)] md:gap-8 text-mania',
+                'md:absolute md:inset-0 md:grid md:grid-cols-[300px_minmax(0,1fr)] md:gap-8',
               )}
             >
               <nav
@@ -238,11 +221,11 @@ export function HowItWorksSection() {
                             type="button"
                             onClick={() => scrollToStep(index)}
                             className={cn(
-                              'flex max-w-[11.5rem] flex-col items-center gap-1.5 rounded-xl border px-3 py-2.5 text-center transition-colors',
+                              'flex max-w-[11.5rem] flex-col items-center gap-1.5 border px-3 py-2.5 text-center transition-colors',
                               'snap-start sm:max-w-[13rem]',
                               isActive
-                                ? 'border-primary/60 bg-landing-surface-warm/90 text-landing-surface-warm-fg shadow-sm'
-                                : 'border-landing-card-border-subtle bg-landing-surface-warm/50 text-landing-surface-warm-fg active:bg-landing-surface-warm/70',
+                                ? 'border-primary/60 bg-muted/90 text-foreground shadow-sm'
+                                : 'border-border bg-muted/50 text-foreground active:bg-muted/70',
                             )}
                             aria-current={isActive ? 'step' : undefined}
                           >
@@ -251,7 +234,7 @@ export function HowItWorksSection() {
                                 'flex size-8 items-center justify-center rounded-full font-heading text-sm tabular-nums',
                                 isActive
                                   ? 'bg-primary text-primary-foreground'
-                                  : 'bg-landing-surface-warm-fg/10 text-landing-surface-warm-fg',
+                                  : 'bg-foreground/10 text-foreground',
                               )}
                               aria-hidden
                             >
@@ -276,10 +259,10 @@ export function HowItWorksSection() {
                           type="button"
                           onClick={() => scrollToStep(index)}
                           className={cn(
-                            'flex min-h-12 w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-base transition-colors',
+                            'flex min-h-12 w-full items-start gap-3 border px-4 py-3 text-left text-base transition-colors',
                             isActive
-                              ? 'border-primary/60 bg-landing-card/95 text-landing-surface-warm-fg shadow-sm'
-                              : 'border-landing-card-border-subtle/80 bg-landing-card/75 text-landing-surface-warm-fg hover:bg-landing-card/90',
+                              ? 'border-primary/60 bg-card/95 text-foreground shadow-sm'
+                              : 'border-border/80 bg-card/75 text-foreground hover:bg-card/90',
                           )}
                           aria-current={isActive ? 'step' : undefined}
                         >
@@ -288,7 +271,7 @@ export function HowItWorksSection() {
                               'mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full font-heading text-sm tabular-nums',
                               isActive
                                 ? 'bg-primary text-primary-foreground'
-                                : 'bg-landing-surface-warm-fg/10 text-landing-surface-warm-fg',
+                                : 'bg-foreground/10 text-foreground',
                             )}
                             aria-hidden
                           >
@@ -306,8 +289,8 @@ export function HowItWorksSection() {
 
               <div
                 className={cn(
-                  'flex min-w-0 flex-1 flex-col justify-center rounded-xl border border-landing-card-border-subtle bg-landing-card/95 p-4 sm:p-5',
-                  'md:bg-landing-card/90 md:p-6',
+                  'flex min-w-0 flex-1 flex-col justify-center border border-border bg-card/95 p-4 sm:p-5',
+                  'md:bg-card/90 md:p-6',
                 )}
               >
                 <p className={styles.bodyCopy}>

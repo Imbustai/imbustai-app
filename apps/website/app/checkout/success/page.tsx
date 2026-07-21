@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getSessionUser } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { CheckoutSuccessClient } from '@/components/shop/checkout-success-client';
+import { Button, Typography, Box, Stack } from '@imbustai/ds';
 
 export const dynamic = 'force-dynamic';
 
@@ -17,12 +18,14 @@ export default async function CheckoutSuccessPage({
   const { session_id } = await searchParams;
   if (!session_id) {
     return (
-      <div className="mx-auto max-w-md px-4 py-16 text-center">
-        <p className="text-muted-foreground">Missing session.</p>
-        <Link href="/shop" className="mt-4 inline-block text-primary underline">
-          Shop
-        </Link>
-      </div>
+      <Box maxWidth="md" marginX="auto" paddingX="4" paddingY="16">
+        <Stack align="center" gap="4">
+          <Typography variant="body" tone="muted">Missing session.</Typography>
+          <Button asChild variant="link">
+            <Link href="/shop">Shop</Link>
+          </Button>
+        </Stack>
+      </Box>
     );
   }
 
@@ -35,10 +38,10 @@ export default async function CheckoutSuccessPage({
     .maybeSingle();
 
   return (
-    <div className="mx-auto max-w-md px-4 py-16">
+    <Box maxWidth="md" marginX="auto" paddingX="4" paddingY="16">
       <CheckoutSuccessClient
         status={(order?.status as string | undefined) ?? null}
       />
-    </div>
+    </Box>
   );
 }

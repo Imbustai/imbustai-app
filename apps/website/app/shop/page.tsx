@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server';
 import type { StoryRow } from '@/lib/types/db';
 import { StoryGrid } from '@/components/shop/story-grid';
 import { ShopPageHeader } from '@/components/shop/shop-page-header';
+import { Container, Stack } from '@imbustai/ds';
 
 export const dynamic = 'force-dynamic';
 
@@ -14,9 +15,11 @@ export default async function ShopPage() {
     .order('created_at', { ascending: false });
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12">
-      <ShopPageHeader />
-      <StoryGrid stories={(stories ?? []) as StoryRow[]} />
-    </div>
+    <Container>
+      <Stack paddingY="12">
+        <ShopPageHeader />
+        <StoryGrid stories={(stories ?? []) as StoryRow[]} />
+      </Stack>
+    </Container>
   );
 }

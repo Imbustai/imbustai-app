@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { Typography, Box, Stack } from '@imbustai/ds';
 
 export function AuthLayout({
   children,
@@ -13,20 +14,19 @@ export function AuthLayout({
   backLabel: string;
 }) {
   return (
-    <div className="mx-auto flex min-h-[70vh] max-w-md flex-col justify-center px-4 py-16">
-      <Link
-        href="/"
-        className="mb-8 text-sm text-muted-foreground transition-colors hover:text-foreground"
-      >
-        {backLabel}
-      </Link>
-      <h1 className="font-heading text-2xl font-semibold tracking-tight">
-        {title}
-      </h1>
+    <Box maxWidth="sm" marginX="auto" paddingX="4" paddingY="16" display="flex" flexDirection="column" justifyContent="center" height="auto">
+      <Box marginBottom="8">
+        <Link href="/">
+          <Typography variant="caption" tone="muted">{backLabel}</Typography>
+        </Link>
+      </Box>
+      <Typography variant="h2">{title}</Typography>
       {subtitle ? (
-        <p className="mt-2 text-sm text-muted-foreground">{subtitle}</p>
+        <Box marginTop="2">
+          <Typography variant="caption" tone="muted">{subtitle}</Typography>
+        </Box>
       ) : null}
-      <div className="mt-8">{children}</div>
-    </div>
+      <Box marginTop="8">{children}</Box>
+    </Box>
   );
 }

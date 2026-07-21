@@ -35,7 +35,7 @@ $section-top-spacing: 0;
 .bodyCopy {
   font-size: 1rem;
   line-height: 1.45;
-  color: var(--landing-hero-fg);
+  color: var(--ds-color-foreground);
 
   @media (width >= 40rem) {
     font-size: 1.125rem;
@@ -45,4 +45,3 @@ $section-top-spacing: 0;
     font-size: 1.25rem;
   }
 }
-

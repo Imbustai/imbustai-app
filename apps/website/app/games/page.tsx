@@ -2,11 +2,11 @@ import { redirect } from 'next/navigation';
 import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { GamesList } from '@/components/games/games-list';
+import { Container, Box } from '@imbustai/ds';
 import type { GameRow, StoryRow } from '@/lib/types/db';
 
 export const dynamic = 'force-dynamic';
 
-// /games — the player's own games. Admins manage games from /admin/games.
 export default async function GamesPage() {
   if (await isCurrentUserAdmin()) {
     redirect('/admin/games');
@@ -53,8 +53,10 @@ export default async function GamesPage() {
   }));
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10">
-      <GamesList rows={rows} />
-    </div>
+    <Container>
+      <Box paddingY="10">
+        <GamesList rows={rows} />
+      </Box>
+    </Container>
   );
 }

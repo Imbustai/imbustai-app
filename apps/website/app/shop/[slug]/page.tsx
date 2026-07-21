@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import { StoryDetailClient } from '@/components/shop/story-detail-client';
 import { formatMoney } from '@/lib/story-i18n';
 import type { StoryRow } from '@/lib/types/db';
-import { Button } from '@/components/ui/button';
+import { Button, Box, Stack } from '@imbustai/ds';
 
 export const dynamic = 'force-dynamic';
 
@@ -27,11 +27,13 @@ export default async function StoryDetailPage({
   const s = story as StoryRow;
 
   return (
-    <div className="mx-auto max-w-2xl px-4 py-12">
-      <Button variant="ghost" asChild className="mb-6 -ml-2">
-        <Link href="/shop">← Shop</Link>
-      </Button>
-      <StoryDetailClient story={s} priceLabel={formatMoney(s.price_cents, s.currency)} />
-    </div>
+    <Box maxWidth="2xl" marginX="auto" paddingX="4" paddingY="12">
+      <Stack gap="6">
+        <Button variant="ghost" asChild>
+          <Link href="/shop">← Shop</Link>
+        </Button>
+        <StoryDetailClient story={s} priceLabel={formatMoney(s.price_cents, s.currency)} />
+      </Stack>
+    </Box>
   );
 }

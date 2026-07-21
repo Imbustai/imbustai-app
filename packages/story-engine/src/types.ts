@@ -145,6 +145,24 @@ export interface PlayerTurnLetter {
   content: string;
 }
 
+/**
+ * One model call's token usage, tagged with what it was for. Collected per
+ * turn batch (orchestrator + one per NPC letter, retries included). Cost in
+ * dollars is computed app-side from a DB price table — never in the engine.
+ */
+export interface UsageRecord {
+  /** 'orchestrator' (turn plan) or 'npc_letter' (one NPC's reply). */
+  call_type: 'orchestrator' | 'npc_letter';
+  /** Set for npc_letter calls — which character the letter is for. */
+  character_slug?: string;
+  provider: string;
+  model: string;
+  input_tokens: number;
+  output_tokens: number;
+  cache_creation_input_tokens: number;
+  cache_read_input_tokens: number;
+}
+
 export type WarningSeverity = 'warning' | 'error';
 
 export interface ValidationWarning {

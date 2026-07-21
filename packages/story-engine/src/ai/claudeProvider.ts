@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import type { AiProvider, StructuredRequest } from './provider';
+import type { AiProvider, CallUsage, StructuredRequest, StructuredResult } from './provider';
 
 // Server-only. The API key must never reach a client bundle — this module is
 // imported exclusively from Route Handlers / scripts.
@@ -23,7 +23,7 @@ export class ClaudeProvider implements AiProvider {
     this.model = options.model ?? process.env.STORY_ENGINE_MODEL ?? DEFAULT_MODEL;
   }
 
-  async generateStructured(request: StructuredRequest): Promise<unknown> {
+  async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     const response = await this.client.messages.create({
       model: this.model,
       max_tokens: request.maxTokens ?? 4096,
@@ -39,6 +39,8 @@ export class ClaudeProvider implements AiProvider {
       tool_choice: { type: 'tool', name: request.tool.name },
     });
 
+    const usage = this.toCallUsage(response.usage);
+
     const toolUse = response.content.find(
       (block): block is Anthropic.ToolUseBlock => block.type === 'tool_use',
     );
@@ -47,6 +49,17 @@ export class ClaudeProvider implements AiProvider {
         `Claude did not return the expected ${request.tool.name} tool call (stop_reason: ${response.stop_reason}).`,
       );
     }
-    return toolUse.input;
+    return { output: toolUse.input, usage };
+  }
+
+  private toCallUsage(usage: Anthropic.Usage): CallUsage {
+    return {
+      provider: 'anthropic',
+      model: this.model,
+      input_tokens: usage.input_tokens ?? 0,
+      output_tokens: usage.output_tokens ?? 0,
+      cache_creation_input_tokens: usage.cache_creation_input_tokens ?? 0,
+      cache_read_input_tokens: usage.cache_read_input_tokens ?? 0,
+    };
   }
 }

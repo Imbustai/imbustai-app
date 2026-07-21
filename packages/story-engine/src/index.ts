@@ -33,13 +33,17 @@ export {
   sanitizePlan,
   applyGameStateUpdates,
   initialRuntimeState,
+  actForTurn,
   type GenerateTurnInput,
   type TurnDraftBatch,
 } from './engine/turnProcessor';
 export type {
   AiProvider,
+  CallUsage,
   StructuredRequest,
+  StructuredResult,
   StructuredToolDefinition,
 } from './ai/provider';
-export { MockProvider } from './ai/provider';
+export { MockProvider, ZERO_USAGE } from './ai/provider';
 export { ClaudeProvider, DEFAULT_MODEL } from './ai/claudeProvider';
+export { createProvider, resolveProviderKind, type ProviderKind } from './ai/createProvider';

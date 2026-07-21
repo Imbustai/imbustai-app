@@ -1,0 +1,21 @@
+.breadcrumbLink {
+  color: var(--ds-color-muted-foreground);
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.breadcrumbLink:hover {
+  color: var(--ds-color-foreground);
+}
+
+.breadcrumbCurrent {
+  font-weight: 500;
+  color: var(--ds-color-foreground);
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  color: var(--ds-color-muted-foreground);
+}

@@ -1,10 +1,11 @@
 'use client';
 
 import { useTranslation } from '@imbustai/i18n';
+import { Button, Stack } from '@imbustai/ds';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import s from './admin-styles.module.css';
 
 export function StartGameButton({
   orderId,
@@ -45,15 +46,15 @@ export function StartGameButton({
   }
 
   return (
-    <div className="space-y-2">
+    <Stack gap="2">
       <Button type="button" disabled={loading} onClick={onClick}>
         {loading ? t('common.loading') : t('admin.startGame')}
       </Button>
       {error ? (
-        <p className="text-sm text-destructive" role="alert">
+        <p className={s.errorText} role="alert">
           {error}
         </p>
       ) : null}
-    </div>
+    </Stack>
   );
 }

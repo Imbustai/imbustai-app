@@ -1,7 +1,9 @@
 'use client';
 
 import { useTranslation } from '@imbustai/i18n';
+import { Box } from '@imbustai/ds';
 import Link from 'next/link';
+import s from './admin-styles.module.css';
 
 export function AdminBackLink({
   href,
@@ -12,11 +14,10 @@ export function AdminBackLink({
 }) {
   const { t } = useTranslation();
   return (
-    <Link
-      href={href}
-      className="mb-4 inline-block text-sm text-muted-foreground hover:text-foreground"
-    >
-      {t(labelKey)}
-    </Link>
+    <Box marginBottom="4" display="inline-block">
+      <Link href={href} className={s.mutedLink}>
+        {t(labelKey)}
+      </Link>
+    </Box>
   );
 }

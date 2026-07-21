@@ -153,6 +153,19 @@ export interface InteractionTurnRow {
   updated_at: string;
 }
 
+/** One model call's token usage + its USD cost snapshot. Stored in ai_drafts.usage. */
+export interface UsageRecord {
+  call_type: 'orchestrator' | 'npc_letter';
+  character_slug?: string;
+  provider: string;
+  model: string;
+  input_tokens: number;
+  output_tokens: number;
+  cache_creation_input_tokens: number;
+  cache_read_input_tokens: number;
+  cost_usd: number;
+}
+
 export interface AiDraftRow {
   id: string;
   turn_id: string;
@@ -163,7 +176,29 @@ export interface AiDraftRow {
   validation_warnings: unknown[];
   source: DraftSource;
   model: string;
+  // Cost tracking (admin-only; see 20260627120100_ai_drafts_cost.sql).
+  provider: string;
+  usage: UsageRecord[];
+  input_tokens: number;
+  output_tokens: number;
+  cache_creation_input_tokens: number;
+  cache_read_input_tokens: number;
+  cost_usd: number;
   created_at: string;
+}
+
+export interface AiModelPricingRow {
+  id: string;
+  provider: string;
+  model: string;
+  input_usd_per_mtok: number;
+  output_usd_per_mtok: number;
+  cache_read_usd_per_mtok: number;
+  cache_write_usd_per_mtok: number;
+  currency: string;
+  notes: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface AddressRow {

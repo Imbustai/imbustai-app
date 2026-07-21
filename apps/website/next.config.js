@@ -2,20 +2,20 @@
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
+const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin');
+
+const withVanillaExtract = createVanillaExtractPlugin({
+  unstable_turbopack: { mode: 'auto' },
+});
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
-  // Use this to set Nx-specific options
-  // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
-  transpilePackages: ['@imbustai/i18n', '@imbustai/story-engine'],
+  transpilePackages: ['@imbustai/i18n', '@imbustai/story-engine', '@imbustai/ds'],
 };
 
-const plugins = [
-  // Add more Next.js plugins to this list if needed.
-  withNx,
-];
+const plugins = [withNx, withVanillaExtract];
 
 module.exports = composePlugins(...plugins)(nextConfig);

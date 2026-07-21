@@ -82,6 +82,14 @@ Known pain points (must fix)
 Knowledge bleed — monolithic GM + full conversation thread in prototype
 Plot holes — no canon/fact registry or validation
 Broken time — AI picks dates but parser recalculates randomly; no editor control
+## Design System — Hard Rules
+
+- **`@vanilla-extract/css`, `@vanilla-extract/recipes`, and `@vanilla-extract/sprinkles` must NEVER be imported outside `packages/ds/`.**  
+  All `style()`, `styleVariants()`, `recipe()`, and sprinkles usage belongs exclusively inside the DS package. Consuming apps (e.g. `apps/website`) use DS components and CSS modules (`.module.css`) for app-specific styles — never vanilla-extract directly.
+- **Do not create component-like abstractions (pills, badges, nav links, etc.) outside the DS.** If a reusable visual pattern is needed, create it as a proper DS component in `packages/ds/src/components/`.
+- **Regola #7**: Before extending the DS (new component, new token, new sprinkle), STOP and ask the user for approval.
+- **ESLint enforcement**: `apps/website/eslint.config.mjs` blocks all `@vanilla-extract/*` imports. This rule must not be removed or weakened.
+
 Security
 AI keys server-side only (Route Handlers / Server Actions)
 AI interactions inserted via service role after admin approve

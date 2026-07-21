@@ -6,18 +6,26 @@ import { useRouter } from 'next/navigation';
 import { useTranslation } from '@imbustai/i18n';
 import { storyTitle } from '@/lib/story-i18n';
 import type { StoryRow } from '@/lib/types/db';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import {
+  Badge,
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  Inline,
+  Input,
+  Stack,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
+  Typography,
+} from '@imbustai/ds';
+import s from '../admin-styles.module.css';
 
 export function lifecycleBadgeVariant(lifecycle: StoryRow['lifecycle']) {
   return lifecycle === 'released'
@@ -70,122 +78,134 @@ export function StoriesListClient({
 
   return (
     <div>
-      <div className="mb-6 flex flex-wrap items-center gap-4 text-sm">
-        <Link href="/admin" className="text-muted-foreground transition-colors hover:text-foreground">
+      <Box marginBottom="6">
+        <Link href="/admin" className={s.mutedLink}>
           ← {t('storiesAdmin.backToDashboard')}
         </Link>
-      </div>
+      </Box>
 
-      <h1 className="font-heading text-2xl font-semibold">{t('storiesAdmin.title')}</h1>
-      <p className="mt-2 text-muted-foreground">{t('storiesAdmin.subtitle')}</p>
+      <Typography variant="h2" as="h1">{t('storiesAdmin.title')}</Typography>
+      <Typography variant="body" tone="muted">{t('storiesAdmin.subtitle')}</Typography>
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>{t('storiesAdmin.newStory')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap items-end gap-3">
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">
-                {t('storiesAdmin.fields.slug')}
-              </label>
-              <Input
-                value={newSlug}
-                onChange={(e) => setNewSlug(e.target.value)}
-                placeholder="my_new_story"
-                className="w-56"
-              />
-            </div>
-            <div>
-              <label className="mb-1 block text-sm text-muted-foreground">
-                {t('storiesAdmin.fields.title')}
-              </label>
-              <Input
-                value={newTitle}
-                onChange={(e) => setNewTitle(e.target.value)}
-                placeholder={t('storiesAdmin.newStoryTitlePlaceholder')}
-                className="w-72"
-              />
-            </div>
-            <Button onClick={createStory} disabled={busy || !newSlug.trim()}>
-              {t('storiesAdmin.create')}
-            </Button>
-          </div>
-          <p className="mt-2 text-xs text-muted-foreground">{t('storiesAdmin.slugHint')}</p>
-          {error ? <p className="mt-2 text-sm text-destructive">{error}</p> : null}
-        </CardContent>
-      </Card>
+      <Box marginTop="6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('storiesAdmin.newStory')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Stack gap="3">
+              <Inline gap="3" align="flex-end">
+                <Stack gap="1">
+                  <Typography variant="caption" tone="muted" as="label">
+                    {t('storiesAdmin.fields.slug')}
+                  </Typography>
+                  <Box width="56">
+                    <Input
+                      value={newSlug}
+                      onChange={(e) => setNewSlug(e.target.value)}
+                      placeholder="my_new_story"
+                    />
+                  </Box>
+                </Stack>
+                <Stack gap="1">
+                  <Typography variant="caption" tone="muted" as="label">
+                    {t('storiesAdmin.fields.title')}
+                  </Typography>
+                  <Box width="72">
+                    <Input
+                      value={newTitle}
+                      onChange={(e) => setNewTitle(e.target.value)}
+                      placeholder={t('storiesAdmin.newStoryTitlePlaceholder')}
+                    />
+                  </Box>
+                </Stack>
+                <Button onClick={createStory} disabled={busy || !newSlug.trim()}>
+                  {t('storiesAdmin.create')}
+                </Button>
+              </Inline>
+              <Typography variant="caption" tone="muted">{t('storiesAdmin.slugHint')}</Typography>
+              {error ? <p className={s.errorText}>{error}</p> : null}
+            </Stack>
+          </CardContent>
+        </Card>
+      </Box>
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>{t('storiesAdmin.allStories')}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{t('storiesAdmin.fields.title')}</TableHead>
-                <TableHead>{t('storiesAdmin.fields.slug')}</TableHead>
-                <TableHead>{t('storiesAdmin.fields.lifecycle')}</TableHead>
-                <TableHead>{t('storiesAdmin.fields.published')}</TableHead>
-                <TableHead>{t('storiesAdmin.games')}</TableHead>
-                <TableHead>{t('common.actions')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {stories.map((story) => {
-                const counts = gamesByStory[story.id] ?? { total: 0, inProgress: 0 };
-                return (
-                  <TableRow key={story.id}>
-                    <TableCell className="font-medium">
-                      <Link href={`/admin/stories/${story.id}`} className="hover:underline">
-                        {storyTitle(story, locale)}
-                      </Link>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground">{story.slug}</TableCell>
+      <Box marginTop="6">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('storiesAdmin.allStories')}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{t('storiesAdmin.fields.title')}</TableHead>
+                  <TableHead>{t('storiesAdmin.fields.slug')}</TableHead>
+                  <TableHead>{t('storiesAdmin.fields.lifecycle')}</TableHead>
+                  <TableHead>{t('storiesAdmin.fields.published')}</TableHead>
+                  <TableHead>{t('storiesAdmin.games')}</TableHead>
+                  <TableHead>{t('common.actions')}</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {stories.map((story) => {
+                  const counts = gamesByStory[story.id] ?? { total: 0, inProgress: 0 };
+                  return (
+                    <TableRow key={story.id}>
+                      <TableCell>
+                        <Link href={`/admin/stories/${story.id}`} className={s.mutedLink}>
+                          {storyTitle(story, locale)}
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="caption" tone="muted" as="span">{story.slug}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant={lifecycleBadgeVariant(story.lifecycle)}>
+                          {t(`storiesAdmin.lifecycle.${story.lifecycle}`)}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{story.is_published ? '✓' : '—'}</TableCell>
+                      <TableCell>
+                        {counts.total}
+                        {counts.inProgress > 0 ? (
+                          <span className={s.mutedTextXs}>
+                            {' '}({counts.inProgress} {t('storiesAdmin.inProgress')})
+                          </span>
+                        ) : null}
+                      </TableCell>
+                      <TableCell>
+                        <Inline gap="2">
+                          <Button asChild size="sm" variant="outline">
+                            <Link href={`/admin/stories/${story.id}`}>{t('storiesAdmin.edit')}</Link>
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="ghost"
+                            disabled={busy}
+                            onClick={() => duplicateStory(story.id)}
+                          >
+                            {t('storiesAdmin.duplicate')}
+                          </Button>
+                        </Inline>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+                {stories.length === 0 ? (
+                  <TableRow>
                     <TableCell>
-                      <Badge variant={lifecycleBadgeVariant(story.lifecycle)}>
-                        {t(`storiesAdmin.lifecycle.${story.lifecycle}`)}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{story.is_published ? '✓' : '—'}</TableCell>
-                    <TableCell>
-                      {counts.total}
-                      {counts.inProgress > 0 ? (
-                        <span className="ml-1 text-xs text-muted-foreground">
-                          ({counts.inProgress} {t('storiesAdmin.inProgress')})
-                        </span>
-                      ) : null}
-                    </TableCell>
-                    <TableCell>
-                      <div className="flex gap-2">
-                        <Button asChild size="sm" variant="outline">
-                          <Link href={`/admin/stories/${story.id}`}>{t('storiesAdmin.edit')}</Link>
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          disabled={busy}
-                          onClick={() => duplicateStory(story.id)}
-                        >
-                          {t('storiesAdmin.duplicate')}
-                        </Button>
-                      </div>
+                      <Typography variant="caption" tone="muted" as="span">
+                        {t('common.none')}
+                      </Typography>
                     </TableCell>
                   </TableRow>
-                );
-              })}
-              {stories.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={6} className="text-muted-foreground">
-                    {t('common.none')}
-                  </TableCell>
-                </TableRow>
-              ) : null}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
+                ) : null}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+      </Box>
     </div>
   );
 }

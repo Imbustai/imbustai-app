@@ -1,27 +1,12 @@
 'use client';
 
-import type { CSSProperties, ReactNode } from 'react';
+import type { CSSProperties } from 'react';
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useTranslation } from '@imbustai/i18n';
+import { Typography } from '@imbustai/ds';
 import { cn } from '@/lib/utils';
 import styles from './letter-history-section.module.scss';
 import { TimelineSvg } from './timeline/timeline-svg';
-
-function SectionHeading({
-  children,
-  className,
-  as: Comp = 'h2',
-}: {
-  children: ReactNode;
-  className?: string;
-  as?: 'h1' | 'h2' | 'h3';
-}) {
-  return (
-    <Comp className={cn('font-heading text-balance', className)}>
-      {children}
-    </Comp>
-  );
-}
 
 function documentTop(el: HTMLElement) {
   const rect = el.getBoundingClientRect();
@@ -108,7 +93,7 @@ export function LetterHistorySection() {
     safeActive === 1 ? (
       <>
         {t('landing.letterHistory.step1Before')}{' '}
-        <em className="text-landing-hero-fg">{t('landing.letterHistory.step1Emphasis')}</em>{' '}
+        <em className="text-foreground">{t('landing.letterHistory.step1Emphasis')}</em>{' '}
         {t('landing.letterHistory.step1After')}
       </>
     ) : null;
@@ -121,20 +106,22 @@ export function LetterHistorySection() {
         { '--letter-history-steps': String(stepCount) } as CSSProperties
       }
     >
-      <div className={cn(styles.stickySlot, 'bg-landing-hero px-4 sm:px-6 md:px-10 lg:px-16')}>
+      <div className={cn(styles.stickySlot, 'bg-background px-4 sm:px-6 md:px-10 lg:px-16')}>
         <div className="relative z-10 mx-auto w-full max-w-6xl">
-          <SectionHeading className="text-3xl text-landing-hero-fg sm:text-4xl">
+          <Typography variant="h2">
             {t('landing.letterHistory.title')}
-          </SectionHeading>
-          <p className="mt-3 max-w-3xl text-lg leading-relaxed text-landing-hero-fg-muted">
-            {t('landing.letterHistory.subtitle')}
-          </p>
+          </Typography>
+          <div className="mt-3 max-w-3xl">
+            <Typography variant="body" tone="muted">
+              {t('landing.letterHistory.subtitle')}
+            </Typography>
+          </div>
         </div>
 
         <div className={styles.root}>
           <div
             className={cn(
-              'letter-history-stage mt-10 grid gap-6 overflow-hidden border border-landing-card-border-subtle bg-landing-card/60 p-4 shadow-md backdrop-blur-sm',
+              'letter-history-stage mt-10 grid gap-6 overflow-hidden border border-border bg-card/60 p-4 shadow-sm',
               'sm:p-5',
               'md:grid-cols-[360px_minmax(0,1fr)] md:items-end md:gap-8 md:p-8',
             )}
@@ -155,7 +142,7 @@ export function LetterHistorySection() {
                         'flex size-9 items-center justify-center rounded-full font-heading text-xs tabular-nums transition-colors',
                         isActive
                           ? 'bg-primary text-primary-foreground'
-                          : 'bg-landing-hero-fg/10 text-landing-hero-fg hover:bg-landing-hero-fg/15',
+                          : 'bg-foreground/10 text-foreground hover:bg-foreground/15',
                       )}
                       aria-current={isActive ? 'step' : undefined}
                     >
@@ -183,4 +170,3 @@ export function LetterHistorySection() {
     </div>
   );
 }
-

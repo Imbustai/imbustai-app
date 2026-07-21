@@ -1,0 +1,87 @@
+.sidebarHeaderBrand {
+  font-family: var(--ds-typography-font-family-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.sidebarHeaderSub {
+  font-size: 0.75rem;
+  color: var(--ds-color-muted-foreground);
+}
+
+.brandBadge {
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  background-color: color-mix(in srgb, var(--ds-color-primary) 10%, transparent);
+  font-family: var(--ds-typography-font-family-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ds-color-primary);
+}
+
+.headerBar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 3.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 0.75rem;
+  background-color: color-mix(in srgb, var(--ds-color-background) 95%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .headerBar {
+    background-color: color-mix(in srgb, var(--ds-color-background) 80%, transparent);
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .headerBar {
+    padding: 0 1rem;
+  }
+}
+
+.headerEmail {
+  display: none;
+  max-width: 8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--ds-color-muted-foreground);
+}
+
+@media screen and (min-width: 1024px) {
+  .headerEmail {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .headerEmail {
+    max-width: 12rem;
+  }
+}
+
+.mainArea {
+  flex-grow: 1;
+  overflow: auto;
+  padding: 1rem;
+  background-color: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
+}
+
+@media screen and (min-width: 640px) {
+  .mainArea {
+    padding: 1.5rem;
+  }
+}

@@ -3,6 +3,7 @@ import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import { PlayClient, type PlayContact } from '@/components/play/play-client';
+import { Box } from '@imbustai/ds';
 import type {
   GameRow,
   InteractionRow,
@@ -44,7 +45,7 @@ export default async function PlayPage({
       .single(),
     admin
       .from('story_characters')
-      .select('slug,name,role,sort_order')
+      .select('slug,name,role,sort_order,contactable_from_start')
       .eq('story_id', g.story_id)
       .order('sort_order'),
   ]);
@@ -53,16 +54,21 @@ export default async function PlayPage({
     StoryRow,
     'id' | 'slug' | 'title_en' | 'title_it' | 'settings' | 'time_config'
   >;
-
   const unlocked: string[] = (g.runtime_state?.unlocked_npcs as string[] | undefined) ?? [];
   const characterRows = (characters ?? []) as Pick<
     StoryCharacterRow,
-    'slug' | 'name' | 'role' | 'sort_order'
+    'slug' | 'name' | 'role' | 'sort_order' | 'contactable_from_start'
   >[];
   const contacts: PlayContact[] = characterRows
     .filter((c) => unlocked.includes(c.slug))
     .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
-  const lockedCount = characterRows.length - contacts.length;
+  // Only count characters that were designed to be contactable (contactable_from_start
+  // or already unlocked) but aren't unlocked yet. Passive/automatic senders that are
+  // never meant to be player contacts should not appear as locked mystery slots.
+  const potentiallyContactable = characterRows.filter((c) => c.contactable_from_start);
+  const lockedCount = potentiallyContactable.filter((c) => !unlocked.includes(c.slug)).length;
+  // All character names for letter attribution (includes non-contactable senders).
+  const allCharacters = characterRows.map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
 
   // Letters through the USER's client: RLS hides future-visible_from letters
   // and everything that isn't theirs — defense in depth over UI filtering.
@@ -74,7 +80,7 @@ export default async function PlayPage({
     .order('letter_number', { ascending: true });
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-10">
+    <Box maxWidth="5xl" marginX="auto" paddingX="4" paddingY="10">
       <PlayClient
         gameId={gameId}
         gameStatus={g.status}
@@ -86,7 +92,8 @@ export default async function PlayPage({
         contacts={contacts}
         lockedCount={lockedCount}
         initialLetters={(letters ?? []) as InteractionRow[]}
+        allCharacters={allCharacters}
       />
-    </div>
+    </Box>
   );
 }

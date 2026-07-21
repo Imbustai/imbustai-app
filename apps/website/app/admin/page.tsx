@@ -3,20 +3,23 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { AdminPageTitle } from '@/components/admin/admin-page-title';
 import { ClientSectionTitle } from '@/components/admin/client-section-title';
 import {
+  Badge,
+  Box,
+  Typography,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
+} from '@imbustai/ds';
 import type {
   GameRow,
   InteractionTurnRow,
   OrderRow,
   StoryRow,
 } from '@/lib/types/db';
+import s from '@/components/admin/admin-styles.module.css';
 
 export const dynamic = 'force-dynamic';
 
@@ -63,7 +66,6 @@ export default async function AdminDashboardPage() {
     (usersData?.users ?? []).map((u) => [u.id, u.email ?? ''])
   );
 
-  // Turns waiting on the admin: pending generation or draft awaiting review.
   const { data: waitingTurns } = await admin
     .from('interaction_turns')
     .select('*')
@@ -91,135 +93,85 @@ export default async function AdminDashboardPage() {
         subtitleKey="admin.dashboardSubtitle"
       />
 
-      <section className="mt-10">
-        <h2 className="font-heading text-lg font-semibold">
+      <Box as="section" marginTop="10">
+        <Typography variant="h4" as="h2">
           <ClientSectionTitle titleKey="admin.waitingReview" />
-        </h2>
+        </Typography>
         {!waiting.length ? (
-          <p className="mt-2 text-sm text-muted-foreground">
+          <Typography variant="caption" tone="muted">
             <ClientSectionTitle titleKey="admin.noWaitingReview" asSpan />
-          </p>
+          </Typography>
         ) : (
-          <Table className="mt-4">
-            <TableHeader>
-              <TableRow>
-                <TableHead>Story</TableHead>
-                <TableHead>User</TableHead>
-                <TableHead>Turn</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Submitted</TableHead>
-                <TableHead />
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {waiting.map((turn) => {
-                const game = gamesById.get(turn.game_id);
-                const story = game ? storiesById.get(game.story_id) : undefined;
-                return (
-                  <TableRow key={turn.id}>
-                    <TableCell>{story?.title_it ?? story?.title_en ?? '—'}</TableCell>
-                    <TableCell>
-                      {game ? (emailById.get(game.user_id) ?? game.user_id) : '—'}
-                    </TableCell>
-                    <TableCell>#{turn.turn_number}</TableCell>
-                    <TableCell>
-                      <Badge variant={turn.status === 'draft_ready' ? 'default' : 'secondary'}>
-                        <ClientSectionTitle
-                          titleKey={`replyAdmin.status.${turn.status}`}
-                          asSpan
-                        />
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{formatDate(turn.user_submitted_at)}</TableCell>
-                    <TableCell>
-                      <Link
-                        href={`/admin/game/${turn.game_id}`}
-                        className="text-primary underline"
-                      >
-                        Open
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+          <Box marginTop="4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Story</TableHead>
+                  <TableHead>User</TableHead>
+                  <TableHead>Turn</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Submitted</TableHead>
+                  <TableHead />
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {waiting.map((turn) => {
+                  const game = gamesById.get(turn.game_id);
+                  const story = game ? storiesById.get(game.story_id) : undefined;
+                  return (
+                    <TableRow key={turn.id}>
+                      <TableCell>{story?.title_it ?? story?.title_en ?? '—'}</TableCell>
+                      <TableCell>
+                        {game ? (emailById.get(game.user_id) ?? game.user_id) : '—'}
+                      </TableCell>
+                      <TableCell>#{turn.turn_number}</TableCell>
+                      <TableCell>
+                        <Badge variant={turn.status === 'draft_ready' ? 'default' : 'secondary'}>
+                          <ClientSectionTitle
+                            titleKey={`replyAdmin.status.${turn.status}`}
+                            asSpan
+                          />
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{formatDate(turn.user_submitted_at)}</TableCell>
+                      <TableCell>
+                        <Link href={`/admin/game/${turn.game_id}`} className={s.primaryLink}>
+                          Open
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </Box>
         )}
-      </section>
+      </Box>
 
-      <section className="mt-12">
-        <h2 className="font-heading text-lg font-semibold">
+      <Box as="section" marginTop="12">
+        <Typography variant="h4" as="h2">
           <ClientSectionTitle titleKey="admin.recentOrders" />
-        </h2>
-        <Table className="mt-4">
-          <TableHeader>
-            <TableRow>
-              <TableHead>ID</TableHead>
-              <TableHead>User</TableHead>
-              <TableHead>Paid</TableHead>
-              <TableHead />
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {((orders ?? []) as OrderRow[]).map((o) => (
-              <TableRow key={o.id}>
-                <TableCell className="font-mono text-xs">
-                  {o.id.slice(0, 8)}…
-                </TableCell>
-                <TableCell>{emailById.get(o.user_id) ?? o.user_id}</TableCell>
-                <TableCell>{formatDate(o.paid_at)}</TableCell>
-                <TableCell>
-                  <Link
-                    href={`/admin/order/${o.id}`}
-                    className="text-primary underline"
-                  >
-                    Open
-                  </Link>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {!(orders ?? []).length ? (
-          <p className="mt-2 text-sm text-muted-foreground">—</p>
-        ) : null}
-      </section>
-
-      <section className="mt-12">
-        <h2 className="font-heading text-lg font-semibold">
-          <ClientSectionTitle titleKey="admin.gamesNeedUpdate" />
-        </h2>
-        {!gameList.length ? (
-          <p className="mt-2 text-sm text-muted-foreground">
-            <ClientSectionTitle titleKey="admin.noGamesWaiting" asSpan />
-          </p>
-        ) : (
-          <Table className="mt-4">
+        </Typography>
+        <Box marginTop="4">
+          <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Game</TableHead>
+                <TableHead>ID</TableHead>
                 <TableHead>User</TableHead>
-                <TableHead>Interactions</TableHead>
-                <TableHead>Started</TableHead>
+                <TableHead>Paid</TableHead>
                 <TableHead />
               </TableRow>
             </TableHeader>
             <TableBody>
-              {gameList.map((g) => (
-                <TableRow key={g.id}>
-                  <TableCell className="font-mono text-xs">
-                    {g.id.slice(0, 8)}…
-                  </TableCell>
+              {((orders ?? []) as OrderRow[]).map((o) => (
+                <TableRow key={o.id}>
                   <TableCell>
-                    {emailById.get(g.user_id) ?? g.user_id}
+                    <span className={s.monoXs}>{o.id.slice(0, 8)}…</span>
                   </TableCell>
-                  <TableCell>{interactionCounts[g.id] ?? 0}</TableCell>
-                  <TableCell>{formatDate(g.created_at)}</TableCell>
+                  <TableCell>{emailById.get(o.user_id) ?? o.user_id}</TableCell>
+                  <TableCell>{formatDate(o.paid_at)}</TableCell>
                   <TableCell>
-                    <Link
-                      href={`/admin/game/${g.id}`}
-                      className="text-primary underline"
-                    >
+                    <Link href={`/admin/order/${o.id}`} className={s.primaryLink}>
                       Open
                     </Link>
                   </TableCell>
@@ -227,8 +179,55 @@ export default async function AdminDashboardPage() {
               ))}
             </TableBody>
           </Table>
+        </Box>
+        {!(orders ?? []).length ? (
+          <Typography variant="caption" tone="muted">—</Typography>
+        ) : null}
+      </Box>
+
+      <Box as="section" marginTop="12">
+        <Typography variant="h4" as="h2">
+          <ClientSectionTitle titleKey="admin.gamesNeedUpdate" />
+        </Typography>
+        {!gameList.length ? (
+          <Typography variant="caption" tone="muted">
+            <ClientSectionTitle titleKey="admin.noGamesWaiting" asSpan />
+          </Typography>
+        ) : (
+          <Box marginTop="4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Game</TableHead>
+                  <TableHead>User</TableHead>
+                  <TableHead>Interactions</TableHead>
+                  <TableHead>Started</TableHead>
+                  <TableHead />
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {gameList.map((g) => (
+                  <TableRow key={g.id}>
+                    <TableCell>
+                      <span className={s.monoXs}>{g.id.slice(0, 8)}…</span>
+                    </TableCell>
+                    <TableCell>
+                      {emailById.get(g.user_id) ?? g.user_id}
+                    </TableCell>
+                    <TableCell>{interactionCounts[g.id] ?? 0}</TableCell>
+                    <TableCell>{formatDate(g.created_at)}</TableCell>
+                    <TableCell>
+                      <Link href={`/admin/game/${g.id}`} className={s.primaryLink}>
+                        Open
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </Box>
         )}
-      </section>
+      </Box>
     </div>
   );
 }

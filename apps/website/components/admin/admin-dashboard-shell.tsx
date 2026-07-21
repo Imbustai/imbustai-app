@@ -2,6 +2,19 @@
 
 import { useTranslation } from '@imbustai/i18n';
 import {
+  Box,
+  Inline,
+  Button,
+  Sidebar,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarItem,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@imbustai/ds';
+import {
   ExternalLink,
   Gamepad2,
   LayoutDashboard,
@@ -11,6 +24,7 @@ import {
   PanelLeftClose,
   PlusCircle,
   ScrollText,
+  Settings,
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -20,14 +34,8 @@ import { createClient } from '@/lib/supabase/client';
 import { AdminBreadcrumbs } from '@/components/admin/admin-breadcrumbs';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { ThemeToggle } from '@/components/theme-toggle';
-import { Button } from '@/components/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
+import shell from './admin-dashboard-shell.module.css';
+import s from './admin-styles.module.css';
 
 const STORAGE_KEY = 'imbustai-admin-sidebar-collapsed';
 
@@ -47,6 +55,7 @@ const navItems: NavItem[] = [
     labelKey: 'admin.createFreeOrder',
     icon: PlusCircle,
   },
+  { href: '/admin/settings', labelKey: 'admin.settingsNav', icon: Settings },
 ];
 
 function navActive(pathname: string, href: string) {
@@ -73,19 +82,12 @@ function SidebarLink({
   const Icon = item.icon;
 
   const link = (
-    <Link
-      href={item.href}
-      className={cn(
-        'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
-        collapsed ? 'justify-center px-2' : '',
-        active
-          ? 'bg-primary text-primary-foreground shadow-sm'
-          : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-      )}
-    >
-      <Icon className="size-5 shrink-0" aria-hidden />
-      {!collapsed ? <span className="truncate">{label}</span> : null}
-    </Link>
+    <SidebarItem asChild active={active} collapsed={collapsed}>
+      <Link href={item.href}>
+        <Icon className={s.iconSm} aria-hidden />
+        {!collapsed ? <span>{label}</span> : null}
+      </Link>
+    </SidebarItem>
   );
 
   if (collapsed) {
@@ -143,47 +145,31 @@ export function AdminDashboardShell({
 
   return (
     <TooltipProvider delayDuration={200}>
-      <div className="admin-dashboard flex min-h-screen w-full bg-background">
-        <aside
-          className={cn(
-            'flex shrink-0 flex-col border-r border-border bg-card transition-[width] duration-200 ease-out',
-            collapsed ? 'w-[4.5rem]' : 'w-56'
-          )}
-        >
-          <div
-            className={cn(
-              'flex h-14 items-center border-b border-border px-3',
-              collapsed ? 'justify-center' : 'gap-2'
-            )}
-          >
-            <div
-              className={cn(
-                'flex min-w-0 flex-col',
-                collapsed ? 'hidden' : 'flex-1'
-              )}
-            >
-              <span className="font-heading text-sm font-bold leading-tight tracking-tight">
-                {t('admin.shellBrand')}
-              </span>
-              <span className="text-xs text-muted-foreground">
-                {t('admin.shellSubtitle')}
-              </span>
-            </div>
-            {collapsed ? (
+      <Box display="flex" width="full" height="screen">
+        <Sidebar collapsed={collapsed}>
+          <SidebarHeader collapsed={collapsed}>
+            {!collapsed ? (
+              <Box display="flex" minWidth="0" flexDirection="column" flexGrow={1}>
+                <span className={shell.sidebarHeaderBrand}>
+                  {t('admin.shellBrand')}
+                </span>
+                <span className={shell.sidebarHeaderSub}>
+                  {t('admin.shellSubtitle')}
+                </span>
+              </Box>
+            ) : (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10 font-heading text-xs font-bold text-primary">
-                    I
-                  </div>
+                  <div className={shell.brandBadge}>I</div>
                 </TooltipTrigger>
                 <TooltipContent side="right">
                   {t('admin.shellBrand')} — {t('admin.shellSubtitle')}
                 </TooltipContent>
               </Tooltip>
-            ) : null}
-          </div>
+            )}
+          </SidebarHeader>
 
-          <nav className="flex flex-1 flex-col gap-1 p-2">
+          <Box as="nav" display="flex" flexDirection="column" gap="1" padding="2" flexGrow={1}>
             {navItems.map((item) => (
               <SidebarLink
                 key={item.href}
@@ -192,49 +178,41 @@ export function AdminDashboardShell({
                 label={t(item.labelKey)}
               />
             ))}
-          </nav>
+          </Box>
 
-          <div className="border-t border-border p-2">
+          <SidebarFooter>
             {collapsed ? (
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Link
-                    href="/"
-                    className="flex items-center justify-center rounded-lg px-2 py-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                  >
-                    <ExternalLink className="size-5" aria-hidden />
-                  </Link>
+                  <SidebarItem asChild active={false} collapsed={true}>
+                    <Link href="/">
+                      <ExternalLink className={s.iconSm} aria-hidden />
+                    </Link>
+                  </SidebarItem>
                 </TooltipTrigger>
                 <TooltipContent side="right">
                   {t('admin.exitToSite')}
                 </TooltipContent>
               </Tooltip>
             ) : (
-              <Link
-                href="/"
-                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-              >
-                <ExternalLink className="size-5 shrink-0" aria-hidden />
-                {t('admin.exitToSite')}
-              </Link>
+              <SidebarItem asChild active={false} collapsed={false}>
+                <Link href="/">
+                  <ExternalLink className={s.iconSm} aria-hidden />
+                  {t('admin.exitToSite')}
+                </Link>
+              </SidebarItem>
             )}
-          </div>
-        </aside>
+          </SidebarFooter>
+        </Sidebar>
 
-        <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-40 flex h-14 shrink-0 items-center gap-3 border-b border-border bg-background/95 px-3 backdrop-blur supports-[backdrop-filter]:bg-background/80 sm:px-4">
+        <Box display="flex" minWidth="0" flexGrow={1} flexDirection="column">
+          <header className={shell.headerBar}>
             <Button
               type="button"
               variant="ghost"
               size="icon"
-              className="size-9 shrink-0"
               onClick={toggleSidebar}
               disabled={!hydrated}
-              title={
-                collapsed
-                  ? t('admin.sidebarExpand')
-                  : t('admin.sidebarCollapse')
-              }
               aria-expanded={!collapsed}
               aria-label={
                 collapsed
@@ -243,20 +221,19 @@ export function AdminDashboardShell({
               }
             >
               {collapsed ? (
-                <Menu className="size-5" />
+                <Menu className={s.iconSm} />
               ) : (
-                <PanelLeftClose className="size-5" />
+                <PanelLeftClose className={s.iconSm} />
               )}
             </Button>
 
-            <AdminBreadcrumbs className="min-w-0 flex-1" />
+            <Box minWidth="0" flexGrow={1}>
+              <AdminBreadcrumbs />
+            </Box>
 
-            <div className="flex items-center gap-0.5 sm:gap-1">
+            <Inline gap="1" wrap={false}>
               {userEmail ? (
-                <span
-                  className="hidden max-w-[8rem] truncate text-xs text-muted-foreground lg:inline xl:max-w-[12rem]"
-                  title={userEmail}
-                >
+                <span className={shell.headerEmail} title={userEmail}>
                   {userEmail}
                 </span>
               ) : null}
@@ -266,21 +243,21 @@ export function AdminDashboardShell({
                 type="button"
                 variant="ghost"
                 size="icon"
-                className="size-9"
                 onClick={signOut}
-                title={t('nav.logout')}
                 aria-label={t('nav.logout')}
               >
-                <LogOut className="size-4" />
+                <LogOut className={s.iconSm} />
               </Button>
-            </div>
+            </Inline>
           </header>
 
-          <main className="flex-1 overflow-auto bg-muted/30 p-4 sm:p-6">
-            <div className="mx-auto w-full max-w-7xl">{children}</div>
+          <main className={shell.mainArea}>
+            <Box width="full" maxWidth="container" marginX="auto">
+              {children}
+            </Box>
           </main>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </TooltipProvider>
   );
 }

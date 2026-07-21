@@ -3,6 +3,7 @@ import type {
   PlayerTurnLetter,
   RuntimeState,
   StoryConfig,
+  UsageRecord,
   ValidationWarning,
 } from '../types';
 import { turnPlanSchema, TURN_PLAN_TOOL, type GameStateUpdates, type TurnPlan } from '../schema/turnPlan';
@@ -12,7 +13,7 @@ import { addDays, advanceStoryDate, resolveBatchDates } from '../time/timeServic
 import { validateDraft } from '../validator';
 import { normalizeCharacterSlug } from './normalize';
 import { resolveStartDate } from './gameStart';
-import type { AiProvider } from '../ai/provider';
+import type { AiProvider, CallUsage } from '../ai/provider';
 
 import type { z } from 'zod';
 import type { StructuredRequest } from '../ai/provider';
@@ -29,6 +30,7 @@ async function generateValidated<S extends z.ZodTypeAny>(
   schema: S,
   label: string,
   retries = 2,
+  onUsage?: (usage: CallUsage) => void,
 ): Promise<z.infer<S>> {
   const repairNote =
     '\n\nIMPORTANT: your previous tool call was malformed. Call the tool again with every argument as valid JSON of the correct type — arrays as real JSON arrays (not strings), objects as objects — and NEVER use XML or <parameter ...> tags inside the arguments.';
@@ -36,10 +38,12 @@ async function generateValidated<S extends z.ZodTypeAny>(
   for (let attempt = 0; attempt <= retries; attempt++) {
     // Escalate after the first failure so retries differ from the (failing) call.
     const req = attempt === 0 ? request : { ...request, user: request.user + repairNote };
-    const raw = await provider.generateStructured(req);
-    const parsed = schema.safeParse(coerceStructured(raw));
+    const { output, usage } = await provider.generateStructured(req);
+    // Record usage for EVERY attempt — retries cost real tokens too.
+    onUsage?.(usage);
+    const parsed = schema.safeParse(coerceStructured(output));
     if (parsed.success) return parsed.data;
-    lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(raw).slice(0, 300)}`;
+    lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(output).slice(0, 300)}`;
   }
   throw new Error(`${label} parse failed after ${retries + 1} attempts: ${lastError}`);
 }
@@ -71,6 +75,26 @@ function coerceStructured(raw: unknown): unknown {
 // calls → merged, validated, reviewable batch. NEVER writes to the DB and
 // NEVER sends anything — callers persist the result as an ai_drafts version.
 
+/**
+ * The act a given (1-based) turn belongs to, by the acts' turn ranges. This lets
+ * the engine advance the story on schedule instead of depending on the model to
+ * propose act_progression — without it, a cautious orchestrator can stall the
+ * plot, because gated facts/clues (reveal_act / act_available) never unlock and
+ * no new events surface. Clamps to the last act past the final range and to the
+ * first act before it; returns 1 for a story with no acts module.
+ */
+export function actForTurn(story: StoryConfig, turnNumber: number): number {
+  if (story.acts.length === 0) return 1;
+  const acts = [...story.acts].sort((a, b) => a.act_number - b.act_number);
+  for (const a of acts) {
+    const max = a.turn_max ?? Infinity;
+    if (turnNumber >= a.turn_min && turnNumber <= max) return a.act_number;
+  }
+  const first = acts[0];
+  if (turnNumber < first.turn_min) return first.act_number;
+  return acts[acts.length - 1].act_number;
+}
+
 export interface GenerateTurnInput {
   story: StoryConfig;
   state: RuntimeState;
@@ -80,9 +104,18 @@ export interface GenerateTurnInput {
   provider: AiProvider;
   /** Deterministic seed for dates, e.g. `${gameId}:${turnNumber}`. */
   seed: string;
+  /**
+   * 1-based number of the turn being generated. When set (and the story has an
+   * acts module), the engine derives the effective act from it so facts/clues
+   * for the scheduled act are available even if the orchestrator doesn't propose
+   * act_progression. Omit to keep the legacy behavior (act = state.current_act).
+   */
+  turnNumber?: number;
   /** Regenerate a single NPC: skip orchestration for others, reuse this plan. */
   reusePlan?: TurnPlan;
   onlyCharacter?: string;
+  /** Collects per-call token usage (orchestrator + each NPC letter, retries included). */
+  usageSink?: UsageRecord[];
 }
 
 export interface TurnDraftBatch {
@@ -130,14 +163,29 @@ export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: Turn
   };
   const slugs = new Set(story.characters.map((c) => c.slug));
 
-  const replies = plan.replies.map((r) => {
-    const scope = factScope(r.character_slug);
-    return {
-      ...r,
-      facts_to_use: r.facts_to_use.filter((k) => scope.has(k)),
-      clues_to_release: r.clues_to_release.filter(clueOk),
-    };
-  });
+  // Characters that can never reply: not contactable_from_start and no unlock_rules.
+  // opening_letter is NOT a criterion here: intro-only characters (e.g. a one-shot
+  // acceptance gate sender) have opening_letter set but empty unlock_rules — they must
+  // never appear in turn replies. Recurring automatic senders carry a non-empty
+  // unlock_rules (e.g. {"auto_sender":true}) to pass this check.
+  const canReply = (slug: string) => {
+    const char = story.characters.find((c) => c.slug === slug);
+    if (!char) return story.allow_dynamic_npcs;
+    if (char.contactable_from_start) return true;
+    if (Object.keys(char.unlock_rules).length > 0) return true;
+    return false;
+  };
+
+  const replies = plan.replies
+    .filter((r) => canReply(r.character_slug))
+    .map((r) => {
+      const scope = factScope(r.character_slug);
+      return {
+        ...r,
+        facts_to_use: r.facts_to_use.filter((k) => scope.has(k)),
+        clues_to_release: r.clues_to_release.filter(clueOk),
+      };
+    });
 
   return {
     ...plan,
@@ -146,26 +194,43 @@ export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: Turn
       ...gsu,
       act_progression: act,
       clues_found: gsu.clues_found.filter(clueOk),
-      npcs_to_unlock: gsu.npcs_to_unlock.filter((s) => slugs.has(s) || story.allow_dynamic_npcs),
+      npcs_to_unlock: gsu.npcs_to_unlock.filter((s) => {
+        if (!slugs.has(s) && !story.allow_dynamic_npcs) return false;
+        // Never unlock characters that are not designed to be player-contactable.
+        const char = story.characters.find((c) => c.slug === s);
+        if (char && !char.contactable_from_start && Object.keys(char.unlock_rules).length === 0) return false;
+        return true;
+      }),
     },
   };
 }
 
 export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnDraftBatch> {
-  const { story, state, history, playerLetters, provider, seed } = input;
+  const { story, state, history, playerLetters, provider, seed, usageSink } = input;
   const turnDate = state.story_date;
+
+  // Advance the act on schedule from the turn number so the plot can't stall on
+  // a cautious orchestrator: the scheduled act gates which facts/clues are in
+  // scope for both the orchestrator and the writers. With no turnNumber (unit
+  // sims) we keep the legacy behavior (act = state.current_act).
+  const derivedAct =
+    input.turnNumber != null ? actForTurn(story, input.turnNumber) : state.current_act;
+  const effectiveState: RuntimeState =
+    derivedAct > state.current_act ? { ...state, current_act: derivedAct } : state;
 
   // 1. Orchestrator → turn plan (or reuse it for single-NPC regenerate).
   let plan: TurnPlan;
   if (input.reusePlan) {
     plan = input.reusePlan;
   } else {
-    const context = buildOrchestratorContext({ story, state, history, playerLetters });
+    const context = buildOrchestratorContext({ story, state: effectiveState, history, playerLetters });
     plan = await generateValidated(
       provider,
       { system: context.system, user: context.user, tool: TURN_PLAN_TOOL, maxTokens: 8000 },
       turnPlanSchema,
       'turn_plan',
+      2,
+      (usage) => usageSink?.push({ call_type: 'orchestrator', ...usage }),
     );
   }
 
@@ -184,7 +249,7 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
     }
     return [{ ...reply, character_slug: slug }];
   });
-  plan = sanitizePlan(story, state, { ...plan, replies });
+  plan = sanitizePlan(story, effectiveState, { ...plan, replies });
 
   // 3. One scoped writer call per replying NPC (single-NPC regen filters here).
   const targets = input.onlyCharacter
@@ -201,7 +266,7 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
       };
       const context = buildNpcContext({
         story,
-        state,
+        state: effectiveState,
         character,
         brief: reply,
         history,
@@ -213,9 +278,29 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
         { system: context.system, user: context.user, tool: NPC_LETTER_TOOL, maxTokens: 6000 },
         npcLetterSchema,
         `npc_letter(${reply.character_slug})`,
+        2,
+        (usage) =>
+          usageSink?.push({
+            call_type: 'npc_letter',
+            character_slug: reply.character_slug,
+            ...usage,
+          }),
       );
       // The writer speaks for exactly one character; trust the brief over the model.
-      return { ...letter, character_slug: reply.character_slug };
+      // Sanitize clues_revealed against the catalog: writers routinely misfile
+      // fact keys (or invent keys) as clues, which would otherwise trip the
+      // validator's state_sanity check every turn. The authoritative clue
+      // tracking is the orchestrator's game_state_updates.clues_found (already
+      // sanitized), so dropping non-clue keys here is pure metadata hygiene.
+      const clueKeys = new Set(story.clues.map((c) => c.clue_key));
+      return {
+        ...letter,
+        character_slug: reply.character_slug,
+        metadata: {
+          ...letter.metadata,
+          clues_revealed: letter.metadata.clues_revealed.filter((k) => clueKeys.has(k)),
+        },
+      };
     }),
   );
 
