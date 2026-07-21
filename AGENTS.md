@@ -1,4 +1,4 @@
-# Imbustai Monorepo — Codex Instructions
+# Imbustai Monorepo — Agent Instructions
 
 ## Mission
 
@@ -33,7 +33,7 @@ Story #1 (proof): port the Voss detective mystery from the reference game protot
 - **Per-NPC knowledge boundaries**: fix knowledge bleed (NPCs must not know facts only other characters know).
 - **Unified time model**: creator configures timing in story editor; fix prototype bug where AI `dateSent` is ignored by parser.
 - **Do not modify** `apps/tryout-01`.
-- **Single AI provider** (Codex) is fine — no multi-model requirement.
+- **Single runtime AI provider** is sufficient — no multi-model requirement.
 - Run tests before claiming a phase is done.
 
 ## Where to build
@@ -94,3 +94,17 @@ Security
 AI keys server-side only (Route Handlers / Server Actions)
 AI interactions inserted via service role after admin approve
 Never expose SUPABASE_SERVICE_ROLE_KEY to client
+
+## Agent skills
+
+### Issue tracker
+
+Issues are tracked in GitHub Issues for `Imbustai/imbustai-app`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+The canonical triage roles use their default GitHub label names. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+This is a multi-context monorepo; use `CONTEXT-MAP.md` to locate relevant context documentation. See `docs/agents/domain.md`.
