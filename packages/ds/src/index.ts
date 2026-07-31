@@ -14,6 +14,7 @@ export const dsVars = {
 
 export { dsStyle } from './utils/dsStyle';
 export { DsSmoke } from './_smoke/DsSmoke';
+export * from './icons';
 export { Typography } from './components/Typography/Typography';
 export type { TypographyProps } from './components/Typography/Typography';
 export { TYPOGRAPHY_SCALE } from './components/Typography/typography-scale';
@@ -48,6 +49,12 @@ export type { TooltipProps, TooltipTriggerProps, TooltipContentProps, TooltipPro
 // Textarea
 export { Textarea } from './components/Textarea/Textarea';
 export type { TextareaProps } from './components/Textarea/Textarea';
+
+// Rich text
+export { RichTextEditor } from './components/RichTextEditor/RichTextEditor';
+export type { RichTextEditorProps } from './components/RichTextEditor/RichTextEditor';
+export { LetterContent } from './components/LetterContent/LetterContent';
+export type { LetterContentProps } from './components/LetterContent/LetterContent';
 
 // Select
 export { Select } from './components/Select/Select';

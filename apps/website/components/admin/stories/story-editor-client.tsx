@@ -23,6 +23,7 @@ import {
   Grid,
   Inline,
   Input,
+  RichTextEditor,
   Select,
   Stack,
   Typography,
@@ -76,11 +77,11 @@ function FieldInput({
           <Input id={id} value={String(value ?? '')} onChange={(e) => onChange(e.target.value)} />
         )}
         {def.type === 'textarea' && (
-          <textarea
+          <RichTextEditor
             id={id}
-            className={s.textarea}
             value={String(value ?? '')}
-            onChange={(e) => onChange(e.target.value)}
+            aria-label={label}
+            onChange={onChange}
           />
         )}
         {def.type === 'number' && (
@@ -574,13 +575,13 @@ export function StoryEditorClient({
               <Box gridColumn="span-full">
                 <Stack gap="1">
                   <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.description')} (IT)</Typography>
-                  <textarea className={s.textarea} value={meta.description_it} onChange={(e) => set({ description_it: e.target.value })} />
+                  <RichTextEditor value={meta.description_it} aria-label={`${t('storiesAdmin.fields.description')} (IT)`} onChange={(description_it) => set({ description_it })} />
                 </Stack>
               </Box>
               <Box gridColumn="span-full">
                 <Stack gap="1">
                   <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.description')} (EN)</Typography>
-                  <textarea className={s.textarea} value={meta.description_en} onChange={(e) => set({ description_en: e.target.value })} />
+                  <RichTextEditor value={meta.description_en} aria-label={`${t('storiesAdmin.fields.description')} (EN)`} onChange={(description_en) => set({ description_en })} />
                 </Stack>
               </Box>
               <Stack gap="1">
@@ -618,7 +619,7 @@ export function StoryEditorClient({
               <Box gridColumn="span-full">
                 <Stack gap="1">
                   <Typography variant="caption" tone="muted" as="label">{t('storiesAdmin.fields.first_letter')}</Typography>
-                  <textarea className={s.textarea} value={meta.first_letter} onChange={(e) => set({ first_letter: e.target.value })} />
+                  <RichTextEditor value={meta.first_letter} aria-label={t('storiesAdmin.fields.first_letter')} onChange={(first_letter) => set({ first_letter })} />
                   <Typography variant="caption" tone="muted">{t('storiesAdmin.hints.firstLetterLegacy')}</Typography>
                 </Stack>
               </Box>

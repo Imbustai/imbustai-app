@@ -20,6 +20,8 @@ import {
   CardHeader,
   CardTitle,
   Input,
+  LetterContent,
+  RichTextEditor,
   Select,
   Textarea,
   Stack,
@@ -180,7 +182,7 @@ export function ReplyWorkflowPanel({
                               → {nameOf(l.character_slug)} · {l.story_date ?? ''}
                             </Typography>
                             <Box marginTop="1">
-                              <pre className={styles.letterContent}>{l.content}</pre>
+                              <LetterContent markdown={l.content} className={styles.letterContent} />
                             </Box>
                           </div>
                         ))}
@@ -284,10 +286,10 @@ export function ReplyWorkflowPanel({
                       )}
                     </Inline>
                     <Box marginTop="2">
-                      <Textarea
+                      <RichTextEditor
                         value={edited?.[l.key] ?? l.body}
-                        onChange={(e) =>
-                          setEdited((prev) => ({ ...(prev ?? {}), [l.key]: e.target.value }))
+                        onChange={(content) =>
+                          setEdited((prev) => ({ ...(prev ?? {}), [l.key]: content }))
                         }
                       />
                     </Box>
@@ -386,10 +388,9 @@ export function ReplyWorkflowPanel({
                     <Typography variant="caption" tone="muted">
                       {t('replyAdmin.guidance')}
                     </Typography>
-                    <Textarea
-                      size="sm"
+                    <RichTextEditor
                       value={guidance}
-                      onChange={(e) => setGuidance(e.target.value)}
+                      onChange={setGuidance}
                       placeholder={t('replyAdmin.guidancePlaceholder')}
                     />
                   </Stack>
@@ -479,12 +480,12 @@ export function TestHarnessCard({
                       </option>
                     ))}
                   </Select>
-                  <Textarea
+                  <RichTextEditor
                     value={letter.content}
                     placeholder={t('replyAdmin.letterPlaceholder')}
-                    onChange={(e) =>
+                    onChange={(content) =>
                       setTestLetters((ls) =>
-                        ls.map((l, i) => (i === idx ? { ...l, content: e.target.value } : l)),
+                        ls.map((l, i) => (i === idx ? { ...l, content } : l)),
                       )
                     }
                   />

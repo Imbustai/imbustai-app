@@ -11,7 +11,7 @@ import {
   type MailSender,
 } from '@/lib/mailbox';
 import type { GameStatus, InteractionRow } from '@/lib/types/db';
-import { Badge, Button, Textarea, Typography, Stack, Inline, Box } from '@imbustai/ds';
+import { Badge, Button, LetterContent, RichTextEditor, Typography, Stack, Inline, Box } from '@imbustai/ds';
 import { EnclosurePaper, LetterPaper, PlayerSheet, RulesProse } from './papers';
 import styles from './play-client.module.css';
 
@@ -484,7 +484,7 @@ export function PlayClient({
                     → {contact.name}
                   </Typography>
                   <Box marginTop="1">
-                    <div className={styles.reviewDraftContent}>{content}</div>
+                    <LetterContent markdown={content} className={styles.reviewDraftContent} />
                   </Box>
                 </div>
               ))}
@@ -587,10 +587,12 @@ export function PlayClient({
                   ✍️ {t('play.writeTo')} {sender.name}
                 </Typography>
                 <Box marginTop="2">
-                  <Textarea
+                  <RichTextEditor
+                    key={sender.slug}
                     value={drafts[sender.slug] ?? ''}
                     placeholder={t('play.composerPlaceholder')}
-                    onChange={(e) => persistDrafts({ ...drafts, [sender.slug]: e.target.value })}
+                    aria-label={`${t('play.writeTo')} ${sender.name}`}
+                    onChange={(content) => persistDrafts({ ...drafts, [sender.slug]: content })}
                   />
                 </Box>
                 <Box marginTop="3">
