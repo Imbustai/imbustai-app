@@ -63,7 +63,8 @@ export interface StoryClue {
 export interface StoryAct {
   act_number: number;
   title: string;
-  goals: Record<string, unknown>;
+  /** Free-form JSON (an object in the seed, an array from the story editor); only shown to the orchestrator. */
+  goals: Record<string, unknown> | unknown[];
   turn_min: number;
   turn_max: number | null;
   reveal_rules: Record<string, unknown>;
