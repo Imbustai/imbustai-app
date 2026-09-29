@@ -7,6 +7,8 @@
 > Segni: **[PK]** = Plot key · **[T]** = Texture · **[?]** = scelta da confermare · **[non verificato]**.
 >
 > **Revisione 2 (dopo la prima reazione di Paolo, [commento](https://github.com/Imbustai/imbustai-app/issues/24#issuecomment-5894517982)):** Voss segnala il collegamento e la Mobile lo archivia perché "la famiglia è tutta morta" (§0 J, nuova §4.1); la paura di Voss è per la Benvenuti, non per sé; Aldo nella prima lettera è una sola riga (§0 H); il Verdi di Voss diventa il Rigoletto a Caracalla, più avanti (§0 K); Voss non ricorda più nessun ferroviere nella famiglia di Luca (§9). La lettera (§7.3) è riscritta.
+>
+> **Revisione 3 (revisione linguistica, dopo la lettura di una maestra d'italiano):** i tre testi della §7 sono stati riletti e corretti come farebbe un redattore italiano, dal punto di vista di chi li riceve, senza toccare contenuti e decisioni. Che cosa è stato corretto: i riferimenti ambigui ("la madre" dopo "la maestra" diventa "Rosa"); l'ordine delle informazioni, ora quello in cui Voss le ha vissute (prima il 1977, poi il fastidio di giugno, capito adesso); i periodi lunghi tenuti insieme solo da virgole e due punti, divisi o legati con connettivi veri (quindi, perciò, invece); i calchi e le frasi che non si capiscono ("a certe domande una madre non deve arrivare"); un rimando a un tema non ancora introdotto ("non per la schiena"); un'incoerenza di tono (Cerroni che "se ne vergogna" e poi parla "con gusto"); il congiuntivo mancante ("ritenuto che… nuoccia"); le virgolette, ora «» in tutte le lettere. La maestra rilegge questa versione: se passa, lo stesso passaggio di revisione diventa obbligatorio per ogni Lettera generata in italiano; se no, si apre un ticket per la qualità dell'italiano, da lavorare dopo la prima Run.
 
 ---
 
@@ -117,26 +119,26 @@ Mostrata dalla UI prima di tutto, su un foglio che non sembra una lettera. È il
 
 > **Prima di cominciare**
 >
-> Sei il commissario **Giacomo Lombardo**. È il settembre del 1987. Da giugno lavori su un'isola, lontano da Roma, e non per tua scelta. Nella busta c'è il tuo decreto di trasferimento e una lettera di un vecchio collega.
+> Sei il commissario **Giacomo Lombardo**. È il settembre del 1987. Da giugno lavori su un'isola, lontano da Roma, e non per tua scelta. Nella busta trovi il tuo decreto di trasferimento e la lettera di un vecchio collega.
 >
 > **Come si gioca**
-> - Rispondi **scrivendo lettere**. Solo lettere: in questa storia non si telefona, non si mandano telegrammi e non si lascia l'isola.
-> - A ogni turno puoi spedire **fino a 3 lettere**, ognuna a un destinatario.
-> - La storia dura **8 turni**. Un turno sono circa due settimane. Dopo l'ottavo finisce, comunque vada.
-> - A Roma il tempo passa anche se non scrivi.
+> - Giochi **scrivendo lettere**, e soltanto lettere. In questa storia non si telefona, non si mandano telegrammi e non si lascia l'isola.
+> - A ogni turno puoi spedire **fino a 3 lettere**, ciascuna a un solo destinatario.
+> - La storia dura **8 turni**, e ogni turno copre circa due settimane. Dopo l'ottavo la storia finisce, comunque vada.
+> - A Roma il tempo passa anche se tu non scrivi.
 >
 > **A chi puoi scrivere**
-> - A chi ti ha scritto.
-> - A **qualunque ufficio pubblico di Roma**: sei un commissario, e ti rispondono. Se sbagli ufficio, la tua lettera viene girata a quello giusto senza perdere tempo.
-> - Un ufficio risponde dopo **2 o 3 turni**: la posta ci mette una settimana ad andare e una a tornare, e ogni ufficio ha i suoi tempi (te li dice lui).
-> - Chiedi cose precise: nomi, date, un processo, un indirizzo. A una domanda vaga, un ufficio risponde a metà.
+> - A chiunque ti abbia scritto.
+> - A **qualunque ufficio pubblico di Roma**. Sei un commissario, e gli uffici sono tenuti a risponderti. Se sbagli ufficio, la tua lettera viene inoltrata a quello giusto, senza perdere tempo.
+> - La risposta di un ufficio arriva dopo **2 o 3 turni**. La posta impiega una settimana all'andata e una al ritorno, e in mezzo ogni ufficio ha i suoi tempi, che ti comunica quando risponde.
+> - Chiedi cose precise: nomi, date, un processo, un indirizzo. A una richiesta vaga, un ufficio risponde solo in parte.
 >
 > **Il 1987**
-> - Niente cellulari, niente computer da consultare, niente fax.
-> - Niente DNA. Le impronte digitali esistono, ma si confrontano a mano, e solo con quelle di una persona che hai già nominato.
-> - Un documento vecchio si trova solo se sai in quale archivio sta.
+> - Non esistono cellulari, computer da consultare o fax.
+> - Non esiste il DNA. Le impronte digitali si confrontano a mano, e soltanto con quelle di una persona che hai già nominato.
+> - Un vecchio documento si trova solo se sai in quale archivio cercarlo.
 >
-> Non ci sono mosse sbagliate. Ci sono solo quelle che fai in tempo a fare.
+> Non esistono mosse sbagliate. Esistono solo mosse fatte troppo tardi.
 
 ### 7.2 Il decreto di trasferimento **[PK: date, formula, destinazione]**
 
@@ -153,11 +155,11 @@ Il documento è di Lombardo: "l'hai in tasca da giugno". Dice al Giocatore chi �
 >
 > VISTA la legge 1° aprile 1981, n. 121;
 > VISTO il D.P.R. 24 aprile 1982, n. 335, e in particolare l'articolo 55;
-> RITENUTO che la permanenza del funzionario sotto indicato nell'attuale sede nuoce al prestigio dell'Amministrazione;
+> RITENUTO che la permanenza del funzionario sottoindicato nell'attuale sede nuoccia al prestigio dell'Amministrazione;
 >
 > **DECRETA**
 >
-> il commissario dott. **Giacomo LOMBARDO**, nato a Cremona il 14 marzo 1949, in servizio presso la Questura di Roma — Squadra Mobile, è trasferito d'ufficio, anche in soprannumero, al **Commissariato di P.S. di Lipari** (Questura di Messina), con decorrenza dall'8 giugno 1987.
+> Il commissario dott. **Giacomo LOMBARDO**, nato a Cremona il 14 marzo 1949, in servizio presso la Squadra Mobile della Questura di Roma, è trasferito d'ufficio, anche in soprannumero, al **Commissariato di P.S. di Lipari** (Questura di Messina), con decorrenza dall'8 giugno 1987.
 >
 > Roma, 25 maggio 1987
 >
@@ -176,52 +178,52 @@ Obblighi da [#22](https://github.com/Imbustai/imbustai-app/issues/22): strato 0 
 >
 > Caro Giacomo,
 >
-> ti devo una lettera da giugno. L'ho cominciata tre volte, quando ho saputo del trasferimento, e tre volte l'ho strappata, perché ogni versione suonava come quelle che si mandano ai funerali, e tu non sei morto: sei solo su un'isola. Mi dispiace che la lettera che finalmente ti spedisco non sia quella. Ti scrivo perché ho bisogno di te, e non so come dirlo meglio di così.
+> ti devo una lettera da giugno. Quando ho saputo del trasferimento l'ho cominciata tre volte, e tre volte l'ho strappata. Sembravano tutte lettere di condoglianze, e tu non sei morto: sei soltanto finito su un'isola. Mi dispiace che questa non sia quella lettera. Ti scrivo perché ho bisogno di te, e non so dirlo meglio di così.
 >
-> Ieri mattina, allo sportello, è passato Cerroni con la faccia di chi porta una notizia e se ne vergogna un po'. Giovedì sera, al Nomentano, in via Lanciani, hanno ammazzato un ragioniere sul pianerottolo di casa sua, al quarto piano, con la luce delle scale spenta. Accanto al corpo, tre lumini rossi messi a triangolo, e un triangolo col gesso per terra. Come il farmacista di piazza dei Sanniti, a giugno. Alla Mobile dicono setta, i giornali di oggi dicono setta, e Cerroni diceva setta con un certo gusto, come uno che finalmente ha qualcosa da raccontare a cena.
+> Ieri mattina Cerroni si è fermato al mio sportello con la faccia di chi porta una brutta notizia e un po' se la gode. Giovedì sera, al Nomentano, in via Lanciani, hanno ucciso un ragioniere sul pianerottolo di casa sua, al quarto piano. La luce delle scale era spenta. Accanto al corpo hanno trovato tre lumini rossi disposti a triangolo e un triangolo tracciato col gesso sul pavimento, come nella farmacia di piazza dei Sanniti a giugno. Alla Mobile dicono che è una setta, e oggi lo scrivono anche i giornali. Cerroni lo ripeteva con gusto, come chi finalmente ha qualcosa da raccontare a cena.
 >
-> Il ragioniere si chiama Ottavio Ferri. Quando ho sentito il nome ho dovuto sedermi, e non per la schiena.
+> Il ragioniere si chiamava Ottavio Ferri. Quando Cerroni ha detto il nome, ho smesso di ascoltarlo. Io quel nome lo conosco da dieci anni.
 >
-> A giugno, quando hanno ammazzato il farmacista, il nome, Cortesi, mi aveva dato un fastidio che non riuscivo a mettere da nessuna parte, come una faccia vista sull'autobus. Ho pensato: un cliente, uno che ha fatto una denuncia allo sportello. Poi l'ho lasciato andare, perché a Roma di Cortesi ce ne sono cento. Di Ottavio Ferri, ragioniere, uno che dieci anni fa aspettava l'autobus sulla Tiburtina, ce n'è uno solo, e adesso nessuno.
+> Nel maggio del '77, a San Lorenzo, hanno rapinato la tabaccheria di Ettore Ricci, in via Tiburtina. Il rapinatore gli ha sparato al petto e se n'è andato con duecentoquarantamila lire. Tre persone lo hanno visto scappare: il farmacista di fronte, Silvano Cortesi; un contabile che aspettava l'autobus, Ottavio Ferri; e una maestra che tornava a casa a piedi, Clara Benvenuti. Tutti e tre hanno riconosciuto un ragazzo del quartiere, Luca Moretti, che aveva diciannove anni. Nel marzo del '78 la Corte d'Assise lo ha condannato a ventiquattro anni, e nel dicembre del '79 è morto a Regina Coeli, prima dell'appello.
 >
-> Nel maggio del '77, a San Lorenzo, hanno rapinato la tabaccheria di Ettore Ricci, in via Tiburtina, e lo hanno ammazzato con un colpo al petto per duecentoquarantamila lire. Tre testimoni hanno visto scappare il rapinatore: il farmacista di fronte, Silvano Cortesi; un contabile alla fermata, Ottavio Ferri; e una maestra che tornava a casa, Clara Benvenuti. Tutti e tre hanno riconosciuto un ragazzo di diciannove anni, Luca Moretti. La Corte d'Assise gli ha dato ventiquattro anni nel marzo del '78, e lui è morto a Regina Coeli nel dicembre del '79, in attesa dell'appello. Dei tre testimoni ne sono morti due. La terza, la maestra, è viva.
+> A giugno il nome del farmacista mi aveva dato un fastidio che non riuscivo a spiegarmi. Avevo pensato a qualcuno passato allo sportello per una denuncia, e non ci avevo più pensato. Adesso so chi era. Dei tre testimoni, due sono morti. La terza, la maestra, è ancora viva.
 >
-> Io c'ero, Giacomo. Ero guardia al commissariato di San Lorenzo, avevo ventitré anni, e Luca Moretti l'ho arrestato io, io e un altro, Pierangeli, la mattina del 23 maggio, all'officina di via dei Volsci dove faceva il garzone. Il verbale d'arresto porta la mia firma. È per questo che mi sono ricordato dei nomi: quel caso l'ho seguito dai giornali fino alla fine, e alla fine non è finito bene per nessuno.
+> Io c'ero, Giacomo. Ero guardia al commissariato di San Lorenzo e avevo ventitré anni. La mattina del 23 maggio ho arrestato io Luca Moretti, insieme a un collega, Pierangeli, nell'officina di via dei Volsci dove lavorava come garzone. Sul verbale d'arresto c'è la mia firma. Per questo ricordo quei nomi: ho seguito il processo sui giornali fino alla fine, e la fine non è stata buona per nessuno.
 >
-> Ieri a mezzogiorno sono andato dal mio dirigente, Palumbo, e gli ho detto tutto questo, con i nomi e le date. Non è un uomo che ama le complicazioni, ma è un uomo onesto: ha scritto un appunto alla Mobile davanti a me, con il mio nome sopra, e l'ha mandato subito. Stamattina gli hanno telefonato, e lui mi ha chiamato nel suo ufficio per riferirmi la risposta, con la faccia di uno che ti restituisce un compito corretto. Hanno controllato. Il padre di Luca è morto quando il ragazzo era bambino, la madre un paio d'anni fa, fratelli non ce ne sono. Non c'è nessuno che possa vendicare un ragazzo morto da otto anni: è una coincidenza. Resta la setta. Alla maestra, ha detto Palumbo, manderanno qualcuno della Garbatella a "sensibilizzarla". Non so bene che cosa voglia dire. Credo voglia dire un agente sulla porta per dieci minuti e un «signora, stia attenta».
+> Ieri a mezzogiorno sono andato dal mio dirigente, il dottor Palumbo, e gli ho raccontato tutto, con i nomi e le date. Palumbo non ama le complicazioni, ma è una persona onesta. Davanti a me ha scritto un appunto per la Mobile, ci ha messo il mio nome e l'ha mandato subito. Stamattina dalla Mobile gli hanno telefonato, e lui mi ha chiamato in ufficio per riferirmi la risposta, con la faccia di chi ti restituisce un compito pieno di segni rossi. Hanno controllato la famiglia di Luca. Il padre è morto quando lui era bambino, la madre, Rosa, un paio d'anni fa, e fratelli non ne aveva. Secondo la Mobile nessuno ha motivo di vendicare un ragazzo morto otto anni fa, quindi si tratta di una coincidenza, e la pista resta quella della setta. Quanto alla maestra, mi ha detto Palumbo, il commissariato della Garbatella manderà qualcuno a «sensibilizzarla». Credo che voglia dire un agente sulla porta per dieci minuti e un «signora, stia attenta».
 >
-> La madre è morta. Non lo sapevo.
+> Rosa è morta, e io non lo sapevo.
 >
-> Non ci credo, Giacomo, alla coincidenza. Due su tre non sono una coincidenza, e una setta che sceglie le sue vittime tra i testimoni di un processo di dieci anni fa non è una setta: è qualcuno che ha letto gli atti. Ma chi sono io per dirlo alla Mobile una seconda volta? L'agente dello sportello denunce di Monteverde, quello dei portafogli smarriti e dei cani che abbaiano. La prima volta mi hanno risposto per cortesia verso Palumbo. La seconda volta mi chiederebbero perché ci tengo tanto, e che cosa ricordo di quel processo, e io in via San Vitale adesso non ci voglio andare a raccontare niente. Non da loro. E poi ho visto che cosa succede, quest'anno, a chi in Questura dice che la linea è sbagliata: ti ho davanti agli occhi ogni volta che ci penso.
+> Alla coincidenza non credo. Due testimoni su tre non sono una coincidenza, e una setta che sceglie le vittime tra i testimoni di un processo di dieci anni fa non è una setta. È qualcuno che ha letto gli atti. Ma chi sono io per ripeterlo alla Mobile? Sono l'agente dello sportello denunce di Monteverde, quello dei portafogli smarriti e dei cani che abbaiano. La prima volta mi hanno risposto per riguardo verso Palumbo. Se ci tornassi, mi chiederebbero perché ci tengo tanto e che cosa ricordo di quel processo, e io adesso in via San Vitale non voglio andare a raccontare niente. Non a loro. E poi quest'anno ho visto che fine fa, in Questura, chi dice che la linea è sbagliata. Basta guardare dove sei tu.
 >
-> Ieri sera ho cercato la maestra sull'elenco del telefono. C'è: Benvenuti Clara, Garbatella. Si è trasferita, ma è lei. Ho fatto il numero fino alla penultima cifra, e ho riattaccato. Non sapevo che cosa dirle. Che cosa si dice a una donna sola, alle dieci di sera, per avvisarla che forse qualcuno la vuole ammazzare per una cosa che ha fatto dieci anni fa, per dovere? Questa è la mia paura, adesso, e ha un nome e un indirizzo. Ho paura per lei, e ho paura di aver già fatto tutto quello che potevo, e che non basti.
+> Ieri sera ho cercato la maestra sull'elenco del telefono. C'è: Benvenuti Clara, alla Garbatella. Ha cambiato casa, ma dev'essere lei. Ho composto il numero fino alla penultima cifra, poi ho riattaccato, perché non sapevo che cosa dirle. Che cosa si dice a una donna sola, alle dieci di sera? Che forse qualcuno vuole ucciderla per una cosa che ha fatto dieci anni fa, per senso del dovere? È questa la mia paura, adesso, e ha un nome e un indirizzo. Ho paura per lei. E ho paura di aver già fatto tutto quello che potevo, e che non basti.
 >
-> Per questo scrivo a te, e te lo dico chiaro, perché con te ho sempre potuto: serve qualcuno col grado, che insista con le carte in mano e non con la memoria di un agente. E tu puoi chiedere le carte, io no. Se vado io in una cancelleria a chiedere un fascicolo del '77, mi fanno compilare un foglio in carta bollata, mi chiedono chi mi manda, e il giorno dopo lo sa tutta la Questura. Tu sei un commissario, anche se su un'isola, anche in soprannumero. Una tua lettera su carta intestata la protocollano, e qualcuno è obbligato a risponderti. Il processo contro Moretti Luca, Corte d'Assise di Roma, 1978: da qualche parte c'è un fascicolo con dentro i nomi, i verbali, le date. Io non so che cosa ci troverai. So che la Mobile non l'ha aperto, perché per rispondere a Palumbo le è bastata una telefonata. E se scrivi a qualcuno per la maestra, scrivilo col tuo nome: vale più del mio.
+> Per questo scrivo a te, e te lo dico chiaramente, come con te ho sempre potuto fare. Serve qualcuno con un grado, che insista con le carte in mano e non con la memoria di un agente. Tu le carte puoi chiederle, io no. Se vado io in cancelleria a chiedere un fascicolo del '77, mi fanno riempire un modulo in carta bollata, mi chiedono chi mi manda, e il giorno dopo lo sa tutta la Questura. Tu invece sei un commissario, anche se stai su un'isola e sei in soprannumero. Una tua lettera su carta intestata viene protocollata, e qualcuno è tenuto a risponderti. Il processo è quello contro Moretti Luca, Corte d'Assise di Roma, 1978. Da qualche parte c'è un fascicolo con i nomi, i verbali e le date. Non so che cosa ci troverai. So soltanto che la Mobile non l'ha aperto, perché per rispondere a Palumbo le è bastata una telefonata. E se scrivi a qualcuno per la maestra, firma col tuo nome: vale più del mio.
 >
-> Non ti chiedo di venire. So che non puoi, e so che se ti vedono in via San Vitale adesso è finita per davvero. E non ti telefono. Ci ho provato a luglio, per salutarti: al commissariato mi ha risposto un appuntato, mi ha chiesto nome, grado e motivo, e ho sentito la penna che scriveva. Ho detto che era un errore e ho riattaccato come un ladro. Un telegramma, poi, sarebbe peggio: da voi, immagino, all'ufficio postale lo leggono prima ancora di battere il timbro. Quindi scrivo, e aspetto. Mario, al bar, dice che una lettera per le isole ci mette una settimana, due se c'è vento, e che lui una volta ha mandato una cartolina a Ponza ed è arrivata dopo di lui.
+> Non ti chiedo di venire. So che non puoi, e so che se ti vedessero in via San Vitale sarebbe finita davvero. E non ti telefono. Ci ho provato a luglio, per salutarti. Al commissariato mi ha risposto un appuntato, mi ha chiesto nome, grado e motivo della telefonata, e ho sentito la penna che scriveva. Ho detto che avevo sbagliato numero e ho riattaccato come un ladro. Un telegramma sarebbe anche peggio: immagino che all'ufficio postale dell'isola lo leggano prima ancora di timbrarlo. Perciò ti scrivo, e aspetto. Mario, quello del bar sotto casa, dice che una lettera per le isole ci mette una settimana, due se tira vento. Una volta lui ha spedito una cartolina a Ponza, ed è arrivata dopo di lui.
 >
-> Mario è il padrone del bar sotto casa mia, un trasteverino che mi chiama "Floria'" e dice che la carbonara che fanno a Monteverde è un reato. In questi giorni il suo bar è l'unico posto dove sto bene. Il giovedì sera ci gioco a scacchi con un pensionato del quartiere, Aldo, che mi batte più spesso di quanto sarebbe educato, e Mario dice che gioco come guidavo: con tutte e due le mani sul volante e nessuna voglia di arrivare.
+> Mario è trasteverino, mi chiama «Floria'» e sostiene che la carbonara di Monteverde andrebbe denunciata. In questi giorni il suo bar è l'unico posto dove sto bene. Il giovedì sera ci gioco a scacchi con un pensionato del quartiere, Aldo, che mi batte più spesso di quanto sarebbe educato. Mario dice che gioco come guidavo: con tutte e due le mani sul volante e nessuna fretta di arrivare.
 >
-> Tu lo sai come guidavo. Di quelle notti in macchina mi ricordo più cose di quante tu creda. Il termos del caffè che sapeva di termos. Tu che leggevi i verbali con la pila tra i denti. Io che ti raccontavo di Termeno e tu che fingevi di sapere dov'è. È lì che abbiamo cominciato a darci del tu, e non me lo sono mai scordato: sei stato l'unico superiore che mi abbia parlato come a una persona, in dodici anni. Per questo, quando alla Mobile raccontano la tua storia col Questore, e la raccontano in dieci versioni diverse, io sto zitto e non ne credo a nessuna. Non te la chiedo. Ti dico solo una cosa che forse lì non ti è arrivata: il ragazzo di Primavalle, Sabatini, lo hanno scarcerato il 21 agosto, per insufficienza di indizi. Nessun giornale l'ha scritto. Avevi ragione tu, e ti è costata un'isola. Ci ho pensato spesso, a quella riunione, più di quanto sia giusto per uno che non c'era.
+> Tu lo sai, come guidavo. Di quelle notti in macchina ricordo più cose di quanto immagini: il caffè del termos che sapeva di termos, tu che leggevi i verbali con la pila tra i denti, io che ti parlavo di Termeno e tu che facevi finta di sapere dov'è. È lì che abbiamo cominciato a darci del tu, e non l'ho dimenticato. In tredici anni di servizio sei stato l'unico superiore che mi abbia trattato da persona. Per questo, quando alla Mobile raccontano la tua storia col Questore, e ne raccontano dieci versioni, io sto zitto e non ne credo a nessuna. Non ti chiedo quale sia quella vera. Ti dico solo una cosa che forse lì non ti è arrivata: il 21 agosto hanno scarcerato Sabatini, il ragazzo di Primavalle, per insufficienza di indizi. Nessun giornale l'ha scritto. Avevi ragione tu, e ti è costata un'isola. A quella riunione ho pensato spesso, più di quanto dovrebbe fare uno che non c'era.
 >
-> Adesso dimmi tu. Com'è, lì? Che cosa fa tutto il giorno un commissario in soprannumero? Vedi il mare dalla finestra dell'ufficio, o solo il muro? Qui a Roma è ancora estate, di quelle che non se ne vogliono andare, e mia madre, al telefono, la domenica, mi chiede solo se annaffio i gerani. Le dico di sì. A lei non ho detto niente di tutto questo. *Na ja*: a certe domande una madre non deve arrivare.
+> Adesso tocca a te. Com'è, lì? Che cosa fa tutto il giorno un commissario in soprannumero? Dalla finestra dell'ufficio vedi il mare, o soltanto un muro? A Roma è ancora estate, una di quelle estati che non se ne vogliono andare. Mia madre mi telefona la domenica e mi chiede soltanto se annaffio i gerani. Le rispondo di sì, e di tutto il resto non le dico niente. *Na ja*: certe cose una madre è meglio che non le sappia.
 >
-> Scrivimi appena puoi, anche solo per dirmi che mi sbaglio. E scrivi anche a chi deve risponderti, perché io da qui posso solo leggere i giornali e aspettare.
+> Scrivimi appena puoi, anche solo per dirmi che sbaglio. E scrivi anche a chi è tenuto a risponderti, perché io da qui posso solo leggere i giornali e aspettare.
 >
 > Florian
 >
-> P.S. Scrivimi a casa, via Fratelli Bonnet, e non al commissariato di Monteverde: lì la posta la apre il piantone, e il piantone è Cerroni.
+> P.S. Scrivimi a casa, in via Fratelli Bonnet, e non al commissariato: lì la posta la apre il piantone, e il piantone è Cerroni.
 
 **Controllo rispetto a [#22](https://github.com/Imbustai/imbustai-app/issues/22) e alla revisione 2:**
 - **Strato 0 e basta:** i due morti sono testimoni del processo Moretti; Voss era una delle due guardie dell'arresto; ha paura. Nessuna foto, nessuna stanza, niente sulla ricognizione. "Che cosa ricordo di quel processo… non ci voglio andare a raccontare niente" è una porta chiusa, non lo strato 1 (la "seconda domanda" resta per i Turni 1–2).
 - **Nessun silenzio di comodo:** Voss ha segnalato tutto, col suo nome, il giorno dopo (§4.1). Scrive a Lombardo perché la segnalazione è stata archiviata, non al posto di farla.
 - **La paura è per la Benvenuti**, con un nome, un indirizzo e un gesto (il numero non finito). Nessuna paura per sé: quella arriva dopo il delitto 3 (dossier §6).
 - **Nessuna bugia su un Plot key:** "quel caso l'ho seguito dai giornali" è vero; il resto è silenzio.
-- **Ponti:** la notizia → il nome → giugno → il 1977 → la sua parte → la segnalazione → la risposta della Mobile → Rosa → perché non insiste → la maestra → le carte → il telefono → Mario → gli scacchi e la guida → le notti in macchina → il Questore → l'isola → la madre.
+- **Ponti:** la notizia → il nome → il 1977 → giugno, capito adesso → la sua parte → la segnalazione → la risposta della Mobile → Rosa → perché non insiste → la maestra → le carte → il telefono → Mario → gli scacchi e la guida → le notti in macchina → il Questore → l'isola → la madre.
 - **Spinta al lavoro:** "tu puoi chiedere le carte, io no", con il perché, e una porta sola: il fascicolo del processo. In più: "la Mobile non l'ha aperto", che dice al Giocatore che le carte battono la telefonata.
 - **Aldo:** una riga, "un pensionato del quartiere" che gioca a scacchi il giovedì. Nessun mestiere, nessun Verdi, nessuna disdetta. Il giovedì 3 settembre non è mai nominato come serata di scacchi.
 - **L'indizio di struttura:** "la famiglia è tutta morta" è falso sulla carta giusta e vero su quella sbagliata. Chi si chiede se la madre si era risposata è sulla strada; chi non se lo chiede non perde niente.
-- **Voce:** "Caro Giacomo," e "Florian"; un'espressione tedesca; domande personali; nessun elenco; frasi lunghe chiuse da una corta ("La madre è morta. Non lo sapevo."). Circa 1.550 parole.
+- **Voce:** "Caro Giacomo," e "Florian"; un'espressione tedesca; domande personali; nessun elenco; frasi lunghe chiuse da una corta ("Rosa è morta, e io non lo sapevo."). Circa 1.500 parole.
 
 ---
 
