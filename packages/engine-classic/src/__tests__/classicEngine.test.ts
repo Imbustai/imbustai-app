@@ -50,6 +50,11 @@ describe('classicEngine', () => {
     expect(() => classicEngine.schema.state.parse(initialRuntimeState(story))).not.toThrow();
   });
 
+  it('accepts act goals in any JSON shape, as the story editor saves them', () => {
+    const edited = { ...VOSS_STORY, acts: VOSS_STORY.acts.map((a) => ({ ...a, goals: ['Trova il collegamento'] })) };
+    expect(classicEngine.schema.data.safeParse(edited).success).toBe(true);
+  });
+
   it('starts a game like the old start-game route', async () => {
     const { state, opening } = await classicEngine.startGame(context(new MockProvider(() => ({})), 0), {
       gameId: GAME,

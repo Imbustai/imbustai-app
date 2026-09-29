@@ -59,7 +59,7 @@ export const storyConfigSchema: z.ZodType<StoryConfig, z.ZodTypeDef, unknown> = 
     z.object({
       act_number: z.number(),
       title: z.string(),
-      goals: record,
+      goals: z.union([record, z.array(z.unknown())]),
       turn_min: z.number(),
       turn_max: z.number().nullable(),
       reveal_rules: record,
