@@ -13,6 +13,8 @@
     "build:website": "nx build website",
     "start:website": "nx start website",
     "test": "vitest run",
+    "typecheck": "tsc --noEmit -p packages/story-engine && tsc --noEmit -p apps/website",
+    "lint": "eslint -c apps/website/eslint.config.mjs apps/website",
     "test:watch": "vitest",
     "test:tryout-01": "vitest run apps/tryout-01",
     "sim:voss": "tsx scripts/simulate-voss.ts",
@@ -38,6 +40,8 @@
     "@vanilla-extract/vite-plugin": "^5.2.3",
     "@vitejs/plugin-react": "^6.0.3",
     "@vitest/coverage-v8": "^4.1.6",
+    "eslint": "^10.0.3",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "fast-xml-parser": "^5.8.0",
     "jsdom": "^29.1.1",
     "nx": "catalog:",
@@ -46,6 +50,8 @@
     "tslib": "catalog:",
     "tsx": "^4.22.0",
     "typescript": "catalog:",
+    "typescript-eslint": "^8.71.0",
+    "vite": "8.0.16",
     "vitest": "^4.1.6"
   },
   "dependencies": {
