@@ -131,11 +131,11 @@ function delivered(row: InteractionRow, turnOf: Map<string, number>): DeliveredL
     direction: 'in',
     turn,
     key: row.id,
-    kind: 'letter',
+    kind: row.kind,
     from: slug,
     storyDate,
     body: row.content,
-    enclosures: [],
+    enclosures: row.enclosures,
   };
 }
 

@@ -7,9 +7,12 @@ export type * from './contract';
 export { createHookContext, type HookContextInput } from './host/context';
 export {
   applyLetterEdits,
+  closingLetterKinds,
   contactsOf,
   reviewDraft,
   unknownSenders,
+  UnknownEnclosureError,
+  type EnclosureEdit,
   type LetterEdit,
 } from './host/game';
 export {

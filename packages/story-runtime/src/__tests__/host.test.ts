@@ -88,11 +88,66 @@ describe('platform rules around the Hooks', () => {
     ]);
   });
 
+  it('holds a closing batch that carries anything but Epilogues and Dispatches', async () => {
+    const ctx = createHookContext({ gameId: 'g', turn: 9, ai: createAiAccess({ provider: new MockProvider(() => ({})), turn: 9 }) });
+    const view = { gameId: 'g', story: {}, state: {}, turn: 9, history: [], submission: [] };
+    const closing: DraftBatch = {
+      letters: [
+        { key: 'verdetto', kind: 'epilogue', from: 'voss', storyDate: '1988-03-01', body: 'Sentenza', enclosures: [] },
+        { key: 'telegramma', kind: 'dispatch', from: 'voss', storyDate: '1988-03-01', body: 'STOP', enclosures: [] },
+        { key: 'lettera', kind: 'letter', from: 'voss', storyDate: '1988-03-01', body: 'Mi risponda', enclosures: [] },
+      ],
+      effects: {},
+      adminNotes: [],
+    };
+    const findings = await reviewDraft(engine, ctx, view, closing, { closing: true });
+    expect(findings.filter((f) => f.rule === 'closing_letter_kind')).toEqual([
+      {
+        rule: 'closing_letter_kind',
+        severity: 'error',
+        message: 'A closing batch carries only Epilogues and Dispatches, not a "letter".',
+        letterKey: 'lettera',
+      },
+    ]);
+    expect((await reviewDraft(engine, ctx, view, closing)).map((f) => f.rule)).toEqual(['engine_rule']);
+  });
+
   it('lets the admin edit bodies only, leaving effects to the Engine', () => {
     const edited = applyLetterEdits(draft, [{ key: 'a', body: 'Caro Lombardo' }]);
     expect(edited.letters[0].body).toBe('Caro Lombardo');
     expect(edited.letters[0].storyDate).toBe('1987-12-01');
     expect(edited.letters[1]).toBe(draft.letters[1]);
     expect(edited.effects).toBe(draft.effects);
+  });
+
+  const withEnclosure: DraftBatch = {
+    ...draft,
+    letters: [
+      {
+        ...draft.letters[0],
+        enclosures: [
+          { key: 'cert', kind: 'document', title: 'Certificato', body: 'Famiglia Ferrante' },
+          { key: 'ritaglio', kind: 'clipping', title: 'Il Messaggero', body: 'Omicidio a Nomentano' },
+        ],
+      },
+    ],
+  };
+
+  it('lets the admin rewrite an Enclosure’s title and body by key, never its kind', () => {
+    const edited = applyLetterEdits(withEnclosure, [
+      { key: 'a', body: 'ciao', enclosures: [{ key: 'cert', title: 'Stato di famiglia', body: 'Aldo Ferrante' }] },
+    ]);
+    expect(edited.letters[0].enclosures).toEqual([
+      { key: 'cert', kind: 'document', title: 'Stato di famiglia', body: 'Aldo Ferrante' },
+      { key: 'ritaglio', kind: 'clipping', title: 'Il Messaggero', body: 'Omicidio a Nomentano' },
+    ]);
+  });
+
+  it('refuses an edit to an Enclosure the Engine did not enclose', () => {
+    expect(() =>
+      applyLetterEdits(withEnclosure, [
+        { key: 'a', body: 'ciao', enclosures: [{ key: 'nuovo', title: 'x', body: 'y' }] },
+      ]),
+    ).toThrow(/enclosure "nuovo"/);
   });
 });

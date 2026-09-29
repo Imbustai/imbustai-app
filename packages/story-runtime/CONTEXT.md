@@ -60,6 +60,14 @@ The outcome of a Game, decided by the Engine from what the Player actually did, 
 **Epilogue**:
 A Letter delivered after the final Turn that needs no reply, such as the tribunal's verdict.
 
+**Enclosure**:
+A text-only document or clipping slipped inside a Letter's envelope, such as a certificate; the admin may reword it, only the Engine decides which a Letter carries, and the Player never encloses anything.
+_Avoid_: attachment
+
+**Closing batch**:
+The Epilogues and Dispatches the Engine writes once it resolves an Ending; it has no Player Letters, is reviewed like any Turn, and sending it completes the Game.
+_Avoid_: final turn, epilogue turn
+
 ### Letter writing
 
 **Plot key**:
