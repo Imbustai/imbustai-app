@@ -2,7 +2,7 @@
 
 ## Contexts
 
-- [Story runtime](./packages/story-engine/CONTEXT.md) — stories, engines, games, turns, letters and runs: the language of playing an epistolary story and testing it
+- [Story runtime](./packages/story-runtime/CONTEXT.md) — stories, engines, games, turns, letters and runs: the language of playing an epistolary story and testing it
 
 ## Relationships
 

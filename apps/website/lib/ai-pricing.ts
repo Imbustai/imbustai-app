@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { CallUsage } from '@imbustai/story-engine';
+import type { CallUsage } from '@imbustai/story-runtime';
 import type { AiModelPricingRow } from '@/lib/types/db';
 
 // AI cost helpers. The provider APIs return token counts only — never a dollar

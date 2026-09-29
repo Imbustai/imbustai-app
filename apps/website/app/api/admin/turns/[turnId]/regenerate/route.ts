@@ -3,9 +3,9 @@ import { requireAdmin } from '@/lib/require-admin';
 import { generateDraft, WorkflowError } from '@/lib/reply-workflow';
 
 // POST /api/admin/turns/[turnId]/regenerate — new draft version.
-// Body: { character_slug?: string, admin_guidance?: string }
-//  - character_slug: regenerate only that NPC letter, reusing the stored plan
-//  - admin_guidance: free-text steer passed to the orchestrator
+// Body: { letter_key?: string, admin_guidance?: string }
+//  - letter_key: regenerate only that Letter; the Engine keeps the others
+//  - admin_guidance: free-text steer handed to the Engine
 export async function POST(
   request: Request,
   { params }: { params: Promise<{ turnId: string }> },
@@ -17,10 +17,8 @@ export async function POST(
   const body = await request.json().catch(() => ({}));
   try {
     const draft = await generateDraft(turnId, {
-      onlyCharacter:
-        typeof body.character_slug === 'string' && body.character_slug
-          ? body.character_slug
-          : undefined,
+      letterKey:
+        typeof body.letter_key === 'string' && body.letter_key ? body.letter_key : undefined,
       adminGuidance: typeof body.admin_guidance === 'string' ? body.admin_guidance : undefined,
     });
     return NextResponse.json({ draftId: draft.id, version: draft.version });

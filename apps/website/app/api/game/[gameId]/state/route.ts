@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server';
 import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
-import { loadStoryConfig, runtimeStateOf } from '@/lib/story-engine/load';
+import { WorkflowError, loadGameHost, playerStatus } from '@/lib/game-host';
 import type { GameRow, InteractionTurnRow } from '@/lib/types/db';
 
-// GET /api/game/[gameId]/state — player-safe game state: unlocked contacts
-// (safe fields only — no hidden agendas, no facts), in-fiction date, open
-// turn status. Served via service role with explicit column selection
+// GET /api/game/[gameId]/state — player-safe game state: contacts from the
+// Engine's cast (name and role only — no hidden agendas, no facts), in-fiction
+// date, open turn status. Served via service role with explicit column selection
 // because story tables are admin-only under RLS by design.
 export async function GET(
   _request: Request,
@@ -25,9 +25,15 @@ export async function GET(
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
-  const loaded = await loadStoryConfig(admin, g.story_id);
-  if (!loaded) return NextResponse.json({ error: 'story_not_found' }, { status: 404 });
-  const state = runtimeStateOf(g, loaded.story);
+  let status;
+  try {
+    status = playerStatus(await loadGameHost(admin, g));
+  } catch (err) {
+    if (err instanceof WorkflowError) {
+      return NextResponse.json({ error: err.code }, { status: err.status });
+    }
+    throw err;
+  }
 
   const [{ data: openTurn }, { data: inTransit }] = await Promise.all([
     admin
@@ -46,23 +52,17 @@ export async function GET(
       .order('visible_from', { ascending: true }),
   ]);
 
-  const contacts = loaded.story.characters
-    .filter((c) => state.unlocked_npcs.includes(c.slug))
-    .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
-  // Only count characters designed to be player-contactable but not yet unlocked.
-  // Passive senders (contactable_from_start = false) must never show as locked slots.
-  const potentiallyContactable = loaded.story.characters.filter((c) => c.contactable_from_start);
-  const lockedCount = potentiallyContactable.filter((c) => !state.unlocked_npcs.includes(c.slug)).length;
-
   const transit = (inTransit ?? []) as Array<{ visible_from: string }>;
 
   return NextResponse.json({
     game_status: g.status,
-    story_date: state.story_date,
-    current_turn: state.current_turn,
-    max_letters_per_turn: loaded.story.settings.max_letters_per_turn ?? 4,
-    contacts,
-    locked_count: lockedCount,
+    story_date: status.storyDate,
+    current_turn: status.currentTurn,
+    max_letters_per_turn: status.maxLettersPerTurn,
+    contacts: status.contacts,
+    // No Hook reports locked contacts; engine-classic never had any once a
+    // Game started (every contactable_from_start character is unlocked then).
+    locked_count: 0,
     open_turn: openTurn
       ? {
           id: (openTurn as InteractionTurnRow).id,

@@ -4,12 +4,8 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import { PlayClient, type PlayContact } from '@/components/play/play-client';
 import { Box } from '@imbustai/ds';
-import type {
-  GameRow,
-  InteractionRow,
-  StoryCharacterRow,
-  StoryRow,
-} from '@/lib/types/db';
+import { WorkflowError, loadGameHost, playerStatus } from '@/lib/game-host';
+import type { GameRow, InteractionRow } from '@/lib/types/db';
 
 export const dynamic = 'force-dynamic';
 
@@ -35,40 +31,20 @@ export default async function PlayPage({
   const g = game as GameRow;
   if (g.user_id !== user.id) redirect('/');
 
-  // Story chrome via service role with SAFE columns only (story tables are
-  // admin-only under RLS — hidden agendas etc. never reach this page).
-  const [{ data: story }, { data: characters }] = await Promise.all([
-    admin
-      .from('stories')
-      .select('id,slug,title_en,title_it,settings,time_config')
-      .eq('id', g.story_id)
-      .single(),
-    admin
-      .from('story_characters')
-      .select('slug,name,role,sort_order,contactable_from_start')
-      .eq('story_id', g.story_id)
-      .order('sort_order'),
-  ]);
-  if (!story) notFound();
-  const storyRow = story as Pick<
-    StoryRow,
-    'id' | 'slug' | 'title_en' | 'title_it' | 'settings' | 'time_config'
-  >;
-  const unlocked: string[] = (g.runtime_state?.unlocked_npcs as string[] | undefined) ?? [];
-  const characterRows = (characters ?? []) as Pick<
-    StoryCharacterRow,
-    'slug' | 'name' | 'role' | 'sort_order' | 'contactable_from_start'
-  >[];
-  const contacts: PlayContact[] = characterRows
-    .filter((c) => unlocked.includes(c.slug))
-    .map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
-  // Only count characters that were designed to be contactable (contactable_from_start
-  // or already unlocked) but aren't unlocked yet. Passive/automatic senders that are
-  // never meant to be player contacts should not appear as locked mystery slots.
-  const potentiallyContactable = characterRows.filter((c) => c.contactable_from_start);
-  const lockedCount = potentiallyContactable.filter((c) => !unlocked.includes(c.slug)).length;
-  // All character names for letter attribution (includes non-contactable senders).
-  const allCharacters = characterRows.map((c) => ({ slug: c.slug, name: c.name, role: c.role }));
+  // Story chrome and contacts through the Story's Engine, on the server: only
+  // names and roles from its cast reach this page — hidden agendas never do.
+  let host;
+  try {
+    host = await loadGameHost(admin, g);
+  } catch (err) {
+    if (err instanceof WorkflowError) notFound();
+    throw err;
+  }
+  const storyRow = host.row;
+  const status = playerStatus(host);
+  const contacts: PlayContact[] = status.contacts;
+  // Everyone who may sign a letter, for attribution (includes non-contactable senders).
+  const allCharacters = status.correspondents;
 
   // Letters through the USER's client: RLS hides future-visible_from letters
   // and everything that isn't theirs — defense in depth over UI filtering.
@@ -87,10 +63,10 @@ export default async function PlayPage({
         storyTitleEn={storyRow.title_en}
         storyTitleIt={storyRow.title_it}
         dateLocale={storyRow.time_config?.date_locale ?? 'it-IT'}
-        maxLettersPerTurn={storyRow.settings?.max_letters_per_turn ?? 4}
-        initialStoryDate={(g.runtime_state?.story_date as string | undefined) ?? null}
+        maxLettersPerTurn={status.maxLettersPerTurn}
+        initialStoryDate={status.storyDate}
         contacts={contacts}
-        lockedCount={lockedCount}
+        lockedCount={0}
         initialLetters={(letters ?? []) as InteractionRow[]}
         allCharacters={allCharacters}
       />

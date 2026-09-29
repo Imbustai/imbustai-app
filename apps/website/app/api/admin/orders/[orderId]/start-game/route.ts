@@ -1,12 +1,8 @@
+import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
-import {
-  initialRuntimeState,
-  openingLetters,
-  resolveStartDate,
-} from '@imbustai/story-engine';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { requireAdmin } from '@/lib/require-admin';
-import { loadStoryConfig } from '@/lib/story-engine/load';
+import { WorkflowError, hookContextFor, loadStory } from '@/lib/game-host';
 
 export async function POST(
   _request: Request,
@@ -45,35 +41,30 @@ export async function POST(
     return NextResponse.json({ gameId: existing.id, already: true });
   }
 
-  const loaded = await loadStoryConfig(admin, order.story_id);
-  if (!loaded) {
-    return NextResponse.json({ error: 'Story not found' }, { status: 404 });
+  let loaded;
+  try {
+    loaded = await loadStory(admin, order.story_id);
+  } catch (err) {
+    if (err instanceof WorkflowError) {
+      return NextResponse.json({ error: 'Story not found' }, { status: 404 });
+    }
+    throw err;
   }
-  const { story } = loaded;
 
-  // In-fiction start (fixed date or the real date the game starts) and the
-  // per-character opening letters; legacy single first_letter as fallback.
+  // The Engine gives the Game its first state and the opening envelope, which
+  // is authored, so it is delivered without review.
+  const gameId = randomUUID();
   const today = new Date().toISOString().slice(0, 10);
-  const startDate = resolveStartDate(story, today);
-  const runtimeState = initialRuntimeState(story, today);
-  let letters = openingLetters(story, startDate).map((l) => ({
-    character_slug: l.character_slug as string | null,
-    content: l.content,
-    story_date: l.story_date,
-  }));
-  if (letters.length === 0) {
-    letters = [
-      {
-        character_slug: null,
-        content: story.first_letter.trim() || '…',
-        story_date: startDate,
-      },
-    ];
-  }
+  const { state, opening } = await loaded.engine.startGame(
+    hookContextFor(loaded, gameId, 0),
+    { gameId, story: loaded.story, realStartDate: today },
+  );
+  const runtimeState = loaded.engine.schema.state.parse(state);
 
   const { data: game, error: gErr } = await admin
     .from('games')
     .insert({
+      id: gameId,
       user_id: order.user_id,
       order_id: order.id,
       story_id: order.story_id,
@@ -89,13 +80,14 @@ export async function POST(
   }
 
   const { error: iErr } = await admin.from('interactions').insert(
-    letters.map((letter, index) => ({
+    opening.map((letter, index) => ({
       game_id: game.id,
       role: 'ai' as const,
-      content: letter.content,
+      content: letter.body,
       letter_number: index + 1,
-      character_slug: letter.character_slug,
-      story_date: letter.story_date,
+      // An unsigned letter (no sender) is stored without a character.
+      character_slug: letter.from || null,
+      story_date: letter.storyDate,
     })),
   );
 

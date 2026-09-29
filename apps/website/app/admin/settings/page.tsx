@@ -1,4 +1,4 @@
-import { DEFAULT_MODEL, resolveProviderKind, type ProviderKind } from '@imbustai/story-engine';
+import { DEFAULT_MODEL, resolveProviderKind, type ProviderKind } from '@imbustai/story-runtime';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { AiCostSettings } from '@/components/admin/ai-cost-settings';
 import type { AiModelPricingRow } from '@/lib/types/db';

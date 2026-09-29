@@ -6,7 +6,7 @@ A platform for interactive epistolary Stories: the Player writes Letters, Charac
 
 The current effort is the new Voss story (Rome 1987) on its own Engine, `engine-voss`. Its plan is the [Voss story's wayfinder map](https://github.com/Imbustai/imbustai-app/issues/9): read it before picking up any work, and take the next step from its open tickets.
 
-Speak the glossary: `CONTEXT-MAP.md` → `packages/story-engine/CONTEXT.md` (Story, Engine, Hook, Game, Turn, Letter, Character, Run…).
+Speak the glossary: `CONTEXT-MAP.md` → `packages/story-runtime/CONTEXT.md` (Story, Engine, Hook, Game, Turn, Letter, Character, Run…).
 
 ## Repos
 
@@ -39,7 +39,8 @@ Speak the glossary: `CONTEXT-MAP.md` → `packages/story-engine/CONTEXT.md` (Sto
 
 | Area | Location |
 |------|----------|
-| Story runtime (turn lifecycle, Hook contract, providers, pricing, Runs) | `packages/story-engine/` → becomes `@imbustai/story-runtime` |
+| Story runtime (Hook contract, hook context, providers, pricing, Runs) | `packages/story-runtime/` (`@imbustai/story-runtime`) |
+| Turn lifecycle and persistence (calls the Hooks) | `apps/website/lib/game-host.ts`, `apps/website/lib/reply-workflow.ts`; Engines registered in `apps/website/lib/engines/` |
 | Engines | `packages/engine-<name>/` (`engine-classic`, `engine-voss`) |
 | Website app | `apps/website/` |
 | Developer docs app | `apps/developer/` |
@@ -53,6 +54,8 @@ pnpm install
 pnpm dev:website          # Next.js website
 pnpm build:website
 pnpm test                 # Vitest (root)
+pnpm typecheck            # tsc for the runtime, the Engines and the website
+pnpm lint                 # ESLint for the website
 supabase db push          # Apply migrations (when configured)
 ```
 

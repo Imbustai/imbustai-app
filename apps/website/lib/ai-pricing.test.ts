@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { computeCostUsd } from './ai-pricing';
-import type { CallUsage } from '@imbustai/story-engine';
+import type { CallUsage } from '@imbustai/story-runtime';
 import type { AiModelPricingRow } from './types/db';
 
 const price: AiModelPricingRow = {
