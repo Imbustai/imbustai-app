@@ -10,7 +10,7 @@
 > **Limite:** non ho il testo originale de *Il caso di Panorama* (1978): non è nel repo, nei repo vicini né su Drive. Ho lavorato sul riassunto di [What is the story of Il quarto nome?](https://github.com/Imbustai/imbustai-app/issues/12). **Dove il racconto dice altro, vince il racconto**: incollalo nel ticket e riallineo.
 >
 > Segni usati: **[PK]** = Plot key; **[?]** = scelta da confermare; **[non verificato]** = plausibile ma non controllato.
-
+>
 > **Revisione linguistica ([#37](https://github.com/Imbustai/imbustai-app/issues/37), 2026-09-30):** le due lettere della §7 sono state rilette come farebbe un redattore italiano (riferimenti chiari, ordine dei fatti, punteggiatura, congiuntivi dove Adelaide li userebbe scrivendo, virgolette «», testate in corsivo), senza toccare la sua voce: periodi lunghi, parentesi e digressioni restano. Due correzioni di coerenza: nella lettera del 5 ottobre il *Panorama* torna "cinque o sei giorni dopo" (non più "il mercoledì", che da settembre è falso, e l'indizio I6 resta per dopo); nel reveal si dice che Armando si era portato il *Panorama* al mercato.
 
 ---
