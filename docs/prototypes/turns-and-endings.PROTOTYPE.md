@@ -34,7 +34,7 @@
 | J | **Il verdetto** | Il punteggio **non decide se Aldo esce, ma quanta verità dice il dispositivo** (§9). Le soglie del fascicolo restano (≥ 10 / 6–9 / < 6), ma valgono solo per i tre omicidi del 1987. Quando Aldo è preso il 17 o dopo, l'omicidio o il tentato omicidio di Voss è sempre provato. **La lampadina svitata** vale 0 punti: porta la premeditazione nel capo d'imputazione Ferri. **L'uomo col cappello** entra in P9 senza punti in più. | L'assoluzione piena del fascicolo (< 6, "Aldo esce"): con la regola I, però, non si raggiunge mai. |
 | K | **Il vino nei Finali** | Lo showpiece arriva **solo se Voss è vivo e l'assassino è noto** (Finali 5 e 6), con una variante per "fuggito". In "salvo, ignoto" la bottiglia resta chiusa: «questa storia non è chiusa, ha solo smesso di succedere». Nei Finali in cui Voss muore la bottiglia compare nel verbale, aperta, con due bicchieri e uno pieno, come le due tazzine della maestra. Nessuna metafora. | Lo showpiece in ogni Finale in cui Voss è vivo, anche "ignoto". |
 | L | **La confessione dopo il 17** | Se Voss è vivo, l'assassino è noto e lo strato 4 non è mai arrivato, **Voss confessa nella Lettera dopo il 17**: la verità verrà fuori comunque, e preferisce che Lombardo la sappia da lui. Nel Finale "salvo, ignoto" tace. | Voss confessa solo a Lombardo nel corso del gioco, mai dopo. |
-| M | **Il telegramma di Voss** | Il 18 dicembre, nei Finali in cui è vivo, Voss telegrafa. È **l'unico telegramma di un Personaggio in tutta la Storia**: "l'isola ascolta" non conta più. | Nessun telegramma: il Giocatore scopre l'esito da un ritaglio di giornale. |
+| M | **Niente telegrammi (Paolo)** | Nessun Personaggio telegrafa, mai. L'esito del 17 arriva al Giocatore **solo se è pubblico**, con un ritaglio di giornale nel batch 7: la morte di Voss (Finali 1–3) o l'arresto di Aldo (Finale 6). Nei Finali 4 e 5 il 17 non succede niente che finisca sui giornali, e il Giocatore scrive il Turno 8 **senza sapere se Voss è vivo**. Glielo dice la Lettera di Voss nel batch 8. | — |
 | N | **La data dell'Epilogo** | Con l'istruzione sommaria (Aldo confessa, oppure è preso in flagranza; scheda §7.5) il dispositivo è di **ven 18 marzo 1988**. Con l'istruzione formale è di **ven 12 maggio 1989**, sempre prima del codice nuovo. La data stessa dice al Giocatore quanto ha aiutato. | Sempre marzo 1988. |
 | O | **Il Turno 8 e il PM** | Il Giocatore decide con la sua ultima Lettera se dire al PM ciò che Voss gli ha confessato. La Lettera del PM ne tiene conto (§10.7). Il PM **non nomina mai il Questore**: scrive una riga sulle "circostanze" in cui Lombardo ha lasciato Roma e chiede che la lettera entri nel suo fascicolo personale. Sull'appunto archiviato dalla Mobile scrive una riga asciutta. | Il PM tace su tutto quello che non riguarda il processo. |
 
@@ -69,7 +69,7 @@
 | 4 | lun 26 ott | lun 2 nov | mer 4 nov | lun 9 nov | ven 30 ott arriva la bottiglia |
 | 5 | lun 9 nov | lun 16 nov | mar 17 nov | lun 23 nov | **mar 10 nov fermo di Lattanzi** (Dispatch) |
 | 6 | lun 23 nov | lun 30 nov | mar 1 dic | lun 7 dic | gio 26 nov la frase dell'"anniversario"; Adelaide si apposta |
-| 7 | lun 7 dic | lun 14 dic | mar 15 dic | lun 21 dic | gio 10 dic Aldo chiede la bottiglia · **gio 17 dic** · ven 18 il treno di Aldo · Dispatch del 18–19 (l'esito) |
+| 7 | lun 7 dic | lun 14 dic | mar 15 dic | lun 21 dic | gio 10 dic Aldo chiede la bottiglia · **gio 17 dic** · ven 18 il treno di Aldo · ritaglio del 19, se l'esito è pubblico |
 | 8 | lun 21 dic | lun 28 dic | sab 26 – mar 29 dic, poi l'Epilogo | fine | gio 24 dic il *Panorama* arriva ad Adelaide per prima · Epilogo: marzo 1988 o maggio 1989 |
 
 **Scadenze che il Giocatore non vede, ma l'Engine sì:**
@@ -91,7 +91,7 @@ Ogni riga dice che cosa porta il batch **al più tardi**. Una domanda diretta de
 | **4** (4 nov) | Dossier §7.2: la maestra, "erano tre, è finita" (**scala del bersaglio al gradino 0**), Pierangeli, la bottiglia, **il nipote** (K5). Porta: il registro dei colloqui di Regina Coeli. **Strato 3** possibile. | **Il sollievo**: «allora è finita, e al palazzo non torna» (spostato qui dal suo vecchio "Turno 4"). I5, I6, I7. **L'aria**, se non l'ha ancora nominata: la radio della Iole. | — | — |
 | **5** (17 nov) | Il sollievo per Lattanzi, e le scale ferme al gradino 1 tornano a 0. **Il *Rigoletto* a Caracalla** (K6). Le riprese (§3.3). **Strato 4** possibile per la prima volta. Porta: l'Anagrafe. | «L'hanno preso, adesso si dorme.» I8, il pezzetto di calendario. | — | **mar 10 nov**: il fermo di Lattanzi. |
 | **6** (1 dic) | **"A dicembre ho un anniversario, poi forse parto"** (K7; dossier §7.3). Strato 4 se la porta si apre; la schiena nella variante pesante se la fiducia è alta. | **Il reveal**: dedotto (Adelaide §4.1) o scoperto da lei il 26 novembre (§4.2), con il calendario come Allegato, Armando scagionato e la **lampadina svitata** in un P.S. | Una perquisizione chiesta nel Turno 4 o 5 è già avvenuta: la Procura risponde. | — |
-| **7** (15 dic) | Giovedì 10 **Aldo gli ha chiesto di aprire la bottiglia il 17**. Voss accetta o rifiuta secondo il suo stato (§7). Se muore, è la sua ultima Lettera (§10.6). | La Lettera calda dopo il reveal; il geranio di Ernesto se il reveal è arrivato presto. | La perquisizione del Turno 6 (7–9 dicembre) e i suoi risultati. | **18–19 dic**: l'esito (§10.2). |
+| **7** (15 dic) | Giovedì 10 **Aldo gli ha chiesto di aprire la bottiglia il 17**. Voss accetta o rifiuta secondo il suo stato (§7). Se muore, è la sua ultima Lettera (§10.6). | La Lettera calda dopo il reveal; il geranio di Ernesto se il reveal è arrivato presto. | La perquisizione del Turno 6 (7–9 dicembre) e i suoi risultati. **19 dic**: il ritaglio dell'esito, se è pubblico (§10.2). Nei Finali 4 e 5, nessuno. |
 | **8** (26–29 dic) | **La Lettera dopo il 17**, se è vivo (§10.3–§10.5). | **Il congedo** (§10.8): il *Panorama* di giovedì 24 letto per prima, e il Finale visto dal palazzo. | La Procura risponde solo se il Turno 8 nomina Aldo (Finali 2 e 5). Le altre risposte in sospeso cadono. | Il Dispatch di chiusura, oppure l'**Epilogo** (Finali 3 e 6). |
 
 ---
@@ -299,14 +299,14 @@ Dopo il batch 7, l'Engine valuta **in quest'ordine** e si ferma alla prima condi
 
 ## 8. I sei Finali
 
-| # | Finale | Il 18–19 dicembre | Batch 8 | Epilogo |
+| # | Finale | Che cosa sa il Giocatore il 21 dicembre | Batch 8 | Epilogo |
 |---|---|---|---|---|
 | **1** | Voss morto, assassino ignoto | Ritaglio: «il quarto lumino» | L'ultima Lettera di Voss c'è già stata (b7). Congedo di Adelaide (variante 1). | Nessuno. Dispatch di chiusura: Lattanzi scarcerato, **«la setta resta senza volto»** (quattro delitti). |
 | **2** | Voss morto, assassino noto ma fuggito | Lo stesso ritaglio | Congedo di Adelaide (variante 2). La Procura risponde al Turno 8: mandato di cattura; Aldo si è imbarcato a Brindisi per Patrasso il 19. | Nessun processo. |
 | **3** | Voss morto, assassino preso | Ritaglio, poi un secondo: «fermato a Termini un ex capotreno» | Congedo di Adelaide (variante 3). | **Il PM** con il dispositivo: marzo 1988 se Aldo confessa, maggio 1989 se tace. Il verdetto sui tre omicidi del 1987 dipende dal punteggio (§9). |
-| **4** | Voss salvo, assassino ignoto | Telegramma di Voss: «ho dormito da Mario» | **La Lettera di Voss dopo il 17** (§10.5): bottiglia chiusa, Aldo partito "per il suo anniversario". Congedo di Adelaide (variante 4). | Nessuno. Dispatch di chiusura: Lattanzi scarcerato (tre delitti). |
-| **5** | Voss salvo, assassino noto ma fuggito | Lo stesso telegramma | **La Lettera di Voss** (§10.4): la stanza vuota, la stufa piena di cenere, lo showpiece nella variante "Grecia", la confessione se non c'è ancora stata. Congedo (variante 5). | Nessun processo. La Procura risponde al Turno 8, se il Turno 8 le ha scritto. |
-| **6** | Voss salvo, assassino preso | (A) nessun evento il 17 · (B) telegramma: «preso stanotte sulle mie scale» | **La Lettera di Voss** (§10.3): il pianerottolo o la perquisizione, il Verano, lo showpiece, la confessione se non c'è ancora stata. Congedo (variante 6, testo intero). | **Il PM** con il dispositivo, marzo 1988 (§10.7). Sempre ergastolo per tutti e tre. |
+| **4** | Voss salvo, assassino ignoto | Niente: nessun ritaglio, nessuna notizia. Scrive il Turno 8 senza sapere se Voss è vivo. | **La Lettera di Voss dopo il 17** (§10.5): bottiglia chiusa, Aldo partito "per il suo anniversario". Congedo di Adelaide (variante 4). | Nessuno. Dispatch di chiusura: Lattanzi scarcerato (tre delitti). |
+| **5** | Voss salvo, assassino noto ma fuggito | Niente, come nel 4. | **La Lettera di Voss** (§10.4): la stanza vuota, la stufa piena di cenere, lo showpiece nella variante "Grecia", la confessione se non c'è ancora stata. Congedo (variante 5). | Nessun processo. La Procura risponde al Turno 8, se il Turno 8 le ha scritto. |
+| **6** | Voss salvo, assassino preso | (A) ritaglio del 10 dicembre sulla perquisizione, più la risposta della Procura · (B) ritaglio del 19: «preso l'uomo dei lumini» | **La Lettera di Voss** (§10.3): il pianerottolo o la perquisizione, il Verano, lo showpiece, la confessione se non c'è ancora stata. Congedo (variante 6, testo intero). | **Il PM** con il dispositivo, marzo 1988 (§10.7). Sempre ergastolo per tutti e tre. |
 
 **Il batch 8 è la chiusura**, e si rivede come ogni altro batch (contratto dell'Engine, [#20](https://github.com/Imbustai/imbustai-app/issues/20)). Le Lettere del Giocatore del Turno 8 contano per tre cose sole: la Lettera di Voss, se è vivo, risponde a quello che il Giocatore gli ha scritto; il nome di Aldo può arrivare alla Procura (Finali 2 e 5); e il PM può sapere o non sapere della confessione di Voss (§0 O).
 
@@ -413,17 +413,19 @@ Dopo il batch 7, l'Engine valuta **in quest'ordine** e si ferma alla prima condi
 > **TERMINI, FERMATO UN EX CAPOTRENO: «È L'UOMO DEI LUMINI»**
 > Aveva in tasca un biglietto per il notturno di Brindisi. Gli inquirenti: «Nessun legame con le sette».
 
-**Voss vivo, Finali 4 e 5**, telegramma di venerdì 18 dicembre:
+**Finale 6 (B)**, ritaglio del *Messaggero*, sabato 19 dicembre 1987:
 
-> GIOVEDI PASSATO STOP STO BENE STOP HO DORMITO DA MARIO STOP LETTERA SEGUE STOP FLORIAN
+> **MONTEVERDE, PRESO SULLE SCALE L'UOMO DEI LUMINI**
+> **Aveva in tasca quattro candele rosse. L'agente che doveva essere la quarta vittima è illeso**
+>
+> Giovedì sera, poco dopo le undici, due agenti in borghese hanno arrestato sulle scale di un palazzo di via Fratelli Bonnet un pensionato di 61 anni, ex capotreno delle Ferrovie dello Stato. L'uomo stava salendo nell'appartamento di un agente del commissariato di Monteverde, con cui da mesi giocava a scacchi. Addosso gli sono stati trovati un pesante attrezzo di ferro e quattro lumini rossi, identici a quelli lasciati accanto alle tre vittime della cosiddetta setta della trinità. Gli inquirenti mantengono il massimo riserbo.
 
-**Finale 6 (B)**, telegramma di venerdì 18 dicembre:
+**Finale 6 (A)**, ritaglio del *Messaggero*, giovedì 10 dicembre 1987 (letto con il batch 7, insieme alla risposta della Procura):
 
-> PRESO STANOTTE SULLE MIE SCALE STOP ERA ALDO STOP STO BENE STOP LETTERA SEGUE STOP FLORIAN
+> **DELITTI DELLA TRINITÀ, ARRESTATO UN EX CAPOTRENO**
+> Nella sua stanza a Monteverde la polizia ha trovato una chiave di ferro e quattro lumini nuovi. «Nessun legame con le sette», dicono in Procura.
 
-**Finale 6 (A)**, telegramma di venerdì 18 dicembre:
-
-> GIOVEDI PASSATO STOP SONO STATO AL VERANO STOP LETTERA SEGUE STOP FLORIAN
+**Finali 4 e 5:** nessun ritaglio. Il 17 dicembre, per i giornali, non è successo niente.
 
 **Chiusura dei Finali 1 e 4**, ritaglio di *Paese Sera*, venerdì 29 gennaio 1988:
 
@@ -474,7 +476,7 @@ Dopo il batch 7, l'Engine valuta **in quest'ordine** e si ferma alla prima condi
 >
 > Caro Giacomo,
 >
-> la tua lettera è arrivata ieri. Dal mio telegramma sapevi già quasi tutto; il resto te lo racconto adesso, anche se è la parte peggiore.
+> la tua lettera è arrivata ieri, e dentro c'era la domanda a cui i giornali non potevano risponderti: sì, sono vivo. Scusami se hai dovuto aspettare fino a oggi per saperlo. Il resto te lo racconto adesso, anche se è la parte peggiore.
 >
 > Giovedì ho fatto come mi avevi scritto. Sono sceso al bar, ho giocato le mie due partite e poi ho dormito da Mario, sul divano del retro. Quando Aldo mi ha proposto l'ultima partita da me, «con quel vino tuo», gli ho detto che non era serata. Mi ha stretto la mano, cosa che non aveva mai fatto, e mi ha augurato buon Natale. Io non sapevo ancora niente. A quella mano ci ho pensato dopo, e ci penso ancora.
 >
@@ -500,7 +502,7 @@ Dopo il batch 7, l'Engine valuta **in quest'ordine** e si ferma alla prima condi
 >
 > Caro Giacomo,
 >
-> la tua lettera è arrivata ieri. Mi chiedi se sto bene, e la risposta è sì, anche se non so a chi lo devo. Ti scrivo dalla cucina, con la finestra aperta, e per adesso mi basta.
+> la tua lettera è arrivata ieri. Mi chiedi se sono ancora vivo, e lo sono. Scusami se hai dovuto aspettare fino a oggi per saperlo: di una cosa che non è successa i giornali non scrivono. Sto bene, anche se non so a chi lo devo. Ti scrivo dalla cucina, con la finestra aperta, e per adesso mi basta.
 >
 > Giovedì sono sceso al bar alle nove, come sempre, perché stare chiuso in casa mi sembrava peggio. A Mario avevo già detto che quella notte avrei dormito da lui, sul divano del retro, e lui non ha fatto domande: ha soltanto tirato fuori una coperta in più. Abbiamo giocato fino alle undici. Aldo era di buon umore, più del solito. Ha vinto la prima partita, poi mi ha lasciato vincere la seconda, e non ha nemmeno fatto finta di niente. Mentre rimetteva i pezzi nella scatola mi ha detto: «L'ultima la giochiamo da te, con quel vino tuo.» Gli ho risposto che non era serata, che la schiena mi faceva male e che dormivo da Mario. Mi ha guardato un momento più del necessario. Poi mi ha stretto la mano, cosa che in nove mesi non aveva mai fatto, e mi ha detto: «Allora buon Natale, Florian.» È uscito senza fretta, col cappello in testa, come esce sempre.
 >
@@ -688,7 +690,7 @@ Aldo il 17       [PK nuovo] brucia la lettera della maestra e la risposta del 19
 - **Dossier di Voss ([#22](https://github.com/Imbustai/imbustai-app/issues/22)):** i numeri di §4 qui sostituiscono le parole "media" e "alta" della §5.2 di là; la visita alla Benvenuti (§5.1) è un comportamento nuovo, solo se richiesto.
 - **Adelaide ([#23](https://github.com/Imbustai/imbustai-app/issues/23)):** la §6 di là si rinumera come in §3.4 qui; il sollievo per il delitto 3 si sposta nel batch 4; il congedo del batch 8 prende il posto della vecchia §6.1.
 - **Nebbia "Building `engine-voss`":** questo documento è la specifica della meccanica: calendario, stato, ripresa, Finali, verdetto.
-- **Nebbia "Player UI":** come appaiono un telegramma di un Personaggio (§10.2) e il dispositivo come Allegato (§10.7).
+- **Nebbia "Player UI":** come appaiono un ritaglio di giornale (§10.2) e il dispositivo come Allegato (§10.7).
 - **[The Italian editing pass](https://github.com/Imbustai/imbustai-app/issues/37):** fatto sui testi della §10. Se Paolo vuole, la maestra può leggere §10.3 e §10.8, che sono i più lunghi.
 
 **Spesa:** $0 (nessuna chiamata a modelli).
