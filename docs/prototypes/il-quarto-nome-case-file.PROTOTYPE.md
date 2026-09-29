@@ -5,6 +5,8 @@
 > Fonti dei fatti d'epoca: [scheda Roma 1987](https://github.com/Imbustai/imbustai-app/blob/research/rome-1987-period-facts/docs/research/rome-1987-period-facts.md) (i riferimenti §n.n rimandano alle sue righe). Termini: glossario in `packages/story-engine/CONTEXT.md`.
 >
 > Segni usati: **[PK]** = Plot key (nessun Personaggio può cambiarlo); **[?]** = scelta da confermare; **[non verificato]** = plausibile ma non controllato.
+>
+> **Revisione dopo [#24](https://github.com/Imbustai/imbustai-app/issues/24) e [#37](https://github.com/Imbustai/imbustai-app/issues/37) (2026-09-30):** le battute e i passi di lettera citati sono stati riletti come farebbe un redattore italiano, con le virgolette «», e allineati alle lettere-modello corrette del dossier di Voss. Nel contenuto, le decisioni di Paolo in #24: la Mobile ha il collegamento col processo dal 4 settembre e lo liquida perché "la famiglia è tutta morta" (§4, §7, §9); Voss non ricorda nessun ferroviere (§1.3).
 
 ---
 
@@ -44,11 +46,11 @@
 
 ### 1.3 La foto di Voss (la sera dopo) **[PK — il segreto di Voss]**
 
-- **Sabato 21 maggio 1977, sera**, al commissariato di zona di San Lorenzo *(nome dell'ufficio [non verificato])*. La guardia di PS **Voss**, 23 anni, raduna i tre testimoni nella stessa stanza e mostra loro la foto segnaletica di Luca: "Questo ha già precedenti. Guardate bene."
-- Tutti e tre dicono: "Sì, sembra lui."
-- Voss aggiunge: "Della foto non dite niente a nessuno, sennò l'avvocato fa annullare tutto e quello esce." Voss era convinto che Luca fosse il colpevole. Non lo ha mai scritto, mai verbalizzato, mai raccontato.
+- **Sabato 21 maggio 1977, sera**, al commissariato di zona di San Lorenzo *(nome dell'ufficio [non verificato])*. La guardia di PS **Voss**, 23 anni, raduna i tre testimoni nella stessa stanza e mostra loro la foto segnaletica di Luca: «Questo ha già precedenti. Guardate bene.»
+- Tutti e tre dicono: «Sì, sembra lui.»
+- Voss aggiunge: «Della foto non dite niente a nessuno, sennò l'avvocato fa annullare tutto e quello esce.» Voss era convinto che Luca fosse il colpevole. Non lo ha mai scritto, mai verbalizzato, mai raccontato.
 - **Lunedì 23 maggio 1977, alle 8 del mattino**, Luca viene arrestato **all'officina del meccanico** in via dei Volsci, dove lavora. Non in casa: **Aldo quella notte era in servizio** sul notturno Roma–Reggio Calabria e rientra solo il pomeriggio. Voss non lo vede mai. Il **verbale d'arresto** porta la firma di due guardie di PS, una delle quali è Voss. È da qui che Aldo prenderà il nome.
-- Il pomeriggio stesso **Rosa** viene al commissariato a gridare che suo figlio è innocente. Voss se la ricorda benissimo: è lei il volto della famiglia, per lui. Del marito sa solo che "faceva il ferroviere", se mai l'ha sentito.
+- Il pomeriggio stesso **Rosa** viene al commissariato a gridare che suo figlio è innocente. Voss se la ricorda benissimo: è lei il volto della famiglia, per lui. Del marito di Rosa non sa niente: non l'ha mai visto, e nessuno gliene ha mai parlato (decisione di Paolo in [#24](https://github.com/Imbustai/imbustai-app/issues/24): un ferroviere ricordato da Voss renderebbe Aldo troppo facile). Dal 5 settembre 1987 sa che Rosa è morta, dalla risposta della Mobile (§4).
 
 ### 1.4 La ricognizione formale **[PK]**
 
@@ -94,11 +96,11 @@ Solo gli argomenti del Giocatore portano Voss a vedere Aldo; da solo non ci arri
 Un secondo Signature per Voss, leggero: **la schiena**. In superficie è mal di schiena; sotto, è "a vent'anni non si pensa alle conseguenze". Chi rilegge dopo la confessione vede il doppio fondo. **Niente vino** in questo tema: il vino resta il suo Signature principale e non deve comparire di continuo.
 
 - **Momento clou, una volta, intorno ai Turni 2–3:**
-  > *Sai, Giacomo, il medico dice che la schiena me la sono rovinata a vent'anni, a fare le notti in piedi e a sollevare cose che non andavano sollevate. Ma a vent'anni chi ci pensa? Uno fa, e basta, convinto che il corpo gli darà ragione per sempre. Poi a trentatré anni ti chini sotto il tavolino del bar a raccogliere una torre, e resti lì piegato come uno scemo, con Aldo che ride. A giugno anche lui mi ha dato buca per la schiena, e gli ho detto: benvenuto nel club. Le conseguenze arrivano sempre, solo che se la prendono comoda.*
+  > *Sai, Giacomo, il medico dice che la schiena me la sono rovinata a vent'anni, facendo le notti in piedi e sollevando cose che non andavano sollevate. Ma a vent'anni chi ci pensa? Si fa e basta, convinti che il corpo ci darà ragione per sempre. Poi, a trentatré anni, ti chini sotto il tavolino del bar per raccogliere una torre e resti lì piegato come uno scemo, con Aldo che ride. A giugno anche lui mi aveva dato buca per il mal di schiena, e gli ho detto: benvenuto nel club. Le conseguenze arrivano sempre. Solo che se la prendono comoda.*
 
   La battuta su Aldo è **un indizio vero dentro una chiacchiera**: il 18 giugno Aldo ha disdetto gli scacchi "per la schiena" (§3.1), ed è la sera del delitto 1.
 - **Possibile passo verso la confessione, Turni 5–6, se la fiducia è alta** (legato al trasferimento di Lombardo):
-  > *Tu almeno sull'isola ci sei finito per una cosa detta a voce alta, da adulto, sapendo cosa dicevi. È una punizione onesta. Le cose fatte a vent'anni senza pensarci non ti mandano da nessuna parte: restano dove sei tu.*
+  > *Tu almeno sull'isola ci sei finito per una cosa detta ad alta voce, da adulto, sapendo quello che dicevi. È una punizione onesta. Le cose fatte a vent'anni senza pensarci non ti mandano da nessuna parte: restano dove sei tu.*
 
 ---
 
@@ -115,7 +117,7 @@ Un secondo Signature per Voss, leggero: **la schiena**. In superficie è mal di 
 **Come ha fatto Aldo con ciascuno:**
 - **Cortesi:** Aldo bussa al retro della farmacia chiedendo un farmaco urgente. Cortesi apre.
 - **Ferri:** Aldo lo aspetta al buio sul pianerottolo; nel pomeriggio aveva svitato la lampadina delle scale (è la "luce rotta" di Adelaide). Scendendo, fischietta.
-- **Benvenuti:** Aldo si presenta: "Sono il marito di Rosa. Ho letto la sua lettera." Lei lo fa entrare e gli offre un caffè: due tazzine sul tavolo, una non toccata. È un dettaglio del sopralluogo.
+- **Benvenuti:** Aldo si presenta: «Sono il marito di Rosa. Ho letto la sua lettera.» Quel pomeriggio la polizia l'aveva avvisata di non aprire agli sconosciuti (§4), ma per lei il marito di Rosa non è uno sconosciuto. Lo fa entrare e gli offre un caffè: due tazzine sul tavolo, una non toccata. È un dettaglio del sopralluogo.
 
 ---
 
@@ -136,9 +138,9 @@ Un secondo Signature per Voss, leggero: **la schiena**. In superficie è mal di 
 | gennaio 1987 | All'Ufficio Anagrafe (via Petroselli) chiede i **certificati di residenza** di Cortesi, Ferri, Benvenuti e Voss. Non essendo un familiare, mostra la carta d'identità: l'impiegato ne trascrive gli estremi nel registro (§4.4). **È la sua traccia di carta.** |
 | 16 febbraio | Trasferisce la residenza a Monteverde. |
 | fine febbraio – marzo | Conosce Voss al bar. Cominciano gli scacchi del giovedì. |
-| giovedì 18 giugno | **Delitto 1** (Cortesi). Il giorno stesso disdice gli scacchi: "Mal di schiena." (Voss lo racconterà ridendo nella lettera della schiena, §1.8.) |
-| giovedì 3 settembre | **Delitto 2** (Ferri). Disdice: "Vado al Verano, da mia moglie." (Ci va davvero, di pomeriggio.) |
-| giovedì 22 ottobre | **Delitto 3** (Benvenuti). Disdice: "Viene a trovarmi mio nipote." **È una bugia che Voss può notare:** Aldo gli ha sempre detto di non avere nessuno. |
+| giovedì 18 giugno | **Delitto 1** (Cortesi). Il giorno stesso disdice gli scacchi: «Mal di schiena.» (Voss lo racconterà ridendo nella lettera della schiena, §1.8.) |
+| giovedì 3 settembre | **Delitto 2** (Ferri). Disdice: «Vado al Verano, da mia moglie.» (Ci va davvero, di pomeriggio.) |
+| giovedì 22 ottobre | **Delitto 3** (Benvenuti). Disdice: «Viene a trovarmi mio nipote.» **È una bugia che Voss può notare:** Aldo gli ha sempre detto di non avere nessuno. |
 | inizio dicembre | Prenota una cuccetta sul treno notturno **Roma–Brindisi di venerdì 18 dicembre**, e da Brindisi il traghetto per Patrasso. È la fuga. |
 | **giovedì 17 dicembre** | **Attacco a Voss** (§5). |
 
@@ -158,13 +160,17 @@ Un secondo Signature per Voss, leggero: **la schiena**. In superficie è mal di 
 
 ### 3.3 Che cosa vuole Aldo **[PK]**
 
-Aldo non vuole essere preso, ma **vuole che la storia di Luca venga detta**. Se viene arrestato e qualcuno gli nomina Luca, parla. La sua confessione è lucida e senza pentimento: "Gli ho dato quello che la legge non poteva dargli." Questo permette l'istruzione sommaria e un Epilogo rapido (§7.5).
+Aldo non vuole essere preso, ma **vuole che la storia di Luca venga detta**. Se viene arrestato e qualcuno gli nomina Luca, parla. La sua confessione è lucida e senza pentimento: «Gli ho dato quello che la legge non poteva dargli.» Questo permette l'istruzione sommaria e un Epilogo rapido (§7.5).
 
 ---
 
 ## 4. I delitti del 1987 visti da fuori **[PK: versione ufficiale e stampa]**
 
-- **Questura di Roma, Squadra Mobile:** tre vittime senza legami apparenti (un farmacista a San Lorenzo, un contabile al Nomentano, una maestra alla Garbatella), candele e triangoli. Per la Mobile è una **setta**. Nessuno collega un processo di dieci anni prima: fascicoli diversi, quartieri diversi, commissariati diversi.
+- **Questura di Roma, Squadra Mobile:** tre vittime senza legami apparenti (un farmacista a San Lorenzo, un contabile al Nomentano, una maestra alla Garbatella), candele e triangoli. Per la Mobile è una **setta**. **Il collegamento col processo Moretti la Mobile ce l'ha, e lo liquida** (decisione di Paolo in [#24](https://github.com/Imbustai/imbustai-app/issues/24) §4.1):
+  - **ven 4 settembre:** Voss riconosce il nome di Ferri e lo dice al suo dirigente a Monteverde, il dott. Palumbo, che manda un **appunto** alla Mobile con il nome di Voss come fonte.
+  - **sab 5 settembre:** la Mobile risponde per telefono. Ha "controllato" con una telefonata al commissariato di San Lorenzo: il padre di Luca è morto quando il ragazzo era bambino, la madre un paio d'anni fa, fratelli non ce ne sono. Nessuno può vendicare un ragazzo morto da otto anni: **coincidenza**, resta la setta. Nessuno chiede un documento all'Anagrafe, e il patrigno, che ha un altro cognome e nel 1977 non si è mai visto, non esce. La Mobile sbaglia per lo stesso motivo di Voss: per tutti, la famiglia di Luca era Rosa.
+  - La Benvenuti viene **"sensibilizzata"**: un agente della Garbatella le dice di non aprire agli sconosciuti.
+  - **Dopo il delitto 3** la Mobile prende sul serio il processo, ma in silenzio, e cerca gli amici di Luca a San Lorenzo: la stessa pista sbagliata di Voss. In pubblico resta la setta.
 - **La stampa** (*Il Messaggero*, *Paese Sera*, *la Repubblica*) parla della "setta della trinità". Dopo il terzo delitto titola che la trinità "è completa". *(Titoli da scrivere nei Dispatch; nessun articolo reale.)*
 - **Martedì 10 novembre 1987 [?]:** la Mobile ferma **Enzo Lattanzi**, 34 anni, capo di un gruppetto esoterico di Tor Pignattara, per detenzione di droga, e lo indica alla stampa come sospettato. È una **falsa pista**, e tutti si rilassano, Voss compreso. Viene rilasciato a fine gennaio. È utile per il ritmo, ma si può togliere: lo decide [The eight Turns and the Endings](https://github.com/Imbustai/imbustai-app/issues/26).
 - **La Procura:** titolare dell'inchiesta sui tre omicidi è il sostituto procuratore **dott. Corrado Anselmi** [?]. È lui che scrive l'Epilogo del tribunale.
@@ -175,7 +181,7 @@ Aldo non vuole essere preso, ma **vuole che la storia di Luca venga detta**. Se 
 
 ### 5.1 Che cosa succede se nessuno lo ferma
 
-- Verso le 23:00, finita la partita al bar, Aldo dice: "L'ultima la giochiamo da te, con quel vino tuo."
+- Verso le 23:00, finita la partita al bar, Aldo dice: «L'ultima la giochiamo da te, con quel vino tuo.»
 - Salgono. Voss apre una bottiglia (il momento clou del suo Signature, il vino: qui o altrove, una volta sola).
 - Aldo lo colpisce alle spalle con la chiave quadra. Dispone quattro lumini: tre a triangolo, **il quarto al centro**. È il quarto nome.
 - La mattina dopo prende il treno per Brindisi.
@@ -183,7 +189,7 @@ Aldo non vuole essere preso, ma **vuole che la storia di Luca venga detta**. Se 
 ### 5.2 Come si deduce la data (più strade, ne basta una ben argomentata)
 
 1. **Il calendario:** i tre delitti sono tutti di giovedì, le sere degli scacchi di Voss. Il primo cade il 18 giugno, **compleanno di Luca** (lo si ricava dall'atto di morte o dal fascicolo). L'atto di morte e il fascicolo danno anche la data della morte: **17 dicembre 1979**. Nel 1987 il 17 dicembre **è un giovedì**.
-2. **Voss:** racconta, anche senza volerlo (§1.8), delle partite disdette, con le scuse, e della bugia del nipote. Se il rapporto è buono, riporta anche una frase di Aldo di fine novembre: "A dicembre ho un anniversario, poi forse parto."
+2. **Voss:** racconta, anche senza volerlo (§1.8), delle partite disdette, con le scuse, e della bugia del nipote. Se il rapporto è buono, riporta anche una frase di Aldo di fine novembre: «A dicembre ho un anniversario, poi forse parto.»
 3. **Aldo ha paura della sua fretta:** a dicembre dice al barista che "dopo le feste" non ci sarà più. Il barista lo racconta a Voss (Texture che Voss può riferire).
 4. **Luca:** chi ha capito che l'assassino vendica Luca cerca la data che conta per Luca. Quella data è una sola.
 
@@ -221,7 +227,7 @@ Qui ci sono solo gli eventi che nessuno può spostare. Che cosa può accadere in
 - Lombardo scrive agli uffici **in via ufficiale**, come commissario e ufficiale di polizia giudiziaria. Le richieste d'ufficio sono gratuite (§4.7).
 - **Tempo totale = una settimana di posta all'andata + il tempo dell'ufficio + una settimana al ritorno.**
 - **Tempi fissi per ufficio, da 2 a 4 settimane**, scritti nei dati della Storia (non estratti a caso), così il Giocatore può pianificare e l'ufficio può dichiararli.
-- **Ufficio sbagliato → trasmissione per competenza.** Se la richiesta spetta a un altro ufficio, quello sbagliato risponde **nello stesso Turno**: *"La sua richiesta è stata trasmessa per competenza all'Ufficio X, che le risponderà direttamente (circa N settimane)."* Il tempo dell'ufficio giusto **parte dall'arrivo della prima lettera**: un'intuizione giusta all'indirizzo sbagliato non costa nulla.
+- **Ufficio sbagliato → trasmissione per competenza.** Se la richiesta spetta a un altro ufficio, quello sbagliato risponde **nello stesso Turno**: *«La sua richiesta è stata trasmessa per competenza all'Ufficio X, che le risponderà direttamente (circa N settimane).»* Il tempo dell'ufficio giusto **parte dall'arrivo della prima lettera**: un'intuizione giusta all'indirizzo sbagliato non costa nulla.
 - **Richiesta vaga → risposta parziale.** L'ufficio risponde a **quello che può** con i dati ricevuti, e aggiunge in una riga che cos'altro potrebbe dare con un nome o una data. Nessuna risposta del tipo "precisi la richiesta".
 
 | Ufficio | Che cosa può dare | Tempo dell'ufficio | Chiavi necessarie nella richiesta |
@@ -232,7 +238,7 @@ Qui ci sono solo gli eventi che nessuno può spostare. Che cosa può accadere in
 | **Ufficio di Stato Civile** | Estratto per riassunto dell'**atto di morte** di Luca (17/12/1979, padre e madre; né carcere né patrigno, §3.6). Estratto dell'**atto di matrimonio** Ferrante–Pace, 1968. Estratto di **nascita** di Luca (18/6/1957). | **2 settimane** | Il nome di Luca · per il matrimonio, il nome di Rosa Pace |
 | **Archivio del Tribunale / Cancelleria della Corte d'Assise** | Copia del fascicolo del processo Moretti: la **sentenza** del 14/3/1978; i **verbali di ricognizione** del 3/6/1977 (tre "No" alle fotografie); il **verbale d'arresto** con la firma della guardia Voss; il **certificato di stato di famiglia del 1977** allegato agli atti (nomina Ferrante Aldo); l'atto d'appello; la declaratoria di **estinzione del reato**. | **4 settimane** (archivio) | "Processo contro Moretti Luca, Corte d'Assise di Roma, 1978", oppure "omicidio Ricci, maggio 1977" |
 | **Procura della Repubblica** (dott. Anselmi) | L'inchiesta sui tre delitti: **verbali di sopralluogo**, lumini, gesso, le due tazzine. La nota del 1985 sulla **perizia balistica** (Colasanti). L'**istanza di Ferrante del 1985** e la risposta. **Può disporre una perquisizione o un fermo** se la lettera di Lombardo porta indizi concreti (almeno due prove della §8 già in mano, e il nome di Aldo). | **2 settimane** · una perquisizione: **almeno 1 settimana** dopo l'arrivo della lettera | Per la perquisizione: il nome e l'indirizzo di Aldo, più gli indizi |
-| **Questura di Roma, Squadra Mobile** | Risposte fredde e formali. Conferma la pista della setta. Le richieste di atti le **trasmette per competenza alla Procura**. **Non è mai la strada giusta**, ma non è una strada chiusa: se riceve la data del 17 dicembre, con indizi, **può** mettere un agente sotto casa di Voss. | 2 settimane | — |
+| **Questura di Roma, Squadra Mobile** | Risposte fredde e formali. Conferma la pista della setta, e cita l'appunto del 4 settembre («la segnalazione del commissariato di Monteverde è già stata valutata»). Le richieste di atti le **trasmette per competenza alla Procura**. **Non è mai la strada giusta**, ma non è una strada chiusa: se riceve la data del 17 dicembre, con indizi, **può** mettere un agente sotto casa di Voss. | 2 settimane | — |
 | **Polizia Scientifica** (Gabinetto regionale, tramite la Procura) | La perizia balistica del 1985. I gruppi sanguigni. Il confronto dell'**impronta del lumino** con il cartellino di un sospettato già nominato. I lumini sono "del tipo venduto ai chioschi del Verano". | **3 settimane** | Il nome del sospettato, per le impronte |
 | **Casa circondariale Regina Coeli**, direzione | La relazione sulla morte di Luca (1979). Il **registro dei colloqui**: la madre e il patrigno lo visitavano ogni settimana. Il registro della corrispondenza: le lettere di Luca portano il visto di controllo (§3.4). | **3 settimane** | Il nome di Luca |
 | **Ferrovie dello Stato**, Compartimento di Roma, ufficio del personale | Stato di servizio di Ferrante Aldo: capotreno, in pensione dal 1981. *(La prenotazione del treno del 18/12 si trova solo con una perquisizione, non per lettera.)* | 3 settimane | Il nome |
@@ -279,11 +285,12 @@ Le risposte sono per chi scrive i Personaggi. Quale Personaggio può saperle è 
 - **Voss ha partecipato alla ricognizione formale?** No. Ha partecipato all'arresto. (Fascicolo; la verità su "prima", solo da Voss.)
 - **Il vero rapinatore?** Probabilmente qualcuno del giro di Colasanti; forse Colasanti stesso. Nessuno può provarlo e **il gioco non lo risolve**. (Procura, giornali.)
 - **Luca si è davvero ucciso?** La relazione della direzione dice di sì. Rosa non ci credeva. **Non è un Plot key**: nessun Personaggio lo può affermare né smentire.
-- **Perché nessuno ha collegato i tre morti al processo?** Dieci anni, tre quartieri, tre commissariati, e la pista della setta era comoda. Nessuno ha cercato i nomi negli archivi. (Voss, se è sincero; Procura, dopo.)
+- **Perché la polizia non ha preso sul serio il collegamento col processo?** La Mobile l'ha avuto da Voss il 4 settembre e l'ha liquidato con una telefonata: la famiglia di Luca "è tutta morta". La pista della setta era comoda, e nessuno ha cercato i nomi negli archivi (§4). (Voss; Mobile, a denti stretti; Procura, dopo.)
+- **Perché la maestra ha aperto la porta, se l'avevano avvisata?** Perché le avevano detto di non aprire agli sconosciuti, e l'uomo alla porta si è presentato come il marito di Rosa, la donna a cui lei aveva scritto per chiedere perdono (§2). (Procura, dopo l'arresto; il Giocatore, per deduzione.)
 - **Perché Aldo non ha ucciso Voss per primo?** Voss è il quarto nome: "l'ultimo, quello che li ha messi insieme nella stanza". E doveva morire il giorno di Luca.
 - **Voss e Aldo si conoscevano nel 1977?** No. Voss non ha mai visto il patrigno: all'arresto Aldo era in servizio sul treno, e al processo Voss non ci è andato (§1.7). Aldo invece ha visto Voss in aula? **No** [PK]: Voss non fu citato come testimone. Aldo lo conosce solo dal nome sul verbale d'arresto e dalla lettera della maestra.
 - **Aldo ha precedenti?** Nessuno. Per questo non c'è un suo cartellino con le impronte finché non viene fermato.
-- **Ci sono telefoni?** Voss ha il telefono di casa, Lombardo quello del commissariato sull'isola. **Non si usano per il caso**: la regola della storia è che Lombardo scrive. Il perché lo stabilisce [Giacomo Lombardo and the opening envelope](https://github.com/Imbustai/imbustai-app/issues/24) (per esempio: la linea passa dal centralino e l'isola ascolta).
+- **Ci sono telefoni?** Voss ha il telefono di casa, Lombardo quello del commissariato sull'isola. **Non si usano per il caso**: la regola della storia è che Lombardo scrive. Il perché lo stabilisce [Giacomo Lombardo and the opening envelope](https://github.com/Imbustai/imbustai-app/issues/24) (§0 F): «l'isola ascolta». Il telefono del commissariato passa dal centralino, il telegrafo sta all'ufficio postale, e un commissario in soprannumero non può farsi vedere a Roma.
 - **Dove sono le tombe?** Luca e Rosa sono al Verano, nella stessa tomba. Ettore Ricci è al Verano anch'egli (Texture: stesso cimitero, stesso quartiere).
 
 ---
