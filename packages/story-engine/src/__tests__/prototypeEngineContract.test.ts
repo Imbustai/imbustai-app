@@ -104,6 +104,9 @@ describe('Engine contract prototype', () => {
     expect(game.history.at(-1)).toEqual(expect.objectContaining({ kind: 'epilogue' }));
     await expect(host.submit(game, [{ to: 'voss', body: 'Ancora?' }])).rejects.toThrow('completed');
 
+    // Every sender is named from the cast, Contact or not.
+    expect(host.sender(game, 'pm')).toEqual(expect.objectContaining({ name: 'Procura della Repubblica di Roma', kind: 'office' }));
+
     // Every model call was metered by role, purpose and Turn.
     expect(game.usage.map((u) => `${u.turn}:${u.role}:${u.purpose}`)).toEqual([
       '1:writer:reply:voss',
@@ -127,6 +130,16 @@ describe('Engine contract prototype', () => {
     expect(game.ending!.key).toBe('escaped');
     expect(game.status).toBe('completed');
     expect(game.history.at(-1)).toEqual(expect.objectContaining({ kind: 'dispatch', from: 'il-messaggero' }));
+  });
+
+  it('refuses a draft from a sender outside the cast', async () => {
+    const rogue = { ...fakeEngine, generateTurn: async () => ({
+      letters: [{ key: 'x', kind: 'letter' as const, from: 'nobody', storyDate: '1987-03-10', body: 'Chi sono?', enclosures: [] }],
+      submissionDate: '1987-03-02', effects: null, adminNotes: [],
+    }) };
+    const host = new PrototypeHost(rogue, answer);
+    const game = await host.start('game-4', story, 'testing');
+    await expect(host.submit(game, [{ to: 'voss', body: 'Salve.' }])).rejects.toThrow('Unknown sender: nobody');
   });
 
   it('rejects a Story document that does not fit the Engine schema', async () => {

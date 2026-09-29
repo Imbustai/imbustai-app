@@ -94,8 +94,19 @@ export class PrototypeHost<Data, State extends Json> {
     return game;
   }
 
+  /** Contacts as the Player UI shows them: named from the cast. */
   contacts(game: Game<Data, State>) {
-    return this.engine.contacts(this.view(game));
+    const { correspondents } = this.engine.cast(game.story);
+    return this.engine.contacts(this.view(game)).map((slug) => {
+      const found = correspondents.find((c) => c.slug === slug);
+      if (!found) throw new Error(`Contact ${slug} is not in the cast`);
+      return found;
+    });
+  }
+
+  /** How the platform names any sender on an envelope. */
+  sender(game: Game<Data, State>, slug: string) {
+    return this.engine.cast(game.story).correspondents.find((c) => c.slug === slug);
   }
 
   /** Player submits a Turn; the draft is generated right away (in production: by the admin, or a job). */
@@ -126,6 +137,9 @@ export class PrototypeHost<Data, State extends Json> {
 
   /** Re-validate; a released Story auto-sends a clean draft. */
   private async review(game: Game<Data, State>) {
+    const known = new Set(this.engine.cast(game.story).correspondents.map((c) => c.slug));
+    const unknown = game.draft!.letters.filter((l) => !known.has(l.from));
+    if (unknown.length > 0) throw new Error(`Unknown sender: ${unknown.map((l) => l.from).join(', ')}`);
     game.findings = await this.engine.validateDraft(this.context(game), this.view(game), game.draft!);
     if (game.lifecycle === 'released' && !game.findings.some((f) => f.severity === 'error')) await this.approve(game);
   }

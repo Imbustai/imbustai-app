@@ -45,9 +45,21 @@ export const fakeEngine: Engine<FakeData, FakeState> = {
     };
   },
 
+  cast(story) {
+    return {
+      lead: { slug: 'lombardo', name: 'Commissario Giacomo Lombardo', address: 'Commissariato, Isola', kind: 'person' },
+      correspondents: [
+        ...story.characters.map((c) => ({ ...c, kind: 'person' as const })),
+        { ...story.archive, kind: 'office' },
+        { slug: 'pm', name: 'Procura della Repubblica di Roma', address: 'Piazzale Clodio, Roma', kind: 'office' },
+        { slug: 'il-messaggero', name: 'Il Messaggero', kind: 'newspaper' },
+      ],
+    };
+  },
+
   contacts({ story, state }) {
     const people = state.archiveUnlocked ? [...story.characters, story.archive] : story.characters;
-    return people.map(({ slug, name, address }) => ({ slug, name, address }));
+    return people.map((p) => p.slug);
   },
 
   validateSubmission(view, submission) {
@@ -55,7 +67,7 @@ export const fakeEngine: Engine<FakeData, FakeState> = {
     if (submission.length === 0) findings.push({ rule: 'empty', severity: 'error', message: 'Write at least one Letter.' });
     if (submission.length > this.maxLettersPerTurn)
       findings.push({ rule: 'too_many', severity: 'error', message: `At most ${this.maxLettersPerTurn} Letters.` });
-    const allowed = new Set(this.contacts(view).map((c) => c.slug));
+    const allowed = new Set(this.contacts(view));
     for (const letter of submission)
       if (!allowed.has(letter.to)) findings.push({ rule: 'not_a_contact', severity: 'error', message: `${letter.to} is not a Contact.` });
     return findings;
@@ -69,6 +81,7 @@ export const fakeEngine: Engine<FakeData, FakeState> = {
       const isArchive = to.to === story.archive.slug;
       const reply = await ctx.ai.structured(isArchive ? 'clerk' : 'writer', {
         purpose: `reply:${to.to}`,
+        character: to.to,
         cachedPrefix: `You are ${to.to}.`,
         system: [`Reply as ${to.to}.`, ...ctx.adminNotes.map((n) => `Admin: ${n.text}`), guidance ? `Guidance: ${guidance}` : '']
           .filter(Boolean)

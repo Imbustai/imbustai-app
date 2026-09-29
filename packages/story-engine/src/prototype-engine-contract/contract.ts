@@ -103,6 +103,8 @@ export interface AiRequest<S extends z.ZodTypeAny> {
    * e.g. "reply:voss", "ledger", "epilogue:pm".
    */
   purpose: string;
+  /** The Character this call writes or reads for, for per-Character cost in the Run report. */
+  character?: CharacterSlug;
   /** Stable across Turns — cached by the provider (the Character prefix). */
   cachedPrefix?: string;
   system: string;
@@ -164,11 +166,22 @@ export interface GameView<Data, State> {
   submission: PlayerLetter[];
 }
 
-export interface Contact {
+/**
+ * Anyone who can appear on an envelope: the Lead, a Character, an office, a
+ * newspaper. The cast is authored — no Correspondent is invented at runtime.
+ * (Later, additive: `stationery?: string`, a key naming how their Letters look.)
+ */
+export interface Correspondent {
   slug: CharacterSlug;
   name: string;
-  /** Where a Letter would be posted — keeps the Game playable as paper. */
+  /** Letterhead and envelope — keeps the Game playable as paper. */
   address?: string;
+  kind: 'person' | 'office' | 'newspaper';
+}
+
+export interface Cast {
+  lead: Correspondent;
+  correspondents: Correspondent[];
 }
 
 export interface Ending {
@@ -210,8 +223,15 @@ export interface Engine<Data, State extends Json> {
     input: { gameId: string; story: Data; realStartDate: IsoDate },
   ): Promise<{ state: State; opening: OutgoingLetter[] }>;
 
-  /** Who the Player may write to now. */
-  contacts(view: GameView<Data, State>): Contact[];
+  /**
+   * Everyone who can appear on an envelope, from the Story document alone.
+   * The platform names every sender from it and rejects a draft whose `from`
+   * is not in it.
+   */
+  cast(story: Data): Cast;
+
+  /** Who the Player may write to now: slugs, each one in `cast`. */
+  contacts(view: GameView<Data, State>): CharacterSlug[];
 
   /** Checked before a submission is accepted; any error rejects it. */
   validateSubmission(view: GameView<Data, State>, submission: PlayerLetter[]): Finding[];
