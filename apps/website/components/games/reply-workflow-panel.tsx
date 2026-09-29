@@ -26,23 +26,9 @@ import {
   Box,
   Typography,
 } from '@imbustai/ds';
+import type { Finding, OutgoingLetter } from '@imbustai/story-runtime';
 import { formatTokens, formatUsd } from '@/lib/format-cost';
 import styles from './games.module.css';
-
-interface DraftResponse {
-  character_slug: string;
-  story_date: string;
-  content: string;
-  metadata?: { clues_revealed?: string[]; facts_referenced?: string[] };
-  date_sent?: string;
-}
-
-interface Warning {
-  rule: string;
-  severity: 'warning' | 'error';
-  message: string;
-  character_slug?: string;
-}
 
 export function ReplyWorkflowPanel({
   gameId,
@@ -73,8 +59,8 @@ export function ReplyWorkflowPanel({
 
   const runtime = game.runtime_state ?? {};
   const unlocked = (runtime.unlocked_npcs as string[] | undefined) ?? [];
-  const responses = (latestDraft?.responses ?? []) as unknown as DraftResponse[];
-  const warnings = (latestDraft?.validation_warnings ?? []) as unknown as Warning[];
+  const letters = (latestDraft?.responses ?? []) as OutgoingLetter[];
+  const warnings = (latestDraft?.validation_warnings ?? []) as Finding[];
   const draftUsage = (latestDraft?.usage ?? []) as UsageRecord[];
 
   async function call(key: string, url: string, init?: RequestInit) {
@@ -98,12 +84,10 @@ export function ReplyWorkflowPanel({
 
   async function saveEdits() {
     if (!latestDraft || !edited) return;
-    const updated = responses.map((r) =>
-      edited[r.character_slug] != null ? { ...r, content: edited[r.character_slug] } : r,
-    );
+    const updated = letters.map((l) => ({ key: l.key, body: edited[l.key] ?? l.body }));
     await call('save', `/api/admin/drafts/${latestDraft.id}`, {
       method: 'PATCH',
-      body: JSON.stringify({ responses: updated }),
+      body: JSON.stringify({ letters: updated }),
     });
   }
 
@@ -245,12 +229,12 @@ export function ReplyWorkflowPanel({
                 ) : null}
 
                 {/* Draft letters, one card per NPC */}
-                {responses.map((r) => (
-                  <div key={r.character_slug} className={styles.letterPanel}>
+                {letters.map((l) => (
+                  <div key={l.key} className={styles.letterPanel}>
                     <Inline gap="2" align="center" justify="space-between">
                       <Typography variant="body">
-                        ✉️ {nameOf(r.character_slug)}{' '}
-                        <Typography variant="caption" tone="muted" as="span">· {r.story_date}</Typography>
+                        ✉️ {nameOf(l.from)}{' '}
+                        <Typography variant="caption" tone="muted" as="span">· {l.storyDate}</Typography>
                       </Typography>
                       <Button
                         size="sm"
@@ -258,7 +242,7 @@ export function ReplyWorkflowPanel({
                         disabled={busy !== null}
                         onClick={() =>
                           call('regen-one', `/api/admin/turns/${openTurn.id}/regenerate`, {
-                            body: JSON.stringify({ character_slug: r.character_slug }),
+                            body: JSON.stringify({ letter_key: l.key }),
                           })
                         }
                       >
@@ -267,9 +251,9 @@ export function ReplyWorkflowPanel({
                     </Inline>
                     <Box marginTop="2">
                       <Textarea
-                        value={edited?.[r.character_slug] ?? r.content}
+                        value={edited?.[l.key] ?? l.body}
                         onChange={(e) =>
-                          setEdited((prev) => ({ ...(prev ?? {}), [r.character_slug]: e.target.value }))
+                          setEdited((prev) => ({ ...(prev ?? {}), [l.key]: e.target.value }))
                         }
                       />
                     </Box>
@@ -352,12 +336,13 @@ export function ReplyWorkflowPanel({
 export function TestHarnessCard({
   gameId,
   game,
-  characters,
+  contacts,
   hasOpenTurn,
 }: {
   gameId: string;
   game: GameRow;
-  characters: StoryCharacterRow[];
+  /** Who the Player may write to now, from the Engine's `contacts` Hook. */
+  contacts: Array<{ slug: string; name: string }>;
   hasOpenTurn: boolean;
 }) {
   const { t } = useTranslation();
@@ -365,9 +350,8 @@ export function TestHarnessCard({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const runtime = game.runtime_state ?? {};
-  const unlocked = (runtime.unlocked_npcs as string[] | undefined) ?? [];
-  const nameOf = (slug: string) => characters.find((c) => c.slug === slug)?.name ?? slug;
+  const unlocked = contacts.map((c) => c.slug);
+  const nameOf = (slug: string) => contacts.find((c) => c.slug === slug)?.name ?? slug;
 
   const [testLetters, setTestLetters] = useState<
     Array<{ recipient_slug: string; content: string }>

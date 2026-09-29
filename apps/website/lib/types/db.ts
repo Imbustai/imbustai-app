@@ -1,4 +1,6 @@
-export type OrderStatus = 'pending_payment' | 'paid' | 'cancelled';
+import type { Finding, Json, OutgoingLetter } from '@imbustai/story-runtime';
+
+export type OrderStatus ='pending_payment' | 'paid' | 'cancelled';
 export type OrderSource = 'stripe' | 'admin';
 export type GameStatus = 'in_progress' | 'completed';
 export type InteractionRole = 'ai' | 'user';
@@ -64,6 +66,8 @@ export interface StoryRow {
   time_config: StoryTimeConfig;
   allow_dynamic_npcs: boolean;
   lifecycle: StoryLifecycle;
+  /** The Engine package that plays this Story, e.g. 'engine-classic'. */
+  engine: string;
   created_at: string;
   updated_at: string;
 }
@@ -155,7 +159,8 @@ export interface InteractionTurnRow {
 
 /** One model call's token usage + its USD cost snapshot. Stored in ai_drafts.usage. */
 export interface UsageRecord {
-  call_type: 'orchestrator' | 'npc_letter';
+  /** The Engine's purpose for the call; engine-classic: 'orchestrator' | 'npc_letter'. */
+  call_type: string;
   character_slug?: string;
   provider: string;
   model: string;
@@ -170,10 +175,17 @@ export interface AiDraftRow {
   id: string;
   turn_id: string;
   version: number;
-  responses: unknown[];
+  /** DraftBatch.letters (see 20260929120000_story_engines.sql). */
+  responses: OutgoingLetter[];
+  /** Legacy (pre-Engine) column; no longer written. */
   game_state_updates: Record<string, unknown>;
+  /** DraftBatch.effects: Engine-owned, handed back on approve. */
+  effects: Json;
+  /** DraftBatch.submissionDate. */
+  submission_date: string | null;
+  /** DraftBatch.adminNotes, joined. */
   narrator_notes: string;
-  validation_warnings: unknown[];
+  validation_warnings: Finding[];
   source: DraftSource;
   model: string;
   // Cost tracking (admin-only; see 20260627120100_ai_drafts_cost.sql).

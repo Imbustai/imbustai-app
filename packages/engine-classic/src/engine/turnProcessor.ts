@@ -1,0 +1,312 @@
+import { addDays, type AiAccess } from '@imbustai/story-runtime';
+import type {
+  LetterRecord,
+  PlayerTurnLetter,
+  RuntimeState,
+  StoryConfig,
+  ValidationWarning,
+} from '../types';
+import { turnPlanSchema, TURN_PLAN_TOOL, type GameStateUpdates, type TurnPlan } from '../schema/turnPlan';
+import { npcLetterSchema, NPC_LETTER_TOOL, type BatchLetter } from '../schema/npcLetter';
+import { buildNpcContext, buildOrchestratorContext, factsForCharacter } from '../context/scopedContext';
+import { advanceStoryDate, resolveBatchDates, type LabelledRandom } from '../time/storyDates';
+import { validateDraft } from '../validator';
+import { normalizeCharacterSlug } from './normalize';
+import { resolveStartDate } from './gameStart';
+
+// The generate step (architecture §1): orchestrator call → scoped per-NPC
+// calls → merged, validated, reviewable batch. NEVER writes to the DB and
+// NEVER sends anything — callers persist the result as an ai_drafts version.
+
+/**
+ * The act a given (1-based) turn belongs to, by the acts' turn ranges. This lets
+ * the engine advance the story on schedule instead of depending on the model to
+ * propose act_progression — without it, a cautious orchestrator can stall the
+ * plot, because gated facts/clues (reveal_act / act_available) never unlock and
+ * no new events surface. Clamps to the last act past the final range and to the
+ * first act before it; returns 1 for a story with no acts module.
+ */
+export function actForTurn(story: StoryConfig, turnNumber: number): number {
+  if (story.acts.length === 0) return 1;
+  const acts = [...story.acts].sort((a, b) => a.act_number - b.act_number);
+  for (const a of acts) {
+    const max = a.turn_max ?? Infinity;
+    if (turnNumber >= a.turn_min && turnNumber <= max) return a.act_number;
+  }
+  const first = acts[0];
+  if (turnNumber < first.turn_min) return first.act_number;
+  return acts[acts.length - 1].act_number;
+}
+
+export interface GenerateTurnInput {
+  story: StoryConfig;
+  state: RuntimeState;
+  /** Full game history (all characters) — used by the orchestrator only. */
+  history: LetterRecord[];
+  playerLetters: PlayerTurnLetter[];
+  /** The hook context's AI; every call is metered by the platform. */
+  ai: AiAccess;
+  /** The hook context's seeded random, for deterministic reply dates. */
+  random: LabelledRandom;
+  /**
+   * 1-based number of the turn being generated. When set (and the story has an
+   * acts module), the engine derives the effective act from it so facts/clues
+   * for the scheduled act are available even if the orchestrator doesn't propose
+   * act_progression. Omit to keep the legacy behavior (act = state.current_act).
+   */
+  turnNumber?: number;
+  /** Regenerate a single NPC: skip orchestration for others, reuse this plan. */
+  reusePlan?: TurnPlan;
+  onlyCharacter?: string;
+}
+
+export interface TurnDraftBatch {
+  plan: TurnPlan;
+  responses: BatchLetter[];
+  gameStateUpdates: GameStateUpdates;
+  narratorNotes: string;
+  warnings: ValidationWarning[];
+  /** The part of `warnings` found in the plan itself (replies to unknown characters). */
+  planWarnings: ValidationWarning[];
+  /** In-fiction date of the player turn (replies answer this date). */
+  turnDate: string;
+}
+
+/**
+ * Deterministically reconcile the orchestrator's proposal against canon BEFORE
+ * writers run: the model proposes, the engine enforces. This prevents whole
+ * classes of model slips from ever reaching a letter (and keeps unattended
+ * generation clean). The letter-level validator still audits the actual output,
+ * so this is canon hygiene, not a replacement for validation.
+ *
+ *  - act_progression: monotonic and gradual (never regress, at most +1, must be
+ *    a defined act) — stops the "jump to finale then regress" failure.
+ *  - facts_to_use: only facts the character actually knows at the effective act.
+ *  - clues (release + found): only real clue keys available by the effective act
+ *    (drops fact keys mistakenly used as clues).
+ *  - npcs_to_unlock: only characters that exist (unless dynamic NPCs are on).
+ */
+export function sanitizePlan(story: StoryConfig, state: RuntimeState, plan: TurnPlan): TurnPlan {
+  const gsu = plan.game_state_updates;
+
+  const definedActs = new Set(story.acts.map((a) => a.act_number));
+  let act = gsu.act_progression;
+  if (act != null) {
+    if (act < state.current_act) act = undefined;
+    else if (story.acts.length > 0 && !definedActs.has(act)) act = undefined;
+    else if (act > state.current_act + 1) act = state.current_act + 1;
+  }
+  const effectiveAct = Math.max(state.current_act, act ?? 0);
+
+  const factScope = (slug: string) =>
+    new Set(factsForCharacter(story, slug, effectiveAct).map((f) => f.fact_key));
+  const clueByKey = new Map(story.clues.map((c) => [c.clue_key, c]));
+  const clueOk = (key: string) => {
+    const clue = clueByKey.get(key);
+    return Boolean(clue) && clue!.act_available <= effectiveAct;
+  };
+  const slugs = new Set(story.characters.map((c) => c.slug));
+
+  // Characters that can never reply: not contactable_from_start and no unlock_rules.
+  // opening_letter is NOT a criterion here: intro-only characters (e.g. a one-shot
+  // acceptance gate sender) have opening_letter set but empty unlock_rules — they must
+  // never appear in turn replies. Recurring automatic senders carry a non-empty
+  // unlock_rules (e.g. {"auto_sender":true}) to pass this check.
+  const canReply = (slug: string) => {
+    const char = story.characters.find((c) => c.slug === slug);
+    if (!char) return story.allow_dynamic_npcs;
+    if (char.contactable_from_start) return true;
+    if (Object.keys(char.unlock_rules).length > 0) return true;
+    return false;
+  };
+
+  const replies = plan.replies
+    .filter((r) => canReply(r.character_slug))
+    .map((r) => {
+      const scope = factScope(r.character_slug);
+      return {
+        ...r,
+        facts_to_use: r.facts_to_use.filter((k) => scope.has(k)),
+        clues_to_release: r.clues_to_release.filter(clueOk),
+      };
+    });
+
+  return {
+    ...plan,
+    replies,
+    game_state_updates: {
+      ...gsu,
+      act_progression: act,
+      clues_found: gsu.clues_found.filter(clueOk),
+      npcs_to_unlock: gsu.npcs_to_unlock.filter((s) => {
+        if (!slugs.has(s) && !story.allow_dynamic_npcs) return false;
+        // Never unlock characters that are not designed to be player-contactable.
+        const char = story.characters.find((c) => c.slug === s);
+        if (char && !char.contactable_from_start && Object.keys(char.unlock_rules).length === 0) return false;
+        return true;
+      }),
+    },
+  };
+}
+
+export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnDraftBatch> {
+  const { story, state, history, playerLetters, ai, random } = input;
+  const turnDate = state.story_date;
+
+  // Advance the act on schedule from the turn number so the plot can't stall on
+  // a cautious orchestrator: the scheduled act gates which facts/clues are in
+  // scope for both the orchestrator and the writers. With no turnNumber (unit
+  // sims) we keep the legacy behavior (act = state.current_act).
+  const derivedAct =
+    input.turnNumber != null ? actForTurn(story, input.turnNumber) : state.current_act;
+  const effectiveState: RuntimeState =
+    derivedAct > state.current_act ? { ...state, current_act: derivedAct } : state;
+
+  // 1. Orchestrator → turn plan (or reuse it for single-NPC regenerate).
+  let plan: TurnPlan;
+  if (input.reusePlan) {
+    plan = input.reusePlan;
+  } else {
+    const context = buildOrchestratorContext({ story, state: effectiveState, history, playerLetters });
+    plan = await ai.structured('writer', {
+      purpose: 'orchestrator',
+      system: context.system,
+      user: context.user,
+      schema: turnPlanSchema,
+      tool: TURN_PLAN_TOOL,
+      maxTokens: 8000,
+    });
+  }
+
+  // 2. Normalize plan slugs against the story's characters.
+  const slugWarnings: ValidationWarning[] = [];
+  const replies = plan.replies.flatMap((reply) => {
+    const slug = normalizeCharacterSlug(reply.character_slug, story.characters);
+    if (!slug) {
+      slugWarnings.push({
+        rule: 'state_sanity',
+        severity: 'error',
+        character_slug: reply.character_slug,
+        message: `Turn plan addresses unknown character "${reply.character_slug}" — reply skipped.`,
+      });
+      return [];
+    }
+    return [{ ...reply, character_slug: slug }];
+  });
+  plan = sanitizePlan(story, effectiveState, { ...plan, replies });
+
+  // 3. One scoped writer call per replying NPC (single-NPC regen filters here).
+  const targets = input.onlyCharacter
+    ? replies.filter((r) => r.character_slug === input.onlyCharacter)
+    : replies;
+  const charactersBySlug = new Map(story.characters.map((c) => [c.slug, c]));
+
+  const letters = await Promise.all(
+    targets.map(async (reply) => {
+      const character = charactersBySlug.get(reply.character_slug)!;
+      const replyWindow = {
+        earliest: addDays(turnDate, character.reply_delay_min_days),
+        latest: addDays(turnDate, character.reply_delay_max_days),
+      };
+      const context = buildNpcContext({
+        story,
+        state: effectiveState,
+        character,
+        brief: reply,
+        history,
+        playerLetters,
+        replyWindow,
+      });
+      const letter = await ai.structured('writer', {
+        purpose: 'npc_letter',
+        character: reply.character_slug,
+        system: context.system,
+        user: context.user,
+        schema: npcLetterSchema,
+        tool: NPC_LETTER_TOOL,
+        maxTokens: 6000,
+      });
+      // The writer speaks for exactly one character; trust the brief over the model.
+      // Sanitize clues_revealed against the catalog: writers routinely misfile
+      // fact keys (or invent keys) as clues, which would otherwise trip the
+      // validator's state_sanity check every turn. The authoritative clue
+      // tracking is the orchestrator's game_state_updates.clues_found (already
+      // sanitized), so dropping non-clue keys here is pure metadata hygiene.
+      const clueKeys = new Set(story.clues.map((c) => c.clue_key));
+      return {
+        ...letter,
+        character_slug: reply.character_slug,
+        metadata: {
+          ...letter.metadata,
+          clues_revealed: letter.metadata.clues_revealed.filter((k) => clueKeys.has(k)),
+        },
+      };
+    }),
+  );
+
+  // 4. Authoritative in-fiction dates (deterministic; fixes the dateSent bug).
+  const { letters: dated } = resolveBatchDates({
+    letters,
+    charactersBySlug,
+    turnDate,
+    random,
+  });
+
+  // 5. Canon validation on the merged batch.
+  const warnings = [
+    ...slugWarnings,
+    ...validateDraft({ story, state, plan, letters: dated, turnDate }),
+  ];
+
+  return {
+    plan,
+    responses: dated,
+    gameStateUpdates: plan.game_state_updates,
+    narratorNotes: plan.narrator_notes,
+    warnings,
+    planWarnings: slugWarnings,
+    turnDate,
+  };
+}
+
+/**
+ * Pure state transition applied at (auto-)approve time. Callers persist the
+ * result to games.runtime_state via service role.
+ */
+export function applyGameStateUpdates(
+  state: RuntimeState,
+  updates: GameStateUpdates,
+  letters: Array<{ story_date: string }>,
+): RuntimeState {
+  const next: RuntimeState = {
+    ...state,
+    current_turn: state.current_turn + 1,
+    story_date: advanceStoryDate(state, letters),
+    clues_found: [...new Set([...state.clues_found, ...updates.clues_found])],
+    unlocked_npcs: [...new Set([...state.unlocked_npcs, ...updates.npcs_to_unlock])],
+  };
+  if (updates.act_progression != null && updates.act_progression > state.current_act) {
+    next.current_act = updates.act_progression;
+  }
+  if (updates.psych_profile_updates) {
+    next.psych_profile = { ...state.psych_profile, ...updates.psych_profile_updates };
+  }
+  if (updates.victim_saved != null) next.victim_saved = updates.victim_saved;
+  if (updates.killer_identified != null) next.killer_identified = updates.killer_identified;
+  return next;
+}
+
+/**
+ * Initial runtime state when a game starts. Pass actualStartDate (the real
+ * date the game is created) so stories with time_config.start_mode='actual'
+ * begin at it; fixed-mode stories ignore it.
+ */
+export function initialRuntimeState(story: StoryConfig, actualStartDate?: string): RuntimeState {
+  return {
+    current_turn: 0,
+    current_act: story.acts.length > 0 ? Math.min(...story.acts.map((a) => a.act_number)) : 1,
+    story_date: resolveStartDate(story, actualStartDate),
+    unlocked_npcs: story.characters.filter((c) => c.contactable_from_start).map((c) => c.slug),
+    clues_found: [],
+  };
+}

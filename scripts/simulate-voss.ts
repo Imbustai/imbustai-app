@@ -18,16 +18,15 @@ import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
+import { ClaudeProvider, createAiAccess, seededRandom } from '../packages/story-runtime/src/index';
 import {
-  ClaudeProvider,
   applyGameStateUpdates,
   generateTurnBatch,
-  hasErrors,
   initialRuntimeState,
   type LetterRecord,
   type PlayerTurnLetter,
   type StoryConfig,
-} from '../packages/story-engine/src/index';
+} from '../packages/engine-classic/src/index';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -123,8 +122,8 @@ async function main() {
       state,
       history,
       playerLetters,
-      provider,
-      seed: `sim:${turn}`,
+      ai: createAiAccess({ provider, turn }),
+      random: (label) => seededRandom(`sim:${turn}:${label}`),
     });
 
     const errors = batch.warnings.filter((w) => w.severity === 'error');

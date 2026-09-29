@@ -1,6 +1,13 @@
+import tseslint from 'typescript-eslint';
+import reactHooks from 'eslint-plugin-react-hooks';
+
 export default [
+  { ignores: ['.next/**', 'next-env.d.ts'] },
   {
-    files: ['**/*.ts', '**/*.tsx'],
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.mjs'],
+    languageOptions: { parser: tseslint.parser },
+    // Registered (no rules enabled) so existing eslint-disable comments resolve.
+    plugins: { '@typescript-eslint': tseslint.plugin, 'react-hooks': reactHooks },
     rules: {
       'no-restricted-imports': [
         'error',

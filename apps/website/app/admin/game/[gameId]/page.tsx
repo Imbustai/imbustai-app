@@ -7,6 +7,7 @@ import {
   TestHarnessCard,
 } from '@/components/games/reply-workflow-panel';
 import { Box } from '@imbustai/ds';
+import { loadGameHost, playerStatus } from '@/lib/game-host';
 import type {
   AiDraftRow,
   GameRow,
@@ -91,6 +92,17 @@ export default async function AdminGameDetailPage({
     costDrafts = (drafts ?? []) as AiDraftRow[];
   }
 
+  // The test harness writes as the Player, so it offers the Player's contacts.
+  // This page is the admin's way in when a Game is broken, so it never fails on them.
+  let contacts: Array<{ slug: string; name: string }> = [];
+  if (g.status === 'in_progress') {
+    try {
+      contacts = playerStatus(await loadGameHost(admin, g)).contacts;
+    } catch (err) {
+      console.error('could not load the game through its engine', err);
+    }
+  }
+
   const interactionList = (interactions ?? []) as InteractionRow[];
   const characterList = (characters ?? []) as StoryCharacterRow[];
   const turnRow = (openTurn as InteractionTurnRow | null) ?? null;
@@ -127,7 +139,7 @@ export default async function AdminGameDetailPage({
       <TestHarnessCard
         gameId={gameId}
         game={g}
-        characters={characterList}
+        contacts={contacts}
         hasOpenTurn={turnRow !== null}
       />
     </Box>
