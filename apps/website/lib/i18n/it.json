@@ -399,7 +399,17 @@
     "chooseRecipient": "Scegli destinatario…",
     "letterPlaceholder": "Scrivi la lettera…",
     "addLetter": "Aggiungi lettera",
-    "sendAsPlayer": "Invia come giocatore"
+    "sendAsPlayer": "Invia come giocatore",
+    "closingTurn": "Chiusura",
+    "ending": "Finale",
+    "closingHint": "Nessuna lettera del giocatore: la partita è finita. Inviare questo lotto completa la partita.",
+    "enclosures": "Allegati",
+    "enclosureTitle": "Titolo dell’allegato",
+    "kind": {
+      "letter": "Lettera",
+      "dispatch": "Dispaccio",
+      "epilogue": "Epilogo"
+    }
   },
   "play": {
     "contacts": "I tuoi contatti",
@@ -427,6 +437,8 @@
       "no_letters": "Scrivi almeno una lettera prima.",
       "game_not_in_progress": "Questa partita non è attiva.",
       "story_not_playable": "Questa storia non è ancora giocabile."
-    }
+    },
+    "enclosed": "Allegato",
+    "epilogue": "Epilogo"
   }
 }

@@ -1,4 +1,4 @@
-import type { Finding, Json, OutgoingLetter } from '@imbustai/story-runtime';
+import type { Enclosure, Ending, Finding, Json, OutgoingKind, OutgoingLetter } from '@imbustai/story-runtime';
 
 export type OrderStatus ='pending_payment' | 'paid' | 'cancelled';
 export type OrderSource = 'stripe' | 'admin';
@@ -153,6 +153,8 @@ export interface InteractionTurnRow {
   user_submitted_at: string;
   approved_at: string | null;
   sent_at: string | null;
+  /** Set only on the closing turn: the Ending resolveEnding returned. */
+  ending: Ending | null;
   created_at: string;
   updated_at: string;
 }
@@ -270,6 +272,10 @@ export interface InteractionRow {
   game_id: string;
   role: InteractionRole;
   content: string;
+  /** OutgoingLetter.kind for AI Letters; always 'letter' for the Player's. */
+  kind: OutgoingKind;
+  /** OutgoingLetter.enclosures; always empty for the Player's Letters. */
+  enclosures: Enclosure[];
   letter_number: number;
   visible_from: string | null;
   character_slug: string | null;

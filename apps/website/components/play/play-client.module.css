@@ -125,3 +125,10 @@
   font-family: var(--font-mono, monospace);
   font-weight: 500;
 }
+
+.enclosure {
+  border-radius: var(--ds-radius-md);
+  border: 1px dashed var(--ds-color-border);
+  background: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
+  padding: var(--ds-space-3);
+}

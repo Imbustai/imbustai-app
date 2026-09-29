@@ -397,7 +397,17 @@
     "chooseRecipient": "Choose recipient…",
     "letterPlaceholder": "Write the letter…",
     "addLetter": "Add letter",
-    "sendAsPlayer": "Send as player"
+    "sendAsPlayer": "Send as player",
+    "closingTurn": "Closing",
+    "ending": "Ending",
+    "closingHint": "No Player letters: the Game has ended. Sending this batch completes the Game.",
+    "enclosures": "Enclosures",
+    "enclosureTitle": "Enclosure title",
+    "kind": {
+      "letter": "Letter",
+      "dispatch": "Dispatch",
+      "epilogue": "Epilogue"
+    }
   },
   "play": {
     "contacts": "Your contacts",
@@ -425,6 +435,8 @@
       "no_letters": "Write at least one letter first.",
       "game_not_in_progress": "This game is not active.",
       "story_not_playable": "This story is not playable yet."
-    }
+    },
+    "enclosed": "Enclosed",
+    "epilogue": "Epilogue"
   }
 }

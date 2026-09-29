@@ -121,6 +121,9 @@ export function AdminGameDetailClient({
                 <Badge variant={i.role === 'ai' ? 'default' : 'outline'}>
                   {i.role}
                 </Badge>
+                {i.kind && i.kind !== 'letter' ? (
+                  <Badge variant="secondary">{t(`replyAdmin.kind.${i.kind}`)}</Badge>
+                ) : null}
                 <Typography variant="caption" tone="muted" as="span">
                   #{i.letter_number} · {formatDate(i.created_at)}
                 </Typography>
@@ -128,6 +131,16 @@ export function AdminGameDetailClient({
               <Box marginTop="2">
                 <pre className={styles.letterContent}>{i.content}</pre>
               </Box>
+              {(i.enclosures ?? []).map((enc) => (
+                <Box key={enc.key} marginTop="2">
+                  <div className={styles.enclosurePanel}>
+                    <Typography variant="caption" tone="muted">
+                      📎 {enc.title}
+                    </Typography>
+                    <pre className={styles.letterContent}>{enc.body}</pre>
+                  </div>
+                </Box>
+              ))}
             </li>
           ))}
         </Stack>

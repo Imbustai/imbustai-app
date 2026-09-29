@@ -418,6 +418,7 @@ export function PlayClient({
                           {mine
                             ? `${t('play.you')} → ${nameOf(letter.character_slug)}`
                             : nameOf(letter.character_slug)}
+                          {letter.kind === 'epilogue' ? ` · ${t('play.epilogue')}` : ''}
                         </Typography>
                         {letter.story_date ? (
                           <Typography variant="caption" tone="muted">
@@ -434,6 +435,19 @@ export function PlayClient({
                           </div>
                         )}
                       </Box>
+                      {/* Plain rendering until the Player UI decides how Enclosures look. */}
+                      {(letter.enclosures ?? []).map((enc) => (
+                        <Box key={enc.key} marginTop="3">
+                          <div className={styles.enclosure}>
+                            <Typography variant="caption" tone="muted">
+                              📎 {t('play.enclosed')}: {enc.title}
+                            </Typography>
+                            <div className={styles.prose}>
+                              <ReactMarkdown>{enc.body}</ReactMarkdown>
+                            </div>
+                          </div>
+                        </Box>
+                      ))}
                     </div>
                   );
                 })}
