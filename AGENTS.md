@@ -4,7 +4,7 @@
 
 A platform for interactive epistolary Stories: the Player writes Letters, Characters reply. Stories are sold via `apps/website` (shop + orders). Every Story is bound to one **Engine**, a package that owns the Story's data schema and the algorithm that plays it, plugged into the platform's turn lifecycle through **Hooks** ([ADR 0001](docs/adr/0001-engines-as-plug-in-packages.md)).
 
-The current effort is *Il quarto nome*, the Voss story (Rome 1987) on its own Engine. Its plan is the wayfinder map [Il quarto nome — a great, playable Voss story on its own engine](https://github.com/Imbustai/imbustai-app/issues/9): read it before picking up any work, and take the next step from its open tickets.
+The current effort is the new Voss story (Rome 1987) on its own Engine, `engine-voss`. Its plan is the [Voss story's wayfinder map](https://github.com/Imbustai/imbustai-app/issues/9): read it before picking up any work, and take the next step from its open tickets.
 
 Speak the glossary: `CONTEXT-MAP.md` → `packages/story-engine/CONTEXT.md` (Story, Engine, Hook, Game, Turn, Letter, Character, Run…).
 
