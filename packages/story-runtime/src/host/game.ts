@@ -11,7 +11,10 @@ import type {
 // from the cast, the admin edits only Letter bodies and Enclosures, and every
 // draft is re-validated after it changes. Persistence stays with the caller.
 
-/** The Player's contacts, named from the cast. */
+/**
+ * The Player's contacts, named from the cast.
+ * @category Utilities
+ */
 export function contactsOf<Data, State>(
   engine: Engine<Data, State>,
   view: GameView<Data, State>,
@@ -24,7 +27,10 @@ export function contactsOf<Data, State>(
   });
 }
 
-/** A draft Letter whose sender is not in the cast is an error. */
+/**
+ * A draft Letter whose sender is not in the cast is an error.
+ * @category Utilities
+ */
 export function unknownSenders<Data, State>(
   engine: Engine<Data, State>,
   story: Data,
@@ -41,7 +47,10 @@ export function unknownSenders<Data, State>(
     }));
 }
 
-/** Everything the admin sees beside a draft: the platform's checks, then the Engine's. */
+/**
+ * Everything the admin sees beside a draft: the platform's checks, then the Engine's.
+ * @category Utilities
+ */
 export async function reviewDraft<Data, State>(
   engine: Engine<Data, State>,
   ctx: HookContext,
@@ -51,6 +60,7 @@ export async function reviewDraft<Data, State>(
   return [...unknownSenders(engine, view.story, draft), ...(await engine.validateDraft(ctx, view, draft))];
 }
 
+/** Admin-editable Letter content, matched by a stable key; omitted Enclosures are preserved. */
 export interface LetterEdit {
   key: string;
   body: string;
@@ -60,6 +70,7 @@ export interface LetterEdit {
 /**
  * The admin's edits, applied to a draft: bodies and Enclosures only, matched
  * by Letter key. `effects`, senders and dates stay the Engine's.
+ * @category Utilities
  */
 export function applyLetterEdits(draft: DraftBatch, edits: LetterEdit[]): DraftBatch {
   const byKey = new Map(edits.map((e) => [e.key, e]));

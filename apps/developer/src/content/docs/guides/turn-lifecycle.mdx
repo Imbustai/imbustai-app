@@ -1,0 +1,58 @@
+---
+title: A Turn through the platform
+description: Who owns generation, review, state, dates and delivery.
+sidebar:
+  order: 2
+---
+
+The Player writes Letters as the Lead. One **Turn** groups those Letters with
+every Character reply and Dispatch they trigger. Generation returns one
+[`DraftBatch`](/reference/interfaces/draftbatch/), even when it makes multiple model calls.
+
+## Submission and generation
+
+The website loads the Story's Engine, validates data and state, and uses
+`contacts` and `validateSubmission` before accepting the Player's Letters.
+A submitted Turn becomes `pending_ai`; generation produces a `draft_ready` batch.
+Generation alone never inserts AI `interactions`.
+
+`generateTurn` accepts `kind: 'batch'` or `kind: 'letter'`. Regenerating one Letter
+still returns the whole batch, keeping `effects` coherent with its Letters.
+Letter keys identify regeneration and edits; keep them stable within a batch.
+
+## Review and approval
+
+[`reviewDraft`](/reference/functions/reviewdraft/) checks that every outgoing sender
+belongs to the cast, then asks the Engine to validate the draft. Run it again after
+admin edits. [`applyLetterEdits`](/reference/functions/applyletteredits/) changes only
+bodies and Enclosures: effects, senders and dates remain Engine-owned.
+
+| Story lifecycle | Delivery policy |
+| --- | --- |
+| `draft` | Not playable. |
+| `testing` | Every generated batch waits for admin approval. |
+| `released` | Auto-approve when validation has no errors; errors hold the Turn for admin review. Warnings are advisory. |
+
+The platform's approve path calls `applyTurn`, persists the next state and inserts
+AI `interactions` with the service role. Engines never bypass this path or write
+the database themselves. See the guards in the [runtime reference](/reference/).
+
+## Two clocks
+
+- **Story date** is fiction time. The Engine controls it, including the Player's
+  submission date (`DraftBatch.submissionDate`) and every outgoing Letter's `storyDate`.
+- **Reveal time** is real time. The platform may delay visibility with
+  [`computeVisibleFrom`](/reference/functions/computevisiblefrom/). That helper uses
+  the server's local waking hours; it does not advance the Story clock.
+
+Store in-fiction dates as `YYYY-MM-DD`. Use `ctx.dates.format` only for prose.
+
+## Endings and closing batches
+
+After applying a Turn, `resolveEnding` decides from state whether play continues.
+It is pure code, not a model decision. `generateEpilogue` produces a closing batch
+of `epilogue` and `dispatch` Letters. Closing batches follow the same review policy;
+the Game completes once the closing batch is sent.
+
+An Enclosure is a text document or clipping inside a Letter, with a stable key,
+title and Markdown body. All correspondence must remain printable as paper.

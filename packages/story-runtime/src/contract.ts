@@ -8,6 +8,7 @@ import type { z } from 'zod';
 
 /** In-fiction date, YYYY-MM-DD. */
 export type IsoDate = string;
+/** Stable authored identifier for a Correspondent; shared by cast, contacts and Letters. */
 export type CharacterSlug = string;
 /** Plain JSON: what may be persisted in games.runtime_state and ai_drafts. */
 export type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
@@ -95,8 +96,10 @@ export interface Finding {
 
 // ─── The hook context: everything an Engine may reach outside itself ────────
 
+/** The purpose of an Engine model call; provider selection belongs to the platform. */
 export type ModelRole = 'writer' | 'clerk' | 'analyst';
 
+/** Prompts, validation schema and attribution for one structured AI call. */
 export interface AiRequest<S extends z.ZodTypeAny> {
   /**
    * Why this call happens, for the usage log and the Run report,
@@ -105,11 +108,11 @@ export interface AiRequest<S extends z.ZodTypeAny> {
   purpose: string;
   /** The Character this call writes or reads for, for per-Character cost in the Run report. */
   character?: CharacterSlug;
-  /** Stable across Turns — cached by the provider (the Character prefix). */
+  /** Stable Character prefix reserved for provider caching; the current adapter does not forward it. */
   cachedPrefix?: string;
   system: string;
   user: string;
-  /** The reply's shape; the platform turns it into JSON-schema structured output. */
+  /** Validates the model reply; currently pair it with a matching `tool` definition. */
   schema: S;
   maxTokens?: number;
   /**
@@ -129,18 +132,23 @@ export interface StructuredTool {
 }
 
 /**
- * AI by role. The model comes from the Game's model profile; every call is
- * metered, retried on malformed output, and reserved against the Run's cost
- * cap before it is sent. Engines never see a provider, a key or a price.
+ * AI by role, hiding providers, keys and prices from Engines. The current
+ * {@link createAiAccess} adapter meters calls and retries malformed structured
+ * output through one injected provider. Per-Game model selection and Run budget
+ * reservation are planned extensions, not guarantees of that adapter.
  */
 export interface AiAccess {
+  /** Generate a schema-validated result; malformed outputs may be retried and metered. */
   structured<S extends z.ZodTypeAny>(role: ModelRole, request: AiRequest<S>): Promise<z.infer<S>>;
+  /** Generate plain text; throws when the configured provider lacks text output. */
   text(role: ModelRole, request: Omit<AiRequest<never>, 'schema' | 'tool'>): Promise<string>;
 }
 
 /** Pure date helpers in the Story's locale. */
 export interface DateTools {
+  /** Shift an ISO date by a signed number of calendar days in UTC. */
   addDays(date: IsoDate, days: number): IsoDate;
+  /** Signed number of days from the first ISO date to the second. */
   daysBetween(from: IsoDate, to: IsoDate): number;
   /** "12 marzo 1987" — for prose, never for storage. */
   format(date: IsoDate): string;
@@ -153,6 +161,10 @@ export interface AdminNote {
   turn?: number;
 }
 
+/**
+ * Platform capabilities passed to Hooks: metered AI, dates, admin notes and seeded random.
+ * @category Hooks
+ */
 export interface HookContext {
   ai: AiAccess;
   dates: DateTools;
@@ -166,6 +178,10 @@ export interface HookContext {
 
 // ─── What each Hook sees of the Game ────────────────────────────────────────
 
+/**
+ * Validated Story and state plus correspondence for the Turn a Hook is handling.
+ * @category Hooks
+ */
 export interface GameView<Data, State> {
   gameId: string;
   /** The Story's Engine data, already validated by `schema.data`. */
@@ -195,11 +211,13 @@ export interface Correspondent {
   kind: 'person' | 'office' | 'newspaper';
 }
 
+/** Authored Lead and all possible senders, including currently unavailable Contacts. */
 export interface Cast {
   lead: Correspondent;
   correspondents: Correspondent[];
 }
 
+/** Code-decided outcome plus Engine-owned detail needed to write the closing batch. */
 export interface Ending {
   /** One of the Story's Ending keys, e.g. "saved_caught". */
   key: string;
@@ -221,9 +239,12 @@ export type GenerateRequest =
 // ─── The Engine ─────────────────────────────────────────────────────────────
 
 /**
+ * The nine Hooks an Engine implements, with its Story and state schemas.
+ *
  * `State` must be plain JSON: it is persisted in games.runtime_state. That is
  * enforced by `schema.state` on every load rather than by the type, so an
  * Engine may use optional fields.
+ * @category Hooks
  */
 export interface Engine<Data, State> {
   /** Matches stories.engine, e.g. "engine-voss". */

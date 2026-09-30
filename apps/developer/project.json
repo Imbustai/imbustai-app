@@ -1,0 +1,39 @@
+{
+  "name": "developer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/developer/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/tsconfig.base.json",
+        "{workspaceRoot}/pnpm-lock.yaml"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/developer",
+        "command": "pnpm run build"
+      }
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/developer",
+        "command": "pnpm run dev"
+      }
+    },
+    "preview": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/developer",
+        "command": "pnpm run preview"
+      }
+    }
+  }
+}

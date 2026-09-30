@@ -1,0 +1,114 @@
+---
+title: Create an Engine
+description: Define a Story document and Game state, implement the Hooks, then register the Engine.
+sidebar:
+  order: 1
+---
+
+An Engine owns a Story's data schema and play algorithm.
+It depends on `@imbustai/story-runtime`; the runtime never imports an Engine.
+The website chooses an Engine using `stories.engine`.
+
+## 1. Give the package a boundary
+
+Create `packages/engine-<name>/` with a private workspace package, a TypeScript
+entry point at `src/index.ts`, and dependencies on `@imbustai/story-runtime`
+(`workspace:*`) and `zod`. Follow `packages/engine-classic/package.json` and its
+`tsconfig.json` for the existing package convention.
+
+Keep mechanics in code and narrative material in the Story document: cast,
+dossiers, Plot keys, Signatures, schedules and opening Letters. Story content
+must not become a hardcoded system prompt.
+
+## 2. Define data and state
+
+The Story document is authored data shared by its Games; state belongs to one Game.
+Use zod schemas for both. Keep state serializable as plain JSON, because the platform
+persists it in `games.runtime_state`.
+
+```ts
+import { z } from 'zod';
+
+export const storySchema = z.object({
+  version: z.literal(1),
+  openingDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  openingLetter: z.string().min(1),
+});
+
+export const stateSchema = z.object({
+  turn: z.number().int().nonnegative(),
+  storyDate: z.string(),
+});
+
+// Named interfaces preserve readable links in generated Hook signatures.
+export interface StoryData extends z.infer<typeof storySchema> {}
+export interface GameState extends z.infer<typeof stateSchema> {}
+```
+
+This is a schema sketch, not a complete Story: add the authored cast, validation
+and mechanics your Engine requires. Export named types used by your public API.
+
+## 3. Implement the nine Hooks
+
+Type the exported Engine as [`Engine<StoryData, GameState>`](/reference/interfaces/engine/).
+Set `id`, `schema.data`, `schema.state` and `maxLettersPerTurn`, then implement:
+
+| Hook | Responsibility |
+| --- | --- |
+| `startGame` | Initial state and authored opening envelope; no generated draft review. |
+| `cast` | Every possible Correspondent, including the Lead; names come from authored data. |
+| `contacts` | Slugs of Correspondents the Player may write to now. |
+| `validateSubmission` | Errors that reject a submission before generation. |
+| `generateTurn` | The complete reviewable reply batch, including Dispatches; also handles single-Letter regeneration. |
+| `validateDraft` | Findings after generation and after every admin edit. |
+| `applyTurn` | Next state on approval, using the actual edited Letters and Engine-owned effects. |
+| `resolveEnding` | An Ending or `null`, decided by code from the applied state. |
+| `generateEpilogue` | The closing batch, containing only Epilogues and Dispatches. |
+
+Use the [turn lifecycle guide](/guides/turn-lifecycle/) for ownership and review rules.
+For a working implementation, read
+[`packages/engine-classic/src/engine.ts`](https://github.com/Imbustai/imbustai-app/blob/main/packages/engine-classic/src/engine.ts).
+Its contract is the example; its Story-specific planner, acts and clues are not requirements for a new Engine.
+
+## 4. Use the Hook context
+
+Use `ctx.dates` for in-fiction dates and `ctx.random('purpose')` for reproducible
+choices. The random value is fixed by Game, Turn and label; use different labels
+for different choices. Do not use `Math.random()` inside an Engine.
+
+Reach AI through `ctx.ai.structured(role, request)` or `ctx.ai.text(role, request)`.
+Supply a purpose, prompts and (for structured output) a zod schema.
+Scope each Character's prompts to its own knowledge and correspondence.
+Never import a provider or read API keys inside an Engine.
+
+:::note[Current provider implementation]
+The contract supports AI roles, but `createAiAccess` currently uses one injected
+provider for all roles. Structured requests require `tool`; `cachedPrefix` is
+not yet forwarded. Per-Game model profiles and budget reservation are planned in
+[the model-profile decision](https://github.com/Imbustai/imbustai-app/blob/main/docs/adr/0002-per-game-model-profile.md).
+Consult the [AI access reference](/reference/functions/createaiaccess/) before relying on these facilities.
+:::
+
+## 5. Register and load the Engine
+
+1. Add the Engine package as a workspace dependency of the website (and root scripts if they import it).
+2. Add an adapter under `apps/website/lib/engines/` implementing `EngineEntry`.
+   Its `loadStory` returns raw Story data; `readState` is optional for legacy state migration.
+3. Register it in `ENGINES` in `apps/website/lib/engines/index.ts`.
+   The key must equal the Engine's `id` and the Story's `stories.engine` value.
+4. Supply authored data through the adapter and validate it with the Engine schema.
+   Classic assembles relational rows. A versioned JSON Story document is the design
+   for new Engines; implement storage and seed sync in the Engine's own work rather
+   than assuming the database already has that column.
+5. Update the curated [Engine list](/engines/).
+
+## 6. Verify a complete Turn
+
+Follow `packages/story-runtime/src/__tests__/host.test.ts` and the Classic Engine's
+contract tests. Cover initial state, contacts, rejected submissions, a full batch,
+single-Letter regeneration, edited approval, state application and the Ending.
+Use `MockProvider` or a fake `AiAccess` so tests make no paid model calls.
+
+Run `pnpm test`, `pnpm typecheck` and `pnpm build:developer`.
+Document every new exported Hook or utility with `/** ... */`;
+the docs build is the enforcement step.

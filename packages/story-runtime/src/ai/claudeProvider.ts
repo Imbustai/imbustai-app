@@ -11,13 +11,16 @@ import type {
 // Server-only. The API key must never reach a client bundle — this module is
 // imported exclusively from Route Handlers / scripts.
 
+/** Legacy fallback when neither options.model nor STORY_ENGINE_MODEL specifies a model. */
 export const DEFAULT_MODEL = 'claude-opus-4-8';
 
+/** Server-side credentials and model override; omitted values fall back to environment variables. */
 export interface ClaudeProviderOptions {
   apiKey?: string;
   model?: string;
 }
 
+/** Anthropic adapter for forced tool calls and plain text. Never instantiate in a browser. */
 export class ClaudeProvider implements AiProvider {
   private readonly client: Anthropic;
   public readonly model: string;
@@ -30,6 +33,7 @@ export class ClaudeProvider implements AiProvider {
     this.model = options.model ?? process.env.STORY_ENGINE_MODEL ?? DEFAULT_MODEL;
   }
 
+  /** Force the named tool, returning its raw input and usage; throws if no tool block arrives. */
   async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     const response = await this.client.messages.create({
       model: this.model,
@@ -59,6 +63,7 @@ export class ClaudeProvider implements AiProvider {
     return { output: toolUse.input, usage };
   }
 
+  /** Join all text blocks in the reply and return their call usage. */
   async generateText(request: TextRequest): Promise<TextResult> {
     const response = await this.client.messages.create({
       model: this.model,

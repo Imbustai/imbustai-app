@@ -2,6 +2,7 @@
 // reference): random delay within the configured window, delivery clamped to
 // waking hours (08:00–23:00 local), wrapping to the next morning.
 
+/** Real-world reveal delay in minutes; disabled means immediately visible. */
 export interface VisibleFromConfig {
   enabled: boolean;
   min_minutes: number;
@@ -11,6 +12,12 @@ export interface VisibleFromConfig {
 const DAY_START_HOUR = 8;
 const DAY_END_HOUR = 23;
 
+/**
+ * Pick an inclusive random reveal delay and clamp to 08:00–23:00 in the server
+ * timezone. Returns an ISO timestamp, or null when disabled. This does not
+ * change the in-fiction date. Supply `now` and an RNG for reproducible tests.
+ * @category Utilities
+ */
 export function computeVisibleFrom(
   config: VisibleFromConfig | undefined,
   now: Date = new Date(),

@@ -7,8 +7,14 @@ import type { AiProvider } from './provider';
 // rewrite — both are OpenAI tool-calling compatible and will implement the same
 // AiProvider interface (returning token usage for cost attribution).
 
+/** Recognised provider selectors; only Claude is implemented by the current factory. */
 export type ProviderKind = 'claude' | 'openai' | 'deepseek';
 
+/**
+ * Resolve STORY_ENGINE_PROVIDER (default: claude), accepting anthropic/chatgpt
+ * aliases case-insensitively. Throws for unknown selectors.
+ * @category Utilities
+ */
 export function resolveProviderKind(env: NodeJS.ProcessEnv = process.env): ProviderKind {
   const raw = (env.STORY_ENGINE_PROVIDER ?? 'claude').toLowerCase();
   if (raw === 'claude' || raw === 'anthropic') return 'claude';
@@ -17,6 +23,11 @@ export function resolveProviderKind(env: NodeJS.ProcessEnv = process.env): Provi
   throw new Error(`Unknown STORY_ENGINE_PROVIDER "${raw}" (expected claude | openai | deepseek).`);
 }
 
+/**
+ * Create the server-side Claude provider. OpenAI and DeepSeek selectors currently
+ * throw. The supplied env selects the kind; credentials/model are read from process.env.
+ * @category Utilities
+ */
 export function createProvider(env: NodeJS.ProcessEnv = process.env): AiProvider {
   const kind = resolveProviderKind(env);
   switch (kind) {

@@ -18,9 +18,11 @@ export interface UsageRecord extends CallUsage {
   turn: number;
 }
 
+/** Provider, Turn attribution and retry policy for the current single-provider adapter. */
 export interface AiAccessOptions {
   provider: AiProvider;
   turn: number;
+  /** Receives usage for every completed attempt, including schema-validation retries. */
   onUsage?: (record: UsageRecord) => void;
   /** Extra attempts after a malformed structured reply. */
   retries?: number;
@@ -29,6 +31,14 @@ export interface AiAccessOptions {
 const REPAIR_NOTE =
   '\n\nIMPORTANT: your previous tool call was malformed. Call the tool again with every argument as valid JSON of the correct type — arrays as real JSON arrays (not strings), objects as objects — and NEVER use XML or <parameter ...> tags inside the arguments.';
 
+/**
+ * Adapt a provider to role-attributed Hook AI access. Structured calls require
+ * a tool definition, coerce stringified JSON fields, then validate with zod;
+ * malformed output gets two extra attempts by default. Provider/network errors
+ * propagate. All roles use the same provider; model profiles, cached prefixes
+ * and cost-cap reservation are not implemented here yet.
+ * @category Utilities
+ */
 export function createAiAccess(options: AiAccessOptions): AiAccess {
   const { provider, turn, onUsage, retries = 2 } = options;
   const record = (role: ModelRole, request: { purpose: string; character?: string }, usage: CallUsage) =>

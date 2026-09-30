@@ -7,8 +7,10 @@
 
 import type { StructuredTool } from '../contract';
 
+/** Provider-facing alias for the forced tool call definition. */
 export type StructuredToolDefinition = StructuredTool;
 
+/** System and user prompts plus a forced tool schema and optional output-token limit. */
 export interface StructuredRequest {
   system: string;
   user: string;
@@ -33,23 +35,31 @@ export interface StructuredResult {
   usage: CallUsage;
 }
 
+/** Prompts and an optional output-token limit for a plain-text call. */
 export interface TextRequest {
   system: string;
   user: string;
   maxTokens?: number;
 }
 
+/** Generated plain text and usage for the completed call. */
 export interface TextResult {
   output: string;
   usage: CallUsage;
 }
 
+/** Server-side model boundary; Engines use HookContext.ai rather than this interface. */
 export interface AiProvider {
+  /** Return raw tool input and token usage; validation belongs to the AI access adapter. */
   generateStructured(request: StructuredRequest): Promise<StructuredResult>;
   /** Plain text output; a provider without it cannot serve `ai.text`. */
   generateText?(request: TextRequest): Promise<TextResult>;
 }
 
+/**
+ * Construct an all-zero usage record with provider and model attribution for mocks.
+ * @category Utilities
+ */
 export const ZERO_USAGE = (provider: string, model: string): CallUsage => ({
   provider,
   model,
@@ -59,6 +69,7 @@ export const ZERO_USAGE = (provider: string, model: string): CallUsage => ({
   cache_read_input_tokens: 0,
 });
 
+/** Synchronous test callback returning raw structured output for a captured request. */
 export type MockHandler = (request: StructuredRequest) => unknown;
 
 /** Test/simulation provider: route by tool name, or queue canned outputs. */
@@ -70,6 +81,7 @@ export class MockProvider implements AiProvider {
     this.handler = handler;
   }
 
+  /** Capture the request and return the handler output with zero-cost mock usage. */
   async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     this.requests.push(request);
     return { output: this.handler(request), usage: ZERO_USAGE('mock', 'mock') };

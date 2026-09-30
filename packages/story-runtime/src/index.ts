@@ -34,6 +34,7 @@ export { computeVisibleFrom, type VisibleFromConfig } from './time/visibleFrom';
 export { createAiAccess, type AiAccessOptions, type UsageRecord } from './ai/access';
 export type {
   AiProvider,
+  MockHandler,
   CallUsage,
   StructuredRequest,
   StructuredResult,
@@ -42,5 +43,5 @@ export type {
   TextResult,
 } from './ai/provider';
 export { MockProvider, ZERO_USAGE } from './ai/provider';
-export { ClaudeProvider, DEFAULT_MODEL } from './ai/claudeProvider';
+export { ClaudeProvider, DEFAULT_MODEL, type ClaudeProviderOptions } from './ai/claudeProvider';
 export { createProvider, resolveProviderKind, type ProviderKind } from './ai/createProvider';
