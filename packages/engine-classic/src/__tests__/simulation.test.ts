@@ -35,7 +35,7 @@ function playerLettersForTurn(turn: number) {
 
 function scriptedProvider(state: RuntimeState, turn: number) {
   return new MockProvider((request: StructuredRequest) => {
-    if (request.tool.name === 'turn_plan') {
+    if (request.format.name === 'orchestrator') {
       const recipients = playerLettersForTurn(turn).map((l) => l.recipient_slug);
       const targetAct = actForTurn(turn);
       return {
@@ -146,7 +146,7 @@ describe('multi-turn simulation (Voss, 22 turns through 5 acts)', () => {
     for (let turn = 1; turn <= 3; turn++) {
       const playerLetters = [{ recipient_slug: 'voss', content: `Lettera ${turn}.` }];
       const provider = new MockProvider((req: StructuredRequest) =>
-        req.tool.name === 'turn_plan'
+        req.format.name === 'orchestrator'
           ? {
               replies: [{ character_slug: 'voss', brief: 'Rispondi.' }],
               game_state_updates: {},

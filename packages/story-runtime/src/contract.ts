@@ -97,35 +97,36 @@ export interface Finding {
 
 export type ModelRole = 'writer' | 'clerk' | 'analyst';
 
+/** How hard the model thinks; the Game's model profile sets it per role. */
+export type Effort = 'low' | 'medium' | 'high' | 'xhigh' | 'max';
+
 export interface AiRequest<S extends z.ZodTypeAny> {
   /**
    * Why this call happens, for the usage log and the Run report,
    * e.g. "reply:voss", "ledger", "epilogue:pm".
    */
   purpose: string;
-  /** The Character this call writes or reads for, for per-Character cost in the Run report. */
+  /**
+   * The Character this call writes or reads for: per-Character cost in the
+   * Run report, and the profile's per-Character model override.
+   */
   character?: CharacterSlug;
   /** Stable across Turns — cached by the provider (the Character prefix). */
   cachedPrefix?: string;
   system: string;
   user: string;
-  /** The reply's shape; the platform turns it into JSON-schema structured output. */
+  /**
+   * The reply's shape; the platform turns it into strict JSON-schema
+   * structured output. Must be a closed object (no z.record, z.unknown).
+   */
   schema: S;
+  /** Upper bound on output, thinking included. */
   maxTokens?: number;
   /**
-   * The tool the model is forced to call, sent instead of one derived from
-   * `schema`. engine-classic passes its hand-written tools so its prompts stay
-   * byte-identical; deriving JSON schema from zod arrives with the model
-   * profiles, which make this optional field redundant.
+   * This call's effort, over the profile's for the role — for a task that is
+   * lighter than the role's usual work (e.g. the Italian editing pass).
    */
-  tool?: StructuredTool;
-}
-
-/** A forced tool call's definition, as the provider sends it. */
-export interface StructuredTool {
-  name: string;
-  description: string;
-  input_schema: Record<string, unknown>;
+  effort?: Effort;
 }
 
 /**
@@ -135,7 +136,7 @@ export interface StructuredTool {
  */
 export interface AiAccess {
   structured<S extends z.ZodTypeAny>(role: ModelRole, request: AiRequest<S>): Promise<z.infer<S>>;
-  text(role: ModelRole, request: Omit<AiRequest<never>, 'schema' | 'tool'>): Promise<string>;
+  text(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>): Promise<string>;
 }
 
 /** Pure date helpers in the Story's locale. */

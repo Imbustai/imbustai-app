@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isProviderId } from '@imbustai/story-runtime';
 import { requireAdmin } from '@/lib/require-admin';
 import { createAdminClient } from '@/lib/supabase/admin';
 
@@ -19,6 +20,10 @@ export async function POST(request: Request) {
   const model = typeof body?.model === 'string' ? body.model.trim() : '';
   if (!provider || !model) {
     return NextResponse.json({ error: 'provider_and_model_required' }, { status: 400 });
+  }
+  // The provider column routes every call to its vendor: only implemented ones.
+  if (!isProviderId(provider)) {
+    return NextResponse.json({ error: 'unknown_provider' }, { status: 400 });
   }
 
   const row: Record<string, unknown> = {

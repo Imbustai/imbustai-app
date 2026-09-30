@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isProviderId } from '@imbustai/story-runtime';
 import { requireAdmin } from '@/lib/require-admin';
 import { createAdminClient } from '@/lib/supabase/admin';
 
@@ -24,7 +25,12 @@ export async function PATCH(
   }
 
   const patch: Record<string, unknown> = {};
-  if (typeof body.provider === 'string' && body.provider.trim()) patch.provider = body.provider.trim();
+  if (typeof body.provider === 'string' && body.provider.trim()) {
+    if (!isProviderId(body.provider.trim())) {
+      return NextResponse.json({ error: 'unknown_provider' }, { status: 400 });
+    }
+    patch.provider = body.provider.trim();
+  }
   if (typeof body.model === 'string' && body.model.trim()) patch.model = body.model.trim();
   if (typeof body.notes === 'string') patch.notes = body.notes;
   for (const f of NUMERIC_FIELDS) {

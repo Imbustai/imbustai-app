@@ -100,15 +100,15 @@ describe('generateTurnBatch', () => {
       playerLetters: [{ recipient_slug: 'comune', content: 'Sollecito.' }],
       ...hookParts(provider, 'game1:2'),
     });
-    const writerCall = provider.requests.find((r) => r.tool.name === 'npc_letter')!;
+    const writerCall = provider.requests.find((r) => r.format.name === 'npc_letter')!;
     expect(`${writerCall.system}${writerCall.user}`).not.toContain('SEGRETO-VOSS-XYZ');
-    const gmCall = provider.requests.find((r) => r.tool.name === 'turn_plan')!;
+    const gmCall = provider.requests.find((r) => r.format.name === 'orchestrator')!;
     expect(gmCall.user).toContain('SEGRETO-VOSS-XYZ'); // GM sees everything
   });
 
   it('skips unknown plan slugs with an error warning instead of crashing', async () => {
     const provider = new MockProvider((req) =>
-      req.tool.name === 'turn_plan'
+      req.format.name === 'orchestrator'
         ? {
             replies: [{ character_slug: 'personaggio_inventato', brief: 'x' }],
             game_state_updates: {},
@@ -153,7 +153,7 @@ describe('generateTurnBatch', () => {
       reusePlan: first.plan,
       onlyCharacter: 'comune',
     });
-    expect(regenProvider.requests.every((r) => r.tool.name === 'npc_letter')).toBe(true);
+    expect(regenProvider.requests.every((r) => r.format.name === 'npc_letter')).toBe(true);
     expect(regenProvider.requests).toHaveLength(1);
     expect(regen.responses).toHaveLength(1);
     expect(regen.responses[0].character_slug).toBe('comune');
@@ -232,7 +232,7 @@ describe('turn-driven act gating (story cannot stall on the orchestrator)', () =
   // the gated fact is in scope; without it, the legacy behavior strips the fact.
   function handlerAssigningGatedFact() {
     return (request: StructuredRequest): unknown => {
-      if (request.tool.name === 'turn_plan') {
+      if (request.format.name === 'orchestrator') {
         return {
           replies: [
             {

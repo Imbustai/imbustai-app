@@ -1,5 +1,4 @@
 import {
-  DEFAULT_MODEL,
   applyLetterEdits,
   canApprove,
   canGenerate,
@@ -12,27 +11,20 @@ import {
   type PlayerLetter,
   type StoryLifecycle,
   UnknownEnclosureError,
-  type UsageRecord as RuntimeUsageRecord,
 } from '@imbustai/story-runtime';
-import { computeCostUsd, loadPricingMap } from '@/lib/ai-pricing';
 import { createAdminClient } from '@/lib/supabase/admin';
 import {
   WorkflowError,
   currentTurn,
   draftColumns,
   draftFromRow,
-  hookContextFor,
+  hookSession,
   loadGameHost,
   storyDateOf,
   viewOf,
   type GameHost,
 } from '@/lib/game-host';
-import type {
-  AiDraftRow,
-  GameRow,
-  InteractionTurnRow,
-  UsageRecord as DbUsageRecord,
-} from '@/lib/types/db';
+import type { AiDraftRow, GameRow, InteractionTurnRow } from '@/lib/types/db';
 
 export { WorkflowError };
 
@@ -124,28 +116,30 @@ export async function generateDraft(
   }
 
   const { host } = ctx;
-  const calls: RuntimeUsageRecord[] = [];
-  const hookCtx = hookContextFor(host, host.game.id, ctx.turn.turn_number, (u) => calls.push(u));
   const { ending } = ctx.turn;
-  const batch = ending
-    ? await host.engine.generateEpilogue(hookCtx, ctx.view, ending)
-    : await host.engine.generateTurn(hookCtx, ctx.view, request);
-  const findings = await reviewDraft(host.engine, hookCtx, ctx.view, batch, { closing: !!ending });
+  const session = await hookSession(host.admin, host, {
+    gameId: host.game.id,
+    turn: ctx.turn.turn_number,
+    hook: ending ? 'generateEpilogue' : 'generateTurn',
+    profile: host.profile,
+    turnId: ctx.turn.id,
+  });
+  let batch;
+  let findings;
+  try {
+    batch = ending
+      ? await host.engine.generateEpilogue(session.ctx, ctx.view, ending)
+      : await host.engine.generateTurn(session.ctx, ctx.view, request);
+    findings = await reviewDraft(host.engine, session.ctx, ctx.view, batch, { closing: !!ending });
+  } catch (err) {
+    // A failed generation still spent: keep its attempts.
+    await session.persist();
+    throw err;
+  }
 
-  // Cost: price each call's tokens against the admin-managed table, snapshot
-  // onto the draft. Every call (retries included) is counted — this is real spend.
-  const pricing = await loadPricingMap(host.admin);
-  const usage: DbUsageRecord[] = calls.map((u) => ({
-    call_type: u.purpose,
-    character_slug: u.character,
-    provider: u.provider,
-    model: u.model,
-    input_tokens: u.input_tokens,
-    output_tokens: u.output_tokens,
-    cache_creation_input_tokens: u.cache_creation_input_tokens,
-    cache_read_input_tokens: u.cache_read_input_tokens,
-    cost_usd: computeCostUsd(u, pricing.get(u.model)),
-  }));
+  // Cost: every attempt (retries and failures included) is priced at call
+  // time and snapshotted onto the draft — this is real spend.
+  const usage = session.calls;
   type TokenField =
     | 'input_tokens'
     | 'output_tokens'
@@ -153,14 +147,12 @@ export async function generateDraft(
     | 'cache_read_input_tokens';
   const sumOf = (k: TokenField) => usage.reduce((acc, u) => acc + u[k], 0);
   const cost_usd = usage.reduce((acc, u) => acc + u.cost_usd, 0);
-  const draftModel = usage[0]?.model ?? process.env.STORY_ENGINE_MODEL ?? DEFAULT_MODEL;
-  const draftProvider = usage[0]?.provider ?? '';
 
-  return insertDraft(ctx, {
+  const draft = await insertDraft(ctx, {
     ...draftColumns(batch, findings),
     source: prev ? 'regenerated' : 'generated',
-    model: draftModel,
-    provider: draftProvider,
+    model: host.profile.roles.writer.model,
+    provider: usage[0]?.provider ?? '',
     usage,
     input_tokens: sumOf('input_tokens'),
     output_tokens: sumOf('output_tokens'),
@@ -168,6 +160,8 @@ export async function generateDraft(
     cache_read_input_tokens: sumOf('cache_read_input_tokens'),
     cost_usd,
   });
+  await session.persist({ draftId: draft.id });
+  return draft;
 }
 
 /** Admin edited Letter bodies or Enclosures: store as a new version and re-validate. */
@@ -193,16 +187,30 @@ export async function saveDraftEdits(
     batch.adminNotes = edits.narrator_notes ? [edits.narrator_notes] : [];
   }
   const { host } = ctx;
-  const hookCtx = hookContextFor(host, host.game.id, ctx.turn.turn_number);
-  const findings = await reviewDraft(host.engine, hookCtx, ctx.view, batch, {
-    closing: !!ctx.turn.ending,
+  const session = await hookSession(host.admin, host, {
+    gameId: host.game.id,
+    turn: ctx.turn.turn_number,
+    hook: 'validateDraft',
+    profile: host.profile,
+    turnId: ctx.turn.id,
   });
+  let findings;
+  try {
+    findings = await reviewDraft(host.engine, session.ctx, ctx.view, batch, {
+      closing: !!ctx.turn.ending,
+    });
+  } catch (err) {
+    await session.persist();
+    throw err;
+  }
 
-  return insertDraft(ctx, {
+  const edited = await insertDraft(ctx, {
     ...draftColumns(batch, findings),
     source: 'edited',
     model: d.model,
   });
+  await session.persist({ draftId: edited.id });
+  return edited;
 }
 
 /**
@@ -273,10 +281,19 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
     if (dateErr) throw new WorkflowError(dateErr.message, 500);
   }
 
-  const hookCtx = hookContextFor(host, host.game.id, ctx.turn.turn_number);
-  const next = host.engine.schema.state.parse(
-    await host.engine.applyTurn(hookCtx, ctx.view, batch),
-  );
+  const session = await hookSession(host.admin, host, {
+    gameId: host.game.id,
+    turn: ctx.turn.turn_number,
+    hook: 'applyTurn',
+    profile: host.profile,
+    turnId: ctx.turn.id,
+  });
+  let next;
+  try {
+    next = host.engine.schema.state.parse(await host.engine.applyTurn(session.ctx, ctx.view, batch));
+  } finally {
+    await session.persist({ draftId });
+  }
   const { error: gErr } = await host.admin
     .from('games')
     .update({ runtime_state: next })

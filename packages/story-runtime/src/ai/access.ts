@@ -1,105 +1,133 @@
 import type { z } from 'zod';
-import type { AiAccess, AiRequest, CharacterSlug, ModelRole } from '../contract';
-import type { AiProvider, CallUsage, StructuredRequest } from './provider';
+import type { AiAccess, AiRequest, CharacterSlug, Effort, ModelRole } from '../contract';
+import { dropNullsForOptional, strictJsonSchema, type JsonSchema } from './jsonSchema';
+import { resolveModelChoice, type ModelProfile } from './profile';
+import { IncompleteOutputError, type AiProvider, type CallUsage, type TextRequest } from './provider';
 
 // The `ai` half of the hook context: how an Engine reaches a model. Engines
 // never see the provider, the model or a price — they name a role and a
-// purpose, and every call (retries included) is reported to `onUsage` so the
-// platform can price it. One provider serves every role until model profiles
-// arrive.
+// purpose; the Game's model profile picks the model (a Character's override
+// first), and every attempt, retries and failures included, is reported to
+// `onUsage` so the platform can price and persist it.
+
+/** How one attempt ended. Every attempt is billed, whatever its outcome. */
+export type CallOutcome = 'ok' | 'invalid' | 'incomplete';
 
 /** One model call's token usage, tagged with who asked for it and why. */
 export interface UsageRecord extends CallUsage {
   role: ModelRole;
-  /** The Engine's reason for the call, e.g. "orchestrator", "npc_letter". */
+  /** The Engine's reason for the call, e.g. "orchestrator", "reply:voss". */
   purpose: string;
   character?: CharacterSlug;
   /** The Turn being played; 0 at game start. */
   turn: number;
+  /** 1 for the first try; retries after invalid output count up. */
+  attempt: number;
+  effort?: Effort;
+  outcome: CallOutcome;
 }
 
 export interface AiAccessOptions {
-  provider: AiProvider;
+  profile: ModelProfile;
+  /** The client that serves a model: the platform maps each model to its vendor. */
+  providerFor(model: string): AiProvider;
   turn: number;
   onUsage?: (record: UsageRecord) => void;
-  /** Extra attempts after a malformed structured reply. */
+  /** Extra attempts after a reply that fails the zod schema. */
   retries?: number;
 }
 
-const REPAIR_NOTE =
-  '\n\nIMPORTANT: your previous tool call was malformed. Call the tool again with every argument as valid JSON of the correct type — arrays as real JSON arrays (not strings), objects as objects — and NEVER use XML or <parameter ...> tags inside the arguments.';
+const schemaCache = new WeakMap<z.ZodTypeAny, JsonSchema>();
+
+function jsonSchemaOf(schema: z.ZodTypeAny): JsonSchema {
+  let json = schemaCache.get(schema);
+  if (!json) {
+    json = strictJsonSchema(schema);
+    schemaCache.set(schema, json);
+  }
+  return json;
+}
+
+/** Providers want a plain name for the output format; the purpose is the natural one. */
+function formatName(purpose: string): string {
+  return purpose.replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 64) || 'reply';
+}
+
+function repairNote(issues: string): string {
+  return `\n\nIMPORTANT: your previous reply did not satisfy the required schema (${issues}). Reply again with every field valid.`;
+}
 
 export function createAiAccess(options: AiAccessOptions): AiAccess {
-  const { provider, turn, onUsage, retries = 2 } = options;
-  const record = (role: ModelRole, request: { purpose: string; character?: string }, usage: CallUsage) =>
-    onUsage?.({ role, purpose: request.purpose, character: request.character, turn, ...usage });
+  const { profile, providerFor, turn, onUsage, retries = 2 } = options;
+
+  function prepare(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>) {
+    const choice = resolveModelChoice(profile, role, request.character);
+    const effort = request.effort ?? choice.effort;
+    const base: TextRequest = {
+      model: choice.model,
+      effort,
+      cachedPrefix: request.cachedPrefix,
+      system: request.system,
+      user: request.user,
+      maxTokens: request.maxTokens,
+    };
+    const record = (attempt: number, outcome: CallOutcome, usage: CallUsage) =>
+      onUsage?.({
+        role,
+        purpose: request.purpose,
+        character: request.character,
+        turn,
+        attempt,
+        effort,
+        outcome,
+        ...usage,
+      });
+    return { provider: providerFor(choice.model), base, record };
+  }
+
+  /** Runs one attempt; a billed failure is recorded before it propagates. */
+  async function attemptCall<T extends { usage: CallUsage }>(
+    record: (attempt: number, outcome: CallOutcome, usage: CallUsage) => void,
+    attempt: number,
+    call: () => Promise<T>,
+  ): Promise<T> {
+    try {
+      return await call();
+    } catch (err) {
+      if (err instanceof IncompleteOutputError) record(attempt, 'incomplete', err.usage);
+      throw err;
+    }
+  }
 
   return {
     /**
-     * Generate a structured response and validate it, retrying on the
-     * occasional malformed tool output (truncation, leaked tool syntax, a
-     * field serialized as a string). These glitches are transient, so a couple
-     * of retries reliably recovers — far better than failing the whole turn.
+     * Generate a structured response and validate it with zod. The strict JSON
+     * schema guarantees the shape; retries cover what only zod checks
+     * (lengths, refinements). A truncated or refused reply is not retried.
      */
     async structured<S extends z.ZodTypeAny>(role: ModelRole, request: AiRequest<S>): Promise<z.infer<S>> {
-      if (!request.tool) {
-        throw new Error(`ai.structured(${request.purpose}): a tool definition is required until model profiles derive one from the schema.`);
-      }
-      const base: StructuredRequest = {
-        system: request.system,
-        user: request.user,
-        tool: request.tool,
-        maxTokens: request.maxTokens,
-      };
+      const { provider, base, record } = prepare(role, request);
+      const format = { name: formatName(request.purpose), schema: jsonSchemaOf(request.schema) };
       const label = request.character ? `${request.purpose}(${request.character})` : request.purpose;
       let lastError = '';
-      for (let attempt = 0; attempt <= retries; attempt++) {
-        // Escalate after the first failure so retries differ from the (failing) call.
-        const req = attempt === 0 ? base : { ...base, user: base.user + REPAIR_NOTE };
-        const { output, usage } = await provider.generateStructured(req);
-        // Record usage for EVERY attempt — retries cost real tokens too.
-        record(role, request, usage);
-        const parsed = request.schema.safeParse(coerceStructured(output));
+      for (let attempt = 1; attempt <= retries + 1; attempt++) {
+        const user = attempt === 1 ? base.user : base.user + repairNote(lastError);
+        const { output, usage } = await attemptCall(record, attempt, () =>
+          provider.generateStructured({ ...base, user, format }),
+        );
+        const parsed = request.schema.safeParse(dropNullsForOptional(request.schema, output));
+        record(attempt, parsed.success ? 'ok' : 'invalid', usage);
         if (parsed.success) return parsed.data;
-        lastError = `${parsed.error.issues.map((i) => `${i.path.join('.')}:${i.message}`).join('; ')} | raw=${JSON.stringify(output).slice(0, 300)}`;
+        lastError = parsed.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ');
       }
       throw new Error(`${label} parse failed after ${retries + 1} attempts: ${lastError}`);
     },
 
     async text(role, request) {
-      if (!provider.generateText) {
-        throw new Error(`ai.text(${request.purpose}): the configured provider has no text output.`);
-      }
-      const { output, usage } = await provider.generateText({
-        system: request.system,
-        user: request.user,
-        maxTokens: request.maxTokens,
-      });
-      record(role, request, usage);
+      const { provider, base, record } = prepare(role, request);
+      const { output, usage } = await attemptCall(record, 1, () => provider.generateText(base));
+      record(1, 'ok', usage);
       return output;
     },
   };
-}
-
-/**
- * Tool-use inputs occasionally arrive with a nested field serialized as a JSON
- * string instead of a real array/object (model quirk). Parse those back before
- * zod validation so generation never crashes on an otherwise-valid response.
- */
-function coerceStructured(raw: unknown): unknown {
-  if (!raw || typeof raw !== 'object') return raw;
-  const obj = raw as Record<string, unknown>;
-  for (const [key, value] of Object.entries(obj)) {
-    if (typeof value === 'string') {
-      const trimmed = value.trim();
-      if (trimmed.startsWith('{') || trimmed.startsWith('[')) {
-        try {
-          obj[key] = JSON.parse(trimmed);
-        } catch {
-          /* leave as-is; zod will report it */
-        }
-      }
-    }
-  }
-  return obj;
 }
