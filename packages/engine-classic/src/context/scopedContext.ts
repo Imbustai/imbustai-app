@@ -83,7 +83,7 @@ export function buildNpcContext(opts: {
   if (brief.clues_to_release.length > 0)
     parts.push(`Clues to weave in: ${brief.clues_to_release.join(', ')}`);
   if (brief.tone) parts.push(`Tone: ${brief.tone}`);
-  parts.push('Now write your letter using the npc_letter tool.');
+  parts.push('Now write your letter.');
 
   return { system, user: parts.join('\n\n') };
 }
@@ -114,7 +114,7 @@ export function buildOrchestratorContext(opts: {
   for (const letter of playerLetters) {
     parts.push(`[PLAYER → ${letter.recipient_slug}]\n${letter.content}`);
   }
-  parts.push('Produce the turn plan now using the turn_plan tool.');
+  parts.push('Produce the turn plan now.');
 
   return { system, user: parts.join('\n\n') };
 }

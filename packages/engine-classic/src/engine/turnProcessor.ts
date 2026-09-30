@@ -6,8 +6,8 @@ import type {
   StoryConfig,
   ValidationWarning,
 } from '../types';
-import { turnPlanSchema, TURN_PLAN_TOOL, type GameStateUpdates, type TurnPlan } from '../schema/turnPlan';
-import { npcLetterSchema, NPC_LETTER_TOOL, type BatchLetter } from '../schema/npcLetter';
+import { turnPlanSchema, type GameStateUpdates, type TurnPlan } from '../schema/turnPlan';
+import { npcLetterSchema, type BatchLetter } from '../schema/npcLetter';
 import { buildNpcContext, buildOrchestratorContext, factsForCharacter } from '../context/scopedContext';
 import { advanceStoryDate, resolveBatchDates, type LabelledRandom } from '../time/storyDates';
 import { validateDraft } from '../validator';
@@ -173,7 +173,6 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
       system: context.system,
       user: context.user,
       schema: turnPlanSchema,
-      tool: TURN_PLAN_TOOL,
       maxTokens: 8000,
     });
   }
@@ -223,7 +222,6 @@ export async function generateTurnBatch(input: GenerateTurnInput): Promise<TurnD
         system: context.system,
         user: context.user,
         schema: npcLetterSchema,
-        tool: NPC_LETTER_TOOL,
         maxTokens: 6000,
       });
       // The writer speaks for exactly one character; trust the brief over the model.
@@ -289,7 +287,8 @@ export function applyGameStateUpdates(
     next.current_act = updates.act_progression;
   }
   if (updates.psych_profile_updates) {
-    next.psych_profile = { ...state.psych_profile, ...updates.psych_profile_updates };
+    const traits = Object.fromEntries(updates.psych_profile_updates.map((u) => [u.trait, u.note]));
+    next.psych_profile = { ...state.psych_profile, ...traits };
   }
   if (updates.victim_saved != null) next.victim_saved = updates.victim_saved;
   if (updates.killer_identified != null) next.killer_identified = updates.killer_identified;

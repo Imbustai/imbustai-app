@@ -1,5 +1,4 @@
 import {
-  DEFAULT_MODEL,
   applyLetterEdits,
   canApprove,
   canGenerate,
@@ -10,27 +9,22 @@ import {
   type GenerateRequest,
   type LetterEdit,
   type PlayerLetter,
-  type UsageRecord as RuntimeUsageRecord,
+  type StoryLifecycle,
+  UnknownEnclosureError,
 } from '@imbustai/story-runtime';
-import { computeCostUsd, loadPricingMap } from '@/lib/ai-pricing';
 import { createAdminClient } from '@/lib/supabase/admin';
 import {
   WorkflowError,
   currentTurn,
   draftColumns,
   draftFromRow,
-  hookContextFor,
+  hookSession,
   loadGameHost,
   storyDateOf,
   viewOf,
   type GameHost,
 } from '@/lib/game-host';
-import type {
-  AiDraftRow,
-  GameRow,
-  InteractionTurnRow,
-  UsageRecord as DbUsageRecord,
-} from '@/lib/types/db';
+import type { AiDraftRow, GameRow, InteractionTurnRow } from '@/lib/types/db';
 
 export { WorkflowError };
 
@@ -105,7 +99,11 @@ export async function generateDraft(
 
   const prev = await latestDraft(ctx);
   let request: GenerateRequest;
-  if (opts.letterKey) {
+  // generateEpilogue takes no guidance and has no per-Letter form: the
+  // closing batch is only ever regenerated whole.
+  if (opts.letterKey && ctx.turn.ending) {
+    throw new WorkflowError('closing_batch_regenerates_whole', 409);
+  } else if (opts.letterKey) {
     if (!prev) throw new WorkflowError('no_draft_to_regenerate', 409);
     request = {
       kind: 'letter',
@@ -118,25 +116,30 @@ export async function generateDraft(
   }
 
   const { host } = ctx;
-  const calls: RuntimeUsageRecord[] = [];
-  const hookCtx = hookContextFor(host, host.game.id, ctx.turn.turn_number, (u) => calls.push(u));
-  const batch = await host.engine.generateTurn(hookCtx, ctx.view, request);
-  const findings = await reviewDraft(host.engine, hookCtx, ctx.view, batch);
+  const { ending } = ctx.turn;
+  const session = await hookSession(host.admin, host, {
+    gameId: host.game.id,
+    turn: ctx.turn.turn_number,
+    hook: ending ? 'generateEpilogue' : 'generateTurn',
+    profile: host.profile,
+    turnId: ctx.turn.id,
+  });
+  let batch;
+  let findings;
+  try {
+    batch = ending
+      ? await host.engine.generateEpilogue(session.ctx, ctx.view, ending)
+      : await host.engine.generateTurn(session.ctx, ctx.view, request);
+    findings = await reviewDraft(host.engine, session.ctx, ctx.view, batch, { closing: !!ending });
+  } catch (err) {
+    // A failed generation still spent: keep its attempts.
+    await session.persist();
+    throw err;
+  }
 
-  // Cost: price each call's tokens against the admin-managed table, snapshot
-  // onto the draft. Every call (retries included) is counted — this is real spend.
-  const pricing = await loadPricingMap(host.admin);
-  const usage: DbUsageRecord[] = calls.map((u) => ({
-    call_type: u.purpose,
-    character_slug: u.character,
-    provider: u.provider,
-    model: u.model,
-    input_tokens: u.input_tokens,
-    output_tokens: u.output_tokens,
-    cache_creation_input_tokens: u.cache_creation_input_tokens,
-    cache_read_input_tokens: u.cache_read_input_tokens,
-    cost_usd: computeCostUsd(u, pricing.get(u.model)),
-  }));
+  // Cost: every attempt (retries and failures included) is priced at call
+  // time and snapshotted onto the draft — this is real spend.
+  const usage = session.calls;
   type TokenField =
     | 'input_tokens'
     | 'output_tokens'
@@ -144,14 +147,12 @@ export async function generateDraft(
     | 'cache_read_input_tokens';
   const sumOf = (k: TokenField) => usage.reduce((acc, u) => acc + u[k], 0);
   const cost_usd = usage.reduce((acc, u) => acc + u.cost_usd, 0);
-  const draftModel = usage[0]?.model ?? process.env.STORY_ENGINE_MODEL ?? DEFAULT_MODEL;
-  const draftProvider = usage[0]?.provider ?? '';
 
-  return insertDraft(ctx, {
+  const draft = await insertDraft(ctx, {
     ...draftColumns(batch, findings),
     source: prev ? 'regenerated' : 'generated',
-    model: draftModel,
-    provider: draftProvider,
+    model: host.profile.roles.writer.model,
+    provider: usage[0]?.provider ?? '',
     usage,
     input_tokens: sumOf('input_tokens'),
     output_tokens: sumOf('output_tokens'),
@@ -159,9 +160,11 @@ export async function generateDraft(
     cache_read_input_tokens: sumOf('cache_read_input_tokens'),
     cost_usd,
   });
+  await session.persist({ draftId: draft.id });
+  return draft;
 }
 
-/** Admin edited Letter bodies: store as a new version and re-validate. */
+/** Admin edited Letter bodies or Enclosures: store as a new version and re-validate. */
 export async function saveDraftEdits(
   draftId: string,
   edits: { letters: LetterEdit[]; narrator_notes?: string },
@@ -173,25 +176,49 @@ export async function saveDraftEdits(
   const ctx = await loadTurnContext(d.turn_id);
   if (!canGenerate(ctx.turn.status)) throw new WorkflowError('turn_not_editable', 409);
 
-  const batch = applyLetterEdits(draftFromRow(d), edits.letters);
+  let batch;
+  try {
+    batch = applyLetterEdits(draftFromRow(d), edits.letters);
+  } catch (err) {
+    if (err instanceof UnknownEnclosureError) throw new WorkflowError('unknown_enclosure', 400);
+    throw err;
+  }
   if (edits.narrator_notes !== undefined) {
     batch.adminNotes = edits.narrator_notes ? [edits.narrator_notes] : [];
   }
   const { host } = ctx;
-  const hookCtx = hookContextFor(host, host.game.id, ctx.turn.turn_number);
-  const findings = await reviewDraft(host.engine, hookCtx, ctx.view, batch);
+  const session = await hookSession(host.admin, host, {
+    gameId: host.game.id,
+    turn: ctx.turn.turn_number,
+    hook: 'validateDraft',
+    profile: host.profile,
+    turnId: ctx.turn.id,
+  });
+  let findings;
+  try {
+    findings = await reviewDraft(host.engine, session.ctx, ctx.view, batch, {
+      closing: !!ctx.turn.ending,
+    });
+  } catch (err) {
+    await session.persist();
+    throw err;
+  }
 
-  return insertDraft(ctx, {
+  const edited = await insertDraft(ctx, {
     ...draftColumns(batch, findings),
     source: 'edited',
     model: d.model,
   });
+  await session.persist({ draftId: edited.id });
+  return edited;
 }
 
 /**
  * Approve & send: the ONLY writer of role='ai' interactions post-game-start.
  * Inserts the batch with story_date + visible_from, dates the Player's
- * Letters, lets the Engine apply the turn, marks the turn sent.
+ * Letters, lets the Engine apply the turn, marks the turn sent, then asks the
+ * Engine whether the Game has ended. Sending the closing batch completes the
+ * Game instead: it has no Player letters and no Turn to apply.
  */
 export async function approveDraft(turnId: string, draftId: string): Promise<void> {
   const ctx = await loadTurnContext(turnId);
@@ -222,6 +249,8 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
     game_id: host.game.id,
     role: 'ai' as const,
     content: l.body,
+    kind: l.kind,
+    enclosures: l.enclosures,
     letter_number: letterNumber++,
     character_slug: l.from || null,
     story_date: l.storyDate,
@@ -230,6 +259,17 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
   }));
   const { error: insErr } = await host.admin.from('interactions').insert(rows);
   if (insErr) throw new WorkflowError(insErr.message, 500);
+
+  if (ctx.turn.ending) {
+    const ts = new Date().toISOString();
+    await markSent(host, turnId, ts);
+    const { error: doneErr } = await host.admin
+      .from('games')
+      .update({ status: 'completed', completed_at: ts })
+      .eq('id', host.game.id);
+    if (doneErr) throw new WorkflowError(doneErr.message, 500);
+    return;
+  }
 
   // The Engine owns the story clock, so it dates the Player's Letters too.
   if (batch.submissionDate) {
@@ -241,21 +281,73 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
     if (dateErr) throw new WorkflowError(dateErr.message, 500);
   }
 
-  const hookCtx = hookContextFor(host, host.game.id, ctx.turn.turn_number);
-  const next = host.engine.schema.state.parse(
-    await host.engine.applyTurn(hookCtx, ctx.view, batch),
-  );
+  const session = await hookSession(host.admin, host, {
+    gameId: host.game.id,
+    turn: ctx.turn.turn_number,
+    hook: 'applyTurn',
+    profile: host.profile,
+    turnId: ctx.turn.id,
+  });
+  let next;
+  try {
+    next = host.engine.schema.state.parse(await host.engine.applyTurn(session.ctx, ctx.view, batch));
+  } finally {
+    await session.persist({ draftId });
+  }
   const { error: gErr } = await host.admin
     .from('games')
     .update({ runtime_state: next })
     .eq('id', host.game.id);
   if (gErr) throw new WorkflowError(gErr.message, 500);
 
-  const ts = new Date().toISOString();
+  await markSent(host, turnId, new Date().toISOString());
+  await openClosingTurnIfEnded(host.game.id);
+}
+
+async function markSent(host: GameHost, turnId: string, ts: string): Promise<void> {
   await host.admin
     .from('interaction_turns')
     .update({ status: 'sent', approved_at: ts, sent_at: ts })
     .eq('id', turnId);
+}
+
+/**
+ * After every applied Turn: if the Engine resolves an Ending, open the
+ * closing turn (no Player letters). A testing Story leaves it in the admin
+ * queue; a released one generates and auto-sends it like any Turn.
+ */
+async function openClosingTurnIfEnded(gameId: string): Promise<void> {
+  const host = await loadGameHost(createAdminClient(), gameId);
+  const turnNumber = currentTurn(host) + 1;
+  const ending = host.engine.resolveEnding(viewOf(host, { turn: turnNumber }));
+  if (!ending) return;
+
+  const { data: turn, error } = await host.admin
+    .from('interaction_turns')
+    .insert({ game_id: gameId, turn_number: turnNumber, status: 'pending_ai', ending })
+    .select('*')
+    .single();
+  if (error || !turn) throw new WorkflowError(error?.message ?? 'turn_insert_failed', 500);
+
+  if (host.row.lifecycle === 'released') await autoSend((turn as InteractionTurnRow).id, 'released');
+}
+
+/**
+ * Released stories: generate, validate and approve with no admin. Returns
+ * whether the batch was sent; validator errors or AI failures leave the turn
+ * in the admin queue.
+ */
+async function autoSend(turnId: string, lifecycle: StoryLifecycle): Promise<boolean> {
+  try {
+    const draft = await generateDraft(turnId);
+    if (!shouldAutoSend(lifecycle, draft.validation_warnings)) return false;
+    await approveDraft(turnId, draft.id);
+    return true;
+  } catch (err) {
+    // AI/transient failure: turn stays open for the admin queue.
+    console.error('auto-send failed, turn held for review', err);
+    return false;
+  }
 }
 
 export interface SubmitResult {
@@ -345,18 +437,8 @@ export async function submitPlayerTurn(
 
   // Released stories: same pipeline, approve step runs automatically.
   if (host.row.lifecycle === 'released') {
-    try {
-      const draft = await generateDraft(turnId);
-      if (shouldAutoSend(host.row.lifecycle, draft.validation_warnings)) {
-        await approveDraft(turnId, draft.id);
-        return { turnId, turnNumber, autoSent: true, heldForReview: false };
-      }
-      return { turnId, turnNumber, autoSent: false, heldForReview: true };
-    } catch (err) {
-      // AI/transient failure: turn stays open for the admin queue.
-      console.error('auto-send failed, turn held for review', err);
-      return { turnId, turnNumber, autoSent: false, heldForReview: true };
-    }
+    const autoSent = await autoSend(turnId, host.row.lifecycle);
+    return { turnId, turnNumber, autoSent, heldForReview: !autoSent };
   }
 
   return { turnId, turnNumber, autoSent: false, heldForReview: false };

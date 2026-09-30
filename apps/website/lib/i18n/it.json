@@ -121,14 +121,12 @@
     "cost": {
       "column": "Costo AI",
       "settingsTitle": "Costi AI e modelli",
-      "settingsSubtitle": "Modello attivo e prezzi per modello (per token). Solo admin — mai mostrato ai giocatori.",
-      "activeProvider": "Provider attivo",
-      "activeModel": "Modello attivo",
+      "settingsSubtitle": "Modelli predefiniti per ruolo e prezzi per modello (per token). Solo admin — mai mostrato ai giocatori.",
       "keyConfigured": "Chiave API configurata",
       "yes": "Sì",
       "no": "No",
       "pricingTitle": "Prezzi modelli (USD per 1M token)",
-      "pricingHint": "I prezzi sono nel database, non nel codice. Il costo viene salvato quando una risposta viene generata, quindi le modifiche qui valgono solo per la spesa futura.",
+      "pricingHint": "I prezzi sono nel database, non nel codice, e indicano il provider di ogni modello. Un modello senza prezzo non può essere usato. Il costo viene salvato a ogni chiamata, quindi le modifiche qui valgono solo per la spesa futura.",
       "provider": "Provider",
       "model": "Modello",
       "input": "Input",
@@ -141,13 +139,16 @@
       "delete": "Elimina",
       "breakdownTitle": "Dettaglio costi AI",
       "totalSpend": "Spesa AI totale",
-      "realSpendNote": "Spesa reale API su tutte le versioni di bozza (rigenerazioni incluse).",
+      "realSpendNote": "Spesa reale API su ogni chiamata ai modelli: tutte le versioni di bozza (rigenerazioni incluse), avvio della partita, applicazione dei turni e tentativi falliti.",
       "noSpend": "Nessuna spesa AI registrata.",
       "turn": "Turno",
       "orchestrator": "Orchestrator",
       "letterTo": "Lettera per",
       "draftTotal": "Totale bozza",
-      "draftCost": "Costo di questa bozza"
+      "draftCost": "Costo di questa bozza",
+      "defaultProfile": "Profilo modelli predefinito",
+      "defaultProfileHint": "Ogni storia può sostituirli per ruolo o per personaggio; una partita mantiene il profilo con cui è iniziata.",
+      "effort": "Effort"
     },
     "createFreeOrder": "Crea ordine omaggio",
     "orderDetail": "Ordine",
@@ -399,7 +400,17 @@
     "chooseRecipient": "Scegli destinatario…",
     "letterPlaceholder": "Scrivi la lettera…",
     "addLetter": "Aggiungi lettera",
-    "sendAsPlayer": "Invia come giocatore"
+    "sendAsPlayer": "Invia come giocatore",
+    "closingTurn": "Chiusura",
+    "ending": "Finale",
+    "closingHint": "Nessuna lettera del giocatore: la partita è finita. Inviare questo lotto completa la partita.",
+    "enclosures": "Allegati",
+    "enclosureTitle": "Titolo dell’allegato",
+    "kind": {
+      "letter": "Lettera",
+      "dispatch": "Dispaccio",
+      "epilogue": "Epilogo"
+    }
   },
   "play": {
     "contacts": "I tuoi contatti",
@@ -427,6 +438,8 @@
       "no_letters": "Scrivi almeno una lettera prima.",
       "game_not_in_progress": "Questa partita non è attiva.",
       "story_not_playable": "Questa storia non è ancora giocabile."
-    }
+    },
+    "enclosed": "Allegato",
+    "epilogue": "Epilogo"
   }
 }

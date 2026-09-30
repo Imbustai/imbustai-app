@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { strictJsonSchema } from '@imbustai/story-runtime';
 import { turnPlanSchema } from '../schema/turnPlan';
 import { npcLetterSchema } from '../schema/npcLetter';
 
@@ -50,5 +51,13 @@ describe('npcLetterSchema', () => {
     expect(() =>
       npcLetterSchema.parse({ character_slug: 'voss', date_sent: '2025-08-03', content: '' }),
     ).toThrow();
+  });
+});
+
+describe('structured output', () => {
+  it('turns both model replies into strict JSON schemas, descriptions included', () => {
+    const plan = strictJsonSchema(turnPlanSchema) as { properties: Record<string, { description?: string }> };
+    expect(plan.properties.replies.description).toBe('One entry per character that replies this turn.');
+    expect(() => strictJsonSchema(npcLetterSchema)).not.toThrow();
   });
 });

@@ -1,63 +1,89 @@
-// Provider abstraction: one method, structured output via a forced tool call.
-// Production: ClaudeProvider (+ future OpenAI). Tests: MockProvider. Engines
-// never see a provider: they reach AI through the hook context (ai/access.ts).
-// The interface exists for testability AND the multi-provider seam; it also
-// reports token usage per call so the app can attribute cost (cost in dollars
-// is computed app-side from a DB price table — the API only returns tokens).
+// Provider abstraction: one client per vendor (Claude, OpenAI), model-agnostic
+// — each request names its model and effort, resolved from the Game's model
+// profile. Tests: MockProvider. Engines never see a provider: they reach AI
+// through the hook context (ai/access.ts). Every call reports its token usage
+// so the app can price it (the APIs return tokens, never dollars).
 
-import type { StructuredTool } from '../contract';
+import type { Effort } from '../contract';
+import type { JsonSchema } from './jsonSchema';
 
-/** Provider-facing alias for the forced tool call definition. */
-export type StructuredToolDefinition = StructuredTool;
+/** Production vendor identifier used by provider lookup and the price table. */
+export type ProviderId = 'anthropic' | 'openai';
 
-/** System and user prompts plus a forced tool schema and optional output-token limit. */
-export interface StructuredRequest {
+/** Resolved model, prompts, effort and optional cache prefix for a provider call. */
+export interface ModelRequest {
+  model: string;
+  effort?: Effort;
+  /** Stable across calls (a Character's writer view): sent first and cached. */
+  cachedPrefix?: string;
   system: string;
   user: string;
-  tool: StructuredToolDefinition;
+  /** Upper bound on output, thinking/reasoning included. */
   maxTokens?: number;
 }
 
-/** Token usage for a single model call. Cost ($) is computed app-side. */
+/** Model request with a named strict JSON schema for structured output. */
+export interface StructuredRequest extends ModelRequest {
+  /** Named strict JSON schema the reply must match (see jsonSchema.ts). */
+  format: { name: string; schema: JsonSchema };
+}
+
+/** Provider input for plain-text generation, without a response schema. */
+export type TextRequest = ModelRequest;
+
+/**
+ * Token usage for a single model call, in four disjoint buckets. Cost ($) is
+ * computed app-side from ai_model_pricing.
+ */
 export interface CallUsage {
   provider: string;
   model: string;
+  /** Uncached input only: cache reads and writes are the two buckets below. */
   input_tokens: number;
+  /** Thinking/reasoning included. */
   output_tokens: number;
   cache_creation_input_tokens: number;
   cache_read_input_tokens: number;
 }
 
-/** A structured call result: the raw tool input plus that call's token usage. */
+/** A structured call result: the parsed JSON (callers zod-parse it) plus its usage. */
 export interface StructuredResult {
-  /** Raw tool input — callers zod-parse it. */
   output: unknown;
   usage: CallUsage;
 }
 
-/** Prompts and an optional output-token limit for a plain-text call. */
-export interface TextRequest {
-  system: string;
-  user: string;
-  maxTokens?: number;
-}
-
-/** Generated plain text and usage for the completed call. */
+/** Generated text and the completed call's token usage. */
 export interface TextResult {
   output: string;
   usage: CallUsage;
 }
 
-/** Server-side model boundary; Engines use HookContext.ai rather than this interface. */
+/** Server-side vendor boundary; Engines reach it through HookContext.ai. */
 export interface AiProvider {
-  /** Return raw tool input and token usage; validation belongs to the AI access adapter. */
+  readonly id: ProviderId | 'mock';
+  /** Return parsed JSON and usage; the access adapter validates it with zod. */
   generateStructured(request: StructuredRequest): Promise<StructuredResult>;
-  /** Plain text output; a provider without it cannot serve `ai.text`. */
-  generateText?(request: TextRequest): Promise<TextResult>;
+  /** Return generated text and usage for the resolved model request. */
+  generateText(request: TextRequest): Promise<TextResult>;
 }
 
 /**
- * Construct an all-zero usage record with provider and model attribution for mocks.
+ * The model ran and was billed but returned nothing usable: truncated at
+ * `maxTokens`, refused, or not JSON. Carries the usage so the platform still
+ * records the spend; the call is not retried.
+ */
+export class IncompleteOutputError extends Error {
+  constructor(
+    public readonly reason: 'max_tokens' | 'refusal' | 'invalid_json' | 'empty',
+    public readonly usage: CallUsage,
+    detail = '',
+  ) {
+    super(`${usage.model}: no usable output (${reason})${detail ? `: ${detail}` : ''}`);
+  }
+}
+
+/**
+ * Construct zero-token usage with provider/model attribution for test doubles.
  * @category Utilities
  */
 export const ZERO_USAGE = (provider: string, model: string): CallUsage => ({
@@ -69,21 +95,32 @@ export const ZERO_USAGE = (provider: string, model: string): CallUsage => ({
   cache_read_input_tokens: 0,
 });
 
-/** Synchronous test callback returning raw structured output for a captured request. */
+/** Test callback producing raw structured output from a captured provider request. */
 export type MockHandler = (request: StructuredRequest) => unknown;
 
-/** Test/simulation provider: route by tool name, or queue canned outputs. */
+/** Test/simulation provider: route by format name, or queue canned outputs. */
 export class MockProvider implements AiProvider {
+  readonly id = 'mock' as const;
   private readonly handler: MockHandler;
   public readonly requests: StructuredRequest[] = [];
+  public readonly textRequests: TextRequest[] = [];
 
-  constructor(handler: MockHandler) {
+  constructor(
+    handler: MockHandler,
+    private readonly textHandler: (request: TextRequest) => string = () => '',
+  ) {
     this.handler = handler;
   }
 
-  /** Capture the request and return the handler output with zero-cost mock usage. */
+  /** Capture the request and return the handler output with zero-token usage. */
   async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     this.requests.push(request);
-    return { output: this.handler(request), usage: ZERO_USAGE('mock', 'mock') };
+    return { output: this.handler(request), usage: ZERO_USAGE('mock', request.model) };
+  }
+
+  /** Capture the text request and return the text handler output with zero-token usage. */
+  async generateText(request: TextRequest): Promise<TextResult> {
+    this.textRequests.push(request);
+    return { output: this.textHandler(request), usage: ZERO_USAGE('mock', request.model) };
   }
 }

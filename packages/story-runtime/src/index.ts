@@ -7,9 +7,12 @@ export type * from './contract';
 export { createHookContext, type HookContextInput } from './host/context';
 export {
   applyLetterEdits,
+  closingLetterKinds,
   contactsOf,
   reviewDraft,
   unknownSenders,
+  UnknownEnclosureError,
+  type EnclosureEdit,
   type LetterEdit,
 } from './host/game';
 export {
@@ -31,17 +34,39 @@ export {
 } from './time/dates';
 export { computeVisibleFrom, type VisibleFromConfig } from './time/visibleFrom';
 
-export { createAiAccess, type AiAccessOptions, type UsageRecord } from './ai/access';
+export {
+  createAiAccess,
+  type AiAccessOptions,
+  type CallOutcome,
+  type UsageRecord,
+} from './ai/access';
+export {
+  DEFAULT_MODEL_PROFILE,
+  EFFORTS,
+  PROFILE_ROLES,
+  mergeModelProfile,
+  modelProfilePatchSchema,
+  modelProfileSchema,
+  modelsOf,
+  resolveModelChoice,
+  type ModelChoice,
+  type ModelProfile,
+  type ModelProfilePatch,
+  type ProfileRole,
+} from './ai/profile';
+export { strictJsonSchema, UnsupportedSchemaError, type JsonSchema } from './ai/jsonSchema';
 export type {
   AiProvider,
   MockHandler,
+  ModelRequest,
   CallUsage,
+  ProviderId,
   StructuredRequest,
   StructuredResult,
-  StructuredToolDefinition,
   TextRequest,
   TextResult,
 } from './ai/provider';
-export { MockProvider, ZERO_USAGE } from './ai/provider';
-export { ClaudeProvider, DEFAULT_MODEL, type ClaudeProviderOptions } from './ai/claudeProvider';
-export { createProvider, resolveProviderKind, type ProviderKind } from './ai/createProvider';
+export { IncompleteOutputError, MockProvider, ZERO_USAGE } from './ai/provider';
+export { ClaudeProvider, type ClaudeProviderOptions } from './ai/claudeProvider';
+export { OpenAiProvider, type OpenAiProviderOptions } from './ai/openAiProvider';
+export { createProviders, isProviderId, PROVIDER_IDS } from './ai/createProvider';

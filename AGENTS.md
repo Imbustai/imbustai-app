@@ -56,8 +56,10 @@ pnpm build:website
 pnpm test                 # Vitest (root)
 pnpm typecheck            # tsc for the runtime, the Engines and the website
 pnpm lint                 # ESLint for the website
-supabase db push          # Apply migrations (when configured)
+pnpm supabase db push     # Apply new migrations to the linked database
 ```
+
+**Migrations go through the CLI.** Apply them with `pnpm supabase db push`: it records each file under its own version, which keeps the database's migration history equal to `supabase/migrations/`. The Supabase connector's `apply_migration` and the dashboard's SQL editor record the current time instead, so the next `db push` re-runs old files and fails. The first push from a checkout needs `pnpm supabase link --project-ref qzturtjtcxlgfiumnfvq` (the dev project; it asks for the database password).
 
 ## Design System — Hard Rules
 

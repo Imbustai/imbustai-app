@@ -60,6 +60,14 @@ The outcome of a Game, decided by the Engine from what the Player actually did, 
 **Epilogue**:
 A Letter delivered after the final Turn that needs no reply, such as the tribunal's verdict.
 
+**Enclosure**:
+A text-only document or clipping slipped inside a Letter's envelope, such as a certificate; the admin may reword it, only the Engine decides which a Letter carries, and the Player never encloses anything.
+_Avoid_: attachment
+
+**Closing batch**:
+The Epilogues and Dispatches the Engine writes once it resolves an Ending; it has no Player Letters, is reviewed like any Turn, and sending it completes the Game.
+_Avoid_: final turn, epilogue turn
+
 ### Letter writing
 
 **Plot key**:
@@ -76,6 +84,15 @@ The per-Game record of every piece of Texture that reached the Player, so later 
 **Signature**:
 An optional authored trait of a Character that seeds its Texture; its showpiece use happens at most once per Story, so it never becomes a tic.
 _Avoid_: quirk, catchphrase
+
+### Models
+
+**Model role**:
+What a model call is for — `writer` (Characters' Letters, Epilogues), `clerk` (offices, documents), `analyst` (reader, reply-rule checker) or `player` (Runs only); Engines ask for AI by role, never by model.
+
+**Model profile**:
+The model and effort serving each Model role in one Game, optionally overridden for a single Character; the Story sets a default, the admin or a Run can override it at start, and the Game keeps the profile it started with.
+_Avoid_: model config, provider setting
 
 ### Quality assurance
 

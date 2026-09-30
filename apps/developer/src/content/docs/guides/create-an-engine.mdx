@@ -81,12 +81,18 @@ Supply a purpose, prompts and (for structured output) a zod schema.
 Scope each Character's prompts to its own knowledge and correspondence.
 Never import a provider or read API keys inside an Engine.
 
-:::note[Current provider implementation]
-The contract supports AI roles, but `createAiAccess` currently uses one injected
-provider for all roles. Structured requests require `tool`; `cachedPrefix` is
-not yet forwarded. Per-Game model profiles and budget reservation are planned in
-[the model-profile decision](https://github.com/Imbustai/imbustai-app/blob/main/docs/adr/0002-per-game-model-profile.md).
-Consult the [AI access reference](/reference/functions/createaiaccess/) before relying on these facilities.
+:::note[Model profiles and structured output]
+The Game snapshots its model profile from the platform default, the Story's patch
+and the admin/Run override at start. Character-specific choices take precedence
+over role defaults; a request's `effort` overrides the selected profile effort.
+`cachedPrefix` supplies stable Character context to the provider. Structured calls
+derive strict JSON schema from a closed zod object; do not use `z.record` or
+`z.unknown` in the reply schema. No tool definition is needed.
+
+Every completed or billed-incomplete attempt is metered. The host validates model
+prices and persists call costs; Run budget enforcement remains host-owned.
+See the [AI access reference](/reference/functions/createaiaccess/) and
+[model-profile decision](https://github.com/Imbustai/imbustai-app/blob/main/docs/adr/0002-per-game-model-profile.md).
 :::
 
 ## 5. Register and load the Engine

@@ -1,4 +1,14 @@
-import type { Finding, Json, OutgoingLetter } from '@imbustai/story-runtime';
+import type {
+  CallOutcome,
+  Enclosure,
+  Ending,
+  Finding,
+  Json,
+  ModelProfile,
+  ModelProfilePatch,
+  OutgoingKind,
+  OutgoingLetter,
+} from '@imbustai/story-runtime';
 
 export type OrderStatus ='pending_payment' | 'paid' | 'cancelled';
 export type OrderSource = 'stripe' | 'admin';
@@ -68,6 +78,8 @@ export interface StoryRow {
   lifecycle: StoryLifecycle;
   /** The Engine package that plays this Story, e.g. 'engine-classic'. */
   engine: string;
+  /** ModelProfilePatch over the platform default; null = the default. */
+  model_profile: ModelProfilePatch | null;
   created_at: string;
   updated_at: string;
 }
@@ -153,6 +165,8 @@ export interface InteractionTurnRow {
   user_submitted_at: string;
   approved_at: string | null;
   sent_at: string | null;
+  /** Set only on the closing turn: the Ending resolveEnding returned. */
+  ending: Ending | null;
   created_at: string;
   updated_at: string;
 }
@@ -162,6 +176,11 @@ export interface UsageRecord {
   /** The Engine's purpose for the call; engine-classic: 'orchestrator' | 'npc_letter'. */
   call_type: string;
   character_slug?: string;
+  /** Absent on drafts generated before model profiles. */
+  role?: string;
+  attempt?: number;
+  outcome?: CallOutcome;
+  effort?: string;
   provider: string;
   model: string;
   input_tokens: number;
@@ -261,8 +280,34 @@ export interface GameRow {
   questionnaire: Record<string, unknown> | null;
   feedback: string | null;
   runtime_state: GameRuntimeState;
+  /** The full profile this Game runs on; null for Games started before model profiles. */
+  model_profile: ModelProfile | null;
   created_at: string;
   completed_at: string | null;
+}
+
+/** One model attempt, whichever Hook made it (see 20261001120000_model_profiles.sql). */
+export interface AiCallRow {
+  id: string;
+  game_id: string;
+  turn_id: string | null;
+  draft_id: string | null;
+  hook: string;
+  turn_number: number;
+  role: string;
+  purpose: string;
+  character_slug: string | null;
+  attempt: number;
+  outcome: CallOutcome;
+  provider: string;
+  model: string;
+  effort: string | null;
+  input_tokens: number;
+  output_tokens: number;
+  cache_creation_input_tokens: number;
+  cache_read_input_tokens: number;
+  cost_usd: number;
+  created_at: string;
 }
 
 export interface InteractionRow {
@@ -270,6 +315,10 @@ export interface InteractionRow {
   game_id: string;
   role: InteractionRole;
   content: string;
+  /** OutgoingLetter.kind for AI Letters; always 'letter' for the Player's. */
+  kind: OutgoingKind;
+  /** OutgoingLetter.enclosures; always empty for the Player's Letters. */
+  enclosures: Enclosure[];
   letter_number: number;
   visible_from: string | null;
   character_slug: string | null;

@@ -1,5 +1,6 @@
 import {
   createAiAccess,
+  DEFAULT_MODEL_PROFILE,
   seededRandom,
   type AiProvider,
   type StructuredRequest,
@@ -10,7 +11,7 @@ import { VOSS_STORY } from '../../seed/voss';
 /** The hook-context parts generateTurnBatch needs, as the platform builds them. */
 export function hookParts(provider: AiProvider, seed: string, usage?: UsageRecord[]) {
   return {
-    ai: createAiAccess({ provider, turn: 0, onUsage: (u) => usage?.push(u) }),
+    ai: createAiAccess({ profile: DEFAULT_MODEL_PROFILE, providerFor: () => provider, turn: 0, onUsage: (u) => usage?.push(u) }),
     random: seeded(seed),
   };
 }
@@ -24,7 +25,7 @@ export function seeded(seed: string) {
 // in-scope facts. Mock writers echo the brief into a letter.
 export function mockHandler(playerRecipients: string[]) {
   return (request: StructuredRequest): unknown => {
-    if (request.tool.name === 'turn_plan') {
+    if (request.format.name === 'orchestrator') {
       return {
         replies: playerRecipients.map((slug) => ({
           character_slug: slug,

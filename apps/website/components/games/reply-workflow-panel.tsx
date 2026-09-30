@@ -19,6 +19,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  Input,
   Select,
   Textarea,
   Stack,
@@ -53,6 +54,12 @@ export function ReplyWorkflowPanel({
   const [error, setError] = useState<string | null>(null);
   const [guidance, setGuidance] = useState('');
   const [edited, setEdited] = useState<Record<string, string> | null>(null);
+  /** Enclosure edits, keyed "letterKey/enclosureKey". */
+  const [editedEnclosures, setEditedEnclosures] = useState<
+    Record<string, { title?: string; body?: string }>
+  >({});
+  const dirty = edited !== null || Object.keys(editedEnclosures).length > 0;
+  const closing = openTurn?.ending ?? null;
 
   const nameOf = (slug: string | null) =>
     characters.find((c) => c.slug === slug)?.name ?? slug ?? '—';
@@ -78,13 +85,20 @@ export function ReplyWorkflowPanel({
       return false;
     }
     setEdited(null);
+    setEditedEnclosures({});
     router.refresh();
     return true;
   }
 
   async function saveEdits() {
-    if (!latestDraft || !edited) return;
-    const updated = letters.map((l) => ({ key: l.key, body: edited[l.key] ?? l.body }));
+    if (!latestDraft || !dirty) return;
+    const updated = letters.map((l) => ({
+      key: l.key,
+      body: edited?.[l.key] ?? l.body,
+      enclosures: l.enclosures
+        .filter((e) => editedEnclosures[`${l.key}/${e.key}`])
+        .map((e) => ({ key: e.key, ...editedEnclosures[`${l.key}/${e.key}`] })),
+    }));
     await call('save', `/api/admin/drafts/${latestDraft.id}`, {
       method: 'PATCH',
       body: JSON.stringify({ letters: updated }),
@@ -131,9 +145,15 @@ export function ReplyWorkflowPanel({
             <CardHeader>
               <Inline gap="2" align="center">
                 <CardTitle>
-                  {t('replyAdmin.pendingTurn')} #{openTurn.turn_number}
+                  {closing ? t('replyAdmin.closingTurn') : t('replyAdmin.pendingTurn')} #
+                  {openTurn.turn_number}
                 </CardTitle>
                 <Badge>{t(`replyAdmin.status.${openTurn.status}`)}</Badge>
+                {closing ? (
+                  <Badge variant="outline">
+                    {t('replyAdmin.ending')}: {closing.key}
+                  </Badge>
+                ) : null}
                 {latestDraft ? (
                   <Badge variant="secondary">
                     v{latestDraft.version} · {latestDraft.source}
@@ -143,24 +163,30 @@ export function ReplyWorkflowPanel({
             </CardHeader>
             <CardContent>
               <Stack gap="4">
-                {/* Player letters of this turn */}
-                <Stack gap="2">
-                  <Typography variant="body">{t('replyAdmin.playerLetters')}</Typography>
+                {/* Player letters of this turn; the closing turn has none */}
+                {closing ? (
+                  <Typography variant="caption" tone="muted">
+                    {t('replyAdmin.closingHint')}
+                  </Typography>
+                ) : (
                   <Stack gap="2">
-                    {turnLetters
-                      .filter((l) => l.role === 'user')
-                      .map((l) => (
-                        <div key={l.id} className={styles.costPanel}>
-                          <Typography variant="caption" tone="muted">
-                            → {nameOf(l.character_slug)} · {l.story_date ?? ''}
-                          </Typography>
-                          <Box marginTop="1">
-                            <pre className={styles.letterContent}>{l.content}</pre>
-                          </Box>
-                        </div>
-                      ))}
+                    <Typography variant="body">{t('replyAdmin.playerLetters')}</Typography>
+                    <Stack gap="2">
+                      {turnLetters
+                        .filter((l) => l.role === 'user')
+                        .map((l) => (
+                          <div key={l.id} className={styles.costPanel}>
+                            <Typography variant="caption" tone="muted">
+                              → {nameOf(l.character_slug)} · {l.story_date ?? ''}
+                            </Typography>
+                            <Box marginTop="1">
+                              <pre className={styles.letterContent}>{l.content}</pre>
+                            </Box>
+                          </div>
+                        ))}
+                    </Stack>
                   </Stack>
-                </Stack>
+                )}
 
                 {/* Warnings */}
                 {warnings.length > 0 ? (
@@ -235,19 +261,27 @@ export function ReplyWorkflowPanel({
                       <Typography variant="body">
                         ✉️ {nameOf(l.from)}{' '}
                         <Typography variant="caption" tone="muted" as="span">· {l.storyDate}</Typography>
+                        {l.kind !== 'letter' ? (
+                          <>
+                            {' '}
+                            <Badge variant="secondary">{t(`replyAdmin.kind.${l.kind}`)}</Badge>
+                          </>
+                        ) : null}
                       </Typography>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        disabled={busy !== null}
-                        onClick={() =>
-                          call('regen-one', `/api/admin/turns/${openTurn.id}/regenerate`, {
-                            body: JSON.stringify({ letter_key: l.key }),
-                          })
-                        }
-                      >
-                        {busy === 'regen-one' ? '…' : t('replyAdmin.regenerateOne')}
-                      </Button>
+                      {closing ? null : (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          disabled={busy !== null}
+                          onClick={() =>
+                            call('regen-one', `/api/admin/turns/${openTurn.id}/regenerate`, {
+                              body: JSON.stringify({ letter_key: l.key }),
+                            })
+                          }
+                        >
+                          {busy === 'regen-one' ? '…' : t('replyAdmin.regenerateOne')}
+                        </Button>
+                      )}
                     </Inline>
                     <Box marginTop="2">
                       <Textarea
@@ -257,6 +291,43 @@ export function ReplyWorkflowPanel({
                         }
                       />
                     </Box>
+                    {l.enclosures.length > 0 ? (
+                      <Box marginTop="3">
+                        <Stack gap="2">
+                          <Typography variant="caption" tone="muted">
+                            📎 {t('replyAdmin.enclosures')}
+                          </Typography>
+                          {l.enclosures.map((enc) => {
+                            const id = `${l.key}/${enc.key}`;
+                            const edit = editedEnclosures[id] ?? {};
+                            const change = (field: 'title' | 'body', value: string) =>
+                              setEditedEnclosures((prev) => ({
+                                ...prev,
+                                [id]: { ...prev[id], [field]: value },
+                              }));
+                            return (
+                              <div key={enc.key} className={styles.enclosurePanel}>
+                                <Stack gap="2">
+                                  <Inline gap="2" align="center">
+                                    <Badge variant="outline">{enc.kind}</Badge>
+                                    <Input
+                                      aria-label={t('replyAdmin.enclosureTitle')}
+                                      value={edit.title ?? enc.title}
+                                      onChange={(e) => change('title', e.target.value)}
+                                    />
+                                  </Inline>
+                                  <Textarea
+                                    size="sm"
+                                    value={edit.body ?? enc.body}
+                                    onChange={(e) => change('body', e.target.value)}
+                                  />
+                                </Stack>
+                              </div>
+                            );
+                          })}
+                        </Stack>
+                      </Box>
+                    ) : null}
                   </div>
                 ))}
 
@@ -272,7 +343,7 @@ export function ReplyWorkflowPanel({
                   ) : null}
                   {latestDraft ? (
                     <>
-                      {edited ? (
+                      {dirty ? (
                         <Button disabled={busy !== null} onClick={saveEdits}>
                           {t('replyAdmin.saveEdits')}
                         </Button>
@@ -282,7 +353,9 @@ export function ReplyWorkflowPanel({
                         disabled={busy !== null}
                         onClick={() =>
                           call('regen', `/api/admin/turns/${openTurn.id}/regenerate`, {
-                            body: JSON.stringify({ admin_guidance: guidance || undefined }),
+                            body: JSON.stringify({
+                              admin_guidance: closing ? undefined : guidance || undefined,
+                            }),
                           })
                         }
                       >
@@ -290,7 +363,7 @@ export function ReplyWorkflowPanel({
                       </Button>
                       <span className={styles.approveButton}>
                         <Button
-                          disabled={busy !== null || edited !== null}
+                          disabled={busy !== null || dirty}
                           onClick={() =>
                             call('approve', `/api/admin/turns/${openTurn.id}/approve`, {
                               body: JSON.stringify({ draft_id: latestDraft.id }),
@@ -300,7 +373,7 @@ export function ReplyWorkflowPanel({
                           {busy === 'approve' ? '…' : `✅ ${t('replyAdmin.approveSend')}`}
                         </Button>
                       </span>
-                      {edited !== null ? (
+                      {dirty ? (
                         <Typography variant="caption" tone="muted" as="span">
                           {t('replyAdmin.saveBeforeApprove')}
                         </Typography>
@@ -308,7 +381,7 @@ export function ReplyWorkflowPanel({
                     </>
                   ) : null}
                 </Inline>
-                {latestDraft ? (
+                {latestDraft && !closing ? (
                   <Stack gap="1">
                     <Typography variant="caption" tone="muted">
                       {t('replyAdmin.guidance')}

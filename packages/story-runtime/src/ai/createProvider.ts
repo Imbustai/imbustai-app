@@ -1,43 +1,35 @@
 import { ClaudeProvider } from './claudeProvider';
-import type { AiProvider } from './provider';
+import { OpenAiProvider } from './openAiProvider';
+import type { AiProvider, ProviderId } from './provider';
 
-// Multi-provider seam. Selects the AI provider from STORY_ENGINE_PROVIDER
-// (default 'claude'). Claude is the only implemented provider today; OpenAI and
-// DeepSeek are intentionally stubbed so the switch is a config change, not a
-// rewrite — both are OpenAI tool-calling compatible and will implement the same
-// AiProvider interface (returning token usage for cost attribution).
+// One client per vendor, created on first use so a Game that never calls
+// OpenAI needs no OpenAI key. Which vendor serves a model is the platform's
+// call (the price table's `provider` column), not the Engine's.
 
-/** Recognised provider selectors; only Claude is implemented by the current factory. */
-export type ProviderKind = 'claude' | 'openai' | 'deepseek';
+/** Supported production provider identifiers, as stored in the model price table. */
+export const PROVIDER_IDS = ['anthropic', 'openai'] as const satisfies readonly ProviderId[];
 
 /**
- * Resolve STORY_ENGINE_PROVIDER (default: claude), accepting anthropic/chatgpt
- * aliases case-insensitively. Throws for unknown selectors.
+ * Narrow an exact provider identifier to the supported production vendors.
  * @category Utilities
  */
-export function resolveProviderKind(env: NodeJS.ProcessEnv = process.env): ProviderKind {
-  const raw = (env.STORY_ENGINE_PROVIDER ?? 'claude').toLowerCase();
-  if (raw === 'claude' || raw === 'anthropic') return 'claude';
-  if (raw === 'openai' || raw === 'chatgpt') return 'openai';
-  if (raw === 'deepseek') return 'deepseek';
-  throw new Error(`Unknown STORY_ENGINE_PROVIDER "${raw}" (expected claude | openai | deepseek).`);
+export function isProviderId(value: string): value is ProviderId {
+  return (PROVIDER_IDS as readonly string[]).includes(value);
 }
 
 /**
- * Create the server-side Claude provider. OpenAI and DeepSeek selectors currently
- * throw. The supplied env selects the kind; credentials/model are read from process.env.
+ * Lazily construct and reuse one server-side client per vendor. Unused vendors
+ * require no credentials; model choice belongs to each request.
  * @category Utilities
  */
-export function createProvider(env: NodeJS.ProcessEnv = process.env): AiProvider {
-  const kind = resolveProviderKind(env);
-  switch (kind) {
-    case 'claude':
-      return new ClaudeProvider();
-    case 'openai':
-    case 'deepseek':
-      // TODO: implement OpenAiProvider / DeepSeekProvider (OpenAI SDK + tool
-      // calling), returning CallUsage from response.usage. Pricing rows for
-      // these models already exist in ai_model_pricing.
-      throw new Error(`STORY_ENGINE_PROVIDER="${kind}" is not implemented yet (seam ready).`);
-  }
+export function createProviders(): (id: ProviderId) => AiProvider {
+  const cache = new Map<ProviderId, AiProvider>();
+  return (id) => {
+    let provider = cache.get(id);
+    if (!provider) {
+      provider = id === 'anthropic' ? new ClaudeProvider() : new OpenAiProvider();
+      cache.set(id, provider);
+    }
+    return provider;
+  };
 }

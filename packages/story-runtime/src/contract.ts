@@ -8,7 +8,7 @@ import type { z } from 'zod';
 
 /** In-fiction date, YYYY-MM-DD. */
 export type IsoDate = string;
-/** Stable authored identifier for a Correspondent; shared by cast, contacts and Letters. */
+/** Stable authored identifier shared by cast, contacts and Letters. */
 export type CharacterSlug = string;
 /** Plain JSON: what may be persisted in games.runtime_state and ai_drafts. */
 export type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
@@ -99,6 +99,9 @@ export interface Finding {
 /** The purpose of an Engine model call; provider selection belongs to the platform. */
 export type ModelRole = 'writer' | 'clerk' | 'analyst';
 
+/** How hard the model thinks; the Game's model profile sets it per role. */
+export type Effort = 'low' | 'medium' | 'high' | 'xhigh' | 'max';
+
 /** Prompts, validation schema and attribution for one structured AI call. */
 export interface AiRequest<S extends z.ZodTypeAny> {
   /**
@@ -106,42 +109,40 @@ export interface AiRequest<S extends z.ZodTypeAny> {
    * e.g. "reply:voss", "ledger", "epilogue:pm".
    */
   purpose: string;
-  /** The Character this call writes or reads for, for per-Character cost in the Run report. */
+  /**
+   * The Character this call writes or reads for: per-Character cost in the
+   * Run report, and the profile's per-Character model override.
+   */
   character?: CharacterSlug;
-  /** Stable Character prefix reserved for provider caching; the current adapter does not forward it. */
+  /** Stable across Turns — cached by the provider (the Character prefix). */
   cachedPrefix?: string;
   system: string;
   user: string;
-  /** Validates the model reply; currently pair it with a matching `tool` definition. */
+  /**
+   * The reply's shape; the platform turns it into strict JSON-schema
+   * structured output. Must be a closed object (no z.record, z.unknown).
+   */
   schema: S;
+  /** Upper bound on output, thinking included. */
   maxTokens?: number;
   /**
-   * The tool the model is forced to call, sent instead of one derived from
-   * `schema`. engine-classic passes its hand-written tools so its prompts stay
-   * byte-identical; deriving JSON schema from zod arrives with the model
-   * profiles, which make this optional field redundant.
+   * This call's effort, over the profile's for the role — for a task that is
+   * lighter than the role's usual work (e.g. the Italian editing pass).
    */
-  tool?: StructuredTool;
-}
-
-/** A forced tool call's definition, as the provider sends it. */
-export interface StructuredTool {
-  name: string;
-  description: string;
-  input_schema: Record<string, unknown>;
+  effort?: Effort;
 }
 
 /**
- * AI by role, hiding providers, keys and prices from Engines. The current
- * {@link createAiAccess} adapter meters calls and retries malformed structured
- * output through one injected provider. Per-Game model selection and Run budget
- * reservation are planned extensions, not guarantees of that adapter.
+ * AI by role. The Game model profile and optional Character override choose
+ * the model. The adapter meters completed and billed-incomplete attempts and
+ * retries zod validation failures. Engines never see a provider, key or price.
+ * Run budget enforcement belongs to the host; createAiAccess does not reserve it.
  */
 export interface AiAccess {
-  /** Generate a schema-validated result; malformed outputs may be retried and metered. */
+  /** Generate a schema-validated reply with role/Character model selection and metered attempts. */
   structured<S extends z.ZodTypeAny>(role: ModelRole, request: AiRequest<S>): Promise<z.infer<S>>;
-  /** Generate plain text; throws when the configured provider lacks text output. */
-  text(role: ModelRole, request: Omit<AiRequest<never>, 'schema' | 'tool'>): Promise<string>;
+  /** Generate plain text through the role/Character model choice and record its usage. */
+  text(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>): Promise<string>;
 }
 
 /** Pure date helpers in the Story's locale. */
@@ -211,13 +212,13 @@ export interface Correspondent {
   kind: 'person' | 'office' | 'newspaper';
 }
 
-/** Authored Lead and all possible senders, including currently unavailable Contacts. */
+/** Authored Lead and every possible sender, including unavailable Contacts. */
 export interface Cast {
   lead: Correspondent;
   correspondents: Correspondent[];
 }
 
-/** Code-decided outcome plus Engine-owned detail needed to write the closing batch. */
+/** Code-decided outcome plus Engine-owned detail for the closing batch. */
 export interface Ending {
   /** One of the Story's Ending keys, e.g. "saved_caught". */
   key: string;

@@ -18,10 +18,13 @@ import styles from './games.module.css';
 
 export function GameCostBreakdown({
   drafts,
+  extraSpendUsd = 0,
   turnNumbers,
   characters,
 }: {
   drafts: AiDraftRow[];
+  /** Spend outside any draft's snapshot: game start, applying Turns, failed generations. */
+  extraSpendUsd?: number;
   turnNumbers: Record<string, number>;
   characters: StoryCharacterRow[];
 }) {
@@ -29,7 +32,7 @@ export function GameCostBreakdown({
   const nameOf = (slug?: string) =>
     (slug && characters.find((c) => c.slug === slug)?.name) || slug || '—';
 
-  const total = drafts.reduce((acc, d) => acc + Number(d.cost_usd ?? 0), 0);
+  const total = drafts.reduce((acc, d) => acc + Number(d.cost_usd ?? 0), extraSpendUsd);
   const sorted = [...drafts].sort((a, b) => {
     const ta = turnNumbers[a.turn_id] ?? 0;
     const tb = turnNumbers[b.turn_id] ?? 0;
