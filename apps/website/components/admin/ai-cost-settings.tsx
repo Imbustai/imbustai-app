@@ -16,10 +16,12 @@ import {
 import { PricingTable } from '@/components/admin/pricing-table';
 
 export function AiCostSettings({
-  active,
+  profile,
+  keys,
   rows,
 }: {
-  active: { provider: string; model: string; keyConfigured: boolean };
+  profile: { role: string; model: string; effort?: string }[];
+  keys: { provider: string; configured: boolean }[];
   rows: AiModelPricingRow[];
 }) {
   const { t } = useTranslation();
@@ -33,23 +35,33 @@ export function AiCostSettings({
 
       <Card>
         <CardHeader>
-          <CardTitle>
-            <Inline gap="2">
-              {t('admin.cost.activeModel')}
-              <Badge>{active.model || '—'}</Badge>
-            </Inline>
-          </CardTitle>
+          <CardTitle>{t('admin.cost.defaultProfile')}</CardTitle>
         </CardHeader>
         <CardContent>
-          <Inline gap="6">
-            <Typography variant="caption" tone="muted" as="span">
-              {t('admin.cost.activeProvider')}: <strong>{active.provider}</strong>
-            </Typography>
-            <Typography variant="caption" tone="muted" as="span">
-              {t('admin.cost.keyConfigured')}:{' '}
-              <strong>{active.keyConfigured ? t('admin.cost.yes') : t('admin.cost.no')}</strong>
-            </Typography>
-          </Inline>
+          <Stack gap="3">
+            <Typography variant="caption" tone="muted">{t('admin.cost.defaultProfileHint')}</Typography>
+            {profile.map((p) => (
+              <Inline key={p.role} gap="2">
+                <Typography variant="caption" tone="muted" as="span">
+                  {p.role}
+                </Typography>
+                <Badge>{p.model}</Badge>
+                {p.effort ? (
+                  <Typography variant="caption" tone="muted" as="span">
+                    {t('admin.cost.effort')}: <strong>{p.effort}</strong>
+                  </Typography>
+                ) : null}
+              </Inline>
+            ))}
+            <Inline gap="6">
+              {keys.map((k) => (
+                <Typography key={k.provider} variant="caption" tone="muted" as="span">
+                  {t('admin.cost.keyConfigured')} ({k.provider}):{' '}
+                  <strong>{k.configured ? t('admin.cost.yes') : t('admin.cost.no')}</strong>
+                </Typography>
+              ))}
+            </Inline>
+          </Stack>
         </CardContent>
       </Card>
 

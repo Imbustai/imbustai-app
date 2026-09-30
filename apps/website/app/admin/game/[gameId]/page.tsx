@@ -9,6 +9,7 @@ import {
 import { Box } from '@imbustai/ds';
 import { loadGameHost, playerStatus } from '@/lib/game-host';
 import type {
+  AiCallRow,
   AiDraftRow,
   GameRow,
   InteractionRow,
@@ -37,7 +38,13 @@ export default async function AdminGameDetailPage({
 
   const g = game as GameRow;
 
-  const [{ data: interactions }, { data: story }, { data: characters }, { data: openTurn }] =
+  const [
+    { data: interactions },
+    { data: story },
+    { data: characters },
+    { data: openTurn },
+    { data: calls },
+  ] =
     await Promise.all([
       admin
         .from('interactions')
@@ -57,7 +64,13 @@ export default async function AdminGameDetailPage({
         .eq('game_id', gameId)
         .neq('status', 'sent')
         .maybeSingle(),
+      admin.from('ai_calls').select('hook,draft_id,cost_usd').eq('game_id', gameId),
     ]);
+  // Spend no draft snapshot carries: game start, applyTurn, edits' validation,
+  // failed generations. A generation's own calls are already on its draft.
+  const extraSpendUsd = ((calls ?? []) as Pick<AiCallRow, 'hook' | 'draft_id' | 'cost_usd'>[])
+    .filter((c) => !(c.draft_id && (c.hook === 'generateTurn' || c.hook === 'generateEpilogue')))
+    .reduce((acc, c) => acc + Number(c.cost_usd), 0);
 
   let latestDraft: AiDraftRow | null = null;
   if (openTurn) {
@@ -123,6 +136,7 @@ export default async function AdminGameDetailPage({
       <Box marginTop="8">
         <GameCostBreakdown
           drafts={costDrafts}
+          extraSpendUsd={extraSpendUsd}
           turnNumbers={turnNumbers}
           characters={characterList}
         />

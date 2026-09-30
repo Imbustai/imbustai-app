@@ -18,7 +18,13 @@ import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createClient } from '@supabase/supabase-js';
-import { ClaudeProvider, createAiAccess, seededRandom } from '../packages/story-runtime/src/index';
+import {
+  ClaudeProvider,
+  DEFAULT_MODEL_PROFILE,
+  createAiAccess,
+  mergeModelProfile,
+  seededRandom,
+} from '../packages/story-runtime/src/index';
 import {
   applyGameStateUpdates,
   generateTurnBatch,
@@ -94,9 +100,13 @@ async function main() {
   const story = await loadVoss(env);
   // Make the key available to the provider (it reads process.env).
   process.env.ANTHROPIC_API_KEY = env.ANTHROPIC_API_KEY;
-  if (env.STORY_ENGINE_MODEL) process.env.STORY_ENGINE_MODEL = env.STORY_ENGINE_MODEL;
   const provider = new ClaudeProvider();
-  console.log(`Story: ${story.title} | model: ${provider.model} | turns: ${turns}\n`);
+  // SIM_WRITER_MODEL picks another Claude model for the writer role.
+  const profile = mergeModelProfile(
+    DEFAULT_MODEL_PROFILE,
+    env.SIM_WRITER_MODEL ? { roles: { writer: { model: env.SIM_WRITER_MODEL } } } : null,
+  );
+  console.log(`Story: ${story.title} | writer: ${profile.roles.writer.model} | turns: ${turns}\n`);
 
   let state = initialRuntimeState(story);
   const history: LetterRecord[] = [];
@@ -122,7 +132,7 @@ async function main() {
       state,
       history,
       playerLetters,
-      ai: createAiAccess({ provider, turn }),
+      ai: createAiAccess({ profile, providerFor: () => provider, turn }),
       random: (label) => seededRandom(`sim:${turn}:${label}`),
     });
 

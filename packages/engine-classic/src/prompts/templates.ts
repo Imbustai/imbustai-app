@@ -184,7 +184,7 @@ export function orchestratorSystemPrompt(opts: {
   parts.push(
     section(
       'Output',
-      `Respond ONLY by calling the turn_plan tool. Provide the arguments as a valid JSON object matching the schema exactly — "replies" MUST be a JSON array, never a string, and never use XML or <parameter ...> tags inside the arguments. Briefs must be written in the story's language: ${localeOf(story)}.`,
+      `Respond ONLY with the turn plan as a JSON object matching the schema. Briefs must be written in the story's language: ${localeOf(story)}.`,
     ),
   );
 
@@ -239,7 +239,7 @@ export function npcWriterSystemPrompt(opts: {
         '- In metadata.clues_revealed, list ONLY clue keys explicitly named in the brief\'s "Clues to weave in" list. NEVER put a fact key here (fact keys belong in facts_referenced only), and NEVER invent a key. If the brief named no clues, leave clues_revealed empty.',
         '- Do not introduce specific canon details (names, dates, places, events) that are not in the facts above or in your correspondence. If tempted to mention something you were not told, stay vague or defer instead.',
         '- NEVER write the date inside the letter content (no "[Data: ...]" header, no date line). The platform shows the date separately; you only set the date_sent field.',
-        '- Respond ONLY by calling the npc_letter tool, with arguments as a valid JSON object — never use XML or <parameter ...> tags. The letter (salutation, body, signature) goes entirely in `content`.',
+        '- Respond ONLY with the letter as a JSON object matching the schema. The letter (salutation, body, signature) goes entirely in `content`.',
       ].join('\n'),
     ),
   );

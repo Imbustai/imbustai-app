@@ -3,6 +3,7 @@ import {
   MockProvider,
   applyLetterEdits,
   createAiAccess,
+  DEFAULT_MODEL_PROFILE,
   createHookContext,
   reviewDraft,
   type GameView,
@@ -31,7 +32,7 @@ function context(provider: MockProvider, turn: number, usage?: UsageRecord[]): H
   return createHookContext({
     gameId: GAME,
     turn,
-    ai: createAiAccess({ provider, turn, onUsage: (u) => usage?.push(u) }),
+    ai: createAiAccess({ profile: DEFAULT_MODEL_PROFILE, providerFor: () => provider, turn, onUsage: (u) => usage?.push(u) }),
   });
 }
 
@@ -113,7 +114,7 @@ describe('classicEngine', () => {
       state,
       history: [],
       playerLetters: SUBMISSION.map((l) => ({ recipient_slug: l.to, content: l.body })),
-      ai: createAiAccess({ provider: new MockProvider(mockHandler(['voss', 'comune'])), turn }),
+      ai: createAiAccess({ profile: DEFAULT_MODEL_PROFILE, providerFor: () => new MockProvider(mockHandler(['voss', 'comune'])), turn }),
       random: seeded(`${GAME}:${turn}`),
       turnNumber: turn,
     });
@@ -161,7 +162,7 @@ describe('classicEngine', () => {
       guidance: 'Più breve.',
     });
 
-    expect(provider.requests.map((r) => r.tool.name)).toEqual(['npc_letter']);
+    expect(provider.requests.map((r) => r.format.name)).toEqual(['npc_letter']);
     expect(regen.letters.find((l) => l.key === 'voss')).toEqual(draft.letters.find((l) => l.key === 'voss'));
     expect(regen.letters.find((l) => l.key === 'comune')!.storyDate).toBe(
       draft.letters.find((l) => l.key === 'comune')!.storyDate,
