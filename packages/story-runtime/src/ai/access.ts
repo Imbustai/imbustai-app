@@ -1,5 +1,5 @@
 import type { z } from 'zod';
-import type { AiAccess, AiRequest, CharacterSlug, Effort, ModelRole } from '../contract';
+import type { AiAccess, AiRequest, CharacterSlug, Conversation, Effort, ModelRole } from '../contract';
 import { dropNullsForOptional, strictJsonSchema, type JsonSchema } from './jsonSchema';
 import { resolveModelChoice, type ModelProfile } from './profile';
 import { IncompleteOutputError, type AiProvider, type CallUsage, type TextRequest } from './provider';
@@ -70,11 +70,12 @@ function repairNote(issues: string): string {
 export function createAiAccess(options: AiAccessOptions): AiAccess {
   const { profile, providerFor, turn, onUsage, retries = 2 } = options;
 
-  function prepare(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>) {
+  /** `model` pins a continuation to the model that started it. */
+  function prepare(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>, model?: string) {
     const choice = resolveModelChoice(profile, role, request.character);
     const effort = request.effort ?? choice.effort;
     const base: TextRequest = {
-      model: choice.model,
+      model: model ?? choice.model,
       effort,
       cachedPrefix: request.cachedPrefix,
       system: request.system,
@@ -138,6 +139,15 @@ export function createAiAccess(options: AiAccessOptions): AiAccess {
       const { output, usage } = await attemptCall(record, 1, () => provider.generateText(base));
       record(1, 'ok', usage);
       return output;
+    },
+
+    async converse(role, request, conversation?: Conversation) {
+      const { provider, base, record } = prepare(role, request, conversation?.model);
+      const { output, usage, transcript } = await attemptCall(record, 1, () =>
+        provider.generateText({ ...base, history: conversation?.messages }),
+      );
+      record(1, 'ok', usage);
+      return { text: output, conversation: { model: base.model, messages: transcript } };
     },
   };
 }

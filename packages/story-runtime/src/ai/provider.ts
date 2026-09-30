@@ -4,7 +4,7 @@
 // through the hook context (ai/access.ts). Every call reports its token usage
 // so the app can price it (the APIs return tokens, never dollars).
 
-import type { Effort } from '../contract';
+import type { Effort, Json } from '../contract';
 import type { JsonSchema } from './jsonSchema';
 
 /** Production vendor identifier used by provider lookup and the price table. */
@@ -29,7 +29,13 @@ export interface StructuredRequest extends ModelRequest {
 }
 
 /** Provider input for plain-text generation, without a response schema. */
-export type TextRequest = ModelRequest;
+export interface TextRequest extends ModelRequest {
+  /**
+   * Earlier messages of this conversation, in the provider's own format (a
+   * previous `TextResult.transcript`); `user` is appended after them.
+   */
+  history?: Json[];
+}
 
 /**
  * Token usage for a single model call, in four disjoint buckets. Cost ($) is
@@ -56,6 +62,8 @@ export interface StructuredResult {
 export interface TextResult {
   output: string;
   usage: CallUsage;
+  /** `history`, then this call's user message and the model's reply as returned (thinking included). */
+  transcript: Json[];
 }
 
 /** Server-side vendor boundary; Engines reach it through HookContext.ai. */
@@ -121,6 +129,11 @@ export class MockProvider implements AiProvider {
   /** Capture the text request and return the text handler output with zero-token usage. */
   async generateText(request: TextRequest): Promise<TextResult> {
     this.textRequests.push(request);
-    return { output: this.textHandler(request), usage: ZERO_USAGE('mock', request.model) };
+    const output = this.textHandler(request);
+    return {
+      output,
+      usage: ZERO_USAGE('mock', request.model),
+      transcript: [...(request.history ?? []), { role: 'user', content: request.user }, { role: 'assistant', content: output }],
+    };
   }
 }

@@ -183,3 +183,43 @@ describe('OpenAI usage accounting', () => {
     });
   });
 });
+
+describe('continuing a conversation', () => {
+  it('continues on the model that started it, sending the whole exchange back, and meters both calls', async () => {
+    const usage: UsageRecord[] = [];
+    const provider = new MockProvider(
+      () => ({}),
+      (request) => (request.history?.length ? 'Caro Giacomo, (riscritta)' : 'Caro Giacomo, (bozza)'),
+    );
+    const profile = mergeModelProfile(DEFAULT_MODEL_PROFILE, VOSS_PATCH);
+    const ai = createAiAccess({ profile, providerFor: () => provider, turn: 2, onUsage: (r) => usage.push(r) });
+
+    const request = { purpose: 'reply', character: 'voss', cachedPrefix: 'P', system: 'S', user: 'Scrivi.' };
+    const draft = await ai.converse('writer', request);
+    expect(draft.text).toBe('Caro Giacomo, (bozza)');
+
+    // The profile changes between the calls: the continuation must not move models.
+    const other = createAiAccess({
+      profile: mergeModelProfile(profile, { roles: { writer: { model: 'gpt-6-astra' } } }),
+      providerFor: () => provider,
+      turn: 2,
+      onUsage: (r) => usage.push(r),
+    });
+    const rewrite = await other.converse('writer', { ...request, purpose: 'rewrite', user: 'Correggi.' }, draft.conversation);
+
+    expect(rewrite.text).toBe('Caro Giacomo, (riscritta)');
+    const second = provider.textRequests[1];
+    expect(second.model).toBe('claude-fable-5-1');
+    expect(second.cachedPrefix).toBe('P');
+    expect(second.user).toBe('Correggi.');
+    expect(second.history).toEqual([
+      { role: 'user', content: 'Scrivi.' },
+      { role: 'assistant', content: 'Caro Giacomo, (bozza)' },
+    ]);
+    expect(rewrite.conversation.messages).toHaveLength(4);
+    expect(usage.map((u) => [u.purpose, u.model, u.character])).toEqual([
+      ['reply', 'claude-fable-5-1', 'voss'],
+      ['rewrite', 'claude-fable-5-1', 'voss'],
+    ]);
+  });
+});

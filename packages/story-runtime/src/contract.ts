@@ -143,6 +143,28 @@ export interface AiAccess {
   structured<S extends z.ZodTypeAny>(role: ModelRole, request: AiRequest<S>): Promise<z.infer<S>>;
   /** Generate plain text through the role/Character model choice and record its usage. */
   text(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>): Promise<string>;
+  /**
+   * A text call that can be continued: the one rewrite of a Letter goes back
+   * into the writer's own conversation, append-only, so the cached prefix
+   * and the draft's thinking stay valid. Pass the `conversation` a previous
+   * reply returned and, as `request.user`, only the new message; resend the
+   * same `system` and `cachedPrefix`. A continuation stays on the model that
+   * started the conversation.
+   */
+  converse(
+    role: ModelRole,
+    request: Omit<AiRequest<never>, 'schema'>,
+    conversation?: Conversation,
+  ): Promise<{ text: string; conversation: Conversation }>;
+}
+
+/**
+ * An exchange with one model, in its provider's own message format (thinking
+ * blocks included). Opaque to Engines; plain JSON, so it can be persisted.
+ */
+export interface Conversation {
+  model: string;
+  messages: Json[];
 }
 
 /** Pure date helpers in the Story's locale. */

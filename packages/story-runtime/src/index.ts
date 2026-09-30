@@ -70,3 +70,44 @@ export { IncompleteOutputError, MockProvider, ZERO_USAGE } from './ai/provider';
 export { ClaudeProvider, type ClaudeProviderOptions } from './ai/claudeProvider';
 export { OpenAiProvider, type OpenAiProviderOptions } from './ai/openAiProvider';
 export { createProviders, isProviderId, PROVIDER_IDS } from './ai/createProvider';
+
+// Shared writing tools any Engine may use: the reader, the Plot-key collision
+// check, the reply-rule checker with its one rewrite, the editing pass and the
+// Ledger ("Reader, reply-rule checker and Ledger as runtime utilities",
+// Imbustai/imbustai-app#30).
+export {
+  readPlayerLetter,
+  renderReaderNotes,
+  type ReadInput,
+  type ReaderNotes,
+  type ReaderResult,
+} from './writing/reader';
+export {
+  findPlotKeyCollisions,
+  reservedTermSchema,
+  type CollisionCheck,
+  type PlotKeyCollision,
+  type ReservedTerm,
+} from './writing/plotKeys';
+export {
+  checkLetter,
+  COLLISION_RULE,
+  DOORS_RULE,
+  MAX_CHECK_ISSUES,
+  type CheckInput,
+  type CheckIssue,
+  type LetterCheck,
+  type QuestionAnswered,
+} from './writing/checker';
+export { editLetter, hasEditingPass, type EditInput } from './writing/editor';
+export { composeLetter, type ComposedLetter, type ComposeInput } from './writing/compose';
+export {
+  ledgerFor,
+  ledgerFromReader,
+  ledgerSchema,
+  recordTexture,
+  renderLedger,
+  type Ledger,
+  type LedgerEntry,
+  type TextureInput,
+} from './writing/ledger';
