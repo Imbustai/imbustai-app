@@ -1,0 +1,1 @@
+Lombardo aveva scritto (23/11): gli manda la nota della Procura sulla perizia del 1985 (Colasanti) e chiede che cosa successe prima della ricognizione del 3 giugno 1977. Racconta anche, per la prima volta, che cosa disse al Questore per finire sull'isola.
