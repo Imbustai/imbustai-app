@@ -51,6 +51,7 @@ export function hasEditingPass(language: string): boolean {
   return language in METHODS;
 }
 
+/** One Letter to reread, with what the editor must keep: the Character's voice and approved examples. */
 export interface EditInput {
   character: Pick<Correspondent, 'slug' | 'name' | 'kind'>;
   /** The Story's language, e.g. "it". */

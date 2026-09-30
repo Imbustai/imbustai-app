@@ -10,6 +10,7 @@ import { findPlotKeyCollisions } from './plotKeys';
 // editing pass (#37), all before the admin's review. Engines build the
 // prompts; this runs the sequence and meters every call through `ai`.
 
+/** The Engine's prompts and check material for one Character's Letter. */
 export interface ComposeInput {
   character: Pick<Correspondent, 'slug' | 'name' | 'kind'>;
   /** The Lead's name, e.g. "Giacomo Lombardo". */
@@ -26,6 +27,7 @@ export interface ComposeInput {
   edit?: { voice?: string; examples?: string };
 }
 
+/** One Letter ready for review, with every stage kept for the admin. */
 export interface ComposedLetter {
   /** What goes into the draft batch for review. */
   body: string;
@@ -37,6 +39,11 @@ export interface ComposedLetter {
   adminNotes: string[];
 }
 
+/**
+ * Writes one Character's Letter: draft, reply-rule check, at most one
+ * rewrite on `must` points in the writer's own conversation, then the
+ * editing pass. Every call is metered through `ai`.
+ */
 export async function composeLetter(ai: AiAccess, input: ComposeInput): Promise<ComposedLetter> {
   const { character } = input;
   const role = character.kind === 'person' ? 'writer' : 'clerk';

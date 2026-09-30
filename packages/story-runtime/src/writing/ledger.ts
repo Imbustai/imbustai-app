@@ -11,6 +11,7 @@ import type { ReaderNotes } from './reader';
 // Ledger in its per-Game state and adds to it in `applyTurn`, from the
 // reader's notes and the Letters as sent.
 
+/** One fact that reached a reader: who stated it, to whom, and in which Turn. */
 export interface LedgerEntry {
   turn: number;
   /** Who stated the fact: a Character, or the Lead. */
@@ -20,6 +21,7 @@ export interface LedgerEntry {
   fact: string;
 }
 
+/** A Game's whole Ledger, oldest first; plain JSON for the Engine state. */
 export type Ledger = LedgerEntry[];
 
 /** For an Engine's state schema. */
@@ -57,6 +59,7 @@ const textureSchema = z.object({
     .describe('Each new fact the Character states about its own life, habits, places or people, one per item'),
 });
 
+/** One sent Letter whose new Texture `recordTexture` records. */
 export interface TextureInput {
   turn: number;
   character: { slug: CharacterSlug; name: string };

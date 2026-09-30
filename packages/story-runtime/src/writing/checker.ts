@@ -42,9 +42,12 @@ const reportSchema = z.object({
   questionsAnswered: z.array(answeredSchema).describe("One entry per question in the reader's list"),
 });
 
+/** One rule break: the exact quote, the problem, and how the rewrite should fix it. */
 export type CheckIssue = z.infer<typeof issueSchema>;
+/** How the Letter answered one of the reader's questions. */
 export type QuestionAnswered = z.infer<typeof answeredSchema>;
 
+/** The checker's report on one Letter. */
 export interface LetterCheck {
   /** Plot-key collisions first, then the model's points. */
   issues: CheckIssue[];
@@ -53,6 +56,7 @@ export interface LetterCheck {
   mustFix: CheckIssue[];
 }
 
+/** Everything `checkLetter` checks one Letter against. */
 export interface CheckInput {
   character: Pick<Correspondent, 'slug' | 'name' | 'kind'>;
   /** The Lead's name, e.g. "Giacomo Lombardo". */

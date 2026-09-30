@@ -39,6 +39,7 @@ export type ReaderNotes = z.infer<typeof baseSchema>;
 export type ReaderResult<S extends z.AnyZodObject | undefined> = ReaderNotes &
   (S extends z.AnyZodObject ? { signals: z.infer<S> } : unknown);
 
+/** What `readPlayerLetter` reads: one Player Letter and the Letter it replies to. */
 export interface ReadInput<S extends z.AnyZodObject | undefined> {
   /** The Character the Letter is addressed to. */
   character: { slug: CharacterSlug; name: string };

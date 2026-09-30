@@ -30,6 +30,7 @@ export const reservedTermSchema = z.object({
   note: z.string().optional(),
 }) satisfies z.ZodType<ReservedTerm, z.ZodTypeDef, unknown>;
 
+/** One reserved term a Letter used without its Character knowing it. */
 export interface PlotKeyCollision {
   term: string;
   note?: string;
@@ -37,6 +38,7 @@ export interface PlotKeyCollision {
   quote: string;
 }
 
+/** Who wrote the Letter, the Story's reserved terms, and what that Character already knows. */
 export interface CollisionCheck {
   /** The Character whose Letter this is. */
   character: CharacterSlug;
