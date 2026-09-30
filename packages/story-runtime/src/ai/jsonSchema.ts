@@ -8,6 +8,7 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 // array-size constraints — zod still enforces those after parsing.
 // See the research in Imbustai/imbustai-app#17.
 
+/** JSON-schema document used as the provider response format. */
 export type JsonSchema = Record<string, unknown>;
 
 /** Keywords neither provider accepts in strict mode; zod checks them on the way back. */
@@ -30,8 +31,15 @@ const DROPPED_KEYWORDS = [
   'maxProperties',
 ];
 
+/** A zod shape cannot be represented by the shared strict structured-output subset. */
 export class UnsupportedSchemaError extends Error {}
 
+/**
+ * Convert a closed zod object to the providers' strict schema subset. Optional
+ * fields become required nullable fields; refinements remain zod's job on return.
+ * Throws UnsupportedSchemaError for open objects or unsupported shapes.
+ * @category Utilities
+ */
 export function strictJsonSchema(schema: z.ZodTypeAny): JsonSchema {
   const raw = zodToJsonSchema(schema, { $refStrategy: 'none', target: 'jsonSchema7' }) as JsonSchema;
   const root = strictify(raw, '$');

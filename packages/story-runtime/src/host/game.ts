@@ -13,7 +13,10 @@ import type {
 // from the cast, the admin edits only Letter bodies and Enclosures, and every
 // draft is re-validated after it changes. Persistence stays with the caller.
 
-/** The Player's contacts, named from the cast. */
+/**
+ * The Player's contacts, named from the cast.
+ * @category Utilities
+ */
 export function contactsOf<Data, State>(
   engine: Engine<Data, State>,
   view: GameView<Data, State>,
@@ -26,7 +29,10 @@ export function contactsOf<Data, State>(
   });
 }
 
-/** A draft Letter whose sender is not in the cast is an error. */
+/**
+ * A draft Letter whose sender is not in the cast is an error.
+ * @category Utilities
+ */
 export function unknownSenders<Data, State>(
   engine: Engine<Data, State>,
   story: Data,
@@ -43,7 +49,10 @@ export function unknownSenders<Data, State>(
     }));
 }
 
-/** The closing batch needs no reply, so it carries only Epilogues and Dispatches. */
+/**
+ * The closing batch needs no reply, so it carries only Epilogues and Dispatches.
+ * @category Utilities
+ */
 export function closingLetterKinds(draft: DraftBatch): Finding[] {
   return draft.letters
     .filter((letter) => letter.kind !== 'epilogue' && letter.kind !== 'dispatch')
@@ -58,6 +67,7 @@ export function closingLetterKinds(draft: DraftBatch): Finding[] {
 /**
  * Everything the admin sees beside a draft: the platform's checks, then the
  * Engine's. `closing` marks the batch `generateEpilogue` wrote.
+ * @category Utilities
  */
 export async function reviewDraft<Data, State>(
   engine: Engine<Data, State>,
@@ -80,6 +90,7 @@ export interface EnclosureEdit {
   body?: string;
 }
 
+/** Editable Letter body and keyed Enclosure text; senders, dates and effects stay Engine-owned. */
 export interface LetterEdit {
   key: string;
   body: string;
@@ -91,6 +102,7 @@ export interface LetterEdit {
  * by Letter key. An Enclosure is rewritten by its key (title and body); which
  * Enclosures a Letter carries, and their kind, stay the Engine's, like
  * `effects`, senders and dates.
+ * @category Utilities
  */
 export function applyLetterEdits(draft: DraftBatch, edits: LetterEdit[]): DraftBatch {
   const byKey = new Map(edits.map((e) => [e.key, e]));

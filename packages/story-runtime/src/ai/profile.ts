@@ -11,10 +11,13 @@ import type { CharacterSlug, Effort, ModelRole } from '../contract';
 
 /** Every role a profile maps. `player` serves Runs only; Engines never ask for it. */
 export type ProfileRole = ModelRole | 'player';
+/** All profile roles; player is reserved for Runs rather than Engine Hooks. */
 export const PROFILE_ROLES = ['writer', 'clerk', 'analyst', 'player'] as const satisfies readonly ProfileRole[];
 
+/** Accepted reasoning-effort settings; providers adapt them for the selected model. */
 export const EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max'] as const satisfies readonly Effort[];
 
+/** Model identifier and optional reasoning effort for a role. */
 export interface ModelChoice {
   /** A model id with a row in ai_model_pricing, which also names its provider. */
   model: string;
@@ -22,6 +25,7 @@ export interface ModelChoice {
   effort?: Effort;
 }
 
+/** Complete per-Game role assignments with optional Character-specific overrides. */
 export interface ModelProfile {
   roles: Record<ProfileRole, ModelChoice>;
   /**
@@ -49,6 +53,7 @@ const roleMapSchema = z
   })
   .strict();
 
+/** Validate a partial Story/admin/Run profile overlay, rejecting unknown keys. */
 export const modelProfilePatchSchema: z.ZodType<ModelProfilePatch> = z
   .object({
     roles: roleMapSchema.optional(),
@@ -56,6 +61,7 @@ export const modelProfilePatchSchema: z.ZodType<ModelProfilePatch> = z
   })
   .strict();
 
+/** Validate a complete profile: every role is required, Character overrides are optional. */
 export const modelProfileSchema: z.ZodType<ModelProfile> = z
   .object({
     roles: z

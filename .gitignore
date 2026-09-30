@@ -51,3 +51,6 @@ out
 **/.env
 .env.local
 .env*.local
+# Developer documentation (generated)
+apps/developer/.astro/
+apps/developer/src/content/docs/reference/

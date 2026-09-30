@@ -1,0 +1,74 @@
+---
+title: Maintain the developer docs
+description: Run the site, document exports and prepare static hosting.
+sidebar:
+  order: 3
+---
+
+## Local commands
+
+From the repository root, using Node 24 or newer and pnpm 10:
+
+```sh
+pnpm install
+pnpm dev:developer
+pnpm build:developer
+pnpm preview:developer
+pnpm test
+```
+
+The default local URL is `http://localhost:4321`. The build writes a static site
+to `apps/developer/dist/`. No Supabase connection or AI credentials are needed.
+Nx runs the app's pnpm scripts; alternatively run
+`pnpm --filter @imbustai/developer build` directly.
+
+## The documentation gate
+
+The build script is deliberately `typedoc --emit none && astro build`.
+`starlight-typedoc` renders the reference but does not run TypeDoc validation.
+Both steps read `apps/developer/typedoc.json`; keep one configuration.
+
+The gate requires doc comments on public Functions, Classes, Interfaces,
+Methods, TypeAliases, Variables and Enums in `@imbustai/story-runtime`.
+Hook call signatures are included. Plain data properties are not required,
+but document units, invariants and ownership when names are insufficient.
+It also rejects invalid documentation links and public signatures referring
+to unexported types.
+
+Use `/** ... */`, not `//`, for API documentation. Export types appearing in public
+signatures. Use `@category Hooks` for the contract and `@category Utilities` for
+helpers. Prefer named interfaces for zod-derived objects used in Hook signatures,
+so TypeDoc renders links instead of expanded anonymous shapes.
+
+```sh
+pnpm --filter @imbustai/developer check:api
+```
+
+When adding another documented package, add it explicitly to
+`packagesRequiringDocumentation`; otherwise TypeDoc may silently skip its checks.
+Keep the default TypeDoc router: the plugin's sidebar expects its directory names.
+
+## Authored and generated pages
+
+Edit guides in `apps/developer/src/content/docs/guides/` and the curated Engine list
+in `apps/developer/src/data/engines.ts`. Pages under `src/content/docs/reference/`
+are generated and ignored by git. Do not edit them. Restart the dev server after
+changing runtime sources to regenerate the reference; builds always regenerate it.
+
+Colours live in `src/styles/theme.css`, matching the Imbustai palette.
+This internal app uses Starlight theming and is exempt from the website's DS rules.
+
+## Hosting later
+
+Local use is the current scope. For a future Vercel project, select `apps/developer`
+as root and the Astro preset, enable source files outside the root directory,
+and use Node 24.x. Keep the default build command so Vercel runs `pnpm run build`
+including the validation gate. Enable Vercel Authentication for all deployments
+before sharing internal documentation. This app creates no hosting resources.
+
+## Why these versions?
+
+The pinned Astro 7.3, Starlight 0.42, starlight-typedoc 0.23 and TypeDoc 0.28 stack
+was verified in [the Starlight research](https://github.com/Imbustai/imbustai-app/blob/research/starlight-typedoc-developer-app/docs/research/starlight-typedoc-developer-app.md).
+TypeScript comes from the repository's 5.9 catalog; TypeDoc 0.28 does not support
+TypeScript 7. Recheck compatibility and the negative gate test when upgrading.

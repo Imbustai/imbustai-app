@@ -7,9 +7,11 @@
 import type { Effort } from '../contract';
 import type { JsonSchema } from './jsonSchema';
 
+/** Production vendor identifier used by provider lookup and the price table. */
 export type ProviderId = 'anthropic' | 'openai';
 
-interface ModelRequest {
+/** Resolved model, prompts, effort and optional cache prefix for a provider call. */
+export interface ModelRequest {
   model: string;
   effort?: Effort;
   /** Stable across calls (a Character's writer view): sent first and cached. */
@@ -20,11 +22,13 @@ interface ModelRequest {
   maxTokens?: number;
 }
 
+/** Model request with a named strict JSON schema for structured output. */
 export interface StructuredRequest extends ModelRequest {
   /** Named strict JSON schema the reply must match (see jsonSchema.ts). */
   format: { name: string; schema: JsonSchema };
 }
 
+/** Provider input for plain-text generation, without a response schema. */
 export type TextRequest = ModelRequest;
 
 /**
@@ -48,14 +52,18 @@ export interface StructuredResult {
   usage: CallUsage;
 }
 
+/** Generated text and the completed call's token usage. */
 export interface TextResult {
   output: string;
   usage: CallUsage;
 }
 
+/** Server-side vendor boundary; Engines reach it through HookContext.ai. */
 export interface AiProvider {
   readonly id: ProviderId | 'mock';
+  /** Return parsed JSON and usage; the access adapter validates it with zod. */
   generateStructured(request: StructuredRequest): Promise<StructuredResult>;
+  /** Return generated text and usage for the resolved model request. */
   generateText(request: TextRequest): Promise<TextResult>;
 }
 
@@ -74,6 +82,10 @@ export class IncompleteOutputError extends Error {
   }
 }
 
+/**
+ * Construct zero-token usage with provider/model attribution for test doubles.
+ * @category Utilities
+ */
 export const ZERO_USAGE = (provider: string, model: string): CallUsage => ({
   provider,
   model,
@@ -83,6 +95,7 @@ export const ZERO_USAGE = (provider: string, model: string): CallUsage => ({
   cache_read_input_tokens: 0,
 });
 
+/** Test callback producing raw structured output from a captured provider request. */
 export type MockHandler = (request: StructuredRequest) => unknown;
 
 /** Test/simulation provider: route by format name, or queue canned outputs. */
@@ -99,11 +112,13 @@ export class MockProvider implements AiProvider {
     this.handler = handler;
   }
 
+  /** Capture the request and return the handler output with zero-token usage. */
   async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     this.requests.push(request);
     return { output: this.handler(request), usage: ZERO_USAGE('mock', request.model) };
   }
 
+  /** Capture the text request and return the text handler output with zero-token usage. */
   async generateText(request: TextRequest): Promise<TextResult> {
     this.textRequests.push(request);
     return { output: this.textHandler(request), usage: ZERO_USAGE('mock', request.model) };

@@ -1,0 +1,23 @@
+{
+  "name": "@imbustai/developer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "check:api": "typedoc --emit none",
+    "build": "typedoc --emit none && astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.42.4",
+    "@imbustai/story-runtime": "workspace:*",
+    "astro": "7.3.5",
+    "starlight-typedoc": "0.23.1",
+    "typedoc": "0.28.20",
+    "typedoc-plugin-markdown": "4.13.1",
+    "typedoc-plugin-zod": "1.4.3"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

@@ -1,0 +1,21 @@
+---
+title: Engines
+description: The curated list of Imbustai Engines and their implementation status.
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+import { engines } from '../../data/engines';
+
+<CardGrid>
+  {engines.map((engine) => (
+    <Card title={`${engine.name} · ${engine.status}`}>
+      <p><code>{engine.id}</code></p>
+      <p>{engine.description}</p>
+      <p><a href={engine.source}>Source or development map</a></p>
+    </Card>
+  ))}
+</CardGrid>
+
+This list is maintained in `apps/developer/src/data/engines.ts`.
+The website's actual registry lives in `apps/website/lib/engines/index.ts`;
+adding an entry here does not make an Engine playable.

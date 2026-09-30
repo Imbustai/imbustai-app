@@ -1,0 +1,36 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": [
+    "../../packages/story-runtime/src/index.ts"
+  ],
+  "tsconfig": "../../packages/story-runtime/tsconfig.docs.json",
+  "plugin": [
+    "typedoc-plugin-zod"
+  ],
+  "excludeInternal": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "categoryOrder": [
+    "Hooks",
+    "Utilities",
+    "*"
+  ],
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": true
+  },
+  "requiredToBeDocumented": [
+    "Function",
+    "Class",
+    "Interface",
+    "Method",
+    "TypeAlias",
+    "Variable",
+    "Enum"
+  ],
+  "packagesRequiringDocumentation": [
+    "@imbustai/story-runtime"
+  ],
+  "treatValidationWarningsAsErrors": true
+}

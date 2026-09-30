@@ -27,11 +27,13 @@ export interface UsageRecord extends CallUsage {
   outcome: CallOutcome;
 }
 
+/** Game model profile, provider lookup, Turn attribution and retry policy. */
 export interface AiAccessOptions {
   profile: ModelProfile;
   /** The client that serves a model: the platform maps each model to its vendor. */
   providerFor(model: string): AiProvider;
   turn: number;
+  /** Receives usage for every completed attempt, including schema-validation retries. */
   onUsage?: (record: UsageRecord) => void;
   /** Extra attempts after a reply that fails the zod schema. */
   retries?: number;
@@ -57,6 +59,14 @@ function repairNote(issues: string): string {
   return `\n\nIMPORTANT: your previous reply did not satisfy the required schema (${issues}). Reply again with every field valid.`;
 }
 
+/**
+ * Build role/Character-aware AI access from a Game's model profile. Structured
+ * calls derive a strict JSON schema from zod, then validate the reply; zod
+ * failures get two extra attempts by default. Incomplete/refused output and
+ * provider errors propagate without retries. Reports usage for each completed
+ * or billed-incomplete attempt; pricing and Run budget policy belong to the host.
+ * @category Utilities
+ */
 export function createAiAccess(options: AiAccessOptions): AiAccess {
   const { profile, providerFor, turn, onUsage, retries = 2 } = options;
 

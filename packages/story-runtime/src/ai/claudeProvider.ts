@@ -26,10 +26,12 @@ function acceptsEffort(model: string): boolean {
   return !model.startsWith('claude-haiku-');
 }
 
+/** Server-side credentials; omitted API key falls back to ANTHROPIC_API_KEY. */
 export interface ClaudeProviderOptions {
   apiKey?: string;
 }
 
+/** Server-only Anthropic adapter for schema-constrained JSON and plain-text output. */
 export class ClaudeProvider implements AiProvider {
   readonly id = 'anthropic' as const;
   private readonly client: Anthropic;
@@ -41,6 +43,7 @@ export class ClaudeProvider implements AiProvider {
     this.client = new Anthropic({ apiKey: options.apiKey ?? process.env.ANTHROPIC_API_KEY });
   }
 
+  /** Parse a schema-constrained response; billed unusable output throws IncompleteOutputError. */
   async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     const { text, usage } = await this.send(request, { type: 'json_schema', schema: request.format.schema });
     try {
@@ -50,6 +53,7 @@ export class ClaudeProvider implements AiProvider {
     }
   }
 
+  /** Generate text with the requested model, effort and optional cached prefix. */
   async generateText(request: TextRequest): Promise<TextResult> {
     const { text, usage } = await this.send(request);
     return { output: text, usage };

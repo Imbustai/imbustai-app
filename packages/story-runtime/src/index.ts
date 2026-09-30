@@ -57,6 +57,8 @@ export {
 export { strictJsonSchema, UnsupportedSchemaError, type JsonSchema } from './ai/jsonSchema';
 export type {
   AiProvider,
+  MockHandler,
+  ModelRequest,
   CallUsage,
   ProviderId,
   StructuredRequest,
@@ -65,6 +67,6 @@ export type {
   TextResult,
 } from './ai/provider';
 export { IncompleteOutputError, MockProvider, ZERO_USAGE } from './ai/provider';
-export { ClaudeProvider } from './ai/claudeProvider';
-export { OpenAiProvider } from './ai/openAiProvider';
+export { ClaudeProvider, type ClaudeProviderOptions } from './ai/claudeProvider';
+export { OpenAiProvider, type OpenAiProviderOptions } from './ai/openAiProvider';
 export { createProviders, isProviderId, PROVIDER_IDS } from './ai/createProvider';

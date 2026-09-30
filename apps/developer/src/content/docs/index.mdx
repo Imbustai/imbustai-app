@@ -1,0 +1,20 @@
+---
+title: Build an Engine
+description: The Hooks, utilities and guides for Imbustai Engine authors.
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+An **Engine** owns a Story's data schema and the algorithm that plays it.
+The platform calls its **Hooks**, reviews its reply batches and delivers its Letters.
+
+<CardGrid>
+  <LinkCard title="Create an Engine" href="/guides/create-an-engine/" description="From data schemas to a registered package." />
+  <LinkCard title="Hooks" href="/reference/interfaces/engine/" description="The contract, generated from the runtime source." />
+  <LinkCard title="Runtime reference" href="/reference/" description="Dates, seeded random, AI access and review utilities." />
+  <LinkCard title="Engines" href="/engines/" description="The implemented Engine and the planned Voss Engine." />
+</CardGrid>
+
+The reference is rebuilt from `@imbustai/story-runtime` on every site build.
+Missing documentation on a public Hook or utility fails the build before Astro runs.
+See [maintaining these docs](/guides/maintaining-docs/) for local commands and the documentation gate.

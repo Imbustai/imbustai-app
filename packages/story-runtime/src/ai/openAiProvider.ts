@@ -32,10 +32,12 @@ function effortFor(model: string, effort: Effort): OpenAI.ReasoningEffort {
   return effort === 'max' ? tops : effort;
 }
 
+/** Server-side credentials; omitted API key falls back to OPENAI_API_KEY. */
 export interface OpenAiProviderOptions {
   apiKey?: string;
 }
 
+/** Server-only OpenAI Responses adapter; requests are stateless and not stored. */
 export class OpenAiProvider implements AiProvider {
   readonly id = 'openai' as const;
   private readonly client: OpenAI;
@@ -47,6 +49,7 @@ export class OpenAiProvider implements AiProvider {
     this.client = new OpenAI({ apiKey: options.apiKey ?? process.env.OPENAI_API_KEY });
   }
 
+  /** Parse strict JSON output; billed unusable replies throw IncompleteOutputError. */
   async generateStructured(request: StructuredRequest): Promise<StructuredResult> {
     const { text, usage } = await this.send(request, {
       type: 'json_schema',
@@ -61,6 +64,7 @@ export class OpenAiProvider implements AiProvider {
     }
   }
 
+  /** Generate text with model, effort and cache settings from the request. */
   async generateText(request: TextRequest): Promise<TextResult> {
     const { text, usage } = await this.send(request);
     return { output: text, usage };

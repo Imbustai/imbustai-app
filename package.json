@@ -18,7 +18,10 @@
     "test:watch": "vitest",
     "test:tryout-01": "vitest run apps/tryout-01",
     "sim:voss": "tsx scripts/simulate-voss.ts",
-    "verify:rls": "node scripts/verify-rls.mjs"
+    "verify:rls": "node scripts/verify-rls.mjs",
+    "dev:developer": "nx dev developer",
+    "build:developer": "nx build developer",
+    "preview:developer": "nx preview developer"
   },
   "private": true,
   "devDependencies": {
