@@ -2,6 +2,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Engine } from '@imbustai/story-runtime';
 import type { StoryRow } from '@/lib/types/db';
 import { classicEntry } from './classic';
+import { vossEntry } from './voss';
 
 // The Engines this website can play, keyed by stories.engine. Each entry says
 // where its Stories' data lives; the platform validates it with the Engine's
@@ -17,6 +18,7 @@ export interface EngineEntry {
 
 const ENGINES: Record<string, EngineEntry> = {
   [classicEntry.engine.id]: classicEntry,
+  [vossEntry.engine.id]: vossEntry,
 };
 
 export function engineEntryFor(engineId: string): EngineEntry {

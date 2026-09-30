@@ -1,0 +1,22 @@
+{
+  "name": "@imbustai/engine-voss",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "seed": "tsx seed/sync.ts"
+  },
+  "dependencies": {
+    "@imbustai/story-runtime": "workspace:*",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.49.0",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0"
+  }
+}
