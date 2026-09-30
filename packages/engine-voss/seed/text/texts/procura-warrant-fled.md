@@ -1,0 +1,1 @@
+… è stato emesso mandato di cattura nei confronti di Ferrante Aldo. Dagli accertamenti risulta che il medesimo si è imbarcato a Brindisi il 19 dicembre u.s. sul traghetto per Patrasso. È stata avviata la procedura per l'estradizione.

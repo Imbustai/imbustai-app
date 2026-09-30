@@ -84,6 +84,15 @@ export interface StoryRow {
   updated_at: string;
 }
 
+/** The Story document of an Engine that keeps it whole (engine-voss). Admin-only. */
+export interface StoryEngineDataRow {
+  story_id: string;
+  engine: string;
+  schema_version: number;
+  data: unknown;
+  updated_at: string;
+}
+
 export interface StoryCharacterRow {
   id: string;
   story_id: string;

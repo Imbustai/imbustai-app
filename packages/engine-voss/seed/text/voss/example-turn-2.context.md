@@ -1,0 +1,1 @@
+Lombardo aveva scritto (lettera del 28/9, riassunto): ha chiesto in cancelleria il fascicolo del processo Moretti; chiede se la Benvenuti è stata davvero avvisata e perché Voss non torna alla Mobile. Propone un'ipotesi: il vero rapinatore del 1977 sta eliminando i testimoni. Parla del vento dell'isola.

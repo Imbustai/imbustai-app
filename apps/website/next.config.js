@@ -13,7 +13,7 @@ const withVanillaExtract = createVanillaExtractPlugin({
  **/
 const nextConfig = {
   nx: {},
-  transpilePackages: ['@imbustai/i18n', '@imbustai/story-runtime', '@imbustai/engine-classic', '@imbustai/ds'],
+  transpilePackages: ['@imbustai/i18n', '@imbustai/story-runtime', '@imbustai/engine-classic', '@imbustai/engine-voss', '@imbustai/ds'],
 };
 
 const plugins = [withNx, withVanillaExtract];

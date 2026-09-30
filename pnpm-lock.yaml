@@ -68,6 +68,9 @@ importers:
       '@imbustai/engine-classic':
         specifier: workspace:*
         version: link:packages/engine-classic
+      '@imbustai/engine-voss':
+        specifier: workspace:*
+        version: link:packages/engine-voss
       '@imbustai/i18n':
         specifier: workspace:*
         version: link:packages/i18n
@@ -283,6 +286,25 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.49.0
         version: 2.99.2
+      tsx:
+        specifier: ^4.19.0
+        version: 4.22.0
+
+  packages/engine-voss:
+    dependencies:
+      '@imbustai/story-runtime':
+        specifier: workspace:*
+        version: link:../story-runtime
+      zod:
+        specifier: ^3.25.0
+        version: 3.25.76
+    devDependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.49.0
+        version: 2.99.2
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.0
       tsx:
         specifier: ^4.19.0
         version: 4.22.0
