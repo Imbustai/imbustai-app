@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import OpenAI from 'openai';
-import type { Effort } from '../contract';
+import type { Effort, Json } from '../contract';
 import {
   IncompleteOutputError,
   type AiProvider,
@@ -66,14 +66,14 @@ export class OpenAiProvider implements AiProvider {
 
   /** Generate text with model, effort and cache settings from the request. */
   async generateText(request: TextRequest): Promise<TextResult> {
-    const { text, usage } = await this.send(request);
-    return { output: text, usage };
+    const { text, usage, items } = await this.send(request);
+    return { output: text, usage, transcript: items };
   }
 
   private async send(
     request: TextRequest,
     format?: OpenAI.Responses.ResponseFormatTextJSONSchemaConfig,
-  ): Promise<{ text: string; usage: CallUsage }> {
+  ): Promise<{ text: string; usage: CallUsage; items: Json[] }> {
     const explicit = hasExplicitCache(request.model);
     const input: OpenAI.Responses.ResponseInputItem[] = [];
     if (request.cachedPrefix) {
@@ -89,12 +89,19 @@ export class OpenAiProvider implements AiProvider {
       });
     }
     input.push({ role: 'developer', content: request.system });
-    input.push({ role: 'user', content: request.user });
+    // A continuation resends the earlier items as returned; responses are not
+    // stored, so reasoning comes back encrypted and goes back in that way.
+    const turns: OpenAI.Responses.ResponseInputItem[] = [
+      ...((request.history ?? []) as unknown as OpenAI.Responses.ResponseInputItem[]),
+      { role: 'user', content: request.user },
+    ];
+    input.push(...turns);
 
     const response = await this.client.responses.create({
       model: request.model,
       input,
       store: false,
+      ...(format ? {} : { include: ['reasoning.encrypted_content' as const] }),
       max_output_tokens: request.maxTokens ?? DEFAULT_MAX_TOKENS,
       ...(request.effort ? { reasoning: { effort: effortFor(request.model, request.effort) } } : {}),
       ...(format ? { text: { format } } : {}),
@@ -113,7 +120,7 @@ export class OpenAiProvider implements AiProvider {
     if (refusal) throw new IncompleteOutputError('refusal', usage, refusal.refusal);
     const text = response.output_text;
     if (!text.trim()) throw new IncompleteOutputError('empty', usage);
-    return { text, usage };
+    return { text, usage, items: [...turns, ...response.output] as unknown as Json[] };
   }
 }
 

@@ -81,6 +81,18 @@ _Avoid_: flavour, filler
 **Ledger**:
 The per-Game record of every piece of Texture that reached the Player, so later Letters stay consistent with it.
 
+**Reader**:
+The `analyst` call that reads one Player Letter before a reply is written: the questions to answer, what the Lead says about himself, his actions and his hypotheses with their reasons, plus the Engine's own signals.
+_Avoid_: parser, extractor
+
+**Reply-rule checker**:
+The check every Character Letter passes before review: a deterministic Plot-key collision check, then an `analyst` call against the reply rules; only its *must* points trigger the one rewrite, which continues the writer's own conversation.
+_Avoid_: validator (that is `validateDraft`), critic
+
+**Editing pass**:
+A native editor's reread of every Letter in an Italian Story, after the checker and any rewrite and before review: form only, never content or voice.
+_Avoid_: proofreading, polish
+
 **Signature**:
 An optional authored trait of a Character that seeds its Texture; its showpiece use happens at most once per Story, so it never becomes a tic.
 _Avoid_: quirk, catchphrase

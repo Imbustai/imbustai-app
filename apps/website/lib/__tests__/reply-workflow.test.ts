@@ -134,6 +134,7 @@ function seed(lifecycle: 'testing' | 'released', game: Record<string, unknown> =
         cache_creation_input_tokens: 0,
         cache_read_input_tokens: 0,
       },
+      transcript: [],
     }),
   };
   for (const [provider, model, input, output, read, write] of PRICES) {

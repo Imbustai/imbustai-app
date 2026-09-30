@@ -1,4 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
+import type { Json } from '../contract';
 import {
   IncompleteOutputError,
   type AiProvider,
@@ -55,14 +56,14 @@ export class ClaudeProvider implements AiProvider {
 
   /** Generate text with the requested model, effort and optional cached prefix. */
   async generateText(request: TextRequest): Promise<TextResult> {
-    const { text, usage } = await this.send(request);
-    return { output: text, usage };
+    const { text, usage, messages } = await this.send(request);
+    return { output: text, usage, transcript: messages };
   }
 
   private async send(
     request: TextRequest,
     format?: Anthropic.JSONOutputFormat,
-  ): Promise<{ text: string; usage: CallUsage }> {
+  ): Promise<{ text: string; usage: CallUsage; messages: Json[] }> {
     const system: Anthropic.TextBlockParam[] = [];
     if (request.cachedPrefix) {
       system.push({ type: 'text', text: request.cachedPrefix, cache_control: { type: 'ephemeral' } });
@@ -73,13 +74,20 @@ export class ClaudeProvider implements AiProvider {
     if (format) outputConfig.format = format;
     if (request.effort && acceptsEffort(request.model)) outputConfig.effort = request.effort;
 
+    // A continuation resends the earlier turns as returned, thinking blocks
+    // and their signatures included, so the model reasons from its own draft.
+    const messages: Anthropic.MessageParam[] = [
+      ...((request.history ?? []) as unknown as Anthropic.MessageParam[]),
+      { role: 'user', content: request.user },
+    ];
+
     // Streamed so long thinking plus a long Letter never hits the HTTP timeout.
     const message = await this.client.messages
       .stream({
         model: request.model,
         max_tokens: request.maxTokens ?? DEFAULT_MAX_TOKENS,
         system,
-        messages: [{ role: 'user', content: request.user }],
+        messages,
         ...(Object.keys(outputConfig).length > 0 ? { output_config: outputConfig } : {}),
       })
       .finalMessage();
@@ -94,7 +102,8 @@ export class ClaudeProvider implements AiProvider {
       .map((block) => block.text)
       .join('');
     if (!text.trim()) throw new IncompleteOutputError('empty', usage);
-    return { text, usage };
+    const reply: Anthropic.MessageParam = { role: 'assistant', content: message.content as Anthropic.ContentBlockParam[] };
+    return { text, usage, messages: [...messages, reply] as unknown as Json[] };
   }
 }
 
