@@ -229,7 +229,7 @@ const correspondents = [
   }),
   office('stato_civile', 'Ufficio di Stato Civile del Comune di Roma', 'Ufficio pubblico', 'Via Luigi Petroselli, Roma', 'stato-civile', {
     replyWeeks: 2,
-    holds: ['stato_civile_morte_luca', 'stato_civile_nascita_luca', 'stato_civile_matrimonio_ferrante_pace'],
+    holds: ['stato_civile_morte_luca', 'stato_civile_nascita_luca', 'stato_civile_morte_rosa'],
     forwardsTo: null,
   }),
   office('cancelleria', "Cancelleria della Corte d'Assise di Roma", 'Archivio del Tribunale', 'Piazzale Clodio, Roma', 'cancelleria', {
@@ -328,7 +328,7 @@ const documents = [
   doc('anagrafe_residenza_ferrante', 'anagrafe', 'Certificato di residenza di Ferrante Aldo', [['aldo_name']], { evidence: 'P2' }),
   doc('stato_civile_morte_luca', 'stato_civile', 'Estratto dell\'atto di morte di Moretti Luca', LUCA, { clues: ['K12'] }),
   doc('stato_civile_nascita_luca', 'stato_civile', 'Estratto dell\'atto di nascita di Moretti Luca', LUCA),
-  doc('stato_civile_matrimonio_ferrante_pace', 'stato_civile', 'Estratto dell\'atto di matrimonio Ferrante–Pace (1968)', [['rosa_pace'], ['aldo_name']], { evidence: 'P3', clues: ['K1'] }),
+  doc('stato_civile_morte_rosa', 'stato_civile', 'Estratto dell\'atto di morte di Pace Rosa', [['rosa_pace']]),
   doc('cancelleria_sentenza', 'cancelleria', 'Sentenza della Corte d\'Assise di Roma del 14 marzo 1978', TRIAL),
   doc('cancelleria_ricognizioni', 'cancelleria', 'Verbali di ricognizione personale del 3 giugno 1977', TRIAL),
   doc('cancelleria_verbale_arresto', 'cancelleria', 'Verbale d\'arresto del 23 maggio 1977', TRIAL),
@@ -402,7 +402,7 @@ const calendar = {
 
 const plotKeys = [
   { key: 'ricci_robbery', fact: 'Venerdì 20 maggio 1977, verso le 19:40: rapina alla tabaccheria di Ettore Ricci, 63 anni, vedovo, in via Tiburtina (San Lorenzo), a due passi da piazza dei Sanniti. Un colpo di revolver .38 al petto; bottino circa 240.000 lire. Il rapinatore: un giovane sui vent\'anni, capelli scuri ricci, parka verde, sciarpa sul viso; fugge a piedi verso via dei Volsci. Arma mai trovata nel 1977.' },
-  { key: 'luca', fact: 'Luca Moretti, nato a Roma il 18 giugno 1957; padre Bruno Moretti (operaio edile, morto sul lavoro nel 1966), madre Rosa Pace (nata a Roma il 4 aprile 1932, morta di tumore il 9 marzo 1985). Nel 1977 vive con la madre e il patrigno in via dei Sabelli, San Lorenzo; garzone nell\'officina del meccanico Proietti in via dei Volsci. Denunciato nel 1976 per il furto di un ciclomotore: per questo esiste la sua foto segnaletica. Alibi: «ero al cinema Palazzo, da solo». È innocente.' },
+  { key: 'luca', fact: 'Luca Moretti, nato a Roma il 18 giugno 1957; padre Bruno Moretti (operaio edile, morto sul lavoro nel 1966), madre Rosa Pace (nata a Roma il 4 aprile 1932, morta di tumore il 9 marzo 1985). Nel 1977 vive con la madre e con Aldo Ferrante, il compagno di lei, in via dei Sabelli, San Lorenzo; garzone nell\'officina del meccanico Proietti in via dei Volsci. Denunciato nel 1976 per il furto di un ciclomotore: per questo esiste la sua foto segnaletica. Alibi: «ero al cinema Palazzo, da solo». È innocente.' },
   { key: 'voss_photo', fact: 'Sabato 21 maggio 1977, sera, commissariato di San Lorenzo: la guardia di PS Voss, 23 anni, mostra ai tre testimoni insieme, nella stessa stanza, la foto segnaletica di Luca («Questo ha già precedenti. Guardate bene.»), poi dice loro di non parlarne. Mai verbalizzato.' },
   { key: 'luca_arrest', fact: 'Lunedì 23 maggio 1977, ore 8: Luca arrestato all\'officina di via dei Volsci dalle guardie Voss e Nando Pierangeli, che firmano il verbale. Aldo è in servizio sul notturno Roma–Reggio Calabria e rientra solo il pomeriggio: Voss non lo vede mai. Il pomeriggio Rosa grida per un\'ora nel corridoio del commissariato.' },
   { key: 'lineup', fact: 'Venerdì 3 giugno 1977: ricognizione formale davanti al giudice istruttore dott. Paolo Remondini (morto nel 1983), tre atti separati, difensore d\'ufficio avv. Guido Sestili. I tre testimoni giurano di non aver visto fotografie (falso) e riconoscono Luca in una fila di quattro.' },
@@ -412,7 +412,7 @@ const plotKeys = [
   { key: 'ballistics_1985', fact: 'Ottobre 1984: arrestato Renato Colasanti con un revolver S&W .38 Special. Gennaio 1985: il proiettile Ricci corrisponde. Chi sparò nel 1977 non si può provare, e il gioco non lo risolve. 26 gennaio 1985: trafiletto di Paese Sera.' },
   { key: 'aldo_petition', fact: '14 febbraio 1985: istanza di Aldo Ferrante alla Procura per riabilitare Luca; 30 aprile 1985: diniego (reato estinto).' },
   { key: 'teacher_letter', fact: '2 novembre 1986: Clara Benvenuti scrive a «Signora Rosa Moretti, via dei Sabelli»: la foto, loro tre nella stanza, «una guardia giovane, alta, biondiccia, con un cognome tedesco, che ci disse di non dirlo». Chiede perdono. La apre Aldo. Il nome Voss Aldo lo prende dal verbale d\'arresto.' },
-  { key: 'aldo', fact: 'Aldo Ferrante, nato a Roma (Testaccio) il 12 agosto 1926. Capotreno FS in pensione dal 1981. Sposa Rosa Pace il 12 ottobre 1968 (Luca ha 11 anni). Vedovo, nessun parente vivo. Ama Verdi e fischietta «La donna è mobile» senza accorgersene. Gioca bene a scacchi e «si lascia battere quando serve». Nessun precedente, quindi nessun cartellino. Vuole che la storia di Luca venga detta: se arrestato e qualcuno gli nomina Luca, confessa.' },
+  { key: 'aldo', fact: 'Aldo Ferrante, nato a Roma (Testaccio) il 12 agosto 1926. Capotreno FS in pensione dal 1981. Dal 1968 vive con Rosa Pace, vedova Moretti, senza mai sposarla, e cresce Luca, che ha 11 anni, come un figlio: una famiglia felice. Nel quartiere è «il marito di Rosa», lui stesso la chiama «mia moglie» e oggi si dice vedovo; per la legge è soltanto il convivente, e nessun atto di stato civile lo lega a Rosa o a Luca. Nessun parente vivo. Ama Verdi e fischietta «La donna è mobile» senza accorgersene. Gioca bene a scacchi e «si lascia battere quando serve». Nessun precedente, quindi nessun cartellino. Vuole che la storia di Luca venga detta: se arrestato e qualcuno gli nomina Luca, confessa.' },
   { key: 'aldo_registry', fact: 'Gennaio 1987 (il 14): all\'Anagrafe di via Petroselli Aldo chiede i certificati di residenza di Cortesi, Ferri, Benvenuti e Voss, mostrando la sua carta d\'identità, trascritta a registro.' },
   { key: 'aldo_residence', fact: 'Dal 16 febbraio 1987 Aldo abita in una stanza in affitto in via Giacinto Carini, Monteverde, a 150 metri dal bar di Voss; residenza trasferita regolarmente.' },
   { key: 'chess', fact: 'Voss abita in via Fratelli Bonnet, Monteverde Vecchio, secondo piano, sopra il bar-tabacchi di Mario. Aldo compare al bar a fine febbraio 1987; da marzo giocano a scacchi ogni giovedì, dalle 21 alle 23.' },
@@ -420,7 +420,7 @@ const plotKeys = [
   { key: 'murders_1987', fact: 'Delitto 1, giovedì 18 giugno 1987 (compleanno di Luca), ~20:30: Silvano Cortesi, 58, retrobottega della farmacia, gruppo A; Aldo bussa al retro per un farmaco urgente. Delitto 2, giovedì 3 settembre, ~23:00: Ottavio Ferri, 49, pianerottolo del 4° piano di via Lanciani 42, gruppo 0; Aldo aveva svitato la lampadina nel pomeriggio, scende fischiettando. Delitto 3, giovedì 22 ottobre, ~21:00: Clara Benvenuti, 41, soggiorno alla Garbatella, gruppo B; «Sono il marito di Rosa. Ho letto la sua lettera.» Due tazzine, una non toccata.' },
   { key: 'cancellations', fact: 'Aldo disdice gli scacchi nelle sere dei delitti: 18 giugno «la schiena», 3 settembre «al Verano, da mia moglie» (ci va davvero, di pomeriggio), 22 ottobre «viene a trovarmi mio nipote» (bugia: ha sempre detto di non avere nessuno).' },
   { key: 'fingerprint', fact: 'Un\'impronta parziale di pollice sulla base di un lumino della scena 2: 12 punti, confrontabile solo con il cartellino di un nome.' },
-  { key: 'mobile_dismissal', fact: 'Venerdì 4 settembre 1987 Voss riconosce il nome di Ferri e lo dice al dott. Palumbo, che manda un appunto alla Mobile. Sabato 5 la Mobile (dott. Rinaldi) risponde per telefono: controllato con una telefonata al commissariato di San Lorenzo, «la famiglia è tutta morta», coincidenza; la Benvenuti «sensibilizzata» dalla Garbatella. Il patrigno non esce. Dopo il delitto 3 la Mobile cerca in silenzio gli amici di Luca a San Lorenzo; in pubblico resta la setta.' },
+  { key: 'mobile_dismissal', fact: 'Venerdì 4 settembre 1987 Voss riconosce il nome di Ferri e lo dice al dott. Palumbo, che manda un appunto alla Mobile. Sabato 5 la Mobile (dott. Rinaldi) risponde per telefono: controllato con una telefonata al commissariato di San Lorenzo, «la famiglia è tutta morta», coincidenza; la Benvenuti «sensibilizzata» dalla Garbatella. Il compagno di Rosa non esce: sulla carta non è un familiare. Dopo il delitto 3 la Mobile cerca in silenzio gli amici di Luca a San Lorenzo; in pubblico resta la setta.' },
   { key: 'lattanzi', fact: 'Martedì 10 novembre 1987 la Mobile ferma Enzo Lattanzi, 34 anni, capo di un gruppetto esoterico di Tor Pignattara, per droga, e lo indica alla stampa come sospettato. Falsa pista; scarcerato a fine gennaio 1988.' },
   { key: 'anselmi', fact: 'Titolare dell\'inchiesta sui delitti del 1987: il sostituto procuratore dott. Corrado Anselmi.' },
   { key: 'aldo_escape', fact: 'Inizio dicembre: Aldo prenota una cuccetta sul notturno Roma–Brindisi di venerdì 18 dicembre e il traghetto per Patrasso. Il pomeriggio del 17 brucia nella stufa la lettera della maestra e la risposta della Procura del 1985. Nella stanza: la chiave quadra pulita male (sangue A e B), quattro lumini nuovi, la prenotazione.' },
@@ -438,7 +438,7 @@ const reserved = [
   { patterns: ['Sabelli'], kind: 'street', plotKey: 'luca', allowedFor: ['anagrafe', 'cancelleria', 'procura', 'regina_coeli'] },
   { patterns: ['Rosa Pace', 'Pace Rosa', 'signora Pace'], kind: 'person', plotKey: 'luca', allowedFor: ['anagrafe', 'stato_civile', 'cancelleria', 'procura', 'regina_coeli'] },
   { patterns: ['Bruno Moretti', 'Moretti Bruno'], kind: 'person', plotKey: 'luca', allowedFor: ['stato_civile'] },
-  { patterns: ['patrigno'], kind: 'person', plotKey: 'aldo', allowedFor: ['regina_coeli', 'procura'] },
+  { patterns: ['patrigno'], kind: 'person', plotKey: 'aldo', allowedFor: ['procura'] },
   { patterns: ['capotreno', 'ferroviere', 'ferrovieri'], kind: 'object', plotKey: 'aldo', allowedFor: ['voss', 'anagrafe', 'stato_civile', 'ferrovie', 'procura'] },
   { patterns: ['chiave quadra', 'chiave da carrozza'], kind: 'object', plotKey: 'method', allowedFor: [] },
   { patterns: ['Rigoletto', 'La donna è mobile'], kind: 'object', plotKey: 'aldo', allowedFor: ['voss', 'adelaide'] },
@@ -468,7 +468,7 @@ const reserved = [
 // ─── Clues ──────────────────────────────────────────────────────────────────
 
 const clues = [
-  { key: 'K1', clue: '«La famiglia è tutta morta»: vero sulla carta sbagliata (manca il patrigno).', from: ['voss', 'mobile'], firstBatch: 0, reapproach: [{ batch: 2, how: 'Voss: Rosa che grida da sola nel corridoio.' }, { batch: 4, how: 'Il registro dei colloqui: «chi andava a trovare Luca».' }, { batch: 5, how: "La porta dell'Anagrafe." }], understoodWhen: 'Chiede se Rosa si era risposata o chi viveva con Luca, oppure chiede atti di famiglia a un ufficio.', unlocks: "La scala dell'assassino può salire al gradino 1." },
+  { key: 'K1', clue: '«La famiglia è tutta morta»: vero sulla carta (Aldo e Rosa non erano sposati), falso nella vita: manca l\'uomo che ha cresciuto Luca.', from: ['voss', 'mobile'], firstBatch: 0, reapproach: [{ batch: 2, how: 'Voss: Rosa che grida da sola nel corridoio.' }, { batch: 4, how: 'Il registro dei colloqui: «chi andava a trovare Luca».' }, { batch: 5, how: "La porta dell'Anagrafe." }], understoodWhen: 'Chiede se Rosa si era risposata o chi viveva con Luca, oppure chiede atti di famiglia a un ufficio.', unlocks: "La scala dell'assassino può salire al gradino 1." },
   { key: 'K2', clue: 'Aldo è un ex capotreno, vedovo, «nessuno al mondo».', from: ['voss'], firstBatch: 1, reapproach: [{ batch: null, how: 'Solo a richiesta.' }], understoodWhen: 'Collega «capotreno» al Ferrante Aldo di un atto (l\'attestazione dell\'Anagrafe, P3).', unlocks: 'Il legame di P3 con l\'Aldo degli scacchi; la metà di K5.' },
   { key: 'K3', clue: 'Giovedì 18 giugno Aldo disdice gli scacchi: «la schiena».', from: ['voss'], firstBatch: 2, reapproach: [{ batch: 4, how: 'Accanto al nipote: «è la seconda volta che mi dà buca per un motivo di famiglia».' }], understoodWhen: 'Nota che le disdette cadono nelle sere dei delitti.', unlocks: 'Voss elenca le tre date quando gli vengono chieste: P8.' },
   { key: 'K4', clue: 'Giovedì 3 settembre Aldo disdice: «al Verano, da sua moglie».', from: ['voss'], firstBatch: 3, reapproach: [{ batch: 5, how: 'Ripresa da un altro lato.' }], understoodWhen: 'Come K3. Arriva nel batch 1 se Lombardo chiede dov\'era Voss quella sera.', unlocks: 'Come K3.' },
@@ -514,7 +514,7 @@ const aldoThread = [
 const evidence = [
   { key: 'P1', name: "Registro delle richieste all'Anagrafe con il documento di Ferrante", weight: 3, weightIfVossDead: null, proves: ['cortesi', 'ferri', 'benvenuti'], howObtained: "Anagrafe, nominando le vittime.", note: null },
   { key: 'P2', name: 'Residenza di Aldo a 150 metri da Voss', weight: 1, weightIfVossDead: null, proves: [], howObtained: "Anagrafe, con il nome di Aldo.", note: null },
-  { key: 'P3', name: 'Aldo patrigno di Luca', weight: 2, weightIfVossDead: null, proves: [], howObtained: "Attestazione dell'Anagrafe, certificato del 1977 negli atti del processo, oppure atto di matrimonio Ferrante–Pace.", note: 'Il movente.' },
+  { key: 'P3', name: 'Aldo ha cresciuto Luca: viveva con Rosa e con lui', weight: 2, weightIfVossDead: null, proves: [], howObtained: "Attestazione dell'Anagrafe (Aldo convivente, Luca figlio della convivente), oppure certificato del 1977 negli atti del processo.", note: 'Il movente.' },
   { key: 'P4', name: 'Istanza di Aldo del 1985 e diniego della Procura', weight: 1, weightIfVossDead: null, proves: [], howObtained: 'Procura.', note: 'Il movente.' },
   { key: 'P5', name: 'Lettera della maestra (1986)', weight: 2, weightIfVossDead: null, proves: ['benvenuti'], howObtained: 'Solo con una perquisizione prima del 17 dicembre: il pomeriggio del 17 Aldo la brucia.', note: null },
   { key: 'P6', name: 'Chiave quadra con sangue di gruppo A e B', weight: 3, weightIfVossDead: null, proves: ['cortesi', 'benvenuti'], howObtained: 'Con la perquisizione, o in tasca ad Aldo il 17.', note: 'Nel Finale 3 non c\'è: la chiave è nel Tevere.' },
@@ -594,7 +594,7 @@ const voss = {
       before: null,
       steps: [
         { step: 0, stance: '«Un giovane: un amico di Luca, uno del giro di San Lorenzo.»', requires: null, fromBatch: 0 },
-        { step: 1, stance: '«Uno della famiglia.» (Ma la famiglia, per quel che sa, è tutta morta.)', requires: "Qualcuno nella casa di Rosa, argomentato con un fatto: l'atto di matrimonio, l'attestazione dell'Anagrafe, il registro dei colloqui, il certificato negli atti, oppure la lettera della maestra mai tornata indietro. L'uomo col cappello (K10) aiuta, ma da solo non basta.", fromBatch: 2 },
+        { step: 1, stance: '«Uno della famiglia.» (Ma la famiglia, per quel che sa, è tutta morta.)', requires: "Qualcuno nella casa di Rosa, argomentato con un fatto: l'attestazione dell'Anagrafe, il registro dei colloqui, il certificato negli atti, oppure la lettera della maestra mai tornata indietro. L'uomo col cappello (K10) aiuta, ma da solo non basta.", fromBatch: 2 },
         { step: 2, stance: '«Aldo.»', requires: "Una prova su Aldo (P1, P2, P3 o P9) e un argomento che la leghi all'Aldo degli scacchi.", fromBatch: 4 },
       ],
       atTop: 'Ha paura e chiede a Lombardo che cosa fare. Da quel momento non resta mai solo con Aldo. Se Lombardo gli dice di parlarne con Palumbo, lo fa (alla Mobile no, al suo dirigente sì). In ogni caso, se il 17 Aldo bussa, Voss chiama i colleghi.',

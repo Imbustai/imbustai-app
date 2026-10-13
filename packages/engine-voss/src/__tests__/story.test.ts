@@ -79,3 +79,25 @@ describe('Paolo\'s review of the texts (PR #50)', () => {
     }
   });
 });
+
+describe('Aldo and Rosa were never married (Paolo, PR #50)', () => {
+  const story = vossStorySchema.parse(buildVossStory());
+
+  it('no office document records a marriage or calls Aldo her husband or Luca\'s stepfather', () => {
+    for (const doc of story.documents) {
+      expect(doc.text, doc.key).not.toMatch(/matrimonio|moglie|patrigno|coniugat/i);
+    }
+  });
+
+  it('Rosa\'s death record says only that she was Bruno Moretti\'s widow', () => {
+    const rosa = story.documents.find((d) => d.key === 'stato_civile_morte_rosa')!;
+    expect(rosa.text).toContain('vedova di MORETTI Bruno');
+    expect(rosa.text).not.toContain('FERRANTE');
+  });
+
+  it('the family sheets show him as the convivente', () => {
+    for (const key of ['anagrafe_attestazione_sabelli', 'cancelleria_stato_famiglia_1977']) {
+      expect(story.documents.find((d) => d.key === key)!.text).toContain('PACE Rosa, nata a Roma il 4 aprile 1932, convivente');
+    }
+  });
+});
