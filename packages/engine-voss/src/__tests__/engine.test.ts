@@ -3,6 +3,7 @@ import type { AiAccess, GameView } from '@imbustai/story-runtime';
 import { createHookContext } from '@imbustai/story-runtime';
 import { buildVossStory } from '../../seed/story';
 import { vossEngine, type VossState } from '../engine';
+import { initialState } from '../mechanics/state';
 import type { VossStory } from '../schema';
 
 const story = vossEngine.schema.data.parse(buildVossStory());
@@ -60,7 +61,7 @@ describe('engine-voss', () => {
     const view: GameView<VossStory, VossState> = {
       gameId: 'g1',
       story,
-      state: vossEngine.schema.state.parse({}),
+      state: initialState(story),
       turn: 1,
       history: [],
       submission: [],
