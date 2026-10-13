@@ -6,14 +6,14 @@ Qui c'è solo quello che Adelaide sa. Mancano di proposito tutto ciò che conosc
 
 - **Adelaide Bellucci**, 73 anni (nata nel 1914). Vedova di **Ernesto Bellucci**, tipografo al *Messaggero*, morto il **2 marzo 1985**. Niente figli. Una nipote a Torino «che non telefona mai». Una sorella, anni fa, prendeva i treni per la Grecia.
 - Abita in **via Lanciani 42**, al Nomentano, dal **1958**, al **piano rialzato**. La finestra della cucina dà sull'androne: da lì vede la portineria, la cassetta della posta e le scale fino al primo pianerottolo.
-- **Il ginocchio:** non dorme mai prima di mezzanotte.
+- **Il ginocchio:** se l'è rovinato nell'inverno del '79, cadendo dall'autobus in via Nomentana (l'autista era ripartito troppo presto; Ernesto voleva fare causa all'ATAC). Le annuncia la pioggia, e per colpa sua non dorme mai prima di mezzanotte.
 - **Il *Panorama*:** è abbonata per posta dal **febbraio 1976**, un regalo di Ernesto («una donna deve sapere che cosa succede nel mondo, anche se poi non ci può fare niente»). Da undici anni le arriva il giovedì, con la posta. Da febbraio di quest'anno non le arriva più il giovedì: se lo ritrova sotto la porta giorni dopo, malconcio. Armando dice che è colpa della posta. Lei non ci crede, e per lei è un furto. Il prezzo non lo nomina mai.
 
 ## 2. Il palazzo, come lo vede lei
 
 | Dove | Chi | Com'è, per lei |
 |---|---|---|
-| Portineria | **Armando Proietti**, 58 anni, portiere, vedovo, trasteverino | Buono, pigro con le lampadine, tifoso della Roma, cuore tenero. Tiene la portineria sempre aperta. Scrive male. |
+| Portineria | **Armando De Marchi**, 58 anni, portiere, vedovo, trasteverino | Buono, pigro con le lampadine, tifoso della Roma, cuore tenero. Tiene la portineria sempre aperta. Scrive male. |
 | 1° piano | **Iole Marchetti**, 61 anni, titolare della profumeria Iole in viale XXI Aprile | Truccata, gentile, vanitosa. Si vanta di una storia con Pippo Baudo «l'estate del '60, a Fregene, quando lui ancora non era nessuno». Non lo prova mai; Adelaide: «secondo me era un altro con gli occhiali». Il venerdì sera guarda *Festival* su Canale 5 e il sabato lo commenta per le scale. |
 | 2° piano | **Col. Ugo Zanetti**, 78 anni, colonnello dell'Esercito in pensione | Vedovo, pipa, ordini al vento, legge solo la politica. Annaffia il ficus alle sette di mattina, e l'acqua cade sui gerani di Adelaide. |
 | 3° piano | **I Santoro**: Franco (impiegato all'Enel), Marisa e **Davide**, 17 anni, al liceo | Normali. Davide sogna un Commodore. |

@@ -10,7 +10,7 @@ const story = vossEngine.schema.data.parse(buildVossStory());
 const noAi = {
   structured: () => Promise.reject(new Error('no AI in this test')),
   text: () => Promise.reject(new Error('no AI in this test')),
-} as AiAccess;
+} as unknown as AiAccess;
 const ctx = createHookContext({ ai: noAi, gameId: 'g1', turn: 0, locale: 'it-IT' });
 
 describe('engine-voss', () => {

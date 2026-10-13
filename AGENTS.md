@@ -56,10 +56,17 @@ pnpm build:website
 pnpm test                 # Vitest (root)
 pnpm typecheck            # tsc for the runtime, the Engines and the website
 pnpm lint                 # ESLint for the website
-pnpm supabase db push     # Apply new migrations to the linked database
 ```
 
-**Migrations go through the CLI.** Apply them with `pnpm supabase db push`: it records each file under its own version, which keeps the database's migration history equal to `supabase/migrations/`. The Supabase connector's `apply_migration` and the dashboard's SQL editor record the current time instead, so the next `db push` re-runs old files and fails. The first push from a checkout needs `pnpm supabase link --project-ref qzturtjtcxlgfiumnfvq` (the dev project; it asks for the database password).
+**Apply migrations yourself; never ask Paolo to log in, link or push.** Agents have no Supabase login or database password, and need none: use the Supabase connector on the dev project `qzturtjtcxlgfiumnfvq`.
+
+1. If `get_project` says the project is paused (`INACTIVE`), call `restore_project` and wait for `ACTIVE_HEALTHY`.
+2. Compare `list_migrations` with `supabase/migrations/`. A new file's version must be later than every version in both.
+3. Apply each pending file with `execute_sql`, in one transaction that also records it the way `supabase db push` does:
+   `begin; <the file> insert into supabase_migrations.schema_migrations (version, name, statements) values ('<version>', '<name>', array[$mig$<the file>$mig$]); commit;`
+4. Check `list_migrations` again.
+
+Never use the connector's `apply_migration` or the dashboard's SQL editor: they record the current time as the version, and the history stops matching `supabase/migrations/`. Paolo can still run `pnpm supabase db push` himself; both paths write the same history.
 
 ## Design System — Hard Rules
 

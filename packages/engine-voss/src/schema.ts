@@ -363,6 +363,10 @@ const fixedTextSchema = z.object({
   text: md,
   /** Changes by state, each one a short instruction or a replacement. */
   variants: z.array(z.object({ when: md, change: md })).default([]),
+  /** Enclosures that travel with it, as the Player receives them. */
+  enclosures: z
+    .array(z.object({ key: slug, kind: z.enum(['document', 'clipping']), title: z.string().min(1), body: md }))
+    .default([]),
 });
 
 const openingSchema = z.object({
@@ -393,7 +397,6 @@ export const vossStorySchema = z
     panorama: z.object({
       clues: z.array(panoramaClueSchema),
       deduction: md,
-      calendarEnclosure: md,
     }),
     aldoThread: z.array(aldoThreadSchema),
     evidence: z.array(evidenceSchema),

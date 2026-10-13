@@ -1,7 +1,8 @@
 /**
  * Syncs the Voss Story to a database: validates the Story document, then
- * upserts the stories row (engine-voss, testing, unpublished) and its
- * story_engine_data document. Idempotent; keyed on the slug.
+ * creates the stories row on the first run (engine-voss, testing,
+ * unpublished) and upserts its story_engine_data document. Run it again
+ * after every edit to seed/: later runs leave the admin's fields alone.
  *
  *   pnpm --filter @imbustai/engine-voss seed
  *
@@ -61,11 +62,23 @@ async function main() {
   if (!url || !key) throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY (env or apps/website/.env).');
   const db = createClient(url, key, { auth: { persistSession: false } });
 
-  const { data: row, error: rowError } = await db
+  // First run: create the row. Later runs (after every edit to seed/text):
+  // touch only what the seed owns, so the admin's title, price, publishing,
+  // lifecycle and model profile survive.
+  const { data: existing, error: findError } = await db
     .from('stories')
-    .upsert(STORY_ROW, { onConflict: 'slug' })
     .select('id')
-    .single();
+    .eq('slug', STORY_ROW.slug)
+    .maybeSingle();
+  if (findError) throw new Error(`stories: ${findError.message}`);
+  const { data: row, error: rowError } = existing
+    ? await db
+        .from('stories')
+        .update({ engine: STORY_ROW.engine, settings: STORY_ROW.settings, time_config: STORY_ROW.time_config })
+        .eq('id', existing.id)
+        .select('id')
+        .single()
+    : await db.from('stories').insert(STORY_ROW).select('id').single();
   if (rowError) throw new Error(`stories: ${rowError.message}`);
 
   const { error: docError } = await db.from('story_engine_data').upsert(

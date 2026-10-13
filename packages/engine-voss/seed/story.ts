@@ -207,7 +207,7 @@ const correspondents = [
   },
   {
     slug: 'armando',
-    name: 'Armando Proietti',
+    name: 'Armando De Marchi',
     role: 'Portiere di via Lanciani 42',
     address: 'Via Lanciani 42, portineria, Roma (Nomentano)',
     kind: 'person',
@@ -402,7 +402,7 @@ const calendar = {
 
 const plotKeys = [
   { key: 'ricci_robbery', fact: 'Venerdì 20 maggio 1977, verso le 19:40: rapina alla tabaccheria di Ettore Ricci, 63 anni, vedovo, in via Tiburtina (San Lorenzo), a due passi da piazza dei Sanniti. Un colpo di revolver .38 al petto; bottino circa 240.000 lire. Il rapinatore: un giovane sui vent\'anni, capelli scuri ricci, parka verde, sciarpa sul viso; fugge a piedi verso via dei Volsci. Arma mai trovata nel 1977.' },
-  { key: 'luca', fact: 'Luca Moretti, nato a Roma il 18 giugno 1957; padre Bruno Moretti (operaio edile, morto sul lavoro nel 1966), madre Rosa Pace (morta di tumore il 9 marzo 1985). Nel 1977 vive con la madre e il patrigno in via dei Sabelli, San Lorenzo; garzone da un meccanico in via dei Volsci. Denunciato nel 1976 per il furto di un ciclomotore: per questo esiste la sua foto segnaletica. Alibi: «ero al cinema Palazzo, da solo». È innocente.' },
+  { key: 'luca', fact: 'Luca Moretti, nato a Roma il 18 giugno 1957; padre Bruno Moretti (operaio edile, morto sul lavoro nel 1966), madre Rosa Pace (nata a Roma il 4 aprile 1932, morta di tumore il 9 marzo 1985). Nel 1977 vive con la madre e il patrigno in via dei Sabelli, San Lorenzo; garzone nell\'officina del meccanico Proietti in via dei Volsci. Denunciato nel 1976 per il furto di un ciclomotore: per questo esiste la sua foto segnaletica. Alibi: «ero al cinema Palazzo, da solo». È innocente.' },
   { key: 'voss_photo', fact: 'Sabato 21 maggio 1977, sera, commissariato di San Lorenzo: la guardia di PS Voss, 23 anni, mostra ai tre testimoni insieme, nella stessa stanza, la foto segnaletica di Luca («Questo ha già precedenti. Guardate bene.»), poi dice loro di non parlarne. Mai verbalizzato.' },
   { key: 'luca_arrest', fact: 'Lunedì 23 maggio 1977, ore 8: Luca arrestato all\'officina di via dei Volsci dalle guardie Voss e Nando Pierangeli, che firmano il verbale. Aldo è in servizio sul notturno Roma–Reggio Calabria e rientra solo il pomeriggio: Voss non lo vede mai. Il pomeriggio Rosa grida per un\'ora nel corridoio del commissariato.' },
   { key: 'lineup', fact: 'Venerdì 3 giugno 1977: ricognizione formale davanti al giudice istruttore dott. Paolo Remondini (morto nel 1983), tre atti separati, difensore d\'ufficio avv. Guido Sestili. I tre testimoni giurano di non aver visto fotografie (falso) e riconoscono Luca in una fila di quattro.' },
@@ -426,7 +426,7 @@ const plotKeys = [
   { key: 'aldo_escape', fact: 'Inizio dicembre: Aldo prenota una cuccetta sul notturno Roma–Brindisi di venerdì 18 dicembre e il traghetto per Patrasso. Il pomeriggio del 17 brucia nella stufa la lettera della maestra e la risposta della Procura del 1985. Nella stanza: la chiave quadra pulita male (sangue A e B), quattro lumini nuovi, la prenotazione.' },
   { key: 'attack', fact: 'Giovedì 17 dicembre 1987, verso le 23, dopo la partita: «L\'ultima la giochiamo da te, con quel vino tuo.» Se nessuno lo ferma, Aldo colpisce Voss alle spalle, dispone quattro lumini (il quarto al centro), getta la chiave nel Tevere e parte il 18. Mario li vede salire insieme alle 23.' },
   { key: 'voss_bottle', fact: 'Venerdì 30 ottobre 1987 arriva a Voss una bottiglia di Gewürztraminer 1983 della cantina dello zio, «für einen besonderen Abend»; la tiene sopra l\'armadio. A novembre ne parla ad Aldo; giovedì 10 dicembre Aldo gli chiede di aprirla il 17.' },
-  { key: 'panorama', fact: 'Adelaide Bellucci (n. 1914), vedova di Ernesto (tipografo al Messaggero, m. 2 marzo 1985), via Lanciani 42, piano rialzato, dal 1958. Abbonata al Panorama dal febbraio 1976; Ernesto lo rinnova per due anni nel gennaio 1985; scade nel febbraio 1987; Armando fa la colletta e lo rinnova di nascosto. Giro fino ad agosto: gio Armando → gio sera Ferri → ven Iole → sab/dom colonnello → lun Santoro → mar sera Armando lo stira → mer Adelaide. Da settembre tutti un giorno prima: Adelaide lo trova il martedì. Scusa: «è la posta».' },
+  { key: 'panorama', fact: 'Adelaide Bellucci (n. 1914), vedova di Ernesto (tipografo al Messaggero, m. 2 marzo 1985), via Lanciani 42, piano rialzato, dal 1958. Abbonata al Panorama dal febbraio 1976; Ernesto lo rinnova per due anni nel gennaio 1985; scade nel febbraio 1987; il portiere, Armando De Marchi, fa la colletta e lo rinnova di nascosto. Giro fino ad agosto: gio Armando → gio sera Ferri → ven Iole → sab/dom colonnello → lun Santoro → mar sera Armando lo stira → mer Adelaide. Da settembre tutti un giorno prima: Adelaide lo trova il martedì. Scusa: «è la posta».' },
   { key: 'lanciani_night', fact: 'Notte del 3 settembre, via Lanciani 42: nel pomeriggio Aldo svita la lampadina del 4° piano; ~22:40 Armando sale col Panorama da Ferri, nessuno apre; ~22:45 riscende al buio (Adelaide lo vede); ~23:00 il delitto; dopo le 23 un uomo non giovane, cappotto e cappello, scende fischiettando «La donna è mobile» ed esce («non era nessuno del palazzo»). Il 4 alle 6:45 Armando trova Ferri; la lampadina era svitata. Alla Mobile Armando dice «a letto dalle dieci».' },
   { key: 'ferri_boast', fact: 'Ferri si vantava davanti alle cassette della posta: «ho fatto condannare un assassino, dieci anni fa, un ragazzo che aveva sparato a un tabaccaio a San Lorenzo; l\'ho riconosciuto in mezzo a quattro».' },
   { key: 'lombardo_transfer', fact: 'Lombardo: 19 marzo 1987 rapina alla gioielleria Ceccarelli (via Cola di Rienzo); fermo di Marco Sabatini il 24; riconoscimento dopo la foto sui giornali; 5 maggio riunione col Questore; decreto 25 maggio, notifica 28, decorrenza 8 giugno, Lipari in soprannumero; Sabatini scarcerato il 21 agosto.' },
@@ -456,7 +456,8 @@ const reserved = [
   { patterns: ['Anselmi'], kind: 'person', plotKey: 'anselmi', allowedFor: ['voss', 'procura', 'mobile'] },
   { patterns: ['Remondini'], kind: 'person', plotKey: 'lineup', allowedFor: ['cancelleria'] },
   { patterns: ['Sestili'], kind: 'person', plotKey: 'lineup', allowedFor: ['cancelleria', 'regina_coeli'] },
-  { patterns: ['Proietti'], kind: 'person', plotKey: 'lanciani_night', allowedFor: ['voss', 'adelaide', 'armando', 'procura', 'cancelleria'] },
+  { patterns: ['Proietti'], kind: 'person', plotKey: 'luca', allowedFor: ['voss', 'cancelleria'] },
+  { patterns: ['De Marchi'], kind: 'person', plotKey: 'lanciani_night', allowedFor: ['adelaide', 'armando', 'procura', 'mobile'] },
   { patterns: ['via dei Volsci'], kind: 'street', plotKey: 'ricci_robbery', allowedFor: ['voss', 'cancelleria'] },
   { patterns: ['Lanciani'], kind: 'street', plotKey: 'murders_1987', allowedFor: ['voss', 'adelaide', 'armando', 'procura', 'mobile', 'scientifica'] },
   { patterns: ['Fratelli Bonnet'], kind: 'street', plotKey: 'chess', allowedFor: ['voss', 'anagrafe'] },
@@ -496,7 +497,6 @@ const panorama = {
   ],
   deduction:
     'Il reader controlla ogni Lettera di Lombardo ad Adelaide dei Turni 2–6: dice, in qualunque forma, che il Panorama gira nel palazzo (lo leggono gli inquilini a turno) oppure che Armando lo prende e lo passa agli altri? Se sì, il Panorama è dedotto al Turno N e il reveal arriva nel batch N (variante «me l\'ha scritto un commissario»: Adelaide va in portineria con la Lettera in mano, Armando crolla, lei è fiera di Lombardo). Il motivo, il regalo, non serve: lo scopre lei. Se dopo il Turno 6 non c\'è deduzione, il reveal arriva nel batch 6, variante «l\'ho visto io» (giovedì 26 novembre). Un\'accusa a un solo inquilino non conta come deduzione: Adelaide lo affronta, e l\'accusato si tradisce con un dettaglio («il mio turno», poi si corregge), un indizio in più nel batch dopo. Se Lombardo scrive alla Mobile o alla Procura su Armando, la risposta è fredda («il portiere è stato sentito e ha dichiarato di essere a riposo»), e nel batch dopo Adelaide riferisce che la polizia è tornata da Armando e che lui «è diventato bianco». Nessuna pista sbagliata è un vicolo cieco.',
-  calendarEnclosure: text('texts/panorama-calendar.md'),
 };
 
 const aldoThread = [
@@ -651,8 +651,9 @@ function fixed(
   date: string | null,
   use: string,
   variants: { when: string; change: string }[] = [],
+  enclosures: { key: string; kind: 'document' | 'clipping'; title: string; body: string }[] = [],
 ) {
-  return { key, from, kind, date, use, text: text(`texts/${key.replace(/_/g, '-')}.md`), variants };
+  return { key, from, kind, date, use, text: text(`texts/${key.replace(/_/g, '-')}.md`), variants, enclosures };
 }
 
 const texts = [
@@ -697,7 +698,9 @@ const texts = [
     { when: 'Finale 6 (A)', change: 'Nessun capo d).' },
   ]),
   fixed('adelaide_first_letter', 'adelaide', 'letter', '1987-10-05', 'Batch 2: la prima Lettera di Adelaide, di sua iniziativa. Porta K8 (la vanteria di Ferri), K9 senza titolo, Armando al buio (falsa pista), I1 e I2. Circa 590 parole.'),
-  fixed('adelaide_reveal', 'adelaide', 'letter', '1987-11-27', 'Il reveal, variante «l\'ho visto io» (batch 6). Con il calendario come Allegato («panorama.calendarEnclosure»), Armando scagionato e la lampadina svitata (K11) in un P.S. Usa il momento clou di Ernesto. Circa 640 parole.'),
+  fixed('adelaide_reveal', 'adelaide', 'letter', '1987-11-27', 'Il reveal, variante «l\'ho visto io» (batch 6). Con il calendario ricopiato da Adelaide come Allegato, Armando scagionato e la lampadina svitata (K11) in un P.S. Usa il momento clou di Ernesto. Circa 640 parole. Nella variante «me l\'ha scritto un commissario» l\'Allegato è lo stesso.', [], [
+    { key: 'panorama_calendar', kind: 'document', title: 'Il calendario dell\'Operazione Panorama, ricopiato da Adelaide', body: text('texts/panorama-calendar.md') },
+  ]),
   fixed('adelaide_farewell', 'adelaide', 'letter', '1987-12-26', 'Batch 8: il congedo di Adelaide, testo intero del Finale 6. Il paragrafo del geranio c\'è solo se il suo momento clou non è già stato usato. Circa 480 parole.', [
     { when: 'Finale 1, Voss morto, ignoto', change: 'Secondo paragrafo: «Sul *Messaggero* ho letto del poliziotto di Monteverde. Era il signor Voss. Quel poliziotto stanco: gli avevo chiesto se mangiava.» Niente candele: l\'ironia la vede il Giocatore, non lei.' },
     { when: 'Finale 2, Voss morto, fuggito', change: 'Come l\'1, più: «Adesso dicono che l\'assassino è partito col treno. Ho pensato ai treni per la Grecia che prendeva mia sorella, e a quanto erano lenti.»' },

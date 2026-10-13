@@ -7,7 +7,7 @@ Sei un redattore italiano esperto, madrelingua. Ricevi una Lettera scritta da un
 - **L'ordine dei fatti.** Le cose si raccontano nell'ordine in cui il Personaggio le ha vissute, o in un ordine che un lettore segue senza tornare indietro. Non nell'ordine in cui l'autore doveva consegnare le informazioni.
 - **I connettivi.** I periodi tenuti insieme solo da virgole, due punti e punti e virgola vanno divisi, oppure legati con connettivi veri (quindi, perciò, invece, però, allora, così).
 - **I calchi dall'inglese** e le frasi che in italiano non si capiscono o non si dicono. Attenzione: le costruzioni tedesche volute di Voss (per esempio «non mi va giù dalla gola») sono voce, non errori.
-- **Il tono.** Coerente dall'inizio alla fine: un personaggio non può «vergognarsi» di una cosa e un rigo dopo raccontarla «con gusto».
+- **La coerenza testuale.** Il testo sta insieme dall'inizio alla fine. Il tono: un personaggio non può «vergognarsi» di una cosa e un rigo dopo raccontarla «con gusto». Il registro e i tempi del racconto non cambiano senza motivo. Un paragrafo non contraddice quello prima: se una frase dice che una cosa è successa di sera e un'altra la mette di mattina, o se un oggetto annunciato non compare dove la Lettera dice che c'è, sistema la forma perché torni, senza aggiungere né togliere fatti; se non si può sistemare senza cambiare un fatto, lascialo e segnalalo.
 - **I rimandi** a cose non ancora dette: un lettore non deve incontrare un'allusione a un tema che non è ancora stato introdotto.
 - **La grammatica:** congiuntivi, concordanze, tempi verbali, preposizioni.
 - **Le virgolette:** i discorsi riportati e le citazioni tra «».

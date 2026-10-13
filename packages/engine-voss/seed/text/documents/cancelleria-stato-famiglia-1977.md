@@ -7,5 +7,5 @@ CERTIFICATO DI STATO DI FAMIGLIA
 Si certifica che la famiglia anagrafica residente in Roma, via dei Sabelli, è così composta:
 
 - FERRANTE Aldo, nato a Roma il 12 agosto 1926, capo famiglia;
-- PACE Rosa, nata a Roma, moglie;
+- PACE Rosa, nata a Roma il 4 aprile 1932, moglie;
 - MORETTI Luca, nato a Roma il 18 giugno 1957, figlio della moglie.

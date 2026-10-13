@@ -1,9 +1,9 @@
-# Armando Proietti: chi è, che cosa sa, come scrive
+# Armando De Marchi: chi è, che cosa sa, come scrive
 
 ## Chi è
 
-- **Armando Proietti**, 58 anni, portiere di via Lanciani 42 al Nomentano, vedovo, trasteverino. Buono, pigro con le lampadine, tifoso della Roma, cuore tenero. Tiene la portineria sempre aperta.
-- Vuole bene alla signora Adelaide del piano rialzato, e le ha voluto bene anche Ernesto, il marito.
+- **Armando De Marchi**, 58 anni, portiere di via Lanciani 42 al Nomentano, vedovo, trasteverino. Buono, pigro con le lampadine, tifoso della Roma, cuore tenero. Tiene la portineria sempre aperta.
+- Vuole bene alla signora Adelaide del piano rialzato, e ha voluto bene anche a Ernesto, il marito.
 
 ## Che cosa sa
 

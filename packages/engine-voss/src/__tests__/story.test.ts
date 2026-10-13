@@ -53,3 +53,29 @@ describe('the schema rejects a document that does not hold together', () => {
     ).toEqual([expect.stringContaining('unknown sender "repubblica"')]);
   });
 });
+
+describe('Paolo\'s review of the texts (PR #50)', () => {
+  const story = vossStorySchema.parse(buildVossStory());
+  const texts = Object.fromEntries(story.texts.map((t) => [t.key, t]));
+
+  it('Adelaide\'s reveal encloses the notebook she says she copies word for word', () => {
+    const reveal = texts.adelaide_reveal;
+    expect(reveal.text).toContain('sul foglio qui accluso');
+    expect(reveal.enclosures).toHaveLength(1);
+    expect(reveal.enclosures[0].body).toContain('OPERAZIONE PANORAMA');
+    expect(reveal.text).toContain('e adesso il ragioniere non c\'è più');
+  });
+
+  it('the porter is Armando De Marchi, so he is not mistaken for Luca\'s mechanic Proietti', () => {
+    const porter = JSON.stringify(story.correspondents.find((c) => c.slug === 'armando'));
+    expect(porter).toContain('Armando De Marchi');
+    expect(porter).not.toContain('Proietti');
+    expect(JSON.stringify(story)).not.toMatch(/Armando Proietti|PROIETTI Armando/);
+  });
+
+  it('every document that names Rosa Pace gives her date of birth', () => {
+    for (const doc of story.documents.filter((d) => d.text.includes('PACE Rosa, nata'))) {
+      expect(doc.text, doc.key).toContain('PACE Rosa, nata a Roma il 4 aprile 1932');
+    }
+  });
+});
