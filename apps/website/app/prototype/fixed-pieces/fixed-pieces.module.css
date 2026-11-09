@@ -1,0 +1,445 @@
+/* PROTOTYPE — throwaway (#43). Paper colours and font stacks are ad hoc here;
+   a real build would ask for DS tokens first (Regola #7). */
+
+.protoNote {
+  border: 2px dashed #c58b00;
+  background: #fff8e1;
+  color: #4a3500;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ds-space-8);
+}
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: 220px 1fr;
+  }
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--ds-radius-md);
+  border: 1px solid var(--ds-color-border);
+  padding: var(--ds-space-2) var(--ds-space-3);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ── today ── */
+.todayMine {
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-color-border);
+  background: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
+  padding: var(--ds-space-4);
+  margin-left: var(--ds-space-16);
+}
+.todayNpc {
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid color-mix(in srgb, var(--ds-color-primary) 30%, transparent);
+  background: var(--ds-color-card);
+  padding: var(--ds-space-4);
+}
+.todayEnclosure {
+  margin-top: var(--ds-space-3);
+  border-radius: var(--ds-radius-md);
+  border: 1px dashed var(--ds-color-border);
+  background: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
+  padding: var(--ds-space-3);
+}
+.letterContent {
+  white-space: pre-wrap;
+  font-size: var(--ds-fontSize-body);
+  margin-top: var(--ds-space-2);
+}
+.letterProse {
+  font-size: var(--ds-fontSize-body);
+  line-height: var(--ds-lineHeight-relaxed);
+}
+.letterProse p {
+  margin: var(--ds-space-2) 0;
+}
+
+/* ── the rules card: the app's own voice, never paper ── */
+.rules {
+  font-size: var(--ds-fontSize-body);
+  line-height: var(--ds-lineHeight-relaxed);
+}
+.rules p {
+  margin: var(--ds-space-3) 0;
+}
+.rules ul {
+  margin: var(--ds-space-2) 0 var(--ds-space-4);
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.rules li {
+  margin: var(--ds-space-1) 0;
+}
+.rules > p:first-child strong {
+  font-family: var(--ds-fontFamily-heading, inherit);
+  font-size: 1.6em;
+  text-transform: uppercase;
+}
+.rules > p:last-child {
+  font-style: italic;
+  color: var(--ds-color-mutedForeground);
+}
+
+/* ── paper ── */
+.paper {
+  position: relative;
+  background: #f6f1e4;
+  color: #1d1b16;
+  border: 1px solid #d9d0b8;
+  box-shadow: 0 1px 0 #e9e1cb, 0 8px 20px rgba(0, 0, 0, 0.12);
+  padding: 28px 32px;
+  max-width: 100%;
+  width: fit-content;
+}
+.paperLabel {
+  position: absolute;
+  top: -11px;
+  left: 16px;
+  background: #1d1b16;
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: 12px;
+  color: #f6f1e4;
+  font-family: var(--ds-fontFamily-body, sans-serif);
+}
+.typed {
+  font-family: 'Courier Prime', 'Courier New', Courier, ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre;
+  overflow-x: auto;
+}
+.typedRule {
+  border: 0;
+  border-top: 1px dashed #9a927c;
+  margin: 12px 0;
+}
+
+.letterSheet {
+  background: #fbf8f0;
+  color: #1d1b16;
+  border: 1px solid #e3dcc8;
+  padding: 28px 32px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 68ch;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+.letterSheet .letterProse {
+  font-size: inherit;
+  line-height: inherit;
+}
+.letterSheet .letterProse p {
+  margin: 0 0 0.9em;
+}
+.letterDate {
+  text-align: right;
+  font-style: italic;
+  margin-bottom: 1em;
+}
+
+/* ── clippings: newsprint ── */
+.clipping,
+.clippingCompact {
+  margin: 0;
+  background: #ece6d6;
+  color: #1a1a1a;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  padding: 18px 22px 24px;
+  max-width: 44ch;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  clip-path: polygon(0 2%, 6% 0, 14% 1.5%, 27% 0.2%, 41% 1.8%, 55% 0, 70% 1.4%, 84% 0.3%, 100% 1.6%,
+      99% 30%, 100% 62%, 99% 98%, 88% 100%, 72% 98.5%, 58% 100%, 43% 98.6%, 29% 100%, 15% 98.4%, 0 100%, 1% 66%, 0 34%);
+}
+.clippingCompact {
+  max-width: none;
+  font-size: 14px;
+}
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.masthead span:first-child {
+  font-weight: 700;
+  font-style: italic;
+  text-transform: none;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+.headline {
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+.clippingCompact .headline {
+  font-size: 17px;
+}
+.deck {
+  font-style: italic;
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+.newsText {
+  text-align: justify;
+  hyphens: auto;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+}
+.newsText::first-letter {
+  font-weight: 700;
+}
+
+/* ── A ── */
+.aDelivery {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.envelopeLine {
+  font-size: 13px;
+  color: var(--ds-color-mutedForeground);
+  border-bottom: 1px solid var(--ds-color-border);
+  padding-bottom: 6px;
+}
+.aClipRow {
+  display: flex;
+  justify-content: center;
+  transform: rotate(-0.6deg);
+}
+
+/* ── B ── */
+.overlay {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+.rulesSheet {
+  max-width: 62ch;
+  background: var(--ds-color-card);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  padding: 36px 40px;
+}
+.envelopeOpen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.sheetStack {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.sheetPick {
+  width: 220px;
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  text-align: left;
+  background: #f6f1e4;
+  color: #1d1b16;
+  border: 1px solid #d9d0b8;
+  padding: 18px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 150ms ease;
+}
+.sheetPick:first-child {
+  transform: rotate(-3deg);
+}
+.sheetPick:last-child {
+  transform: rotate(2deg);
+}
+.sheetPick:hover {
+  transform: translateY(-6px) rotate(0);
+}
+.sheetPickTitle {
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+.sheetPickSub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.bLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ds-space-6);
+}
+@media (min-width: 768px) {
+  .bLayout {
+    grid-template-columns: 260px 1fr;
+  }
+}
+.bRow,
+.bRowActive {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: var(--ds-radius-md);
+  border: 1px solid var(--ds-color-border);
+  background: transparent;
+  cursor: pointer;
+}
+.bRowActive {
+  border-color: var(--ds-color-primary);
+  background: color-mix(in srgb, var(--ds-color-primary) 10%, transparent);
+}
+.bRowFrom {
+  font-size: var(--ds-fontSize-body);
+}
+.bRowMeta {
+  font-size: 12px;
+  color: var(--ds-color-mutedForeground);
+}
+.tabs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--ds-color-border);
+}
+.tab,
+.tabActive {
+  padding: 8px 14px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  border-radius: var(--ds-radius-md) var(--ds-radius-md) 0 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+.tabActive {
+  border-color: var(--ds-color-border);
+  background: var(--ds-color-card);
+  margin-bottom: -1px;
+}
+.reader {
+  padding: 28px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── C ── */
+.cStrip {
+  font-size: 14px;
+  padding: 10px 14px;
+  border-radius: var(--ds-radius-md);
+  background: color-mix(in srgb, var(--ds-color-primary) 8%, transparent);
+}
+.linkButton {
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+.cRulesPanel {
+  border: 1px solid var(--ds-color-border);
+  border-left: 4px solid var(--ds-color-primary);
+  border-radius: var(--ds-radius-md);
+  padding: 20px 24px;
+  background: var(--ds-color-card);
+}
+.cLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--ds-space-8);
+}
+@media (min-width: 1024px) {
+  .cLayout {
+    grid-template-columns: 1fr 380px;
+  }
+}
+.cFile {
+  align-self: start;
+  position: sticky;
+  top: 16px;
+  background: #d8c69c;
+  border-radius: 4px 12px 4px 4px;
+  padding: 18px 14px 14px;
+  color: #2b2212;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+.cFileTab {
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.cCard,
+.cCardActive {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  background: #f6f1e4;
+  color: #1d1b16;
+  border: 1px solid #c8b98f;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+.cCardActive {
+  outline: 2px solid #2b2212;
+}
+.cCardTitle {
+  font-size: 14px;
+  font-weight: 600;
+}
+.cCardSub {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.cRef {
+  display: block;
+  margin-top: var(--ds-space-3);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+  color: var(--ds-color-mutedForeground);
+}
