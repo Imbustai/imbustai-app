@@ -10,6 +10,7 @@
     "start": "nx start tryout-01",
     "start:tryout-01": "nx start tryout-01",
     "dev:website": "nx dev website",
+    "dev:website:tunnel": "node scripts/dev-website-tunnel.mjs",
     "build:website": "nx build website",
     "start:website": "nx start website",
     "test": "vitest run",
@@ -24,6 +25,7 @@
     "preview:developer": "nx preview developer"
   },
   "private": true,
+  "packageManager": "pnpm@10.32.1",
   "devDependencies": {
     "@nx/js": "catalog:",
     "@nx/next": "catalog:",
