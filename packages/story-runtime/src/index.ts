@@ -111,3 +111,46 @@ export {
   type LedgerEntry,
   type TextureInput,
 } from './writing/ledger';
+
+// Runs: an AI player that plays any Engine under a cost cap ("Runs: an AI
+// player that plays any Engine under a cost cap", Imbustai/imbustai-app#31).
+export type { HostAiAccess } from './ai/access';
+export {
+  budgetedProvider,
+  costOf,
+  DEFAULT_RESERVED_OUTPUT_TOKENS,
+  RunBudget,
+  RunCapError,
+  worstCaseCost,
+  type ModelPrice,
+  type PriceOf,
+  type Reservation,
+} from './runs/budget';
+export {
+  PERSONAS,
+  PlayerTurnError,
+  writePlayerTurn,
+  type Persona,
+  type PersonaKey,
+  type PlayerView,
+  type VisibleLetter,
+} from './runs/player';
+export {
+  playRun,
+  playRunTurn,
+  type RunGame,
+  type RunGameView,
+  type RunInput,
+  type RunOutcome,
+  type RunStep,
+} from './runs/run';
+export {
+  COMPLAINTS,
+  defaultTurnShape,
+  estimateRun,
+  scoreRun,
+  type CallShape,
+  type ComplaintKey,
+  type ComplaintScore,
+  type RunEstimate,
+} from './runs/report';

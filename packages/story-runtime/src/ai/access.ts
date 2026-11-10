@@ -1,7 +1,7 @@
 import type { z } from 'zod';
-import type { AiAccess, AiRequest, CharacterSlug, Conversation, Effort, ModelRole } from '../contract';
+import type { AiAccess, AiRequest, CharacterSlug, Conversation, Effort } from '../contract';
 import { dropNullsForOptional, strictJsonSchema, type JsonSchema } from './jsonSchema';
-import { resolveModelChoice, type ModelProfile } from './profile';
+import { resolveModelChoice, type ModelProfile, type ProfileRole } from './profile';
 import { IncompleteOutputError, type AiProvider, type CallUsage, type TextRequest } from './provider';
 
 // The `ai` half of the hook context: how an Engine reaches a model. Engines
@@ -15,7 +15,7 @@ export type CallOutcome = 'ok' | 'invalid' | 'incomplete';
 
 /** One model call's token usage, tagged with who asked for it and why. */
 export interface UsageRecord extends CallUsage {
-  role: ModelRole;
+  role: ProfileRole;
   /** The Engine's reason for the call, e.g. "orchestrator", "reply:voss". */
   purpose: string;
   character?: CharacterSlug;
@@ -37,6 +37,20 @@ export interface AiAccessOptions {
   onUsage?: (record: UsageRecord) => void;
   /** Extra attempts after a reply that fails the zod schema. */
   retries?: number;
+}
+
+/**
+ * AI access as the platform holds it: the Engine's three roles plus `player`,
+ * which only a Run's own calls use. Handed to Hooks as the narrower AiAccess.
+ */
+export interface HostAiAccess extends AiAccess {
+  structured<S extends z.ZodTypeAny>(role: ProfileRole, request: AiRequest<S>): Promise<z.infer<S>>;
+  text(role: ProfileRole, request: Omit<AiRequest<never>, 'schema'>): Promise<string>;
+  converse(
+    role: ProfileRole,
+    request: Omit<AiRequest<never>, 'schema'>,
+    conversation?: Conversation,
+  ): Promise<{ text: string; conversation: Conversation }>;
 }
 
 const schemaCache = new WeakMap<z.ZodTypeAny, JsonSchema>();
@@ -67,11 +81,11 @@ function repairNote(issues: string): string {
  * or billed-incomplete attempt; pricing and Run budget policy belong to the host.
  * @category Utilities
  */
-export function createAiAccess(options: AiAccessOptions): AiAccess {
+export function createAiAccess(options: AiAccessOptions): HostAiAccess {
   const { profile, providerFor, turn, onUsage, retries = 2 } = options;
 
   /** `model` pins a continuation to the model that started it. */
-  function prepare(role: ModelRole, request: Omit<AiRequest<never>, 'schema'>, model?: string) {
+  function prepare(role: ProfileRole, request: Omit<AiRequest<never>, 'schema'>, model?: string) {
     const choice = resolveModelChoice(profile, role, request.character);
     const effort = request.effort ?? choice.effort;
     const base: TextRequest = {
@@ -116,7 +130,7 @@ export function createAiAccess(options: AiAccessOptions): AiAccess {
      * schema guarantees the shape; retries cover what only zod checks
      * (lengths, refinements). A truncated or refused reply is not retried.
      */
-    async structured<S extends z.ZodTypeAny>(role: ModelRole, request: AiRequest<S>): Promise<z.infer<S>> {
+    async structured<S extends z.ZodTypeAny>(role: ProfileRole, request: AiRequest<S>): Promise<z.infer<S>> {
       const { provider, base, record } = prepare(role, request);
       const format = { name: formatName(request.purpose), schema: jsonSchemaOf(request.schema) };
       const label = request.character ? `${request.purpose}(${request.character})` : request.purpose;
