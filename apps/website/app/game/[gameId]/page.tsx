@@ -3,7 +3,6 @@ import { getSessionUser, isCurrentUserAdmin } from '@/lib/auth';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { createClient } from '@/lib/supabase/server';
 import { PlayClient, type PlayContact } from '@/components/play/play-client';
-import { Box } from '@imbustai/ds';
 import { WorkflowError, loadGameHost, playerStatus } from '@/lib/game-host';
 import type { GameRow, InteractionRow } from '@/lib/types/db';
 
@@ -56,20 +55,19 @@ export default async function PlayPage({
     .order('letter_number', { ascending: true });
 
   return (
-    <Box maxWidth="5xl" marginX="auto" paddingX="4" paddingY="10">
-      <PlayClient
-        gameId={gameId}
-        gameStatus={g.status}
-        storyTitleEn={storyRow.title_en}
-        storyTitleIt={storyRow.title_it}
-        dateLocale={storyRow.time_config?.date_locale ?? 'it-IT'}
-        maxLettersPerTurn={status.maxLettersPerTurn}
-        initialStoryDate={status.storyDate}
-        contacts={contacts}
-        lockedCount={0}
-        initialLetters={(letters ?? []) as InteractionRow[]}
-        allCharacters={allCharacters}
-      />
-    </Box>
+    <PlayClient
+      gameId={gameId}
+      gameStatus={g.status}
+      storyTitleEn={storyRow.title_en}
+      storyTitleIt={storyRow.title_it}
+      dateLocale={storyRow.time_config?.date_locale ?? 'it-IT'}
+      maxLettersPerTurn={status.maxLettersPerTurn}
+      initialStoryDate={status.storyDate}
+      contacts={contacts}
+      initialLetters={(letters ?? []) as InteractionRow[]}
+      initialTurnNumbers={status.turnNumbers}
+      allCharacters={allCharacters}
+      rulesCard={status.rulesCard}
+    />
   );
 }

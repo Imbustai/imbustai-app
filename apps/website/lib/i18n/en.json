@@ -438,6 +438,19 @@
       "story_not_playable": "This story is not playable yet."
     },
     "enclosed": "Enclosed",
-    "epilogue": "Epilogue"
+    "epilogue": "Epilogue",
+    "bySender": "Senders",
+    "timeline": "Timeline",
+    "rules": "Read the rules again",
+    "openMail": "Open the mail",
+    "turn": "Turn {n}",
+    "openingTurn": "Opening",
+    "letter": "Letter",
+    "clipping": "Clipping",
+    "earlierOne": "1 earlier letter",
+    "earlierMany": "{count} earlier letters",
+    "hideEarlier": "Hide earlier letters",
+    "noReplyYet": "No reply yet",
+    "noLettersYet": "No letters"
   }
 }

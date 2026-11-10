@@ -60,6 +60,7 @@ export async function GET(
     current_turn: status.currentTurn,
     max_letters_per_turn: status.maxLettersPerTurn,
     contacts: status.contacts,
+    turn_numbers: status.turnNumbers,
     // No Hook reports locked contacts; engine-classic never had any once a
     // Game started (every contactable_from_start character is unlocked then).
     locked_count: 0,

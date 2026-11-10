@@ -1,4 +1,4 @@
-import { vossEngine } from '@imbustai/engine-voss';
+import { vossEngine, type VossStory } from '@imbustai/engine-voss';
 import type { StoryEngineDataRow } from '@/lib/types/db';
 import type { EngineEntry } from './index';
 
@@ -21,4 +21,5 @@ export const vossEntry: EngineEntry = {
     }
     return (data as StoryEngineDataRow).data;
   },
+  rulesCard: (story) => (story as VossStory).opening.rulesCard,
 };

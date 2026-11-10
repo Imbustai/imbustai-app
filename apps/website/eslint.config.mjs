@@ -2,7 +2,7 @@ import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 
 export default [
-  { ignores: ['.next/**', 'next-env.d.ts'] },
+  { ignores: ['**/.next/**', '**/next-env.d.ts'] },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.mjs'],
     languageOptions: { parser: tseslint.parser },
