@@ -36,7 +36,14 @@ A fact the Player can understand, ignore or misread; ignored and misread clues c
 One of P1–P12, weighted; the verdict scores what the Player obtained.
 
 **Route**:
-One of the five ways the 17 December resolves, tried in order.
+One of the five ways the 17 December resolves, tried in order once Turn 7 is read; a search decides it as early as the Turn that triggers it.
 
 **Reserved term**:
 A Plot-key name, street or object that a sender may not write unless it knows it; a hit is a collision.
+
+**Signals**:
+What the reader reports about one of the Lead's Letters for the mechanics (did he share, accuse, name Aldo, cite P3…); the mechanics read nothing else of a Player Letter (`src/mechanics/signals.ts`).
+
+**Turn plan**:
+What the mechanics allow in one batch, per writer: the date, the layer, the ladder steps, the clue due, re-approaches, the door, Signature limits, fixed texts and Dispatches. The writers write from it; the state after the batch travels with it in the draft's `effects`.
+_Avoid_: brief (the July engine's brief was a template the writers echoed)
