@@ -13,6 +13,7 @@
 import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildPrompts } from './prompts';
 
 const TEXT_DIR = resolve(dirname(fileURLToPath(import.meta.url)), 'text');
 
@@ -103,7 +104,7 @@ const correspondents = [
         key: 'wine',
         name: 'Il vino',
         ordinary:
-          'Texture rara: al massimo una menzione breve ogni due Lettere, mai come metafora del caso, mai insieme alla schiena. Dal 30 ottobre c\'è la bottiglia di Gewürztraminer 1983 sopra l\'armadio, «da aprire quando questa storia sarà chiusa».',
+          'Texture rara: al massimo una menzione breve ogni due Lettere, mai come metafora del caso, mai insieme alla schiena.',
         showpiece: text('voss/showpiece-wine.md'),
       },
       {
@@ -470,9 +471,9 @@ const reserved = [
 const clues = [
   { key: 'K1', clue: '«La famiglia è tutta morta»: vero sulla carta (Aldo e Rosa non erano sposati), falso nella vita: manca l\'uomo che ha cresciuto Luca.', from: ['voss', 'mobile'], firstBatch: 0, reapproach: [{ batch: 2, how: 'Voss: Rosa che grida da sola nel corridoio.' }, { batch: 4, how: 'Il registro dei colloqui: «chi andava a trovare Luca».' }, { batch: 5, how: "La porta dell'Anagrafe." }], understoodWhen: 'Chiede se Rosa si era risposata o chi viveva con Luca, oppure chiede atti di famiglia a un ufficio.', unlocks: "La scala dell'assassino può salire al gradino 1." },
   { key: 'K2', clue: 'Aldo è un ex capotreno, vedovo, «nessuno al mondo».', from: ['voss'], firstBatch: 1, reapproach: [{ batch: null, how: 'Solo a richiesta.' }], understoodWhen: 'Collega «capotreno» al Ferrante Aldo di un atto (l\'attestazione dell\'Anagrafe, P3).', unlocks: 'Il legame di P3 con l\'Aldo degli scacchi; la metà di K5.' },
-  { key: 'K3', clue: 'Giovedì 18 giugno Aldo disdice gli scacchi: «la schiena».', from: ['voss'], firstBatch: 2, reapproach: [{ batch: 4, how: 'Accanto al nipote: «è la seconda volta che mi dà buca per un motivo di famiglia».' }], understoodWhen: 'Nota che le disdette cadono nelle sere dei delitti.', unlocks: 'Voss elenca le tre date quando gli vengono chieste: P8.' },
-  { key: 'K4', clue: 'Giovedì 3 settembre Aldo disdice: «al Verano, da sua moglie».', from: ['voss'], firstBatch: 3, reapproach: [{ batch: 5, how: 'Ripresa da un altro lato.' }], understoodWhen: 'Come K3. Arriva nel batch 1 se Lombardo chiede dov\'era Voss quella sera.', unlocks: 'Come K3.' },
-  { key: 'K5', clue: 'Giovedì 22 ottobre Aldo disdice: «viene a trovarmi mio nipote».', from: ['voss'], firstBatch: 4, reapproach: [{ batch: 5, how: 'Natale: «Aldo lo passa da solo, non ha nessuno».' }, { batch: 6, how: 'Come sopra, se non è già stata usata.' }], understoodWhen: 'Nota la contraddizione con K2.', unlocks: 'Voss ammette che «un po\' gli è rimasta in gola», ma non si sposta senza una prova.' },
+  { key: 'K3', clue: 'Giovedì 18 giugno Aldo disdice gli scacchi: «la schiena».', from: ['voss'], askableFrom: '1987-06-18', firstBatch: 2, reapproach: [{ batch: 4, how: 'Accanto al nipote: «è la seconda volta che mi dà buca per un motivo di famiglia».' }], understoodWhen: 'Nota che le disdette cadono nelle sere dei delitti.', unlocks: 'Voss elenca le tre date quando gli vengono chieste: P8.' },
+  { key: 'K4', clue: 'Giovedì 3 settembre Aldo disdice: «al Verano, da sua moglie».', from: ['voss'], askableFrom: '1987-09-03', firstBatch: 3, reapproach: [{ batch: 5, how: 'Ripresa da un altro lato.' }], understoodWhen: 'Come K3. Arriva nel batch 1 se Lombardo chiede dov\'era Voss quella sera.', unlocks: 'Come K3.' },
+  { key: 'K5', clue: 'Giovedì 22 ottobre Aldo disdice: «viene a trovarmi mio nipote».', from: ['voss'], askableFrom: '1987-10-22', firstBatch: 4, reapproach: [{ batch: 5, how: 'Natale: «Aldo lo passa da solo, non ha nessuno».' }, { batch: 6, how: 'Come sopra, se non è già stata usata.' }], understoodWhen: 'Nota la contraddizione con K2.', unlocks: 'Voss ammette che «un po\' gli è rimasta in gola», ma non si sposta senza una prova.' },
   { key: 'K6', clue: 'Aldo è andato a Caracalla a sentire il Rigoletto «per la quarta volta».', from: ['voss'], firstBatch: 5, reapproach: [{ batch: null, how: 'Solo a richiesta.' }], understoodWhen: "Collega l'aria di Adelaide ad Aldo.", unlocks: 'P9, se lo scrive alla Procura; prova valida per il gradino 2 dell\'assassino.' },
   { key: 'K7', clue: '«A dicembre ho un anniversario, poi forse parto.»', from: ['voss'], firstBatch: 6, reapproach: [], understoodWhen: 'Lo lega al 17 dicembre, la morte di Luca.', unlocks: 'La data: gradino 2 del bersaglio, appostamento.' },
   { key: 'K8', clue: 'La vanteria di Ferri: «l\'ho riconosciuto in mezzo a quattro».', from: ['adelaide'], firstBatch: 2, reapproach: [{ batch: 3, how: 'Se Lombardo le chiede di Ferri.' }], understoodWhen: 'Chiede il fascicolo del processo o collega via Lanciani al 1977.', unlocks: null },
@@ -751,6 +752,8 @@ export function buildVossStory() {
       editor: text('pipeline/editor.md'),
       checker: text('pipeline/checker.md'),
       officeStyle: text('pipeline/office-style.md'),
+      storyRules: text('pipeline/story-rules.md'),
+      prompts: buildPrompts(text),
     },
   });
 }

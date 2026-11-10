@@ -199,6 +199,11 @@ const clueSchema = z.object({
   from: z.array(slug).min(1),
   /** First batch it may appear in; null = only on request. */
   firstBatch: batch.nullable(),
+  /**
+   * The day its fact happened, when its source would tell it earlier than
+   * `firstBatch` if the Lead asked directly (Voss's evening of 3 September).
+   */
+  askableFrom: isoDate.nullable().default(null),
   /** How it comes back when ignored or misread, from another side. */
   reapproach: z.array(z.object({ batch: batch.nullable(), how: md })),
   understoodWhen: md,
@@ -378,6 +383,78 @@ const openingSchema = z.object({
   letter: z.object({ from: slug, storyDate: isoDate, body: md }),
 });
 
+// ─── The writing pipeline's prompts ─────────────────────────────────────────
+
+/** The prompts the writing pipeline fills (`pipeline.prompts`); the Story must hold every one. */
+export const PROMPT_KEYS = [
+  // Writers
+  'writer_person',
+  'writer_office',
+  'writer_fixed',
+  'ask_person',
+  'ask_office',
+  'examples',
+  'example',
+  // The correspondence and the Turn, common to every writer
+  'correspondence',
+  'letter_heading',
+  'no_letter',
+  'reader_notes',
+  'knowledge',
+  'turn_state',
+  'date',
+  'date_unprompted',
+  'direct_answers',
+  'ledger',
+  'admin_notes',
+  'length',
+  'passage',
+  // Voss
+  'trust_low',
+  'trust_medium',
+  'trust_high',
+  'cold',
+  'layer_granted',
+  'layer_none',
+  'layers_told',
+  'layer_circling',
+  'ladder',
+  'target_unlit',
+  'ladder_move',
+  'ladder_bare',
+  'aldo_clue',
+  'aldo_none',
+  'on_request',
+  'reapproach',
+  'wrong_lead',
+  'door',
+  'signature_ordinary',
+  'signature_showpiece',
+  'signature_off',
+  'exclusive',
+  'invitation_accepts',
+  'invitation_wary',
+  'invitation_hides',
+  // Adelaide
+  'panorama_clue',
+  'new_clue',
+  'reveal_deduced',
+  'accused_slips',
+  // Offices
+  'office_letter',
+  'office_forwarded_from',
+  'office_documents',
+  'office_no_documents',
+  'office_partial',
+  'office_forward',
+  'office_search',
+  // The Ledger's report on a sent Letter
+  'ledger_report',
+  'ledger_showpieces',
+  'ledger_clues',
+] as const;
+export type PromptKey = (typeof PROMPT_KEYS)[number];
+
 // ─── The Story document ─────────────────────────────────────────────────────
 
 export const vossStorySchema = z
@@ -415,6 +492,16 @@ export const vossStorySchema = z
       checker: md,
       /** How every Roman office answers. */
       officeStyle: md,
+      /**
+       * The Story's own reply rules, added to the runtime checker's generic
+       * ones: pacing, Voss's fixed opening, what did not exist in 1987.
+       */
+      storyRules: md,
+      /**
+       * Every sentence the pipeline says to a model, by key, with `{name}`
+       * placeholders the Engine fills from the Turn plan (`PROMPT_KEYS`).
+       */
+      prompts: z.record(z.string(), md),
     }),
   })
   .superRefine((story, ctx) => {
@@ -507,6 +594,9 @@ export const vossStorySchema = z
       if (!slugs.has(t.from)) issue(['texts', i, 'from'], `${t.key}: unknown sender "${t.from}"`);
     });
     if (!slugs.has(story.opening.letter.from)) issue(['opening', 'letter', 'from'], 'unknown sender');
+    for (const key of PROMPT_KEYS) {
+      if (!(key in story.pipeline.prompts)) issue(['pipeline', 'prompts'], `missing prompt "${key}"`);
+    }
   });
 
 export type VossStory = z.infer<typeof vossStorySchema>;
