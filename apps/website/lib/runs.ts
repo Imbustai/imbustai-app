@@ -44,6 +44,8 @@ import type { AiCallRow, AiDraftRow, RunReport, RunRow } from '@/lib/types/db';
 // approve — with the approve step always automatic, and every model call
 // first reserved against the cap (game-host.ts hookSession).
 
+export { WorkflowError };
+
 /** The first Run is capped at $12; lowered afterwards (the map, #9). */
 export const DEFAULT_RUN_CAP_USD = 12;
 const DEFAULT_RUN_TURNS = 8;
