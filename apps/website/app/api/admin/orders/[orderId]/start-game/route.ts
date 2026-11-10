@@ -4,7 +4,7 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { requireAdmin } from '@/lib/require-admin';
 import { modelProfilePatchSchema } from '@imbustai/story-runtime';
 import { UnpricedModelError } from '@/lib/ai-pricing';
-import { WorkflowError, hookSession, loadStory, modelProfileFor } from '@/lib/game-host';
+import { WorkflowError, hookSession, loadStory, modelProfileFor, openingRows } from '@/lib/game-host';
 
 // Body (optional): { model_profile?: ModelProfilePatch } — overrides the
 // Story's default models for this Game only, role by role and per Character.
@@ -103,17 +103,7 @@ export async function POST(
   }
   await session.persist();
 
-  const { error: iErr } = await admin.from('interactions').insert(
-    opening.map((letter, index) => ({
-      game_id: game.id,
-      role: 'ai' as const,
-      content: letter.body,
-      letter_number: index + 1,
-      // An unsigned letter (no sender) is stored without a character.
-      character_slug: letter.from || null,
-      story_date: letter.storyDate,
-    })),
-  );
+  const { error: iErr } = await admin.from('interactions').insert(openingRows(game.id, opening));
 
   if (iErr) {
     console.error(iErr);

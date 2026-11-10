@@ -14,6 +14,11 @@ export interface EngineEntry {
   loadStory(admin: SupabaseClient, row: StoryRow): Promise<unknown>;
   /** Raw games.runtime_state before `engine.schema.state`, for old Games. */
   readState?(raw: unknown, story: unknown): unknown;
+  /**
+   * The Story's rules card (Markdown), outside the fiction: the Player UI
+   * shows it before the first Letter. Given the validated Story.
+   */
+  rulesCard?(story: unknown): string | null;
 }
 
 const ENGINES: Record<string, EngineEntry> = {

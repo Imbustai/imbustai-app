@@ -16,6 +16,7 @@ import {
   type HookContext,
   type ModelProfile,
   type ModelProfilePatch,
+  type OutgoingLetter,
 } from '@imbustai/story-runtime';
 import { assertProfilePriced, computeCostUsd, loadPricingMap, providerOf } from '@/lib/ai-pricing';
 import { engineEntryFor } from '@/lib/engines';
@@ -46,6 +47,8 @@ export interface LoadedStory {
   engine: Engine<unknown, unknown>;
   /** Validated by `engine.schema.data`. */
   story: unknown;
+  /** The Story's rules card (Markdown), when its Engine has one. */
+  rulesCard: string | null;
   readState(raw: unknown): unknown;
 }
 
@@ -59,6 +62,7 @@ export async function loadStory(admin: SupabaseClient, storyId: string): Promise
     row,
     engine: entry.engine,
     story,
+    rulesCard: entry.rulesCard?.(story) ?? null,
     readState: (raw) =>
       entry.engine.schema.state.parse(entry.readState ? entry.readState(raw, story) : raw),
   };
@@ -276,6 +280,21 @@ export async function hookSession(
   };
 }
 
+/** The opening envelope as interactions rows: authored, so inserted without review. */
+export function openingRows(gameId: string, opening: OutgoingLetter[]) {
+  return opening.map((letter, index) => ({
+    game_id: gameId,
+    role: 'ai' as const,
+    content: letter.body,
+    kind: letter.kind,
+    enclosures: letter.enclosures,
+    letter_number: index + 1,
+    // An unsigned letter (no sender) is stored without a character.
+    character_slug: letter.from || null,
+    story_date: letter.storyDate,
+  }));
+}
+
 /** What the Player's UI shows: contacts named from the cast, the date, the limit. */
 export function playerStatus(host: GameHost) {
   const open = host.turns.find((t) => t.status !== 'sent');
@@ -287,8 +306,11 @@ export function playerStatus(host: GameHost) {
   });
   return {
     contacts: contactsOf(host.engine, view).map(card),
-    /** Everyone who may sign a Letter, for naming senders. */
-    correspondents: host.engine.cast(host.story).correspondents.map(card),
+    /** Everyone who may sign a Letter, for naming senders and choosing their look. */
+    correspondents: host.engine.cast(host.story).correspondents.map((c) => ({ ...card(c), kind: c.kind })),
+    /** interaction_turns.id → turn_number, so each Letter can show its Turn. */
+    turnNumbers: Object.fromEntries(host.turns.map((t) => [t.id, t.turn_number])),
+    rulesCard: host.rulesCard,
     storyDate: storyDateOf(host),
     currentTurn: currentTurn(host),
     maxLettersPerTurn: host.engine.maxLettersPerTurn,

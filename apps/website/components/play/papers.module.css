@@ -1,0 +1,190 @@
+/* Paper stays paper in both themes, so its colours are fixed here and not
+   theme tokens: cream stock, newsprint, three inks. */
+.paper,
+.letterSheet,
+.clipping {
+  --paper-stock: #f6f1e4;
+  --paper-letter: #fbf8f0;
+  --paper-news: #ece6d6;
+  --paper-edge: #d9d0b8;
+  --ink: #1d1b16;
+}
+
+/* ── a typed document: decree, dispositivo, an office's reply ── */
+.paper {
+  background: var(--paper-stock);
+  color: var(--ink);
+  border: 1px solid var(--paper-edge);
+  box-shadow: 0 1px 0 #e9e1cb, 0 8px 20px rgba(0, 0, 0, 0.12);
+  padding: var(--ds-space-8);
+  width: 100%;
+  max-width: 78ch;
+  min-width: 0;
+}
+
+.typed {
+  font-family: 'Courier Prime', 'Courier New', Courier, ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  /* Keep the typist's spacing, but wrap: a sheet never scrolls sideways. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.typedRule {
+  border: 0;
+  border-top: 1px dashed #9a927c;
+  margin: var(--ds-space-3) 0;
+}
+
+/* ── a person's Letter ── */
+.letterSheet {
+  background: var(--paper-letter);
+  color: var(--ink);
+  border: 1px solid #e3dcc8;
+  padding: var(--ds-space-8);
+  font-size: 17px;
+  line-height: 1.65;
+  width: 100%;
+  max-width: 68ch;
+  min-width: 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.letterSheet p {
+  margin: 0 0 0.9em;
+}
+
+.letterSheet p:last-child {
+  margin-bottom: 0;
+}
+
+/* Three hands, given to people in cast order. */
+.hand0 {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+  font-style: italic;
+  color: #1f2a44;
+}
+
+.hand0 em {
+  font-style: normal;
+}
+
+.hand1 {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.hand2 {
+  font-family: Baskerville, 'Hoefler Text', Garamond, 'Times New Roman', serif;
+  font-size: 18px;
+  color: #3a2a1c;
+}
+
+/* ── the Player's own Letter ── */
+.playerSheet {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: var(--ds-typography-font-size-body);
+  line-height: var(--ds-typography-line-height-relaxed);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-md);
+  background: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
+  padding: var(--ds-space-4);
+  width: 100%;
+  max-width: 68ch;
+}
+
+/* ── a clipping: newsprint ── */
+.clipping {
+  margin: 0;
+  background: var(--paper-news);
+  color: #1a1a1a;
+  font-family: 'Times New Roman', Times, Georgia, serif;
+  padding: 18px 22px 24px;
+  max-width: 44ch;
+  min-width: 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  clip-path: polygon(
+    0 2%, 6% 0, 14% 1.5%, 27% 0.2%, 41% 1.8%, 55% 0, 70% 1.4%, 84% 0.3%, 100% 1.6%,
+    99% 30%, 100% 62%, 99% 98%, 88% 100%, 72% 98.5%, 58% 100%, 43% 98.6%, 29% 100%,
+    15% 98.4%, 0 100%, 1% 66%, 0 34%
+  );
+}
+
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--ds-space-2);
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.masthead span:first-child {
+  font-weight: 700;
+  font-style: italic;
+  text-transform: none;
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+.headline {
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.deck {
+  font-style: italic;
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.newsText {
+  text-align: justify;
+  hyphens: auto;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0 0 0.6em;
+}
+
+.newsText:last-child {
+  margin-bottom: 0;
+}
+
+/* ── the rules card ── */
+.rules {
+  font-size: var(--ds-typography-font-size-body);
+  line-height: var(--ds-typography-line-height-relaxed);
+}
+
+.rules p {
+  margin: var(--ds-space-3) 0;
+}
+
+.rules ul {
+  margin: var(--ds-space-2) 0 var(--ds-space-4);
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.rules li {
+  margin: var(--ds-space-1) 0;
+}
+
+.rules > p:first-child strong {
+  font-family: var(--ds-typography-font-family-heading, inherit);
+  font-size: 1.6em;
+  text-transform: uppercase;
+}
+
+.rules > p:last-child {
+  font-style: italic;
+  color: var(--ds-color-muted-foreground);
+}

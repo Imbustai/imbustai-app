@@ -30,7 +30,7 @@ export const vossEngine: Engine<VossStory, VossState> = {
   maxLettersPerTurn: 3,
 
   async startGame(_ctx, { story }) {
-    const { letter } = story.opening;
+    const { letter, transferOrder } = story.opening;
     return {
       state: vossStateSchema.parse({}),
       opening: [
@@ -40,7 +40,10 @@ export const vossEngine: Engine<VossStory, VossState> = {
           from: letter.from,
           storyDate: letter.storyDate,
           body: letter.body,
-          enclosures: [],
+          // The Lead's own decree travels in the opening envelope.
+          enclosures: [
+            { key: 'transfer_order', kind: 'document', title: transferOrder.title, body: transferOrder.body },
+          ],
         },
       ],
     };
