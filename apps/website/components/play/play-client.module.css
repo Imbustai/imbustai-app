@@ -1,109 +1,148 @@
-.layout {
+/* The Tester's mailbox: the whole viewport under the site header (3.5rem + its border). */
+.shell {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--ds-space-8);
+  grid-template-rows: minmax(0, 40dvh) minmax(0, 1fr);
+  height: calc(100dvh - 3.5rem - 1px);
 }
 
 @media (min-width: 768px) {
-  .layout {
-    grid-template-columns: 220px 1fr;
+  .shell {
+    grid-template-columns: 320px minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr);
   }
 }
 
-.contactButton {
-  width: 100%;
-  border-radius: var(--ds-radius-md);
-  border: 1px solid var(--ds-color-border);
-  padding: var(--ds-space-2) var(--ds-space-3);
-  text-align: left;
-  font-size: var(--ds-fontSize-body);
-  background: transparent;
-  cursor: pointer;
-  transition: background-color 150ms ease, border-color 150ms ease;
+/* ── left: senders or timeline ── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--ds-color-border);
+  border-bottom: 1px solid var(--ds-color-border);
+  background: var(--ds-color-card);
 }
 
-.contactButton:hover:not(:disabled) {
+.sidebarHead {
+  padding: var(--ds-space-4);
+  border-bottom: 1px solid var(--ds-color-border);
+}
+
+.sidebarList {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarFoot {
+  padding: var(--ds-space-3);
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  text-align: left;
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border: 0;
+  border-bottom: 1px solid var(--ds-color-border);
+  border-left: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.row:hover {
   background: color-mix(in srgb, var(--ds-color-muted) 50%, transparent);
 }
 
-.contactButton:disabled {
-  cursor: default;
-  opacity: 0.7;
-}
-
-.contactButtonActive {
-  composes: contactButton;
-  border-color: var(--ds-color-primary);
+.rowActive {
+  composes: row;
+  border-left-color: var(--ds-color-primary);
   background: color-mix(in srgb, var(--ds-color-primary) 10%, transparent);
 }
 
-.lockedContact {
-  border-radius: var(--ds-radius-md);
-  border: 1px dashed var(--ds-color-border);
-  padding: var(--ds-space-2) var(--ds-space-3);
-  font-size: var(--ds-fontSize-body);
-  color: var(--ds-color-mutedForeground);
+.rowTitle {
+  font-size: var(--ds-typography-font-size-body);
+  font-weight: var(--ds-typography-font-weight-medium);
+}
+
+.rowSub,
+.rowMeta {
+  font-size: var(--ds-typography-font-size-caption);
+  color: var(--ds-color-muted-foreground);
+}
+
+/* ── right: one sender's thread ── */
+.pane {
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  background: var(--ds-color-background);
+}
+
+.thread {
+  padding: var(--ds-space-6) var(--ds-space-4) var(--ds-space-16);
+  max-width: 88ch;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .thread {
+    padding: var(--ds-space-8) var(--ds-space-8) var(--ds-space-16);
+  }
+}
+
+.letter {
+  margin-top: var(--ds-space-6);
+  padding: var(--ds-space-4);
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid transparent;
+  scroll-margin-top: var(--ds-space-4);
+}
+
+.letterHighlighted {
+  composes: letter;
+  border-color: var(--ds-color-primary);
+  background: color-mix(in srgb, var(--ds-color-primary) 6%, transparent);
+}
+
+.sheet {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--ds-space-4);
+  min-width: 0;
+}
+
+.composer {
+  margin-top: var(--ds-space-8);
+  padding-top: var(--ds-space-6);
+  border-top: 1px solid var(--ds-color-border);
+}
+
+.transitBanner,
+.awaitingBanner {
+  padding: var(--ds-space-3) var(--ds-space-4);
+  font-size: var(--ds-typography-font-size-body);
+  border-bottom: 1px solid var(--ds-color-border);
 }
 
 .transitBanner {
-  border-radius: var(--ds-radius-md);
-  border: 1px solid color-mix(in srgb, var(--ds-color-primary) 40%, transparent);
-  background: color-mix(in srgb, var(--ds-color-primary) 5%, transparent);
-  padding: var(--ds-space-4);
-  font-size: var(--ds-fontSize-body);
+  background: color-mix(in srgb, var(--ds-color-primary) 8%, transparent);
 }
 
 .awaitingBanner {
-  border-radius: var(--ds-radius-md);
-  border: 1px solid var(--ds-color-border);
   background: color-mix(in srgb, var(--ds-color-muted) 40%, transparent);
-  padding: var(--ds-space-4);
-  font-size: var(--ds-fontSize-body);
-  color: var(--ds-color-mutedForeground);
+  color: var(--ds-color-muted-foreground);
 }
 
-.letterMine {
-  border-radius: var(--ds-radius-lg);
-  border: 1px solid var(--ds-color-border);
-  background: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
-  padding: var(--ds-space-4);
-  margin-left: var(--ds-space-6);
-}
-
-@media (min-width: 768px) {
-  .letterMine {
-    margin-left: var(--ds-space-16);
-  }
-}
-
-.letterNpc {
-  border-radius: var(--ds-radius-lg);
-  border: 1px solid color-mix(in srgb, var(--ds-color-primary) 30%, transparent);
-  background: var(--ds-color-card);
-  padding: var(--ds-space-4);
-  margin-right: var(--ds-space-6);
-}
-
-@media (min-width: 768px) {
-  .letterNpc {
-    margin-right: var(--ds-space-16);
-  }
-}
-
-.letterContent {
-  white-space: pre-wrap;
-  font-size: var(--ds-fontSize-body);
-}
-
-.prose {
-  font-size: var(--ds-fontSize-body);
-  line-height: var(--ds-lineHeight-relaxed);
-  max-width: none;
-}
-
-.prose p {
-  margin-top: var(--ds-space-2);
-  margin-bottom: var(--ds-space-2);
+.monoMedium {
+  font-family: var(--font-mono, monospace);
+  font-weight: 500;
 }
 
 .reviewDraft {
@@ -118,17 +157,22 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   white-space: pre-wrap;
-  font-size: var(--ds-fontSize-body);
+  font-size: var(--ds-typography-font-size-body);
 }
 
-.monoMedium {
-  font-family: var(--font-mono, monospace);
-  font-weight: 500;
+/* ── the rules card, before the first Letter ── */
+.rulesScreen {
+  min-height: calc(100dvh - 3.5rem - 1px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--ds-space-10) var(--ds-space-4);
 }
 
-.enclosure {
-  border-radius: var(--ds-radius-md);
-  border: 1px dashed var(--ds-color-border);
-  background: color-mix(in srgb, var(--ds-color-muted) 30%, transparent);
-  padding: var(--ds-space-3);
+.rulesSheet {
+  max-width: 62ch;
+  background: var(--ds-color-card);
+  border: 1px solid var(--ds-color-border);
+  border-radius: var(--ds-radius-lg);
+  padding: var(--ds-space-8);
 }

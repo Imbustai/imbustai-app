@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { ModelProfile } from '@imbustai/story-runtime';
-import { WorkflowError, hookSession, type LoadedStory } from '@/lib/game-host';
+import { WorkflowError, hookSession, openingRows, type LoadedStory } from '@/lib/game-host';
 
 // Starting a Game, for a paid order or for a Run: the Engine gives it its
 // first state and the opening envelope, which is authored, so it is delivered
@@ -54,17 +54,7 @@ export async function createGame(
   }
   await session.persist();
 
-  const { error: iErr } = await admin.from('interactions').insert(
-    opening.map((letter, index) => ({
-      game_id: gameId,
-      role: 'ai' as const,
-      content: letter.body,
-      letter_number: index + 1,
-      // An unsigned letter (no sender) is stored without a character.
-      character_slug: letter.from || null,
-      story_date: letter.storyDate,
-    })),
-  );
+  const { error: iErr } = await admin.from('interactions').insert(openingRows(gameId, opening));
   if (iErr) {
     console.error(iErr);
     await admin.from('games').delete().eq('id', gameId);

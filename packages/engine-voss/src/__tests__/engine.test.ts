@@ -3,6 +3,7 @@ import type { AiAccess, GameView } from '@imbustai/story-runtime';
 import { createHookContext } from '@imbustai/story-runtime';
 import { buildVossStory } from '../../seed/story';
 import { vossEngine, type VossState } from '../engine';
+import { initialState } from '../mechanics/state';
 import type { VossStory } from '../schema';
 
 const story = vossEngine.schema.data.parse(buildVossStory());
@@ -50,17 +51,28 @@ describe('engine-voss', () => {
   it('opens with Voss\'s letter of Saturday 5 September 1987, delivered as authored', async () => {
     const { state, opening } = await vossEngine.startGame(ctx, { gameId: 'g1', story, realStartDate: '2026-09-30' });
     expect(opening).toHaveLength(1);
-    expect(opening[0]).toMatchObject({ kind: 'letter', from: 'voss', storyDate: '1987-09-05', enclosures: [] });
+    expect(opening[0]).toMatchObject({ kind: 'letter', from: 'voss', storyDate: '1987-09-05' });
     expect(opening[0].body.startsWith('Roma, sabato 5 settembre 1987')).toBe(true);
     expect(opening[0].body.trimEnd().endsWith('lì la posta la apre il piantone, e il piantone è Cerroni.')).toBe(true);
     expect(vossEngine.schema.state.parse(state)).toEqual(state);
+  });
+
+  it('slips the Lead\'s transfer order into the opening envelope, as a document', async () => {
+    const { opening } = await vossEngine.startGame(ctx, { gameId: 'g1', story, realStartDate: '2026-09-30' });
+    expect(opening[0].enclosures).toHaveLength(1);
+    expect(opening[0].enclosures[0]).toMatchObject({
+      key: 'transfer_order',
+      kind: 'document',
+      title: 'Decreto di trasferimento',
+    });
+    expect(opening[0].enclosures[0].body).toContain('MINISTERO DELL\'INTERNO');
   });
 
   it('lets the Player write, at the start, to Voss and to every office, not to Adelaide', () => {
     const view: GameView<VossStory, VossState> = {
       gameId: 'g1',
       story,
-      state: vossEngine.schema.state.parse({}),
+      state: initialState(story),
       turn: 1,
       history: [],
       submission: [],

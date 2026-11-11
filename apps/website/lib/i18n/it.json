@@ -479,6 +479,19 @@
       "story_not_playable": "Questa storia non è ancora giocabile."
     },
     "enclosed": "Allegato",
-    "epilogue": "Epilogo"
+    "epilogue": "Epilogo",
+    "bySender": "Mittenti",
+    "timeline": "Cronologia",
+    "rules": "Rivedi le regole",
+    "openMail": "Apri la posta",
+    "turn": "Turno {n}",
+    "openingTurn": "Apertura",
+    "letter": "Lettera",
+    "clipping": "Ritaglio",
+    "earlierOne": "1 lettera precedente",
+    "earlierMany": "{count} lettere precedenti",
+    "hideEarlier": "Nascondi le lettere precedenti",
+    "noReplyYet": "Nessuna risposta, per ora",
+    "noLettersYet": "Nessuna lettera"
   }
 }

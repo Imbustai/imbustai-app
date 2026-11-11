@@ -19,6 +19,11 @@ export interface EngineEntry {
    * Absent = the runtime's generic shape (a writer, a reader and a checker per Letter).
    */
   runTurnShape?(story: unknown, lettersPerTurn: number): CallShape[];
+  /**
+   * The Story's rules card (Markdown), outside the fiction: the Player UI
+   * shows it before the first Letter. Given the validated Story.
+   */
+  rulesCard?(story: unknown): string | null;
 }
 
 const ENGINES: Record<string, EngineEntry> = {
