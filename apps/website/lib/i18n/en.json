@@ -173,7 +173,46 @@
     "backToOrders": "← Orders",
     "storiesNav": "Stories",
     "waitingReview": "Games waiting for review",
-    "noWaitingReview": "No turns waiting — all caught up."
+    "noWaitingReview": "No turns waiting — all caught up.",
+    "run": {
+      "title": "Run",
+      "startTitle": "Start a Run",
+      "startHint": "A Run is a QA Game: an AI player writes as the Lead, every Turn is approved automatically, and the Run stops before its spend can pass the cap.",
+      "persona": "Player persona",
+      "personaMethodical": "Methodical",
+      "personaWarm": "Warm and chatty",
+      "personaImpulsive": "Impulsive",
+      "cap": "Cost cap (USD)",
+      "maxTurns": "Turns",
+      "storyDefault": "Story default",
+      "start": "Start Run",
+      "play": "Play the Run",
+      "playing": "Playing… Turn",
+      "estimate": "Estimate",
+      "spent": "Spent",
+      "status": "Status",
+      "statusRunning": "Running",
+      "statusCompleted": "Completed",
+      "statusFailed": "Failed",
+      "outcomeEnding": "Reached an Ending",
+      "outcomeTurnLimit": "Stopped at the Turn limit",
+      "outcomeCap": "Stopped by the cost cap",
+      "outcomeError": "Stopped by an error",
+      "ending": "Ending",
+      "turnsPlayed": "Turns played",
+      "scores": "Scores per complaint (1 = the complaint fully applies, 5 = no trace of it)",
+      "noScores": "Not scored",
+      "draftErrors": "Error findings on batches sent anyway",
+      "calls": "Model calls",
+      "spendByRole": "Spend by role",
+      "complaint": {
+        "vague": "Vague answers",
+        "echo": "Praise and paraphrase",
+        "scripted": "Scripted events",
+        "contacts": "Unreachable contacts",
+        "bond": "No bond"
+      }
+    }
   },
   "landing": {
     "hero": {

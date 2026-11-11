@@ -1,5 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { Engine } from '@imbustai/story-runtime';
+import type { CallShape, Engine } from '@imbustai/story-runtime';
 import type { StoryRow } from '@/lib/types/db';
 import { classicEntry } from './classic';
 import { vossEntry } from './voss';
@@ -14,6 +14,11 @@ export interface EngineEntry {
   loadStory(admin: SupabaseClient, row: StoryRow): Promise<unknown>;
   /** Raw games.runtime_state before `engine.schema.state`, for old Games. */
   readState?(raw: unknown, story: unknown): unknown;
+  /**
+   * The model calls one Turn makes at most, for a Run's preflight estimate.
+   * Absent = the runtime's generic shape (a writer, a reader and a checker per Letter).
+   */
+  runTurnShape?(story: unknown, lettersPerTurn: number): CallShape[];
   /**
    * The Story's rules card (Markdown), outside the fiction: the Player UI
    * shows it before the first Letter. Given the validated Story.

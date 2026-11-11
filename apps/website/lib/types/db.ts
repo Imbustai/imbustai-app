@@ -1,5 +1,6 @@
 import type {
   CallOutcome,
+  ComplaintScore,
   Enclosure,
   Ending,
   Finding,
@@ -8,6 +9,7 @@ import type {
   ModelProfilePatch,
   OutgoingKind,
   OutgoingLetter,
+  RunOutcome,
 } from '@imbustai/story-runtime';
 
 export type OrderStatus ='pending_payment' | 'paid' | 'cancelled';
@@ -334,4 +336,37 @@ export interface InteractionRow {
   story_date: string | null;
   turn_id: string | null;
   created_at: string;
+}
+
+export type RunStatus = 'running' | 'completed' | 'failed';
+
+/** What a finished Run leaves behind; per-call cost stays in ai_calls. */
+export interface RunReport {
+  outcome: RunOutcome;
+  /** Why a failed Run failed. */
+  error?: string;
+  ending: Ending | null;
+  turns_played: number;
+  /** Per-complaint scores, 1 (the complaint fully applies) to 5; null when the judge did not run. */
+  scores: ComplaintScore[] | null;
+  /** Why there are no scores. */
+  scores_error?: string;
+  /** Error findings on batches the Run auto-approved anyway. */
+  draft_errors: number;
+  spent_usd: number;
+  spend: { role: string; model: string; calls: number; usd: number }[];
+}
+
+/** A Run: the QA Game an AI player plays under a cost cap (see 20261110120000_runs.sql). */
+export interface RunRow {
+  game_id: string;
+  persona: string;
+  cap_usd: number;
+  max_turns: number;
+  estimate_usd: number;
+  status: RunStatus;
+  outcome: RunOutcome | null;
+  report: RunReport | null;
+  created_at: string;
+  finished_at: string | null;
 }

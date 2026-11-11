@@ -3,6 +3,7 @@ import {
   isProviderId,
   modelsOf,
   type CallUsage,
+  type ModelPrice,
   type ModelProfile,
   type ProviderId,
 } from '@imbustai/story-runtime';
@@ -58,4 +59,16 @@ export function computeCostUsd(usage: CallUsage, pricing: PricingMap): number {
     usage.cache_read_input_tokens * price.cache_read_usd_per_mtok +
     usage.cache_creation_input_tokens * price.cache_write_usd_per_mtok;
   return cost / 1_000_000;
+}
+
+/** A model's rates for the Run budget and estimate. Throws for an unpriced model. */
+export function priceOf(model: string, pricing: PricingMap): ModelPrice {
+  const row = pricing.get(model);
+  if (!row) throw new UnpricedModelError([model]);
+  return {
+    input: Number(row.input_usd_per_mtok),
+    output: Number(row.output_usd_per_mtok),
+    cacheRead: Number(row.cache_read_usd_per_mtok),
+    cacheWrite: Number(row.cache_write_usd_per_mtok),
+  };
 }

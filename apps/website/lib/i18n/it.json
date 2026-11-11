@@ -173,7 +173,46 @@
     "backToOrders": "← Ordini",
     "storiesNav": "Storie",
     "waitingReview": "Partite in attesa di revisione",
-    "noWaitingReview": "Nessun turno in attesa — tutto aggiornato."
+    "noWaitingReview": "Nessun turno in attesa — tutto aggiornato.",
+    "run": {
+      "title": "Run",
+      "startTitle": "Avvia un Run",
+      "startHint": "Un Run è una partita di QA: un giocatore AI scrive come il Lead, ogni Turno è approvato in automatico e il Run si ferma prima che la spesa superi il tetto.",
+      "persona": "Persona del giocatore",
+      "personaMethodical": "Metodico",
+      "personaWarm": "Caloroso e chiacchierone",
+      "personaImpulsive": "Impulsivo",
+      "cap": "Tetto di spesa (USD)",
+      "maxTurns": "Turni",
+      "storyDefault": "Default della storia",
+      "start": "Avvia Run",
+      "play": "Gioca il Run",
+      "playing": "In corso… Turno",
+      "estimate": "Stima",
+      "spent": "Speso",
+      "status": "Stato",
+      "statusRunning": "In corso",
+      "statusCompleted": "Completato",
+      "statusFailed": "Fallito",
+      "outcomeEnding": "Ha raggiunto un Finale",
+      "outcomeTurnLimit": "Fermato al limite di Turni",
+      "outcomeCap": "Fermato dal tetto di spesa",
+      "outcomeError": "Fermato da un errore",
+      "ending": "Finale",
+      "turnsPlayed": "Turni giocati",
+      "scores": "Punteggi per critica (1 = la critica vale in pieno, 5 = nessuna traccia)",
+      "noScores": "Senza punteggi",
+      "draftErrors": "Errori di validazione su batch inviati comunque",
+      "calls": "Chiamate ai modelli",
+      "spendByRole": "Spesa per ruolo",
+      "complaint": {
+        "vague": "Risposte vaghe",
+        "echo": "Lode e parafrasi",
+        "scripted": "Eventi da copione",
+        "contacts": "Contatti irraggiungibili",
+        "bond": "Nessun legame"
+      }
+    }
   },
   "landing": {
     "hero": {
