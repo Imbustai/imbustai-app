@@ -82,7 +82,6 @@
 
 /* ── the Player's own Letter ── */
 .playerSheet {
-  white-space: pre-wrap;
   overflow-wrap: anywhere;
   font-size: var(--ds-typography-font-size-body);
   line-height: var(--ds-typography-line-height-relaxed);

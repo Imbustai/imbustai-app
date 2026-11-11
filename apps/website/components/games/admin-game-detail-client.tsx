@@ -16,6 +16,7 @@ import {
   Inline,
   Grid,
   Box,
+  LetterContent,
   Typography,
 } from '@imbustai/ds';
 import styles from './games.module.css';
@@ -129,7 +130,7 @@ export function AdminGameDetailClient({
                 </Typography>
               </Inline>
               <Box marginTop="2">
-                <pre className={styles.letterContent}>{i.content}</pre>
+                <LetterContent markdown={i.content} className={styles.letterContent} />
               </Box>
               {(i.enclosures ?? []).map((enc) => (
                 <Box key={enc.key} marginTop="2">

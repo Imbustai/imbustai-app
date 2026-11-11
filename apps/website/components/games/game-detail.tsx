@@ -4,7 +4,7 @@ import { useTranslation } from '@imbustai/i18n';
 import Link from 'next/link';
 import { storyTitle } from '@/lib/story-i18n';
 import type { GameRow, InteractionRow, StoryRow } from '@/lib/types/db';
-import { Badge, Button, Stack, Inline, Box, Typography } from '@imbustai/ds';
+import { Badge, Button, LetterContent, Stack, Inline, Box, Typography } from '@imbustai/ds';
 import styles from './games.module.css';
 
 function formatDate(dateStr: string | null) {
@@ -63,7 +63,7 @@ export function GameDetail({
                 </Typography>
               </Inline>
               <Box marginTop="2">
-                <pre className={styles.letterContent}>{i.content}</pre>
+                <LetterContent markdown={i.content} className={styles.letterContent} />
               </Box>
             </li>
           ))}

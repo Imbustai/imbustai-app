@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { LetterContent } from '@imbustai/ds';
 import type { Enclosure } from '@imbustai/story-runtime';
 import type { MailLetter, MailSender } from '@/lib/mailbox';
 import { keepLineBreaks, splitClipping } from './paper';
@@ -95,9 +96,9 @@ export function HandwrittenSheet({ body, hand }: { body: string; hand: number })
   );
 }
 
-/** What the Player wrote: plain, as typed. */
+/** What the Player wrote: Letter Markdown from the rich-text composer. */
 export function PlayerSheet({ body }: { body: string }) {
-  return <div className={styles.playerSheet}>{body}</div>;
+  return <LetterContent markdown={keepLineBreaks(body)} className={styles.playerSheet} />;
 }
 
 /** A received Letter, set as the paper its sender would use. */
