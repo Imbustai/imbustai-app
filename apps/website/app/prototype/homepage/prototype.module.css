@@ -1,0 +1,20 @@
+.page { background: #faf7f0; color: #111; padding: 0 0 6rem; }
+.banner { background: #111; color: #f6c500; padding: 0.6rem 1.5rem; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.specimen { max-width: 76rem; margin: 0 auto; padding: 2.5rem 1.5rem; border-bottom: 2px solid #111; }
+.meta { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; font-size: 0.9rem; line-height: 1.4; }
+.meta span { color: #555; }
+.key { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; background: #0057b8; color: #fff !important; font-weight: 700; font-size: 1.2rem; flex: none; }
+.cols { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+@media (min-width: 56rem) { .cols { grid-template-columns: 1.1fr 1fr; align-items: start; } }
+.overline { font-size: 0.95em; letter-spacing: 0.14em; text-transform: uppercase; color: #0057b8; margin-bottom: 0.6rem; }
+.display { font-size: clamp(3.4em, 9vw, 7em); line-height: 0.92; text-transform: uppercase; color: #0057b8; letter-spacing: 0.005em; }
+.red { color: #e53b2c; }
+.h2 { font-size: 2.6em; line-height: 1; text-transform: uppercase; display: block; }
+.h3 { font-size: 1.5em; line-height: 1.15; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.6rem; color: #e53b2c; }
+.body { margin: 1rem 0 1.25rem; max-width: 34rem; font-size: 1.05rem; line-height: 1.55; }
+.row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.cta { background: #0057b8; color: #fff; padding: 0.75em 1.4em; text-transform: uppercase; letter-spacing: 0.08em; font-size: 1.05em; }
+.label { border: 2px solid #e53b2c; color: #e53b2c; padding: 0.3em 0.8em; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.95em; }
+.labelBlue { composes: label; border-color: #0057b8; color: #0057b8; }
+.dark { margin-top: 1.25rem; background: #0057b8; color: #faf7f0; padding: 1.25rem; display: grid; gap: 0.5rem; }
+.nums { font-size: 1.3em; letter-spacing: 0.06em; color: #f6c500; }
