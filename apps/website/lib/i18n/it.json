@@ -453,6 +453,7 @@
     "earlierMany": "{count} lettere precedenti",
     "hideEarlier": "Nascondi le lettere precedenti",
     "noReplyYet": "Nessuna risposta, per ora",
-    "noLettersYet": "Nessuna lettera"
+    "noLettersYet": "Nessuna lettera",
+    "writeToOthers": "Scrivi a qualcun altro"
   }
 }

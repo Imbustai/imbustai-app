@@ -451,6 +451,7 @@
     "earlierMany": "{count} earlier letters",
     "hideEarlier": "Hide earlier letters",
     "noReplyYet": "No reply yet",
-    "noLettersYet": "No letters"
+    "noLettersYet": "No letters",
+    "writeToOthers": "Write to someone else"
   }
 }

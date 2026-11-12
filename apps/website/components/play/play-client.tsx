@@ -189,6 +189,7 @@ export function PlayClient({
   const [showEarlier, setShowEarlier] = useState(false);
   const [rulesOpen, setRulesOpen] = useState(false);
   const [reviewing, setReviewing] = useState(false);
+  const [showOthers, setShowOthers] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -282,7 +283,11 @@ export function PlayClient({
     [letters, turnNumbers, contacts, allCharacters],
   );
 
-  const sender = mailbox.senders.find((s) => s.slug === selectedSlug) ?? mailbox.senders[0] ?? null;
+  const sender =
+    mailbox.senders.find((s) => s.slug === selectedSlug) ??
+    mailbox.senders.find((s) => s.letters.length > 0) ??
+    mailbox.senders[0] ??
+    null;
   const thread = sender ? threadOf(sender) : null;
 
   const draftEntries = useMemo(
@@ -331,6 +336,33 @@ export function PlayClient({
     await refreshLetters();
     await refreshState();
   }
+
+  // The mailbox lists who the Player has corresponded with (or is writing to now);
+  // everyone else he may write to is one fold away.
+  const inMail = mailbox.senders.filter(
+    (s) => s.letters.length > 0 || Boolean(drafts[s.slug]?.trim()) || s.slug === selectedSlug,
+  );
+  const others = mailbox.senders.filter((s) => !inMail.includes(s));
+
+  const senderRow = (s: MailSender) => (
+    <button
+      key={s.slug}
+      type="button"
+      className={s.slug === sender?.slug && !reviewing ? styles.rowActive : styles.row}
+      onClick={() => openSender(s.slug, null)}
+    >
+      <span className={styles.rowTitle}>{s.name}</span>
+      {s.role ? <span className={styles.rowSub}>{s.role}</span> : null}
+      <span className={styles.rowMeta}>
+        {s.lastReceived
+          ? `${turnLabel(s.lastReceived.turn, t)} · ${formatStoryDate(s.lastReceived.storyDate, dateLocale)}`
+          : s.letters.length > 0
+            ? t('play.noReplyYet')
+            : t('play.noLettersYet')}
+        {drafts[s.slug]?.trim() ? ` · ✏️ ${t('play.draftSaved')}` : ''}
+      </span>
+    </button>
+  );
 
   const nameOf = (slug: string) => allCharacters.find((c) => c.slug === slug)?.name ?? slug;
   const composerOpen = status === 'in_progress' && !awaitingReply;
@@ -395,25 +427,25 @@ export function PlayClient({
 
         <div className={styles.sidebarList}>
           {view === 'senders'
-            ? mailbox.senders.map((s) => (
-                <button
-                  key={s.slug}
-                  type="button"
-                  className={s.slug === sender?.slug && !reviewing ? styles.rowActive : styles.row}
-                  onClick={() => openSender(s.slug, null)}
-                >
-                  <span className={styles.rowTitle}>{s.name}</span>
-                  {s.role ? <span className={styles.rowSub}>{s.role}</span> : null}
-                  <span className={styles.rowMeta}>
-                    {s.lastReceived
-                      ? `${turnLabel(s.lastReceived.turn, t)} · ${formatStoryDate(s.lastReceived.storyDate, dateLocale)}`
-                      : s.letters.length > 0
-                        ? t('play.noReplyYet')
-                        : t('play.noLettersYet')}
-                    {drafts[s.slug]?.trim() ? ` · ✏️ ${t('play.draftSaved')}` : ''}
-                  </span>
-                </button>
-              ))
+            ? [
+                ...inMail.map(senderRow),
+                // Contacts never corresponded with stay folded away until the Player wants to write to one.
+                composerOpen && others.length > 0 ? (
+                  <button
+                    key="__others"
+                    type="button"
+                    className={styles.row}
+                    aria-expanded={showOthers}
+                    onClick={() => setShowOthers((open) => !open)}
+                  >
+                    <span className={styles.rowTitle}>
+                      {showOthers ? '−' : '+'} {t('play.writeToOthers')}
+                    </span>
+                    <span className={styles.rowMeta}>{others.length}</span>
+                  </button>
+                ) : null,
+                ...(composerOpen && showOthers ? others.map(senderRow) : []),
+              ]
             : mailbox.timeline.map((l) => (
                 <button
                   key={l.id}
