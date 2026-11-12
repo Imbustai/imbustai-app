@@ -122,6 +122,7 @@ export async function generateDraft(
     turn: ctx.turn.turn_number,
     hook: ending ? 'generateEpilogue' : 'generateTurn',
     profile: host.profile,
+    capUsd: host.run?.cap_usd,
     turnId: ctx.turn.id,
   });
   let batch;
@@ -131,6 +132,8 @@ export async function generateDraft(
       ? await host.engine.generateEpilogue(session.ctx, ctx.view, ending)
       : await host.engine.generateTurn(session.ctx, ctx.view, request);
     findings = await reviewDraft(host.engine, session.ctx, ctx.view, batch, { closing: !!ending });
+    // A Run whose cap refused a call has no complete batch, even if the Engine went on without it.
+    if (session.budget?.capError) throw session.budget.capError;
   } catch (err) {
     // A failed generation still spent: keep its attempts.
     await session.persist();
@@ -192,6 +195,7 @@ export async function saveDraftEdits(
     turn: ctx.turn.turn_number,
     hook: 'validateDraft',
     profile: host.profile,
+    capUsd: host.run?.cap_usd,
     turnId: ctx.turn.id,
   });
   let findings;
@@ -255,7 +259,8 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
     character_slug: l.from || null,
     story_date: l.storyDate,
     turn_id: turnId,
-    visible_from: computeVisibleFrom(host.row.time_config.visible_delay, now),
+    // A Run's AI player reads the replies at once.
+    visible_from: host.run ? null : computeVisibleFrom(host.row.time_config.visible_delay, now),
   }));
   const { error: insErr } = await host.admin.from('interactions').insert(rows);
   if (insErr) throw new WorkflowError(insErr.message, 500);
@@ -286,6 +291,7 @@ export async function approveDraft(turnId: string, draftId: string): Promise<voi
     turn: ctx.turn.turn_number,
     hook: 'applyTurn',
     profile: host.profile,
+    capUsd: host.run?.cap_usd,
     turnId: ctx.turn.id,
   });
   let next;
@@ -329,7 +335,10 @@ async function openClosingTurnIfEnded(gameId: string): Promise<void> {
     .single();
   if (error || !turn) throw new WorkflowError(error?.message ?? 'turn_insert_failed', 500);
 
-  if (host.row.lifecycle === 'released') await autoSend((turn as InteractionTurnRow).id, 'released');
+  // A Run sends its own batches (lib/runs.ts), so that its cap stops it.
+  if (host.row.lifecycle === 'released' && !host.run) {
+    await autoSend((turn as InteractionTurnRow).id, 'released');
+  }
 }
 
 /**
@@ -436,7 +445,7 @@ export async function submitPlayerTurn(
   const turnId = (turn as InteractionTurnRow).id;
 
   // Released stories: same pipeline, approve step runs automatically.
-  if (host.row.lifecycle === 'released') {
+  if (host.row.lifecycle === 'released' && !host.run) {
     const autoSent = await autoSend(turnId, host.row.lifecycle);
     return { turnId, turnNumber, autoSent, heldForReview: !autoSent };
   }

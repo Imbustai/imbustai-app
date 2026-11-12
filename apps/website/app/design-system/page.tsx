@@ -34,7 +34,7 @@ import {
   TableCell,
 } from '@imbustai/ds';
 import type { TypographyVariant } from '@imbustai/ds';
-import { TooltipDemo, SelectDemo } from './interactive-demos';
+import { TooltipDemo, SelectDemo, RichTextDemo } from './interactive-demos';
 
 export const metadata = {
   title: 'Design System — @imbustai/ds',
@@ -303,6 +303,10 @@ export default function DesignSystemPage() {
           <Typography variant="caption" tone="muted" as="p">
             Sizes: sm (5rem), md (10rem, default), lg (16rem). Vertically resizable.
           </Typography>
+        </SubSection>
+
+        <SubSection title="Rich text editor & letter content">
+          <RichTextDemo />
         </SubSection>
 
         {/* Label + Input */}

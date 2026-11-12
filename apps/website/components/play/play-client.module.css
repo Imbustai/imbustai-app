@@ -156,7 +156,6 @@
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  white-space: pre-wrap;
   font-size: var(--ds-typography-font-size-body);
 }
 

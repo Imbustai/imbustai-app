@@ -1,6 +1,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import {
   DEFAULT_MODEL_PROFILE,
+  RunBudget,
+  budgetedProvider,
   contactsOf,
   createAiAccess,
   createHookContext,
@@ -14,17 +16,19 @@ import {
   type Finding,
   type GameView,
   type HookContext,
+  type HostAiAccess,
   type ModelProfile,
   type ModelProfilePatch,
   type OutgoingLetter,
 } from '@imbustai/story-runtime';
-import { assertProfilePriced, computeCostUsd, loadPricingMap, providerOf } from '@/lib/ai-pricing';
+import { assertProfilePriced, computeCostUsd, loadPricingMap, priceOf, providerOf } from '@/lib/ai-pricing';
 import { engineEntryFor } from '@/lib/engines';
 import type {
   AiDraftRow,
   GameRow,
   InteractionRow,
   InteractionTurnRow,
+  RunRow,
   StoryRow,
   UsageRecord as DbUsageRecord,
 } from '@/lib/types/db';
@@ -75,6 +79,8 @@ export interface GameHost extends LoadedStory {
   state: unknown;
   /** The model profile every Hook of this Game calls AI with. */
   profile: ModelProfile;
+  /** Set when the Game is a Run: auto-approved, visible at once, under a cost cap. */
+  run: RunRow | null;
   /** Every Letter of the Game, oldest first. */
   interactions: InteractionRow[];
   turns: InteractionTurnRow[];
@@ -94,13 +100,14 @@ export async function loadGameHost(
   }
 
   const loaded = await loadStory(admin, game.story_id);
-  const [{ data: interactions }, { data: turns }] = await Promise.all([
+  const [{ data: interactions }, { data: turns }, { data: run }] = await Promise.all([
     admin
       .from('interactions')
       .select('*')
       .eq('game_id', game.id)
       .order('letter_number', { ascending: true }),
     admin.from('interaction_turns').select('*').eq('game_id', game.id),
+    admin.from('runs').select('*').eq('game_id', game.id).maybeSingle(),
   ]);
 
   return {
@@ -109,6 +116,7 @@ export async function loadGameHost(
     game,
     state: loaded.readState(game.runtime_state ?? {}),
     profile: modelProfileFor(loaded.row, game),
+    run: (run as RunRow | null) ?? null,
     interactions: (interactions ?? []) as InteractionRow[],
     turns: (turns ?? []) as InteractionTurnRow[],
   };
@@ -187,13 +195,24 @@ export function modelProfileFor(
 }
 
 /** Which Hook a context serves; recorded on every call it makes. */
-export type HookName = 'startGame' | 'generateTurn' | 'generateEpilogue' | 'validateDraft' | 'applyTurn';
+export type HookName =
+  | 'startGame'
+  | 'generateTurn'
+  | 'generateEpilogue'
+  | 'validateDraft'
+  | 'applyTurn'
+  /** Not a Hook: a Run's own calls (the AI player, the judge). */
+  | 'run';
 
 /** A priced attempt, as ai_drafts.usage stores it. */
 export type PricedCall = DbUsageRecord;
 
 export interface HookSession {
   ctx: HookContext;
+  /** The same AI with the `player` role, for a Run's own calls. */
+  ai: HostAiAccess;
+  /** A Run's budget; null for a Game that is not one. */
+  budget: RunBudget | null;
   /** Every attempt made through `ctx` so far, priced at call time. */
   calls: PricedCall[];
   /** Writes the attempts not yet saved to ai_calls. Call once the Game row exists. */
@@ -206,21 +225,36 @@ export interface HookSession {
  * price table before anything runs, so an unpriced model fails loudly
  * instead of costing "$0". Providers are created on the first call, so
  * Hooks that never call AI need no key.
+ *
+ * `capUsd` makes it a Run's session: every call first reserves its worst
+ * case against the cap, counting the Game's spend already in ai_calls, and
+ * is refused (RunCapError) when the cap cannot cover it.
  */
 export async function hookSession(
   admin: SupabaseClient,
   story: Pick<LoadedStory, 'row'>,
-  opts: { gameId: string; turn: number; hook: HookName; profile: ModelProfile; turnId?: string },
+  opts: {
+    gameId: string;
+    turn: number;
+    hook: HookName;
+    profile: ModelProfile;
+    turnId?: string;
+    capUsd?: number | null;
+  },
 ): Promise<HookSession> {
   const pricing = await loadPricingMap(admin);
   assertProfilePriced(opts.profile, pricing);
   const providers = createProviders();
+  const budget = opts.capUsd != null ? await runBudget(admin, opts.gameId, Number(opts.capUsd)) : null;
   const calls: PricedCall[] = [];
   let saved = 0;
 
   const ai = createAiAccess({
     profile: opts.profile,
-    providerFor: (model) => providers(providerOf(model, pricing)),
+    providerFor: (model) => {
+      const provider = providers(providerOf(model, pricing));
+      return budget ? budgetedProvider(provider, budget, (m) => priceOf(m, pricing)) : provider;
+    },
     turn: opts.turn,
     onUsage: (u) =>
       calls.push({
@@ -247,6 +281,8 @@ export async function hookSession(
       ai,
       locale: story.row.time_config?.date_locale,
     }),
+    ai,
+    budget,
     calls,
     async persist({ draftId } = {}) {
       const fresh = calls.slice(saved);
@@ -278,6 +314,18 @@ export async function hookSession(
       else saved += fresh.length;
     },
   };
+}
+
+/** Every dollar metered for a Game so far. */
+export async function gameSpendUsd(admin: SupabaseClient, gameId: string): Promise<number> {
+  const { data, error } = await admin.from('ai_calls').select('cost_usd').eq('game_id', gameId);
+  if (error) throw new Error(`ai_calls: ${error.message}`);
+  return ((data ?? []) as { cost_usd: number }[]).reduce((sum, c) => sum + Number(c.cost_usd), 0);
+}
+
+/** A Run's budget: its cap, less what the Game has already spent. */
+async function runBudget(admin: SupabaseClient, gameId: string, capUsd: number): Promise<RunBudget> {
+  return new RunBudget({ capUsd, spentUsd: await gameSpendUsd(admin, gameId) });
 }
 
 /** The opening envelope as interactions rows: authored, so inserted without review. */

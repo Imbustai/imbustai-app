@@ -2,12 +2,41 @@
 
 import {
   Button,
+  LetterContent,
+  RichTextEditor,
   Select,
   Tooltip,
   TooltipTrigger,
   TooltipContent,
   TooltipProvider,
 } from '@imbustai/ds';
+import { useState } from 'react';
+
+const LETTER_DEMO = `# A letter heading
+
+Dear reader,
+
+This is **Markdown** written through the visual editor.
+
+| Detail | Value |
+| --- | --- |
+| Format | Markdown |
+| Reader | Shared component |
+
+> A small quotation.
+
+Yours sincerely,
+The Imbustai team`;
+
+export function RichTextDemo() {
+  const [markdown, setMarkdown] = useState(LETTER_DEMO);
+  return (
+    <div style={{ display: 'grid', gap: 'var(--ds-space-6)' }}>
+      <RichTextEditor value={markdown} onChange={setMarkdown} aria-label="Rich text editor demo" />
+      <LetterContent markdown={markdown} />
+    </div>
+  );
+}
 
 export function TooltipDemo() {
   return (

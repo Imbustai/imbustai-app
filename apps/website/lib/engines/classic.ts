@@ -91,4 +91,11 @@ export const classicEntry: EngineEntry = {
   engine: classicEngine as EngineEntry['engine'],
   loadStory: loadStoryConfig,
   readState: (raw, story) => upgradeLegacyState(raw, story as StoryConfig),
+  // One orchestrator plan, then one writer call per replying character; both
+  // ask for the `writer`. Sizes from the four-Turn July game, late Turns
+  // (docs/research/voss-simulation-costs-2026-09-28.md), with room for thinking.
+  runTurnShape: (_story, lettersPerTurn) => [
+    { role: 'writer', purpose: 'orchestrator', callsPerTurn: 1, inputTokens: 26_000, outputTokens: 5_000 },
+    { role: 'writer', purpose: 'npc_letter', callsPerTurn: lettersPerTurn, inputTokens: 12_000, outputTokens: 3_000 },
+  ],
 };

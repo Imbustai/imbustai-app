@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { AdminGameDetailClient } from '@/components/games/admin-game-detail-client';
 import { GameCostBreakdown } from '@/components/games/game-cost-breakdown';
+import { RunPanel } from '@/components/games/run-panel';
 import {
   ReplyWorkflowPanel,
   TestHarnessCard,
@@ -14,6 +15,7 @@ import type {
   GameRow,
   InteractionRow,
   InteractionTurnRow,
+  RunRow,
   StoryCharacterRow,
   StoryRow,
 } from '@/lib/types/db';
@@ -22,10 +24,13 @@ export const dynamic = 'force-dynamic';
 
 export default async function AdminGameDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ gameId: string }>;
+  searchParams: Promise<{ run?: string }>;
 }) {
   const { gameId } = await params;
+  const { run: runParam } = await searchParams;
   const admin = createAdminClient();
 
   const { data: game, error } = await admin
@@ -44,6 +49,7 @@ export default async function AdminGameDetailPage({
     { data: characters },
     { data: openTurn },
     { data: calls },
+    { data: run },
   ] =
     await Promise.all([
       admin
@@ -64,11 +70,14 @@ export default async function AdminGameDetailPage({
         .eq('game_id', gameId)
         .neq('status', 'sent')
         .maybeSingle(),
-      admin.from('ai_calls').select('hook,draft_id,cost_usd').eq('game_id', gameId),
+      admin.from('ai_calls').select('*').eq('game_id', gameId).order('created_at', { ascending: true }),
+      admin.from('runs').select('*').eq('game_id', gameId).maybeSingle(),
     ]);
+  const callRows = (calls ?? []) as AiCallRow[];
+  const runRow = (run as RunRow | null) ?? null;
   // Spend no draft snapshot carries: game start, applyTurn, edits' validation,
   // failed generations. A generation's own calls are already on its draft.
-  const extraSpendUsd = ((calls ?? []) as Pick<AiCallRow, 'hook' | 'draft_id' | 'cost_usd'>[])
+  const extraSpendUsd = callRows
     .filter((c) => !(c.draft_id && (c.hook === 'generateTurn' || c.hook === 'generateEpilogue')))
     .reduce((acc, c) => acc + Number(c.cost_usd), 0);
 
@@ -122,6 +131,16 @@ export default async function AdminGameDetailPage({
 
   return (
     <Box maxWidth="4xl" marginX="auto">
+      {runRow ? (
+        <Box marginBottom="8">
+          <RunPanel
+            run={runRow}
+            calls={callRows}
+            spentUsd={callRows.reduce((acc, c) => acc + Number(c.cost_usd), 0)}
+            autoPlay={runParam === 'play'}
+          />
+        </Box>
+      ) : null}
       <ReplyWorkflowPanel
         gameId={gameId}
         game={g}

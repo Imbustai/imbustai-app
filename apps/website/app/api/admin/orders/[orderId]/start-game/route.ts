@@ -1,10 +1,10 @@
-import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { requireAdmin } from '@/lib/require-admin';
 import { modelProfilePatchSchema } from '@imbustai/story-runtime';
 import { UnpricedModelError } from '@/lib/ai-pricing';
-import { WorkflowError, hookSession, loadStory, modelProfileFor, openingRows } from '@/lib/game-host';
+import { WorkflowError, loadStory, modelProfileFor } from '@/lib/game-host';
+import { createGame } from '@/lib/start-game';
 
 // Body (optional): { model_profile?: ModelProfilePatch } — overrides the
 // Story's default models for this Game only, role by role and per Character.
@@ -60,59 +60,19 @@ export async function POST(
     throw err;
   }
 
-  // The Engine gives the Game its first state and the opening envelope, which
-  // is authored, so it is delivered without review.
   // The Game keeps the profile it starts with: later edits to the Story's
   // default never change a Game already running.
   const profile = modelProfileFor(loaded.row, null, override.data);
-  const gameId = randomUUID();
-  let session;
   try {
-    session = await hookSession(admin, loaded, { gameId, turn: 0, hook: 'startGame', profile });
+    const gameId = await createGame(admin, { order, loaded, profile });
+    return NextResponse.json({ gameId });
   } catch (err) {
     if (err instanceof UnpricedModelError) {
       return NextResponse.json({ error: err.message }, { status: 400 });
     }
+    if (err instanceof WorkflowError) {
+      return NextResponse.json({ error: err.code }, { status: err.status });
+    }
     throw err;
   }
-  const today = new Date().toISOString().slice(0, 10);
-  const { state, opening } = await loaded.engine.startGame(session.ctx, {
-    gameId,
-    story: loaded.story,
-    realStartDate: today,
-  });
-  const runtimeState = loaded.engine.schema.state.parse(state);
-
-  const { data: game, error: gErr } = await admin
-    .from('games')
-    .insert({
-      id: gameId,
-      user_id: order.user_id,
-      order_id: order.id,
-      story_id: order.story_id,
-      status: 'in_progress',
-      runtime_state: runtimeState,
-      model_profile: profile,
-    })
-    .select('id')
-    .single();
-
-  if (gErr || !game) {
-    console.error(gErr);
-    return NextResponse.json({ error: 'Could not create game' }, { status: 500 });
-  }
-  await session.persist();
-
-  const { error: iErr } = await admin.from('interactions').insert(openingRows(game.id, opening));
-
-  if (iErr) {
-    console.error(iErr);
-    await admin.from('games').delete().eq('id', game.id);
-    return NextResponse.json(
-      { error: 'Could not create opening letters' },
-      { status: 500 }
-    );
-  }
-
-  return NextResponse.json({ gameId: game.id });
 }
