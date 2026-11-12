@@ -225,7 +225,15 @@ export function vossTurnState(
 }
 
 /** What Adelaide may say in this batch. */
-export function adelaideTurnState(story: VossStory, dates: DateTools, plan: TurnPlan, a: AdelaidePlan, written: boolean): string {
+export function adelaideTurnState(
+  story: VossStory,
+  dates: DateTools,
+  plan: TurnPlan,
+  a: AdelaidePlan,
+  written: boolean,
+  /** What the Lead asked her outright in this Turn: she answers with the whole clue (the tune's title, the man). */
+  asked: { aria: boolean; man: boolean } = { aria: false, man: false },
+): string {
   const c = correspondent(story, 'adelaide');
   const lead = story.lead.name;
   const clue = (key: string) => story.clues.find((k) => k.key === key)?.clue;
@@ -237,6 +245,10 @@ export function adelaideTurnState(story: VossStory, dates: DateTools, plan: Turn
   for (const key of a.newClues) {
     const text = clue(key);
     if (text) out.push(fill(story, 'new_clue', { clue: text }));
+  }
+  for (const [was, key] of [[asked.aria, 'K9'], [asked.man, 'K10']] as const) {
+    const text = was ? clue(key) : undefined;
+    if (text) out.push(fill(story, 'asked_directly', { lead, clue: text }));
   }
   out.push(...reapproachLines(story, a.reapproaches));
   if (a.reveal?.variant === 'deduced') out.push(fill(story, 'reveal_deduced', { lead }));

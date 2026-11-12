@@ -440,6 +440,7 @@ export const PROMPT_KEYS = [
   'new_clue',
   'reveal_deduced',
   'accused_slips',
+  'asked_directly',
   // Offices
   'office_letter',
   'office_forwarded_from',

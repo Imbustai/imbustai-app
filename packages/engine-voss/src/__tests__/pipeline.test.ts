@@ -171,6 +171,9 @@ describe('generateTurn, Turn 1', () => {
     expect(checker.cachedPrefix).toContain(story.pipeline.storyRules);
     expect(checker.user).toContain(story.voss.layers[1].says);
     expect(checker.user).toContain(NOTES.questions[0]);
+    // The whole correspondence: what the Lead wrote in an earlier Letter is not an invention.
+    expect(checker.user).toContain(story.opening.letter.body);
+    expect(checker.user).toContain(toVoss.body);
   });
 
   it('rewrites once, in the writer\'s own conversation, when the checker finds a must', async () => {
@@ -296,13 +299,15 @@ describe('generateTurn, later batches', () => {
 
   it('tells Adelaide\'s writer her Panorama clues and her word limit', async () => {
     const after2 = play([[voss()], [voss()]]).final;
-    const h = harness({ signals: { adelaide: (adelaide() as { signals: unknown }).signals } });
+    const h = harness({ signals: { adelaide: (adelaide({ asksAboutTheAria: true }) as { signals: unknown }).signals } });
     const view = viewOf([{ to: 'adelaide', body: 'Gentile signora, mi dica del Panorama.' }], { state: after2, turn: 3 });
     await vossEngine.generateTurn(h.ctx, view, { kind: 'batch' });
     const sheet = story.correspondents.find((c) => c.slug === 'adelaide')!;
     const writer = h.provider.textRequests.find((r) => r.cachedPrefix?.startsWith(sheet.writerView!))!;
     expect(writer.user).toContain(story.panorama.clues.find((c) => c.key === 'I3')!.clue);
     expect(writer.user).toMatch(/300.*600 parole/);
+    // He asked which tune it was: she answers with all she remembers of it.
+    expect(writer.user).toContain(story.clues.find((c) => c.key === 'K9')!.clue);
   });
 });
 

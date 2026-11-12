@@ -84,6 +84,9 @@ export function buildPrompts(text: (path: string) => string): Record<PromptKey, 
     accused_slips:
       '- {lead} aveva accusato un solo inquilino: Adelaide lo ha affrontato, e quello si è tradito con un dettaglio («il mio turno», poi si è corretto). Lei lo riferisce senza capirlo.',
 
+    asked_directly:
+      '- {lead} lo ha chiesto direttamente, e Adelaide risponde con tutto quello che ricorda, a modo suo e senza capirne il peso: {clue}',
+
     // ─── Offices ────────────────────────────────────────────────────────────
     office_letter: '# La lettera del commissario {lead}, datata {playerDate}, arrivata a Roma {arrivesRome}',
     office_forwarded_from: '- La richiesta è arrivata a questo ufficio per competenza, trasmessa da: {office}.',

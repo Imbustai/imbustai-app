@@ -16,6 +16,7 @@ import {
   type ReaderNotes,
 } from '@imbustai/story-runtime';
 import { turnRow } from '../mechanics/calendar';
+import type { ReadLetter } from '../mechanics/signals';
 import { vossStateSchema, type VossState } from '../mechanics/state';
 import { playTurn, type FixedText, type OfficePlan, type TurnPlan } from '../mechanics/turn';
 import type { VossStory } from '../schema';
@@ -40,7 +41,7 @@ import {
   sections,
   vossTurnState,
 } from './prompts';
-import { readSubmission, type ReaderBySlug } from './read';
+import { readSubmission, type ReaderBySlug, type ReadSubmission } from './read';
 
 // The writing pipeline (Imbustai/imbustai-app#41): the Turn plan in, the
 // batch out. `generateTurn` reads the Lead's Letters, lets the mechanics plan
@@ -59,11 +60,14 @@ export const vossEffectsSchema = z.object({
   state: vossStateSchema,
   plan: z.unknown(),
   reader: z.record(z.string(), z.unknown()).default({}),
+  /** The Lead's Letters as the reader read them: a regenerated Letter is written from the same signals. */
+  read: z.array(z.unknown()).default([]),
 });
 export interface VossEffects {
   state: VossState;
   plan: TurnPlan;
   reader: ReaderBySlug;
+  read: ReadLetter[];
 }
 
 export function effectsOf(draft: DraftBatch): VossEffects {
@@ -110,11 +114,11 @@ export async function generateTurn(ctx: HookContext, view: View, request: Genera
   const guidance = request.guidance ? [request.guidance] : [];
   // Writers see the state the batch leaves: what it delivers, and what the Lead has just said of himself.
   const after = { ...view, state: next };
-  const written = await Promise.all(jobsOf(plan).map((job) => write(ctx, after, plan, read.notes, job, guidance)));
+  const written = await Promise.all(jobsOf(plan).map((job) => write(ctx, after, plan, read, job, guidance)));
   return {
     letters: written.map((w) => w.letter),
     submissionDate: plan.submissionDate,
-    effects: JSON.parse(JSON.stringify({ state: next, plan, reader: read.notes })) as Json,
+    effects: JSON.parse(JSON.stringify({ state: next, plan, reader: read.notes, read: read.letters })) as Json,
     adminNotes: [...plan.adminNotes, ...written.flatMap((w) => w.adminNotes)],
   };
 }
@@ -125,10 +129,10 @@ async function regenerateLetter(
   view: View,
   request: Extract<GenerateRequest, { kind: 'letter' }>,
 ): Promise<DraftBatch> {
-  const { state, plan, reader } = effectsOf(request.draft);
+  const { state, plan, reader, read } = effectsOf(request.draft);
   const job = jobsOf(plan).find((j) => j.key === request.letterKey);
   if (!job) throw new Error(`engine-voss: the draft has no Letter "${request.letterKey}"`);
-  const { letter, adminNotes } = await write(ctx, { ...view, state }, plan, reader, job, [request.guidance]);
+  const { letter, adminNotes } = await write(ctx, { ...view, state }, plan, { notes: reader, letters: read }, job, [request.guidance]);
   const had = request.draft.letters.some((l) => l.key === job.key);
   return {
     ...request.draft,
@@ -146,7 +150,7 @@ async function write(
   ctx: HookContext,
   view: View,
   plan: TurnPlan,
-  reader: ReaderBySlug,
+  read: ReadSubmission,
   job: Job,
   guidance: string[],
 ): Promise<Written> {
@@ -158,9 +162,10 @@ async function write(
       adminNotes: [],
     };
   }
+  const reader = read.notes;
   if (job.type === 'office') return writeOffice(ctx, view, plan, reader, job.key, job.office, guidance);
   if (job.fixed) return writeFixed(ctx, story, job.key, job.slug, job.date, job.fixed);
-  return writePerson(ctx, view, plan, reader, job.key, job.slug, job.date, guidance);
+  return writePerson(ctx, view, plan, read, job.key, job.slug, job.date, guidance);
 }
 
 function fixedText(story: VossStory, key: string) {
@@ -208,7 +213,7 @@ async function writePerson(
   ctx: HookContext,
   view: View,
   plan: TurnPlan,
-  reader: ReaderBySlug,
+  read: ReadSubmission,
   key: string,
   slug: string,
   date: string,
@@ -218,18 +223,21 @@ async function writePerson(
   const c = correspondent(story, slug);
   const lead = story.lead.name;
   const written = submission.some((l) => l.to === slug);
-  const notes: ReaderNotes | undefined = reader[slug];
+  const notes: ReaderNotes | undefined = read.notes[slug];
+  const toAdelaide = read.letters.flatMap((l) => (l.kind === 'adelaide' ? [l.signals] : []));
+  const asked = { aria: toAdelaide.some((x) => x.asksAboutTheAria), man: toAdelaide.some((x) => x.asksAboutTheMan) };
 
   const turnState =
     slug === 'voss' && plan.voss
       ? vossTurnState(story, ctx.dates, state, plan, plan.voss, written)
       : slug === 'adelaide' && plan.adelaide
-        ? adelaideTurnState(story, ctx.dates, plan, plan.adelaide, written)
+        ? adelaideTurnState(story, ctx.dates, plan, plan.adelaide, written, asked)
         : plainTurnState(story, ctx.dates, plan, slug, date);
 
   const enclosures: Enclosure[] =
     slug === 'adelaide' && plan.adelaide?.reveal ? fixedText(story, 'adelaide_reveal').enclosures : [];
 
+  const correspondence = correspondenceWith(story, ctx.dates, slug, history, submission, plan.submissionDate);
   const composed = await composeLetter(ctx.ai, {
     character: c,
     lead,
@@ -238,7 +246,7 @@ async function writePerson(
       cachedPrefix: personPrefix(story, c),
       system: fill(story, 'writer_person', { name: c.name, lead }),
       user: sections(
-        correspondenceWith(story, ctx.dates, slug, history, submission, plan.submissionDate),
+        correspondence,
         readerSection(story, notes),
         turnState,
         ledgerSection(story, state, slug),
@@ -253,7 +261,8 @@ async function writePerson(
       storyRules: story.pipeline.storyRules,
       characterSheet: characterSheet(story, c),
       turnState,
-      playerLetter: submission.filter((l) => l.to === slug).map((l) => l.body).join('\n\n---\n\n') || undefined,
+      // The whole correspondence, not only this Turn's Letter: what the Lead said in an earlier Letter is his too.
+      playerLetter: correspondence,
       readerNotes: notes,
       plotKeys: { reserved: reservedTerms(story), knownText: knownText(slug, history, submission) },
     },
