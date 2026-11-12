@@ -148,6 +148,11 @@ function variant(story: VossStory, key: string, startsWith: string): string {
   return v.when;
 }
 
+/** A Letter that carries a dated passage (the visit to the teacher) is written after it happened. */
+function notBefore(date: string, others: (string | null)[]): string {
+  return [date, ...others.filter((d): d is string => d !== null)].sort().at(-1)!;
+}
+
 /** Plays Turn N against the state after batch N−1. */
 export function playTurn(story: VossStory, state: VossState, input: TurnInput): { plan: TurnPlan; state: VossState } {
   const { turn: N, letters } = input;
@@ -284,7 +289,9 @@ export function playTurn(story: VossStory, state: VossState, input: TurnInput): 
     if (N === 8) fixedLetter = vossAfter(story, s);
 
     voss = {
-      date: fixedLetter ? fixedText(story, fixedLetter.key).date! : promptReplyDate(story, N, input.random('voss.date')),
+      date: fixedLetter
+        ? fixedText(story, fixedLetter.key).date!
+        : notBefore(promptReplyDate(story, N, input.random('voss.date')), passages.map((key) => fixedText(story, key).date)),
       cold,
       trust: s.trust,
       band: trustBand(story, s.trust),

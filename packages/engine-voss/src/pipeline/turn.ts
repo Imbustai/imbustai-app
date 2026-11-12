@@ -2,6 +2,7 @@ import { z } from 'zod';
 import {
   COLLISION_RULE,
   composeLetter,
+  type ComposedLetter,
   findPlotKeyCollisions,
   ledgerFromReader,
   type DraftBatch,
@@ -261,7 +262,7 @@ async function writePerson(
 
   return {
     letter: { key, kind: 'letter', from: slug, storyDate: date, body: composed.body, enclosures },
-    adminNotes: composed.adminNotes,
+    adminNotes: [...composed.adminNotes, ...mustNotes(slug, composed)],
   };
 }
 
@@ -331,7 +332,12 @@ async function writeOffice(
     edit: { voice: story.pipeline.officeStyle },
   });
 
-  return { letter: { ...base, body: composed.body, enclosures }, adminNotes: composed.adminNotes };
+  return { letter: { ...base, body: composed.body, enclosures }, adminNotes: [...composed.adminNotes, ...mustNotes(c.slug, composed)] };
+}
+
+/** What the one rewrite was asked to fix, for the admin: the count alone says nothing to review against. */
+function mustNotes(slug: string, composed: ComposedLetter): string[] {
+  return composed.check.mustFix.map((m) => `${slug}: must (${m.rule}) «${m.quote}»: ${m.problem}`);
 }
 
 // ─── validateDraft ──────────────────────────────────────────────────────────

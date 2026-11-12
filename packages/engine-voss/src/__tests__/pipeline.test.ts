@@ -189,6 +189,7 @@ describe('generateTurn, Turn 1', () => {
     expect(h.usage.filter((u) => u.purpose === 'rewrite')).toHaveLength(1);
     expect(h.usage.filter((u) => u.purpose === 'checker')).toHaveLength(1);
     expect(draft.adminNotes.join('\n')).toContain('rewritten once');
+    expect(draft.adminNotes.join('\n')).toContain('must (voice) «hai ragione»: Banned phrase.');
   });
 
   it('flags a Plot-key name the writer invented, and a Letter that still has it holds the draft', async () => {
@@ -238,6 +239,15 @@ describe('generateTurn, Turn 1', () => {
     // Voss was not pointed at a door: the Lead wrote to offices himself.
     const effects = vossEffectsSchema.parse(draft.effects);
     expect(effects.state.pending.map((p) => p.office)).toContain('cancelleria');
+  });
+});
+
+describe('the visit to the teacher', () => {
+  it('dates Voss\'s Letter after the visit it tells, and carries the passage', async () => {
+    const h = harness({ signals: { voss: (warm({ asksToWarnBenvenuti: true }) as { signals: unknown }).signals } });
+    const draft = await vossEngine.generateTurn(h.ctx, viewOf([toVoss]), { kind: 'batch' });
+    expect(draft.letters[0].storyDate >= '1987-09-23').toBe(true);
+    expect(h.provider.textRequests[0].user).toContain(story.texts.find((t) => t.key === 'voss_visits_benvenuti')!.text);
   });
 });
 
