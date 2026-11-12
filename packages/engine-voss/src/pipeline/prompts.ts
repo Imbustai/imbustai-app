@@ -98,6 +98,25 @@ export function knownText(slug: string, history: DeliveredLetter[], submission: 
   ];
 }
 
+/**
+ * What the Turn plan itself tells a sender: the knowledge it has earned (after
+ * Lattanzi's arrest Voss knows his name), its clues, the fixed passages, an
+ * office's search report. A reserved term in it is known to that sender.
+ */
+export function toldByPlan(story: VossStory, plan: TurnPlan, slug: string, office?: OfficePlan): string[] {
+  const c = correspondent(story, slug);
+  const passage = (key: string) => story.texts.find((t) => t.key === key)?.text ?? '';
+  if (office) {
+    return [...office.passages.map(passage), office.search ? fill(story, 'office_search') : ''];
+  }
+  const unlocked = slug === 'voss' ? plan.voss?.unlocks : slug === 'adelaide' ? plan.adelaide?.unlocks : [];
+  return [
+    ...c.unlocks.filter((u) => (unlocked ?? []).includes(u.key)).map((u) => u.text),
+    ...story.clues.filter((k) => k.from.includes(slug)).map((k) => k.clue),
+    ...(slug === 'voss' ? (plan.voss?.passages ?? []).map(passage) : []),
+  ];
+}
+
 /** The Story's reserved terms in the runtime's shape; no note, since the rewrite would read it. */
 export function reservedTerms(story: VossStory): ReservedTerm[] {
   return story.reserved.flatMap((r) => r.patterns.map((term) => ({ term, knownBy: r.allowedFor })));
@@ -286,10 +305,7 @@ export function officeBrief(story: VossStory, o: OfficePlan): string {
     out.push(fill(story, 'office_no_documents'));
     if (o.partial && !o.search) out.push(fill(story, 'office_partial'));
   }
-  if (o.search) {
-    const find = story.verdict.finds.find((f) => f.arrest === 'A');
-    if (find) out.push(fill(story, 'office_search', { what: find.what }));
-  }
+  if (o.search) out.push(fill(story, 'office_search'));
   out.push(...passageLines(story, o.passages));
   const c = correspondent(story, o.office);
   if (c.length) out.push(fill(story, 'length', c.length));

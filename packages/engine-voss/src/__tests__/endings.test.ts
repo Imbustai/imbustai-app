@@ -164,6 +164,35 @@ describe('what the Endings send in batches 7 and 8', () => {
     expect(plans[7].voss?.fixedLetter?.variants).toEqual(['Aldo è stato nominato solo nel Turno 8']);
   });
 
+  it('a search earned early still happens in December: the Procura reports it in batch 7, and Voss goes on playing Aldo until then', () => {
+    // Turn 1 reports the teacher; Turn 2 asks the Procura for Luca's acts (P4); Turn 4 names Aldo with it.
+    const turns: ReadLetter[][] = [
+      [voss(), office('procura', { reportsBenvenuti: true, requestKeys: ['luca_name', 'trial_ref'] })],
+      [voss()],
+      [voss()],
+      [voss(), office('procura', { namesAldo: true, citesEvidence: ['P4'], linksToLuca: true })],
+      [voss()],
+      [voss()],
+      [voss()],
+    ];
+    const { plans, states } = play(turns);
+    expect(states[3].december).toEqual({ route: 'search', arrest: 'A', turn: 4 });
+    // Batch 5: the Procura answers the Letter, but there is no search to report yet, and no clipping.
+    const b5 = plans[4];
+    expect(b5.offices.find((o) => o.office === 'procura')).toMatchObject({ turn: 4, search: false });
+    expect(b5.dispatches.map((d) => d.key)).not.toContain('clipping_search');
+    // Aldo is still at the chess table in November: his clues keep coming.
+    expect(b5.voss?.aldoClue).not.toBeNull();
+    expect(plans[5].voss?.aldoClue).not.toBeNull();
+    // Batch 7, read on 21 December: the search of 7–9 December, with its clipping.
+    const b7 = plans[6];
+    expect(b7.offices.filter((o) => o.office === 'procura' && o.search)).toHaveLength(1);
+    expect(b7.offices.find((o) => o.search)!.date >= '1987-12-10').toBe(true);
+    expect(b7.dispatches.map((d) => d.key)).toContain('clipping_search');
+    expect(b7.voss?.aldoClue).toBeNull();
+    expect(b7.voss?.invitation).toBeNull();
+  });
+
   it('Ending 6 (A): the Procura reports the search in batch 7 with the clipping; Voss\'s Letter after the 17th, unconfessed', () => {
     const { plans } = play(archivist);
     const b7 = plans[6];

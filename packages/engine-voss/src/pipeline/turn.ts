@@ -30,6 +30,7 @@ import {
   documentOf,
   fill,
   knownText,
+  toldByPlan,
   ledgerSection,
   longDate,
   officeBrief,
@@ -264,7 +265,7 @@ async function writePerson(
       // The whole correspondence, not only this Turn's Letter: what the Lead said in an earlier Letter is his too.
       playerLetter: correspondence,
       readerNotes: notes,
-      plotKeys: { reserved: reservedTerms(story), knownText: knownText(slug, history, submission) },
+      plotKeys: { reserved: reservedTerms(story), knownText: [...knownText(slug, history, submission), ...toldByPlan(story, plan, slug)] },
     },
     edit: { voice: c.voice ?? undefined, examples: c.examples.map((e) => e.text).join('\n\n---\n\n') || undefined },
   });
@@ -336,7 +337,10 @@ async function writeOffice(
       turnState: brief,
       playerLetter: playerLetter || undefined,
       readerNotes: office.turn === plan.turn ? reader[addressee] : undefined,
-      plotKeys: { reserved: reservedTerms(story), knownText: [playerLetter, ...knownText(c.slug, history, submission)] },
+      plotKeys: {
+        reserved: reservedTerms(story),
+        knownText: [playerLetter, ...knownText(c.slug, history, submission), ...toldByPlan(story, plan, c.slug, office)],
+      },
     },
     edit: { voice: story.pipeline.officeStyle },
   });
@@ -389,7 +393,10 @@ export function validateDraft(view: View, draft: DraftBatch): Finding[] {
     if (authored) continue;
 
     const slug = job.type === 'person' ? job.slug : job.office.office;
-    const known = knownText(slug, history, submission);
+    const known = [
+      ...knownText(slug, history, submission),
+      ...toldByPlan(story, plan, slug, job.type === 'office' ? job.office : undefined),
+    ];
     if (job.type === 'office') {
       const addressee = job.office.forwardedFrom ?? job.office.office;
       known.push(...knownText(addressee, history, submission));

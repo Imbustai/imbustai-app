@@ -97,7 +97,8 @@ export function buildPrompts(text: (path: string) => string): Record<PromptKey, 
       '- Con i dati ricevuti l\'ufficio non trova niente di ciò che detiene: lo dice, e indica in una riga che cosa potrebbe dare con un nome o una data.',
     office_forward:
       '- La richiesta non spetta a questo ufficio: lo dice in una riga e la trasmette per competenza a {offices}, che risponderà direttamente.',
-    office_search: '- L\'ufficio comunica l\'esito dell\'attività disposta dopo la lettera: {what}',
+    office_search:
+      '- L\'ufficio comunica l\'esito dell\'attività disposta dopo la lettera del commissario: la perquisizione eseguita tra il 7 e il 9 dicembre 1987 nella stanza che Ferrante Aldo occupa in via Giacinto Carini, a Monteverde, e il suo arresto. Sono stati sequestrati: una chiave quadra da carrozza, di quelle in uso ai ferrovieri, con tracce di sangue; quattro lumini rossi nuovi; una lettera del 2 novembre 1986 indirizzata alla signora Rosa Moretti e firmata Clara Benvenuti; la prenotazione di una cuccetta sul notturno Roma–Brindisi di venerdì 18 dicembre. L\'impronta dell\'arrestato sarà confrontata con quella rilevata su un lumino di via Lanciani. Lo dice in forma d\'ufficio, senza commenti, e ringrazia il commissario in una riga sola.',
 
     // ─── The Ledger's report ────────────────────────────────────────────────
     ledger_report:

@@ -311,6 +311,21 @@ describe('generateTurn, later batches', () => {
   });
 });
 
+describe('what the plan tells a sender is known to it', () => {
+  it('lets Voss name Lattanzi once the arrest is in his knowledge, and the Procura report its search in plain words', async () => {
+    const after4 = play([[voss()], [voss()], [voss()], [voss()]]).final;
+    const h = harness({ write: () => 'Caro Giacomo,\n\nmartedì hanno fermato un certo Lattanzi.\n\nFlorian' });
+    const view = viewOf([], { state: after4, turn: 5 });
+    const draft = await vossEngine.generateTurn(h.ctx, view, { kind: 'batch' });
+    expect(h.usage.filter((u) => u.purpose === 'rewrite' && u.character === 'voss')).toHaveLength(0);
+    expect((await vossEngine.validateDraft(h.ctx, view, draft)).filter((f) => f.letterKey === 'voss')).toEqual([]);
+
+    const search = story.pipeline.prompts.office_search;
+    expect(search).toContain('via Giacinto Carini');
+    expect(search).not.toMatch(/P\d/);
+  });
+});
+
 describe('regenerating one Letter', () => {
   it('rewrites that Letter with the admin\'s guidance and keeps the plan, the state and the other Letters', async () => {
     const h = harness({
