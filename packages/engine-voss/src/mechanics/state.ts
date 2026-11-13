@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { ledgerSchema } from '@imbustai/story-runtime';
 import type { VossStory } from '../schema';
 
 // The per-Game state of engine-voss: everything the mechanics remember
@@ -106,6 +107,12 @@ export const vossStateSchema = z.object({
     .nullable(),
   /** The Ending, once Turn 8 is applied. */
   ending: z.string().nullable(),
+  /**
+   * The Ledger: what the Lead told each Character about himself, and the
+   * Texture each Character's sent Letters hold. Absent in Games started
+   * before the writing pipeline.
+   */
+  ledger: ledgerSchema.default([]),
 });
 export type VossState = z.infer<typeof vossStateSchema>;
 export type LadderKey = z.infer<typeof ladderKey>;
@@ -159,5 +166,6 @@ export function initialState(story: VossStory): VossState {
     unlocks: {},
     december: null,
     ending: null,
+    ledger: [],
   };
 }
