@@ -216,76 +216,112 @@
   },
   "landing": {
     "hero": {
-      "kicker": "Imbustai",
-      "headline": "Someone has started writing to you.",
-      "subLine1": "It’s not a book. It’s not a game.",
-      "subLine2": "It’s a story that comes home to you, develops with you, letter after letter.",
+      "kicker": "Slow post · Stories by correspondence",
+      "headlineLead": "Someone has started",
+      "headlineAccent": "writing to you.",
+      "definition": "Imbustai is a story you live by post. The characters write you real letters that arrive at your home. You reply in your own words, and the story changes with what you write.",
       "ctaPrimary": "Join the first test",
-      "ctaSecondary": "How it works"
+      "ctaSecondary": "See how it works",
+      "envelopeTo": "For you",
+      "envelopeFrom": "From someone you don’t know yet"
+    },
+    "facts": {
+      "label": "Imbustai in short",
+      "terms": [
+        "What it is",
+        "What you buy",
+        "What it feels like"
+      ],
+      "values": [
+        "A tale told by correspondence. You don’t read it: you’re in it.",
+        "One complete story. The letters arrive at your home, one at a time.",
+        "A mystery to live slowly: you wait, open, reply. And the plot moves with you."
+      ]
     },
     "steps": {
-      "items": [
-        "Pick a story.",
-        "Receive a real letter.",
-        "Reply.",
-        "And find out what happens next."
+      "title": "How it works, in four moves",
+      "navLabel": "The four steps",
+      "titles": [
+        "Pick a story",
+        "Receive a real letter",
+        "Reply",
+        "Find out what happens next"
+      ],
+      "bodies": [
+        "Each story has its own world, its characters and a secret.",
+        "Envelope, stamp, postmark. In your letterbox, with your name on it.",
+        "Write what you like, to whoever you like. No ready-made answers.",
+        "The next letter takes into account what you wrote. And it makes you wait."
       ]
     },
-    "letterHistory": {
-      "title": "What stories you are going to live",
-      "subtitle": "We created an engine that perfectly mixes author-written stories with an interactive playground — scroll to see how it works.",
-      "stepsNavLabel": "Letter history steps",
-      "timelineAria": "Animated diagram of branching story timelines that converge into an authored path.",
-      "step1Before": "While you reply to your",
-      "step1Emphasis": "single or even multiple",
-      "step1After": "contacts, the system generates characters, events, and places every time — each one different from any other story.",
-      "steps": [
-        "Everybody lives a story that is different from anybody else.",
-        "",
-        "The core story still has a start and an end, written and shaped by a human author — so you get surprises, twists, and an emotional experience comparable to reading a book or watching a movie."
-      ]
+    "receive": {
+      "kicker": "What you receive",
+      "title": "In your letterbox, among the bills, there’s a letter for you.",
+      "body": "You open it standing in the kitchen. Someone is asking for your help, and knows your name. From then on, every time you walk past the letterbox, you look inside.",
+      "itemTitles": [
+        "The envelope",
+        "The letter",
+        "The dispatches",
+        "The wait"
+      ],
+      "itemBodies": [
+        "Stamped, postmarked, addressed to you. To be opened by hand.",
+        "Real paper and the voice of whoever is writing. To reread, to keep.",
+        "Telegrams and newspaper clippings, when the story speeds up.",
+        "The best part. You don’t know when the next one arrives."
+      ],
+      "quote": "“I didn’t think I’d actually wait for the next letter.”",
+      "quoteSource": "A reader from the first test",
+      "ctaPrimary": "Join the first test",
+      "ctaGift": "Give it for Christmas",
+      "giftNote": "A present that doesn’t end on the 25th: it keeps arriving."
     },
-    "different": {
-      "title": "Why it’s different",
-      "leadLine1": "You’re not reading a story.",
-      "leadLine2": "You’re inside it.",
-      "items": [
-        "The letters really arrive",
-        "The story changes with you",
-        "It’s not instant",
-        "You have to wait for it"
-      ]
-    },
-    "visual": {
-      "title": "Real mail",
-      "body": "Paper, envelope, postmark: a rhythm unlike your feed. Printed letters sent to you — you engage when you’re ready, not when an algorithm says so.",
-      "mockLetterLabel": "Letter",
-      "mockLetterCaption": "Words that pull you in",
-      "mockEnvelopeLabel": "Envelope",
-      "mockEnvelopeCaption": "Something to open",
-      "mockHomeLabel": "At your door",
-      "mockHomeCaption": "In the rhythm of your day"
-    },
-    "social": {
-      "title": "From early readers",
-      "subtitle": "Test feedback",
-      "quote": "“I didn’t think I’d actually wait for the next letter.”"
-    },
-    "cta": {
-      "title": "Ready for the first one?",
-      "subtitle": "Join the first test — limited spots.",
-      "button": "Join the first test"
-    },
-    "compare": {
-      "title": "What really changes",
-      "tagline": "One line can stop the scroll",
-      "weakLabel": "Less effective",
-      "weakLine": "A story that writes to you",
-      "strongLabel": "More tension, more curiosity",
-      "strongLine": "Someone has started writing to you."
+    "engine": {
+      "kicker": "The story engine",
+      "title": "How does a story write back?",
+      "body": "Every letter you write moves something. The characters remember what you told them, react, sometimes lie. Try it: this is the first letter of a story.",
+      "demoLabel": "Try it",
+      "letterFrom": "Letter from Elena",
+      "letterText": "I found a key in my father’s drawer. It opens no door in our house. You knew him better than I did: what should I do?",
+      "choicePrompt": "What do you reply?",
+      "choiceLabels": [
+        "“Look in the cellar.”",
+        "“Ask your mother.”",
+        "“Put it back.”"
+      ],
+      "replyFrom": "Elena writes back",
+      "replyEmpty": "Pick a reply and watch which road the story takes.",
+      "replies": [
+        "I went down last night. Behind the bottles there is a door I had never seen. The key turns. I didn’t have the courage to open it alone.",
+        "I asked her at dinner. She put down her fork and said: “That key should have been burned.” Then she didn’t speak again.",
+        "I put it back, as you said. This morning the drawer was empty. Someone else in this house knows about the key."
+      ],
+      "routeLabels": [
+        "The cellar",
+        "The mother",
+        "The drawer"
+      ],
+      "nodeStart": "The key",
+      "nodeTwist": "The twist",
+      "nodeEnd": "The ending",
+      "timelineAria": "Diagram of the story: one letter leads to three different roads, which meet again at a twist written by the author and continue towards the ending.",
+      "timelineCaption": "Three replies, three roads. But the twist and the ending were written by an author: you get there anyway, in your own way.",
+      "demoNote": "Here you pick one of three replies. In the real story you write whatever you want.",
+      "pointTitles": [
+        "Write in your own words",
+        "Every character has a mind of their own",
+        "An author holds the thread"
+      ],
+      "pointBodies": [
+        "No options A, B, C. Ask questions, accuse, comfort, change the subject: the story follows you.",
+        "Each one knows only what they lived through and what you wrote to them. Tell one a secret, and the others don’t know it.",
+        "The beginning, the twists and the endings are written by a person. Nobody lives the same story as you, but every one makes sense."
+      ],
+      "ctaTitle": "The first letter is only waiting for your address.",
+      "cta": "Join the first test"
     },
     "footer": {
-      "tagline": "Epistolary stories, slowness, and paper."
+      "tagline": "Stories worth waiting for."
     }
   },
   "storiesAdmin": {

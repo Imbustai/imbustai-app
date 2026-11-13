@@ -1,0 +1,770 @@
+/* Homepage — Italian modernist postal graphics. Colours and fonts come from
+   the DS tokens (--ds-*), so the light and dark themes both work. */
+
+.page {
+  --paper: var(--ds-color-surface);
+  --ink: var(--ds-color-contrast);
+  --heading: var(--ds-typography-font-family-heading);
+  --gutter: clamp(1.25rem, 4vw, 4rem);
+  background: var(--ds-color-background);
+  color: var(--ds-color-foreground);
+  overflow-x: clip;
+}
+
+/* In the dark theme the page is ink and the drawings stay paper. */
+:global(.dark) .page {
+  --ink: var(--ds-color-background);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.kicker,
+.kickerOnField {
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-color-primary);
+  margin-bottom: 1rem;
+}
+
+.kickerOnField {
+  color: var(--ds-color-accent);
+}
+
+.sectionTitle {
+  font-family: var(--heading);
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 40rem;
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.airmail {
+  height: 0.875rem;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(
+    -55deg,
+    var(--ds-color-signal) 0 1.25rem,
+    transparent 1.25rem 2.5rem,
+    var(--ds-color-brand) 2.5rem 3.75rem,
+    transparent 3.75rem 5rem
+  );
+}
+
+/* ---------- 1. Hero ---------- */
+
+.hero {
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.heroGrid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .heroGrid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+}
+
+.heroTitle {
+  font-family: var(--heading);
+  font-size: clamp(4rem, 11.5vw, 9rem);
+  line-height: 0.88;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  color: var(--ds-color-primary);
+  max-width: 12ch;
+  text-wrap: balance;
+}
+
+.heroAccent {
+  color: var(--ds-color-signal);
+}
+
+.heroDefinition {
+  margin-block: 1.75rem 2rem;
+  max-width: 34rem;
+  font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
+  line-height: 1.5;
+}
+
+.heroVisual {
+  position: relative;
+}
+
+/* The poster block behind the envelope. */
+.heroVisual::before {
+  content: '';
+  position: absolute;
+  inset: 12% -100vw -8% 22%;
+  background: var(--ds-color-primary);
+}
+
+.heroVisual::after {
+  content: '';
+  position: absolute;
+  left: 8%;
+  bottom: -8%;
+  width: 14%;
+  height: 22%;
+  background: var(--ds-color-accent);
+}
+
+.heroVisual > * {
+  position: relative;
+  z-index: 1;
+}
+
+.facts {
+  margin-top: clamp(3rem, 7vw, 5.5rem);
+  display: grid;
+  border: 2px solid var(--ds-color-foreground);
+  background: var(--ds-color-card);
+}
+
+@media (min-width: 52rem) {
+  .facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fact {
+  padding: 1.25rem 1.5rem 1.5rem;
+  border-top: 2px solid var(--ds-color-foreground);
+}
+
+.fact:first-child {
+  border-top: 0;
+}
+
+@media (min-width: 52rem) {
+  .fact {
+    border-top: 0;
+    border-left: 2px solid var(--ds-color-foreground);
+  }
+
+  .fact:first-child {
+    border-left: 0;
+  }
+}
+
+.factTerm {
+  font-family: var(--heading);
+  font-size: 1.125rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-color-signal);
+}
+
+.factValue {
+  margin-top: 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ---------- Visual slots ---------- */
+
+.visual {
+  margin: 0;
+}
+
+.visualArt {
+  background: var(--ds-color-muted);
+  border: 2px solid var(--ds-color-foreground);
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.visual[data-compact] .visualArt {
+  padding: 0.75rem;
+}
+
+.visual[data-on-field] .visualArt {
+  background: var(--ds-color-accent);
+  border-color: var(--ink);
+}
+
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.artPaper {
+  fill: var(--paper);
+}
+.artInk {
+  fill: var(--ink);
+}
+.artBlue {
+  fill: var(--ds-color-brand);
+}
+.artRed {
+  fill: var(--ds-color-signal);
+}
+.artYellow {
+  fill: var(--ds-color-highlight);
+}
+.artInkStroke {
+  stroke: var(--ink);
+}
+.artPaperStroke {
+  stroke: var(--paper);
+}
+.artBlueStroke {
+  stroke: var(--ds-color-brand);
+}
+.artRedStroke {
+  stroke: var(--ds-color-signal);
+}
+
+.artHand {
+  font-family: var(--heading);
+  font-size: 44px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  fill: var(--ink);
+}
+
+.artSmall {
+  font-family: var(--ds-typography-font-family-body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ink);
+  opacity: 0.7;
+}
+
+.visualBrief {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ds-color-muted-foreground);
+}
+
+.visual[data-on-field] .visualBrief {
+  color: var(--ds-color-primary-foreground);
+}
+
+.visualTag {
+  display: inline-block;
+  cursor: pointer;
+  padding: 0.125rem 0.5rem;
+  background: var(--ds-color-accent);
+  color: var(--ds-color-accent-foreground);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.visualText {
+  margin-top: 0.5rem;
+  max-width: 44rem;
+}
+
+/* ---------- Steps ---------- */
+
+.steps {
+  padding-block: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.stepList {
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  display: grid;
+  gap: 2.5rem 1.5rem;
+  counter-reset: step;
+}
+
+@media (min-width: 40rem) {
+  .stepList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .stepList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.step {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding-top: 1rem;
+  border-top: 2px dashed var(--ds-color-foreground);
+}
+
+.stepNumber {
+  font-family: var(--heading);
+  font-size: 4.5rem;
+  line-height: 0.9;
+  color: var(--ds-color-signal);
+}
+
+.stepTitle {
+  font-family: var(--heading);
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ---------- 2. What you receive ---------- */
+
+.receive {
+  background: var(--ds-color-primary);
+  color: var(--ds-color-primary-foreground);
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+.receiveGrid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .receiveGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.receiveTitle {
+  font-family: var(--heading);
+  font-size: clamp(3rem, 7.5vw, 6rem);
+  line-height: 0.92;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.receiveBody {
+  margin-top: 1.5rem;
+  max-width: 32rem;
+  font-size: clamp(1.125rem, 1.6vw, 1.3125rem);
+  line-height: 1.5;
+}
+
+.items {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  display: grid;
+  gap: 0;
+  border-top: 2px solid currentColor;
+}
+
+@media (min-width: 40rem) {
+  .items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .items {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.item {
+  padding-block: 1.25rem;
+  border-bottom: 2px solid currentColor;
+}
+
+.itemTitle {
+  font-family: var(--heading);
+  font-size: 2.25rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--ds-color-accent);
+}
+
+.itemBody {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.receiveFoot {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 60rem) {
+  .receiveFoot {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.postcard {
+  margin: 0;
+  padding: 1.5rem 1.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  border-left: 0.75rem solid var(--ds-color-signal);
+  max-width: 34rem;
+}
+
+.postcardQuote {
+  font-family: var(--heading);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.postcardSource {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.receiveActions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.giftNote {
+  font-size: 0.9375rem;
+}
+
+/* ---------- 3. Story engine ---------- */
+
+.engine {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+
+.demo {
+  position: relative;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border: 2px solid var(--ds-color-foreground);
+  background: var(--ds-color-card);
+}
+
+.demoTag {
+  position: absolute;
+  top: 0;
+  left: clamp(1.25rem, 3vw, 2.5rem);
+  transform: translateY(-50%);
+  padding: 0.25rem 0.875rem;
+  background: var(--ds-color-signal);
+  color: var(--paper);
+  font-family: var(--heading);
+  font-size: 1.375rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.demoLetters {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .demoLetters {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.sheet {
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 0.5rem solid var(--ds-color-brand);
+  min-height: 12rem;
+}
+
+.sheetReply {
+  border-top-color: var(--ds-color-signal);
+}
+
+.sheetFrom {
+  font-family: var(--heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sheetText,
+.sheetEmpty {
+  margin-top: 0.75rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+
+.sheetEmpty {
+  opacity: 0.7;
+}
+
+.choicePrompt {
+  font-family: var(--heading);
+  font-size: 1.75rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.choiceList {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.5rem 0.875rem;
+  border: 2px solid var(--ds-color-foreground);
+  background: transparent;
+  color: var(--ds-color-foreground);
+  font: inherit;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.choice:hover {
+  background: var(--ds-color-muted);
+}
+
+.choice:focus-visible {
+  outline: 3px solid var(--ds-color-ring);
+  outline-offset: 2px;
+}
+
+.choice[aria-pressed='true'] {
+  background: var(--ds-color-foreground);
+  color: var(--ds-color-background);
+}
+
+.choiceNumber {
+  font-family: var(--heading);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ds-color-signal);
+}
+
+.timeline {
+  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
+}
+
+.timelineSvg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.route {
+  fill: none;
+  stroke: var(--ds-color-foreground);
+  stroke-width: 2;
+  stroke-dasharray: 3 7;
+  opacity: 0.45;
+}
+
+.routeActive {
+  fill: none;
+  stroke: var(--ds-color-signal);
+  stroke-width: 6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.routeLabel,
+.routeLabelActive,
+.nodeLabel {
+  font-family: var(--heading);
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: var(--ds-color-muted-foreground);
+}
+
+.routeLabelActive {
+  fill: var(--ds-color-signal);
+}
+
+.nodeLabel {
+  fill: var(--ds-color-foreground);
+}
+
+.node {
+  fill: var(--ds-color-foreground);
+}
+
+.nodeAuthor {
+  fill: var(--ds-color-primary);
+}
+
+.timelineCaption {
+  margin-top: 0.75rem;
+  max-width: 44rem;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.demoNote {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--ds-color-muted-foreground);
+}
+
+.points {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 56rem) {
+  .points {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.point {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding-top: 1rem;
+  border-top: 2px solid var(--ds-color-foreground);
+}
+
+.pointNumber {
+  font-family: var(--heading);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--ds-color-primary);
+}
+
+.pointTitle {
+  font-family: var(--heading);
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.closing {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  display: grid;
+  gap: 1.5rem;
+  justify-items: start;
+}
+
+.closingTitle {
+  font-family: var(--heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--ds-color-primary);
+  color: var(--ds-color-primary-foreground);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--gutter);
+  text-align: center;
+}
+
+.footerName {
+  font-family: var(--heading);
+  font-size: clamp(3rem, 9vw, 6rem);
+  line-height: 1;
+  letter-spacing: 0.3em;
+  margin-right: -0.3em;
+  text-transform: uppercase;
+}
+
+.footerTagline {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .routeActive {
+    animation: draw 700ms ease-out both;
+  }
+
+  .routeActiveLate {
+    animation-delay: 650ms;
+  }
+
+  .sheetReveal {
+    animation: reveal 500ms ease-out both;
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The route diagram shrinks with the screen: keep its labels readable. */
+@media (max-width: 40rem) {
+  .routeLabel,
+  .routeLabelActive,
+  .nodeLabel {
+    font-size: 30px;
+    letter-spacing: 0.04em;
+  }
+}

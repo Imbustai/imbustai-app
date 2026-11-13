@@ -1,5 +1,5 @@
 const fontFamily = {
-  heading: "var(--font-futura-condensed), 'Futura', ui-sans-serif, system-ui, sans-serif",
+  heading: "var(--font-league-gothic), 'Arial Narrow', ui-sans-serif, system-ui, sans-serif",
   body: "var(--font-archivo), ui-sans-serif, system-ui, sans-serif",
 };
 

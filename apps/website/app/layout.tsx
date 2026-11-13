@@ -6,13 +6,6 @@ import { I18nLayoutShell } from '@/components/i18n-layout-shell';
 import { SiteChrome } from '@/components/site-chrome';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const clashGrotesk = localFont({
-  src: './fonts/ClashGrotesk-Bold.woff2',
-  weight: '700',
-  variable: '--font-clash-grotesk',
-  display: 'swap',
-});
-
 const archivo = localFont({
   src: './fonts/Archivo-Regular.ttf',
   weight: '400',
@@ -20,11 +13,14 @@ const archivo = localFont({
   display: 'swap',
 });
 
-const futuraCondensed = localFont({
-  src: './fonts/FuturaCondensed-Medium.woff2',
-  weight: '500',
-  variable: '--font-futura-condensed',
+// League Gothic has one weight. Declaring the whole range stops the browser
+// from faking a bold when a heading asks for 500–700.
+const leagueGothic = localFont({
+  src: './fonts/LeagueGothic-Variable.ttf',
+  weight: '400 900',
+  variable: '--font-league-gothic',
   display: 'swap',
+  adjustFontFallback: 'Arial',
 });
 
 export const metadata: Metadata = {
@@ -44,7 +40,7 @@ export default function RootLayout({
       lang="it"
       data-palette="imbustai"
       suppressHydrationWarning
-      className={`${clashGrotesk.variable} ${archivo.variable} ${futuraCondensed.variable}`}
+      className={`${archivo.variable} ${leagueGothic.variable}`}
     >
       <body className="min-h-screen">
         <I18nLayoutShell>
