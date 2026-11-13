@@ -103,7 +103,7 @@ All accessed via `dsVars.color.*` or CSS var `--ds-color-*`.
 | `popover` / `popoverForeground` | `#FFFFFF` / `#111111` | Popover surfaces |
 
 ### Type
-`font.heading` (Futura condensed, via `--font-futura-condensed`), `font.body` (Archivo, via `--font-archivo`).
+`font.heading` (League Gothic, SIL OFL, via `--font-league-gothic`), `font.body` (Archivo, via `--font-archivo`).
 `fontSize`: `display, h1, h2, h3, h4, body, caption, overline`. `lineHeight`: `tight, snug, normal, relaxed`.
 `fontWeight`: `regular, medium, semibold, bold`. `letterSpacing`: `tight, normal, wide, widest`.
 
@@ -145,7 +145,7 @@ _(keep in sync with Phase 1)_
 
 Default tags: `display→h1`, `h1–h4→matching`, `body→p`, `caption/overline→span`.
 
-Heading variants (`display–h3`) use `font-heading` (Futura Condensed), uppercase, tracked. `h4` uses heading font without uppercase. Body variants use `font-body` (Archivo).
+Heading variants (`display–h3`) use `font-heading` (League Gothic), uppercase, tracked. `h4` uses heading font without uppercase. Body variants use `font-body` (Archivo).
 
 ### Button
 

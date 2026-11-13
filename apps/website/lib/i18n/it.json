@@ -216,78 +216,112 @@
   },
   "landing": {
     "hero": {
-      "kicker": "Imbustai",
-      "headline": "Qualcuno ha iniziato a scriverti.",
-      "subLine1": "Non è un libro. Non è un gioco.",
-      "subLine2": "È una storia che arriva a casa tua, si sviluppa con te, lettera dopo lettera.",
+      "kicker": "Posta lenta · Storie per corrispondenza",
+      "headlineLead": "Qualcuno ha iniziato a",
+      "headlineAccent": "scriverti.",
+      "definition": "Imbustai è una storia che vivi per posta. I personaggi ti scrivono lettere vere, che arrivano a casa tua. Tu rispondi con parole tue, e la storia cambia con quello che scrivi.",
       "ctaPrimary": "Partecipa al primo test",
-      "ctaSecondary": "Come funziona"
+      "ctaSecondary": "Guarda come funziona",
+      "envelopeTo": "Per te",
+      "envelopeFrom": "Da qualcuno che non conosci ancora"
+    },
+    "facts": {
+      "label": "Imbustai in breve",
+      "terms": [
+        "Che cos’è",
+        "Che cosa compri",
+        "Che esperienza è"
+      ],
+      "values": [
+        "Un racconto per corrispondenza. Non lo leggi: ci sei dentro.",
+        "Una storia completa. Le lettere arrivano a casa tua, una alla volta.",
+        "Un mistero da vivere piano: aspetti, apri, rispondi. E la trama si muove con te."
+      ]
     },
     "steps": {
-      "title": "Cosa succede",
-      "subtitle": "Semplice. Quattro passi.",
-      "items": [
-        "Scegli una storia.",
-        "Ricevi una lettera reale.",
-        "Rispondi.",
-        "E scopri cosa succede dopo."
+      "title": "Come funziona, in quattro mosse",
+      "navLabel": "I quattro passi",
+      "titles": [
+        "Scegli una storia",
+        "Ricevi una lettera vera",
+        "Rispondi",
+        "Scopri cosa succede dopo"
+      ],
+      "bodies": [
+        "Ogni storia ha il suo mondo, i suoi personaggi e un segreto.",
+        "Busta, francobollo, timbro. Nella tua cassetta, col tuo nome sopra.",
+        "Scrivi quello che vuoi, a chi vuoi. Nessuna risposta già pronta.",
+        "La prossima lettera tiene conto di ciò che hai scritto. E si fa aspettare."
       ]
     },
-    "letterHistory": {
-      "title": "Quali storie vivrai?",
-      "subtitle": "Abbiamo costruito un motore che unisce storie scritte da un autore e un playground interattivo — scorri per capire come funziona.",
-      "stepsNavLabel": "Passi sulla storia delle lettere",
-      "timelineAria": "Diagramma animato di linee del tempo che si ramificano e poi convergono in un percorso guidato dall’autore.",
-      "step1Before": "Mentre rispondi ai tuoi contatti —",
-      "step1Emphasis": "a uno solo o anche a più destinatari",
-      "step1After": "— il sistema genera ogni volta personaggi, eventi e luoghi diversi da qualsiasi altra storia.",
-      "steps": [
-        "Ognuno vive una storia diversa da chiunque altro.",
-        "",
-        "La storia centrale ha comunque un inizio e una fine, scritti e pensati da un autore umano: così avrai sorprese, colpi di scena e un’emozione paragonabile a un libro o a un film."
-      ]
+    "receive": {
+      "kicker": "Cosa ricevi",
+      "title": "Nella tua cassetta, tra le bollette, c’è una lettera per te.",
+      "body": "La apri in cucina, in piedi. Qualcuno ti chiede aiuto, e sa come ti chiami. Da quel momento ogni volta che passi davanti alla cassetta delle lettere, guardi dentro.",
+      "itemTitles": [
+        "La busta",
+        "La lettera",
+        "I dispacci",
+        "L’attesa"
+      ],
+      "itemBodies": [
+        "Affrancata, timbrata, indirizzata a te. Da aprire con le mani.",
+        "Carta vera e la voce di chi ti scrive. Da rileggere, da conservare.",
+        "Telegrammi e ritagli di giornale, quando la storia accelera.",
+        "La parte migliore. Non sai quando arriva la prossima."
+      ],
+      "quote": "«Non pensavo di aspettare davvero la prossima lettera.»",
+      "quoteSource": "Una lettrice del primo test",
+      "ctaPrimary": "Partecipa al primo test",
+      "ctaGift": "Regalala a Natale",
+      "giftNote": "Un regalo che non finisce il 25: continua ad arrivare."
     },
-    "different": {
-      "title": "Perché è diverso",
-      "leadLine1": "Non leggi una storia.",
-      "leadLine2": "Ci sei dentro.",
-      "items": [
-        "Le lettere arrivano davvero",
-        "La storia cambia in base a te",
-        "Non è immediata",
-        "Devi aspettarla"
-      ]
-    },
-    "visual": {
-      "title": "La posta, davvero",
-      "body": "Carta, busta, timbro: un ritmo diverso dai feed. Lettere stampate e spedite, con cui interagisci quando sei pronta — non quando l’algoritmo lo decide.",
-      "mockLetterLabel": "Lettera",
-      "mockLetterCaption": "Testo che ti coinvolge",
-      "mockEnvelopeLabel": "Busta",
-      "mockEnvelopeCaption": "Qualcosa da aprire",
-      "mockHomeLabel": "A casa tua",
-      "mockHomeCaption": "Nello spazio della tua giornata"
-    },
-    "social": {
-      "title": "Dalle prime lettrici",
-      "subtitle": "Feedback dal test",
-      "quote": "«Non pensavo di aspettare davvero la prossima lettera.»"
-    },
-    "cta": {
-      "title": "Pronta a ricevere la prima?",
-      "subtitle": "Partecipa al primo test — posti limitati.",
-      "button": "Partecipa al primo test"
-    },
-    "compare": {
-      "title": "Cosa cambia davvero",
-      "tagline": "Una riga può fermare lo scroll",
-      "weakLabel": "Meno efficace",
-      "weakLine": "Una storia che ti scrive",
-      "strongLabel": "Più tensione, più curiosità",
-      "strongLine": "Qualcuno ha iniziato a scriverti."
+    "engine": {
+      "kicker": "Il motore delle storie",
+      "title": "Come fa una storia a risponderti?",
+      "body": "Ogni lettera che scrivi sposta qualcosa. I personaggi ricordano cosa gli hai detto, reagiscono, a volte mentono. Prova: questa è la prima lettera di una storia.",
+      "demoLabel": "Prova tu",
+      "letterFrom": "Lettera di Elena",
+      "letterText": "Ho trovato una chiave nel cassetto di mio padre. Non apre nessuna porta di casa nostra. Lei lo conosceva meglio di me: che cosa devo fare?",
+      "choicePrompt": "Tu cosa rispondi?",
+      "choiceLabels": [
+        "«Cerca in cantina.»",
+        "«Chiedi a tua madre.»",
+        "«Rimettila dov’era.»"
+      ],
+      "replyFrom": "Elena ti risponde",
+      "replyEmpty": "Scegli una risposta e guarda che strada prende la storia.",
+      "replies": [
+        "Sono scesa stanotte. Dietro le bottiglie c’è una porta che non avevo mai visto. La chiave gira. Non ho avuto il coraggio di aprirla da sola.",
+        "Gliel’ho chiesto a cena. Ha posato la forchetta e ha detto: «Quella chiave doveva essere bruciata». Poi non ha più parlato.",
+        "L’ho rimessa a posto, come dice lei. Stamattina il cassetto era vuoto. Qualcun altro in questa casa sa della chiave."
+      ],
+      "routeLabels": [
+        "La cantina",
+        "La madre",
+        "Il cassetto"
+      ],
+      "nodeStart": "La chiave",
+      "nodeTwist": "Colpo di scena",
+      "nodeEnd": "Il finale",
+      "timelineAria": "Schema della storia: da una lettera partono tre strade diverse, che si ritrovano in un colpo di scena scritto dall’autore e proseguono verso il finale.",
+      "timelineCaption": "Tre risposte, tre strade. Ma il colpo di scena e il finale li ha scritti un autore: ci arrivi comunque, a modo tuo.",
+      "demoNote": "Qui scegli tra tre risposte. Nella storia vera scrivi quello che vuoi.",
+      "pointTitles": [
+        "Scrivi con parole tue",
+        "Ogni personaggio ha la sua testa",
+        "Un autore tiene il filo"
+      ],
+      "pointBodies": [
+        "Niente opzioni A, B, C. Fai domande, accusa, consola, cambia argomento: la storia ti segue.",
+        "Ognuno sa solo quello che ha vissuto e quello che gli hai scritto tu. Se confidi un segreto a uno, gli altri non lo sanno.",
+        "Inizio, colpi di scena e finali sono scritti da una persona. Nessuno vive la tua stessa storia, ma tutte hanno un senso."
+      ],
+      "ctaTitle": "La prima lettera aspetta solo il tuo indirizzo.",
+      "cta": "Partecipa al primo test"
     },
     "footer": {
-      "tagline": "Storie epistolari, lentezza e carta."
+      "tagline": "Storie che vale la pena aspettare."
     }
   },
   "storiesAdmin": {
