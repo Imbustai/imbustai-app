@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@imbustai/i18n';
 import { Button, Typography } from '@imbustai/ds';
 import { signupUrl } from '@/lib/site';
+import streetPhoto from './assets/pt-insegna-strada.jpg';
 import styles from './home-landing.module.css';
 
 /** One road per reply, from the first letter to the author's twist. */
@@ -172,10 +174,21 @@ export function StoryEngine() {
         </ol>
 
         <div className={styles.closing}>
-          <p className={styles.closingTitle}>{t('landing.engine.ctaTitle')}</p>
-          <Button size="lg" asChild>
-            <Link href={signupUrl}>{t('landing.engine.cta')}</Link>
-          </Button>
+          <div className={styles.closingText}>
+            <p className={styles.closingTitle}>{t('landing.engine.ctaTitle')}</p>
+            <Button size="lg" asChild>
+              <Link href={signupUrl}>{t('landing.engine.cta')}</Link>
+            </Button>
+          </div>
+          <figure className={styles.closingPhoto}>
+            <Image
+              src={streetPhoto}
+              alt={t('landing.engine.closingPhotoAlt')}
+              sizes="(min-width: 78rem) 30rem, (min-width: 60rem) 40vw, 100vw"
+              placeholder="blur"
+              className={styles.photo}
+            />
+          </figure>
         </div>
       </div>
     </section>

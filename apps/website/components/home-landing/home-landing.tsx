@@ -1,13 +1,14 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@imbustai/i18n';
 import { Button, Typography } from '@imbustai/ds';
 import { christmasUrl, signupUrl } from '@/lib/site';
+import postboxPhoto from './assets/cassetta-poste-frontale.jpg';
 import {
   CatalogueArt,
-  EnvelopeArt,
   FlatLayArt,
   LetterArt,
   PostboxArt,
@@ -57,10 +58,14 @@ export function HomeLanding() {
             </div>
           </div>
           <div className={styles.heroVisual}>
-            <VisualSlot brief={VISUAL_BRIEFS.hero}>
-              <EnvelopeArt
-                to={t('landing.hero.envelopeTo')}
-                from={t('landing.hero.envelopeFrom')}
+            <VisualSlot brief={VISUAL_BRIEFS.hero} tag="Foto da ritoccare" photo>
+              <Image
+                src={postboxPhoto}
+                alt={t('landing.hero.photoAlt')}
+                sizes="(min-width: 78rem) 30rem, (min-width: 60rem) 40vw, 100vw"
+                placeholder="blur"
+                preload
+                className={styles.photo}
               />
             </VisualSlot>
           </div>
@@ -170,31 +175,37 @@ export function HomeLanding() {
 }
 
 /**
- * A slot for a visual that is still to be produced: the drawing mimics it and
- * the caption carries the brief. Swap the children for the real image or film
- * and drop the brief when it exists.
+ * A slot for a visual that is not final yet: a drawing that mimics it, or the
+ * raw photo it will be retouched from. The caption carries the brief. Swap the
+ * children for the final image or film and drop the brief when it exists.
  */
 function VisualSlot({
   brief,
   children,
+  tag = 'Visual da produrre',
   compact,
   onField,
+  photo,
 }: {
   brief: string;
   children: ReactNode;
+  tag?: string;
   compact?: boolean;
   onField?: boolean;
+  /** The child is a photo: it fills the frame edge to edge. */
+  photo?: boolean;
 }) {
   return (
     <figure
       className={styles.visual}
       data-compact={compact || undefined}
       data-on-field={onField || undefined}
+      data-photo={photo || undefined}
     >
       <div className={styles.visualArt}>{children}</div>
       <div className={styles.visualBrief}>
         <details>
-          <summary className={styles.visualTag}>Visual da produrre</summary>
+          <summary className={styles.visualTag}>{tag}</summary>
           <p className={styles.visualText}>{brief}</p>
         </details>
       </div>

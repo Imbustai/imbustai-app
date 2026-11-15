@@ -1,14 +1,15 @@
 /**
- * Briefs for the photographs and films still to be produced. Each drawing on
- * the homepage stands in for one of them and shows its brief underneath, so
- * whoever generates the visual knows what belongs in that slot.
+ * Briefs for the photographs and films still to be produced or retouched. Each
+ * drawing or raw photo on the homepage stands in for one of them and shows its
+ * brief underneath, so whoever makes the visual knows what belongs in that slot.
+ * The untouched source photos live in `moodboard/photos/`.
  *
- * These are production notes, not site copy: when a real visual replaces a
- * drawing, delete its brief here. When the last one goes, delete this file and
+ * These are production notes, not site copy: when the final visual is in its
+ * slot, delete its brief here. When the last one goes, delete this file and
  * the `VisualSlot` caption.
  */
 export const VISUAL_BRIEFS = {
-  hero: 'Foto verticale o loop video di 6 secondi. Una busta bianca con bordo posta aerea rosso e blu, francobollo blu e timbro, appoggiata su un piano color carta o infilata a metà nella feritoia di una cassetta postale rossa. Sulla busta, scritto a mano: il nome di chi guarda. Luce dura, ombra netta, nessuno sfondo ambientato. Deve sembrare un manifesto.',
+  hero: 'Partire dalla foto della cassetta (moodboard/photos/cassetta-poste-frontale.jpg). Ritocco: una busta bianca con bordo posta aerea rosso e blu, francobollo blu e timbro, infilata a metà nella feritoia «Per tutte le altre destinazioni». Sulla busta, scritto a mano: il nome di chi guarda. La busta deve avere la stessa luce e la stessa grana della foto.',
   stepChoose:
     'Tre copertine di storie affiancate come francobolli grandi: titolo, luogo e anno, un solo oggetto simbolo per ciascuna.',
   stepReceive:
