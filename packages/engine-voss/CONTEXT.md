@@ -47,3 +47,12 @@ What the reader reports about one of the Lead's Letters for the mechanics (did h
 **Turn plan**:
 What the mechanics allow in one batch, per writer: the date, the layer, the ladder steps, the clue due, re-approaches, the door, Signature limits, fixed texts and Dispatches. The writers write from it; the state after the batch travels with it in the draft's `effects`.
 _Avoid_: brief (the July engine's brief was a template the writers echoed)
+
+**Prompt**:
+One sentence the writing pipeline says to a model, kept in the Story document by key with `{placeholders}` the Engine fills from the Turn plan; no prompt lives in code.
+
+**On request**:
+A clue whose fact has already happened and that its Character tells before its batch only if the Lead asks directly; the Ledger then records it as delivered.
+
+**Ledger report**:
+The `analyst` reading of a sent Letter that tells the mechanics which free showpiece was played and which clue was given early.

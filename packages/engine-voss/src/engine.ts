@@ -1,30 +1,21 @@
-import { z } from 'zod';
 import type { Cast, Engine, Finding } from '@imbustai/story-runtime';
 import { vossStorySchema, type VossStory } from './schema';
 import { endingDetail, vossDies } from './mechanics/december';
 import { initialState, vossStateSchema, type VossState } from './mechanics/state';
-import type { TurnPlan } from './mechanics/turn';
+import { applyTurn } from './pipeline/ledger';
+import { generateTurn, validateDraft, vossEffectsSchema, type VossEffects } from './pipeline/turn';
 
 // engine-voss: plays the Voss story (Rome, 1987). The mechanics
-// (`mechanics/`) decide each Turn and the Ending in code; the Hooks that need
-// the writing pipeline are stubs until those tickets build them:
-//   writing pipeline (writer views, checker, editing pass)      Imbustai/imbustai-app#41
+// (`mechanics/`) decide each Turn and the Ending in code; the writing
+// pipeline (`pipeline/`) turns the Turn plan into Letters. One Hook is still a
+// stub:
 //   Epilogues and the closing batch                             Imbustai/imbustai-app#42
 
 export const VOSS_ENGINE_ID = 'engine-voss';
 
 export { vossStateSchema, type VossState };
 
-/**
- * What a Voss draft carries in `effects`: the state after the batch, computed
- * by `playTurn` from the reader's signals, and the plan the Letters were
- * written from. `applyTurn` returns the state on approve.
- */
-export const vossEffectsSchema = z.object({ state: vossStateSchema, plan: z.unknown() });
-export interface VossEffects {
-  state: VossState;
-  plan: TurnPlan;
-}
+export { vossEffectsSchema, type VossEffects };
 
 class NotBuiltYet extends Error {
   constructor(hook: string, ticket: number) {
@@ -99,23 +90,14 @@ export const vossEngine: Engine<VossStory, VossState> = {
     return findings;
   },
 
-  async generateTurn() {
-    throw new NotBuiltYet('generateTurn', 41);
-  },
+  generateTurn: (ctx, view, request) => generateTurn(ctx, view, request),
 
-  async validateDraft() {
-    throw new NotBuiltYet('validateDraft', 41);
-  },
+  // Deterministic: it runs again after every admin edit.
+  validateDraft: async (_ctx, view, draft) => validateDraft(view, draft),
 
   // The state was decided when the batch was planned; the admin edits Letters,
-  // never effects.
-  async applyTurn(_ctx, view, approved) {
-    const { state } = vossEffectsSchema.parse(approved.effects);
-    if (state.batch !== view.turn) {
-      throw new Error(`engine-voss: effects are for batch ${state.batch}, not Turn ${view.turn}`);
-    }
-    return state;
-  },
+  // never effects. The Ledger then reads the Letters as sent.
+  applyTurn: (ctx, view, approved) => applyTurn(ctx, view, approved),
 
   resolveEnding({ story, state }) {
     if (state.ending === null) return null;

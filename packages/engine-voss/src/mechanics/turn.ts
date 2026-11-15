@@ -1,5 +1,5 @@
 import type { VossStory } from '../schema';
-import { eventsBefore, eventsNewIn, promptReplyDate, turnRow, batchReadOnOrAfter } from './calendar';
+import { eventsBefore, eventsNewIn, officeAnswer, promptReplyDate, turnRow, batchReadOnOrAfter } from './calendar';
 import { deliver, judgeClues, newCluesFor, reapproaches, type Reapproach } from './clues';
 import {
   AUTHORITIES,
@@ -148,6 +148,15 @@ function variant(story: VossStory, key: string, startsWith: string): string {
   return v.when;
 }
 
+function procuraWeeks(story: VossStory): number {
+  return story.correspondents.find((c) => c.slug === 'procura')!.office!.replyWeeks;
+}
+
+/** A Letter that carries a dated passage (the visit to the teacher) is written after it happened. */
+function notBefore(date: string, others: (string | null)[]): string {
+  return [date, ...others.filter((d): d is string => d !== null)].sort().at(-1)!;
+}
+
 /** Plays Turn N against the state after batch N−1. */
 export function playTurn(story: VossStory, state: VossState, input: TurnInput): { plan: TurnPlan; state: VossState } {
   const { turn: N, letters } = input;
@@ -189,11 +198,25 @@ export function playTurn(story: VossStory, state: VossState, input: TurnInput): 
       if (sig.reportsVossConfession) s.told.vossConfession = true;
       if (!s.december && searchHolds(story, s, N, sig, heldBefore)) {
         s.december = { route: 'search', arrest: 'A', turn: N };
+        // The search is of 7–9 December whenever it was earned: the Procura
+        // reports it in the batch read after it (with the clipping). Only a
+        // Letter of the last Turn in time gets that report as its own answer.
+        const report = officeAnswer(story, story.calendar.deadlines.search, procuraWeeks(story));
         const procura = answers.find((a) => a.office === 'procura' && a.kind === 'answer');
-        if (procura) procura.topics.push('search');
-        else {
-          const [own] = routeOfficeLetter(story, 'procura', N, []);
-          if (own) answers.push({ ...own, forwardedFrom: letter.to, topics: ['search'] });
+        if (procura && procura.batch === report.batch) procura.topics.push('search');
+        else if (report.batch !== null) {
+          answers.push({
+            kind: 'answer',
+            office: 'procura',
+            turn: N,
+            batch: report.batch,
+            date: report.date,
+            documents: [],
+            partial: false,
+            forwardedFrom: letter.to === 'procura' ? null : letter.to,
+            forwardedTo: [],
+            topics: ['search'],
+          });
         }
         notes.push(`Route 1: the Letter to ${letter.to} names Aldo with enough evidence; the Procura searches via Carini (arrest A).`);
       }
@@ -257,7 +280,8 @@ export function playTurn(story: VossStory, state: VossState, input: TurnInput): 
 
   // 8. Voss's Letter.
   if (vossAlive) {
-    const aldoArrestedBefore = s.december?.route === 'search' && s.december.turn < N;
+    // Aldo is arrested in the search of 7–9 December, whenever it was earned: until batch 7 he is at the chess table.
+    const aldoArrestedBefore = s.december?.route === 'search' && N > story.calendar.deadlines.search;
     // One new Aldo clue per Letter: the earliest due; the rest wait. None once Aldo is in jail.
     const due = aldoArrestedBefore ? [] : newCluesFor(story, s, 'voss', N);
     const aldo = due.slice(0, story.voss.aldoCluesPerLetter);
@@ -284,7 +308,9 @@ export function playTurn(story: VossStory, state: VossState, input: TurnInput): 
     if (N === 8) fixedLetter = vossAfter(story, s);
 
     voss = {
-      date: fixedLetter ? fixedText(story, fixedLetter.key).date! : promptReplyDate(story, N, input.random('voss.date')),
+      date: fixedLetter
+        ? fixedText(story, fixedLetter.key).date!
+        : notBefore(promptReplyDate(story, N, input.random('voss.date')), passages.map((key) => fixedText(story, key).date)),
       cold,
       trust: s.trust,
       band: trustBand(story, s.trust),
