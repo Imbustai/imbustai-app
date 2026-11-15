@@ -241,15 +241,21 @@
   stroke: var(--ds-color-signal);
 }
 
-/* Real photos fill their frame edge to edge; the frame keeps the ink border. */
-.visual[data-photo] .visualArt {
-  padding: 0;
+.artHand {
+  font-family: var(--heading);
+  font-size: 44px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  fill: var(--ink);
 }
 
-.photo {
-  display: block;
-  width: 100%;
-  height: auto;
+.artSmall {
+  font-family: var(--ds-typography-font-family-body);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ink);
+  opacity: 0.7;
 }
 
 .visualBrief {
@@ -678,25 +684,8 @@
 .closing {
   margin-top: clamp(3rem, 7vw, 5rem);
   display: grid;
-  gap: clamp(2rem, 5vw, 4rem);
-  align-items: center;
-}
-
-@media (min-width: 60rem) {
-  .closing {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  }
-}
-
-.closingText {
-  display: grid;
   gap: 1.5rem;
   justify-items: start;
-}
-
-.closingPhoto {
-  margin: 0;
-  border: 2px solid var(--ds-color-foreground);
 }
 
 .closingTitle {

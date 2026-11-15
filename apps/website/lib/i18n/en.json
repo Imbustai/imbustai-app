@@ -222,7 +222,8 @@
       "definition": "Imbustai is a story you live by post. The characters write you real letters that arrive at your home. You reply in your own words, and the story changes with what you write.",
       "ctaPrimary": "Join the first test",
       "ctaSecondary": "See how it works",
-      "photoAlt": "A red postbox marked POSTE, fixed to a weathered brick wall."
+      "envelopeTo": "For you",
+      "envelopeFrom": "From someone you don’t know yet"
     },
     "facts": {
       "label": "Imbustai in short",
@@ -317,8 +318,7 @@
         "The beginning, the twists and the endings are written by a person. Nobody lives the same story as you, but every one makes sense."
       ],
       "ctaTitle": "The first letter is only waiting for your address.",
-      "cta": "Join the first test",
-      "closingPhotoAlt": "A pedestrian street in Venice. In the foreground, the yellow PT sign of a post office and a red postbox below it."
+      "cta": "Join the first test"
     },
     "footer": {
       "tagline": "Stories worth waiting for."

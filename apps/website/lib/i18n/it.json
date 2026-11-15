@@ -222,7 +222,8 @@
       "definition": "Imbustai è una storia che vivi per posta. I personaggi ti scrivono lettere vere, che arrivano a casa tua. Tu rispondi con parole tue, e la storia cambia con quello che scrivi.",
       "ctaPrimary": "Partecipa al primo test",
       "ctaSecondary": "Guarda come funziona",
-      "photoAlt": "Una cassetta postale rossa con la scritta POSTE, appesa a un muro di mattoni scrostato."
+      "envelopeTo": "Per te",
+      "envelopeFrom": "Da qualcuno che non conosci ancora"
     },
     "facts": {
       "label": "Imbustai in breve",
@@ -317,8 +318,7 @@
         "Inizio, colpi di scena e finali sono scritti da una persona. Nessuno vive la tua stessa storia, ma tutte hanno un senso."
       ],
       "ctaTitle": "La prima lettera aspetta solo il tuo indirizzo.",
-      "cta": "Partecipa al primo test",
-      "closingPhotoAlt": "Una via pedonale veneziana. In primo piano l’insegna gialla PT di un ufficio postale e, sotto, una cassetta rossa."
+      "cta": "Partecipa al primo test"
     },
     "footer": {
       "tagline": "Storie che vale la pena aspettare."

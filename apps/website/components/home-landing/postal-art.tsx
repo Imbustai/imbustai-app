@@ -59,6 +59,54 @@ function Stamp({ x, y, w = 52, h = 64 }: { x: number; y: number; w?: number; h?:
   );
 }
 
+export function EnvelopeArt({ to, from }: { to?: string; from?: string }) {
+  const id = useId();
+  return (
+    <svg viewBox="0 0 440 290" className={styles.art} aria-hidden focusable="false">
+      <defs>
+        <AirmailPattern id={id} />
+      </defs>
+      <rect x="6" y="6" width="428" height="278" className={styles.artPaper} />
+      <rect
+        x="12"
+        y="12"
+        width="416"
+        height="266"
+        fill="none"
+        stroke={`url(#${id})`}
+        strokeWidth="12"
+      />
+      <rect
+        x="6"
+        y="6"
+        width="428"
+        height="278"
+        fill="none"
+        className={styles.artInkStroke}
+        strokeWidth="2"
+      />
+      <Stamp x={346} y={40} />
+      <Postmark x={300} y={84} />
+      {to ? (
+        <text x="60" y="170" className={styles.artHand}>
+          {to}
+        </text>
+      ) : null}
+      <path
+        d="M60 190 H250 M60 214 H220 M60 238 H180"
+        className={styles.artInkStroke}
+        strokeWidth="2"
+        opacity="0.45"
+      />
+      {from ? (
+        <text x="40" y="52" className={styles.artSmall}>
+          {from}
+        </text>
+      ) : null}
+    </svg>
+  );
+}
+
 export function LetterArt() {
   return (
     <svg viewBox="0 0 240 180" className={styles.art} aria-hidden focusable="false">
