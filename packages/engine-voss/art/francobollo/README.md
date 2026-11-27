@@ -21,6 +21,10 @@ Prima della stampa servono tre passaggi:
 
 Le due direzioni scartate sono salvate in JPG qualità 92 per non appesantire il repository. Gli originali PNG sono su ElevenLabs, nel flow «Imbustai · Francobolli Voss» (id `ejL2IkR8vA74KpRqgaKV`).
 
+## Prova di stile: la serie «Castelli d'Italia»
+
+`prove/il-pianerottolo-stile-castelli.png` (GPT Image 2.6, 1K, qualità low, 832×1040 px): la stessa scena del pianerottolo nel linguaggio dei francobolli ordinari italiani della serie «Castelli d'Italia» (1980–1987). Campo grigio-verde, medaglione tondo inciso in due inchiostri, didascalia in alto a sinistra, valore in alto a destra e IMBUSTAI in grande in basso. Il rosso dei lumini è l'unico terzo colore. È solo una prova: la qualità bassa dipende dai crediti rimasti. Se piace, va rigenerata ad alta qualità.
+
 ## Come rifarlo
 
 - `BRIEF.md` è il brief da artista: chi siamo, a cosa serve il francobollo, la storia completa senza spoiler, i simboli, cosa non vogliamo, le specifiche tecniche. Gli allegati citati nel brief sono i testi d'apertura della storia in `../../seed/text/opening/`.
@@ -33,4 +37,5 @@ Le due direzioni scartate sono salvate in JPG qualità 92 per non appesantire il
 | Il pianerottolo | Gemini 3 Pro Image, 2K | 1.218 | 0,22 $ |
 | Due rive | GPT Image 2.6 Sunburst, 2K, qualità high | 483 | 0,09 $ |
 | Il sigillo | GPT Image 2.6 Sunburst, 2K, qualità high | 483 | 0,09 $ |
-| **Totale** | | **2.184** | **0,40 $** |
+| Prova stile Castelli | GPT Image 2.6 Sunburst, 1K, qualità low | 132 | 0,02 $ |
+| **Totale** | | **2.316** | **0,42 $** |

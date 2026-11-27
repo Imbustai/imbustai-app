@@ -43,3 +43,21 @@ Style: designed by a master illustrator and printed by intaglio over lithographi
 
 Format: the whole stamp shown flat and front-on, centered on a plain warm grey background, with its white perforated border fully visible on all four sides. Render this text exactly and nothing else: at the top "IMBUSTAI" in widely spaced condensed sans-serif capitals; bottom left "L. 700"; bottom right "VOSS 1987"; on the postmark "LIPARI 12.9.87". No real postal logos.
 ```
+
+## 1b · Il pianerottolo, stile serie «Castelli d'Italia» · GPT Image 2.6 Sunburst, 1K, qualità low (prova)
+
+```
+Generate an Italian definitive postage stamp in the exact visual language of the Italian "Castelli d'Italia" definitive series of 1980-1987, but for a fictional mystery story.
+
+Look of that series, to reproduce faithfully: a vertical stamp with a white perforated border. The whole design area is a solid field of one dark slate grey-green ink (like dark olive grey). In the middle, a large circular medallion cut out of that field, slightly off-centre towards the top, holding a finely engraved, almost photographic scene printed in two inks only: the same dark grey-green for the lines and shadows, and a pale mint-turquoise tint for the light areas and sky. Fine rotogravure screen and engraved line texture, flat, quiet, official, 1980s Italian state printing. Small caption text in thin capitals in the top-left corner, two lines; the value in large thin outlined numerals in the top-right corner; one big word in wide bold capitals across the bottom, in white; two tiny lines of credits under the frame.
+
+The scene inside the circle: a landing of a 1930s apartment building in Rome at night, seen slightly from above. A dark wooden door ajar with a thin blade of light, a wrought-iron stair railing on one side, a marble floor. On the floor, three small votive candles arranged in a triangle, inside a triangle drawn in chalk. The three candle flames are the only touch of a third ink: a small, faded red. No people, no blood. Quiet and ominous.
+
+Render this text exactly and nothing else:
+- top-left caption, two lines: "VIA LANCIANI" and "ROMA"
+- top-right value: "700"
+- big word along the bottom: "IMBUSTAI"
+- tiny credits under the frame, left: "SETTEMBRE 1987", right: "VOSS"
+
+Show the stamp flat and front-on, centered on a plain black background, the whole perforated border visible. No real postal logos, no coat of arms.
+```
