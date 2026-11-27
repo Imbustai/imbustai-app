@@ -41,6 +41,8 @@ export {
 export {
   vossStorySchema,
   STORY_SCHEMA_VERSION,
+  PROMPT_KEYS,
+  type PromptKey,
   type VossStory,
   type VossCorrespondent,
   type VossDocument,

@@ -1,4 +1,5 @@
 import type { AiAccess, Correspondent } from '../contract';
+import { IncompleteOutputError } from '../ai/provider';
 import { checkLetter, type CheckInput, type CheckIssue, type LetterCheck } from './checker';
 import { editLetter } from './editor';
 import { findPlotKeyCollisions } from './plotKeys';
@@ -66,7 +67,16 @@ export async function composeLetter(ai: AiAccess, input: ComposeInput): Promise<
     for (const c of kept) adminNotes.push(`${character.slug}: "${c.term}" is still in the Letter after the rewrite: «${c.quote}»`);
   }
 
-  const body = await editLetter(ai, { character, language: input.language, ...input.edit, letter });
+  // The editing pass only touches form: when the model returns nothing for it
+  // (a refusal, a truncation), the checked Letter stands and the admin is told
+  // it was not reread, instead of the whole batch being lost.
+  let body = letter;
+  try {
+    body = await editLetter(ai, { character, language: input.language, ...input.edit, letter });
+  } catch (err) {
+    if (!(err instanceof IncompleteOutputError)) throw err;
+    adminNotes.push(`${character.slug}: the editing pass returned nothing (${err.reason}): the Letter was not reread, check its Italian`);
+  }
   return { body, draft, check, ...(rewrite !== undefined ? { rewrite } : {}), adminNotes };
 }
 

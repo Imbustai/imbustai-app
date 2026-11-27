@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { createAiAccess, type UsageRecord } from '../ai/access';
 import { DEFAULT_MODEL_PROFILE, mergeModelProfile } from '../ai/profile';
-import { MockProvider, type StructuredRequest } from '../ai/provider';
+import { IncompleteOutputError, MockProvider, ZERO_USAGE, type StructuredRequest } from '../ai/provider';
 import { checkLetter } from '../writing/checker';
 import { composeLetter } from '../writing/compose';
 import { editLetter } from '../writing/editor';
@@ -290,6 +290,22 @@ describe('composeLetter', () => {
     expect(letter).toMatchObject({ draft: 'Caro Giacomo, sto bene.', body: 'EDITED Caro Giacomo, sto bene.' });
     expect(letter.rewrite).toBeUndefined();
     expect(provider.textRequests.filter((r) => r.history)).toHaveLength(0);
+  });
+
+  it('keeps the Letter when the editing pass is refused, and tells the admin it was not reread', async () => {
+    const provider = new MockProvider(
+      () => ({ issues: [], questionsAnswered: [] }),
+      (r) => {
+        if (r.system.startsWith('Rileggi')) throw new IncompleteOutputError('refusal', ZERO_USAGE('mock', r.model), 'cyber');
+        return 'Caro Giacomo, sto bene.';
+      },
+    );
+    const usage: UsageRecord[] = [];
+    const letter = await composeLetter(aiWith(provider, usage), base);
+    expect(letter.body).toBe('Caro Giacomo, sto bene.');
+    expect(letter.adminNotes.join('\n')).toMatch(/voss: the editing pass returned nothing \(refusal\).*not reread/);
+    // The refused attempt was billed and is still recorded.
+    expect(usage.at(-1)).toMatchObject({ purpose: 'editor', outcome: 'incomplete' });
   });
 
   it('never rewrites twice: a collision the rewrite kept goes to the admin', async () => {

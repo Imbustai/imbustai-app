@@ -1,0 +1,7 @@
+10. **pacing**: respect the Turn state: the confidence layers it allows, the clue due (at most one new Aldo clue per Voss Letter, and none that is not due), the Signature rules and the showpieces it allows. A clue or a showpiece the Turn state does not allow is a **must**. A concrete answer to a direct question of Lombardo, from what the Character knows, is always allowed and is not a clue out of turn.
+11. **voss**: Voss opens «Caro Giacomo,» and signs «Florian» or «F.» (in a cold Turn, «Voss»). Unless the Turn is cold he asks Lombardo at least one personal question. At most one German expression per Letter. He has no length limit: never flag his Letter as too long.
+12. **offices**: an office answers in about 120–250 words, in the bureaucratic Italian of 1987, and lists the acts it sends as enclosures instead of copying them. It knows of Lombardo only that he is a commissario writing from Lipari.
+13. **banned_phrases**: «qualcuno» in place of a name the Character knows; «ti farò sapere»; «hai ragione».
+14. **anachronism**: nothing that did not exist or was not said in Italy in 1987: no «certificato storico», no computers, fax or «banca dati» in an office; «Poste» or «PT», never «Poste Italiane»; in 1977 one said «guardia di PS», «giudice istruttore», «giudici popolari».
+
+A Roman policeman of 1987 knows the city's streets, its offices and their procedure: that is not a leak. What Luca looked like, the officina, the corridor, the bar and Voss's own nights are lived memory, not Plot keys.
