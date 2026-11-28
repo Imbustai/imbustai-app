@@ -76,7 +76,9 @@ class Hand:
     top_k: int | None = None
     seed: int = 0
     # Words the model gets wrong in context, written again alone, sampled with this seed.
-    retakes: dict[str, int] = field(default_factory=dict)
+    # A long word whose minims the model loses count of can instead be written in
+    # pieces, joined as a hand does when it lifts the pen: "soprannumero.": "sopran|numero.".
+    retakes: dict[str, int | str] = field(default_factory=dict)
 
     _pen = None
 
@@ -106,11 +108,14 @@ class Hand:
         written = self.ink([b for g in groups for b, _ in g], self.temperature, self.top_k, self.seed)
         out, at = [], 0
         for w, g in zip(words, groups):
-            ink = written[at:at + len(g)]
-            if w in self.retakes:
-                ink = self.ink([b for b, _ in g], 0.4, 5, self.retakes[w])
-            out.append(elide([marked(p, b, m) for p, (b, m) in zip(ink, g)]))
-            at += len(g)
+            ink, retake, lift = written[at:at + len(g)], self.retakes.get(w), False
+            if isinstance(retake, int):  # written again alone, sampled with this seed
+                ink = self.ink([b for b, _ in g], 0.4, 5, retake)
+            elif isinstance(retake, str):  # written in pieces, «sopran|numero.», and joined
+                g = [bare(p) for p in retake.split("|")]
+                ink, lift = self.ink([b for b, _ in g], self.temperature, self.top_k, self.seed), True
+            out.append(elide([marked(p, b, m) for p, (b, m) in zip(ink, g)], lift))
+            at += len(ELISION.split(w))
         return out
 
 
@@ -180,15 +185,20 @@ def apostrophe(x: float) -> np.ndarray:
     return stroke((x + 0.006, top), (x + 0.008, top + 0.012), (x + 0.004, top + 0.03), (x - 0.008, top + 0.048))
 
 
-def elide(parts: list[np.ndarray]) -> np.ndarray:
-    """Join the units of an elided word with an apostrophe: l + ho -> l'ho."""
+def elide(parts: list[np.ndarray], lift: bool = False) -> np.ndarray:
+    """Join the units of an elided word with an apostrophe (l + ho -> l'ho),
+    or, when the pen was only lifted, with a hair of space (sopran + numero)."""
     parts = [p for p in parts if len(p)]
     if not parts:
         return np.zeros((0, 3))
     out = parts[0]
     for p in parts[1:]:
-        x = ink_x(out)[1] + 0.03
         q = p.copy()
+        if lift:
+            q[:, 0] += ink_x(out)[1] + 0.012 - ink_x(p)[0]
+            out = np.concatenate([out, q])
+            continue
+        x = ink_x(out)[1] + 0.03
         q[:, 0] += x + 0.035 - ink_x(p)[0]
         out = np.concatenate([out, apostrophe(x), q])
     return out
