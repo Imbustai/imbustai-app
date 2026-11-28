@@ -1,4 +1,4 @@
-"""Pianta di Roma 1987 (Nomentano · San Lorenzo · Esquilino), A3 orizzontale, stile anni '80.
+"""Pianta di Roma 1987 (Nomentano · San Lorenzo · Esquilino), A3 orizzontale, scala 1:12.500, stile anni '80.
 
 Uso:  python3 mappa.py osm.json OUT_DIR
 Produce: mappa-roma-1987.svg (pulita) e mappa-roma-1987-segni.svg (con i segni a penna).
@@ -11,17 +11,22 @@ OSM, OUT = sys.argv[1], sys.argv[2]
 os.makedirs(OUT, exist_ok=True)
 
 # ------------------------------------------------------------------ geometry
-LON0, LON1 = 12.4865, 12.5325
-LAT0, LAT1 = 41.8925, 41.9245
-SCALE = 15000
+SCALE = 12500
 MM_PER_M = 1000 / SCALE
-KX = 111320 * math.cos(math.radians((LAT0 + LAT1) / 2)) * MM_PER_M
-KY = 111132 * MM_PER_M
-MX, MY = 19.0, 30.0                       # map frame origin on the page (mm)
-MW, MH = (LON1 - LON0) * KX, (LAT1 - LAT0) * KY
 PAGE_W, PAGE_H = 420, 297
-BAND = 5.0
-COLS, ROWS = 8, 7
+BAND = 5.0                                # lettered grid band around the map
+FX0, FY0, FX1, FY1 = 10.0, 8.0, 410.0, 283.0   # outer frame; the title sits in its top band
+TITLE_H = 22.0
+MX, MY = FX0 + BAND, FY0 + TITLE_H + BAND        # map origin on the page (mm)
+MW, MH = FX1 - BAND - MX, FY1 - BAND - MY
+LAT1, LON_C = 41.9235, 12.5095
+KY = 111132 * MM_PER_M
+KX = 111320 * math.cos(math.radians(LAT1 - MH / KY / 2)) * MM_PER_M
+LON0, LON1 = LON_C - MW / KX / 2, LON_C + MW / KX / 2
+LAT0 = LAT1 - MH / KY
+COLS, ROWS = 8, 5
+# the legend box sits on the map, top-left, over Salario and Pinciano (no place of the story there)
+LGX, LGY, LGW, LGH = MX + 4, MY + 4, 132.0, 92.0
 
 
 def P(lon, lat):
@@ -318,6 +323,17 @@ def grid_ref(x, y):
     return f"{'ABCDEFGH'[col]} {row + 1}"
 
 
+def reserve_legend():
+    """Keep labels out from under the legend box."""
+    y = LGY + 2
+    while y < LGY + LGH:
+        x = LGX + 2
+        while x < LGX + LGW:
+            take([(x, y, 2.6)])
+            x += 3
+        y += 3
+
+
 def place_on_line(name, cls, pp):
     L = cumlen(pp); tot = L[-1]
     fs = FS[cls]
@@ -391,6 +407,7 @@ DISTRICTS = [("NOMENTANO", 12.5225, 41.9152), ("SAN LORENZO", 12.5190, 41.8968),
 # ------------------------------------------------------------------ SVG building
 def svg_map(with_pen):
     occ.clear(); labels_svg.clear(); defs_paths.clear(); index_entries.clear(); pid[0] = 0
+    reserve_legend()
     g = []
     clip = f'<clipPath id="mapclip"><rect x="{MX}" y="{MY}" width="{MW:.2f}" height="{MH:.2f}"/></clipPath>'
     pats = (
@@ -560,16 +577,22 @@ def svg_map(with_pen):
     mapbody = (f'<g clip-path="url(#mapclip)">{"".join(g)}<g id="quartieri">{"".join(dist)}</g>{"".join(grid)}'
                f'{"".join(sym)}<g id="nomi">{"".join(labels_svg)}</g></g>')
 
-    # ---- frame with lettered band
-    fr = [f'<g id="cornice">']
-    fr.append(f'<rect x="{MX - BAND:.2f}" y="{MY - BAND:.2f}" width="{MW + 2 * BAND:.2f}" height="{MH + 2 * BAND:.2f}" '
-              f'fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.5"/>')
+    # ---- frame: outer border, title band on top, lettered grid band around the map
+    fr = ['<g id="cornice">']
+    fr.append(f'<rect x="{FX0}" y="{FY0}" width="{FX1 - FX0}" height="{FY1 - FY0}" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.6"/>')
+    fr.append(f'<rect x="{FX0 + 1.2}" y="{FY0 + 1.2}" width="{FX1 - FX0 - 2.4}" height="{TITLE_H - 2.4}" fill="none" stroke="{C["ink"]}" stroke-width="0.2"/>')
+    fr.append(f'<line x1="{FX0}" y1="{FY0 + TITLE_H}" x2="{FX1}" y2="{FY0 + TITLE_H}" stroke="{C["ink"]}" stroke-width="0.5"/>')
+    tcx = (FX0 + FX1) / 2
+    fr.append(f'<text x="{tcx}" y="{FY0 + 12.2}" text-anchor="middle" font-family="{F_SERIF}" font-size="10.5" font-weight="700" '
+              f'letter-spacing="1.6" fill="{C["ink"]}">PIANTA DELLA CITTÀ DI ROMA</text>')
+    fr.append(f'<text x="{tcx}" y="{FY0 + 18.4}" text-anchor="middle" font-family="{F_SERIF}" font-size="4.0" fill="{C["ink"]}">'
+              f'Nomentano · San Lorenzo · Esquilino — Scala 1 : 12.500 — Edizione 1987</text>')
     fr.append(f'<rect x="{MX}" y="{MY}" width="{MW:.2f}" height="{MH:.2f}" fill="none" stroke="{C["ink"]}" stroke-width="0.35"/>')
     for i in range(COLS):
         x = MX + (i + 0.5) * MW / COLS
         for y in (MY - BAND / 2, MY + MH + BAND / 2):
             fr.append(f'<text x="{x:.2f}" y="{y:.2f}" text-anchor="middle" dominant-baseline="central" font-family="{F_SERIF}" '
-                      f'font-size="2.8" font-weight="700" fill="{C["ink"]}">{"ABCDEFGH"[i]}</text>')
+                      f'font-size="3.0" font-weight="700" fill="{C["ink"]}">{"ABCDEFGH"[i]}</text>')
         xb = MX + i * MW / COLS
         if i:
             fr.append(f'<line x1="{xb:.2f}" y1="{MY - BAND:.2f}" x2="{xb:.2f}" y2="{MY:.2f}" stroke="{C["ink"]}" stroke-width="0.25"/>'
@@ -578,140 +601,91 @@ def svg_map(with_pen):
         y = MY + (j + 0.5) * MH / ROWS
         for x in (MX - BAND / 2, MX + MW + BAND / 2):
             fr.append(f'<text x="{x:.2f}" y="{y:.2f}" text-anchor="middle" dominant-baseline="central" font-family="{F_SERIF}" '
-                      f'font-size="2.8" font-weight="700" fill="{C["ink"]}">{j + 1}</text>')
+                      f'font-size="3.0" font-weight="700" fill="{C["ink"]}">{j + 1}</text>')
         yb = MY + j * MH / ROWS
         if j:
             fr.append(f'<line x1="{MX - BAND:.2f}" y1="{yb:.2f}" x2="{MX:.2f}" y2="{yb:.2f}" stroke="{C["ink"]}" stroke-width="0.25"/>'
                       f'<line x1="{MX + MW:.2f}" y1="{yb:.2f}" x2="{MX + MW + BAND:.2f}" y2="{yb:.2f}" stroke="{C["ink"]}" stroke-width="0.25"/>')
     fr.append('</g>')
-    # attribution (ODbL), tiny, under the frame
-    attr = (f'<text x="{MX + MW:.2f}" y="{MY + MH + BAND + 3.2:.2f}" text-anchor="end" font-family="{F_SANS}" font-size="1.7" '
-            f'fill="{C["grey"]}">Dati stradali © OpenStreetMap contributors (ODbL), ridisegnati come nel 1987</text>')
 
-    # ---- north arrow (inside map, top-left corner)
-    nx, ny = MX + 9, MY + 11
-    north = (f'<g id="nord"><circle cx="{nx}" cy="{ny}" r="6" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.3"/>'
-             f'<path d="M{nx},{ny - 5} L{nx + 1.8},{ny + 1.5} L{nx},{ny + 0.4} L{nx - 1.8},{ny + 1.5} Z" fill="{C["ink"]}"/>'
-             f'<path d="M{nx},{ny - 5} L{nx + 1.8},{ny + 1.5} L{nx},{ny + 0.4} Z" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.2"/>'
-             f'<text x="{nx}" y="{ny + 3.8}" text-anchor="middle" font-family="{F_SERIF}" font-size="2.6" font-weight="700" fill="{C["ink"]}">N</text></g>')
+    # ---- imprint and data attribution (ODbL), under the frame
+    attr = (f'<text x="{FX0}" y="{FY1 + 5}" font-family="{F_SERIF}" font-size="2.7" font-weight="700" letter-spacing="0.5" fill="{C["ink"]}">'
+            f'EDIZIONI CARTOGRAFICHE CAPITOLINE — ROMA'
+            f'<tspan font-family="{F_SANS}" font-weight="400" letter-spacing="0" fill="{C["grey"]}">'
+            f'   ·   Proprietà letteraria riservata · Stampato in Italia · Agosto 1987 · L. 3.500</tspan></text>'
+            f'<text x="{FX1}" y="{FY1 + 5}" text-anchor="end" font-family="{F_SANS}" font-size="2.2" fill="{C["grey"]}">'
+            f'Dati stradali © OpenStreetMap contributors (ODbL), ridisegnati come nel 1987</text>')
 
-    # ---- right panel: title, legend, scale, index, imprint
-    PX, PW = 286.0, 122.0
-    pn = ['<g id="pannello">']
-    pn.append(f'<rect x="{PX}" y="{MY - BAND:.2f}" width="{PW}" height="{MH + 2 * BAND:.2f}" fill="none" stroke="{C["ink"]}" stroke-width="0.5"/>')
-    pn.append(f'<rect x="{PX + 1.2}" y="{MY - BAND + 1.2:.2f}" width="{PW - 2.4}" height="{MH + 2 * BAND - 2.4:.2f}" fill="none" stroke="{C["ink"]}" stroke-width="0.2"/>')
-    cx = PX + PW / 2
-    ty = MY - BAND + 9
-    pn.append(f'<text x="{cx}" y="{ty}" text-anchor="middle" font-family="{F_SERIF}" font-size="3.0" font-weight="700" letter-spacing="1.4" fill="{C["ink"]}">PIANTA DELLA CITTÀ DI</text>')
-    pn.append(f'<text x="{cx}" y="{ty + 21}" text-anchor="middle" font-family="{F_SERIF}" font-size="25" font-weight="700" letter-spacing="3.5" fill="{C["ink"]}">ROMA</text>')
-    pn.append(f'<line x1="{PX + 14}" y1="{ty + 26}" x2="{PX + PW - 14}" y2="{ty + 26}" stroke="{C["ink"]}" stroke-width="0.35"/>')
-    pn.append(f'<text x="{cx}" y="{ty + 31.5}" text-anchor="middle" font-family="{F_SERIF}" font-size="3.3" font-style="italic" fill="{C["ink"]}">Nomentano · San Lorenzo · Esquilino</text>')
-    pn.append(f'<text x="{cx}" y="{ty + 37}" text-anchor="middle" font-family="{F_SERIF}" font-size="2.6" letter-spacing="0.6" fill="{C["ink"]}">Scala 1 : 15.000 — Edizione 1987</text>')
+    # ---- north arrow (inside the map, top-right corner)
+    nx, ny = MX + MW - 11, MY + 12
+    north = (f'<g id="nord"><circle cx="{nx}" cy="{ny}" r="7" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.35"/>'
+             f'<path d="M{nx},{ny - 6} L{nx + 2.2},{ny + 1.8} L{nx},{ny + 0.5} L{nx - 2.2},{ny + 1.8} Z" fill="{C["ink"]}"/>'
+             f'<path d="M{nx},{ny - 6} L{nx + 2.2},{ny + 1.8} L{nx},{ny + 0.5} Z" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.2"/>'
+             f'<text x="{nx}" y="{ny + 5}" text-anchor="middle" font-family="{F_SERIF}" font-size="3" font-weight="700" fill="{C["ink"]}">N</text></g>')
 
-    # legend box
-    ly = ty + 43
-    lh = 92
-    pn.append(f'<rect x="{PX + 5}" y="{ly}" width="{PW - 10}" height="{lh}" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.3"/>')
-    pn.append(f'<text x="{cx}" y="{ly + 6.5}" text-anchor="middle" font-family="{F_SERIF}" font-size="3.4" font-weight="700" letter-spacing="0.8" fill="{C["ink"]}">SEGNI CONVENZIONALI</text>')
+    # ---- legend box on the map: «Segni convenzionali» and the scale
+    pn = ['<g id="legenda">']
+    pn.append(f'<rect x="{LGX + 1.2}" y="{LGY + 1.4}" width="{LGW}" height="{LGH}" fill="#000" opacity="0.18"/>')
+    pn.append(f'<rect x="{LGX}" y="{LGY}" width="{LGW}" height="{LGH}" fill="{C["paper"]}" stroke="{C["ink"]}" stroke-width="0.45"/>')
+    pn.append(f'<rect x="{LGX + 1.3}" y="{LGY + 1.3}" width="{LGW - 2.6}" height="{LGH - 2.6}" fill="none" stroke="{C["ink"]}" stroke-width="0.2"/>')
+    cx = LGX + LGW / 2
+    pn.append(f'<text x="{cx}" y="{LGY + 9}" text-anchor="middle" font-family="{F_SERIF}" font-size="4.8" font-weight="700" letter-spacing="1.0" fill="{C["ink"]}">SEGNI CONVENZIONALI</text>')
     items = [
-        ("road", C["primary"], 2.25, "Strada di grande comunicazione"),
-        ("road", C["secondary"], 1.95, "Strada principale"),
-        ("road", C["tertiary"], 1.6, "Strada secondaria"),
-        ("road", C["minor"], 1.25, "Altre strade"),
-        ("road", C["ped"], 1.1, "Zona pedonale"),
+        ("road", C["primary"], 2.6, "Strada di grande comunicazione"),
+        ("road", C["secondary"], 2.2, "Strada principale"),
+        ("road", C["tertiary"], 1.9, "Strada secondaria"),
+        ("road", C["minor"], 1.5, "Altre strade"),
+        ("road", C["ped"], 1.3, "Zona pedonale"),
         ("rail", None, 0, "Ferrovia"),
         ("yard", None, 0, "Scalo ferroviario"),
         ("walls", None, 0, "Mura Aureliane"),
-        ("area", "url(#park)", 0, "Parchi, ville e giardini"),
+        ("area", "url(#park)", 0, "Parchi e giardini"),
         ("area", "url(#cem)", 0, "Cimitero"),
-        ("area", C["inst"], 0, "Università, ospedali, caserme"),
+        ("area", C["inst"], 0, "Università, ospedali"),
         ("area", C["block"], 0, "Abitato"),
         ("area", C["church"], 0, "Chiese"),
         ("metro", None, 0, "Metropolitana, linea A"),
         ("questura", None, 0, "Questura"),
     ]
-    col_x = [PX + 9, PX + 9 + (PW - 18) / 2]
+    col_x = [LGX + 6, LGX + 6 + (LGW - 12) / 2 + 3]
     rows_per_col = 8
+    LFS = 3.4
     for k, (kind, col, w, lab) in enumerate(items):
-        cxl = col_x[k // rows_per_col]
-        yy = ly + 13 + (k % rows_per_col) * 8.5
-        x1, x2 = cxl, cxl + 9
+        x1 = col_x[k // rows_per_col]
+        yy = LGY + 16.5 + (k % rows_per_col) * 7.6
+        x2 = x1 + 11
         if kind == "road":
-            pn.append(f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["road_case"]}" stroke-width="{w + 0.32}"/>'
+            pn.append(f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["road_case"]}" stroke-width="{w + 0.36}"/>'
                       f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{col}" stroke-width="{w}"/>')
         elif kind == "rail":
-            pn.append(f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["rail"]}" stroke-width="0.95"/>'
-                      f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="#F7F2E4" stroke-width="0.45" stroke-dasharray="1.6 1.6"/>')
+            pn.append(f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["rail"]}" stroke-width="1.1"/>'
+                      f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="#F7F2E4" stroke-width="0.5" stroke-dasharray="1.8 1.8"/>')
         elif kind == "yard":
-            pn.append(f'<rect x="{x1}" y="{yy - 2}" width="9" height="4" fill="url(#yard)" stroke="{C["block_line"]}" stroke-width="0.15"/>')
+            pn.append(f'<rect x="{x1}" y="{yy - 2.4}" width="11" height="4.8" fill="url(#yard)" stroke="{C["block_line"]}" stroke-width="0.15"/>')
         elif kind == "walls":
-            pn.append(f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["walls"]}" stroke-width="0.9"/>'
-                      f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["walls"]}" stroke-width="1.9" stroke-dasharray="0.35 1.1"/>')
+            pn.append(f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["walls"]}" stroke-width="1.0"/>'
+                      f'<line x1="{x1}" y1="{yy}" x2="{x2}" y2="{yy}" stroke="{C["walls"]}" stroke-width="2.1" stroke-dasharray="0.4 1.2"/>')
         elif kind == "area":
-            pn.append(f'<rect x="{x1}" y="{yy - 2}" width="9" height="4" fill="{col}" stroke="{C["block_line"]}" stroke-width="0.15"/>')
+            pn.append(f'<rect x="{x1}" y="{yy - 2.4}" width="11" height="4.8" fill="{col}" stroke="{C["block_line"]}" stroke-width="0.15"/>')
         elif kind == "metro":
-            pn.append(f'<circle cx="{x1 + 4.5}" cy="{yy}" r="1.45" fill="{C["metro"]}"/><text x="{x1 + 4.5}" y="{yy + 0.05}" text-anchor="middle" '
-                      f'dominant-baseline="central" font-family="{F_SANS}" font-size="1.9" font-weight="700" fill="#fff">M</text>')
+            pn.append(f'<circle cx="{x1 + 5.5}" cy="{yy}" r="1.9" fill="{C["metro"]}"/><text x="{x1 + 5.5}" y="{yy + 0.05}" text-anchor="middle" '
+                      f'dominant-baseline="central" font-family="{F_SANS}" font-size="2.5" font-weight="700" fill="#fff">M</text>')
         elif kind == "questura":
-            pn.append(f'<rect x="{x1 + 3.1}" y="{yy - 1.4}" width="2.8" height="2.8" fill="{C["blue"]}"/><text x="{x1 + 4.5}" y="{yy + 0.05}" '
-                      f'text-anchor="middle" dominant-baseline="central" font-family="{F_SERIF}" font-size="2.1" font-weight="700" fill="#fff">Q</text>')
-        pn.append(f'<text x="{x2 + 2.2}" y="{yy}" dominant-baseline="central" font-family="{F_SANS}" font-size="2.35" fill="{C["ink"]}">{html.escape(lab)}</text>')
-    # scale bar (checkered, like the reference)
-    sy = ly + lh - 9
-    m500 = 500 * MM_PER_M
-    sx0 = cx - m500 * 1.5
-    for i in range(3):
+            pn.append(f'<rect x="{x1 + 3.7}" y="{yy - 1.8}" width="3.6" height="3.6" fill="{C["blue"]}"/><text x="{x1 + 5.5}" y="{yy + 0.05}" '
+                      f'text-anchor="middle" dominant-baseline="central" font-family="{F_SERIF}" font-size="2.7" font-weight="700" fill="#fff">Q</text>')
+        pn.append(f'<text x="{x2 + 2.6}" y="{yy}" dominant-baseline="central" font-family="{F_SANS}" font-size="{LFS}" fill="{C["ink"]}">{html.escape(lab)}</text>')
+    # scale bar, checkered like the reference: 0–1000 m in 250 m steps
+    sy = LGY + LGH - 10.5
+    seg = 250 * MM_PER_M
+    sx0 = cx - seg * 2
+    for i in range(4):
         fill = C["ink"] if i % 2 == 0 else C["paper"]
-        pn.append(f'<rect x="{sx0 + i * m500:.2f}" y="{sy}" width="{m500:.2f}" height="1.4" fill="{fill}" stroke="{C["ink"]}" stroke-width="0.2"/>')
-    for i, lab in enumerate(["0", "500", "1000", "1500 m"]):
-        pn.append(f'<text x="{sx0 + i * m500:.2f}" y="{sy - 1.4}" text-anchor="middle" font-family="{F_SANS}" font-size="2.2" fill="{C["ink"]}">{lab}</text>')
-    pn.append(f'<text x="{cx}" y="{sy + 5}" text-anchor="middle" font-family="{F_SERIF}" font-size="2.4" font-style="italic" fill="{C["ink"]}">Scala 1 : 15.000 — 1 cm = 150 m</text>')
-
-    # index of streets
-    iy = ly + lh + 7
-    pn.append(f'<text x="{cx}" y="{iy}" text-anchor="middle" font-family="{F_SERIF}" font-size="3.0" font-weight="700" letter-spacing="0.8" fill="{C["ink"]}">INDICE DELLE VIE PRINCIPALI</text>')
-
-    def idx_key(nm):
-        if nm == "Via Rodolfo Lanciani":
-            return "lanciani", "Lanciani (Via Rodolfo)"
-        m = re.match(r"^(Via|Viale|Piazza|Piazzale|Largo|Circonvallazione|Vicolo|Corso)\s+"
-                     r"((?:di|del|della|dei|degli|delle|dello)\s+|dell'|d')?(.*)$", nm)
-        if not m:
-            return nm.lower(), nm
-        typ, prep, rest = m.group(1), (m.group(2) or "").strip(), m.group(3)
-        rest = rest[0].upper() + rest[1:]
-        return rest.lower(), f"{rest} ({typ}{' ' + prep if prep else ''})"
-
-    must = {"Via Rodolfo Lanciani", "Piazza dei Sanniti", "Via dei Volsci", "Via Tiburtina", "Via di San Vitale",
-            "Piazza Bologna", "Via Nomentana", "Viale Regina Margherita", "Piazzale del Verano", "Viale dell'Università",
-            "Piazza dei Cinquecento", "Via Marsala", "Viale Castro Pretorio", "Via XX Settembre", "Corso d'Italia",
-            "Viale Ippocrate", "Via dei Reti", "Via degli Equi", "Piazza Vittorio Emanuele II", "Via Merulana",
-            "Via Cavour", "Via Nazionale", "Piazza della Repubblica", "Via Principe Amedeo", "Via Giolitti",
-            "Via Catania", "Viale XXI Aprile", "Via di Porta Labicana", "Via dello Scalo di San Lorenzo",
-            "Viale della Regina Margherita", "Viale del Policlinico", "Piazza Porta Pia", "Via Gaeta", "Via Volturno",
-            "Via Montebello", "Via Goito", "Via Palestro", "Via Magenta", "Via Solferino", "Viale Pretoriano",
-            "Via Salaria", "Via Alessandria", "Via Livorno", "Via Padova", "Via Michele di Lando", "Via Lorenzo il Magnifico"}
-    chosen = [n for n in index_entries if n in must]
-    rows_avail = int((MY + MH + BAND - 9 - 8 - (iy + 5)) / 2.75)
-    others = sorted((n for n in index_entries if n not in must and n in chains),
-                    key=lambda n: (min(c for c, _ in chains[n]), n))[:max(0, 2 * rows_avail - len(chosen))]
-    entries = sorted(set(chosen + others), key=lambda n: idx_key(n)[0])
-    ncol, per = 2, (len(entries) + 1) // 2
-    colw = (PW - 22) / 2
-    for k, nm in enumerate(entries):
-        col, row = divmod(k, per)
-        x = PX + 8 + col * (colw + 6)
-        y = iy + 5 + row * 2.75
-        label = idx_key(nm)[1]
-        ref = index_entries[nm]
-        pn.append(f'<text x="{x:.2f}" y="{y:.2f}" font-family="{F_SANS}" font-size="2.2" fill="{C["ink"]}">{html.escape(label)}</text>')
-        pn.append(f'<text x="{x + colw:.2f}" y="{y:.2f}" text-anchor="end" font-family="{F_SANS}" font-size="2.2" font-weight="700" fill="{C["ink"]}">{ref}</text>')
-    # imprint
-    by = MY + MH + BAND - 9
-    pn.append(f'<line x1="{PX + 8}" y1="{by - 4.5}" x2="{PX + PW - 8}" y2="{by - 4.5}" stroke="{C["ink"]}" stroke-width="0.25"/>')
-    pn.append(f'<text x="{cx}" y="{by}" text-anchor="middle" font-family="{F_SERIF}" font-size="2.6" font-weight="700" letter-spacing="0.6" fill="{C["ink"]}">EDIZIONI CARTOGRAFICHE CAPITOLINE — ROMA</text>')
-    pn.append(f'<text x="{cx}" y="{by + 3.6}" text-anchor="middle" font-family="{F_SANS}" font-size="2.1" fill="{C["grey"]}">Proprietà letteraria riservata · Stampato in Italia · Agosto 1987 · L. 3.500</text>')
+        pn.append(f'<rect x="{sx0 + i * seg:.2f}" y="{sy}" width="{seg:.2f}" height="1.6" fill="{fill}" stroke="{C["ink"]}" stroke-width="0.2"/>')
+    for i, lab in enumerate(["0", "250", "500", "750", "1000 m"]):
+        pn.append(f'<text x="{sx0 + i * seg:.2f}" y="{sy - 1.6}" text-anchor="middle" font-family="{F_SANS}" font-size="2.9" fill="{C["ink"]}">{lab}</text>')
+    pn.append(f'<text x="{cx}" y="{sy + 6.2}" text-anchor="middle" font-family="{F_SERIF}" font-size="3.2" font-style="italic" fill="{C["ink"]}">Scala 1 : 12.500 — 1 cm = 125 m</text>')
     pn.append('</g>')
+    entries = []
 
     # ---- pen marks (optional layer)
     pen = []
@@ -743,12 +717,12 @@ def svg_map(with_pen):
            f'<title>Pianta di Roma 1987 — Nomentano, San Lorenzo, Esquilino</title>{fonts}'
            f'<defs>{clip}{pats}{"".join(defs_paths)}</defs>'
            f'<rect width="{PAGE_W}" height="{PAGE_H}" fill="{C["paper"]}"/>'
-           f'{"".join(fr)}{mapbody}{north}{attr}{"".join(pn)}{"".join(pen)}</svg>')
+           f'{"".join(fr)}{mapbody}{north}{"".join(pn)}{attr}{"".join(pen)}</svg>')
     return svg, entries
 
 
 for with_pen, fname in [(False, "mappa-roma-1987.svg"), (True, "mappa-roma-1987-segni.svg")]:
     svg, entries = svg_map(with_pen)
     open(os.path.join(OUT, fname), "w").write(svg)
-print("labels:", len(labels_svg), "index:", len(entries), "map mm:", round(MW, 1), round(MH, 1))
-print("missing in index:", sorted({"Via Rodolfo Lanciani", "Piazza dei Sanniti", "Via dei Volsci", "Via Tiburtina", "Via di San Vitale"} - set(entries)))
+print("labels:", len(labels_svg), "map mm:", round(MW, 1), round(MH, 1), "lon", round(LON0, 4), round(LON1, 4), "lat", round(LAT0, 4), round(LAT1, 4))
+print("story streets not labelled:", sorted(set(STORY) - set(index_entries)))
