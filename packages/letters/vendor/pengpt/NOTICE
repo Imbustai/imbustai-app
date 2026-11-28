@@ -1,0 +1,5 @@
+pen.py is copied unchanged from https://github.com/greydanus/pengpt
+(commit 3637f5c29989cd511bc3af90e3af1d2cbcdcb3e5, inference/pen.py),
+PenGPT by Sam Greydanus, Apache License 2.0 (LICENSE in this folder).
+The weights it loads (hand.npz, release models-2026-11-16) are downloaded by
+setup.sh into .cache/ and are not committed.
