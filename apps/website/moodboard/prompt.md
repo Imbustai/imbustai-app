@@ -46,7 +46,7 @@ Soluzione:
 Imbustai riporta lentezza e profondità attraverso storie epistolari fisiche, personalizzate tramite AI, come alternativa attiva ai social.
 
 ## Direzione visuale
-Use la cartella @apps/website/moodboard/inspirations Per ispirazione e falla funzionare con le indicazioni che ti ho fornito qui sotto
+Use la cartella @moodboard/imbustai/campioni-chatgpt-giugno-2026/ispirazioni Per ispirazione e falla funzionare con le indicazioni che ti ho fornito qui sotto
 
 ### Tono
 - grafico
@@ -58,7 +58,7 @@ Use la cartella @apps/website/moodboard/inspirations Per ispirazione e falla fun
 
 ### Riferimenti
 Usa come riferimenti visivi:
-- la moodboard allegata dentro a @apps/website/moodboard/inspirations 
+- la moodboard allegata dentro a @moodboard/imbustai/campioni-chatgpt-giugno-2026/ispirazioni 
 - i poster Poste Italiane
 - i pattern “posta aerea”
 - le cassette postali rosse
@@ -133,7 +133,7 @@ Se GT America non è disponibile, usa un fallback come:
 - look da sistema editoriale, non da template
 
 ### Elementi grafici da usare
-Usa dove opportuno gli asset allegati nella cartella @apps/website/moodboard/assets_for_website 
+Usa dove opportuno gli asset allegati nella cartella @moodboard/imbustai/campioni-chatgpt-giugno-2026/elementi 
 - cassetta postale rossa
 - timbro postale
 - cornice QR / francobollo (meetici qualcosa dentro magari=

@@ -46,6 +46,7 @@ Speak the glossary: `CONTEXT-MAP.md` → `packages/story-runtime/CONTEXT.md` (St
 | Developer docs app | `apps/developer/` |
 | DB migrations | `supabase/migrations/` |
 | Shared i18n | `packages/i18n/` |
+| Design assets: references, AI generations, drafts, final art | `moodboard/`, one README per asset ([ADR 0004](docs/adr/0004-design-assets-live-in-moodboard.md)) |
 
 ## Commands
 

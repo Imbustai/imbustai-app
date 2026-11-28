@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Imbustai · Istruzioni · L'ombra di Voss</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&family=Arimo:wght@400&display=swap">
+<style>
+/* Foglio di istruzioni A5 nello stile dei regolamenti dei giochi da tavolo italiani anni '80:
+   un solo inchiostro blu su carta bianca, testata spaziata con filetti, titoli bastoni, testo giustificato. */
+@page { size: 148mm 210mm; margin: 13mm 13mm 14mm 13mm; }
+:root { --ink: #1F2C78; --text: #1A1A2E; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: "Tinos", "Times New Roman", serif; font-size: 9pt; line-height: 1.32; color: var(--text);
+       hyphens: auto; -webkit-hyphens: auto; }
+.page { break-after: page; height: 180mm; display: flex; flex-direction: column; }
+.page:last-child { break-after: auto; }
+
+.testata { text-align: center; color: var(--ink); }
+.testata h1 { font-family: "Tinos", serif; font-weight: 400; font-size: 30pt; letter-spacing: 0.42em; margin: 0 0 1.6mm 0.42em; line-height: 1; }
+.filetti { height: 3.2mm; border-top: 0.35pt solid var(--ink); border-bottom: 0.35pt solid var(--ink); position: relative; margin: 0 0 1.2mm; }
+.filetti::before, .filetti::after { content: ""; position: absolute; left: 0; right: 0; border-top: 0.35pt solid var(--ink); }
+.filetti::before { top: 0.95mm; } .filetti::after { top: 1.9mm; }
+.collana { text-align: center; font-family: "Arimo", sans-serif; font-size: 6.4pt; letter-spacing: 0.32em; text-transform: uppercase; margin: 0; }
+
+h2 { font-family: "Arimo", "Helvetica", sans-serif; font-weight: 400; font-size: 15pt; color: var(--ink); text-align: center;
+     margin: 5.5mm 0 2.6mm; letter-spacing: 0.01em; }
+h2.primo { margin-top: 5mm; }
+.sottotitolo { text-align: center; font-weight: 700; color: var(--ink); margin: -1mm 0 2.4mm; font-size: 8.4pt; }
+h3 { font-family: "Tinos", serif; font-weight: 700; font-size: 9pt; color: var(--ink); text-transform: uppercase; letter-spacing: 0.02em;
+     margin: 3.6mm 0 1.4mm; }
+p { margin: 0 0 1.1mm; text-align: justify; text-indent: 4.5mm; }
+p.noindent { text-indent: 0; }
+b { color: var(--ink); hyphens: none; -webkit-hyphens: none; }
+
+table { width: 100%; border-collapse: collapse; margin: 2.2mm 0 1mm; font-size: 8.2pt; }
+th, td { border: 0.45pt solid var(--ink); padding: 0.55mm 2mm; text-align: center; vertical-align: middle; }
+th { font-family: "Arimo", sans-serif; font-weight: 400; font-size: 7.4pt; letter-spacing: 0.14em; text-align: center !important; color: var(--ink); padding: 1.2mm; }
+td:first-child, th:first-child { text-align: left; }
+
+.chiusa { text-align: center; text-indent: 0; font-style: italic; margin-top: 3mm; font-size: 9.2pt; color: var(--ink); }
+.firma { text-align: right; text-indent: 0; margin-top: 1.2mm; }
+.piede { margin-top: auto; font-family: "Arimo", sans-serif; font-size: 5.6pt; letter-spacing: 0.08em;
+         text-transform: uppercase; color: var(--ink); display: flex; justify-content: space-between; border-top: 0.35pt solid var(--ink); padding-top: 1mm; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="testata">
+    <h1>IMBUSTAI</h1>
+    <div class="filetti"></div>
+    <p class="collana noindent">Romanzi epistolari · L'ombra di Voss</p>
+  </header>
+
+  <h2 class="primo">LO SPIRITO DEL GIOCO</h2>
+
+  <p>Imbustai è una storia che si vive per posta. Un personaggio ti scrive una <b>LETTERA</b>; tu gli rispondi con parole tue, e la storia cambia secondo quello che scrivi: di chi ti fidi, che cosa chiedi, e quando.</p>
+  <p>In questa busta comincia <b>L'OMBRA DI VOSS</b>. Sei il commissario <b>GIACOMO LOMBARDO</b>. È il settembre del 1987 e da giugno lavori a Lipari, un'isola lontana da Roma, dove ti hanno mandato per punizione.</p>
+  <p>Da Roma ti scrive <b>FLORIAN VOSS</b>, l'agente che per due anni ti ha fatto da autista. Qualcuno uccide i testimoni di un vecchio processo, e Voss c'entra più di quanto vorrebbe. Ti chiede aiuto perché tu puoi fare una cosa che a lui è negata: chiedere le carte.</p>
+  <p>Lo scopo del gioco è capire che cosa sta succedendo prima che sia troppo tardi. Non ci sono tabellone, dadi o pedine: si gioca soltanto scrivendo. Il finale non è già scritto: lo decide quello che avrai fatto.</p>
+
+  <h2>REGOLE DEL GIOCO</h2>
+  <p class="sottotitolo noindent">per un giocatore, e per chi vuole leggere sopra la sua spalla</p>
+
+  <h3>Dotazione</h3>
+  <p>Nella busta trovi la <b>LETTERA DI VOSS</b>, scritta a Roma il 5 settembre 1987; il <b>DECRETO DI TRASFERIMENTO</b> che la Questura di Roma ti ha notificato il 28 maggio; una <b>PIANTA DI ROMA</b> con i luoghi di cui ti parla Voss; il <b>FRANCOBOLLO</b> della storia, da attaccare dove vuoi; e questo foglio.</p>
+  <p>Poi, a ogni turno, ti arriva una nuova busta: lettere di Voss, verbali, certificati, ritagli di giornale del 1987.</p>
+
+  <h3>Preparazione</h3>
+  <p>Leggi prima la lettera di Voss, poi il decreto. Tieni la pianta di Roma a portata di mano.</p>
+  <p>Sul biglietto regalo trovi il codice e l'indirizzo del sito: lì scegli dove ricevere la posta e scrivi le tue risposte, con calma, come si scriveva allora. Le lettere da Roma partono a <b>GENNAIO</b>.</p>
+  <div class="piede"><span>Imbustai · Romanzi epistolari</span><span>L'ombra di Voss · 1</span></div>
+</section>
+
+<section class="page">
+  <h3>Come si gioca</h3>
+  <p>Si gioca scrivendo <b>LETTERE</b>, e soltanto lettere. In questa storia non si telefona, non si mandano telegrammi e non si lascia l'isola.</p>
+  <p>A ogni <b>TURNO</b> si possono spedire fino a <b>TRE LETTERE</b>, ciascuna a un solo destinatario.</p>
+  <p>La storia dura <b>OTTO TURNI</b>, e ogni turno copre circa due settimane del 1987. Dopo l'ottavo la storia finisce, comunque vada.</p>
+  <p>A Roma il tempo passa anche se tu non scrivi.</p>
+
+  <h3>A chi si può scrivere</h3>
+  <p>A chiunque ti abbia scritto.</p>
+  <p>A <b>QUALUNQUE UFFICIO PUBBLICO DI ROMA</b>. Sei un commissario, e gli uffici sono tenuti a risponderti. Se sbagli ufficio, la tua lettera viene inoltrata a quello giusto, senza perdere tempo.</p>
+  <p>Chiedi cose precise: nomi, date, un processo, un indirizzo. A una richiesta vaga, un ufficio risponde solo in parte.</p>
+
+  <table>
+    <tr><th colspan="2">LA PARTITA IN CIFRE</th></tr>
+    <tr><td>Turni della storia</td><td>8</td></tr>
+    <tr><td>Lettere a ogni turno</td><td>fino a 3</td></tr>
+    <tr><td>Destinatari per lettera</td><td>1</td></tr>
+    <tr><td>Tempo coperto da un turno</td><td>circa 2 settimane</td></tr>
+    <tr><td>Posta tra Roma e Lipari</td><td>1 settimana per tratta</td></tr>
+    <tr><td>Risposta di un ufficio</td><td>dopo 2 o 3 turni</td></tr>
+  </table>
+
+  <h3>Il 1987</h3>
+  <p>Non esistono cellulari, computer da consultare o fax.</p>
+  <p>Non esiste il DNA. Le impronte digitali si confrontano a mano, e soltanto con quelle di una persona che hai già nominato.</p>
+  <p>Un vecchio documento si trova solo se sai in quale archivio cercarlo.</p>
+
+  <p class="chiusa">Non esistono mosse sbagliate.<br>Esistono solo mosse fatte troppo tardi.</p>
+  <p class="firma">Buona indagine,<br><b>Imbustai</b></p>
+  <div class="piede"><span>Imbustai · Romanzi epistolari</span><span>L'ombra di Voss · 2</span></div>
+</section>
+
+</body>
+</html>
