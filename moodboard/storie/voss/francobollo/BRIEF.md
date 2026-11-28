@@ -89,7 +89,7 @@ Sono suggerimenti, non obblighi: scegli tu che cosa raccontare. Ognuno ha un sig
 
 ## 7. Il brand, come riferimento
 
-Nella cartella `riferimenti-brand/` ci sono la palette e il tratto delle icone del nostro sito: colori postali spenti e vintage (blu notte, rosso timbro, giallo ocra, carta, inchiostro), illustrazioni al tratto, righe della posta aerea. Sono il nostro mondo, non una gabbia: se la storia chiede altro, proponi altro e spiega perché.
+Nella cartella `moodboard/imbustai/campioni-chatgpt-giugno-2026/` ci sono la palette e il tratto delle icone del nostro sito: colori postali spenti e vintage (blu notte, rosso timbro, giallo ocra, carta, inchiostro), illustrazioni al tratto, righe della posta aerea. Sono il nostro mondo, non una gabbia: se la storia chiede altro, proponi altro e spiega perché.
 
 Ci piace la grande tradizione dei francobolli e della grafica italiana: l'incisione calcografica, il manifesto italiano del dopoguerra, l'illustrazione editoriale dei gialli da edicola. Puoi ispirarti a tutto, ma senza copiare nessuno.
 
@@ -119,5 +119,5 @@ Ci piace la grande tradizione dei francobolli e della grafica italiana: l'incisi
 
 ## Per usarlo con un'AI
 
-- **ChatGPT (GPT Image) o Gemini**: incolla tutto il brief, allega i tre file di `packages/engine-voss/seed/text/opening/` e, se vuoi, le immagini di `riferimenti-brand/`. Chiudi con: «Genera la direzione 1 di 3 come immagine del francobollo finito, su sfondo neutro». Poi chiedi le direzioni 2 e 3. Questi modelli leggono testi lunghi.
+- **ChatGPT (GPT Image) o Gemini**: incolla tutto il brief, allega i tre file di `packages/engine-voss/seed/text/opening/` e, se vuoi, le immagini di `moodboard/imbustai/campioni-chatgpt-giugno-2026/`. Chiudi con: «Genera la direzione 1 di 3 come immagine del francobollo finito, su sfondo neutro». Poi chiedi le direzioni 2 e 3. Questi modelli leggono testi lunghi.
 - **Recraft e Flux** accettano prompt molto più corti e il resto lo ignorano. Fatti scrivere da ChatGPT, con questo brief, un prompt per ognuna delle tre direzioni, e incolla quello.
