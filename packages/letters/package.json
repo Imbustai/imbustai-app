@@ -1,0 +1,13 @@
+{
+  "name": "@imbustai/letters",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Prints a Story's paper: Character Letters written by hand with PenGPT, and printed cards.",
+  "scripts": {
+    "setup": "sh setup.sh",
+    "letter": ".venv/bin/python -m letters letter",
+    "card": ".venv/bin/python -m letters card",
+    "audition": ".venv/bin/python -m letters audition",
+    "voss": "pnpm run card ../engine-voss/seed/text/opening/rules-card.md --story \"L'ombra di Voss\" --out prints/voss/00-introduzione.pdf && pnpm run letter ../engine-voss/seed/text/opening/voss-letter.md --hand voss --out prints/voss/01-lettera-voss.pdf"
+  }
+}
